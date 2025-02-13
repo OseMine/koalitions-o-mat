@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Koalitions-O-Mat</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Koalitions-O-Mat</h1>
+        
+        <div class="tabs">
+            <button class="tab-button active" onclick="switchTab('alle')">Alle Koalitionen</button>
+            <button class="tab-button" onclick="switchTab('partei')">Nach Partei filtern</button>
+            <button class="tab-button" onclick="switchTab('vergleich')">Parteien vergleichen</button>
+            <button class="tab-button" onclick="switchTab('test')">Koalitionstest</button>
+            <button class="tab-button" onclick="switchTab('wahlomat')">Parteientest</button>
+        </div>
+
+        <div id="alle-koalitionen" class="tab-content active">
+            <div class="filter-options">
+                <label>
+                    Mindestübereinstimmung:
+                    <input type="range" id="minMatchAll" min="0" max="100" value="0" step="5" oninput="updateMinMatchLabel('All')">
+                    <span id="minMatchLabelAll">0%</span>
+                </label>
+                <div class="dropdown">
+                    <button type="button" class="dropdown-btn" onclick="toggleDropdown('excludePartiesAll')">
+                        Parteien ausschließen
+                    </button>
+                    <div id="excludePartiesAllDropdown" class="dropdown-content">
+                        <!-- Wird dynamisch gefüllt -->
+                    </div>
+                    <div class="selected-options" id="excludePartiesAllSelected"></div>
+                </div>
+            </div>
+            <div id="results">
+                <h2>Mögliche Koalitionen</h2>
+                <div id="coalitionResults"></div>
+            </div>
+        </div>
+
+        <div id="partei-koalitionen" class="tab-content">
+            <div class="party-selector">
+                <h2>Koalitionen nach Partei</h2>
+                <div class="filter-options">
+                    <select id="partySelect" onchange="zeigeKoalitionenFuerPartei()">
+                        <option value="">Partei auswählen...</option>
+                    </select>
+                    <select id="roleSelect" onchange="zeigeKoalitionenFuerPartei()">
+                        <option value="enthalten">Partei muss enthalten sein</option>
+                        <option value="staerkste">Partei muss stärkste sein</option>
+                    </select>
+                    <label>
+                        Mindestübereinstimmung:
+                        <input type="range" id="minMatchParty" min="0" max="100" value="0" step="5" oninput="updateMinMatchLabel('Party')">
+                        <span id="minMatchLabelParty">0%</span>
+                    </label>
+                    <div class="dropdown">
+                        <button type="button" class="dropdown-btn" onclick="toggleDropdown('excludePartiesParty')">
+                            Parteien ausschließen
+                        </button>
+                        <div id="excludePartiesPartyDropdown" class="dropdown-content">
+                            <!-- Wird dynamisch gefüllt -->
+                        </div>
+                        <div class="selected-options" id="excludePartiesPartySelected"></div>
+                    </div>
+                </div>
+            </div>
+            <div id="partyCoalitionResults"></div>
+        </div>
+
+        <div id="vergleich-koalitionen" class="tab-content">
+            <div class="party-comparison">
+                <h2>Parteienvergleich</h2>
+                <div class="filter-options">
+                    <div class="dropdown">
+                        <button type="button" class="dropdown-btn" onclick="toggleDropdown('compareParties')">
+                            Parteien zum Vergleich auswählen
+                        </button>
+                        <div id="comparePartiesDropdown" class="dropdown-content">
+                            <!-- Wird dynamisch gefüllt -->
+                        </div>
+                        <div class="selected-options" id="comparePartiesSelected"></div>
+                    </div>
+                </div>
+                <div id="comparisonTable"></div>
+            </div>
+        </div>
+
+        <div id="test-koalitionen" class="tab-content">
+            <div class="test-container">
+                <h2>Koalitionstest</h2>
+                <div id="questionContainer" class="question-container">
+                    <!-- Fragen werden dynamisch eingefügt -->
+                </div>
+                <div class="test-controls">
+                    <button id="prevQuestion" onclick="showPreviousQuestion()" disabled>Zurück</button>
+                    <button id="nextQuestion" onclick="showNextQuestion()">Weiter</button>
+                    <button id="showResults" onclick="showTestResults()" style="display: none;">Ergebnis anzeigen</button>
+                </div>
+                <div id="testResults" class="test-results"></div>
+            </div>
+        </div>
+
+        <div id="wahlomat-koalitionen" class="tab-content">
+            <div class="test-container">
+                <h2>Parteientest</h2>
+                <div id="wahlomatQuestionContainer" class="question-container">
+                    <!-- Fragen werden dynamisch eingefügt -->
+                </div>
+                <div class="test-controls">
+                    <button id="wahlomatPrevQuestion" onclick="showPreviousWahlomatQuestion()" disabled>Zurück</button>
+                    <button id="wahlomatNextQuestion" onclick="showNextWahlomatQuestion()">Weiter</button>
+                    <button id="showWahlomatResults" onclick="showWahlomatResults()" style="display: none;">Ergebnis anzeigen</button>
+                </div>
+                <div id="wahlomatResults" class="wahlomat-results"></div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 

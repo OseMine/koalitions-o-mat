@@ -1,0 +1,148 @@
+{
+  "umfragewerte": [
+    {
+      "partei": "CDU/CSU",
+      "prozent": 29.5,
+      "veraenderung": 0
+    },
+    {
+      "partei": "SPD",
+      "prozent": 15.5,
+      "veraenderung": 0
+    },
+    {
+      "partei": "GRÜNE",
+      "prozent": 13.5,
+      "veraenderung": 0
+    },
+    {
+      "partei": "FDP",
+      "prozent": 4,
+      "veraenderung": 0
+    },
+    {
+      "partei": "AfD",
+      "prozent": 20.5,
+      "veraenderung": 0
+    },
+    {
+      "partei": "LINKE",
+      "prozent": 6,
+      "veraenderung": 0
+    },
+    {
+      "partei": "BSW",
+      "prozent": 4.5,
+      "veraenderung": 0
+    },
+    {
+      "partei": "SSW",
+      "prozent": 0.3,
+      "veraenderung": 0
+    },
+    {
+      "partei": "FREIE WÄHLER",
+      "prozent": 0.3,
+      "veraenderung": 0
+    },
+    {
+      "partei": "Tierschutz",
+      "prozent": 0.3,
+      "veraenderung": 0
+    },
+    {
+      "partei": "DieBasis",
+      "prozent": 0.3,
+      "veraenderung": 0
+    },
+    {
+      "partei": "PARTEI",
+      "prozent": 0.3,
+      "veraenderung": 0
+    },
+    {
+      "partei": "Todenhöfer",
+      "prozent": 0.3,
+      "veraenderung": 0
+    },
+    {
+      "partei": "PIRATEN",
+      "prozent": 0.3,
+      "veraenderung": 0
+    },
+    {
+      "partei": "Volt",
+      "prozent": 0.3,
+      "veraenderung": 0
+    },
+    {
+      "partei": "ÖDP",
+      "prozent": 0.3,
+      "veraenderung": 0
+    },
+    {
+      "partei": "Verjüngung",
+      "prozent": 0.3,
+      "veraenderung": 0
+    },
+    {
+      "partei": "PdH",
+      "prozent": 0.3,
+      "veraenderung": 0
+    },
+    {
+      "partei": "Bündnis C",
+      "prozent": 0.3,
+      "veraenderung": 0
+    },
+    {
+      "partei": "BP",
+      "prozent": 0.3,
+      "veraenderung": 0
+    },
+    {
+      "partei": "MLPD",
+      "prozent": 0.3,
+      "veraenderung": 0
+    },
+    {
+      "partei": "MENSCHLICHE WELT",
+      "prozent": 0.3,
+      "veraenderung": 0
+    },
+    {
+      "partei": "PdF",
+      "prozent": 0.3,
+      "veraenderung": 0
+    },
+    {
+      "partei": "SGP",
+      "prozent": 0.3,
+      "veraenderung": 0
+    },
+    {
+      "partei": "BüSo",
+      "prozent": 0.3,
+      "veraenderung": 0
+    },
+    {
+      "partei": "BÜNDNIS DEUTSCHLAND",
+      "prozent": 0.3,
+      "veraenderung": 0
+    },
+    {
+      "partei": "MERA25",
+      "prozent": 0.3,
+      "veraenderung": 0
+    },
+    {
+      "partei": "WerteUnion",
+      "prozent": 0.3,
+      "veraenderung": 0
+    }
+  ],
+  "meta": {
+    "gesamt": 100,
+    "sperrklausel": 5
+  }
+}
