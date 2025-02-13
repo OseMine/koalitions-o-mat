@@ -476,4 +476,43 @@ input[type="text"], input[type="number"] {
 
 .show-answers-btn:hover {
     background-color: #f0f0f0;
+}
+
+/* Füge diese Styles hinzu */
+.coalition-type-selector {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.coalition-type-selector select {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    min-width: 200px;
+}
+
+.custom-threshold {
+    margin-top: 5px;
+}
+
+.custom-threshold label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.custom-threshold input[type="range"] {
+    width: 200px;
+}
+
+.custom-threshold span {
+    min-width: 50px;
+}
+
+.custom-threshold input[type="number"] {
+    width: 70px;
+    padding: 4px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
 } 

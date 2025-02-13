@@ -68,11 +68,15 @@ function getExcludedParties(type) {
 }
 
 function updateKoalitionen() {
-    const koalitionen = berechneKoalitionen(window.parteienData, window.werteData);
+    const type = document.getElementById('coalitionTypeAll').value;
+    const customThreshold = type === 'custom' ? 
+        parseFloat(document.getElementById('customThresholdValueAll').value) : 50;
+    
+    const koalitionen = berechneKoalitionen(window.parteienData, window.werteData, type, customThreshold);
     zeigeKoalitionen(koalitionen);
 }
 
-function berechneKoalitionen(parteienData, werteData) {
+function berechneKoalitionen(parteienData, werteData, type = 'alle', customThreshold = 50) {
     // Filtere Parteien über 5%
     const relevantParties = werteData.umfragewerte.filter(
         p => p.partei !== 'Andere' && p.prozent >= werteData.meta.sperrklausel
@@ -88,8 +92,26 @@ function berechneKoalitionen(parteienData, werteData) {
         // Berechne Gesamtprozente
         const gesamtProzente = koalitionsParteien.reduce((sum, p) => sum + p.prozent, 0);
         
-        // Prüfe ob über 50%
-        if (gesamtProzente >= 50) {
+        // Prüfe Koalitionstyp
+        let isValid = false;
+        switch(type) {
+            case 'mehrheit':
+                isValid = gesamtProzente > 50;
+                break;
+            case 'minderheit':
+                isValid = gesamtProzente < 50;
+                break;
+            case 'custom':
+                isValid = gesamtProzente >= customThreshold;
+                break;
+            case 'beide':
+                isValid = true;
+                break;
+            default:
+                isValid = gesamtProzente >= 50;
+        }
+
+        if (isValid) {
             // Berechne Übereinstimmung bei Zielen
             const uebereinstimmung = berechneUebereinstimmung(koalitionsParteien, parteienData);
             
@@ -208,10 +230,13 @@ function zeigeKoalitionenFuerPartei() {
     const roleType = document.getElementById('roleSelect').value;
     const minMatch = parseFloat(document.getElementById('minMatchParty').value);
     const excludedParties = getExcludedParties('Party');
+    const coalitionType = document.getElementById('coalitionTypeParty').value;
+    const customThreshold = coalitionType === 'custom' ? 
+        parseFloat(document.getElementById('customThresholdValueParty').value) : 50;
     
     if (!selectedParty) return;
     
-    let koalitionen = berechneKoalitionen(window.parteienData, window.werteData);
+    let koalitionen = berechneKoalitionen(window.parteienData, window.werteData, coalitionType, customThreshold);
     
     // Filtere ausgeschlossene Parteien
     koalitionen = koalitionen.filter(k => 
@@ -665,4 +690,34 @@ function generateAnswerComparison(partei) {
 function togglePartyAnswers(partei) {
     const answersDiv = document.getElementById(`answers-${partei}`);
     answersDiv.classList.toggle('show');
+}
+
+// Füge Event-Listener für die Koalitionstyp-Auswahl hinzu
+document.addEventListener('DOMContentLoaded', () => {
+    ['All', 'Party'].forEach(type => {
+        const select = document.getElementById(`coalitionType${type}`);
+        if (select) {
+            select.addEventListener('change', (e) => {
+                const customThreshold = document.getElementById(`customThreshold${type}`);
+                if (e.target.value === 'custom') {
+                    customThreshold.style.display = 'block';
+                } else {
+                    customThreshold.style.display = 'none';
+                }
+            });
+        }
+    });
+});
+
+// Füge diese neue Funktion hinzu
+function updateCustomThresholdLabel(type) {
+    const slider = document.getElementById(`customThresholdValue${type}`);
+    const label = document.getElementById(`customThresholdLabel${type}`);
+    label.textContent = `${slider.value}%`;
+    
+    if (type === 'All') {
+        updateKoalitionen();
+    } else {
+        zeigeKoalitionenFuerPartei();
+    }
 }
