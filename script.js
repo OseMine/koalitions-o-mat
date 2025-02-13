@@ -192,6 +192,14 @@ function zeigeKoalitionen(koalitionen) {
         `).join('');
 }
 
+// Globale Variablen für beide Tests
+let sharedAnswers = {};
+let currentSharedQuestion = 0;
+let currentQuestion = 0;
+let currentWahlomatQuestion = 0;
+let userAnswers = {};
+let wahlomatAnswers = {};
+
 function switchTab(tabName) {
     // Aktualisiere Tab-Buttons
     document.querySelectorAll('.tab-button').forEach(button => {
@@ -205,9 +213,14 @@ function switchTab(tabName) {
     });
     document.getElementById(`${tabName}-koalitionen`).classList.add('active');
 
+    // Synchronisiere die Tests beim Tab-Wechsel
     if (tabName === 'test') {
+        currentQuestion = currentSharedQuestion;
+        userAnswers = {...sharedAnswers};
         initializeTest();
     } else if (tabName === 'wahlomat') {
+        currentWahlomatQuestion = currentSharedQuestion;
+        wahlomatAnswers = {...sharedAnswers};
         initializeWahlomatTest();
     }
 }
@@ -399,17 +412,59 @@ document.addEventListener('click', (e) => {
     }
 });
 
-let currentQuestion = 0;
-let userAnswers = {};
+// Modifiziere die Navigation für beide Tests
+function showNextQuestion() {
+    if (currentQuestion < window.parteienData.fragen.length - 1) {
+        const questions = document.querySelectorAll('#questionContainer .question');
+        questions[currentQuestion].classList.remove('active');
+        currentQuestion++;
+        currentSharedQuestion = currentQuestion;
+        questions[currentQuestion].classList.add('active');
+        updateNavigationButtons();
+    }
+}
+
+function showPreviousQuestion() {
+    if (currentQuestion > 0) {
+        const questions = document.querySelectorAll('#questionContainer .question');
+        questions[currentQuestion].classList.remove('active');
+        currentQuestion--;
+        currentSharedQuestion = currentQuestion;
+        questions[currentQuestion].classList.add('active');
+        updateNavigationButtons();
+    }
+}
+
+function showNextWahlomatQuestion() {
+    if (currentWahlomatQuestion < window.parteienData.fragen.length - 1) {
+        const questions = document.querySelectorAll('#wahlomatQuestionContainer .question');
+        questions[currentWahlomatQuestion].classList.remove('active');
+        currentWahlomatQuestion++;
+        currentSharedQuestion = currentWahlomatQuestion;
+        questions[currentWahlomatQuestion].classList.add('active');
+        updateWahlomatNavigationButtons();
+    }
+}
+
+function showPreviousWahlomatQuestion() {
+    if (currentWahlomatQuestion > 0) {
+        const questions = document.querySelectorAll('#wahlomatQuestionContainer .question');
+        questions[currentWahlomatQuestion].classList.remove('active');
+        currentWahlomatQuestion--;
+        currentSharedQuestion = currentWahlomatQuestion;
+        questions[currentWahlomatQuestion].classList.add('active');
+        updateWahlomatNavigationButtons();
+    }
+}
 
 function initializeTest() {
-    currentQuestion = 0;
-    userAnswers = {};
+    currentQuestion = currentSharedQuestion;
+    userAnswers = {...sharedAnswers};
     const container = document.getElementById('questionContainer');
     const questions = window.parteienData.fragen;
     
     container.innerHTML = questions.map((frage, index) => `
-        <div class="question ${index === 0 ? 'active' : ''}" data-question="${index}">
+        <div class="question ${index === currentQuestion ? 'active' : ''}" data-question="${index}">
             <div class="question-counter">Frage ${index + 1} von ${questions.length}</div>
             <div class="progress-bar">
                 <div class="progress-bar-fill" style="width: ${(index / questions.length) * 100}%"></div>
@@ -417,9 +472,12 @@ function initializeTest() {
             <h3>${frage.frage}</h3>
             <p>${frage.beschreibung}</p>
             <div class="answer-buttons">
-                <button class="answer-button" data-answer="j" onclick="selectAnswer(${index}, 'j')">Ja</button>
-                <button class="answer-button" data-answer="n" onclick="selectAnswer(${index}, 'n')">Nein</button>
-                <button class="answer-button" data-answer="m" onclick="selectAnswer(${index}, 'm')">Neutral</button>
+                <button class="answer-button ${userAnswers[index] === 'j' ? 'selected' : ''}" 
+                        data-answer="j" onclick="selectAnswer(${index}, 'j')">Ja</button>
+                <button class="answer-button ${userAnswers[index] === 'n' ? 'selected' : ''}" 
+                        data-answer="n" onclick="selectAnswer(${index}, 'n')">Nein</button>
+                <button class="answer-button ${userAnswers[index] === 'm' ? 'selected' : ''}" 
+                        data-answer="m" onclick="selectAnswer(${index}, 'm')">Neutral</button>
             </div>
         </div>
     `).join('');
@@ -429,6 +487,8 @@ function initializeTest() {
 
 function selectAnswer(questionIndex, answer) {
     userAnswers[questionIndex] = answer;
+    sharedAnswers[questionIndex] = answer;
+    wahlomatAnswers[questionIndex] = answer;
     
     // Update Button-Styles
     const buttons = document.querySelectorAll(`.question[data-question="${questionIndex}"] .answer-button`);
@@ -439,29 +499,13 @@ function selectAnswer(questionIndex, answer) {
         }
     });
     
-    // Automatisch zur nächsten Frage
-    if (questionIndex < window.parteienData.fragen.length - 1) {
+    // Wenn letzte Frage beantwortet wurde, zeige Ergebnisse
+    if (questionIndex === window.parteienData.fragen.length - 1) {
+        showTestResults();
+        showWahlomatResults(); // Zeige auch Wahlomat-Ergebnisse
+    } else {
+        // Sonst zur nächsten Frage
         setTimeout(() => showNextQuestion(), 300);
-    }
-}
-
-function showNextQuestion() {
-    if (currentQuestion < window.parteienData.fragen.length - 1) {
-        const questions = document.querySelectorAll('.question');
-        questions[currentQuestion].classList.remove('active');
-        currentQuestion++;
-        questions[currentQuestion].classList.add('active');
-        updateNavigationButtons();
-    }
-}
-
-function showPreviousQuestion() {
-    if (currentQuestion > 0) {
-        const questions = document.querySelectorAll('.question');
-        questions[currentQuestion].classList.remove('active');
-        currentQuestion--;
-        questions[currentQuestion].classList.add('active');
-        updateNavigationButtons();
     }
 }
 
@@ -474,7 +518,8 @@ function updateNavigationButtons() {
     
     if (currentQuestion === window.parteienData.fragen.length - 1) {
         nextButton.style.display = 'none';
-        resultsButton.style.display = 'block';
+        // Entferne den Ergebnis-Button, da Ergebnisse automatisch angezeigt werden
+        resultsButton.style.display = 'none';
     } else {
         nextButton.style.display = 'block';
         resultsButton.style.display = 'none';
@@ -532,17 +577,14 @@ function berechneTestUebereinstimmung(parteien) {
     return gesamtFragen > 0 ? (uebereinstimmungen / gesamtFragen) * 100 : 0;
 }
 
-let currentWahlomatQuestion = 0;
-let wahlomatAnswers = {};
-
 function initializeWahlomatTest() {
-    currentWahlomatQuestion = 0;
-    wahlomatAnswers = {};
+    currentWahlomatQuestion = currentSharedQuestion;
+    wahlomatAnswers = {...sharedAnswers};
     const container = document.getElementById('wahlomatQuestionContainer');
     const questions = window.parteienData.fragen;
     
     container.innerHTML = questions.map((frage, index) => `
-        <div class="question ${index === 0 ? 'active' : ''}" data-question="${index}">
+        <div class="question ${index === currentWahlomatQuestion ? 'active' : ''}" data-question="${index}">
             <div class="question-counter">Frage ${index + 1} von ${questions.length}</div>
             <div class="progress-bar">
                 <div class="progress-bar-fill" style="width: ${(index / questions.length) * 100}%"></div>
@@ -550,9 +592,12 @@ function initializeWahlomatTest() {
             <h3>${frage.frage}</h3>
             <p>${frage.beschreibung}</p>
             <div class="answer-buttons">
-                <button class="answer-button" data-answer="j" onclick="selectWahlomatAnswer(${index}, 'j')">Ja</button>
-                <button class="answer-button" data-answer="n" onclick="selectWahlomatAnswer(${index}, 'n')">Nein</button>
-                <button class="answer-button" data-answer="m" onclick="selectWahlomatAnswer(${index}, 'm')">Neutral</button>
+                <button class="answer-button ${wahlomatAnswers[index] === 'j' ? 'selected' : ''}" 
+                        data-answer="j" onclick="selectWahlomatAnswer(${index}, 'j')">Ja</button>
+                <button class="answer-button ${wahlomatAnswers[index] === 'n' ? 'selected' : ''}" 
+                        data-answer="n" onclick="selectWahlomatAnswer(${index}, 'n')">Nein</button>
+                <button class="answer-button ${wahlomatAnswers[index] === 'm' ? 'selected' : ''}" 
+                        data-answer="m" onclick="selectWahlomatAnswer(${index}, 'm')">Neutral</button>
             </div>
         </div>
     `).join('');
@@ -562,6 +607,8 @@ function initializeWahlomatTest() {
 
 function selectWahlomatAnswer(questionIndex, answer) {
     wahlomatAnswers[questionIndex] = answer;
+    sharedAnswers[questionIndex] = answer;
+    userAnswers[questionIndex] = answer;
     
     const buttons = document.querySelectorAll(`.question[data-question="${questionIndex}"] .answer-button`);
     buttons.forEach(button => {
@@ -571,28 +618,13 @@ function selectWahlomatAnswer(questionIndex, answer) {
         }
     });
     
-    if (questionIndex < window.parteienData.fragen.length - 1) {
+    // Wenn letzte Frage beantwortet wurde, zeige Ergebnisse
+    if (questionIndex === window.parteienData.fragen.length - 1) {
+        showWahlomatResults();
+        showTestResults(); // Zeige auch Koalitionstest-Ergebnisse
+    } else {
+        // Sonst zur nächsten Frage
         setTimeout(() => showNextWahlomatQuestion(), 300);
-    }
-}
-
-function showNextWahlomatQuestion() {
-    if (currentWahlomatQuestion < window.parteienData.fragen.length - 1) {
-        const questions = document.querySelectorAll('#wahlomatQuestionContainer .question');
-        questions[currentWahlomatQuestion].classList.remove('active');
-        currentWahlomatQuestion++;
-        questions[currentWahlomatQuestion].classList.add('active');
-        updateWahlomatNavigationButtons();
-    }
-}
-
-function showPreviousWahlomatQuestion() {
-    if (currentWahlomatQuestion > 0) {
-        const questions = document.querySelectorAll('#wahlomatQuestionContainer .question');
-        questions[currentWahlomatQuestion].classList.remove('active');
-        currentWahlomatQuestion--;
-        questions[currentWahlomatQuestion].classList.add('active');
-        updateWahlomatNavigationButtons();
     }
 }
 
@@ -605,7 +637,8 @@ function updateWahlomatNavigationButtons() {
     
     if (currentWahlomatQuestion === window.parteienData.fragen.length - 1) {
         nextButton.style.display = 'none';
-        resultsButton.style.display = 'block';
+        // Entferne den Ergebnis-Button, da Ergebnisse automatisch angezeigt werden
+        resultsButton.style.display = 'none';
     } else {
         nextButton.style.display = 'block';
         resultsButton.style.display = 'none';
