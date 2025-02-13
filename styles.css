@@ -18,11 +18,14 @@ body {
 h1 {
     text-align: center;
     color: #333;
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    margin: 10px 0;
 }
 
 h2 {
     color: #444;
-    margin-top: 20px;
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
+    margin: 15px 0;
 }
 
 .party-inputs, .goals-container {
@@ -71,10 +74,11 @@ input[type="text"], input[type="number"] {
 
 .coalition-match {
     margin: 10px 0;
-    padding: 15px;
+    padding: 12px;
     background-color: #e8f5e9;
     border-radius: 4px;
     border: 1px solid #c8e6c9;
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
 }
 
 .coalition-match h3 {
@@ -110,17 +114,19 @@ input[type="text"], input[type="number"] {
 }
 
 .tabs {
-    margin: 20px 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin: 15px 0;
     border-bottom: 2px solid #4CAF50;
 }
 
 .tab-button {
-    background-color: #f0f0f0;
-    border: none;
-    padding: 10px 20px;
-    margin-right: 5px;
-    cursor: pointer;
-    border-radius: 4px 4px 0 0;
+    flex: 1;
+    min-width: max-content;
+    padding: 8px 12px;
+    font-size: clamp(0.8rem, 2.5vw, 1rem);
+    white-space: nowrap;
 }
 
 .tab-button.active {
@@ -151,9 +157,9 @@ input[type="text"], input[type="number"] {
 
 .filter-options {
     display: flex;
+    flex-direction: column;
     gap: 10px;
-    align-items: center;
-    margin-bottom: 20px;
+    margin: 10px 0;
 }
 
 .filter-options select {
@@ -166,13 +172,14 @@ input[type="text"], input[type="number"] {
 
 .filter-options label {
     display: flex;
-    align-items: center;
-    gap: 10px;
-    white-space: nowrap;
+    flex-direction: column;
+    gap: 5px;
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
 }
 
 .filter-options input[type="range"] {
-    width: 200px;
+    width: 100%;
+    max-width: 300px;
 }
 
 .filter-options span {
@@ -255,7 +262,8 @@ input[type="text"], input[type="number"] {
 
 .dropdown {
     position: relative;
-    display: inline-block;
+    width: 100%;
+    max-width: 300px;
 }
 
 .dropdown-content {
@@ -265,7 +273,7 @@ input[type="text"], input[type="number"] {
     min-width: 200px;
     box-shadow: 0 8px 16px rgba(0,0,0,0.2);
     z-index: 1;
-    max-height: 300px;
+    max-height: 200px;
     overflow-y: auto;
     border-radius: 4px;
     border: 1px solid #ddd;
@@ -279,7 +287,7 @@ input[type="text"], input[type="number"] {
     background-color: white;
     color: #333;
     padding: 8px;
-    font-size: 16px;
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
     border: 1px solid #ddd;
     border-radius: 4px;
     min-width: 200px;
@@ -310,13 +318,13 @@ input[type="text"], input[type="number"] {
 
 /* Styles für den Koalitionstest */
 .test-container {
-    max-width: 800px;
+    max-width: 100%;
     margin: 0 auto;
 }
 
 .question-container {
-    margin: 20px 0;
-    padding: 20px;
+    margin: 15px 0;
+    padding: 15px;
     background-color: #f9f9f9;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
@@ -343,17 +351,20 @@ input[type="text"], input[type="number"] {
 
 .answer-buttons {
     display: flex;
-    gap: 10px;
-    justify-content: center;
-    margin-top: 20px;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 15px;
 }
 
 .answer-button {
-    padding: 10px 20px;
+    padding: 12px;
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    font-weight: bold;
     transition: background-color 0.2s;
 }
 
@@ -373,9 +384,15 @@ input[type="text"], input[type="number"] {
 
 .test-controls {
     display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
     justify-content: center;
-    gap: 10px;
-    margin: 20px 0;
+    margin: 15px 0;
+}
+
+.test-controls button {
+    padding: 10px 20px;
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
 }
 
 .test-results {
@@ -384,10 +401,11 @@ input[type="text"], input[type="number"] {
 
 .result-item {
     margin: 10px 0;
-    padding: 15px;
+    padding: 12px;
     background-color: #e8f5e9;
     border-radius: 4px;
     border: 1px solid #c8e6c9;
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
 }
 
 .progress-bar {
@@ -417,14 +435,15 @@ input[type="text"], input[type="number"] {
 
 .party-result-item {
     margin: 15px 0;
-    padding: 15px;
+    padding: 12px;
     background-color: #f5f5f5;
     border-radius: 4px;
     position: relative;
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
 }
 
 .party-result-bar {
-    height: 24px;
+    height: 30px;
     background-color: #4CAF50;
     border-radius: 4px;
     transition: width 0.5s ease;
@@ -441,6 +460,7 @@ input[type="text"], input[type="number"] {
     align-items: center;
     justify-content: space-between;
     width: calc(100% - 30px);
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
 }
 
 .party-result-percentage {
@@ -515,4 +535,120 @@ input[type="text"], input[type="number"] {
     padding: 4px;
     border: 1px solid #ddd;
     border-radius: 4px;
+}
+
+/* Media Queries für verschiedene Bildschirmgrößen */
+@media (min-width: 768px) {
+    .container {
+        max-width: 800px;
+        padding: 20px;
+    }
+
+    .answer-buttons {
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .answer-button {
+        width: auto;
+    }
+
+    .filter-options {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 5px;
+    }
+
+    .container {
+        max-width: 100%;
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: clamp(1.5rem, 4vw, 2rem);
+        margin: 10px 0;
+    }
+
+    h2 {
+        font-size: clamp(1.2rem, 3vw, 1.5rem);
+        margin: 15px 0;
+    }
+
+    .tabs {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 5px;
+        flex-wrap: nowrap;
+    }
+
+    .tab-button {
+        font-size: clamp(0.8rem, 2.5vw, 1rem);
+        white-space: nowrap;
+        flex: 0 0 auto;
+    }
+
+    .filter-options {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .answer-buttons {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .answer-button {
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+        font-size: clamp(0.9rem, 2.5vw, 1rem);
+    }
+
+    .coalition-match, 
+    .result-item, 
+    .party-result-item {
+        padding: 8px;
+        font-size: clamp(0.9rem, 2.5vw, 1rem);
+    }
+
+    .dropdown {
+        width: 100%;
+    }
+
+    .dropdown-btn {
+        width: 100%;
+        font-size: clamp(0.9rem, 2.5vw, 1rem);
+    }
+
+    .test-controls {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .test-controls button {
+        flex: 1 1 auto;
+        font-size: clamp(0.9rem, 2.5vw, 1rem);
+    }
+
+    .party-result-text {
+        font-size: clamp(0.9rem, 2.5vw, 1rem);
+    }
+
+    .custom-threshold input[type="range"] {
+        width: 100%;
+    }
+
+    .comparison-table {
+        font-size: 0.9rem;
+    }
+
+    .comparison-table th, 
+    .comparison-table td {
+        padding: 6px;
+    }
 } 
