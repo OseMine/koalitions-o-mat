@@ -17,6 +17,7 @@
             <button class="tab-button" onclick="switchTab('test')">Koalitionstest</button>
             <button class="tab-button" onclick="switchTab('wahlomat')">Parteientest</button>
             <button class="tab-button" onclick="switchTab('history')">Meine Tests</button>
+            <button class="tab-button" onclick="switchTab('wahlsimulator')">Wahlsimulator</button>
         </div>
 
         <div id="alle-koalitionen" class="tab-content active">
@@ -166,6 +167,32 @@
             <div class="history-container">
                 <h2>Meine Testergebnisse</h2>
                 <div id="historyResults"></div>
+            </div>
+        </div>
+
+        <div id="wahlsimulator-koalitionen" class="tab-content">
+            <div class="wahlsimulator-container">
+                <h2>Wahlsimulator</h2>
+                <div class="stimmzettel">
+                    <div class="erststimme">
+                        <h3>Erststimme</h3>
+                        <p>Direktkandidat für den Wahlkreis</p>
+                        <select id="erststimme">
+                            <option value="">Bitte wählen...</option>
+                            <!-- Wird dynamisch gefüllt -->
+                        </select>
+                    </div>
+                    <div class="zweitstimme">
+                        <h3>Zweitstimme</h3>
+                        <p>Partei</p>
+                        <select id="zweitstimme">
+                            <option value="">Bitte wählen...</option>
+                            <!-- Wird dynamisch gefüllt -->
+                        </select>
+                    </div>
+                    <button id="wahlAbgeben" onclick="wahlAbgeben()">Stimme abgeben</button>
+                </div>
+                <div id="wahlErgebnis"></div>
             </div>
         </div>
     </div>

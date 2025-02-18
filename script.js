@@ -224,6 +224,8 @@ function switchTab(tabName) {
         initializeWahlomatTest();
     } else if (tabName === 'history') {
         showTestHistory();
+    } else if (tabName === 'wahlsimulator') {
+        initializeWahlsimulator();
     }
 }
 
@@ -839,73 +841,224 @@ function saveTestResults(type, answers, topCoalitions, topParties) {
     localStorage.setItem('testHistory', JSON.stringify(filteredHistory));
 }
 
-// Funktion zum Anzeigen der Testhistorie
-function showTestHistory() {
-    const historyDiv = document.getElementById('historyResults');
-    const testHistory = JSON.parse(localStorage.getItem('testHistory') || '[]');
+// Neue Funktionen für den Wahlsimulator
+function initializeWahlsimulator() {
+    const erststimme = document.getElementById('erststimme');
+    const zweitstimme = document.getElementById('zweitstimme');
+    const parteien = window.werteData.umfragewerte;
     
-    if (testHistory.length === 0) {
-        historyDiv.innerHTML = '<p>Noch keine Tests durchgeführt.</p>';
+    // Fülle die Dropdown-Menüs mit allen Parteien
+    parteien.forEach(partei => {
+        // Prüfe ob es eine gültige Partei ist (mit Namen und Prozenten)
+        if (partei.partei && partei.prozent !== undefined) {
+            const prozentAnzeige = partei.prozent >= 1 ? 
+                ` (${partei.prozent}%)` : 
+                ` (<1%)`;
+            
+            erststimme.innerHTML += `
+                <option value="${partei.partei}">
+                    ${partei.partei}${prozentAnzeige}
+                </option>
+            `;
+            zweitstimme.innerHTML += `
+                <option value="${partei.partei}">
+                    ${partei.partei}${prozentAnzeige}
+                </option>
+            `;
+        }
+    });
+
+    // Gruppiere die Optionen nach Größe der Parteien
+    ['erststimme', 'zweitstimme'].forEach(selectId => {
+        const select = document.getElementById(selectId);
+        const options = Array.from(select.options).slice(1); // Überspringe "Bitte wählen"
+        select.innerHTML = '<option value="">Bitte wählen...</option>';
+
+        // Große Parteien (≥5%)
+        const groessereFuenfProzent = document.createElement('optgroup');
+        groessereFuenfProzent.label = 'Parteien ≥5%';
+        
+        // Mittlere Parteien (1-5%)
+        const groesserEinProzent = document.createElement('optgroup');
+        groesserEinProzent.label = 'Parteien 1-5%';
+        
+        // Kleine Parteien (<1%)
+        const kleinerEinProzent = document.createElement('optgroup');
+        kleinerEinProzent.label = 'Parteien <1%';
+
+        options.forEach(option => {
+            const partei = parteien.find(p => p.partei === option.value);
+            if (partei) {
+                if (partei.prozent >= 5) {
+                    groessereFuenfProzent.appendChild(option.cloneNode(true));
+                } else if (partei.prozent >= 1) {
+                    groesserEinProzent.appendChild(option.cloneNode(true));
+                } else {
+                    kleinerEinProzent.appendChild(option.cloneNode(true));
+                }
+            }
+        });
+
+        // Füge die Gruppen hinzu, wenn sie Optionen enthalten
+        if (groessereFuenfProzent.children.length > 0) {
+            select.appendChild(groessereFuenfProzent);
+        }
+        if (groesserEinProzent.children.length > 0) {
+            select.appendChild(groesserEinProzent);
+        }
+        if (kleinerEinProzent.children.length > 0) {
+            select.appendChild(kleinerEinProzent);
+        }
+    });
+
+    // Zeige gespeicherte Wahl an, falls vorhanden
+    const savedVote = JSON.parse(localStorage.getItem('wahlSimulation') || 'null');
+    if (savedVote) {
+        erststimme.value = savedVote.erststimme;
+        zweitstimme.value = savedVote.zweitstimme;
+        showWahlErgebnis(savedVote);
+    }
+}
+
+function wahlAbgeben() {
+    const erststimme = document.getElementById('erststimme').value;
+    const zweitstimme = document.getElementById('zweitstimme').value;
+    
+    if (!erststimme || !zweitstimme) {
+        alert('Bitte wählen Sie sowohl Erst- als auch Zweitstimme aus.');
         return;
     }
     
-    testHistory.sort((a, b) => new Date(b.date) - new Date(a.date));
+    const wahlSimulation = {
+        erststimme,
+        zweitstimme,
+        datum: new Date().toISOString()
+    };
     
-    historyDiv.innerHTML = testHistory.map((test, index) => `
-        <div class="history-item" data-index="${index}">
-            <div class="history-header" onclick="toggleHistoryItem(${index})">
-                <h3>${new Date(test.date).toLocaleDateString()}</h3>
-                <div class="history-preview">
-                    ${test.topCoalitions.length > 0 ? 
-                        `Beste Koalition: ${test.topCoalitions[0].parteien.join(' + ')}` : ''}
-                    ${test.topParties.length > 0 ? 
-                        `Beste Partei: ${test.topParties[0].partei}` : ''}
-                </div>
-                <span class="toggle-icon">▼</span>
-            </div>
-            <div class="history-content" id="historyContent${index}" style="display: none;">
-                <p>Durchgeführt am: ${new Date(test.date).toLocaleString()}</p>
-                
-                ${test.topCoalitions.length > 0 ? `
-                    <div class="top-results">
-                        <h4>Top 3 Koalitionen:</h4>
-                        ${test.topCoalitions.map((k, i) => `
-                            <p>${i + 1}. ${k.parteien.join(' + ')} 
-                               (${k.testUebereinstimmung.toFixed(1)}% Übereinstimmung)</p>
-                        `).join('')}
-                    </div>
-                ` : ''}
-                
-                ${test.topParties.length > 0 ? `
-                    <div class="top-results">
-                        <h4>Top 3 Parteien:</h4>
-                        ${test.topParties.map((p, i) => `
-                            <p>${i + 1}. ${p.partei} (${p.uebereinstimmung.toFixed(1)}% Übereinstimmung)</p>
-                        `).join('')}
-                    </div>
-                ` : ''}
-                
-                <div class="answers-section">
-                    <h4>Ihre Antworten:</h4>
-                    <div class="answers-grid">
-                        ${Object.entries(test.answers).map(([index, answer]) => `
-                            <div class="answer-item answer-${answer || 'm'}">
-                                <p><strong>${window.parteienData.fragen[index].frage}</strong></p>
-                                <p class="answer-text">${getAnswerText(answer)}</p>
-                            </div>
-                        `).join('')}
-                    </div>
-                </div>
-                <div class="delete-section">
-                    <button class="delete-btn" onclick="deleteHistoryItem(${index})">
-                        Dieses Testergebnis löschen
-                    </button>
-                </div>
-            </div>
-        </div>
-    `).join('');
+    localStorage.setItem('wahlSimulation', JSON.stringify(wahlSimulation));
+    showWahlErgebnis(wahlSimulation);
+}
 
-    // Initialisiere Touch-Events für Mobilgeräte
+function showWahlErgebnis(simulation) {
+    const ergebnisDiv = document.getElementById('wahlErgebnis');
+    ergebnisDiv.innerHTML = `
+        <div class="wahl-ergebnis">
+            <h3>Ihre Wahlentscheidung vom ${new Date(simulation.datum).toLocaleDateString()}</h3>
+            <p>Erststimme: ${simulation.erststimme}</p>
+            <p>Zweitstimme: ${simulation.zweitstimme}</p>
+        </div>
+    `;
+}
+
+// Modifiziere die showTestHistory Funktion
+function showTestHistory() {
+    const historyDiv = document.getElementById('historyResults');
+    const testHistory = JSON.parse(localStorage.getItem('testHistory') || '[]');
+    const wahlSimulation = JSON.parse(localStorage.getItem('wahlSimulation') || 'null');
+    
+    let html = '';
+    
+    // Zeige Wahlsimulation falls vorhanden
+    if (wahlSimulation) {
+        html += `
+            <div class="history-item wahl-simulation">
+                <div class="history-header" onclick="toggleHistoryItem('wahl')">
+                    <h3>Ihre Wahlentscheidung</h3>
+                    <div class="history-preview">
+                        Erststimme: ${wahlSimulation.erststimme}, 
+                        Zweitstimme: ${wahlSimulation.zweitstimme}
+                    </div>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="history-content" id="historyContentwahl" style="display: none;">
+                    <p>Abgegeben am: ${new Date(wahlSimulation.datum).toLocaleString()}</p>
+                    <div class="wahl-details">
+                        <p><strong>Erststimme:</strong> ${wahlSimulation.erststimme}</p>
+                        <p><strong>Zweitstimme:</strong> ${wahlSimulation.zweitstimme}</p>
+                    </div>
+                </div>
+            </div>
+            <hr>
+        `;
+    }
+    
+    // Zeige Testhistorie
+    if (testHistory.length === 0) {
+        html += '<p>Noch keine Tests durchgeführt.</p>';
+    } else {
+        testHistory.sort((a, b) => new Date(b.date) - new Date(a.date));
+        
+        html += testHistory.map((test, index) => {
+            // Berechne Übereinstimmung mit Wahlentscheidung
+            let wahlUebereinstimmung = 0;
+            if (wahlSimulation) {
+                const zweitstimmenPartei = test.topParties.find(p => 
+                    p.partei === wahlSimulation.zweitstimme
+                );
+                if (zweitstimmenPartei) {
+                    wahlUebereinstimmung = zweitstimmenPartei.uebereinstimmung;
+                }
+            }
+            
+            return `
+                <div class="history-item" data-index="${index}">
+                    <div class="history-header" onclick="toggleHistoryItem(${index})">
+                        <h3>${new Date(test.date).toLocaleDateString()}</h3>
+                        <div class="history-preview">
+                            ${test.topCoalitions.length > 0 ? 
+                                `Beste Koalition: ${test.topCoalitions[0].parteien.join(' + ')}` : ''}
+                            ${test.topParties.length > 0 ? 
+                                `Beste Partei: ${test.topParties[0].partei}` : ''}
+                            ${wahlSimulation ? 
+                                `<br>Übereinstimmung mit Wahlentscheidung: ${wahlUebereinstimmung.toFixed(1)}%` : ''}
+                        </div>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                    <div class="history-content" id="historyContent${index}" style="display: none;">
+                        <p>Durchgeführt am: ${new Date(test.date).toLocaleString()}</p>
+                        
+                        ${test.topCoalitions.length > 0 ? `
+                            <div class="top-results">
+                                <h4>Top 3 Koalitionen:</h4>
+                                ${test.topCoalitions.map((k, i) => `
+                                    <p>${i + 1}. ${k.parteien.join(' + ')} 
+                                       (${k.testUebereinstimmung.toFixed(1)}% Übereinstimmung)</p>
+                                `).join('')}
+                            </div>
+                        ` : ''}
+                        
+                        ${test.topParties.length > 0 ? `
+                            <div class="top-results">
+                                <h4>Top 3 Parteien:</h4>
+                                ${test.topParties.map((p, i) => `
+                                    <p>${i + 1}. ${p.partei} (${p.uebereinstimmung.toFixed(1)}% Übereinstimmung)</p>
+                                `).join('')}
+                            </div>
+                        ` : ''}
+                        
+                        <div class="answers-section">
+                            <h4>Ihre Antworten:</h4>
+                            <div class="answers-grid">
+                                ${Object.entries(test.answers).map(([index, answer]) => `
+                                    <div class="answer-item answer-${answer || 'm'}">
+                                        <p><strong>${window.parteienData.fragen[index].frage}</strong></p>
+                                        <p class="answer-text">${getAnswerText(answer)}</p>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                        <div class="delete-section">
+                            <button class="delete-btn" onclick="deleteHistoryItem(${index})">
+                                Dieses Testergebnis löschen
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
+    
+    historyDiv.innerHTML = html;
     initializeSwipeToDelete();
 }
 

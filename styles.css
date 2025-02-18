@@ -871,4 +871,82 @@ input[type="text"], input[type="number"] {
         width: 100%;
         padding: 12px;
     }
+}
+
+/* Styles für den Wahlsimulator */
+.wahlsimulator-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.stimmzettel {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin: 20px 0;
+}
+
+.erststimme, .zweitstimme {
+    margin: 15px 0;
+}
+
+.stimmzettel select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.stimmzettel select optgroup {
+    font-weight: bold;
+    color: #666;
+    background-color: #f5f5f5;
+}
+
+.stimmzettel select option {
+    padding: 8px;
+    background-color: white;
+}
+
+#wahlAbgeben {
+    width: 100%;
+    margin-top: 20px;
+    padding: 12px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#wahlAbgeben:hover {
+    background-color: #45a049;
+}
+
+.wahl-simulation {
+    background-color: #e3f2fd;
+}
+
+.wahl-details {
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+@media (max-width: 480px) {
+    .stimmzettel {
+        padding: 15px;
+    }
+    
+    .stimmzettel select {
+        font-size: 14px;
+    }
+    
+    .stimmzettel select optgroup {
+        font-size: 13px;
+    }
 } 
