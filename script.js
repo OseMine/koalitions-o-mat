@@ -812,15 +812,21 @@ function saveTestResults(type, answers, topCoalitions, topParties) {
     const testHistory = JSON.parse(localStorage.getItem('testHistory') || '[]');
     
     const testResult = {
-        type: type, // 'coalition' oder 'party'
+        type: type,
         date: new Date().toISOString(),
         answers: answers,
         topCoalitions: topCoalitions.slice(0, 3),
         topParties: topParties.slice(0, 3)
     };
     
-    testHistory.push(testResult);
-    localStorage.setItem('testHistory', JSON.stringify(testHistory));
+    // Entferne ältere Tests vom gleichen Tag
+    const today = new Date().toDateString();
+    const filteredHistory = testHistory.filter(test => 
+        new Date(test.date).toDateString() !== today
+    );
+    
+    filteredHistory.push(testResult);
+    localStorage.setItem('testHistory', JSON.stringify(filteredHistory));
 }
 
 // Funktion zum Anzeigen der Testhistorie
@@ -833,44 +839,126 @@ function showTestHistory() {
         return;
     }
     
-    // Sortiere nach Datum (neueste zuerst)
     testHistory.sort((a, b) => new Date(b.date) - new Date(a.date));
     
-    historyDiv.innerHTML = testHistory.map(test => `
-        <div class="history-item">
-            <h3>${test.type === 'coalition' ? 'Koalitionstest' : 'Parteientest'}</h3>
-            <p>Durchgeführt am: ${new Date(test.date).toLocaleString()}</p>
-            
-            ${test.topCoalitions.length > 0 ? `
-                <div class="top-results">
-                    <h4>Top 3 Koalitionen:</h4>
-                    ${test.topCoalitions.map((k, i) => `
-                        <p>${i + 1}. ${k.parteien.join(' + ')} 
-                           (${k.testUebereinstimmung.toFixed(1)}% Übereinstimmung)</p>
-                    `).join('')}
+    historyDiv.innerHTML = testHistory.map((test, index) => `
+        <div class="history-item" data-index="${index}">
+            <div class="history-header" onclick="toggleHistoryItem(${index})">
+                <h3>${new Date(test.date).toLocaleDateString()}</h3>
+                <div class="history-preview">
+                    ${test.topCoalitions.length > 0 ? 
+                        `Beste Koalition: ${test.topCoalitions[0].parteien.join(' + ')}` : ''}
+                    ${test.topParties.length > 0 ? 
+                        `Beste Partei: ${test.topParties[0].partei}` : ''}
                 </div>
-            ` : ''}
-            
-            ${test.topParties.length > 0 ? `
-                <div class="top-results">
-                    <h4>Top 3 Parteien:</h4>
-                    ${test.topParties.map((p, i) => `
-                        <p>${i + 1}. ${p.partei} (${p.uebereinstimmung.toFixed(1)}% Übereinstimmung)</p>
-                    `).join('')}
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="history-content" id="historyContent${index}" style="display: none;">
+                <p>Durchgeführt am: ${new Date(test.date).toLocaleString()}</p>
+                
+                ${test.topCoalitions.length > 0 ? `
+                    <div class="top-results">
+                        <h4>Top 3 Koalitionen:</h4>
+                        ${test.topCoalitions.map((k, i) => `
+                            <p>${i + 1}. ${k.parteien.join(' + ')} 
+                               (${k.testUebereinstimmung.toFixed(1)}% Übereinstimmung)</p>
+                        `).join('')}
+                    </div>
+                ` : ''}
+                
+                ${test.topParties.length > 0 ? `
+                    <div class="top-results">
+                        <h4>Top 3 Parteien:</h4>
+                        ${test.topParties.map((p, i) => `
+                            <p>${i + 1}. ${p.partei} (${p.uebereinstimmung.toFixed(1)}% Übereinstimmung)</p>
+                        `).join('')}
+                    </div>
+                ` : ''}
+                
+                <div class="answers-section">
+                    <h4>Ihre Antworten:</h4>
+                    <div class="answers-grid">
+                        ${Object.entries(test.answers).map(([index, answer]) => `
+                            <div class="answer-item">
+                                <p><strong>${window.parteienData.fragen[index].frage}</strong></p>
+                                <p>Ihre Antwort: ${getAnswerText(answer)}</p>
+                            </div>
+                        `).join('')}
+                    </div>
                 </div>
-            ` : ''}
-            
-            <div class="answers-section">
-                <h4>Ihre Antworten:</h4>
-                <div class="answers-grid">
-                    ${Object.entries(test.answers).map(([index, answer]) => `
-                        <div class="answer-item">
-                            <p><strong>${window.parteienData.fragen[index].frage}</strong></p>
-                            <p>Ihre Antwort: ${getAnswerText(answer)}</p>
-                        </div>
-                    `).join('')}
+                <div class="delete-section">
+                    <button class="delete-btn" onclick="deleteHistoryItem(${index})">
+                        Dieses Testergebnis löschen
+                    </button>
                 </div>
             </div>
         </div>
-    `).join('<hr>');
+    `).join('');
+
+    // Initialisiere Touch-Events für Mobilgeräte
+    initializeSwipeToDelete();
+}
+
+// Neue Funktion zum Ein-/Ausklappen der Historie
+function toggleHistoryItem(index) {
+    const content = document.getElementById(`historyContent${index}`);
+    const header = content.previousElementSibling;
+    const icon = header.querySelector('.toggle-icon');
+    
+    if (content.style.display === 'none') {
+        content.style.display = 'block';
+        icon.textContent = '▲';
+    } else {
+        content.style.display = 'none';
+        icon.textContent = '▼';
+    }
+}
+
+// Neue Funktion zum Löschen eines Eintrags
+function deleteHistoryItem(index) {
+    if (confirm('Möchten Sie dieses Testergebnis wirklich löschen?')) {
+        const testHistory = JSON.parse(localStorage.getItem('testHistory') || '[]');
+        testHistory.splice(index, 1);
+        localStorage.setItem('testHistory', JSON.stringify(testHistory));
+        showTestHistory();
+    }
+}
+
+// Neue Funktionen für die Wischgeste
+function initializeSwipeToDelete() {
+    const historyItems = document.querySelectorAll('.history-item');
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    historyItems.forEach(item => {
+        item.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        item.addEventListener('touchmove', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            const diff = touchStartX - touchEndX;
+            
+            // Zeige Lösch-Indikator bei Wischbewegung
+            if (diff > 50) {
+                item.classList.add('swiping');
+                item.style.transform = `translateX(-${Math.min(diff, 100)}px)`;
+            } else {
+                item.classList.remove('swiping');
+                item.style.transform = 'translateX(0)';
+            }
+        }, { passive: true });
+
+        item.addEventListener('touchend', e => {
+            const diff = touchStartX - touchEndX;
+            
+            if (diff > 100) { // Schwellenwert für Löschaktion
+                const index = parseInt(item.dataset.index);
+                deleteHistoryItem(index);
+            } else {
+                item.classList.remove('swiping');
+                item.style.transform = 'translateX(0)';
+            }
+        });
+    });
 }
