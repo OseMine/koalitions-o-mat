@@ -16,6 +16,7 @@
             <button class="tab-button" onclick="switchTab('vergleich')">Parteien vergleichen</button>
             <button class="tab-button" onclick="switchTab('test')">Koalitionstest</button>
             <button class="tab-button" onclick="switchTab('wahlomat')">Parteientest</button>
+            <button class="tab-button" onclick="switchTab('history')">Meine Tests</button>
         </div>
 
         <div id="alle-koalitionen" class="tab-content active">
@@ -120,6 +121,12 @@
                         </div>
                         <div class="selected-options" id="comparePartiesSelected"></div>
                     </div>
+                    <div class="own-position-toggle">
+                        <label>
+                            <input type="checkbox" id="showOwnPosition" onchange="updatePartyComparison()" checked>
+                            Eigene Position anzeigen
+                        </label>
+                    </div>
                 </div>
                 <div id="comparisonTable"></div>
             </div>
@@ -152,6 +159,13 @@
                     <button id="showWahlomatResults" onclick="showWahlomatResults()" style="display: none;">Ergebnis anzeigen</button>
                 </div>
                 <div id="wahlomatResults" class="wahlomat-results"></div>
+            </div>
+        </div>
+
+        <div id="history-koalitionen" class="tab-content">
+            <div class="history-container">
+                <h2>Meine Testergebnisse</h2>
+                <div id="historyResults"></div>
             </div>
         </div>
     </div>

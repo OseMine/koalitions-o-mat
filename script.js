@@ -222,6 +222,8 @@ function switchTab(tabName) {
         currentWahlomatQuestion = currentSharedQuestion;
         wahlomatAnswers = {...sharedAnswers};
         initializeWahlomatTest();
+    } else if (tabName === 'history') {
+        showTestHistory();
     }
 }
 
@@ -319,60 +321,98 @@ function zeigeKoalitionenFuerPartei() {
 function updatePartyComparison() {
     const checkboxes = document.querySelectorAll('#comparePartiesDropdown input[type="checkbox"]:checked');
     const selectedParties = Array.from(checkboxes).map(cb => cb.value);
+    const showOwnPosition = document.getElementById('showOwnPosition').checked;
     
     if (selectedParties.length === 0) {
-        document.getElementById('comparisonTable').innerHTML = 
-            '<p>Bitte wählen Sie mindestens eine Partei zum Vergleich aus.</p>';
+        document.getElementById('comparisonTable').innerHTML = '<p>Bitte wählen Sie mindestens eine Partei aus.</p>';
         return;
     }
 
-    const tableHTML = `
-        <table class="comparison-table">
-            <thead>
-                <tr>
-                    <th>Frage</th>
-                    ${selectedParties.map(party => `<th>${party}</th>`).join('')}
-                </tr>
-            </thead>
-            <tbody>
-                ${window.parteienData.fragen.map(frage => `
-                    <tr>
-                        <td class="question-cell">${frage.frage}</td>
-                        ${selectedParties.map(party => `
-                            <td class="answer-${frage.antworten[party]}">${getAnswerText(frage.antworten[party])}</td>
-                        `).join('')}
-                    </tr>
-                    <tr>
-                        <td class="description-cell" colspan="${selectedParties.length + 1}">
-                            ${frage.beschreibung}
-                        </td>
-                    </tr>
-                `).join('')}
-            </tbody>
-        </table>
+    const hasTestAnswers = Object.keys(sharedAnswers).length > 0;
+    const isMobile = window.innerWidth <= 480;
+    
+    // Für Mobile: Begrenze die Anzahl der angezeigten Parteien
+    let displayParties = selectedParties;
+    if (isMobile) {
+        const maxColumns = showOwnPosition && hasTestAnswers ? 1 : 2;
+        displayParties = selectedParties.slice(0, maxColumns);
+        
+        if (selectedParties.length > maxColumns) {
+            const remainingParties = selectedParties.length - maxColumns;
+            const warningHtml = `
+                <div style="margin-bottom: 10px; padding: 10px; background-color: #fff3e0; border-radius: 4px;">
+                    <p>Hinweis: Auf Ihrem Gerät werden nur ${maxColumns} Parteien gleichzeitig angezeigt. 
+                    ${remainingParties} weitere Partei(en) ausgeblendet.</p>
+                </div>
+            `;
+            document.getElementById('comparisonTable').innerHTML = warningHtml;
+        }
+    }
+    
+    let html = '<table class="comparison-table">';
+    
+    // Header
+    html += '<tr><th>Frage</th>';
+    if (hasTestAnswers && showOwnPosition) {
+        html += '<th>Ihre Position</th>';
+    }
+    displayParties.forEach(party => {
+        html += `<th>${party}</th>`;
+    });
+    html += '</tr>';
+    
+    // Fragen und Antworten
+    window.parteienData.fragen.forEach((frage, index) => {
+        html += `
+            <tr>
+                <td class="question-cell">${frage.frage}</td>
+        `;
+        
+        if (hasTestAnswers && showOwnPosition) {
+            const userAnswer = sharedAnswers[index];
+            html += `<td class="answer-${userAnswer || 'm'}">${getAnswerText(userAnswer)}</td>`;
+        }
+        
+        displayParties.forEach(party => {
+            const answer = frage.antworten[party];
+            html += `<td class="answer-${answer}">${getAnswerText(answer)}</td>`;
+        });
+        
+        html += '</tr>';
+        
+        // Beschreibungszeile
+        const colspan = (hasTestAnswers && showOwnPosition ? 1 : 0) + displayParties.length + 1;
+        html += `
+            <tr>
+                <td class="description-cell" colspan="${colspan}">
+                    ${frage.beschreibung}
+                </td>
+            </tr>
+        `;
+    });
+    
+    html += '</table>';
+    
+    // Legende
+    html += `
         <div class="legend">
-            <div class="legend-item">
-                <span class="answer-j">Ja</span>
-            </div>
-            <div class="legend-item">
-                <span class="answer-n">Nein</span>
-            </div>
-            <div class="legend-item">
-                <span class="answer-m">Neutral/Keine Angabe</span>
-            </div>
+            <div class="legend-item"><span class="answer-j">■</span> Ja</div>
+            <div class="legend-item"><span class="answer-n">■</span> Nein</div>
+            <div class="legend-item"><span class="answer-m">■</span> Neutral/Keine Angabe</div>
         </div>
     `;
 
-    document.getElementById('comparisonTable').innerHTML = tableHTML;
+    document.getElementById('comparisonTable').innerHTML = html;
 }
 
+// Hilfsfunktion für die Textdarstellung der Antworten
 function getAnswerText(answer) {
-    const answers = {
-        'j': 'Ja',
-        'n': 'Nein',
-        'm': 'Neutral'
-    };
-    return answers[answer] || answer;
+    switch(answer) {
+        case 'j': return 'Ja';
+        case 'n': return 'Nein';
+        case 'm': return 'Neutral';
+        default: return 'Keine Angabe';
+    }
 }
 
 function toggleDropdown(id) {
@@ -530,7 +570,6 @@ function showTestResults() {
     const resultsDiv = document.getElementById('testResults');
     const koalitionen = berechneKoalitionen(window.parteienData, window.werteData);
     
-    // Berechne Übereinstimmung mit jeder Koalition
     const koalitionenMitUebereinstimmung = koalitionen.map(koalition => {
         const uebereinstimmung = berechneTestUebereinstimmung(koalition.parteien);
         return {
@@ -539,8 +578,15 @@ function showTestResults() {
         };
     });
     
-    // Sortiere nach Übereinstimmung
     koalitionenMitUebereinstimmung.sort((a, b) => b.testUebereinstimmung - a.testUebereinstimmung);
+    
+    // Speichere Ergebnisse
+    saveTestResults(
+        'coalition',
+        userAnswers,
+        koalitionenMitUebereinstimmung.slice(0, 3),
+        [] // Wird beim Parteientest gefüllt
+    );
     
     // Zeige Top 5 Ergebnisse
     resultsDiv.innerHTML = `
@@ -649,7 +695,6 @@ function showWahlomatResults() {
     const resultsDiv = document.getElementById('wahlomatResults');
     const parteien = window.werteData.umfragewerte;
     
-    // Berechne Übereinstimmung mit jeder Partei
     const parteienMitUebereinstimmung = parteien.map(partei => {
         const uebereinstimmung = berechneParteienUebereinstimmung(partei.partei);
         return {
@@ -658,8 +703,15 @@ function showWahlomatResults() {
         };
     });
     
-    // Sortiere nach Übereinstimmung
     parteienMitUebereinstimmung.sort((a, b) => b.uebereinstimmung - a.uebereinstimmung);
+    
+    // Speichere Ergebnisse
+    saveTestResults(
+        'party',
+        wahlomatAnswers,
+        [], // Wird beim Koalitionstest gefüllt
+        parteienMitUebereinstimmung.slice(0, 3)
+    );
     
     // Generiere HTML für die Ergebnisse
     resultsDiv.innerHTML = `
@@ -753,4 +805,72 @@ function updateCustomThresholdLabel(type) {
     } else {
         zeigeKoalitionenFuerPartei();
     }
+}
+
+// Funktion zum Speichern der Testergebnisse
+function saveTestResults(type, answers, topCoalitions, topParties) {
+    const testHistory = JSON.parse(localStorage.getItem('testHistory') || '[]');
+    
+    const testResult = {
+        type: type, // 'coalition' oder 'party'
+        date: new Date().toISOString(),
+        answers: answers,
+        topCoalitions: topCoalitions.slice(0, 3),
+        topParties: topParties.slice(0, 3)
+    };
+    
+    testHistory.push(testResult);
+    localStorage.setItem('testHistory', JSON.stringify(testHistory));
+}
+
+// Funktion zum Anzeigen der Testhistorie
+function showTestHistory() {
+    const historyDiv = document.getElementById('historyResults');
+    const testHistory = JSON.parse(localStorage.getItem('testHistory') || '[]');
+    
+    if (testHistory.length === 0) {
+        historyDiv.innerHTML = '<p>Noch keine Tests durchgeführt.</p>';
+        return;
+    }
+    
+    // Sortiere nach Datum (neueste zuerst)
+    testHistory.sort((a, b) => new Date(b.date) - new Date(a.date));
+    
+    historyDiv.innerHTML = testHistory.map(test => `
+        <div class="history-item">
+            <h3>${test.type === 'coalition' ? 'Koalitionstest' : 'Parteientest'}</h3>
+            <p>Durchgeführt am: ${new Date(test.date).toLocaleString()}</p>
+            
+            ${test.topCoalitions.length > 0 ? `
+                <div class="top-results">
+                    <h4>Top 3 Koalitionen:</h4>
+                    ${test.topCoalitions.map((k, i) => `
+                        <p>${i + 1}. ${k.parteien.join(' + ')} 
+                           (${k.testUebereinstimmung.toFixed(1)}% Übereinstimmung)</p>
+                    `).join('')}
+                </div>
+            ` : ''}
+            
+            ${test.topParties.length > 0 ? `
+                <div class="top-results">
+                    <h4>Top 3 Parteien:</h4>
+                    ${test.topParties.map((p, i) => `
+                        <p>${i + 1}. ${p.partei} (${p.uebereinstimmung.toFixed(1)}% Übereinstimmung)</p>
+                    `).join('')}
+                </div>
+            ` : ''}
+            
+            <div class="answers-section">
+                <h4>Ihre Antworten:</h4>
+                <div class="answers-grid">
+                    ${Object.entries(test.answers).map(([index, answer]) => `
+                        <div class="answer-item">
+                            <p><strong>${window.parteienData.fragen[index].frage}</strong></p>
+                            <p>Ihre Antwort: ${getAnswerText(answer)}</p>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        </div>
+    `).join('<hr>');
 }
