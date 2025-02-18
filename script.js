@@ -581,12 +581,7 @@ function showTestResults() {
     koalitionenMitUebereinstimmung.sort((a, b) => b.testUebereinstimmung - a.testUebereinstimmung);
     
     // Speichere Ergebnisse
-    saveTestResults(
-        'coalition',
-        userAnswers,
-        koalitionenMitUebereinstimmung.slice(0, 3),
-        [] // Wird beim Parteientest gefüllt
-    );
+    saveTestResults('coalition', userAnswers, koalitionenMitUebereinstimmung.slice(0, 3), []);
     
     // Zeige Top 5 Ergebnisse
     resultsDiv.innerHTML = `
@@ -706,12 +701,7 @@ function showWahlomatResults() {
     parteienMitUebereinstimmung.sort((a, b) => b.uebereinstimmung - a.uebereinstimmung);
     
     // Speichere Ergebnisse
-    saveTestResults(
-        'party',
-        wahlomatAnswers,
-        [], // Wird beim Koalitionstest gefüllt
-        parteienMitUebereinstimmung.slice(0, 3)
-    );
+    saveTestResults('party', wahlomatAnswers, [], parteienMitUebereinstimmung.slice(0, 3));
     
     // Generiere HTML für die Ergebnisse
     resultsDiv.innerHTML = `
@@ -811,12 +801,32 @@ function updateCustomThresholdLabel(type) {
 function saveTestResults(type, answers, topCoalitions, topParties) {
     const testHistory = JSON.parse(localStorage.getItem('testHistory') || '[]');
     
+    // Berechne die Ergebnisse für beide Tests
+    const koalitionen = berechneKoalitionen(window.parteienData, window.werteData);
+    const koalitionenMitUebereinstimmung = koalitionen.map(koalition => {
+        const uebereinstimmung = berechneTestUebereinstimmung(koalition.parteien);
+        return {
+            ...koalition,
+            testUebereinstimmung: uebereinstimmung
+        };
+    }).sort((a, b) => b.testUebereinstimmung - a.testUebereinstimmung);
+
+    const parteien = window.werteData.umfragewerte;
+    const parteienMitUebereinstimmung = parteien.map(partei => {
+        const uebereinstimmung = berechneParteienUebereinstimmung(partei.partei);
+        return {
+            ...partei,
+            uebereinstimmung
+        };
+    }).sort((a, b) => b.uebereinstimmung - a.uebereinstimmung);
+
     const testResult = {
         type: type,
         date: new Date().toISOString(),
         answers: answers,
-        topCoalitions: topCoalitions.slice(0, 3),
-        topParties: topParties.slice(0, 3)
+        // Speichere immer beide Ergebnisse
+        topCoalitions: koalitionenMitUebereinstimmung.slice(0, 3),
+        topParties: parteienMitUebereinstimmung.slice(0, 3)
     };
     
     // Entferne ältere Tests vom gleichen Tag
@@ -879,9 +889,9 @@ function showTestHistory() {
                     <h4>Ihre Antworten:</h4>
                     <div class="answers-grid">
                         ${Object.entries(test.answers).map(([index, answer]) => `
-                            <div class="answer-item">
+                            <div class="answer-item answer-${answer || 'm'}">
                                 <p><strong>${window.parteienData.fragen[index].frage}</strong></p>
-                                <p>Ihre Antwort: ${getAnswerText(answer)}</p>
+                                <p class="answer-text">${getAnswerText(answer)}</p>
                             </div>
                         `).join('')}
                     </div>
@@ -929,20 +939,42 @@ function initializeSwipeToDelete() {
     const historyItems = document.querySelectorAll('.history-item');
     let touchStartX = 0;
     let touchEndX = 0;
+    let touchStartTime = 0;
+    let longPressTimer = null;
+    const LONG_PRESS_DURATION = 500; // 500ms für Long-Press
+    const SWIPE_THRESHOLD = 100; // Pixel für Swipe
 
     historyItems.forEach(item => {
         item.addEventListener('touchstart', e => {
+            // Verhindere Konflikt mit dem Toggle-Click
+            if (e.target.closest('.history-header')) return;
+            
             touchStartX = e.changedTouches[0].screenX;
+            touchStartTime = Date.now();
+            
+            // Starte Long-Press Timer
+            longPressTimer = setTimeout(() => {
+                const index = parseInt(item.dataset.index);
+                deleteHistoryItem(index);
+            }, LONG_PRESS_DURATION);
         }, { passive: true });
 
         item.addEventListener('touchmove', e => {
+            // Verhindere Konflikt mit dem Toggle-Click
+            if (e.target.closest('.history-header')) return;
+            
             touchEndX = e.changedTouches[0].screenX;
             const diff = touchStartX - touchEndX;
+            
+            // Wenn Bewegung erkannt wird, cancel Long-Press Timer
+            if (Math.abs(diff) > 10) {
+                clearTimeout(longPressTimer);
+            }
             
             // Zeige Lösch-Indikator bei Wischbewegung
             if (diff > 50) {
                 item.classList.add('swiping');
-                item.style.transform = `translateX(-${Math.min(diff, 100)}px)`;
+                item.style.transform = `translateX(-${Math.min(diff, SWIPE_THRESHOLD)}px)`;
             } else {
                 item.classList.remove('swiping');
                 item.style.transform = 'translateX(0)';
@@ -950,15 +982,31 @@ function initializeSwipeToDelete() {
         }, { passive: true });
 
         item.addEventListener('touchend', e => {
-            const diff = touchStartX - touchEndX;
+            // Verhindere Konflikt mit dem Toggle-Click
+            if (e.target.closest('.history-header')) return;
             
-            if (diff > 100) { // Schwellenwert für Löschaktion
+            // Cancel Long-Press Timer
+            clearTimeout(longPressTimer);
+            
+            touchEndX = e.changedTouches[0].screenX;
+            const diff = touchStartX - touchEndX;
+            const touchDuration = Date.now() - touchStartTime;
+            
+            // Nur löschen wenn es ein echter Swipe war (schnell und weit genug)
+            if (diff > SWIPE_THRESHOLD && touchDuration < 300) {
                 const index = parseInt(item.dataset.index);
                 deleteHistoryItem(index);
             } else {
                 item.classList.remove('swiping');
                 item.style.transform = 'translateX(0)';
             }
+        });
+
+        // Cancel Long-Press wenn Touch abgebrochen wird
+        item.addEventListener('touchcancel', () => {
+            clearTimeout(longPressTimer);
+            item.classList.remove('swiping');
+            item.style.transform = 'translateX(0)';
         });
     });
 }
