@@ -211,7 +211,13 @@ function switchTab(tabName) {
     document.querySelectorAll('.tab-content').forEach(content => {
         content.classList.remove('active');
     });
-    document.getElementById(`${tabName}-koalitionen`).classList.add('active');
+    
+    // Spezielle Behandlung für das Dashboard
+    const contentId = tabName === 'dashboard' ? 
+        'dashboard-content' : 
+        `${tabName}-koalitionen`;
+    
+    document.getElementById(contentId).classList.add('active');
 
     // Synchronisiere die Tests beim Tab-Wechsel
     if (tabName === 'test') {
@@ -226,6 +232,8 @@ function switchTab(tabName) {
         showTestHistory();
     } else if (tabName === 'wahlsimulator') {
         initializeWahlsimulator();
+    } else if (tabName === 'dashboard') {
+        updateDashboard();
     }
 }
 
@@ -688,85 +696,177 @@ function updateWahlomatNavigationButtons() {
     }
 }
 
+// Neue Funktion für die detaillierte Auswertung
+function berechneDetailAuswertung(userAnswers, partei) {
+    const fragen = window.parteienData.fragen;
+    let uebereinstimmungen = 0;
+    let teilUebereinstimmungen = 0;
+    let nichtUebereinstimmungen = 0;
+    let detailPunkte = 0;
+    let maxPunkte = 0;
+    let details = [];
+
+    fragen.forEach((frage, index) => {
+        const userAntwort = userAnswers[index];
+        const parteiAntwort = frage.antworten[partei];
+        
+        // Überspringe Fragen ohne Antwort
+        if (!userAntwort || !parteiAntwort) return;
+        
+        let punkteFormel = 0;
+        let status = '';
+
+        // Wahl-O-Mat Formel:
+        // Gleiche Antwort: 2 Punkte
+        // Neutral vs. Ja/Nein: 1 Punkt
+        // Gegensätzliche Antwort: 0 Punkte
+        if (userAntwort === parteiAntwort) {
+            punkteFormel = 2;
+            uebereinstimmungen++;
+            status = 'volle-uebereinstimmung';
+        } else if (userAntwort === 'm' || parteiAntwort === 'm') {
+            punkteFormel = 1;
+            teilUebereinstimmungen++;
+            status = 'teil-uebereinstimmung';
+        } else {
+            nichtUebereinstimmungen++;
+            status = 'keine-uebereinstimmung';
+        }
+
+        detailPunkte += punkteFormel;
+        maxPunkte += 2;
+
+        details.push({
+            frage: frage.frage,
+            beschreibung: frage.beschreibung,
+            userAntwort,
+            parteiAntwort,
+            punkte: punkteFormel,
+            status
+        });
+    });
+
+    const prozentPunkte = (detailPunkte / maxPunkte) * 100;
+    const prozentUebereinstimmung = (uebereinstimmungen / (uebereinstimmungen + teilUebereinstimmungen + nichtUebereinstimmungen)) * 100;
+
+    return {
+        partei,
+        prozentPunkte,
+        prozentUebereinstimmung,
+        uebereinstimmungen,
+        teilUebereinstimmungen,
+        nichtUebereinstimmungen,
+        details
+    };
+}
+
+// Modifiziere die showWahlomatResults Funktion
 function showWahlomatResults() {
     const resultsDiv = document.getElementById('wahlomatResults');
     const parteien = window.werteData.umfragewerte;
     
-    const parteienMitUebereinstimmung = parteien.map(partei => {
-        const uebereinstimmung = berechneParteienUebereinstimmung(partei.partei);
-        return {
-            ...partei,
-            uebereinstimmung
-        };
-    });
-    
-    parteienMitUebereinstimmung.sort((a, b) => b.uebereinstimmung - a.uebereinstimmung);
-    
-    // Speichere Ergebnisse
-    saveTestResults('party', wahlomatAnswers, [], parteienMitUebereinstimmung.slice(0, 3));
-    
-    // Generiere HTML für die Ergebnisse
-    resultsDiv.innerHTML = `
-        <h3>Ihre Übereinstimmung mit den Parteien:</h3>
-        ${parteienMitUebereinstimmung.map(partei => `
-            <div class="party-result-item">
-                <div class="party-result-bar" style="width: ${partei.uebereinstimmung}%"></div>
-                <div class="party-result-text">
-                    <span>${partei.partei}</span>
-                    <span class="party-result-percentage">${partei.uebereinstimmung.toFixed(1)}%</span>
-                </div>
-                <div class="party-details">
-                    Aktuelle Umfragewerte: ${partei.prozent}%
-                    <button class="show-answers-btn" onclick="togglePartyAnswers('${partei.partei}')">
-                        Details anzeigen
-                    </button>
-                </div>
-                <div id="answers-${partei.partei}" class="party-answers">
-                    ${generateAnswerComparison(partei.partei)}
-                </div>
-            </div>
-        `).join('')}
-    `;
-}
+    // Berechne detaillierte Auswertung für jede Partei
+    const auswertungen = parteien.map(partei => 
+        berechneDetailAuswertung(wahlomatAnswers, partei.partei)
+    ).sort((a, b) => b.prozentPunkte - a.prozentPunkte);
 
-function berechneParteienUebereinstimmung(partei) {
-    let uebereinstimmungen = 0;
-    let gesamtFragen = 0;
+    let html = '<h3>Ihre Übereinstimmung mit den Parteien</h3>';
     
-    window.parteienData.fragen.forEach((frage, index) => {
-        const userAnswer = wahlomatAnswers[index];
-        const partyAnswer = frage.antworten[partei];
-        
-        if (userAnswer && userAnswer !== 'm' && partyAnswer !== 'm') {
-            gesamtFragen++;
-            if (userAnswer === partyAnswer) {
-                uebereinstimmungen++;
-            }
+    // Zeige Gesamtübersicht
+    html += '<div class="results-overview">';
+    auswertungen.forEach(auswertung => {
+        if (auswertung.uebereinstimmungen + auswertung.teilUebereinstimmungen + auswertung.nichtUebereinstimmungen > 0) {
+            const parteiInfo = parteien.find(p => p.partei === auswertung.partei);
+            html += `
+                <div class="party-result-item">
+                    <div class="party-result-header">
+                        <span class="party-name">${auswertung.partei}</span>
+                        <span class="party-percentage">${parteiInfo ? `(${parteiInfo.prozent}%)` : ''}</span>
+                    </div>
+                    <div class="party-result-bar-container">
+                        <div class="party-result-bar" style="width: ${auswertung.prozentPunkte}%"></div>
+                        <span class="party-result-text">${auswertung.prozentPunkte.toFixed(1)}%</span>
+                    </div>
+                    <div class="party-result-details">
+                        <span class="match-full">Volle Übereinstimmung: ${auswertung.uebereinstimmungen}</span>
+                        <span class="match-partial">Teilweise: ${auswertung.teilUebereinstimmungen}</span>
+                        <span class="match-none">Keine: ${auswertung.nichtUebereinstimmungen}</span>
+                    </div>
+                </div>
+            `;
         }
     });
-    
-    return gesamtFragen > 0 ? (uebereinstimmungen / gesamtFragen) * 100 : 0;
-}
+    html += '</div>';
 
-function generateAnswerComparison(partei) {
-    return window.parteienData.fragen.map((frage, index) => {
-        const userAnswer = wahlomatAnswers[index];
-        const partyAnswer = frage.antworten[partei];
-        const match = userAnswer === partyAnswer;
-        
-        return `
-            <div class="answer-comparison ${match ? 'match' : 'mismatch'}">
-                <strong>${frage.frage}</strong><br>
-                Ihre Antwort: ${getAnswerText(userAnswer)}<br>
-                ${partei}: ${getAnswerText(partyAnswer)}
+    // Zeige detaillierte Analyse
+    html += '<div class="detailed-analysis">';
+    html += '<h3>Detaillierte Analyse</h3>';
+    
+    // Erstelle Tabs für die Top-5-Parteien
+    const topParteien = auswertungen.slice(0, 5);
+    html += '<div class="analysis-tabs">';
+    topParteien.forEach((auswertung, index) => {
+        html += `
+            <button class="analysis-tab ${index === 0 ? 'active' : ''}" 
+                    onclick="showAnalysisTab(${index})">
+                ${auswertung.partei}
+            </button>
+        `;
+    });
+    html += '</div>';
+
+    // Erstelle Inhalte für jede Partei
+    topParteien.forEach((auswertung, index) => {
+        html += `
+            <div class="analysis-content ${index === 0 ? 'active' : ''}" id="analysis-${index}">
+                <h4>${auswertung.partei} - Detailanalyse</h4>
+                <div class="analysis-summary">
+                    <div class="summary-item">
+                        <span class="summary-label">Gesamtübereinstimmung:</span>
+                        <span class="summary-value">${auswertung.prozentPunkte.toFixed(1)}%</span>
+                    </div>
+                </div>
+                <div class="analysis-questions">
+                    ${auswertung.details.map(detail => `
+                        <div class="question-analysis ${detail.status}">
+                            <div class="question-text">
+                                <strong>${detail.frage}</strong>
+                                <p>${detail.beschreibung}</p>
+                            </div>
+                            <div class="answer-comparison">
+                                <div class="your-answer">
+                                    Ihre Antwort: <span class="answer-${detail.userAntwort}">
+                                        ${getAnswerText(detail.userAntwort)}
+                                    </span>
+                                </div>
+                                <div class="party-answer">
+                                    ${auswertung.partei}: <span class="answer-${detail.parteiAntwort}">
+                                        ${getAnswerText(detail.parteiAntwort)}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
             </div>
         `;
-    }).join('<hr>');
+    });
+    html += '</div>';
+
+    resultsDiv.innerHTML = html;
 }
 
-function togglePartyAnswers(partei) {
-    const answersDiv = document.getElementById(`answers-${partei}`);
-    answersDiv.classList.toggle('show');
+// Funktion zum Umschalten der Analyse-Tabs
+function showAnalysisTab(index) {
+    document.querySelectorAll('.analysis-tab').forEach(tab => {
+        tab.classList.remove('active');
+    });
+    document.querySelectorAll('.analysis-content').forEach(content => {
+        content.classList.remove('active');
+    });
+    
+    document.querySelectorAll('.analysis-tab')[index].classList.add('active');
+    document.getElementById(`analysis-${index}`).classList.add('active');
 }
 
 // Füge Event-Listener für die Koalitionstyp-Auswahl hinzu
@@ -813,12 +913,14 @@ function saveTestResults(type, answers, topCoalitions, topParties) {
         };
     }).sort((a, b) => b.testUebereinstimmung - a.testUebereinstimmung);
 
+    // Berechne Parteienübereinstimmung mit der neuen Methode
     const parteien = window.werteData.umfragewerte;
     const parteienMitUebereinstimmung = parteien.map(partei => {
-        const uebereinstimmung = berechneParteienUebereinstimmung(partei.partei);
+        const auswertung = berechneDetailAuswertung(answers, partei.partei);
         return {
-            ...partei,
-            uebereinstimmung
+            partei: partei.partei,
+            prozent: partei.prozent,
+            uebereinstimmung: auswertung.prozentPunkte
         };
     }).sort((a, b) => b.uebereinstimmung - a.uebereinstimmung);
 
@@ -1162,4 +1264,161 @@ function initializeSwipeToDelete() {
             item.style.transform = 'translateX(0)';
         });
     });
+}
+
+// Neue Funktion für das Dashboard
+function updateDashboard() {
+    const wahlSimulation = JSON.parse(localStorage.getItem('wahlSimulation') || 'null');
+    const testHistory = JSON.parse(localStorage.getItem('testHistory') || '[]');
+    
+    // Wahlentscheidung Card
+    const wahlCard = document.getElementById('wahlCard');
+    if (wahlSimulation) {
+        wahlCard.querySelector('.card-content').innerHTML = `
+            <div class="stat-item">
+                <span>Erststimme:</span>
+                <strong>${wahlSimulation.erststimme}</strong>
+            </div>
+            <div class="stat-item">
+                <span>Zweitstimme:</span>
+                <strong>${wahlSimulation.zweitstimme}</strong>
+            </div>
+            <div class="stat-item">
+                <span>Entschieden am:</span>
+                <span>${new Date(wahlSimulation.datum).toLocaleDateString()}</span>
+            </div>
+        `;
+    } else {
+        wahlCard.querySelector('.card-content').innerHTML = `
+            <p>Noch keine Wahlentscheidung getroffen</p>
+            <button onclick="switchTab('wahlsimulator')" class="dashboard-btn">
+                Zur Wahlsimulation
+            </button>
+        `;
+    }
+
+    // Beste Übereinstimmungen Card
+    const matchCard = document.getElementById('matchCard');
+    if (testHistory.length > 0) {
+        const latestTest = testHistory[testHistory.length - 1];
+        matchCard.querySelector('.card-content').innerHTML = `
+            <h4>Parteien</h4>
+            ${latestTest.topParties.map((party, index) => `
+                <div class="stat-item">
+                    <span>${index + 1}. ${party.partei}</span>
+                    <div class="match-info">
+                        <div class="match-bar">
+                            <div class="match-bar-fill" style="width: ${party.uebereinstimmung}%"></div>
+                        </div>
+                        <span>${party.uebereinstimmung.toFixed(1)}%</span>
+                    </div>
+                </div>
+            `).join('')}
+            
+            <h4>Koalitionen</h4>
+            ${latestTest.topCoalitions.map((coalition, index) => `
+                <div class="stat-item">
+                    <span>${index + 1}. ${coalition.parteien.join(' + ')}</span>
+                    <div class="match-info">
+                        <div class="match-bar">
+                            <div class="match-bar-fill" 
+                                 style="width: ${coalition.testUebereinstimmung}%"></div>
+                        </div>
+                        <span>${coalition.testUebereinstimmung.toFixed(1)}%</span>
+                    </div>
+                </div>
+            `).join('')}
+        `;
+    } else {
+        matchCard.querySelector('.card-content').innerHTML = `
+            <p>Noch keine Tests durchgeführt</p>
+            <button onclick="switchTab('test')" class="dashboard-btn">
+                Zum Koalitionstest
+            </button>
+        `;
+    }
+
+    // Positionen Card
+    const positionsCard = document.getElementById('positionsCard');
+    if (testHistory.length > 0) {
+        const latestTest = testHistory[testHistory.length - 1];
+        const positions = analyzePositions(latestTest.answers);
+        positionsCard.querySelector('.card-content').innerHTML = `
+            <div class="positions-grid">
+                ${positions.map(pos => `
+                    <div class="position-tag ${pos.type}">
+                        ${pos.topic}
+                    </div>
+                `).join('')}
+            </div>
+        `;
+    } else {
+        positionsCard.querySelector('.card-content').innerHTML = `
+            <p>Noch keine Positionen erfasst</p>
+        `;
+    }
+
+    // Trend Card
+    const trendCard = document.getElementById('trendCard');
+    if (testHistory.length > 1) {
+        const trends = analyzeTrends(testHistory);
+        trendCard.querySelector('.card-content').innerHTML = `
+            <div class="trends-list">
+                ${trends.map(trend => `
+                    <div class="stat-item">
+                        <span>${trend.party}</span>
+                        <span class="trend-arrow ${trend.direction}">
+                            ${getTrendArrow(trend.direction)}
+                            ${Math.abs(trend.change).toFixed(1)}%
+                        </span>
+                    </div>
+                `).join('')}
+            </div>
+        `;
+    } else {
+        trendCard.querySelector('.card-content').innerHTML = `
+            <p>Noch nicht genug Daten für Trendanalyse</p>
+        `;
+    }
+}
+
+// Hilfsfunktionen für das Dashboard
+function analyzePositions(answers) {
+    const positions = [];
+    Object.entries(answers).forEach(([index, answer]) => {
+        const frage = window.parteienData.fragen[index];
+        if (answer === 'j' || answer === 'n') {
+            positions.push({
+                topic: frage.frage,
+                type: answer === 'j' ? 'position-yes' : 'position-no'
+            });
+        }
+    });
+    return positions;
+}
+
+function analyzeTrends(history) {
+    const latest = history[history.length - 1];
+    const previous = history[history.length - 2];
+    
+    return latest.topParties.map(party => {
+        const previousMatch = previous.topParties.find(p => p.partei === party.partei);
+        const change = previousMatch ? 
+            party.uebereinstimmung - previousMatch.uebereinstimmung : 0;
+        
+        return {
+            party: party.partei,
+            change,
+            direction: change > 0 ? 'trend-up' : 
+                      change < 0 ? 'trend-down' : 'trend-neutral'
+        };
+    });
+}
+
+function getTrendArrow(direction) {
+    switch(direction) {
+        case 'trend-up': return '↑';
+        case 'trend-down': return '↓';
+        default: return '→';
+    }
 }

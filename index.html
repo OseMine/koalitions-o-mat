@@ -18,6 +18,7 @@
             <button class="tab-button" onclick="switchTab('wahlomat')">Parteientest</button>
             <button class="tab-button" onclick="switchTab('history')">Meine Tests</button>
             <button class="tab-button" onclick="switchTab('wahlsimulator')">Wahlsimulator</button>
+            <button class="tab-button" onclick="switchTab('dashboard')">Dashboard</button>
         </div>
 
         <div id="alle-koalitionen" class="tab-content active">
@@ -193,6 +194,46 @@
                     <button id="wahlAbgeben" onclick="wahlAbgeben()">Stimme abgeben</button>
                 </div>
                 <div id="wahlErgebnis"></div>
+            </div>
+        </div>
+
+        <div id="dashboard-content" class="tab-content">
+            <div class="dashboard-container">
+                <h2>Mein Politik-Dashboard</h2>
+                
+                <div class="dashboard-grid">
+                    <!-- Wahlentscheidung -->
+                    <div class="dashboard-card" id="wahlCard">
+                        <h3>Meine Wahlentscheidung</h3>
+                        <div class="card-content">
+                            <!-- Wird dynamisch gefüllt -->
+                        </div>
+                    </div>
+
+                    <!-- Beste Übereinstimmungen -->
+                    <div class="dashboard-card" id="matchCard">
+                        <h3>Beste Übereinstimmungen</h3>
+                        <div class="card-content">
+                            <!-- Wird dynamisch gefüllt -->
+                        </div>
+                    </div>
+
+                    <!-- Politische Positionen -->
+                    <div class="dashboard-card" id="positionsCard">
+                        <h3>Meine Positionen</h3>
+                        <div class="card-content">
+                            <!-- Wird dynamisch gefüllt -->
+                        </div>
+                    </div>
+
+                    <!-- Trend-Analyse -->
+                    <div class="dashboard-card" id="trendCard">
+                        <h3>Meine Entwicklung</h3>
+                        <div class="card-content">
+                            <!-- Wird dynamisch gefüllt -->
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
