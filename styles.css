@@ -1189,4 +1189,59 @@ input[type="text"], input[type="number"] {
 .tab-button[onclick="switchTab('dashboard')"] {
     white-space: nowrap;
     min-width: max-content;
+}
+
+/* Styles für Statistiken */
+.statistiken-container {
+    padding: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.chart-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+    margin-top: 20px;
+}
+
+.chart-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    padding: 25px;
+    position: relative;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+}
+
+.chart-card.wide {
+    grid-column: span 2;
+}
+
+.chart-card h3 {
+    font-size: 1.2em;
+    color: #333;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #eee;
+    flex-shrink: 0;
+}
+
+.chart-container {
+    flex-grow: 1;
+    position: relative;
+    width: 100%;
+    height: calc(100% - 50px); /* Höhe minus Überschrift */
+}
+
+@media (max-width: 1024px) {
+    .chart-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .chart-card.wide {
+        grid-column: span 1;
+    }
 } 

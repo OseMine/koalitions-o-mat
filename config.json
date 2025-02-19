@@ -1,0 +1,60 @@
+{
+  "partyColors": {
+    "CDU/CSU": "#000000",
+    "SPD": "#E3000F",
+    "GRÜNE": "#46962b",
+    "FDP": "#FFED00",
+    "AfD": "#009EE0",
+    "LINKE": "#BE3075",
+    "BSW": "#E3000F",
+    "SSW": "#003D7D",
+    "FREIE WÄHLER": "#FF6600",
+    "Tierschutz": "#2BB2AC",
+    "PIRATEN": "#FF8800",
+    "Volt": "#502379",
+    "ÖDP": "#FF6B00",
+    "PARTEI": "#D7145A",
+    "default": "#999999"
+  },
+  "topics": {
+    "Wirtschaft": {
+      "keywords": ["Steuer", "Wirtschaft", "Finanzen", "Haushalt", "Mindestlohn", "Bürgergeld", "Rente", "Arbeit"],
+      "color": "#FFA726"
+    },
+    "Soziales": {
+      "keywords": ["Sozial", "Rente", "Bildung", "Gesundheit", "Bürgergeld", "Familie", "Pflege", "Kinder"],
+      "color": "#42A5F5"
+    },
+    "Umwelt": {
+      "keywords": ["Klima", "Umwelt", "Energie", "Verkehr", "Erneuerbar", "Heizung", "Mobilität"],
+      "color": "#66BB6A"
+    },
+    "Außenpolitik": {
+      "keywords": ["Außen", "EU", "Europa", "NATO", "Ukraine", "International", "Verteidigung"],
+      "color": "#AB47BC"
+    },
+    "Inneres": {
+      "keywords": ["Polizei", "Sicherheit", "Migration", "Asyl", "Integration", "Einwanderung", "Justiz"],
+      "color": "#EF5350"
+    },
+    "Digitales": {
+      "keywords": ["Digital", "Internet", "Netz", "Daten", "KI", "Technologie"],
+      "color": "#26C6DA"
+    }
+  },
+  "chartColors": {
+    "primary": "#4CAF50",
+    "secondary": "#2196F3",
+    "accent": "#FFC107",
+    "neutral": "#9E9E9E",
+    "success": "#66BB6A",
+    "warning": "#FFA726",
+    "error": "#EF5350"
+  },
+  "thresholds": {
+    "sperrklausel": 5,
+    "relevantParties": 3,
+    "minMatchForCoalition": 40,
+    "maxCoalitionSize": 4
+  }
+} 

@@ -2,81 +2,62 @@
   "umfragewerte": [
     {
       "partei": "CDU/CSU",
-      "prozent": 29.5,
-      "veraenderung": 0
+      "prozent": 27.0
     },
     {
       "partei": "SPD",
-      "prozent": 15.5,
-      "veraenderung": 0
+      "prozent": 17.0
     },
     {
       "partei": "GRÜNE",
-      "prozent": 13.5,
-      "veraenderung": 0
+      "prozent": 12.0
     },
     {
       "partei": "FDP",
-      "prozent": 4,
-      "veraenderung": 0
+      "prozent": 4.0
     },
     {
       "partei": "AfD",
-      "prozent": 20.5,
-      "veraenderung": 0
+      "prozent": 20.0
     },
     {
       "partei": "LINKE",
-      "prozent": 6,
-      "veraenderung": 0
+      "prozent": 9.0
     },
     {
       "partei": "BSW",
-      "prozent": 4.5,
-      "veraenderung": 0
+      "prozent": 5.0
     },
     {
       "partei": "SSW",
-      "prozent": 0.3,
-      "veraenderung": 0
+      "prozent": 0.71
     },
     {
       "partei": "FREIE WÄHLER",
-      "prozent": 0.3,
-      "veraenderung": 0
+      "prozent": 0.71
     },
     {
       "partei": "Tierschutz",
-      "prozent": 0.3,
-      "veraenderung": 0
-    },
-    {
-      "partei": "DieBasis",
-      "prozent": 0.3,
-      "veraenderung": 0
-    },
-    {
-      "partei": "PARTEI",
-      "prozent": 0.3,
-      "veraenderung": 0
-    },
-    {
-      "partei": "Todenhöfer",
-      "prozent": 0.3,
-      "veraenderung": 0
+      "prozent": 0.71
     },
     {
       "partei": "PIRATEN",
-      "prozent": 0.3,
-      "veraenderung": 0
+      "prozent": 0.71
     },
     {
       "partei": "Volt",
-      "prozent": 0.3,
-      "veraenderung": 0
+      "prozent": 0.71
     },
     {
       "partei": "ÖDP",
+      "prozent": 0.71
+    },
+    {
+      "partei": "PARTEI",
+      "prozent": 0.71
+    },
+    {
+      "partei": "Todenhöfer",
       "prozent": 0.3,
       "veraenderung": 0
     },
