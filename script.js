@@ -1346,7 +1346,7 @@ function updateDashboard() {
         positionsCard.querySelector('.card-content').innerHTML = `
             <div class="positions-grid">
                 ${positions.map(pos => `
-                    <div class="position-tag ${pos.type}">
+                    <div class="position-tag ${pos.type}" title="${getAnswerText(pos.answer)}">
                         ${pos.topic}
                     </div>
                 `).join('')}
@@ -1387,12 +1387,13 @@ function analyzePositions(answers) {
     const positions = [];
     Object.entries(answers).forEach(([index, answer]) => {
         const frage = window.parteienData.fragen[index];
-        if (answer === 'j' || answer === 'n') {
-            positions.push({
-                topic: frage.frage,
-                type: answer === 'j' ? 'position-yes' : 'position-no'
-            });
-        }
+        positions.push({
+            topic: frage.frage,
+            type: answer === 'j' ? 'position-yes' : 
+                  answer === 'n' ? 'position-no' : 
+                  'position-neutral',
+            answer: answer
+        });
     });
     return positions;
 }
