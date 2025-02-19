@@ -1,6 +1,58 @@
 // Globale Konfiguration
 let config = null;
 
+function switchTab(tabName) {
+    // Aktualisiere Tab-Buttons
+    document.querySelectorAll('.tab-button').forEach(button => {
+        button.classList.remove('active');
+    });
+    document.querySelector(`[onclick="switchTab('${tabName}')"]`).classList.add('active');
+    
+    // Aktualisiere Tab-Inhalte
+    document.querySelectorAll('.tab-content').forEach(content => {
+        content.classList.remove('active');
+    });
+    
+    // Spezielle Behandlung für die Sonder-Tabs
+    let contentId;
+    switch(tabName) {
+        case 'dashboard':
+            contentId = 'dashboard-content';
+            break;
+        case 'statistiken':
+            contentId = 'statistiken-content';
+            break;
+        default:
+            contentId = `${tabName}-koalitionen`;
+    }
+    
+    const contentElement = document.getElementById(contentId);
+    if (contentElement) {
+        contentElement.classList.add('active');
+    } else {
+        console.error(`Tab content with id "${contentId}" not found`);
+    }
+
+    // Initialisiere spezielle Tab-Funktionen
+    if (tabName === 'test') {
+        currentQuestion = currentSharedQuestion;
+        userAnswers = {...sharedAnswers};
+        initializeTest();
+    } else if (tabName === 'wahlomat') {
+        currentWahlomatQuestion = currentSharedQuestion;
+        wahlomatAnswers = {...sharedAnswers};
+        initializeWahlomatTest();
+    } else if (tabName === 'history') {
+        showTestHistory();
+    } else if (tabName === 'wahlsimulator') {
+        initializeWahlsimulator();
+    } else if (tabName === 'dashboard') {
+        updateDashboard();
+    } else if (tabName === 'statistiken') {
+        initializeStatistics();
+    }
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
     try {
         const [parteienResponse, werteResponse, configResponse] = await Promise.all([
@@ -203,58 +255,6 @@ let currentQuestion = 0;
 let currentWahlomatQuestion = 0;
 let userAnswers = {};
 let wahlomatAnswers = {};
-
-function switchTab(tabName) {
-    // Aktualisiere Tab-Buttons
-    document.querySelectorAll('.tab-button').forEach(button => {
-        button.classList.remove('active');
-    });
-    document.querySelector(`[onclick="switchTab('${tabName}')"]`).classList.add('active');
-    
-    // Aktualisiere Tab-Inhalte
-    document.querySelectorAll('.tab-content').forEach(content => {
-        content.classList.remove('active');
-    });
-    
-    // Spezielle Behandlung für die Sonder-Tabs
-    let contentId;
-    switch(tabName) {
-        case 'dashboard':
-            contentId = 'dashboard-content';
-            break;
-        case 'statistiken':
-            contentId = 'statistiken-content';
-            break;
-        default:
-            contentId = `${tabName}-koalitionen`;
-    }
-    
-    const contentElement = document.getElementById(contentId);
-    if (contentElement) {
-        contentElement.classList.add('active');
-    } else {
-        console.error(`Tab content with id "${contentId}" not found`);
-    }
-
-    // Initialisiere spezielle Tab-Funktionen
-    if (tabName === 'test') {
-        currentQuestion = currentSharedQuestion;
-        userAnswers = {...sharedAnswers};
-        initializeTest();
-    } else if (tabName === 'wahlomat') {
-        currentWahlomatQuestion = currentSharedQuestion;
-        wahlomatAnswers = {...sharedAnswers};
-        initializeWahlomatTest();
-    } else if (tabName === 'history') {
-        showTestHistory();
-    } else if (tabName === 'wahlsimulator') {
-        initializeWahlsimulator();
-    } else if (tabName === 'dashboard') {
-        updateDashboard();
-    } else if (tabName === 'statistiken') {
-        initializeStatistics();
-    }
-}
 
 function updateMinMatchLabel(type) {
     const slider = document.getElementById(`minMatch${type}`);
@@ -1285,11 +1285,28 @@ function initializeSwipeToDelete() {
 
 // Neue Funktion für das Dashboard
 function updateDashboard() {
-    const wahlSimulation = JSON.parse(localStorage.getItem('wahlSimulation') || 'null');
     const testHistory = JSON.parse(localStorage.getItem('testHistory') || '[]');
+    if (testHistory.length === 0) return;
+
+    const latestTest = testHistory[testHistory.length - 1];
     
-    // Wahlentscheidung Card
+    // Update Wahlentscheidung Card
+    updateWahlCard();
+    
+    // Update Übereinstimmungen Card
+    updateMatchCard(latestTest);
+    
+    // Update Positionen Card
+    updatePositionsCard(latestTest);
+    
+    // Update Trend Card
+    updateTrendCard(testHistory);
+}
+
+function updateWahlCard() {
     const wahlCard = document.getElementById('wahlCard');
+    const wahlSimulation = JSON.parse(localStorage.getItem('wahlSimulation') || 'null');
+    
     if (wahlSimulation) {
         wahlCard.querySelector('.card-content').innerHTML = `
             <div class="stat-item">
@@ -1313,69 +1330,209 @@ function updateDashboard() {
             </button>
         `;
     }
+}
 
-    // Beste Übereinstimmungen Card
+function getPositionClass(answer) {
+    switch(answer) {
+        case 'j': return 'position-yes';
+        case 'n': return 'position-no';
+        default: return 'position-neutral';
+    }
+}
+
+function getAnswerClass(answer) {
+    switch(answer) {
+        case 'j': return 'yes';
+        case 'n': return 'no';
+        default: return 'neutral';
+    }
+}
+
+function formatAnswer(answer) {
+    switch(answer) {
+        case 'j': return 'Ja';
+        case 'n': return 'Nein';
+        default: return 'Neutral';
+    }
+}
+
+function updateMatchCard(latestTest) {
     const matchCard = document.getElementById('matchCard');
-    if (testHistory.length > 0) {
-        const latestTest = testHistory[testHistory.length - 1];
-        matchCard.querySelector('.card-content').innerHTML = `
-            <h4>Parteien</h4>
-            ${latestTest.topParties.map((party, index) => `
-                <div class="stat-item">
-                    <span>${index + 1}. ${party.partei}</span>
-                    <div class="match-info">
-                        <div class="match-bar">
-                            <div class="match-bar-fill" style="width: ${party.uebereinstimmung}%"></div>
-                        </div>
-                        <span>${party.uebereinstimmung.toFixed(1)}%</span>
+    matchCard.querySelector('.card-content').innerHTML = `
+        <h4>Parteien</h4>
+        ${latestTest.topParties.map((party, index) => `
+            <div class="stat-item">
+                <span>${index + 1}. ${party.partei}</span>
+                <div class="match-info">
+                    <div class="match-bar">
+                        <div class="match-bar-fill" style="width: ${party.uebereinstimmung}%"></div>
                     </div>
+                    <span>${party.uebereinstimmung.toFixed(1)}%</span>
                 </div>
-            `).join('')}
-            
-            <h4>Koalitionen</h4>
-            ${latestTest.topCoalitions.map((coalition, index) => `
-                <div class="stat-item">
-                    <span>${index + 1}. ${coalition.parteien.join(' + ')}</span>
-                    <div class="match-info">
-                        <div class="match-bar">
-                            <div class="match-bar-fill" 
-                                 style="width: ${coalition.testUebereinstimmung}%"></div>
-                        </div>
-                        <span>${coalition.testUebereinstimmung.toFixed(1)}%</span>
-                    </div>
-                </div>
-            `).join('')}
-        `;
-    } else {
-        matchCard.querySelector('.card-content').innerHTML = `
-            <p>Noch keine Tests durchgeführt</p>
-            <button onclick="switchTab('test')" class="dashboard-btn">
-                Zum Koalitionstest
-            </button>
-        `;
-    }
-
-    // Positionen Card
-    const positionsCard = document.getElementById('positionsCard');
-    if (testHistory.length > 0) {
-        const latestTest = testHistory[testHistory.length - 1];
-        const positions = analyzePositions(latestTest.answers);
-        positionsCard.querySelector('.card-content').innerHTML = `
-            <div class="positions-grid">
-                ${positions.map(pos => `
-                    <div class="position-tag ${pos.type}" title="${getAnswerText(pos.answer)}">
-                        ${pos.topic}
-                    </div>
-                `).join('')}
             </div>
-        `;
-    } else {
-        positionsCard.querySelector('.card-content').innerHTML = `
-            <p>Noch keine Positionen erfasst</p>
-        `;
-    }
+        `).join('')}
+        
+        <h4>Koalitionen</h4>
+        ${latestTest.topCoalitions.map((coalition, index) => `
+            <div class="stat-item">
+                <span>${index + 1}. ${coalition.parteien.join(' + ')}</span>
+                <div class="match-info">
+                    <div class="match-bar">
+                        <div class="match-bar-fill" 
+                             style="width: ${coalition.testUebereinstimmung}%"></div>
+                    </div>
+                    <span>${coalition.testUebereinstimmung.toFixed(1)}%</span>
+                </div>
+            </div>
+        `).join('')}
+    `;
+}
 
-    // Trend Card
+function updatePositionsCard(latestTest) {
+    const positionsCard = document.getElementById('positionsCard');
+    const cardContent = positionsCard.querySelector('.card-content');
+    
+    // Sammle relevante Positionen basierend auf Top-Parteien und Koalitionen
+    const relevantPositions = analyzeRelevantPositions(latestTest);
+    
+    // Erstelle Position-Bubbles
+    cardContent.innerHTML = `
+        <div class="positions-grid">
+            ${relevantPositions.map(position => `
+                <div class="position-bubble ${getPositionClass(position.userAnswer)}"
+                     data-position-id="${position.questionIndex}"
+                     onmouseover="showPositionDetails(this, ${JSON.stringify(position).replace(/"/g, '&quot;')})"
+                     onclick="togglePositionDetails(this, ${JSON.stringify(position).replace(/"/g, '&quot;')})">
+                    ${position.shortTitle}
+                </div>
+            `).join('')}
+        </div>
+        <div id="positionDetails" class="position-details"></div>
+    `;
+}
+
+function analyzeRelevantPositions(testResult) {
+    const positions = [];
+    const topParties = testResult.topParties.slice(0, 3);
+    const topCoalition = testResult.topCoalitions[0];
+    
+    // Konvertiere answers-Objekt in ein Array von [index, answer] Paaren
+    Object.entries(testResult.answers).forEach(([index, answer]) => {
+        const question = window.parteienData.fragen[index];
+        const partyAnswers = topParties.map(party => ({
+            party: party.partei,
+            answer: question.antworten[party.partei]
+        }));
+        
+        // Berechne Relevanz-Score
+        const relevanceScore = calculateRelevanceScore({
+            question,
+            partyAnswers,
+            topParties,
+            topCoalition,
+            userAnswer: answer
+        });
+        
+        positions.push({
+            questionIndex: parseInt(index),
+            shortTitle: createShortTitle(question.frage),
+            fullQuestion: question.frage,
+            userAnswer: answer,
+            partyAnswers,
+            relevanceScore,
+            topic: determineQuestionTopic(question.frage)
+        });
+    });
+    
+    // Sortiere nach Relevanz und nimm die Top 15
+    return positions
+        .sort((a, b) => b.relevanceScore - a.relevanceScore)
+        .slice(0, 15);
+}
+
+function calculateRelevanceScore({question, partyAnswers, topParties, topCoalition, userAnswer}) {
+    let score = 0;
+    
+    // Übereinstimmung mit Top-Parteien
+    partyAnswers.forEach((partyAnswer, index) => {
+        if (partyAnswer.answer === userAnswer) {
+            score += (3 - index) * 2; // Mehr Gewicht für höher platzierte Parteien
+        }
+    });
+    
+    // Übereinstimmung mit Top-Koalition
+    const coalitionParties = topCoalition.parteien;
+    const coalitionAgreement = coalitionParties.every(party => 
+        question.antworten[party] === userAnswer
+    );
+    if (coalitionAgreement) score += 3;
+    
+    // Kontroverse Themen (wo Parteien unterschiedlich abstimmen)
+    const uniqueAnswers = new Set(partyAnswers.map(p => p.answer));
+    if (uniqueAnswers.size > 1) score += 2;
+    
+    return score;
+}
+
+function createShortTitle(question) {
+    // Kürze die Frage auf max. 30 Zeichen
+    return question.length > 30 ? 
+        question.substring(0, 27) + '...' : 
+        question;
+}
+
+function showPositionDetails(element, position) {
+    const details = document.getElementById('positionDetails');
+    if (element.classList.contains('active')) {
+        details.classList.remove('active');
+        return;
+    }
+    
+    const partyAnswersHtml = position.partyAnswers.map(pa => `
+        <div class="party-answer">
+            <span class="party-name" style="color: ${getPartyColor(pa.party)}">
+                ${pa.party}:
+            </span>
+            <span class="answer ${getAnswerClass(pa.answer)}">
+                ${formatAnswer(pa.answer)}
+            </span>
+        </div>
+    `).join('');
+    
+    details.innerHTML = `
+        <div class="position-detail-card">
+            <button class="close-button" onclick="closePositionDetails()">×</button>
+            <h4>${position.fullQuestion}</h4>
+            <div class="answers-grid">
+                <div class="user-answer">
+                    <strong>Ihre Position:</strong>
+                    <span class="answer ${getAnswerClass(position.userAnswer)}">
+                        ${formatAnswer(position.userAnswer)}
+                    </span>
+                </div>
+                <div class="party-answers">
+                    <strong>Top-Parteien:</strong>
+                    ${partyAnswersHtml}
+                </div>
+            </div>
+            <div class="topic-tag">
+                ${position.topic}
+            </div>
+        </div>
+    `;
+    
+    details.classList.add('active');
+}
+
+function closePositionDetails() {
+    const details = document.getElementById('positionDetails');
+    details.classList.remove('active');
+    document.querySelectorAll('.position-bubble.active').forEach(bubble => {
+        bubble.classList.remove('active');
+    });
+}
+
+function updateTrendCard(testHistory) {
     const trendCard = document.getElementById('trendCard');
     if (testHistory.length > 1) {
         const trends = analyzeTrends(testHistory);
@@ -1397,22 +1554,6 @@ function updateDashboard() {
             <p>Noch nicht genug Daten für Trendanalyse</p>
         `;
     }
-}
-
-// Hilfsfunktionen für das Dashboard
-function analyzePositions(answers) {
-    const positions = [];
-    Object.entries(answers).forEach(([index, answer]) => {
-        const frage = window.parteienData.fragen[index];
-        positions.push({
-            topic: frage.frage,
-            type: answer === 'j' ? 'position-yes' : 
-                  answer === 'n' ? 'position-no' : 
-                  'position-neutral',
-            answer: answer
-        });
-    });
-    return positions;
 }
 
 function analyzeTrends(history) {
@@ -1665,7 +1806,8 @@ function analyzePartyTopics(partei) {
             determineQuestionTopic(frage.frage) === topic
         );
         
-        const answers = relevantQuestions.map(frage => frage.antworten[partei])
+        const answers = relevantQuestions
+            .map(frage => frage.antworten[partei])
             .filter(answer => answer); // Filter undefined answers
             
         const score = answers.reduce((sum, answer) => {
