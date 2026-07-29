@@ -88,6 +88,36 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.tab-button[data-tab]').forEach(button => {
         button.addEventListener('click', () => switchTab(button.dataset.tab));
     });
+    
+    // Swipe gesture for tab navigation on mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+    const container = document.querySelector('.container');
+    
+    container.addEventListener('touchstart', e => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+    
+    container.addEventListener('touchend', e => {
+        touchEndX = e.changedTouches[0].screenX;
+        const diff = touchStartX - touchEndX;
+        
+        // Only trigger on meaningful horizontal swipes (>60px)
+        if (Math.abs(diff) < 60) return;
+        
+        // Find current and next/prev tab
+        const tabs = [...document.querySelectorAll('.tab-button')];
+        const activeIdx = tabs.findIndex(t => t.classList.contains('active'));
+        if (activeIdx === -1) return;
+        
+        if (diff > 0 && activeIdx < tabs.length - 1) {
+            // Swipe left -> next tab
+            switchTab(tabs[activeIdx + 1].dataset.tab);
+        } else if (diff < 0 && activeIdx > 0) {
+            // Swipe right -> previous tab
+            switchTab(tabs[activeIdx - 1].dataset.tab);
+        }
+    }, { passive: true });
 });
 
 // Election management
@@ -744,7 +774,7 @@ function updatePartyComparison() {
         }
     }
     
-    let html = '<table class="comparison-table">';
+    let html = '<div class="comparison-table-wrapper"><table class="comparison-table">';
     
     // Header
     html += '<tr><th>Frage</th>';
@@ -786,7 +816,7 @@ function updatePartyComparison() {
         `;
     });
     
-    html += '</table>';
+    html += '</table></div>';
     
     // Legende
     html += `
