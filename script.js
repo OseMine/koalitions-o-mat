@@ -41,9 +41,8 @@ function switchTab(tabName) {
         console.error(`Tab content with id "${contentId}" not found`);
     }
 
-    // Set election data for this tab from cache (use first selected)
-    const tabIds = tabElections[tabName] || [];
-    const tabElectionId = tabIds.length > 0 ? tabIds[0] : activeElectionId;
+    // Set election data for this tab from cache
+    const tabElectionId = tabElections[tabName] || activeElectionId;
     loadElectionDataForTab(tabElectionId);
 
     if (tabName === 'test') {
@@ -84,28 +83,48 @@ function loadElectionDataForTab(electionId) {
     }
 }
 
-// ===== Theme (Dark / Light) =====
+// ===== Theme (Auto / Light / Dark) =====
+const THEME_ICONS = { auto: '💻', light: '☀️', dark: '🌙' };
+
+function getSystemTheme() {
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+}
+
+function applyTheme(mode) {
+    const resolved = mode === 'auto' ? getSystemTheme() : mode;
+    document.documentElement.setAttribute('data-theme', resolved);
+    localStorage.setItem('theme', mode);
+    const btn = document.getElementById('themeToggle');
+    if (btn) btn.textContent = THEME_ICONS[mode] || THEME_ICONS.auto;
+}
+
 function toggleTheme() {
-    const html = document.documentElement;
-    const current = html.getAttribute('data-theme') || 'light';
-    const next = current === 'dark' ? 'light' : 'dark';
-    html.setAttribute('data-theme', next);
-    localStorage.setItem('theme', next);
-    document.getElementById('themeToggle').textContent = next === 'dark' ? '☀️' : '🌙';
-    // Redraw charts so they pick up new CSS variable colours
+    const current = localStorage.getItem('theme') || 'auto';
+    const order = ['auto', 'light', 'dark'];
+    const next = order[(order.indexOf(current) + 1) % order.length];
+    applyTheme(next);
+    redrawChartsForTheme();
+}
+
+function applySavedTheme() {
+    const saved = localStorage.getItem('theme') || 'auto';
+    applyTheme(saved);
+    // Listen for system preference changes when in auto mode
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+        if (localStorage.getItem('theme') === 'auto' || !localStorage.getItem('theme')) {
+            applyTheme('auto');
+            redrawChartsForTheme();
+        }
+    });
+}
+
+function redrawChartsForTheme() {
     if (typeof initializeStatistics === 'function') {
         const statistikenTab = document.getElementById('statistiken-content');
         if (statistikenTab && statistikenTab.classList.contains('active')) {
             initializeStatistics();
         }
     }
-}
-
-function applySavedTheme() {
-    const saved = localStorage.getItem('theme') || 'light';
-    document.documentElement.setAttribute('data-theme', saved);
-    const btn = document.getElementById('themeToggle');
-    if (btn) btn.textContent = saved === 'dark' ? '☀️' : '🌙';
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -149,23 +168,22 @@ document.addEventListener('DOMContentLoaded', () => {
 function populateElectionSelectors(selectedId) {
     document.querySelectorAll('.election-toggles').forEach(container => {
         const tabName = container.dataset.tab;
-        const activeIds = tabElections[tabName] || (selectedId ? [selectedId] : []);
+        const activeId = tabElections[tabName] || selectedId || '';
         const buttonsHtml = electionsList.map(election => {
-            const isActive = activeIds.includes(election.id);
+            const isActive = election.id === activeId;
             return `<button class="election-toggle ${isActive ? 'active' : ''}" 
                             data-eid="${election.id}" 
                             onclick="toggleTabElection('${tabName}', '${election.id}')"
                             onkeydown="if(event.key==='Enter'||event.key===' ') { event.preventDefault(); toggleTabElection('${tabName}', '${election.id}'); }"
                             tabindex="0"
-                            role="checkbox"
+                            role="radio"
                             aria-checked="${isActive}">
                         <span class="toggle-dot"></span>
                         ${election.name}
                     </button>`;
         }).join('');
         
-        container.innerHTML = buttonsHtml + 
-            (activeIds.length > 0 ? `<span class="toggle-count">${activeIds.length}</span>` : '');
+        container.innerHTML = buttonsHtml;
     });
 }
 
@@ -231,7 +249,7 @@ async function loadElections() {
             
             // Set default election for all tabs
             Object.keys(tabElections).forEach(tab => {
-                tabElections[tab] = [defaultId];
+                tabElections[tab] = defaultId;
             });
             
             populatePartyDropdowns();
@@ -254,47 +272,22 @@ async function loadElections() {
 function toggleTabElection(tabName, electionId) {
     if (!electionId) return;
     
-    // Toggle the election in the array
-    let ids = tabElections[tabName] || [];
-    if (ids.includes(electionId)) {
-        ids = ids.filter(id => id !== electionId);
-    } else {
-        ids = [...ids, electionId];
-    }
+    tabElections[tabName] = electionId;
+    activeElectionId = electionId;
+    localStorage.setItem('activeElectionId', electionId);
     
-    // Ensure at least one is selected
-    if (ids.length === 0) {
-        ids = [electionId]; // re-select
-    }
-    
-    tabElections[tabName] = ids;
-    activeElectionId = ids[0];
-    localStorage.setItem('activeElectionId', ids[0]);
-    
-    // Update toggle button visuals and count badge
+    // Update toggle button visuals
     const container = document.querySelector(`.election-toggles[data-tab="${tabName}"]`);
     if (container) {
         container.querySelectorAll('.election-toggle').forEach(btn => {
-            const isActive = ids.includes(btn.dataset.eid);
+            const isActive = btn.dataset.eid === electionId;
             btn.classList.toggle('active', isActive);
             btn.setAttribute('aria-checked', isActive);
         });
-        // Update or create count badge
-        let countBadge = container.querySelector('.toggle-count');
-        if (ids.length > 1) {
-            if (!countBadge) {
-                countBadge = document.createElement('span');
-                countBadge.className = 'toggle-count';
-                container.appendChild(countBadge);
-            }
-            countBadge.textContent = ids.length;
-        } else if (countBadge) {
-            countBadge.remove();
-        }
     }
     
-    // Load data for the first selected election
-    const data = electionDataCache[ids[0]];
+    // Load data for the selected election
+    const data = electionDataCache[electionId];
     if (!data) {
         showNotification(`Keine Daten für diese Wahl`, 'error');
         return;
@@ -436,7 +429,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         
         // Initialize per-tab election defaults (arrays for multi-select)
         ['alle','partei','vergleich','test','wahlomat','history','wahlsimulator','dashboard','statistiken'].forEach(tab => {
-            tabElections[tab] = [];
+            tabElections[tab] = null;
         });
         
         // Initialize coalition type handlers
@@ -481,16 +474,11 @@ function getExcludedParties(type) {
 }
 
 function updateKoalitionen() {
-    const electionIds = getActiveElectionIds();
-    if (electionIds.length <= 1) {
-        const type = document.getElementById('coalitionTypeAll').value;
-        const customThreshold = type === 'custom' ? 
-            parseFloat(document.getElementById('customThresholdValueAll').value) : 50;
-        const koalitionen = berechneKoalitionen(window.parteienData, window.werteData, type, customThreshold);
-        zeigeKoalitionen(koalitionen);
-    } else {
-        showMultiElectionCoalitions();
-    }
+    const type = document.getElementById('coalitionTypeAll').value;
+    const customThreshold = type === 'custom' ? 
+        parseFloat(document.getElementById('customThresholdValueAll').value) : 50;
+    const koalitionen = berechneKoalitionen(window.parteienData, window.werteData, type, customThreshold);
+    zeigeKoalitionen(koalitionen);
 }
 
 function berechneKoalitionen(parteienData, werteData, type = 'mehrheit', customThreshold = 50) {
@@ -568,59 +556,14 @@ function berechneUebereinstimmung(parteien, parteienData) {
 
 function showMultiElectionCoalitions() {
     const resultsDiv = document.getElementById('coalitionResults');
-    const electionIds = getActiveElectionIds();
     const type = document.getElementById('coalitionTypeAll').value;
     const customThreshold = type === 'custom' ? 
         parseFloat(document.getElementById('customThresholdValueAll').value) : 50;
     const minMatch = parseFloat(document.getElementById('minMatchAll').value);
     const excludedParties = getExcludedParties('All');
     
-    if (electionIds.length === 1) {
-        // Single election: show normally
-        const koalitionen = berechneKoalitionen(window.parteienData, window.werteData, type, customThreshold);
-        zeigeKoalitionen(koalitionen, null, resultsDiv);
-        return;
-    }
-    
-    // Multiple elections: show grouped sections
-    let html = '';
-    electionIds.forEach((eid, idx) => {
-        const data = electionDataCache[eid];
-        if (!data) return;
-        
-        // Temporarily set data for calculation
-        const oldWerte = window.werteData;
-        window.werteData = data.werte;
-        const oldConfig = config;
-        config = { ...baseConfig };
-        if (data.config && data.config.thresholds) {
-            config.thresholds = { ...config.thresholds, ...data.config.thresholds };
-        }
-        if (data.werte.meta && data.werte.meta.sperrklausel != null) {
-            config.thresholds.sperrklausel = data.werte.meta.sperrklausel;
-        }
-        
-        const koalitionen = berechneKoalitionen(window.parteienData, window.werteData, type, customThreshold)
-            .filter(k => k.uebereinstimmung >= minMatch && !k.parteien.some(p => excludedParties.includes(p)));
-        const election = electionsList.find(e => e.id === eid);
-        const name = election ? election.name : eid;
-        
-        if (koalitionen.length > 0) {
-            html += `<h3 style="margin-top: ${idx === 0 ? '0' : '24'}px; color: var(--primary);">📊 ${name}</h3>`;
-            html += renderCoalitionList(koalitionen, eid);
-        }
-        
-        // Restore
-        window.werteData = oldWerte;
-        config = oldConfig;
-    });
-    
-    resultsDiv.innerHTML = html || `
-        <div class="empty-state">
-            <span class="empty-state-icon">🔍</span>
-            <p style="font-size: 1.1em; font-weight: 500;">Keine Koalitionen gefunden</p>
-            <p style="color: var(--on-surface-muted); font-size: 0.9em;">Versuche, den Mindestübereinstimmungs-Wert zu senken oder die ausgeschlossenen Parteien anzupassen.</p>
-        </div>`;
+    const koalitionen = berechneKoalitionen(window.parteienData, window.werteData, type, customThreshold);
+    zeigeKoalitionen(koalitionen, null, resultsDiv);
 }
 
 function zeigeKoalitionen(koalitionen, electionId, resultsDiv) {
@@ -2072,8 +2015,9 @@ function getTrendArrow(direction) {
     }
 }
 
-// Chart-Instanzen verwalten
-let chartInstances = {};
+// ===== Statistik-Charts (ECharts) =====
+
+const chartInstances = {};
 
 function cssVar(name, fallback = '') {
     return getComputedStyle(document.documentElement).getPropertyValue(name).trim() || fallback;
@@ -2081,16 +2025,9 @@ function cssVar(name, fallback = '') {
 
 function destroyChart(id) {
     if (chartInstances[id]) {
-        chartInstances[id].destroy();
+        chartInstances[id].dispose();
         delete chartInstances[id];
     }
-}
-
-// ===== Statistik-Charts Overhaul =====
-
-// Register ChartDataLabels plugin
-if (typeof ChartDataLabels !== 'undefined') {
-    Chart.register(ChartDataLabels);
 }
 
 function initializeStatistics() {
@@ -2137,188 +2074,157 @@ function createStatsSummary() {
     `;
 }
 
-function createGradient(ctx, chartArea, color, direction = 'x') {
-    if (!chartArea) return color;
-    const gradient = direction === 'x'
-        ? ctx.createLinearGradient(chartArea.left, 0, chartArea.right, 0)
-        : ctx.createLinearGradient(0, chartArea.top, 0, chartArea.bottom);
-    gradient.addColorStop(0, color);
-    gradient.addColorStop(1, color + '40');
-    return gradient;
+function echartsTheme() {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    return {
+        backgroundColor: 'transparent',
+        textStyle: { color: cssVar('--on-surface', '#1C1B1F') },
+        tooltip: { backgroundColor: isDark ? 'rgba(30,29,34,0.95)' : 'rgba(0,0,0,0.8)', borderColor: cssVar('--outline', '#CAC4D0') }
+    };
 }
 
-// --- Party Overview (horizontal bar with rounded corners + data labels) ---
+function initEChart(id) {
+    const el = document.getElementById(id);
+    if (!el) return null;
+    destroyChart(id);
+    const chart = echarts.init(el);
+    chartInstances[id] = chart;
+    return chart;
+}
+
+// --- Party Overview (horizontal bar) ---
 function createPartyOverviewChart() {
-    const ctx = document.getElementById('partyOverviewChart');
-    if (!ctx) return;
-    destroyChart('partyOverview');
+    const chart = initEChart('partyOverviewChart');
+    if (!chart) return;
     
     const parteien = window.werteData.umfragewerte
         .filter(p => p.prozent >= 1)
         .sort((a, b) => b.prozent - a.prozent);
     
-    const colors = parteien.map(p => getPartyColor(p.partei));
+    const muted = cssVar('--on-surface-muted', '#9A97A0');
+    const outline = cssVar('--outline', '#CAC4D0');
+    const maxVal = Math.ceil(Math.max(...parteien.map(p => p.prozent)) / 5) * 5;
     
-    chartInstances['partyOverview'] = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: parteien.map(p => p.partei),
-            datasets: [{
-                label: 'Umfragewerte (%)',
-                data: parteien.map(p => p.prozent),
-                backgroundColor: colors,
-                borderWidth: 0,
-                borderRadius: 4,
-                barThickness: 28
-            }]
-        },
-        options: {
-            indexAxis: 'y',
-            responsive: true,
-            maintainAspectRatio: true,
-            animation: {
-                duration: 800,
-                easing: 'easeOutQuart'
-            },
-            plugins: {
-                legend: { display: false },
-                tooltip: {
-                    backgroundColor: 'rgba(0,0,0,0.8)',
-                    titleFont: { size: 13 },
-                    bodyFont: { size: 12 },
-                    padding: 10,
-                    cornerRadius: 6,
-                    callbacks: {
-                        label: (ctx) => `${ctx.raw.toFixed(1)}%`
-                    }
-                },
-                datalabels: {
-                    anchor: 'end',
-                    align: 'end',
-                    color: (ctx) => {
-                        return ctx.dataset.data[ctx.dataIndex] > 15 ? '#fff' : cssVar('--on-surface-muted', '#9A97A0');
-                    },
-                    font: { weight: 'bold', size: 11 },
-                    formatter: (v) => v.toFixed(1) + '%',
-                    offset: 2
-                }
-            },
-            scales: {
-                x: {
-                    beginAtZero: true,
-                    max: Math.ceil(Math.max(...parteien.map(p => p.prozent)) / 5) * 5,
-                    grid: {
-                        color: cssVar('--outline', '#CAC4D0') + '40',
-                        drawBorder: false
-                    },
-                    ticks: {
-                        callback: (v) => v + '%',
-                        font: { size: 10 }
-                    }
-                },
-                y: {
-                    grid: { display: false },
-                    ticks: {
-                        font: { size: 11, weight: '500' },
-                        color: (ctx) => getPartyColor(ctx.chart.data.labels[ctx.index])
-                    }
-                }
+    chart.setOption({
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: { type: 'shadow' },
+            formatter: (params) => {
+                const p = params[0];
+                return `${p.name}: <strong>${p.value.toFixed(1)}%</strong>`;
             }
         },
-        plugins: [ChartDataLabels]
-    });
+        grid: { left: 110, right: 50, top: 10, bottom: 10, containLabel: false },
+        xAxis: {
+            type: 'value',
+            max: maxVal,
+            axisLabel: { formatter: '{value}%', color: muted, fontSize: 10 },
+            splitLine: { lineStyle: { color: outline + '40' } },
+            axisLine: { show: false },
+            axisTick: { show: false }
+        },
+        yAxis: {
+            type: 'category',
+            data: parteien.map(p => p.partei),
+            axisLabel: {
+                fontSize: 11, fontWeight: 500,
+                color: (v) => getPartyColor(v)
+            },
+            axisLine: { show: false },
+            axisTick: { show: false },
+            splitLine: { show: false }
+        },
+        series: [{
+            type: 'bar',
+            data: parteien.map(p => ({
+                value: p.prozent,
+                itemStyle: {
+                    color: getPartyColor(p.partei),
+                    borderRadius: [0, 4, 4, 0]
+                }
+            })),
+            barMaxWidth: 28,
+            label: {
+                show: true,
+                position: 'right',
+                formatter: (p) => p.value.toFixed(1) + '%',
+                color: muted,
+                fontSize: 11,
+                fontWeight: 500
+            },
+            animationDuration: 800,
+            animationEasing: 'cubicOut'
+        }]
+    }, true);
+    chart.setOption(echartsTheme(), true);
 }
 
-// --- Seat Distribution (doughnut with center label + animation) ---
+// --- Seat Distribution (doughnut with center label) ---
 function createSeatDistributionChart() {
-    const ctx = document.getElementById('seatChart');
-    if (!ctx) return;
-    destroyChart('seatChart');
-
+    const chart = initEChart('seatChart');
+    if (!chart) return;
+    
     const parteien = window.werteData.umfragewerte;
     const sitzverteilung = berechneSitzverteilung(parteien);
     const totalSeats = sitzverteilung.reduce((sum, p) => sum + p.sitze, 0);
+    const onSurface = cssVar('--on-surface', '#1C1B1F');
+    const muted = cssVar('--on-surface-muted', '#9A97A0');
     
-    const colors = sitzverteilung.map(p => getPartyColor(p.partei));
-    const hoverColors = sitzverteilung.map(p => getPartyColor(p.partei) + 'CC');
-    
-    chartInstances['seatChart'] = new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-            labels: sitzverteilung.map(p => `${p.partei} (${p.sitze} Sitze)`),
-            datasets: [{
-                data: sitzverteilung.map(p => p.sitze),
-                backgroundColor: colors,
-                hoverBackgroundColor: hoverColors,
-                borderWidth: 2,
-                borderColor: 'var(--surface, #ffffff)',
-                hoverBorderColor: 'var(--surface, #ffffff)'
-            }]
+    chart.setOption({
+        tooltip: {
+            trigger: 'item',
+            formatter: (p) => `${p.name}<br/><strong>${p.value} Sitze (${p.percent.toFixed(1)}%)</strong>`
         },
-        options: {
-            responsive: true,
-            maintainAspectRatio: true,
-            animation: {
-                animateRotate: true,
-                duration: 1000,
-                easing: 'easeOutElastic'
+        series: [{
+            type: 'pie',
+            radius: ['55%', '75%'],
+            center: ['50%', '50%'],
+            avoidLabelOverlap: true,
+            itemStyle: {
+                borderRadius: 4,
+                borderColor: cssVar('--surface', '#FFFFFF'),
+                borderWidth: 2
             },
-            cutout: '60%',
-            plugins: {
-                legend: {
-                    position: 'right',
-                    labels: {
-                        boxWidth: 12,
-                        boxHeight: 12,
-                        padding: 12,
-                        font: { size: 11 },
-                        usePointStyle: true,
-                        pointStyle: 'circle'
-                    }
-                },
-                tooltip: {
-                    backgroundColor: 'rgba(0,0,0,0.8)',
-                    padding: 12,
-                    cornerRadius: 6,
-                    callbacks: {
-                        label: (ctx) => {
-                            const total = ctx.dataset.data.reduce((a, b) => a + b, 0);
-                            const pct = ((ctx.raw / total) * 100).toFixed(1);
-                            return ` ${ctx.label}: ${ctx.raw} Sitze (${pct}%)`;
-                        }
-                    }
-                },
-                datalabels: {
-                    display: false
-                }
-            }
-        },
-        plugins: [{
-            id: 'centerText',
-            beforeDraw: (chart) => {
-                const { width, height, ctx: c } = chart;
-                c.save();
-                const centerX = width / 2;
-                const centerY = height / 2 - 8;
-                c.textAlign = 'center';
-                c.textBaseline = 'middle';
-                c.font = 'bold 28px system-ui, sans-serif';
-                c.fillStyle = 'var(--on-surface, #1C1B1F)';
-                c.fillText(totalSeats, centerX, centerY);
-                c.font = '11px system-ui, sans-serif';
-                c.fillStyle = 'var(--on-surface-muted, #9A97A0)';
-                c.fillText('Sitze', centerX, centerY + 22);
-                c.restore();
-            }
+            label: {
+                show: true,
+                position: 'outside',
+                formatter: (p) => `${p.name.split(' (')[0]}`,
+                fontSize: 11,
+                color: onSurface
+            },
+            labelLine: { length: 8, length2: 10, smooth: true },
+            data: sitzverteilung.map(p => ({
+                value: p.sitze,
+                name: `${p.partei} (${p.sitze} Sitze)`,
+                itemStyle: { color: getPartyColor(p.partei) }
+            })),
+            animationDuration: 1000,
+            animationEasing: 'cubicOut'
+        }]
+    }, true);
+    // Center text via graphic
+    chart.setOption({
+        graphic: [{
+            type: 'text',
+            left: 'center',
+            top: 'center',
+            style: {
+                text: totalSeats + '\nSitze',
+                textAlign: 'center',
+                fill: onSurface,
+                font: 'bold 28px system-ui, sans-serif',
+                lineHeight: 34
+            },
+            z: 100
         }]
     });
+    chart.setOption(echartsTheme(), true);
 }
 
-// --- Coalition Potential (horizontal bar with gradient + labels) ---
+// --- Coalition Potential (horizontal bar) ---
 function createCoalitionPotentialChart() {
-    const ctx = document.getElementById('coalitionPotentialChart');
-    if (!ctx) return;
-    destroyChart('coalitionPotential');
+    const chart = initEChart('coalitionPotentialChart');
+    if (!chart) return;
     
     const koalitionen = berechneKoalitionen(window.parteienData, window.werteData)
         .filter(k => k.prozente >= 50)
@@ -2331,88 +2237,69 @@ function createCoalitionPotentialChart() {
         return;
     }
     
-    const labels = koalitionen.map(k => k.parteien.join(' + '));
-    const colors = koalitionen.map(k => getPartyColor(k.parteien[0]));
-    const dataValues = koalitionen.map(k => k.uebereinstimmung);
+    const muted = cssVar('--on-surface-muted', '#9A97A0');
+    const outline = cssVar('--outline', '#CAC4D0');
     
-    chartInstances['coalitionPotential'] = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: labels,
-            datasets: [{
-                data: dataValues,
-                backgroundColor: colors.map(c => c + 'CC'),
-                borderColor: colors,
-                borderWidth: 1,
-                borderRadius: 3,
-                barThickness: 22
-            }]
-        },
-        options: {
-            indexAxis: 'y',
-            responsive: true,
-            maintainAspectRatio: true,
-            animation: {
-                duration: 700,
-                easing: 'easeOutQuart'
-            },
-            plugins: {
-                legend: { display: false },
-                tooltip: {
-                    backgroundColor: 'rgba(0,0,0,0.8)',
-                    padding: 10,
-                    cornerRadius: 6,
-                    callbacks: {
-                        afterLabel: (ctx) => {
-                            const k = koalitionen[ctx.dataIndex];
-                            return `Gesamt: ${k.prozente.toFixed(1)}%`;
-                        },
-                        label: (ctx) => `Übereinstimmung: ${ctx.raw.toFixed(1)}%`
-                    }
-                },
-                datalabels: {
-                    anchor: 'end',
-                    align: 'end',
-                    color: cssVar('--on-surface-muted', '#9A97A0'),
-                    font: { weight: '600', size: 10 },
-                    formatter: (v) => v.toFixed(1) + '%',
-                    offset: 2
-                }
-            },
-            scales: {
-                x: {
-                    beginAtZero: true,
-                    max: 100,
-                    grid: { color: cssVar('--outline', '#CAC4D0') + '40' },
-                    ticks: {
-                        callback: (v) => v + '%',
-                        font: { size: 9 }
-                    },
-                    title: {
-                        display: true,
-                        text: 'Übereinstimmung (%)',
-                        font: { size: 10 },
-                        color: 'var(--on-surface-muted)'
-                    }
-                },
-                y: {
-                    grid: { display: false },
-                    ticks: {
-                        font: { size: 10, weight: '500' },
-                        autoSkip: false
-                    }
-                }
+    chart.setOption({
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: { type: 'shadow' },
+            formatter: (params) => {
+                const p = params[0];
+                const k = koalitionen[p.dataIndex];
+                return `${p.name}<br/>Übereinstimmung: <strong>${p.value.toFixed(1)}%</strong><br/>Gesamt: ${k.prozente.toFixed(1)}%`;
             }
         },
-        plugins: [ChartDataLabels]
-    });
+        grid: { left: 90, right: 60, top: 10, bottom: 10, containLabel: false },
+        xAxis: {
+            type: 'value',
+            max: 100,
+            axisLabel: { formatter: '{value}%', color: muted, fontSize: 10 },
+            splitLine: { lineStyle: { color: outline + '40' } },
+            name: 'Übereinstimmung (%)',
+            nameTextStyle: { color: muted, fontSize: 10 },
+            axisLine: { show: false },
+            axisTick: { show: false }
+        },
+        yAxis: {
+            type: 'category',
+            data: koalitionen.map(k => k.parteien.join(' + ')),
+            axisLabel: { fontSize: 10, fontWeight: 500, color: muted },
+            axisLine: { show: false },
+            axisTick: { show: false },
+            splitLine: { show: false }
+        },
+        series: [{
+            type: 'bar',
+            data: koalitionen.map(k => ({
+                value: k.uebereinstimmung,
+                itemStyle: {
+                    color: getPartyColor(k.parteien[0]) + 'CC',
+                    borderColor: getPartyColor(k.parteien[0]),
+                    borderWidth: 1,
+                    borderRadius: [0, 3, 3, 0]
+                }
+            })),
+            barMaxWidth: 22,
+            label: {
+                show: true,
+                position: 'right',
+                formatter: (p) => p.value.toFixed(1) + '%',
+                color: muted,
+                fontSize: 10,
+                fontWeight: 600
+            },
+            animationDuration: 700,
+            animationEasing: 'cubicOut'
+        }]
+    }, true);
+    chart.setOption(echartsTheme(), true);
 }
 
-// --- Party Positions (radar with filled areas) ---
+// --- Party Positions (radar) ---
 function createPartyPositionsChart() {
-    const ctx = document.getElementById('partyPositionsChart');
-    if (!ctx) return;
-    destroyChart('partyPositions');
+    const chart = initEChart('partyPositionsChart');
+    if (!chart) return;
     
     const parteien = window.werteData.umfragewerte
         .filter(p => p.prozent >= config.thresholds.sperrklausel);
@@ -2422,84 +2309,54 @@ function createPartyPositionsChart() {
         themenPositionen[partei.partei] = analyzePartyTopics(partei.partei);
     });
     
-    const datasets = parteien.map(partei => ({
-        label: partei.partei,
-        data: Object.values(themenPositionen[partei.partei]),
-        borderColor: getPartyColor(partei.partei),
-        backgroundColor: getPartyColor(partei.partei) + '18',
-        borderWidth: 2,
-        pointBackgroundColor: getPartyColor(partei.partei),
-        pointBorderColor: '#fff',
-        pointBorderWidth: 1,
-        pointRadius: 3,
-        pointHoverRadius: 5,
-        fill: true
-    }));
+    const onSurface = cssVar('--on-surface', '#1C1B1F');
+    const muted = cssVar('--on-surface-muted', '#9A97A0');
     
-    chartInstances['partyPositions'] = new Chart(ctx, {
-        type: 'radar',
-        data: {
-            labels: Object.keys(config.topics),
-            datasets: datasets
+    chart.setOption({
+        tooltip: {
+            trigger: 'item',
+            formatter: (p) => `${p.seriesName}: <strong>${p.value}%</strong>`
         },
-        options: {
-            responsive: true,
-            maintainAspectRatio: true,
-            animation: {
-                duration: 800,
-                easing: 'easeOutQuart'
-            },
-            scales: {
-                r: {
-                    beginAtZero: true,
-                    max: 100,
-                    ticks: {
-                        stepSize: 25,
-                        font: { size: 9 },
-                        backdropColor: 'transparent'
-                    },
-                    grid: {
-                        color: cssVar('--outline', '#CAC4D0') + '40'
-                    },
-                    angleLines: {
-                        color: cssVar('--outline', '#CAC4D0') + '40'
-                    },
-                    pointLabels: {
-                        font: { size: 11, weight: '600' },
-                        color: 'var(--on-surface)'
-                    }
-                }
-            },
-            plugins: {
-                legend: {
-                    position: 'bottom',
-                    labels: {
-                        boxWidth: 12,
-                        padding: 16,
-                        font: { size: 11 },
-                        usePointStyle: true,
-                        pointStyle: 'circle'
-                    }
-                },
-                tooltip: {
-                    backgroundColor: 'rgba(0,0,0,0.8)',
-                    padding: 10,
-                    cornerRadius: 6,
-                    callbacks: {
-                        label: (ctx) => ` ${ctx.dataset.label}: ${ctx.raw.toFixed(0)}%`
-                    }
-                },
-                datalabels: { display: false }
-            }
-        }
-    });
+        legend: {
+            bottom: 0,
+            data: parteien.map(p => p.partei),
+            textStyle: { color: onSurface, fontSize: 11 },
+            icon: 'circle',
+            itemWidth: 12
+        },
+        radar: {
+            indicator: Object.entries(config.topics).map(([key, val]) => ({
+                name: key,
+                max: 100,
+                axisLabel: { color: muted, fontSize: 9 }
+            })),
+            center: ['50%', '45%'],
+            radius: '60%',
+            axisName: { color: onSurface, fontSize: 11, fontWeight: 600 },
+            splitArea: { areaStyle: { color: ['transparent', 'transparent'] } },
+            axisLine: { lineStyle: { color: muted + '40' } },
+            splitLine: { lineStyle: { color: muted + '40' } }
+        },
+        series: parteien.map(partei => ({
+            name: partei.partei,
+            type: 'radar',
+            data: [Object.values(themenPositionen[partei.partei])],
+            symbol: 'circle',
+            symbolSize: 4,
+            lineStyle: { width: 2 },
+            areaStyle: { opacity: 0.08 },
+            itemStyle: { color: getPartyColor(partei.partei) },
+            animationDuration: 800,
+            animationEasing: 'cubicOut'
+        }))
+    }, true);
+    chart.setOption(echartsTheme(), true);
 }
 
-// --- Topic Distribution (polar area chart instead of radar) ---
+// --- Topic Distribution (nightingale / rose pie) ---
 function createTopicDistributionChart() {
-    const ctx = document.getElementById('topicDistributionChart');
-    if (!ctx) return;
-    destroyChart('topicDistribution');
+    const chart = initEChart('topicDistributionChart');
+    if (!chart) return;
     
     const testHistory = JSON.parse(localStorage.getItem('testHistory') || '[]');
     if (testHistory.length === 0) {
@@ -2512,78 +2369,45 @@ function createTopicDistributionChart() {
     const topics = analyzeTopics(latestTest.answers);
     const entries = Object.entries(topics);
     
-    const topicColors = entries.map(([topic]) =>
-        config.topics[topic]?.color || config.chartColors.neutral
-    );
-    const topicColorsLight = topicColors.map(c => c + '80');
+    const onSurface = cssVar('--on-surface', '#1C1B1F');
+    const muted = cssVar('--on-surface-muted', '#9A97A0');
     
-    chartInstances['topicDistribution'] = new Chart(ctx, {
-        type: 'polarArea',
-        data: {
-            labels: entries.map(([t]) => t),
-            datasets: [{
-                data: entries.map(([, v]) => v),
-                backgroundColor: topicColorsLight,
-                borderColor: topicColors,
-                borderWidth: 2,
-                hoverBackgroundColor: topicColors
-            }]
+    chart.setOption({
+        tooltip: {
+            trigger: 'item',
+            formatter: (p) => `${p.name}<br/><strong>${p.value.toFixed(0)}%</strong> (${p.percent.toFixed(1)}% Anteil)`
         },
-        options: {
-            responsive: true,
-            maintainAspectRatio: true,
-            animation: {
-                duration: 900,
-                easing: 'easeOutBack'
+        series: [{
+            type: 'pie',
+            radius: ['30%', '70%'],
+            center: ['50%', '50%'],
+            roseType: 'radius',
+            avoidLabelOverlap: true,
+            itemStyle: {
+                borderRadius: 4,
+                borderColor: cssVar('--surface', '#FFFFFF'),
+                borderWidth: 2
             },
-            scales: {
-                r: {
-                    beginAtZero: true,
-                    max: 100,
-                    ticks: {
-                        stepSize: 25,
-                        font: { size: 9 },
-                        backdropColor: 'transparent'
-                    },
-                    grid: {
-                        color: cssVar('--outline', '#CAC4D0') + '40'
-                    }
-                }
+            label: {
+                show: true,
+                formatter: (p) => p.value.toFixed(0) > 15 ? `${p.name}\n${p.value.toFixed(0)}%` : '',
+                fontSize: 12,
+                fontWeight: 'bold',
+                color: '#fff'
             },
-            plugins: {
-                legend: {
-                    position: 'bottom',
-                    labels: {
-                        boxWidth: 12,
-                        padding: 14,
-                        font: { size: 11 },
-                        usePointStyle: true
-                    }
-                },
-                tooltip: {
-                    backgroundColor: 'rgba(0,0,0,0.8)',
-                    padding: 10,
-                    cornerRadius: 6,
-                    callbacks: {
-                        label: (ctx) => {
-                            const total = ctx.dataset.data.reduce((a, b) => a + b, 0);
-                            const pct = ((ctx.raw / (total || 1)) * 100).toFixed(1);
-                            return ` ${ctx.label}: ${ctx.raw.toFixed(0)}% (${pct}% Anteil)`;
-                        }
-                    }
-                },
-                datalabels: {
-                    display: function(ctx) {
-                        return ctx.dataset.data[ctx.dataIndex] > 15;
-                    },
-                    color: '#fff',
-                    font: { weight: 'bold', size: 12 },
-                    formatter: (v) => v.toFixed(0) + '%'
+            labelLine: { length: 6, length2: 8 },
+            data: entries.map(([topic, val]) => ({
+                value: val,
+                name: topic,
+                itemStyle: {
+                    color: config.topics[topic]?.color || config.chartColors.neutral
                 }
-            }
-        },
-        plugins: [ChartDataLabels]
-    });
+            })),
+            animationDuration: 900,
+            animationEasing: 'cubicOut'
+        }]
+    }, true);
+    chart.setOption(echartsTheme(), true);
 }
 
 function analyzeTopics(answers) {
@@ -2632,9 +2456,8 @@ function getPartyColor(party) {
 function getActiveElectionIds() {
     const activeTab = document.querySelector('.tab-button.active');
     const tabName = activeTab ? activeTab.dataset.tab : null;
-    const ids = (tabName && tabElections[tabName] && tabElections[tabName].length > 0)
-        ? tabElections[tabName] : (activeElectionId ? [activeElectionId] : []);
-    return ids;
+    const id = (tabName && tabElections[tabName]) || activeElectionId;
+    return id ? [id] : [];
 }
 
 function getActiveElectionId() {

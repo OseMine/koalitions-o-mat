@@ -132,6 +132,27 @@ h1 {
     background: var(--primary-container);
 }
 
+.github-link {
+    position: absolute;
+    right: 52px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--on-surface-variant);
+    transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+    text-decoration: none;
+    font-size: 1.25rem;
+}
+.github-link:hover {
+    background: var(--primary-container);
+    color: var(--primary);
+}
+
 /* ===== Tabs (MD3-style segmented buttons / top bar) ===== */
 .tabs {
     display: flex;
@@ -270,21 +291,6 @@ p { color: var(--on-surface-variant); font-size: 0.95rem; }
     transition: opacity var(--transition);
 }
 .election-toggle.active .toggle-dot { opacity: 1; }
-
-.toggle-count {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 20px;
-    height: 20px;
-    padding: 0 6px;
-    border-radius: 10px;
-    background: var(--primary);
-    color: var(--on-primary);
-    font-size: 0.7rem;
-    font-weight: 700;
-    line-height: 1;
-}
 
 /* ===== Filter Options (MD3 Card) ===== */
 .filter-options {
@@ -1424,7 +1430,9 @@ input[type="checkbox"]:focus { outline: none; border-color: var(--primary); }
     .container { max-width: 100%; padding: 12px; padding-top: 0; }
     h1 { font-size: clamp(1.3rem, 5vw, 1.5rem); }
     .header-row { gap: 8px; }
-    .header-row .theme-toggle { position: static; transform: none; flex-shrink: 0; }
+    .header-row .theme-toggle,
+    .header-row .github-link { position: static; transform: none; flex-shrink: 0; }
+    .header-row .github-link { order: 3; }
     h2 { font-size: clamp(1rem, 4vw, 1.1rem); }
 
     .tabs {
