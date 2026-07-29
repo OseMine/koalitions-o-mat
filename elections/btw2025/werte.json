@@ -1,0 +1,36 @@
+{
+  "umfragewerte": [
+    { "partei": "CDU/CSU", "prozent": 27.0 },
+    { "partei": "SPD", "prozent": 17.0 },
+    { "partei": "GRÜNE", "prozent": 12.0 },
+    { "partei": "FDP", "prozent": 4.0 },
+    { "partei": "AfD", "prozent": 20.0 },
+    { "partei": "LINKE", "prozent": 9.0 },
+    { "partei": "BSW", "prozent": 5.0 },
+    { "partei": "SSW", "prozent": 0.71 },
+    { "partei": "FREIE WÄHLER", "prozent": 0.71 },
+    { "partei": "Tierschutz", "prozent": 0.71 },
+    { "partei": "PIRATEN", "prozent": 0.71 },
+    { "partei": "Volt", "prozent": 0.71 },
+    { "partei": "ÖDP", "prozent": 0.71 },
+    { "partei": "PARTEI", "prozent": 0.71 },
+    { "partei": "Todenhöfer", "prozent": 0.3 },
+    { "partei": "Verjüngung", "prozent": 0.3 },
+    { "partei": "PdH", "prozent": 0.3 },
+    { "partei": "Bündnis C", "prozent": 0.3 },
+    { "partei": "BP", "prozent": 0.3 },
+    { "partei": "MLPD", "prozent": 0.3 },
+    { "partei": "MENSCHLICHE WELT", "prozent": 0.3 },
+    { "partei": "PdF", "prozent": 0.3 },
+    { "partei": "SGP", "prozent": 0.3 },
+    { "partei": "BüSo", "prozent": 0.3 },
+    { "partei": "BÜNDNIS DEUTSCHLAND", "prozent": 0.3 },
+    { "partei": "MERA25", "prozent": 0.3 },
+    { "partei": "WerteUnion", "prozent": 0.3 }
+  ],
+  "meta": {
+    "name": "Bundestagswahl 2025",
+    "sperrklausel": 5,
+    "sitze": 736
+  }
+}

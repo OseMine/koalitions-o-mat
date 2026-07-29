@@ -1,0 +1,19 @@
+{
+  "umfragewerte": [
+    { "partei": "SPD", "prozent": 23.0 },
+    { "partei": "CDU/CSU", "prozent": 22.0 },
+    { "partei": "GRÜNE", "prozent": 18.0 },
+    { "partei": "LINKE", "prozent": 14.0 },
+    { "partei": "AfD", "prozent": 11.0 },
+    { "partei": "FDP", "prozent": 4.0 },
+    { "partei": "BSW", "prozent": 3.0 },
+    { "partei": "PARTEI", "prozent": 2.0 },
+    { "partei": "Volt", "prozent": 1.5 },
+    { "partei": "Tierschutz", "prozent": 1.0 }
+  ],
+  "meta": {
+    "name": "Bürgermeisterwahl Berlin 2026",
+    "sperrklausel": 3,
+    "sitze": 147
+  }
+}

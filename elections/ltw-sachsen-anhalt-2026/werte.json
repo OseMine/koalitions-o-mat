@@ -1,0 +1,17 @@
+{
+  "umfragewerte": [
+    { "partei": "CDU/CSU", "prozent": 30.0 },
+    { "partei": "AfD", "prozent": 28.0 },
+    { "partei": "LINKE", "prozent": 13.0 },
+    { "partei": "SPD", "prozent": 10.0 },
+    { "partei": "GRÜNE", "prozent": 6.0 },
+    { "partei": "FDP", "prozent": 3.0 },
+    { "partei": "BSW", "prozent": 4.0 },
+    { "partei": "FREIE WÄHLER", "prozent": 2.0 }
+  ],
+  "meta": {
+    "name": "Landtagswahl Sachsen-Anhalt 2026",
+    "sperrklausel": 5,
+    "sitze": 97
+  }
+}

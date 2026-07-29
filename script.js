@@ -147,8 +147,13 @@ function populateElectionSelectors(selectedId) {
 async function loadElections() {
     try {
         const res = await fetch('elections.json');
+        if (!res.ok) throw new Error(`HTTP ${res.status}: elections.json konnte nicht geladen werden`);
         const data = await res.json();
         electionsList = data.elections || [];
+        
+        if (electionsList.length === 0) {
+            throw new Error('Keine Wahlen in elections.json gefunden');
+        }
         
         // Get saved election or find default
         const saved = localStorage.getItem('activeElectionId');
@@ -168,7 +173,7 @@ async function loadElections() {
                     fetch(`elections/${election.id}/werte.json`),
                     fetch(`elections/${election.id}/config.json`).catch(() => null)
                 ]);
-                if (!werteRes.ok) throw new Error(`No data for ${election.id}`);
+                if (!werteRes.ok) throw new Error(`HTTP ${werteRes.status}: elections/${election.id}/werte.json`);
                 const werte = await werteRes.json();
                 let electionConfig = null;
                 if (configRes && configRes.ok) {
@@ -195,6 +200,8 @@ async function loadElections() {
                         config = { ...config, meta: defaultData.config.meta };
                     }
                 }
+            } else {
+                throw new Error(`Daten für Standardwahl "${defaultId}" konnten nicht geladen werden`);
             }
             
             // Set default election for all tabs
@@ -208,9 +215,12 @@ async function loadElections() {
             
             const electionInfo = electionsList.find(e => e.id === defaultId);
             showNotification(`Geladen: ${electionInfo ? electionInfo.name : defaultId}`, 'info');
+        } else {
+            throw new Error('Keine Standardwahl gefunden');
         }
     } catch (err) {
         console.error('Fehler beim Laden der Wahlen:', err);
+        showNotification('Fehler beim Laden der Wahldaten. Bitte Seite neu laden.', 'error');
     }
 }
 

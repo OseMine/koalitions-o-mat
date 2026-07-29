@@ -1,0 +1,23 @@
+{
+  "elections": [
+    {
+      "id": "btw2025",
+      "name": "Bundestagswahl 2025",
+      "type": "Bundestagswahl",
+      "year": 2025,
+      "default": true
+    },
+    {
+      "id": "ltw-sachsen-anhalt-2026",
+      "name": "Landtagswahl Sachsen-Anhalt 2026",
+      "type": "Landtagswahl",
+      "year": 2026
+    },
+    {
+      "id": "bgm-berlin-2026",
+      "name": "Bürgermeisterwahl Berlin 2026",
+      "type": "Kommunalwahl",
+      "year": 2026
+    }
+  ]
+}
