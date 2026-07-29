@@ -1,36 +1,26 @@
 {
   "umfragewerte": [
-    { "partei": "CDU/CSU", "prozent": 27.0 },
-    { "partei": "SPD", "prozent": 17.0 },
-    { "partei": "GRÜNE", "prozent": 12.0 },
-    { "partei": "FDP", "prozent": 4.0 },
-    { "partei": "AfD", "prozent": 20.0 },
-    { "partei": "LINKE", "prozent": 9.0 },
+    { "partei": "CDU/CSU", "prozent": 28.6 },
+    { "partei": "AfD", "prozent": 20.8 },
+    { "partei": "SPD", "prozent": 16.4 },
+    { "partei": "GRÜNE", "prozent": 11.6 },
+    { "partei": "LINKE", "prozent": 8.8 },
     { "partei": "BSW", "prozent": 5.0 },
-    { "partei": "SSW", "prozent": 0.71 },
-    { "partei": "FREIE WÄHLER", "prozent": 0.71 },
-    { "partei": "Tierschutz", "prozent": 0.71 },
-    { "partei": "PIRATEN", "prozent": 0.71 },
-    { "partei": "Volt", "prozent": 0.71 },
-    { "partei": "ÖDP", "prozent": 0.71 },
-    { "partei": "PARTEI", "prozent": 0.71 },
-    { "partei": "Todenhöfer", "prozent": 0.3 },
-    { "partei": "Verjüngung", "prozent": 0.3 },
-    { "partei": "PdH", "prozent": 0.3 },
-    { "partei": "Bündnis C", "prozent": 0.3 },
-    { "partei": "BP", "prozent": 0.3 },
-    { "partei": "MLPD", "prozent": 0.3 },
-    { "partei": "MENSCHLICHE WELT", "prozent": 0.3 },
-    { "partei": "PdF", "prozent": 0.3 },
-    { "partei": "SGP", "prozent": 0.3 },
-    { "partei": "BüSo", "prozent": 0.3 },
-    { "partei": "BÜNDNIS DEUTSCHLAND", "prozent": 0.3 },
-    { "partei": "MERA25", "prozent": 0.3 },
-    { "partei": "WerteUnion", "prozent": 0.3 }
+    { "partei": "FDP", "prozent": 4.3 },
+    { "partei": "FREIE WÄHLER", "prozent": 1.5 },
+    { "partei": "Tierschutz", "prozent": 1.0 },
+    { "partei": "Volt", "prozent": 0.7 },
+    { "partei": "PARTEI", "prozent": 0.5 },
+    { "partei": "SSW", "prozent": 0.2 },
+    { "partei": "BÜNDNIS DEUTSCHLAND", "prozent": 0.2 },
+    { "partei": "DieBasis", "prozent": 0.2 },
+    { "partei": "ÖDP", "prozent": 0.1 },
+    { "partei": "PIRATEN", "prozent": 0.0 },
+    { "partei": "Todenhöfer", "prozent": 0.0 }
   ],
   "meta": {
     "name": "Bundestagswahl 2025",
     "sperrklausel": 5,
-    "sitze": 736
+    "sitze": 630
   }
 }

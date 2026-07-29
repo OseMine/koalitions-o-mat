@@ -1,0 +1,19 @@
+{
+  "umfragewerte": [
+    { "partei": "AfD", "prozent": 36.0 },
+    { "partei": "SPD", "prozent": 29.0 },
+    { "partei": "LINKE", "prozent": 12.0 },
+    { "partei": "CDU/CSU", "prozent": 9.0 },
+    { "partei": "GRÜNE", "prozent": 5.0 },
+    { "partei": "BSW", "prozent": 4.0 },
+    { "partei": "FDP", "prozent": 2.0 },
+    { "partei": "FREIE WÄHLER", "prozent": 1.5 },
+    { "partei": "Tierschutz", "prozent": 1.0 },
+    { "partei": "PARTEI", "prozent": 0.5 }
+  ],
+  "meta": {
+    "name": "Landtagswahl Mecklenburg-Vorpommern 2026",
+    "sperrklausel": 5,
+    "sitze": 71
+  }
+}

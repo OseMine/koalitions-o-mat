@@ -1,0 +1,22 @@
+{
+  "umfragewerte": [
+    { "partei": "AfD", "prozent": 19.0 },
+    { "partei": "CDU/CSU", "prozent": 18.0 },
+    { "partei": "LINKE", "prozent": 18.0 },
+    { "partei": "GRÜNE", "prozent": 16.0 },
+    { "partei": "SPD", "prozent": 13.0 },
+    { "partei": "BSW", "prozent": 4.0 },
+    { "partei": "FDP", "prozent": 4.0 },
+    { "partei": "PARTEI", "prozent": 2.0 },
+    { "partei": "Volt", "prozent": 2.0 },
+    { "partei": "Tierschutz", "prozent": 2.0 },
+    { "partei": "FREIE WÄHLER", "prozent": 1.0 },
+    { "partei": "SSW", "prozent": 0.5 },
+    { "partei": "PIRATEN", "prozent": 0.5 }
+  ],
+  "meta": {
+    "name": "Abgeordnetenhaus Berlin 2026",
+    "sperrklausel": 5,
+    "sitze": 130
+  }
+}

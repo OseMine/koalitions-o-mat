@@ -12,8 +12,11 @@
     "Tierschutz": "#2BB2AC",
     "PIRATEN": "#FF8800",
     "Volt": "#502379",
-    "ÖDP": "#FF6B00",
     "PARTEI": "#D7145A",
+    "ÖDP": "#FF6B00",
+    "DieBasis": "#00A66B",
+    "BÜNDNIS DEUTSCHLAND": "#003366",
+    "Todenhöfer": "#C0C0C0",
     "default": "#999999"
   },
   "topics": {

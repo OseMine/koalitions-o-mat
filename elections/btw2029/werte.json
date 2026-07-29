@@ -1,0 +1,22 @@
+{
+  "umfragewerte": [
+    { "partei": "AfD", "prozent": 27.0 },
+    { "partei": "CDU/CSU", "prozent": 21.0 },
+    { "partei": "GRÜNE", "prozent": 16.0 },
+    { "partei": "LINKE", "prozent": 13.0 },
+    { "partei": "SPD", "prozent": 12.0 },
+    { "partei": "FDP", "prozent": 4.0 },
+    { "partei": "BSW", "prozent": 3.0 },
+    { "partei": "FREIE WÄHLER", "prozent": 1.5 },
+    { "partei": "Volt", "prozent": 1.0 },
+    { "partei": "Tierschutz", "prozent": 0.5 },
+    { "partei": "PARTEI", "prozent": 0.5 },
+    { "partei": "SSW", "prozent": 0.2 },
+    { "partei": "BÜNDNIS DEUTSCHLAND", "prozent": 0.2 }
+  ],
+  "meta": {
+    "name": "Bundestagswahl 2029 (Umfrage Juli 2026)",
+    "sperrklausel": 5,
+    "sitze": 630
+  }
+}

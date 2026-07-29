@@ -1,17 +1,20 @@
 {
   "umfragewerte": [
-    { "partei": "CDU/CSU", "prozent": 30.0 },
-    { "partei": "AfD", "prozent": 28.0 },
-    { "partei": "LINKE", "prozent": 13.0 },
-    { "partei": "SPD", "prozent": 10.0 },
-    { "partei": "GRÜNE", "prozent": 6.0 },
-    { "partei": "FDP", "prozent": 3.0 },
+    { "partei": "AfD", "prozent": 41.0 },
+    { "partei": "CDU/CSU", "prozent": 24.0 },
+    { "partei": "LINKE", "prozent": 14.0 },
+    { "partei": "SPD", "prozent": 5.0 },
     { "partei": "BSW", "prozent": 4.0 },
-    { "partei": "FREIE WÄHLER", "prozent": 2.0 }
+    { "partei": "FDP", "prozent": 4.0 },
+    { "partei": "GRÜNE", "prozent": 4.0 },
+    { "partei": "FREIE WÄHLER", "prozent": 2.0 },
+    { "partei": "Tierschutz", "prozent": 1.0 },
+    { "partei": "PARTEI", "prozent": 0.5 },
+    { "partei": "Volt", "prozent": 0.5 }
   ],
   "meta": {
     "name": "Landtagswahl Sachsen-Anhalt 2026",
     "sperrklausel": 5,
-    "sitze": 97
+    "sitze": 87
   }
 }

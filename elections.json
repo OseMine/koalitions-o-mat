@@ -2,9 +2,15 @@
   "elections": [
     {
       "id": "btw2025",
-      "name": "Bundestagswahl 2025",
+      "name": "Bundestagswahl 2025 (Ergebnis)",
       "type": "Bundestagswahl",
-      "year": 2025,
+      "year": 2025
+    },
+    {
+      "id": "btw2029",
+      "name": "Bundestagswahl 2029 (Umfrage)",
+      "type": "Bundestagswahl",
+      "year": 2029,
       "default": true
     },
     {
@@ -14,9 +20,15 @@
       "year": 2026
     },
     {
-      "id": "bgm-berlin-2026",
-      "name": "Bürgermeisterwahl Berlin 2026",
-      "type": "Kommunalwahl",
+      "id": "berlin-2026",
+      "name": "Abgeordnetenhaus Berlin 2026",
+      "type": "Landtagswahl",
+      "year": 2026
+    },
+    {
+      "id": "mv-2026",
+      "name": "Landtagswahl Mecklenburg-Vorpommern 2026",
+      "type": "Landtagswahl",
       "year": 2026
     }
   ]
