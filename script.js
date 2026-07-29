@@ -84,7 +84,32 @@ function loadElectionDataForTab(electionId) {
     }
 }
 
+// ===== Theme (Dark / Light) =====
+function toggleTheme() {
+    const html = document.documentElement;
+    const current = html.getAttribute('data-theme') || 'light';
+    const next = current === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+    document.getElementById('themeToggle').textContent = next === 'dark' ? '☀️' : '🌙';
+    // Redraw charts so they pick up new CSS variable colours
+    if (typeof initializeStatistics === 'function') {
+        const statistikenTab = document.getElementById('statistiken-content');
+        if (statistikenTab && statistikenTab.classList.contains('active')) {
+            initializeStatistics();
+        }
+    }
+}
+
+function applySavedTheme() {
+    const saved = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', saved);
+    const btn = document.getElementById('themeToggle');
+    if (btn) btn.textContent = saved === 'dark' ? '☀️' : '🌙';
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+    applySavedTheme();
     document.querySelectorAll('.tab-button[data-tab]').forEach(button => {
         button.addEventListener('click', () => switchTab(button.dataset.tab));
     });
@@ -2050,6 +2075,10 @@ function getTrendArrow(direction) {
 // Chart-Instanzen verwalten
 let chartInstances = {};
 
+function cssVar(name, fallback = '') {
+    return getComputedStyle(document.documentElement).getPropertyValue(name).trim() || fallback;
+}
+
 function destroyChart(id) {
     if (chartInstances[id]) {
         chartInstances[id].destroy();
@@ -2167,7 +2196,7 @@ function createPartyOverviewChart() {
                     anchor: 'end',
                     align: 'end',
                     color: (ctx) => {
-                        return ctx.dataset.data[ctx.dataIndex] > 15 ? '#fff' : '#666';
+                        return ctx.dataset.data[ctx.dataIndex] > 15 ? '#fff' : cssVar('--on-surface-muted', '#9A97A0');
                     },
                     font: { weight: 'bold', size: 11 },
                     formatter: (v) => v.toFixed(1) + '%',
@@ -2179,7 +2208,7 @@ function createPartyOverviewChart() {
                     beginAtZero: true,
                     max: Math.ceil(Math.max(...parteien.map(p => p.prozent)) / 5) * 5,
                     grid: {
-                        color: 'rgba(255,255,255,0.05)',
+                        color: cssVar('--outline', '#CAC4D0') + '40',
                         drawBorder: false
                     },
                     ticks: {
@@ -2344,7 +2373,7 @@ function createCoalitionPotentialChart() {
                 datalabels: {
                     anchor: 'end',
                     align: 'end',
-                    color: '#888',
+                    color: cssVar('--on-surface-muted', '#9A97A0'),
                     font: { weight: '600', size: 10 },
                     formatter: (v) => v.toFixed(1) + '%',
                     offset: 2
@@ -2354,7 +2383,7 @@ function createCoalitionPotentialChart() {
                 x: {
                     beginAtZero: true,
                     max: 100,
-                    grid: { color: 'rgba(255,255,255,0.04)' },
+                    grid: { color: cssVar('--outline', '#CAC4D0') + '40' },
                     ticks: {
                         callback: (v) => v + '%',
                         font: { size: 9 }
@@ -2430,10 +2459,10 @@ function createPartyPositionsChart() {
                         backdropColor: 'transparent'
                     },
                     grid: {
-                        color: 'rgba(255,255,255,0.06)'
+                        color: cssVar('--outline', '#CAC4D0') + '40'
                     },
                     angleLines: {
-                        color: 'rgba(255,255,255,0.06)'
+                        color: cssVar('--outline', '#CAC4D0') + '40'
                     },
                     pointLabels: {
                         font: { size: 11, weight: '600' },
@@ -2517,7 +2546,7 @@ function createTopicDistributionChart() {
                         backdropColor: 'transparent'
                     },
                     grid: {
-                        color: 'rgba(255,255,255,0.05)'
+                        color: cssVar('--outline', '#CAC4D0') + '40'
                     }
                 }
             },
