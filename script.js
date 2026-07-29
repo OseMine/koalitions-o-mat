@@ -2,11 +2,14 @@
 let config = null;
 
 function switchTab(tabName) {
-    // Aktualisiere Tab-Buttons
+    // Aktualisiere Tab-Buttons mit data-tab Attribut
     document.querySelectorAll('.tab-button').forEach(button => {
         button.classList.remove('active');
     });
-    document.querySelector(`[onclick="switchTab('${tabName}')"]`).classList.add('active');
+    const tabButton = document.querySelector(`.tab-button[data-tab="${tabName}"]`);
+    if (tabButton) {
+        tabButton.classList.add('active');
+    }
     
     // Aktualisiere Tab-Inhalte
     document.querySelectorAll('.tab-content').forEach(content => {
@@ -53,7 +56,19 @@ function switchTab(tabName) {
     }
 }
 
+// Event-Listener für Tab-Buttons per data-tab
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.tab-button[data-tab]').forEach(button => {
+        button.addEventListener('click', () => {
+            switchTab(button.dataset.tab);
+        });
+    });
+});
+
 document.addEventListener('DOMContentLoaded', async () => {
+    const loadingOverlay = document.getElementById('loadingOverlay');
+    if (loadingOverlay) loadingOverlay.style.display = 'flex';
+    
     try {
         const [parteienResponse, werteResponse, configResponse] = await Promise.all([
             fetch('parteien.json'),
@@ -61,9 +76,17 @@ document.addEventListener('DOMContentLoaded', async () => {
             fetch('config.json')
         ]);
         
+        if (!parteienResponse.ok || !werteResponse.ok || !configResponse.ok) {
+            throw new Error('Fehler beim Laden der Daten');
+        }
+        
         const parteienData = await parteienResponse.json();
         const werteData = await werteResponse.json();
         config = await configResponse.json();
+        
+        if (!parteienData || !werteData || !config) {
+            throw new Error('Ungültige Daten empfangen');
+        }
         
         // Speichere die Daten global für spätere Verwendung
         window.parteienData = parteienData;
@@ -110,12 +133,36 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (compareCheckboxes.length > 1) compareCheckboxes[1].checked = true;
         updateSelectedOptions('compareParties');
         
+        // Initialisiere Koalitionstyp-Auswahl
+        ['All', 'Party'].forEach(handleCoalitionTypeChange);
+
         // Berechne und zeige alle Koalitionen
         const koalitionen = berechneKoalitionen(parteienData, werteData);
         zeigeKoalitionen(koalitionen);
 
+        // Verstecke Loading-Overlay
+        if (loadingOverlay) loadingOverlay.style.display = 'none';
+
     } catch (error) {
         console.error('Fehler beim Laden der Daten:', error);
+        if (loadingOverlay) {
+            loadingOverlay.innerHTML = `
+                <div style="text-align: center;">
+                    <div style="font-size: 48px; margin-bottom: 16px;">⚠️</div>
+                    <div class="loading-text" style="font-size: 1.1rem;">
+                        Fehler beim Laden der Daten<br>
+                        <small style="color: var(--text-muted);">Bitte Seite neu laden</small>
+                    </div>
+                    <button onclick="location.reload()" 
+                            style="margin-top: 20px; padding: 12px 28px; 
+                                   background: var(--primary); color: white; 
+                                   border: none; border-radius: var(--radius-sm);
+                                   cursor: pointer; font-size: 1rem;">
+                        Neu laden
+                    </button>
+                </div>
+            `;
+        }
     }
 });
 
@@ -133,7 +180,8 @@ function updateKoalitionen() {
     zeigeKoalitionen(koalitionen);
 }
 
-function berechneKoalitionen(parteienData, werteData, type = 'alle', customThreshold = 50) {
+function berechneKoalitionen(parteienData, werteData, type = 'mehrheit', customThreshold = 50) {
+    if (!config) return [];
     const relevantParties = werteData.umfragewerte.filter(
         p => p.partei !== 'Andere' && p.prozent >= config.thresholds.sperrklausel
     );
@@ -141,9 +189,12 @@ function berechneKoalitionen(parteienData, werteData, type = 'alle', customThres
     const koalitionen = [];
     const n = relevantParties.length;
 
-    // Generiere alle möglichen Kombinationen von Parteien
+    // Generiere alle möglichen Kombinationen von Parteien (ab 2 Parteien für echte Koalitionen)
     for (let i = 1; i < (1 << n); i++) {
         const koalitionsParteien = relevantParties.filter((_, j) => i & (1 << j));
+        
+        // Überspringe Ein-Parteien-"Koalitionen"
+        if (koalitionsParteien.length < 2) continue;
         
         // Berechne Gesamtprozente
         const gesamtProzente = koalitionsParteien.reduce((sum, p) => sum + p.prozent, 0);
@@ -164,7 +215,7 @@ function berechneKoalitionen(parteienData, werteData, type = 'alle', customThres
                 isValid = true;
                 break;
             default:
-                isValid = gesamtProzente >= 50;
+                isValid = gesamtProzente > 50;
         }
 
         if (isValid) {
@@ -571,7 +622,6 @@ function selectAnswer(questionIndex, answer) {
     // Wenn letzte Frage beantwortet wurde, zeige Ergebnisse
     if (questionIndex === window.parteienData.fragen.length - 1) {
         showTestResults();
-        showWahlomatResults(); // Zeige auch Wahlomat-Ergebnisse
     } else {
         // Sonst zur nächsten Frage
         setTimeout(() => showNextQuestion(), 300);
@@ -689,7 +739,6 @@ function selectWahlomatAnswer(questionIndex, answer) {
     // Wenn letzte Frage beantwortet wurde, zeige Ergebnisse
     if (questionIndex === window.parteienData.fragen.length - 1) {
         showWahlomatResults();
-        showTestResults(); // Zeige auch Koalitionstest-Ergebnisse
     } else {
         // Sonst zur nächsten Frage
         setTimeout(() => showNextWahlomatQuestion(), 300);
@@ -886,22 +935,20 @@ function showAnalysisTab(index) {
     document.getElementById(`analysis-${index}`).classList.add('active');
 }
 
-// Füge Event-Listener für die Koalitionstyp-Auswahl hinzu
-document.addEventListener('DOMContentLoaded', () => {
-    ['All', 'Party'].forEach(type => {
-        const select = document.getElementById(`coalitionType${type}`);
-        if (select) {
-            select.addEventListener('change', (e) => {
-                const customThreshold = document.getElementById(`customThreshold${type}`);
-                if (e.target.value === 'custom') {
-                    customThreshold.style.display = 'block';
-                } else {
-                    customThreshold.style.display = 'none';
-                }
-            });
-        }
-    });
-});
+// Hilfsfunktion für Koalitionstyp-Auswahl
+function handleCoalitionTypeChange(type) {
+    const select = document.getElementById(`coalitionType${type}`);
+    if (select) {
+        select.addEventListener('change', (e) => {
+            const customThreshold = document.getElementById(`customThreshold${type}`);
+            if (e.target.value === 'custom') {
+                customThreshold.style.display = 'block';
+            } else {
+                customThreshold.style.display = 'none';
+            }
+        });
+    }
+}
 
 // Füge diese neue Funktion hinzu
 function updateCustomThresholdLabel(type) {
@@ -950,14 +997,29 @@ function saveTestResults(type, answers, topCoalitions, topParties) {
         topParties: parteienMitUebereinstimmung.slice(0, 3)
     };
     
-    // Entferne ältere Tests vom gleichen Tag
+    // Verhindere Duplikate: Prüfe ob heute bereits ein Test gespeichert wurde
     const today = new Date().toDateString();
-    const filteredHistory = testHistory.filter(test => 
-        new Date(test.date).toDateString() !== today
+    const existingToday = testHistory.findIndex(test => 
+        new Date(test.date).toDateString() === today &&
+        JSON.stringify(test.answers) === JSON.stringify(answers)
     );
     
-    filteredHistory.push(testResult);
-    localStorage.setItem('testHistory', JSON.stringify(filteredHistory));
+    if (existingToday !== -1) {
+        // Überschreibe den vorhandenen Test
+        testHistory[existingToday] = testResult;
+    } else {
+        // Entferne ältere Tests vom gleichen Tag und füge neuen hinzu
+        const filteredHistory = testHistory.filter(test => 
+            new Date(test.date).toDateString() !== today
+        );
+        filteredHistory.push(testResult);
+        localStorage.setItem('testHistory', JSON.stringify(filteredHistory));
+        showNotification('Testergebnis gespeichert!', 'success');
+        return;
+    }
+    
+    localStorage.setItem('testHistory', JSON.stringify(testHistory));
+    showNotification('Testergebnis aktualisiert!', 'success');
 }
 
 // Neue Funktionen für den Wahlsimulator
@@ -1056,6 +1118,7 @@ function wahlAbgeben() {
     
     localStorage.setItem('wahlSimulation', JSON.stringify(wahlSimulation));
     showWahlErgebnis(wahlSimulation);
+    showNotification('Ihre Stimme wurde gespeichert!', 'success');
 }
 
 function showWahlErgebnis(simulation) {
@@ -1077,11 +1140,10 @@ function showTestHistory() {
     
     let html = '';
     
-    // Zeige Wahlsimulation falls vorhanden
+            // Zeige Wahlsimulation falls vorhanden
     if (wahlSimulation) {
         html += `
-            <div class="history-item wahl-simulation">
-                <div class="history-header" onclick="toggleHistoryItem('wahl')">
+            <div class="history-item wahl-simulation" data-index="-1">
                     <h3>Ihre Wahlentscheidung</h3>
                     <div class="history-preview">
                         Erststimme: ${wahlSimulation.erststimme}, 
@@ -1267,7 +1329,9 @@ function initializeSwipeToDelete() {
             // Nur löschen wenn es ein echter Swipe war (schnell und weit genug)
             if (diff > SWIPE_THRESHOLD && touchDuration < 300) {
                 const index = parseInt(item.dataset.index);
-                deleteHistoryItem(index);
+                if (!isNaN(index) && index >= 0) {
+                    deleteHistoryItem(index);
+                }
             } else {
                 item.classList.remove('swiping');
                 item.style.transform = 'translateX(0)';
@@ -1401,8 +1465,8 @@ function updatePositionsCard(latestTest) {
             ${relevantPositions.map(position => `
                 <div class="position-bubble ${getPositionClass(position.userAnswer)}"
                      data-position-id="${position.questionIndex}"
-                     onmouseover="showPositionDetails(this, ${JSON.stringify(position).replace(/"/g, '&quot;')})"
-                     onclick="togglePositionDetails(this, ${JSON.stringify(position).replace(/"/g, '&quot;')})">
+                     onclick="togglePositionDetails(this, ${JSON.stringify(position).replace(/"/g, '&quot;')})"
+                     ontouchend="togglePositionDetails(this, ${JSON.stringify(position).replace(/"/g, '&quot;')})">
                     ${position.shortTitle}
                 </div>
             `).join('')}
@@ -1483,10 +1547,6 @@ function createShortTitle(question) {
 
 function showPositionDetails(element, position) {
     const details = document.getElementById('positionDetails');
-    if (element.classList.contains('active')) {
-        details.classList.remove('active');
-        return;
-    }
     
     const partyAnswersHtml = position.partyAnswers.map(pa => `
         <div class="party-answer">
@@ -1522,6 +1582,24 @@ function showPositionDetails(element, position) {
     `;
     
     details.classList.add('active');
+}
+
+function togglePositionDetails(element, position) {
+    const details = document.getElementById('positionDetails');
+    const isActive = element.classList.contains('active');
+    
+    // Schließe alle anderen aktiven Bubbles
+    document.querySelectorAll('.position-bubble.active').forEach(bubble => {
+        bubble.classList.remove('active');
+    });
+    
+    if (isActive) {
+        details.classList.remove('active');
+        return;
+    }
+    
+    element.classList.add('active');
+    showPositionDetails(element, position);
 }
 
 function closePositionDetails() {
@@ -1582,6 +1660,16 @@ function getTrendArrow(direction) {
     }
 }
 
+// Chart-Instanzen verwalten
+let chartInstances = {};
+
+function destroyChart(id) {
+    if (chartInstances[id]) {
+        chartInstances[id].destroy();
+        delete chartInstances[id];
+    }
+}
+
 // Neue Funktionen für die Statistiken
 function initializeStatistics() {
     // Hole die Basisdaten
@@ -1598,11 +1686,13 @@ function initializeStatistics() {
 
 function createPartyOverviewChart() {
     const ctx = document.getElementById('partyOverviewChart');
+    if (!ctx) return;
+    destroyChart('partyOverview');
     const parteien = window.werteData.umfragewerte
         .filter(p => p.prozent >= 1) // Zeige nur Parteien über 1%
         .sort((a, b) => b.prozent - a.prozent);
     
-    new Chart(ctx, {
+    chartInstances['partyOverview'] = new Chart(ctx, {
         type: 'bar',
         data: {
             labels: parteien.map(p => p.partei),
@@ -1644,11 +1734,12 @@ const commonChartOptions = {
 function createSeatDistributionChart() {
     const ctx = document.getElementById('seatChart');
     if (!ctx) return;
+    destroyChart('seatChart');
 
     const parteien = window.werteData.umfragewerte;
     const sitzverteilung = berechneSitzverteilung(parteien);
     
-    new Chart(ctx, {
+    chartInstances['seatChart'] = new Chart(ctx, {
         type: 'doughnut',
         data: {
             labels: sitzverteilung.map(p => `${p.partei} (${p.sitze} Sitze)`),
@@ -1680,12 +1771,14 @@ function createSeatDistributionChart() {
 
 function createCoalitionPotentialChart() {
     const ctx = document.getElementById('coalitionPotentialChart');
+    if (!ctx) return;
+    destroyChart('coalitionPotential');
     const koalitionen = berechneKoalitionen(window.parteienData, window.werteData)
         .filter(k => k.prozente >= 50)
         .sort((a, b) => b.uebereinstimmung - a.uebereinstimmung)
         .slice(0, 5);
     
-    new Chart(ctx, {
+    chartInstances['coalitionPotential'] = new Chart(ctx, {
         type: 'bar',
         data: {
             labels: koalitionen.map(k => {
@@ -1749,6 +1842,8 @@ function createCoalitionPotentialChart() {
 
 function createPartyPositionsChart() {
     const ctx = document.getElementById('partyPositionsChart');
+    if (!ctx) return;
+    destroyChart('partyPositions');
     const parteien = window.werteData.umfragewerte
         .filter(p => p.prozent >= config.thresholds.sperrklausel);
     
@@ -1767,7 +1862,7 @@ function createPartyPositionsChart() {
         pointRadius: 3
     }));
     
-    new Chart(ctx, {
+    chartInstances['partyPositions'] = new Chart(ctx, {
         type: 'radar',
         data: {
             labels: Object.keys(config.topics),
@@ -1821,6 +1916,8 @@ function analyzePartyTopics(partei) {
 
 function createTopicDistributionChart() {
     const ctx = document.getElementById('topicDistributionChart');
+    if (!ctx) return;
+    destroyChart('topicDistribution');
     const testHistory = JSON.parse(localStorage.getItem('testHistory') || '[]');
     
     if (testHistory.length === 0) return;
@@ -1828,7 +1925,7 @@ function createTopicDistributionChart() {
     const latestTest = testHistory[testHistory.length - 1];
     const topics = analyzeTopics(latestTest.answers);
     
-    new Chart(ctx, {
+    chartInstances['topicDistribution'] = new Chart(ctx, {
         type: 'radar',
         data: {
             labels: Object.keys(topics),
@@ -1862,7 +1959,8 @@ function analyzeTopics(answers) {
         'Soziales': [],
         'Umwelt': [],
         'Außenpolitik': [],
-        'Inneres': []
+        'Inneres': [],
+        'Digitales': []
     };
     
     // Ordne Fragen den Themenbereichen zu
@@ -1896,6 +1994,19 @@ function determineQuestionTopic(question) {
 
 function getPartyColor(party) {
     return config.partyColors[party] || config.partyColors.default;
+}
+
+// Notification Helper
+function showNotification(message, type = 'info') {
+    const existing = document.querySelector('.notification');
+    if (existing) existing.remove();
+    
+    const notification = document.createElement('div');
+    notification.className = `notification ${type}`;
+    notification.textContent = message;
+    document.body.appendChild(notification);
+    
+    setTimeout(() => notification.remove(), 3500);
 }
 
 // Neue Funktion für die Sitzplatzberechnung

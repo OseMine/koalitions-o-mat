@@ -8,19 +8,25 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+    <div id="loadingOverlay" class="loading-overlay" style="display: none;">
+        <div style="text-align: center;">
+            <div class="spinner"></div>
+            <div class="loading-text">Daten werden geladen...</div>
+        </div>
+    </div>
     <div class="container">
         <h1>Koalitions-O-Mat</h1>
         
         <div class="tabs">
-            <button class="tab-button active" onclick="switchTab('alle')">Alle Koalitionen</button>
-            <button class="tab-button" onclick="switchTab('partei')">Nach Partei filtern</button>
-            <button class="tab-button" onclick="switchTab('vergleich')">Parteien vergleichen</button>
-            <button class="tab-button" onclick="switchTab('test')">Koalitionstest</button>
-            <button class="tab-button" onclick="switchTab('wahlomat')">Parteientest</button>
-            <button class="tab-button" onclick="switchTab('history')">Meine Tests</button>
-            <button class="tab-button" onclick="switchTab('wahlsimulator')">Wahlsimulator</button>
-            <button class="tab-button" onclick="switchTab('dashboard')">Dashboard</button>
-            <button class="tab-button" onclick="switchTab('statistiken')">Statistiken</button>
+            <button type="button" class="tab-button active" data-tab="alle">Alle Koalitionen</button>
+            <button type="button" class="tab-button" data-tab="partei">Nach Partei filtern</button>
+            <button type="button" class="tab-button" data-tab="vergleich">Parteien vergleichen</button>
+            <button type="button" class="tab-button" data-tab="test">Koalitionstest</button>
+            <button type="button" class="tab-button" data-tab="wahlomat">Parteientest</button>
+            <button type="button" class="tab-button" data-tab="history">Meine Tests</button>
+            <button type="button" class="tab-button" data-tab="wahlsimulator">Wahlsimulator</button>
+            <button type="button" class="tab-button" data-tab="dashboard">Dashboard</button>
+            <button type="button" class="tab-button" data-tab="statistiken">Statistiken</button>
         </div>
 
         <div id="alle-koalitionen" class="tab-content active">
@@ -273,6 +279,14 @@
                         <h3>Parteipositionen nach Themen</h3>
                         <div class="chart-container">
                             <canvas id="partyPositionsChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Themenverteilung der eigenen Antworten -->
+                    <div class="chart-card wide">
+                        <h3>Ihre Themenverteilung</h3>
+                        <div class="chart-container">
+                            <canvas id="topicDistributionChart"></canvas>
                         </div>
                     </div>
                 </div>
