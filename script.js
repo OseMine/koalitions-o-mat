@@ -435,7 +435,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     <div style="font-size: 48px; margin-bottom: 16px;">⚠️</div>
                     <div class="loading-text" style="font-size: 1.1rem;">
                         Fehler beim Laden der Daten<br>
-                        <small style="color: var(--text-muted);">Bitte Seite neu laden</small>
+                        <small style="color: var(--on-surface-muted);">Bitte Seite neu laden</small>
                     </div>
                     <button onclick="location.reload()" 
                             style="margin-top: 20px; padding: 12px 28px; 
@@ -594,7 +594,7 @@ function showMultiElectionCoalitions() {
         <div class="empty-state">
             <span class="empty-state-icon">🔍</span>
             <p style="font-size: 1.1em; font-weight: 500;">Keine Koalitionen gefunden</p>
-            <p style="color: var(--text-muted); font-size: 0.9em;">Versuche, den Mindestübereinstimmungs-Wert zu senken oder die ausgeschlossenen Parteien anzupassen.</p>
+            <p style="color: var(--on-surface-muted); font-size: 0.9em;">Versuche, den Mindestübereinstimmungs-Wert zu senken oder die ausgeschlossenen Parteien anzupassen.</p>
         </div>`;
 }
 
@@ -623,12 +623,12 @@ function renderCoalitionList(koalitionen, electionId) {
     if (electionId) {
         const election = electionsList.find(e => e.id === electionId);
         if (election) {
-            html += `<p style="color: var(--text-muted); font-size: 0.9em; margin-bottom: 8px;">Wahl: ${election.name}</p>`;
+            html += `<p style="color: var(--on-surface-muted); font-size: 0.9em; margin-bottom: 8px;">Wahl: ${election.name}</p>`;
         }
     } else {
         const electionName = getActiveElectionName();
         if (electionName) {
-            html += `<p style="color: var(--text-muted); font-size: 0.9em; margin-bottom: 8px;">Wahl: ${electionName}</p>`;
+            html += `<p style="color: var(--on-surface-muted); font-size: 0.9em; margin-bottom: 8px;">Wahl: ${electionName}</p>`;
         }
     }
 
@@ -1028,7 +1028,7 @@ function showTestResults() {
     const electionName = getActiveElectionName();
     resultsDiv.innerHTML = `
         <h3>Ihre besten Übereinstimmungen:</h3>
-        ${electionName ? `<p style="color: var(--text-muted); font-size: 0.9em;">Wahl: ${electionName}</p>` : ''}
+        ${electionName ? `<p style="color: var(--on-surface-muted); font-size: 0.9em;">Wahl: ${electionName}</p>` : ''}
         ${koalitionenMitUebereinstimmung.slice(0, 5).map(koalition => `
             <div class="result-item">
                 <p>Parteien: ${koalition.parteien.join(' + ')}</p>
@@ -1206,7 +1206,7 @@ function showWahlomatResults() {
 
     const electionName = getActiveElectionName();
     let html = `<h3>Ihre Übereinstimmung mit den Parteien</h3>`;
-    if (electionName) html += `<p style="color: var(--text-muted); font-size: 0.9em; margin-bottom: 12px;">Wahl: ${electionName}</p>`;
+    if (electionName) html += `<p style="color: var(--on-surface-muted); font-size: 0.9em; margin-bottom: 12px;">Wahl: ${electionName}</p>`;
     
     // Zeige Gesamtübersicht
     html += '<div class="results-overview">';
@@ -1471,7 +1471,7 @@ function initializeWahlsimulator() {
         if (!existing) {
             const label = document.createElement('p');
             label.className = 'wahl-election-label';
-            label.style.cssText = 'color: var(--text-muted); font-size: 0.85em; margin-bottom: 12px;';
+            label.style.cssText = 'color: var(--on-surface-muted); font-size: 0.85em; margin-bottom: 12px;';
             label.textContent = `Wahl: ${electionName}`;
             stimmzettel.insertBefore(label, stimmzettel.firstChild);
         }
@@ -1583,7 +1583,7 @@ function showTestHistory() {
                     </div>
                     <div class="history-content" id="historyContent${index}" style="display: none;">
                         <p>Durchgeführt am: ${new Date(test.date).toLocaleString()}</p>
-                        ${test.electionName ? `<p style="color: var(--text-secondary);"><strong>Wahl:</strong> ${test.electionName}</p>` : ''}
+                        ${test.electionName ? `<p style="color: var(--on-surface-variant);"><strong>Wahl:</strong> ${test.electionName}</p>` : ''}
                         
                         ${test.topCoalitions.length > 0 ? `
                             <div class="top-results">
@@ -2222,8 +2222,8 @@ function createSeatDistributionChart() {
                 backgroundColor: colors,
                 hoverBackgroundColor: hoverColors,
                 borderWidth: 2,
-                borderColor: 'var(--bg-card, #1e1e2e)',
-                hoverBorderColor: 'var(--bg-card, #1e1e2e)'
+                borderColor: 'var(--surface, #ffffff)',
+                hoverBorderColor: 'var(--surface, #ffffff)'
             }]
         },
         options: {
@@ -2274,10 +2274,10 @@ function createSeatDistributionChart() {
                 c.textAlign = 'center';
                 c.textBaseline = 'middle';
                 c.font = 'bold 28px system-ui, sans-serif';
-                c.fillStyle = 'var(--text-primary, #e0e0e0)';
+                c.fillStyle = 'var(--on-surface, #1C1B1F)';
                 c.fillText(totalSeats, centerX, centerY);
                 c.font = '11px system-ui, sans-serif';
-                c.fillStyle = 'var(--text-muted, #888)';
+                c.fillStyle = 'var(--on-surface-muted, #9A97A0)';
                 c.fillText('Sitze', centerX, centerY + 22);
                 c.restore();
             }
@@ -2298,7 +2298,7 @@ function createCoalitionPotentialChart() {
     
     if (koalitionen.length === 0) {
         document.getElementById('coalitionPotentialChart').parentElement.innerHTML =
-            '<p style="color: var(--text-muted); text-align: center; padding: 40px 0;">Keine Mehrheitskoalitionen verfügbar</p>';
+            '<p style="color: var(--on-surface-muted); text-align: center; padding: 40px 0;">Keine Mehrheitskoalitionen verfügbar</p>';
         return;
     }
     
@@ -2363,7 +2363,7 @@ function createCoalitionPotentialChart() {
                         display: true,
                         text: 'Übereinstimmung (%)',
                         font: { size: 10 },
-                        color: 'var(--text-muted)'
+                        color: 'var(--on-surface-muted)'
                     }
                 },
                 y: {
@@ -2437,7 +2437,7 @@ function createPartyPositionsChart() {
                     },
                     pointLabels: {
                         font: { size: 11, weight: '600' },
-                        color: 'var(--text-primary)'
+                        color: 'var(--on-surface)'
                     }
                 }
             },
@@ -2475,7 +2475,7 @@ function createTopicDistributionChart() {
     const testHistory = JSON.parse(localStorage.getItem('testHistory') || '[]');
     if (testHistory.length === 0) {
         document.getElementById('topicDistributionChart').parentElement.innerHTML =
-            '<p style="color: var(--text-muted); text-align: center; padding: 40px 0;">Machen Sie zuerst einen Test, um Ihre Themenverteilung zu sehen</p>';
+            '<p style="color: var(--on-surface-muted); text-align: center; padding: 40px 0;">Machen Sie zuerst einen Test, um Ihre Themenverteilung zu sehen</p>';
         return;
     }
     
