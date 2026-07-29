@@ -6,6 +6,7 @@
     <title>Koalitions-O-Mat</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
 </head>
 <body>
     <div id="loadingOverlay" class="loading-overlay" style="display: none;">
@@ -16,7 +17,7 @@
     </div>
     <div class="container">
         <h1>Koalitions-O-Mat</h1>
-        
+
         <div class="tabs">
             <button type="button" class="tab-button active" data-tab="alle">Alle Koalitionen</button>
             <button type="button" class="tab-button" data-tab="partei">Nach Partei filtern</button>
@@ -30,6 +31,7 @@
         </div>
 
         <div id="alle-koalitionen" class="tab-content active">
+            <div class="election-toggles" data-tab="alle"></div>
             <div class="filter-options">
                 <label>
                     Mindestübereinstimmung:
@@ -72,7 +74,10 @@
 
         <div id="partei-koalitionen" class="tab-content">
             <div class="party-selector">
-                <h2>Koalitionen nach Partei</h2>
+                <div class="tab-header-row">
+                    <h2>Koalitionen nach Partei</h2>
+                    <div class="election-toggles" data-tab="partei"></div>
+                </div>
                 <div class="filter-options">
                     <select id="partySelect" onchange="zeigeKoalitionenFuerPartei()">
                         <option value="">Partei auswählen...</option>
@@ -120,7 +125,10 @@
 
         <div id="vergleich-koalitionen" class="tab-content">
             <div class="party-comparison">
-                <h2>Parteienvergleich</h2>
+                <div class="tab-header-row">
+                    <h2>Parteienvergleich</h2>
+                    <div class="election-toggles" data-tab="vergleich"></div>
+                </div>
                 <div class="filter-options">
                     <div class="dropdown">
                         <button type="button" class="dropdown-btn" onclick="toggleDropdown('compareParties')">
@@ -144,7 +152,10 @@
 
         <div id="test-koalitionen" class="tab-content">
             <div class="test-container">
-                <h2>Koalitionstest</h2>
+                <div class="tab-header-row">
+                    <h2>Koalitionstest</h2>
+                    <div class="election-toggles" data-tab="test"></div>
+                </div>
                 <div id="questionContainer" class="question-container">
                     <!-- Fragen werden dynamisch eingefügt -->
                 </div>
@@ -159,7 +170,10 @@
 
         <div id="wahlomat-koalitionen" class="tab-content">
             <div class="test-container">
-                <h2>Parteientest</h2>
+                <div class="tab-header-row">
+                    <h2>Parteientest</h2>
+                    <div class="election-toggles" data-tab="wahlomat"></div>
+                </div>
                 <div id="wahlomatQuestionContainer" class="question-container">
                     <!-- Fragen werden dynamisch eingefügt -->
                 </div>
@@ -174,14 +188,20 @@
 
         <div id="history-koalitionen" class="tab-content">
             <div class="history-container">
-                <h2>Meine Testergebnisse</h2>
+                <div class="tab-header-row">
+                    <h2>Meine Testergebnisse</h2>
+                    <div class="election-toggles" data-tab="history"></div>
+                </div>
                 <div id="historyResults"></div>
             </div>
         </div>
 
         <div id="wahlsimulator-koalitionen" class="tab-content">
             <div class="wahlsimulator-container">
-                <h2>Wahlsimulator</h2>
+                <div class="tab-header-row">
+                    <h2>Wahlsimulator</h2>
+                    <div class="election-toggles" data-tab="wahlsimulator"></div>
+                </div>
                 <div class="stimmzettel">
                     <div class="erststimme">
                         <h3>Erststimme</h3>
@@ -207,7 +227,10 @@
 
         <div id="dashboard-content" class="tab-content">
             <div class="dashboard-container">
-                <h2>Mein Politik-Dashboard</h2>
+                <div class="tab-header-row">
+                    <h2>Mein Politik-Dashboard</h2>
+                    <div class="election-toggles" data-tab="dashboard"></div>
+                </div>
                 
                 <div class="dashboard-grid">
                     <!-- Wahlentscheidung -->
@@ -247,7 +270,12 @@
 
         <div id="statistiken-content" class="tab-content">
             <div class="statistiken-container">
-                <h2>Politische Landschaft</h2>
+                <div class="tab-header-row">
+                    <h2>Politische Landschaft</h2>
+                    <div class="election-toggles" data-tab="statistiken"></div>
+                </div>
+                
+                <div class="stats-summary" id="statsSummary"></div>
                 
                 <div class="chart-grid">
                     <!-- Parteien Übersicht -->
@@ -260,7 +288,7 @@
 
                     <!-- Sitzverteilung -->
                     <div class="chart-card">
-                        <h3>Sitzverteilung Bundestag</h3>
+                        <h3>Sitzverteilung</h3>
                         <div class="chart-container">
                             <canvas id="seatChart"></canvas>
                         </div>
