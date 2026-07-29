@@ -1,0 +1,2000 @@
+{
+  "fragen": [
+    {
+      "nr": 1,
+      "frage": "Schulpflicht abschaffen?",
+      "beschreibung": "Soll die allgemeine Schulpflicht in Sachsen-Anhalt abgeschafft und durch eine Bildungspflicht ersetzt werden, die auch Homeschooling erlaubt?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "n",
+          "zitat": "Die allgemeine Schulpflicht bleibt zentrales Fundament unseres Bildungswesens.",
+          "quelle": "CDU-Wahlprogramm 2026, S. 32; https://cdu-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die CDU verteidigt die Schulpflicht als unverzichtbar für gesellschaftlichen Zusammenhalt und gleiche Bildungschancen. Ministerpräsident Schulze warnt vor einem 'Schulsterben' durch Abschaffung."
+        },
+        "SPD": {
+          "wert": "n",
+          "quelle": "SPD-Wahlprogramm 2026, S. 28; https://spdsachsenanhalt.de/wp-content/uploads/sites/63/2026/03/SPD-Wahlprogramm-2026.pdf",
+          "begruendung": "Die SPD bekennt sich zur allgemeinen Schulpflicht als Grundlage für Chancengerechtigkeit und sozialen Zusammenhalt. Bildung soll für alle Kinder verpflichtend in der Schule stattfinden."
+        },
+        "GRÜNE": {
+          "wert": "n",
+          "zitat": "Schule ist einer der wichtigsten Erfahrungsorte für Kinder. Rechte würden die Schulpflicht angreifen.",
+          "quelle": "Grüne-Fraktion Sachsen-Anhalt, Pressemitteilung 25.06.2026; https://gruene-fraktion-lsa.de",
+          "begruendung": "Die Grünen verteidigen die Schulpflicht als essenziell für Integration und Teilhabe. Spitzenkandidatin Sziborra-Seidlitz betont das Recht von Kindern auf Bildung und gesellschaftliche Teilhabe."
+        },
+        "FDP": {
+          "wert": "n",
+          "quelle": "FDP-Wahlprogramm 2026, S. 24; https://fdp-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die FDP befürwortet die Schulpflicht, setzt aber auf mehr Flexibilität und Digitalisierung im Bildungssystem. Die Partei lehnt Homeschooling als Alternative ab."
+        },
+        "AfD": {
+          "wert": "j",
+          "zitat": "Wir wollen maximale Freiheit ermöglichen. Bildungspflicht statt Schulzwang mit halbjährlichen Lernkontrollen, wenn zu Hause unterrichtet wird.",
+          "quelle": "AfD-Regierungsprogramm 2026, S. 45-47; https://afd-sachsenanhalt.de/regierungsprogramm",
+          "begruendung": "Die AfD will die Schulpflicht abschaffen und Eltern die Wahl zwischen Schulunterricht und Homeschooling ermöglichen. Begründung: 'Maximale Freiheit' für Familien, Kritik an 'politischer Erziehung' in Schulen."
+        },
+        "LINKE": {
+          "wert": "n",
+          "quelle": "LINKE-Wahlprogramm 2026, S. 30; https://die-linke-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die Linke verteidigt die Schulpflicht als wichtigen Baustein für gleiche Bildungschancen. Kinder dürfen nicht 'aussortiert' werden, Inklusion ist ein Kernanliegen."
+        },
+        "BSW": {
+          "wert": "n",
+          "quelle": "BSW-Wahlprogramm 2026, S. 18; https://bsw-sachsenanhalt.de",
+          "begruendung": "Das BSW bekennt sich zur allgemeinen Schulpflicht als Grundlage für gleiche Chancen. Bildung ist Ländersache und muss für alle Kinder zugänglich sein."
+        },
+        "FREIE WÄHLER": {
+          "wert": "n",
+          "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 22; https://fw-lsa.de/wahlprogramm",
+          "begruendung": "Die FREIEN WÄHLER unterstützen die Schulpflicht, setzen aber auf pragmatische Lösungen und mehr Praxisbezug im Bildungssystem."
+        }
+      }
+    },
+    {
+      "nr": 2,
+      "frage": "Windkraft-Ausbau stoppen?",
+      "beschreibung": "Soll der Ausbau von Windkraftanlagen in Sachsen-Anhalt durch ein Moratorium gestoppt und die Ausweisung von Flächen für Windenergie reduziert werden?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "n",
+          "zitat": "Wir wollen unser Land zu einem der wichtigsten Energie-Standorte in Europa machen.",
+          "quelle": "CDU-Wahlprogramm 2026, S. 18; https://cdu-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die CDU unterstützt den Windkraft-Ausbau, wenn auch mit Rücksicht auf lokale Interessen. Die Landesregierung plant 2,2% der Landesfläche für Windkraft auszuweisen."
+        },
+        "SPD": {
+          "wert": "n",
+          "quelle": "SPD-Wahlprogramm 2026, S. 15; https://spdsachsenanhalt.de/wp-content/uploads/sites/63/2026/03/SPD-Wahlprogramm-2026.pdf",
+          "begruendung": "Die SPD befürwortet den Ausbau erneuerbarer Energien als Teil des Strukturwandels. Energieminister Willingmann treibt die Energiewende voran."
+        },
+        "GRÜNE": {
+          "wert": "n",
+          "zitat": "Sachsen-Anhalt soll das Energieherz Deutschlands werden. Erneuerbare Energien sind Unabhängigkeitsenergien.",
+          "quelle": "Grüne-Wahlprogramm 2026, S. 12; https://gruene-lsa.de/wahlprogramm",
+          "begruendung": "Die Grünen drängen auf beschleunigten Windkraft-Ausbau und kritisierten den schleppenden Radwege- und Energieausbau. Klimaschutz ist Staatsziel."
+        },
+        "FDP": {
+          "wert": "m",
+          "quelle": "FDP-Wahlprogramm 2026, S. 16; https://fdp-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die FDP setzt auf 'Technologieoffenheit' und marktwirtschaftliche Instrumente. Der Ausbau soll effizient und bürgerfreundlich gestaltet werden, ohne pauschale Verbote oder Zwänge."
+        },
+        "AfD": {
+          "wert": "j",
+          "zitat": "Wir wollen ein Windkraftmoratorium. Die Landesenergieagentur wird geschlossen.",
+          "quelle": "AfD-Regierungsprogramm 2026, S. 52-54; https://afd-sachsenanhalt.de/regierungsprogramm",
+          "begruendung": "Die AfD lehnt Windkraft grundsätzlich ab, bezeichnet sie als 'Zufallsenergie'. Die Partei will das Beteiligungsgesetz abschaffen und Anti-Erneuerbaren-Initiativen unterstützen."
+        },
+        "LINKE": {
+          "wert": "n",
+          "quelle": "LINKE-Wahlprogramm 2026, S. 22; https://die-linke-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die Linke unterstützt den Ausbau erneuerbarer Energien als Teil der ökologischen Wende. Energie soll in öffentlicher Hand bleiben."
+        },
+        "BSW": {
+          "wert": "m",
+          "quelle": "BSW-Wahlprogramm 2026, S. 14; https://bsw-sachsenanhalt.de",
+          "begruendung": "Das BSW betont bezahlbare Energiepreise und setzt auf einen Mix aus verschiedenen Energiequellen. Keine klare Position zum Windkraft-Moratorium."
+        },
+        "FREIE WÄHLER": {
+          "wert": "m",
+          "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 14; https://fw-lsa.de/wahlprogramm",
+          "begruendung": "Die FREIEN WÄHLER setzen auf 'verfügbare und preiswerte Energie' ohne ideologische Vorfestlegungen. Pragmatischer Ansatz ohne klare Position zum Windkraft-Ausbau."
+        }
+      }
+    },
+    {
+      "nr": 3,
+      "frage": "Kostenlose Kitas ab dem ersten Kind?",
+      "beschreibung": "Sollen alle Kitas in Sachsen-Anhalt ab dem ersten Kind vollständig beitragsfrei finanziert werden?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "m",
+          "quelle": "CDU-Wahlprogramm 2026, S. 35; https://cdu-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die CDU unterstützt die aktuelle Geschwisterkindregelung (nur ältestes Kind kostet), hatte aber im Haushaltsstreit eine Einschränkung erwogen. Keine Position zur vollständigen Beitragsfreiheit."
+        },
+        "SPD": {
+          "wert": "j",
+          "zitat": "Wir streben die beitragsfreie Kita an.",
+          "quelle": "SPD-Wahlprogramm 2026, S. 26; https://spdsachsenanhalt.de/wp-content/uploads/sites/63/2026/03/SPD-Wahlprogramm-2026.pdf",
+          "begruendung": "Die SPD will die beitragsfreie Kita als Entlastung für Familien. Die aktuelle Regelung (nur ältestes Kind kostet) soll erhalten und ausgebaut werden."
+        },
+        "GRÜNE": {
+          "wert": "j",
+          "quelle": "Grüne-Wahlprogramm 2026, S. 20; https://gruene-lsa.de/wahlprogramm",
+          "begruendung": "Die Grünen unterstützen die beitragsfreie Kita-Betreuung als Teil der Familienpolitik und Bildungsgerechtigkeit."
+        },
+        "FDP": {
+          "wert": "n",
+          "zitat": "Gerade in Zeiten angespannter Haushaltslage halten wir eine Anpassung der erweiterten Geschwisterkindregelung für geboten.",
+          "quelle": "FDP-Fraktion Sachsen-Anhalt, Pressemitteilung 15.08.2024; https://fdp-fraktion-lsa.de",
+          "begruendung": "Die FDP will die Kosten für Kitas umverteilen: Eltern sollen nur für das jüngste Kind zahlen, nicht für das älteste. Ziel ist Haushaltsentlastung."
+        },
+        "AfD": {
+          "wert": "j",
+          "zitat": "Wir werden Krippen und Kindergärten mit einer dauerhaft auf Landesebene gesicherten Finanzierung ab dem ersten Kind kostenlos machen.",
+          "quelle": "AfD-Regierungsprogramm 2026, S. 24; https://afd-sachsenanhalt.de/regierungsprogramm",
+          "begruendung": "Die AfD verspricht kostenlose Kitas und kostenloses Schulessen als Familienförderung. Kritiker bemängeln fehlende Gegenfinanzierung."
+        },
+        "LINKE": {
+          "wert": "j",
+          "zitat": "Die Beitragsfreiheit der Kitas muss umgesetzt werden. Wir stellen uns strikt gegen jede Erhöhung der Kitabeiträge.",
+          "quelle": "LINKE-Fraktion Sachsen-Anhalt, Pressemitteilung 16.08.2024; https://die-linke-sachsenanhalt.de",
+          "begruendung": "Die Linke fordert vollständige Beitragsfreiheit für Kitas ab 2026 und lehnt jede Belastung von Familien ab."
+        },
+        "BSW": {
+          "wert": "m",
+          "quelle": "BSW-Wahlprogramm 2026, S. 16; https://bsw-sachsenanhalt.de",
+          "begruendung": "Das BSW setzt auf bezahlbares Leben und Familienförderung, hat aber keine explizite Position zur vollständigen Kita-Beitragsfreiheit."
+        },
+        "FREIE WÄHLER": {
+          "wert": "j",
+          "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 18; https://fw-lsa.de/wahlprogramm",
+          "begruendung": "Die FREIEN WÄHLER unterstützen kostenfreie Kitas als Teil der Familienförderung und zur Stärkung der Vereinbarkeit von Familie und Beruf."
+        }
+      }
+    },
+    {
+      "nr": 4,
+      "frage": "Private Krankenhäuser verstaatlichen?",
+      "beschreibung": "Soll das Land Sachsen-Anhalt die Möglichkeit erhalten, privatisierte Krankenhäuser bei Versorgungsproblemen zurück in öffentliche Hand zu nehmen?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "n",
+          "quelle": "CDU-Wahlprogramm 2026, S. 38; https://cdu-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die CDU lehnt Verstaatlichungen ab und setzt auf eine geregelte Krankenhausplanung mit Spezialisierung. Keine Rekommunalisierung als politisches Ziel."
+        },
+        "SPD": {
+          "wert": "j",
+          "zitat": "Wo der öffentliche Versorgungsauftrag gefährdet ist, muss die Privatisierung rückabgewickelt werden.",
+          "quelle": "SPD-Landesvorstand Antrag 2020; SPD-Wahlprogramm 2026, S. 34; https://spdsachsenanhalt.de",
+          "begruendung": "Die SPD will keine weiteren Privatisierungen und fordert die Möglichkeit zur Rückverstaatlichung bei Gefährdung der Versorgung. Gesundheit ist Daseinsvorsorge."
+        },
+        "GRÜNE": {
+          "wert": "j",
+          "quelle": "Grüne-Wahlprogramm 2026, S. 28; https://gruene-lsa.de/wahlprogramm",
+          "begruendung": "Die Grünen unterstützen die Möglichkeit zur Re-Kommunalisierung von Kliniken. Gesundheit darf nicht der Profitlogik unterliegen."
+        },
+        "FDP": {
+          "wert": "n",
+          "quelle": "FDP-Wahlprogramm 2026, S. 30; https://fdp-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die FDP lehnt Verstaatlichungen ab und setzt auf Wettbewerb und effiziente Strukturen im Gesundheitswesen."
+        },
+        "AfD": {
+          "wert": "j",
+          "quelle": "AfD-Regierungsprogramm 2026, S. 58; https://afd-sachsenanhalt.de/regierungsprogramm",
+          "begruendung": "Die AfD will Klinikschließungen verhindern und Krankenhäuser vorrangig in öffentlicher Hand belassen. Unterstützung für Re-Kommunalisierung bei Versorgungsproblemen."
+        },
+        "LINKE": {
+          "wert": "j",
+          "zitat": "Krankenhäuser gehören grundsätzlich in öffentliche Hand. Wir fordern eine landeseigene Krankenhausgesellschaft.",
+          "quelle": "LINKE-Wahlprogramm 2026, S. 36; https://die-linke-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die Linke fordert die Rückführung privater Krankenhäuser in öffentliche Hand und ein Schließungsmoratorium. Profitlogik müsse ein Ende haben."
+        },
+        "BSW": {
+          "wert": "m",
+          "quelle": "BSW-Wahlprogramm 2026, S. 20; https://bsw-sachsenanhalt.de",
+          "begruendung": "Das BSW betont bezahlbare Gesundheitsversorgung, hat aber keine explizite Position zur Verstaatlichung privater Kliniken."
+        },
+        "FREIE WÄHLER": {
+          "wert": "m",
+          "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 26; https://fw-lsa.de/wahlprogramm",
+          "begruendung": "Die FREIEN WÄHLER setzen auf gute medizinische Versorgung ohne ideologische Vorfestlegungen zur Eigentumsfrage."
+        }
+      }
+    },
+    {
+      "nr": 5,
+      "frage": "Polizei auf über 8.000 Stellen aufstocken?",
+      "beschreibung": "Soll die Landespolizei in Sachsen-Anhalt auf mehr als 8.000 Bedienstete aufgestockt werden?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "j",
+          "zitat": "Die Landespolizei soll auf mehr als 8.000 Bedienstete aufgestockt werden.",
+          "quelle": "CDU-Wahlprogramm 2026, S. 14; https://cdu-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die CDU will mehr Sicherheit durch mehr Polizei. Die Deutschlandkoalition hatte das Ziel von 7.000 Polizisten nicht erreicht, die CDU will nun auf über 8.000 aufstocken."
+        },
+        "SPD": {
+          "wert": "j",
+          "quelle": "SPD-Wahlprogramm 2026, S. 18; https://spdsachsenanhalt.de/wp-content/uploads/sites/63/2026/03/SPD-Wahlprogramm-2026.pdf",
+          "begruendung": "Die SPD unterstützt die Aufstockung der Polizei, fordert aber zugleich mehr Investitionen in Prävention und soziale Arbeit."
+        },
+        "GRÜNE": {
+          "wert": "m",
+          "quelle": "Grüne-Wahlprogramm 2026, S. 24; https://gruene-lsa.de/wahlprogramm",
+          "begruendung": "Die Grünen priorisieren Prävention und Demokratieförderung vor reiner Polizeiaufstockung. Sie setzen auf Beratungsstellen gegen rechte Gewalt."
+        },
+        "FDP": {
+          "wert": "j",
+          "quelle": "FDP-Wahlprogramm 2026, S. 20; https://fdp-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die FDP befürwortet eine gut ausgestattete Polizei mit mehr Beamten auf der Straße, verbunden mit einem Abbau polizeiinterner Bürokratie."
+        },
+        "AfD": {
+          "wert": "j",
+          "zitat": "Die AfD will bei einem Wahlsieg 200 Beamtenstellen neu besetzen.",
+          "quelle": "AfD-Regierungsprogramm 2026, S. 60; https://afd-sachsenanhalt.de/regierungsprogramm",
+          "begruendung": "Die AfD setzt auf innere Sicherheit als zentrales Thema. Sie will 200 Beamtenstellen neu besetzen und Abschiebehaftplätze ausbauen."
+        },
+        "LINKE": {
+          "wert": "n",
+          "quelle": "LINKE-Wahlprogramm 2026, S. 40; https://die-linke-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die Linke kritisiert den reinen Fokus auf polizeiliche Aufrüstung und fordert stattdessen massive Präventionsmaßnahmen, Sozialarbeit und Investitionen in Bildung."
+        },
+        "BSW": {
+          "wert": "j",
+          "quelle": "BSW-Wahlprogramm 2026, S. 22; https://bsw-sachsenanhalt.de",
+          "begruendung": "Das BSW spricht sich für einen handlungsfähigen Rechtsstaat aus, wofür eine gut ausgestattete und personell starke Polizei unerlässlich sei."
+        },
+        "FREIE WÄHLER": {
+          "wert": "m",
+          "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 30; https://fw-lsa.de/wahlprogramm",
+          "begruendung": "Die FREIEN WÄHLER setzen auf bessere Ausstattung der Polizei, haben aber keine konkrete Zahl für die Aufstockung genannt."
+        }
+      }
+    },
+    {
+      "nr": 6,
+      "frage": "Kostenfreies Schulessen für alle?",
+      "beschreibung": "Soll das Land Sachsen-Anhalt die Kosten für das tägliche Mittagessen in allen Schulen vollständig übernehmen?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "m",
+          "zitat": "Unterstützung durch kostenfreies Mittagessen in der Kita – für Familien, die jeden Cent zweimal umdrehen müssen.",
+          "quelle": "CDU-Kampagne 2026; CDU-Wahlprogramm 2026, S. 36; https://cdu-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Teile der CDU befürworten ein kostenfreies Kita-Essen, positionieren sich wegen der immensen Haushaltskosten jedoch zurückhaltend bei der Ausweitung auf alle Schulen."
+        },
+        "SPD": {
+          "wert": "j",
+          "quelle": "SPD-Wahlprogramm 2026, S. 28; https://spdsachsenanhalt.de/wp-content/uploads/sites/63/2026/03/SPD-Wahlprogramm-2026.pdf",
+          "begruendung": "Die SPD strebt an, Bildung von der Kita bis zum Abschluss langfristig gebührenfrei zu gestalten, was auch eine kostenfreie Verpflegung miteinschließt."
+        },
+        "GRÜNE": {
+          "wert": "m",
+          "zitat": "Bessere Betreuungsschlüssel in Krippe und Kita, mehr Sprachförderung, gesundes Essen sowie moderne Gebäude.",
+          "quelle": "Grüne-Wahlprogramm 2026, S. 22; https://gruene-lsa.de/wahlprogramm",
+          "begruendung": "Für die Grünen stehen hohe Qualitätsstandards (regional, biologisch, gesund) an erster Stelle, die komplette Gebührenfreiheit für alle wird nicht priorisiert."
+        },
+        "FDP": {
+          "wert": "n",
+          "quelle": "FDP-Wahlprogramm 2026, S. 26; https://fdp-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die FDP lehnt Gießkannenprinzipien ab; staatliche Unterstützung beim Essen solle zielgerichtet nur Familien zugutekommen, die finanziell tatsächlich bedürftig sind."
+        },
+        "AfD": {
+          "wert": "j",
+          "zitat": "Die Mittagsverpflegung muss für alle Kinder, von der Krippe bis zur Schule, ebenfalls kostenfrei und von hoher Qualität vorzuhalten sein.",
+          "quelle": "AfD-Regierungsprogramm 2026, S. 26; https://afd-sachsenanhalt.de/regierungsprogramm",
+          "begruendung": "Die AfD betrachtet ein kostenloses, gesundes Mittagessen für alle Kinder als zentrale Maßnahme zur Entlastung einheimischer Familien."
+        },
+        "LINKE": {
+          "wert": "j",
+          "quelle": "LINKE-Wahlprogramm 2026, S. 32; https://die-linke-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die Linke fordert traditionell ein kostenloses Schul- und Kitaessen als grundlegenden Beitrag zur Armutsbekämpfung und für echte soziale Gerechtigkeit."
+        },
+        "BSW": {
+          "wert": "j",
+          "quelle": "BSW-Wahlprogramm 2026, S. 18; https://bsw-sachsenanhalt.de",
+          "begruendung": "Das BSW unterstützt flächendeckende Maßnahmen, die den Mittelstand und Geringverdiener bei den Lebenshaltungskosten für Kinder entlasten."
+        },
+        "FREIE WÄHLER": {
+          "wert": "j",
+          "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 20; https://fw-lsa.de/wahlprogramm",
+          "begruendung": "Die FREIEN WÄHLER unterstützen kostenfreies Schulessen als Teil der Familienförderung und Bildungsgerechtigkeit."
+        }
+      }
+    },
+    {
+      "nr": 7,
+      "frage": "Förderschulen abschaffen?",
+      "beschreibung": "Sollen Förderschulen in Sachsen-Anhalt deutlich reduziert und alle Kinder gemeinsam an Regelschulen unterrichtet werden (Inklusion)?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "n",
+          "zitat": "Förderschulen sollen ausdrücklich erhalten bleiben.",
+          "quelle": "CDU-Wahlprogramm 2026, S. 34; https://cdu-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die CDU versteht Inklusion als individuelle Förderung und will Förderschulen erhalten. Sie setzt auf das Nebeneinander von Regel- und Förderschulen."
+        },
+        "SPD": {
+          "wert": "m",
+          "zitat": "Gemeinsamer Unterricht soll gestärkt werden; Förderschulen sollen parallel weiterentwickelt werden.",
+          "quelle": "SPD-Wahlprogramm 2026, S. 30; https://spdsachsenanhalt.de/wp-content/uploads/sites/63/2026/03/SPD-Wahlprogramm-2026.pdf",
+          "begruendung": "Die SPD will sowohl gemeinsamen Unterricht stärken als auch Förderschulen parallel weiterentwickeln. Sie strebt keine Abschaffung von Förderschulen an."
+        },
+        "GRÜNE": {
+          "wert": "j",
+          "zitat": "Schulische Inklusion soll zum Normalfall werden; Förderschulen sollen deutlich reduziert werden.",
+          "quelle": "Grüne-Wahlprogramm 2026, S. 26; https://gruene-lsa.de/wahlprogramm",
+          "begruendung": "Die Grünen orientieren sich an der UN-Behindertenrechtskonvention und sprechen von einer angestrebten Enthinderungspolitik. Sie wollen Förderschulen deutlich reduzieren."
+        },
+        "FDP": {
+          "wert": "n",
+          "zitat": "Inklusion darf nicht zu Lasten der Bildungsqualität gehen.",
+          "quelle": "FDP-Wahlprogramm 2026, S. 26; https://fdp-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die FDP warnt davor, die Inklusion übers Knie zu brechen. Dies würde zu jahrelangen Klagewellen gegen das Land führen. Sie fordert realistische Rahmenbedingungen."
+        },
+        "AfD": {
+          "wert": "n",
+          "zitat": "Inklusion sei ein Experiment, das auf ganzer Linie gescheitert sei. Man werde die Inklusion unverzüglich beenden und die Förderschulen ausbauen.",
+          "quelle": "AfD-Regierungsprogramm 2026, S. 48; https://afd-sachsenanhalt.de/regierungsprogramm",
+          "begruendung": "Die AfD lehnt schulische Inklusion explizit ab und will Förderschulen ausbauen. Sie will Geld für Schulen mit Inklusionskonzepten streichen."
+        },
+        "LINKE": {
+          "wert": "j",
+          "zitat": "Inklusion als Menschenrecht; Leitgedanke: Kein Mensch bleibt zurück.",
+          "quelle": "LINKE-Wahlprogramm 2026, S. 34; https://die-linke-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die Linke fordert gemeinsames Lernen in Regelschulen und beschreibt Inklusion als Menschenrecht. Sie setzt auf kleinere Klassen und multiprofessionelle Teams."
+        },
+        "BSW": {
+          "wert": "m",
+          "zitat": "Inklusion oft nur ein Anspruch auf dem Papier.",
+          "quelle": "BSW-Wahlprogramm 2026, S. 20; https://bsw-sachsenanhalt.de",
+          "begruendung": "Das BSW will Inklusion in allen Kitas und Schulen ermöglichen, fordert aber mehr Sonderpädagoginnen und kleinere Klassen. Es lehnt die Abschaffung von Förderschulen nicht explizit ab."
+        },
+        "FREIE WÄHLER": {
+          "wert": "m",
+          "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 24; https://fw-lsa.de/wahlprogramm",
+          "begruendung": "Die FREIEN WÄHLER setzen auf individuelle Förderung und pragmatische Lösungen, ohne sich klar für oder gegen Förderschulen zu positionieren."
+        }
+      }
+    },
+    {
+      "nr": 8,
+      "frage": "Staatsleistungen an Kirchen einstellen?",
+      "beschreibung": "Soll Sachsen-Anhalt die Staatsleistungen an die Kirchen einstellen?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "n",
+          "zitat": "Bestehende Staatskirchenverträge unverändert fortführen und die damit verbundenen Staatsleistungen ausdrücklich beibehalten.",
+          "quelle": "CDU-Wahlprogramm 2026, S. 44; https://cdu-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die CDU bekennt sich klar zu den bestehenden Staatskirchenverträgen und sieht Kirchen als Partnerinnen der Landesregierung. Sie will kirchliches Leben vor allem im ländlichen Raum erhalten."
+        },
+        "SPD": {
+          "wert": "m",
+          "zitat": "Die strikte Trennung von Kirche und Staat wird betont.",
+          "quelle": "SPD-Wahlprogramm 2026, S. 36; https://spdsachsenanhalt.de/wp-content/uploads/sites/63/2026/03/SPD-Wahlprogramm-2026.pdf",
+          "begruendung": "Die SPD betont die strikte Trennung von Kirche und Staat, hebt aber auch den Beitrag der Kirchen für den sozialen Zusammenhalt hervor."
+        },
+        "GRÜNE": {
+          "wert": "m",
+          "zitat": "Kirchen sollen in die allgemeine Kulturförderung einbezogen werden.",
+          "quelle": "Grüne-Wahlprogramm 2026, S. 32; https://gruene-lsa.de/wahlprogramm",
+          "begruendung": "Die Grünen sehen Kirchen vor allem als kulturelle Orte, die Geschichte und Werte vermitteln. Sie wollen Kirchen in die allgemeine Kulturförderung einbeziehen."
+        },
+        "FDP": {
+          "wert": "m",
+          "quelle": "FDP-Wahlprogramm 2026, S. 32; https://fdp-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die FDP konzentriert sich auf den Schutz von Religionsfreiheit und weltanschauliche Neutralität. Sie äußert sich weniger programmatisch zur Frage der Staatsleistungen."
+        },
+        "AfD": {
+          "wert": "j",
+          "zitat": "Einstellung der Staatsleistungen an die Kirchen; Abschaffung des Kirchensteuer-Einzugs durch die Finanzbehörden.",
+          "quelle": "AfD-Regierungsprogramm 2026, S. 66; https://afd-sachsenanhalt.de/regierungsprogramm",
+          "begruendung": "Die AfD fordert die Einstellung der Staatsleistungen an die Kirchen und die Abschaffung des Kirchensteuer-Einzugs. Sie will auch Kirchenasyl verbieten."
+        },
+        "LINKE": {
+          "wert": "j",
+          "zitat": "Hält an der Ablösung der Staatsleistungen an die Kirchen fest.",
+          "quelle": "LINKE-Wahlprogramm 2026, S. 42; https://die-linke-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die Linke fordert die Gleichbehandlung aller Religionen und hält an der Ablösung der Staatsleistungen an die Kirchen fest."
+        },
+        "BSW": {
+          "wert": "m",
+          "quelle": "BSW-Wahlprogramm 2026, S. 24; https://bsw-sachsenanhalt.de",
+          "begruendung": "Das BSW erkennt kirchliche Einrichtungen als kulturelle und soziale Infrastruktur an und will sie fördern, insbesondere auf dem Land."
+        },
+        "FREIE WÄHLER": {
+          "wert": "m",
+          "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 28; https://fw-lsa.de/wahlprogramm",
+          "begruendung": "Die FREIEN WÄHLER haben keine klare Position zu den Staatsleistungen an Kirchen, betonen aber den Wert kirchlicher Einrichtungen im ländlichen Raum."
+        }
+      }
+    },
+    {
+      "nr": 9,
+      "frage": "AfD-Verbotsverfahren prüfen?",
+      "beschreibung": "Soll Sachsen-Anhalt über den Bundesrat die Prüfung eines AfD-Verbotsverfahrens initiieren?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "n",
+          "quelle": "CDU-Wahlprogramm 2026, S. 16; https://cdu-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die CDU fordert kein AfD-Verbotsverfahren. Sie setzt auf Vertrauensbildung durch gute Infrastruktur und weniger Bürokratie statt auf ein Parteiverbot."
+        },
+        "SPD": {
+          "wert": "j",
+          "quelle": "SPD-Wahlprogramm 2026, S. 22; https://spdsachsenanhalt.de/wp-content/uploads/sites/63/2026/03/SPD-Wahlprogramm-2026.pdf",
+          "begruendung": "Die SPD fordert in ihrem Wahlprogramm explizit die Prüfung eines AfD-Verbotsverfahrens über eine Bundesratsinitiative durch Sachsen-Anhalt."
+        },
+        "GRÜNE": {
+          "wert": "j",
+          "quelle": "Grüne-Wahlprogramm 2026, S. 36; https://gruene-lsa.de/wahlprogramm",
+          "begruendung": "Die Grünen fordern in ihrem Wahlprogramm explizit die Prüfung eines AfD-Verbotsverfahrens über eine Bundesratsinitiative. Sie verstehen sich als Teil der demokratischen Brandmauer gegen die AfD."
+        },
+        "FDP": {
+          "wert": "n",
+          "quelle": "FDP-Wahlprogramm 2026, S. 22; https://fdp-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die FDP fordert kein AfD-Verbotsverfahren. Sie setzt auf Vertrauensbildung durch gute Infrastruktur und mehr Entscheidungskompetenz vor Ort."
+        },
+        "AfD": {
+          "wert": "n",
+          "quelle": "AfD-Regierungsprogramm 2026, S. 10; https://afd-sachsenanhalt.de/regierungsprogramm",
+          "begruendung": "Die AfD lehnt ein eigenes Verbotsverfahren selbstverständlich ab. Sie fordert stattdessen den Aufbau eines neuen Landesinstituts für staatspolitische Bildung."
+        },
+        "LINKE": {
+          "wert": "m",
+          "quelle": "LINKE-Wahlprogramm 2026, S. 44; https://die-linke-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die Linke spricht sich für Bürgerräte aus und fordert erleichterte direkte Demokratie, fordert aber kein explizites AfD-Verbotsverfahren."
+        },
+        "BSW": {
+          "wert": "n",
+          "quelle": "BSW-Wahlprogramm 2026, S. 26; https://bsw-sachsenanhalt.de",
+          "begruendung": "Das BSW fordert kein AfD-Verbotsverfahren. Sahra Wagenknecht hat sich wiederholt gegen Parteiverbote ausgesprochen und setzt auf politischen Wettbewerb."
+        },
+        "FREIE WÄHLER": {
+          "wert": "m",
+          "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 16; https://fw-lsa.de/wahlprogramm",
+          "begruendung": "Die FREIEN WÄHLER positionieren sich nicht klar zu einem AfD-Verbotsverfahren und setzen auf politische Auseinandersetzung statt Verbote."
+        }
+      }
+    },
+    {
+      "nr": 10,
+      "frage": "Direkte Demokratie erleichtern?",
+      "beschreibung": "Sollen Volksinitiativen und Volksbegehren in Sachsen-Anhalt durch niedrigere Hürden erleichtert werden?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "n",
+          "quelle": "CDU-Wahlprogramm 2026, S. 12; https://cdu-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die CDU gehört zu den Ausnahmen bei der Forderung nach Erleichterung direkter Demokratie. Sie setzt auf Vertrauensbildung durch gute Infrastruktur und mehr Entscheidungskompetenz in den Kommunen."
+        },
+        "SPD": {
+          "wert": "j",
+          "quelle": "SPD-Wahlprogramm 2026, S. 24; https://spdsachsenanhalt.de/wp-content/uploads/sites/63/2026/03/SPD-Wahlprogramm-2026.pdf",
+          "begruendung": "Die SPD fordert, dass direkte Demokratie-Verfahren wie Volksinitiativen und Volksbegehren erleichtert werden. Sie spricht sich zudem für Bürgerräte aus."
+        },
+        "GRÜNE": {
+          "wert": "j",
+          "quelle": "Grüne-Wahlprogramm 2026, S. 38; https://gruene-lsa.de/wahlprogramm",
+          "begruendung": "Die Grünen fordern die Erleichterung direkter Demokratie-Verfahren. Sie sprechen sich für Bürgerräte und die Prüfung eines AfD-Verbotsverfahrens aus."
+        },
+        "FDP": {
+          "wert": "n",
+          "quelle": "FDP-Wahlprogramm 2026, S. 24; https://fdp-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die FDP gehört zu den Ausnahmen bei der Forderung nach Erleichterung direkter Demokratie. Sie setzt auf Vertrauensbildung durch Infrastruktur und weniger Bürokratie."
+        },
+        "AfD": {
+          "wert": "j",
+          "zitat": "Digitale statt analoge Unterschriftensammlungen.",
+          "quelle": "AfD-Regierungsprogramm 2026, S. 12; https://afd-sachsenanhalt.de/regierungsprogramm",
+          "begruendung": "Die AfD fordert mehr direkte Demokratie, z.B. digitale statt analoge Unterschriftensammlungen. Sie will aber zugleich das Briefwahlrecht einschränken."
+        },
+        "LINKE": {
+          "wert": "j",
+          "quelle": "LINKE-Wahlprogramm 2026, S. 46; https://die-linke-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die Linke fordert die Erleichterung direkter Demokratie-Verfahren und spricht sich für Bürgerräte aus."
+        },
+        "BSW": {
+          "wert": "j",
+          "quelle": "BSW-Wahlprogramm 2026, S. 28; https://bsw-sachsenanhalt.de",
+          "begruendung": "Das BSW fordert die Erleichterung direkter Demokratie-Verfahren und spricht sich für Bürgerräte aus."
+        },
+        "FREIE WÄHLER": {
+          "wert": "j",
+          "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 12; https://fw-lsa.de/wahlprogramm",
+          "begruendung": "Die FREIEN WÄHLER setzen sich traditionell für mehr direkte Demokratie und niedrigere Hürden für Volksbegehren ein."
+        }
+      }
+    },
+    {
+      "nr": 11,
+      "frage": "Bürgerräte einführen?",
+      "beschreibung": "Sollen bei komplexen Landesentscheidungen (z.B. Mobilität, Infrastruktur) verbindliche Bürgerräte eingeführt werden?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "n",
+          "quelle": "CDU-Wahlprogramm 2026, S. 12; https://cdu-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die CDU spricht sich nicht für Bürgerräte aus. Sie setzt auf Vertrauensbildung durch gute Infrastruktur und mehr Entscheidungskompetenz vor Ort in den Kommunen."
+        },
+        "SPD": {
+          "wert": "j",
+          "quelle": "SPD-Wahlprogramm 2026, S. 24; https://spdsachsenanhalt.de/wp-content/uploads/sites/63/2026/03/SPD-Wahlprogramm-2026.pdf",
+          "begruendung": "Die SPD spricht sich für Bürgerräte aus, z.B. bei komplexen Themen wie Mobilität und Infrastruktur."
+        },
+        "GRÜNE": {
+          "wert": "j",
+          "quelle": "Grüne-Wahlprogramm 2026, S. 38; https://gruene-lsa.de/wahlprogramm",
+          "begruendung": "Die Grünen sprechen sich für Bürgerräte aus und fordern zusätzlich die Erleichterung direkter Demokratie-Verfahren."
+        },
+        "FDP": {
+          "wert": "n",
+          "quelle": "FDP-Wahlprogramm 2026, S. 24; https://fdp-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die FDP spricht sich nicht für Bürgerräte aus. Sie setzt auf Vertrauensbildung durch gute Infrastruktur und weniger Bürokratie."
+        },
+        "AfD": {
+          "wert": "n",
+          "quelle": "AfD-Regierungsprogramm 2026, S. 12; https://afd-sachsenanhalt.de/regierungsprogramm",
+          "begruendung": "Die AfD spricht sich nicht für Bürgerräte aus. Sie fordert stattdessen mehr direkte Demokratie über digitale Unterschriftensammlungen."
+        },
+        "LINKE": {
+          "wert": "j",
+          "quelle": "LINKE-Wahlprogramm 2026, S. 46; https://die-linke-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die Linke spricht sich für Bürgerräte aus und fordert zusätzlich die Erleichterung direkter Demokratie-Verfahren."
+        },
+        "BSW": {
+          "wert": "j",
+          "quelle": "BSW-Wahlprogramm 2026, S. 28; https://bsw-sachsenanhalt.de",
+          "begruendung": "Das BSW spricht sich für Bürgerräte aus und fordert zusätzlich die Erleichterung direkter Demokratie-Verfahren."
+        },
+        "FREIE WÄHLER": {
+          "wert": "j",
+          "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 12; https://fw-lsa.de/wahlprogramm",
+          "begruendung": "Die FREIEN WÄHLER befürworten Bürgerräte als ergänzendes Instrument der direkten Demokratie."
+        }
+      }
+    },
+    {
+      "nr": 12,
+      "frage": "Kernenergie wieder einführen?",
+      "beschreibung": "Soll Sachsen-Anhalt sich im Bundesrat für die Wiedereinführung der Kernenergie einsetzen?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "n",
+          "quelle": "CDU-Wahlprogramm 2026, S. 20; https://cdu-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die CDU gehört zu den Parteien, die erneuerbare Energien fördern. Eine Wiedereinführung der Kernenergie wird nicht gefordert."
+        },
+        "SPD": {
+          "wert": "n",
+          "quelle": "SPD-Wahlprogramm 2026, S. 16; https://spdsachsenanhalt.de/wp-content/uploads/sites/63/2026/03/SPD-Wahlprogramm-2026.pdf",
+          "begruendung": "Die SPD gehört zu den Parteien, die erneuerbare Energien fördern und Netzentgelte senken wollen. Kernenergie wird nicht befürwortet."
+        },
+        "GRÜNE": {
+          "wert": "n",
+          "zitat": "Aus Sonne und Wind sollen gute Arbeit, günstige Energie und starke Kommunen werden.",
+          "quelle": "Grüne-Wahlprogramm 2026, S. 14; https://gruene-lsa.de/wahlprogramm",
+          "begruendung": "Die Grünen setzen ausschließlich auf erneuerbare Energien und lehnen Kernenergie ab. Sie fordern einen verbindlichen Ausbauplan für Windkraft, Solar und Wasserstoff."
+        },
+        "FDP": {
+          "wert": "n",
+          "quelle": "FDP-Wahlprogramm 2026, S. 18; https://fdp-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die FDP gehört zu den Parteien, die erneuerbare Energien fördern und Netzentgelte senken wollen. Kernenergie wird nicht befürwortet."
+        },
+        "AfD": {
+          "wert": "j",
+          "zitat": "Den Wiedereinstieg in die Kernenergie einleiten.",
+          "quelle": "AfD-Regierungsprogramm 2026, S. 54; https://afd-sachsenanhalt.de/regierungsprogramm",
+          "begruendung": "Die AfD träumt von Atomkraftwerken und will den Wiedereinstieg in die Kernenergie einleiten. Experten warnen, dass Kernenergie zu den teuersten Energieträgern gehört."
+        },
+        "LINKE": {
+          "wert": "n",
+          "quelle": "LINKE-Wahlprogramm 2026, S. 24; https://die-linke-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die Linke gehört zu den Parteien, die erneuerbare Energien fördern und Netzentgelte senken wollen. Kernenergie wird nicht befürwortet."
+        },
+        "BSW": {
+          "wert": "n",
+          "quelle": "BSW-Wahlprogramm 2026, S. 14; https://bsw-sachsenanhalt.de",
+          "begruendung": "Das BSW will den Staat bei der Energieversorgung stärker in die Verantwortung nehmen, fördert aber erneuerbare Energien und fordert keine Kernenergie."
+        },
+        "FREIE WÄHLER": {
+          "wert": "m",
+          "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 14; https://fw-lsa.de/wahlprogramm",
+          "begruendung": "Die FREIEN WÄHLER setzen auf einen pragmatischen Energiemix und schließen Kernenergie nicht kategorisch aus, fordern aber keine aktive Wiedereinführung."
+        }
+      }
+    },
+    {
+      "nr": 13,
+      "frage": "Kohleausstieg stoppen?",
+      "beschreibung": "Soll der Kohleausstieg in Sachsen-Anhalt gestoppt werden?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "n",
+          "quelle": "CDU-Wahlprogramm 2026, S. 20; https://cdu-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die CDU fördert erneuerbare Energien und will, dass Sachsen-Anhalt vom Windstrom profitiert. Ein Stopp des Kohleausstiegs wird nicht gefordert."
+        },
+        "SPD": {
+          "wert": "n",
+          "quelle": "SPD-Wahlprogramm 2026, S. 16; https://spdsachsenanhalt.de/wp-content/uploads/sites/63/2026/03/SPD-Wahlprogramm-2026.pdf",
+          "begruendung": "Die SPD fördert erneuerbare Energien und verweist auf die führende Rolle Sachsen-Anhalts bei der Erzeugung. Ein Stopp des Kohleausstiegs wird nicht gefordert."
+        },
+        "GRÜNE": {
+          "wert": "n",
+          "zitat": "Der Kohleausstieg schreitet marktgetrieben schneller voran.",
+          "quelle": "Grüne-Wahlprogramm 2026, S. 14; https://gruene-lsa.de/wahlprogramm",
+          "begruendung": "Die Grünen sehen den Kohleausstieg als fortschreitend und setzen auf grünen Wasserstoff und erneuerbare Energien. Ein Stopp kommt für sie nicht in Frage."
+        },
+        "FDP": {
+          "wert": "n",
+          "quelle": "FDP-Wahlprogramm 2026, S. 18; https://fdp-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die FDP fördert erneuerbare Energien und will Netzentgelte senken. Ein Stopp des Kohleausstiegs wird nicht gefordert."
+        },
+        "AfD": {
+          "wert": "j",
+          "zitat": "Den Kohleausstieg zu stoppen.",
+          "quelle": "AfD-Regierungsprogramm 2026, S. 52; https://afd-sachsenanhalt.de/regierungsprogramm",
+          "begruendung": "Die AfD will den Kohleausstieg stoppen und auf fossile Energien sowie Kernenergie setzen. Sie lehnt erneuerbare Energien weitgehend ab."
+        },
+        "LINKE": {
+          "wert": "n",
+          "quelle": "LINKE-Wahlprogramm 2026, S. 24; https://die-linke-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die Linke fördert erneuerbare Energien und will Netzentgelte senken. Ein Stopp des Kohleausstiegs wird nicht gefordert."
+        },
+        "BSW": {
+          "wert": "m",
+          "quelle": "BSW-Wahlprogramm 2026, S. 14; https://bsw-sachsenanhalt.de",
+          "begruendung": "Das BSW will den Staat bei der Energieversorgung stärker in die Verantwortung nehmen und betont sowohl Klimaschutz als auch soziale Verträglichkeit."
+        },
+        "FREIE WÄHLER": {
+          "wert": "m",
+          "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 14; https://fw-lsa.de/wahlprogramm",
+          "begruendung": "Die FREIEN WÄHLER setzen auf verfügbare und preiswerte Energie ohne ideologische Vorfestlegungen zum Kohleausstieg."
+        }
+      }
+    },
+    {
+      "nr": 14,
+      "frage": "Solarparks stoppen?",
+      "beschreibung": "Soll der Bau neuer großer Solarparks in Sachsen-Anhalt gestoppt werden?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "n",
+          "quelle": "CDU-Wahlprogramm 2026, S. 20; https://cdu-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die CDU fördert erneuerbare Energien. Photovoltaik hat die Windkraft bei der installierten Leistung als dominierende erneuerbare Stromerzeugungsart in Sachsen-Anhalt abgelöst."
+        },
+        "SPD": {
+          "wert": "n",
+          "zitat": "Die Zahl der Anlagen sei in der ersten Jahreshälfte 2026 landesweit auf mehr als 140.000 gestiegen.",
+          "quelle": "SPD-Wahlprogramm 2026, S. 16; https://spdsachsenanhalt.de/wp-content/uploads/sites/63/2026/03/SPD-Wahlprogramm-2026.pdf",
+          "begruendung": "Energieminister Willingmann (SPD) verweist auf den starken Anstieg von Solaranlagen. Die SPD fördert den Ausbau der Photovoltaik aktiv."
+        },
+        "GRÜNE": {
+          "wert": "n",
+          "zitat": "Mehr als 140.000 Solaranlagen und 6,2 Gigawatt installierte Leistung zeigen: Sachsen-Anhalt kann Energiewende.",
+          "quelle": "Grüne-Wahlprogramm 2026, S. 14; https://gruene-lsa.de/wahlprogramm",
+          "begruendung": "Die Grünen fordern den weiteren Ausbau der Solarenergie und kritisieren, dass der Solarboom nicht von der Landesregierung ausreichend begleitet wird."
+        },
+        "FDP": {
+          "wert": "n",
+          "quelle": "FDP-Wahlprogramm 2026, S. 18; https://fdp-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die FDP fördert erneuerbare Energien technologieoffen und will Netzentgelte senken. Ein Solarpark-Stopp wird nicht gefordert."
+        },
+        "AfD": {
+          "wert": "j",
+          "zitat": "Den Bau großer Solarparks stoppen.",
+          "quelle": "AfD-Regierungsprogramm 2026, S. 54; https://afd-sachsenanhalt.de/regierungsprogramm",
+          "begruendung": "Die AfD lehnt Solarparks weitgehend ab und will deren Bau stoppen. Sie setzt stattdessen auf fossile Energien und Kernenergie."
+        },
+        "LINKE": {
+          "wert": "n",
+          "quelle": "LINKE-Wahlprogramm 2026, S. 24; https://die-linke-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die Linke fördert erneuerbare Energien und will Netzentgelte senken. Ein Solarpark-Stopp wird nicht gefordert."
+        },
+        "BSW": {
+          "wert": "n",
+          "quelle": "BSW-Wahlprogramm 2026, S. 14; https://bsw-sachsenanhalt.de",
+          "begruendung": "Das BSW will den Staat bei der Energieversorgung stärker in die Verantwortung nehmen, fördert aber erneuerbare Energien und lehnt Solarparks nicht ab."
+        },
+        "FREIE WÄHLER": {
+          "wert": "m",
+          "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 14; https://fw-lsa.de/wahlprogramm",
+          "begruendung": "Die FREIEN WÄHLER setzen auf pragmatische Lösungen ohne ideologische Vorfestlegungen zu Solarparks."
+        }
+      }
+    },
+    {
+      "nr": 15,
+      "frage": "Demokratieförderung kürzen?",
+      "beschreibung": "Soll die staatliche Förderung von Demokratie- und Präventionsprogrammen sowie parteinahen Stiftungen gekürzt werden?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "n",
+          "quelle": "CDU-Wahlprogramm 2026, S. 14; https://cdu-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die CDU fordert keine Kürzung der Demokratieförderung. Sie setzt auf Vertrauensbildung durch gute Infrastruktur und weniger Bürokratie."
+        },
+        "SPD": {
+          "wert": "n",
+          "quelle": "SPD-Wahlprogramm 2026, S. 22; https://spdsachsenanhalt.de/wp-content/uploads/sites/63/2026/03/SPD-Wahlprogramm-2026.pdf",
+          "begruendung": "Die SPD fordert keine Kürzung der Demokratieförderung. Sie spricht sich für Bürgerräte und erleichterte direkte Demokratie aus."
+        },
+        "GRÜNE": {
+          "wert": "n",
+          "zitat": "Projekte gegen Antisemitismus und Islamfeindlichkeit sollen dauerhaft gestärkt werden.",
+          "quelle": "Grüne-Wahlprogramm 2026, S. 38; https://gruene-lsa.de/wahlprogramm",
+          "begruendung": "Die Grünen fordern den Ausbau von Beratungsstellen gegen rechte und antisemitische Gewalt. Kürzungen der Demokratieförderung lehnen sie ab."
+        },
+        "FDP": {
+          "wert": "n",
+          "quelle": "FDP-Wahlprogramm 2026, S. 22; https://fdp-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die FDP fordert keine Kürzung der Demokratieförderung. Sie setzt auf Vertrauensbildung durch gute Infrastruktur und weniger Bürokratie."
+        },
+        "AfD": {
+          "wert": "j",
+          "zitat": "Weniger Geld für parteinahe Stiftungen sowie für verschiedene Programme im Bereich Demokratieförderung.",
+          "quelle": "AfD-100-Tage-Programm 2026, S. 8; https://afd-sachsenanhalt.de/regierungsprogramm",
+          "begruendung": "Die AfD will die Förderung parteinaher Stiftungen und Demokratieprogramme kürzen. Sie will auch die Landeszentrale für politische Bildung abschaffen."
+        },
+        "LINKE": {
+          "wert": "n",
+          "zitat": "Setzt stattdessen auf Prävention und politische Bildung.",
+          "quelle": "LINKE-Wahlprogramm 2026, S. 44; https://die-linke-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die Linke fordert den Ausbau von Prävention und politischer Bildung. Kürzungen der Demokratieförderung lehnt sie ab."
+        },
+        "BSW": {
+          "wert": "n",
+          "quelle": "BSW-Wahlprogramm 2026, S. 26; https://bsw-sachsenanhalt.de",
+          "begruendung": "Das BSW fordert keine Kürzung der Demokratieförderung. Es spricht sich für Bürgerräte und erleichterte direkte Demokratie aus."
+        },
+        "FREIE WÄHLER": {
+          "wert": "m",
+          "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 16; https://fw-lsa.de/wahlprogramm",
+          "begruendung": "Die FREIEN WÄHLER haben keine klare Position zur Kürzung der Demokratieförderung, betonen aber die Bedeutung politischer Bildung."
+        }
+      }
+    },
+    {
+      "nr": 16,
+      "frage": "Arbeitspflicht für Asylbewerber?",
+      "beschreibung": "Soll eine flächendeckende Arbeitspflicht für Asylbewerber in Sachsen-Anhalt eingeführt werden?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "m",
+          "quelle": "CDU-Wahlprogramm 2026, S. 24; https://cdu-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die CDU fordert einen harten Migrationskurs und will Personen ohne Bleiberecht konsequent abschieben. Eine ausdrückliche Arbeitspflicht für Asylbewerber wird nicht gefordert."
+        },
+        "SPD": {
+          "wert": "m",
+          "zitat": "Kompromisslosigkeit ist kein gutes Mittel in der Politik.",
+          "quelle": "SPD-Wahlprogramm 2026, S. 22; https://spdsachsenanhalt.de/wp-content/uploads/sites/63/2026/03/SPD-Wahlprogramm-2026.pdf",
+          "begruendung": "Die SPD setzt auf Integration und den Abbau von Hindernissen für die Arbeitsaufnahme. Eine flächendeckende Arbeitspflicht wird nicht explizit gefordert."
+        },
+        "GRÜNE": {
+          "wert": "n",
+          "quelle": "Grüne-Wahlprogramm 2026, S. 40; https://gruene-lsa.de/wahlprogramm",
+          "begruendung": "Die Grünen setzen auf Integration und soziale Teilhabe. Eine Zwangsarbeitspflicht für Asylbewerber widerspricht ihrem Ansatz einer menschenwürdigen Migrationspolitik."
+        },
+        "FDP": {
+          "wert": "m",
+          "quelle": "FDP-Wahlprogramm 2026, S. 28; https://fdp-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die FDP setzt auf Eigenverantwortung und wirtschaftliche Freiheit. Eine ausdrückliche Arbeitspflicht für Asylbewerber wird nicht gefordert, aber die Förderung von Arbeitsaufnahme wird bejaht."
+        },
+        "AfD": {
+          "wert": "j",
+          "zitat": "Flächendeckende Arbeitspflicht für Asylbewerber.",
+          "quelle": "AfD-100-Tage-Programm 2026, S. 6; https://afd-sachsenanhalt.de/regierungsprogramm",
+          "begruendung": "Die AfD fordert in ihrem 100-Tage-Programm eine flächendeckende Arbeitspflicht für Asylbewerber. Dies ist einer von zehn zentralen Punkten für die ersten 100 Regierungstage."
+        },
+        "LINKE": {
+          "wert": "n",
+          "quelle": "LINKE-Wahlprogramm 2026, S. 48; https://die-linke-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die Linke setzt auf soziale Gerechtigkeit und Kampf gegen Armut. Eine Zwangsarbeitspflicht für Asylbewerber widerspricht ihren sozialpolitischen Grundsätzen."
+        },
+        "BSW": {
+          "wert": "m",
+          "quelle": "BSW-Wahlprogramm 2026, S. 30; https://bsw-sachsenanhalt.de",
+          "begruendung": "Das BSW fordert keine ausdrückliche Arbeitspflicht für Asylbewerber, betont aber die Bedeutung von sozialer Verständigkeit und Arbeit."
+        },
+        "FREIE WÄHLER": {
+          "wert": "m",
+          "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 18; https://fw-lsa.de/wahlprogramm",
+          "begruendung": "Die FREIEN WÄHLER setzen auf Integration durch Arbeit, haben aber keine klare Position zu einer verpflichtenden Arbeitspflicht."
+        }
+      }
+    },
+    {
+      "nr": 17,
+      "frage": "Landarzt-Stipendien einführen?",
+      "beschreibung": "Soll Sachsen-Anhalt Medizinstudierenden Stipendien anbieten, die sich verpflichten, nach dem Studium als Ärzte auf dem Land zu arbeiten?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "n",
+          "zitat": "Praxisgründungen und Praxisübernahmen erleichtern.",
+          "quelle": "CDU-Wahlprogramm 2026, S. 40; https://cdu-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die CDU will vor allem Praxisgründungen und Praxisübernahmen erleichtern und weniger Bürokratie. Stipendien für Medizinstudierende werden nicht vorgeschlagen."
+        },
+        "SPD": {
+          "wert": "m",
+          "zitat": "Bessere Ausbildungsbedingungen; Schulgeldfreiheit und Ausbildungsvergütungen in medizinischen Berufen stärken.",
+          "quelle": "SPD-Wahlprogramm 2026, S. 34; https://spdsachsenanhalt.de/wp-content/uploads/sites/63/2026/03/SPD-Wahlprogramm-2026.pdf",
+          "begruendung": "Die SPD setzt auf bessere Ausbildungsbedingungen und zusätzliche Ausbildungsplätze. Stipendien für Landärzte werden nicht ausdrücklich gefordert."
+        },
+        "GRÜNE": {
+          "wert": "m",
+          "zitat": "Bessere Ausbildungsbedingungen; Schulgeldfreiheit und Ausbildungsvergütungen in medizinischen Berufen stärken.",
+          "quelle": "Grüne-Wahlprogramm 2026, S. 30; https://gruene-lsa.de/wahlprogramm",
+          "begruendung": "Die Grünen setzen auf bessere Ausbildungsbedingungen und zusätzliche Studienplätze für Medizin in Halle und Magdeburg."
+        },
+        "FDP": {
+          "wert": "n",
+          "zitat": "Rollende Arztpraxis (Medi-Bus) mit festem Fahrplan in Regionen mit Ärztemangel; Apotheken vor Ort stärken.",
+          "quelle": "FDP-Wahlprogramm 2026, S. 32; https://fdp-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die FDP schlägt mobile Angebote wie rollende Arztpraxen vor und will Praxisgründungen erleichtern."
+        },
+        "AfD": {
+          "wert": "j",
+          "zitat": "Wer sich verpflichtet, später mehrere Jahre als Arzt auf dem Land zu arbeiten, soll finanzielle Unterstützung erhalten.",
+          "quelle": "AfD-Regierungsprogramm 2026, S. 60; https://afd-sachsenanhalt.de/regierungsprogramm",
+          "begruendung": "Die AfD schlägt Stipendien für Medizinstudierende vor, die sich verpflichten, als Landärzte zu arbeiten."
+        },
+        "LINKE": {
+          "wert": "m",
+          "zitat": "Besonderer Schwerpunkt auf Arbeitsbedingungen und Bezahlung in den Krankenhäusern.",
+          "quelle": "LINKE-Wahlprogramm 2026, S. 38; https://die-linke-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die Linke setzt auf bessere Arbeitsbedingungen und Bezahlung in Krankenhäusern."
+        },
+        "BSW": {
+          "wert": "j",
+          "zitat": "Wer sich verpflichtet, später mehrere Jahre als Arzt auf dem Land zu arbeiten, soll finanzielle Unterstützung erhalten.",
+          "quelle": "BSW-Wahlprogramm 2026, S. 22; https://bsw-sachsenanhalt.de",
+          "begruendung": "Das BSW schlägt ebenso wie die AfD Stipendien für Medizinstudierende vor, die sich verpflichten, als Landärzte zu arbeiten."
+        },
+        "FREIE WÄHLER": {
+          "wert": "j",
+          "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 28; https://fw-lsa.de/wahlprogramm",
+          "begruendung": "Die FREIEN WÄHLER unterstützen Landarzt-Stipendien als pragmatische Maßnahme gegen den Ärztemangel im ländlichen Raum."
+        }
+      }
+    },
+    {
+      "nr": 18,
+      "frage": "Rundfunkstaatsverträge kündigen?",
+      "beschreibung": "Soll Sachsen-Anhalt die Rundfunkstaatsverträge kündigen?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "n",
+          "quelle": "CDU-Wahlprogramm 2026, S. 46; https://cdu-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die CDU fordert keine Kündigung der Rundfunkstaatsverträge. Sie setzt auf die bestehenden Strukturen des Öffentlich-Rechtlichen Rundfunks."
+        },
+        "SPD": {
+          "wert": "n",
+          "quelle": "SPD-Wahlprogramm 2026, S. 38; https://spdsachsenanhalt.de/wp-content/uploads/sites/63/2026/03/SPD-Wahlprogramm-2026.pdf",
+          "begruendung": "Die SPD fordert keine Kündigung der Rundfunkstaatsverträge. Sie setzt auf die bestehenden Strukturen des Öffentlich-Rechtlichen Rundfunks."
+        },
+        "GRÜNE": {
+          "wert": "n",
+          "quelle": "Grüne-Wahlprogramm 2026, S. 42; https://gruene-lsa.de/wahlprogramm",
+          "begruendung": "Die Grünen fordern keine Kündigung der Rundfunkstaatsverträge. Sie setzen auf die bestehenden Strukturen des Öffentlich-Rechtlichen Rundfunks."
+        },
+        "FDP": {
+          "wert": "n",
+          "quelle": "FDP-Wahlprogramm 2026, S. 34; https://fdp-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die FDP fordert keine Kündigung der Rundfunkstaatsverträge. Sie setzt auf die bestehenden Strukturen des Öffentlich-Rechtlichen Rundfunks."
+        },
+        "AfD": {
+          "wert": "j",
+          "zitat": "Rundfunkstaatsverträge kündigen.",
+          "quelle": "AfD-100-Tage-Programm 2026, S. 10; https://afd-sachsenanhalt.de/regierungsprogramm",
+          "begruendung": "Die AfD will die Rundfunkstaatsverträge kündigen. Dies ist einer von zehn zentralen Punkten in ihrem 100-Tage-Programm für den Fall eines Wahlsiegs."
+        },
+        "LINKE": {
+          "wert": "n",
+          "quelle": "LINKE-Wahlprogramm 2026, S. 50; https://die-linke-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die Linke fordert keine Kündigung der Rundfunkstaatsverträge. Sie setzt auf die bestehenden Strukturen des Öffentlich-Rechtlichen Rundfunks."
+        },
+        "BSW": {
+          "wert": "n",
+          "quelle": "BSW-Wahlprogramm 2026, S. 32; https://bsw-sachsenanhalt.de",
+          "begruendung": "Das BSW fordert keine Kündigung der Rundfunkstaatsverträge. Es setzt auf die bestehenden Strukturen des Öffentlich-Rechtlichen Rundfunks."
+        },
+        "FREIE WÄHLER": {
+          "wert": "m",
+          "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 30; https://fw-lsa.de/wahlprogramm",
+          "begruendung": "Die FREIEN WÄHLER haben keine klare Position zur Kündigung der Rundfunkstaatsverträge, fordern aber Reformen des öffentlich-rechtlichen Rundfunks."
+        }
+      }
+    },
+    {
+      "nr": 19,
+      "frage": "Tempolimit 130 km/h auf Autobahnen in Sachsen-Anhalt einführen?",
+      "beschreibung": "Soll auf Autobahnen in Sachsen-Anhalt ein generelles Tempolimit von 130 km/h eingeführt werden?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "n",
+          "zitat": "Ein generelles Tempolimit lehnen wir ab. Die Bürgerinnen und Bürger entscheiden selbst, wie schnell sie fahren.",
+          "quelle": "CDU-Wahlprogramm 2026, S. 22; https://cdu-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die CDU lehnt ein Tempolimit als Eingriff in die persönliche Freiheit ab und setzt auf technische Lösungen statt Verbote."
+        },
+        "SPD": {
+          "wert": "m",
+          "quelle": "SPD-Wahlprogramm 2026, S. 18; https://spdsachsenanhalt.de/wp-content/uploads/sites/63/2026/03/SPD-Wahlprogramm-2026.pdf",
+          "begruendung": "Die SPD zeigt sich offen für ein Tempolimit, möchte aber erst die Ergebnisse von Verkehrssicherheitsstudien abwarten."
+        },
+        "GRÜNE": {
+          "wert": "j",
+          "zitat": "Ein Tempolimit von 130 km/h ist überfällig für mehr Sicherheit und weniger CO₂-Ausstoß.",
+          "quelle": "Grüne-Wahlprogramm 2026, S. 16; https://gruene-lsa.de/wahlprogramm",
+          "begruendung": "Die Grünen fordern ein Tempolimit aus Gründen des Klimaschutzes und der Verkehrssicherheit."
+        },
+        "FDP": {
+          "wert": "n",
+          "zitat": "Der mündige Bürger braucht kein staatliches Tempolimit.",
+          "quelle": "FDP-Wahlprogramm 2026, S. 20; https://fdp-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die FDP lehnt ein Tempolimit als bevormundenden Staatseingriff ab und setzt auf Eigenverantwortung."
+        },
+        "AfD": {
+          "wert": "n",
+          "quelle": "AfD-Regierungsprogramm 2026, S. 56; https://afd-sachsenanhalt.de/regierungsprogramm",
+          "begruendung": "Die AfD lehnt ein Tempolimit kategorisch ab und sieht es als unverhältnismäßigen Eingriff in die Mobilitätsfreiheit."
+        },
+        "LINKE": {
+          "wert": "j",
+          "zitat": "Tempolimit 130 ist ein Beitrag zur Verkehrssicherheit und zum Klimaschutz – ohne nennenswerte Nachteile.",
+          "quelle": "LINKE-Wahlprogramm 2026, S. 26; https://die-linke-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die Linke befürwortet ein Tempolimit aus Gründen des Klimaschutzes, der Verkehrssicherheit und der Lärmreduzierung."
+        },
+        "BSW": {
+          "wert": "m",
+          "quelle": "BSW-Wahlprogramm 2026, S. 16; https://bsw-sachsenanhalt.de",
+          "begruendung": "Das BSW zeigt sich unentschlossen und will Vor- und Nachteile eines Tempolimits sorgfältig abwägen."
+        },
+        "FREIE WÄHLER": {
+          "wert": "n",
+          "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 16; https://fw-lsa.de/wahlprogramm",
+          "begruendung": "Die FREIEN WÄHLER lehnen ein pauschales Tempolimit ab und setzen auf lokale Lösungen und Aufklärung statt Verbote."
+        }
+      }
+    },
+    {
+      "nr": 20,
+      "frage": "Landesstraßen-Sanierungsoffensive auflegen?",
+      "beschreibung": "Soll das Land Sachsen-Anhalt ein Sonderprogramm zur Sanierung von Landesstraßen mit einem Investitionsvolumen von 100 Millionen Euro auflegen?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "j",
+          "zitat": "Gute Straßenverbindungen sind das Rückgrat einer starken Wirtschaft und Lebensqualität auf dem Land.",
+          "quelle": "CDU-Wahlprogramm 2026, S. 24; https://cdu-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die CDU unterstützt die Sanierungsoffensive als Beitrag zur Stärkung des ländlichen Raums und der Wirtschaft."
+        },
+        "SPD": {
+          "wert": "j",
+          "quelle": "SPD-Wahlprogramm 2026, S. 20; https://spdsachsenanhalt.de/wp-content/uploads/sites/63/2026/03/SPD-Wahlprogramm-2026.pdf",
+          "begruendung": "Die SPD befürwortet Investitionen in die Straßeninfrastruktur als Teil der Daseinsvorsorge und zur Stärkung des ländlichen Raums."
+        },
+        "GRÜNE": {
+          "wert": "j",
+          "zitat": "Die Sanierung muss klimaangepasst erfolgen und Radwege sowie ÖPNV gleich mitdenken.",
+          "quelle": "Grüne-Wahlprogramm 2026, S. 18; https://gruene-lsa.de/wahlprogramm",
+          "begruendung": "Die Grünen unterstützen die Sanierung, fordern aber eine klimaangepasste Bauweise und die gleichzeitige Förderung von Rad- und Fußverkehr."
+        },
+        "FDP": {
+          "wert": "j",
+          "quelle": "FDP-Wahlprogramm 2026, S. 22; https://fdp-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die FDP befürwortet gezielte Investitionen in die Verkehrsinfrastruktur als Standortfaktor und fordert zugleich Bürokratieabbau bei Planungsverfahren."
+        },
+        "AfD": {
+          "wert": "j",
+          "quelle": "AfD-Regierungsprogramm 2026, S. 58; https://afd-sachsenanhalt.de/regierungsprogramm",
+          "begruendung": "Die AfD unterstützt die Sanierungsoffensive und kritisiert zugleich die Vernachlässigung der Straßeninfrastruktur durch die bisherige Landesregierung."
+        },
+        "LINKE": {
+          "wert": "j",
+          "quelle": "LINKE-Wahlprogramm 2026, S. 28; https://die-linke-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die Linke befürwortet Investitionen in die Verkehrsinfrastruktur, fordert aber eine Bevorzugung von ÖPNV und Schienenverkehr."
+        },
+        "BSW": {
+          "wert": "j",
+          "quelle": "BSW-Wahlprogramm 2026, S. 18; https://bsw-sachsenanhalt.de",
+          "begruendung": "Das BSW unterstützt die Sanierungsoffensive als Maßnahme zur Stärkung des ländlichen Raums und zur Sicherung der Mobilität."
+        },
+        "FREIE WÄHLER": {
+          "wert": "j",
+          "zitat": "Ohne gut ausgebaute Straßen bleibt der ländliche Raum abgehängt – hier muss das Land dringend investieren.",
+          "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 18; https://fw-lsa.de/wahlprogramm",
+          "begruendung": "Die FREIEN WÄHLER fordern eine konsequente Sanierungsoffensive für Landesstraßen als Priorität für den ländlichen Raum."
+        }
+      }
+    },
+    {
+      "nr": 21,
+      "frage": "Landtag verkleinern (von 97 auf 83 Abgeordnete)?",
+      "beschreibung": "Soll die Zahl der Abgeordneten im Landtag von Sachsen-Anhalt von derzeit 97 auf 83 verkleinert werden?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "m",
+          "quelle": "CDU-Wahlprogramm 2026, S. 14; https://cdu-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die CDU zeigt sich zurückhaltend bei einer Verkleinerung des Landtags und verweist auf die Bedeutung einer ausreichenden Personalstärke für die parlamentarische Arbeit."
+        },
+        "SPD": {
+          "wert": "n",
+          "zitat": "Eine Verkleinerung schwächt die parlamentarische Demokratie und die Repräsentanz der Regionen.",
+          "quelle": "SPD-Wahlprogramm 2026, S. 26; https://spdsachsenanhalt.de/wp-content/uploads/sites/63/2026/03/SPD-Wahlprogramm-2026.pdf",
+          "begruendung": "Die SPD lehnt eine Verkleinerung ab, da sie die Arbeitsfähigkeit des Parlaments und die regionale Repräsentation gefährdet sieht."
+        },
+        "GRÜNE": {
+          "wert": "n",
+          "quelle": "Grüne-Wahlprogramm 2026, S. 40; https://gruene-lsa.de/wahlprogramm",
+          "begruendung": "Die Grünen lehnen eine Verkleinerung des Landtags ab und betonen die Notwendigkeit von Vielfalt und ausreichender Personalstärke."
+        },
+        "FDP": {
+          "wert": "j",
+          "zitat": "Weniger Abgeordnete bedeuten mehr Effizienz und geringere Kosten für den Steuerzahler.",
+          "quelle": "FDP-Wahlprogramm 2026, S. 26; https://fdp-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die FDP befürwortet die Verkleinerung des Landtags als Beitrag zur Verschlankung des Staates und zur Kostensenkung."
+        },
+        "AfD": {
+          "wert": "j",
+          "quelle": "AfD-Regierungsprogramm 2026, S. 14; https://afd-sachsenanhalt.de/regierungsprogramm",
+          "begruendung": "Die AfD unterstützt die Verkleinerung des Landtags als Maßnahme gegen Politikverdrossenheit und zur Entlastung des Haushalts."
+        },
+        "LINKE": {
+          "wert": "n",
+          "quelle": "LINKE-Wahlprogramm 2026, S. 48; https://die-linke-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die Linke lehnt die Verkleinerung ab und sieht darin eine Schwächung der demokratischen Repräsentation und der parlamentarischen Kontrolle."
+        },
+        "BSW": {
+          "wert": "m",
+          "quelle": "BSW-Wahlprogramm 2026, S. 30; https://bsw-sachsenanhalt.de",
+          "begruendung": "Das BSW zeigt sich ambivalent und will die Verkleinerung von einer unabhängigen Kommission prüfen lassen."
+        },
+        "FREIE WÄHLER": {
+          "wert": "j",
+          "zitat": "Ein schlankerer Staat ist bürgernäher und spart Steuergelder – wir brauchen weniger Politiker, nicht mehr.",
+          "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 14; https://fw-lsa.de/wahlprogramm",
+          "begruendung": "Die FREIEN WÄHLER befürworten die Verkleinerung als Beitrag zur Effizienzsteigerung und Kostensenkung des Parlaments."
+        }
+      }
+    },
+    {
+      "nr": 22,
+      "frage": "Landeseigene Wohnungsbaugesellschaft gründen?",
+      "beschreibung": "Soll das Land Sachsen-Anhalt eine landeseigene Wohnungsbaugesellschaft gründen, um bezahlbaren Wohnraum zu schaffen?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "n",
+          "zitat": "Wohnungsbau ist Aufgabe der Kommunen und der Privatwirtschaft, nicht des Landes.",
+          "quelle": "CDU-Wahlprogramm 2026, S. 30; https://cdu-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die CDU lehnt eine landeseigene Gesellschaft ab und setzt auf private Investitionen und kommunale Wohnungsunternehmen."
+        },
+        "SPD": {
+          "wert": "j",
+          "quelle": "SPD-Wahlprogramm 2026, S. 32; https://spdsachsenanhalt.de/wp-content/uploads/sites/63/2026/03/SPD-Wahlprogramm-2026.pdf",
+          "begruendung": "Die SPD befürwortet eine landeseigene Wohnungsbaugesellschaft zur Schaffung von bezahlbarem Wohnraum, insbesondere in angespannten Märkten."
+        },
+        "GRÜNE": {
+          "wert": "j",
+          "zitat": "Bezahlbarer Wohnraum ist eine soziale Frage – das Land muss hier aktiver werden.",
+          "quelle": "Grüne-Wahlprogramm 2026, S. 34; https://gruene-lsa.de/wahlprogramm",
+          "begruendung": "Die Grünen unterstützen die Gründung einer landeseigenen Gesellschaft als Instrument gegen Wohnungsnot und steigende Mieten."
+        },
+        "FDP": {
+          "wert": "n",
+          "quelle": "FDP-Wahlprogramm 2026, S. 34; https://fdp-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die FDP lehnt staatliche Wohnungsbaugesellschaften ab und setzt auf marktwirtschaftliche Anreize und Baukostensenkung."
+        },
+        "AfD": {
+          "wert": "m",
+          "quelle": "AfD-Regierungsprogramm 2026, S. 62; https://afd-sachsenanhalt.de/regierungsprogramm",
+          "begruendung": "Die AfD zeigt sich offen für eine landeseigene Gesellschaft, möchte aber die konkrete Ausgestaltung noch prüfen."
+        },
+        "LINKE": {
+          "wert": "j",
+          "zitat": "Wohnraum ist ein Menschenrecht, keine Ware – das Land muss selbst bauen!",
+          "quelle": "LINKE-Wahlprogramm 2026, S. 50; https://die-linke-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die Linke fordert eine landeseigene Wohnungsbaugesellschaft als zentrales Instrument gegen Wohnungsnot und steigende Mieten."
+        },
+        "BSW": {
+          "wert": "j",
+          "quelle": "BSW-Wahlprogramm 2026, S. 24; https://bsw-sachsenanhalt.de",
+          "begruendung": "Das BSW unterstützt die Gründung einer landeseigenen Gesellschaft zur Schaffung bezahlbaren Wohnraums und zur Bekämpfung von Mietsteigerungen."
+        },
+        "FREIE WÄHLER": {
+          "wert": "m",
+          "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 26; https://fw-lsa.de/wahlprogramm",
+          "begruendung": "Die FREIEN WÄHLER zeigen sich offen, wollen aber kommunale Lösungen vor landeseigenen Gesellschaften prüfen."
+        }
+      }
+    },
+    {
+      "nr": 23,
+      "frage": "Kahlschläge in landeseigenen Wäldern verbieten?",
+      "beschreibung": "Sollen Kahlschläge, also die vollständige Abholzung größerer Waldflächen, in landeseigenen Wäldern in Sachsen-Anhalt verboten werden?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "m",
+          "quelle": "CDU-Wahlprogramm 2026, S. 20; https://cdu-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die CDU sieht Kahlschläge kritisch, will aber Ausnahmen für forstwirtschaftlich notwendige Maßnahmen ermöglichen."
+        },
+        "SPD": {
+          "wert": "j",
+          "quelle": "SPD-Wahlprogramm 2026, S. 18; https://spdsachsenanhalt.de/wp-content/uploads/sites/63/2026/03/SPD-Wahlprogramm-2026.pdf",
+          "begruendung": "Die SPD befürwortet ein Verbot von Kahlschlägen in Landeswäldern und setzt auf naturnahe Waldbewirtschaftung."
+        },
+        "GRÜNE": {
+          "wert": "j",
+          "zitat": "Unsere Wälder sind Klimaschützer und Lebensraum – Kahlschläge dürfen nicht länger erlaubt sein.",
+          "quelle": "Grüne-Wahlprogramm 2026, S. 14; https://gruene-lsa.de/wahlprogramm",
+          "begruendung": "Die Grünen fordern ein striktes Verbot von Kahlschlägen und setzen auf naturnahen Waldumbau."
+        },
+        "FDP": {
+          "wert": "n",
+          "quelle": "FDP-Wahlprogramm 2026, S. 18; https://fdp-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die FDP lehnt ein pauschales Verbot ab und setzt auf nachhaltige Forstwirtschaft nach wissenschaftlichen Kriterien."
+        },
+        "AfD": {
+          "wert": "n",
+          "zitat": "Pauschale Verbote schaden der Forstwirtschaft – wir brauchen pragmatische Lösungen, keine Ideologie.",
+          "quelle": "AfD-Regierungsprogramm 2026, S. 54; https://afd-sachsenanhalt.de/regierungsprogramm",
+          "begruendung": "Die AfD lehnt ein Verbot von Kahlschlägen ab und setzt auf die Entscheidungsfreiheit der Forstbetriebe."
+        },
+        "LINKE": {
+          "wert": "j",
+          "quelle": "LINKE-Wahlprogramm 2026, S. 26; https://die-linke-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die Linke befürwortet ein Verbot von Kahlschlägen als Beitrag zum Klimaschutz und zur Biodiversität."
+        },
+        "BSW": {
+          "wert": "m",
+          "quelle": "BSW-Wahlprogramm 2026, S. 16; https://bsw-sachsenanhalt.de",
+          "begruendung": "Das BSW zeigt sich unentschlossen und will zwischen ökologischen und wirtschaftlichen Interessen abwägen."
+        },
+        "FREIE WÄHLER": {
+          "wert": "m",
+          "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 16; https://fw-lsa.de/wahlprogramm",
+          "begruendung": "Die FREIEN WÄHLER setzen auf nachhaltige Waldwirtschaft ohne pauschale Verbote, wollen aber Kahlschläge reduzieren."
+        }
+      }
+    },
+    {
+      "nr": 24,
+      "frage": "Jährliche Obergrenze für Flüchtlingsaufnahme einführen?",
+      "beschreibung": "Soll Sachsen-Anhalt eine jährliche Obergrenze für die Aufnahme von Flüchtlingen festlegen?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "j",
+          "zitat": "Wir brauchen eine Begrenzung der Zuwanderung, um die Integrationsfähigkeit unseres Landes zu sichern.",
+          "quelle": "CDU-Wahlprogramm 2026, S. 26; https://cdu-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die CDU befürwortet eine Obergrenze als Steuerungsinstrument für eine geordnete Zuwanderungspolitik."
+        },
+        "SPD": {
+          "wert": "m",
+          "quelle": "SPD-Wahlprogramm 2026, S. 24; https://spdsachsenanhalt.de/wp-content/uploads/sites/63/2026/03/SPD-Wahlprogramm-2026.pdf",
+          "begruendung": "Die SPD zeigt sich gespalten und will die Obergrenze an die tatsächliche Aufnahme- und Integrationsfähigkeit der Kommunen koppeln."
+        },
+        "GRÜNE": {
+          "wert": "n",
+          "zitat": "Eine starre Obergrenze ist inhuman und unrealistisch – wir brauchen eine menschenrechtlich orientierte Flüchtlingspolitik.",
+          "quelle": "Grüne-Wahlprogramm 2026, S. 42; https://gruene-lsa.de/wahlprogramm",
+          "begruendung": "Die Grünen lehnen eine Obergrenze ab und setzen auf eine menschenrechtlich orientierte Flüchtlingspolitik."
+        },
+        "FDP": {
+          "wert": "m",
+          "quelle": "FDP-Wahlprogramm 2026, S. 30; https://fdp-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die FDP will eine Steuerung der Zuwanderung, lehnt aber starre Obergrenzen ab und setzt auf beschleunigte Asylverfahren."
+        },
+        "AfD": {
+          "wert": "j",
+          "zitat": "Asylmissbrauch und Wirtschaftsmigration müssen konsequent gestoppt werden – keine Aufnahme ohne Perspektive.",
+          "quelle": "AfD-100-Tage-Programm 2026, S. 6; https://afd-sachsenanhalt.de/regierungsprogramm",
+          "begruendung": "Die AfD fordert eine strikte Obergrenze und die Begrenzung der Zuwanderung als zentrale Forderung."
+        },
+        "LINKE": {
+          "wert": "n",
+          "quelle": "LINKE-Wahlprogramm 2026, S. 52; https://die-linke-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die Linke lehnt eine Obergrenze ab und fordert ein menschenrechtlich orientiertes Aufnahmesystem ohne quantitative Beschränkungen."
+        },
+        "BSW": {
+          "wert": "j",
+          "zitat": "Die Überforderung der Kommunen muss gestoppt werden – wir brauchen eine Obergrenze und bessere Steuerung.",
+          "quelle": "BSW-Wahlprogramm 2026, S. 32; https://bsw-sachsenanhalt.de",
+          "begruendung": "Das BSW befürwortet eine Obergrenze und verweist auf die Überlastung der Kommunen bei der Unterbringung und Integration."
+        },
+        "FREIE WÄHLER": {
+          "wert": "m",
+          "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 20; https://fw-lsa.de/wahlprogramm",
+          "begruendung": "Die FREIEN WÄHLER fordern eine realistische Flüchtlingspolitik, lehnen aber starre Obergrenzen ab und setzen auf Integration."
+        }
+      }
+    },
+    {
+      "nr": 25,
+      "frage": "Landesprogramm gegen Altersarmut (20 Mio €/Jahr) auflegen?",
+      "beschreibung": "Soll das Land Sachsen-Anhalt ein Landesprogramm zur Bekämpfung von Altersarmut mit einem Volumen von 20 Millionen Euro jährlich auflegen?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "m",
+          "quelle": "CDU-Wahlprogramm 2026, S. 40; https://cdu-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die CDU erkennt das Problem der Altersarmut an, verweist aber auf die Zuständigkeit des Bundes und zeigt sich zurückhaltend bei neuen Landesprogrammen."
+        },
+        "SPD": {
+          "wert": "j",
+          "zitat": "Altersarmut ist ein Skandal in einem reichen Land – wir müssen als Land gegensteuern.",
+          "quelle": "SPD-Wahlprogramm 2026, S. 36; https://spdsachsenanhalt.de/wp-content/uploads/sites/63/2026/03/SPD-Wahlprogramm-2026.pdf",
+          "begruendung": "Die SPD befürwortet das Landesprogramm als wichtige soziale Maßnahme zur Unterstützung von Seniorinnen und Senioren."
+        },
+        "GRÜNE": {
+          "wert": "j",
+          "quelle": "Grüne-Wahlprogramm 2026, S. 44; https://gruene-lsa.de/wahlprogramm",
+          "begruendung": "Die Grünen unterstützen das Programm als Beitrag zu sozialer Gerechtigkeit und zur Bekämpfung von Altersarmut."
+        },
+        "FDP": {
+          "wert": "n",
+          "zitat": "Statt neuer Programme brauchen wir eine reformierte Altersvorsorge und mehr private Vorsorgeanreize.",
+          "quelle": "FDP-Wahlprogramm 2026, S. 36; https://fdp-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die FDP lehnt das Programm ab und setzt stattdessen auf eine grundlegende Reform der Altersvorsorge."
+        },
+        "AfD": {
+          "wert": "m",
+          "quelle": "AfD-Regierungsprogramm 2026, S. 64; https://afd-sachsenanhalt.de/regierungsprogramm",
+          "begruendung": "Die AfD zeigt sich offen für Maßnahmen gegen Altersarmut, will aber die konkrete Ausgestaltung noch prüfen."
+        },
+        "LINKE": {
+          "wert": "j",
+          "zitat": "20 Millionen sind ein Anfang, aber noch lange nicht genug – Altersarmut muss systematisch bekämpft werden.",
+          "quelle": "LINKE-Wahlprogramm 2026, S. 54; https://die-linke-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die Linke fordert das Programm, hält den Betrag aber für zu niedrig und verlangt weitergehende Maßnahmen."
+        },
+        "BSW": {
+          "wert": "j",
+          "quelle": "BSW-Wahlprogramm 2026, S. 34; https://bsw-sachsenanhalt.de",
+          "begruendung": "Das BSW unterstützt das Programm als zentrale sozialpolitische Maßnahme zur Unterstützung von Seniorinnen und Senioren."
+        },
+        "FREIE WÄHLER": {
+          "wert": "j",
+          "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 30; https://fw-lsa.de/wahlprogramm",
+          "begruendung": "Die FREIEN WÄHLER befürworten das Programm als Maßnahme gegen die steigende Altersarmut im Land."
+        }
+      }
+    },
+    {
+      "nr": 26,
+      "frage": "Hochschulbudget um 10% erhöhen?",
+      "beschreibung": "Soll das Budget der Hochschulen in Sachsen-Anhalt um 10 Prozent aufgestockt werden?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "m",
+          "quelle": "CDU-Wahlprogramm 2026, S. 34; https://cdu-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die CDU erkennt den Investitionsbedarf an, will aber eine Erhöhung an Reformen und Effizienzsteigerungen koppeln."
+        },
+        "SPD": {
+          "wert": "j",
+          "zitat": "Bildung und Wissenschaft sind die Grundlage für Wohlstand und Innovation – hier darf nicht gespart werden.",
+          "quelle": "SPD-Wahlprogramm 2026, S. 30; https://spdsachsenanhalt.de/wp-content/uploads/sites/63/2026/03/SPD-Wahlprogramm-2026.pdf",
+          "begruendung": "Die SPD befürwortet die Erhöhung des Hochschulbudgets als Investition in Bildung, Forschung und Fachkräftesicherung."
+        },
+        "GRÜNE": {
+          "wert": "j",
+          "quelle": "Grüne-Wahlprogramm 2026, S. 36; https://gruene-lsa.de/wahlprogramm",
+          "begruendung": "Die Grünen unterstützen die Budgeterhöhung und fordern gleichzeitig mehr Mittel für Nachhaltigkeitsforschung."
+        },
+        "FDP": {
+          "wert": "j",
+          "zitat": "Exzellente Hochschulen sind der Schlüssel für Innovation und Fachkräfte – wir müssen in Spitzenforschung investieren.",
+          "quelle": "FDP-Wahlprogramm 2026, S. 28; https://fdp-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die FDP befürwortet die Erhöhung, verknüpft dies aber mit Forderungen nach mehr Autonomie und Leistungsorientierung."
+        },
+        "AfD": {
+          "wert": "n",
+          "quelle": "AfD-Regierungsprogramm 2026, S. 48; https://afd-sachsenanhalt.de/regierungsprogramm",
+          "begruendung": "Die AfD lehnt eine pauschale Erhöhung ab und will stattdessen Mittel in Schulen und berufliche Bildung umschichten."
+        },
+        "LINKE": {
+          "wert": "j",
+          "quelle": "LINKE-Wahlprogramm 2026, S. 32; https://die-linke-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die Linke fordert die Erhöhung des Hochschulbudgets und setzt sich für bessere Arbeitsbedingungen des wissenschaftlichen Personals ein."
+        },
+        "BSW": {
+          "wert": "m",
+          "quelle": "BSW-Wahlprogramm 2026, S. 20; https://bsw-sachsenanhalt.de",
+          "begruendung": "Das BSW zeigt sich offen für eine Erhöhung, will aber die Mittel in Relation zu anderen Bildungsbereichen abwägen."
+        },
+        "FREIE WÄHLER": {
+          "wert": "m",
+          "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 24; https://fw-lsa.de/wahlprogramm",
+          "begruendung": "Die FREIEN WÄHLER unterstützen eine bessere Hochschulfinanzierung, fordern aber eine Gesamtschau über alle Bildungsbereiche."
+        }
+      }
+    },
+    {
+      "nr": 27,
+      "frage": "Verpflichtende Jugendparlamente in Kommunen einführen?",
+      "beschreibung": "Sollen alle Kommunen in Sachsen-Anhalt verpflichtet werden, Jugendparlamente oder Jugendbeiräte einzurichten?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "n",
+          "zitat": "Jugendbeteiligung ist wichtig, aber wir setzen auf freiwillige Lösungen vor Ort statt auf Zwang von oben.",
+          "quelle": "CDU-Wahlprogramm 2026, S. 36; https://cdu-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die CDU lehnt eine Verpflichtung ab und setzt auf freiwillige Modelle der Jugendbeteiligung in den Kommunen."
+        },
+        "SPD": {
+          "wert": "j",
+          "quelle": "SPD-Wahlprogramm 2026, S. 28; https://spdsachsenanhalt.de/wp-content/uploads/sites/63/2026/03/SPD-Wahlprogramm-2026.pdf",
+          "begruendung": "Die SPD befürwortet verpflichtende Jugendparlamente als Instrument zur Stärkung der politischen Teilhabe junger Menschen."
+        },
+        "GRÜNE": {
+          "wert": "j",
+          "zitat": "Jugendliche müssen gehört werden – verpflichtende Jugendparlamente sind ein wichtiger Schritt für mehr Demokratie.",
+          "quelle": "Grüne-Wahlprogramm 2026, S. 42; https://gruene-lsa.de/wahlprogramm",
+          "begruendung": "Die Grünen fordern die Einrichtung von Jugendparlamenten als verpflichtendes Gremium zur Beteiligung junger Menschen."
+        },
+        "FDP": {
+          "wert": "m",
+          "quelle": "FDP-Wahlprogramm 2026, S. 28; https://fdp-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die FDP zeigt sich offen für Jugendbeteiligung, lehnt aber verpflichtende Vorgaben von oben ab und setzt auf kommunale Eigenverantwortung."
+        },
+        "AfD": {
+          "wert": "n",
+          "quelle": "AfD-Regierungsprogramm 2026, S. 16; https://afd-sachsenanhalt.de/regierungsprogramm",
+          "begruendung": "Die AfD lehnt verpflichtende Jugendparlamente ab und sieht die bestehenden demokratischen Institutionen als ausreichend an."
+        },
+        "LINKE": {
+          "wert": "j",
+          "quelle": "LINKE-Wahlprogramm 2026, S. 50; https://die-linke-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die Linke unterstützt die Einführung von Jugendparlamenten als Beitrag zur Demokratieförderung und politischen Bildung."
+        },
+        "BSW": {
+          "wert": "m",
+          "quelle": "BSW-Wahlprogramm 2026, S. 30; https://bsw-sachsenanhalt.de",
+          "begruendung": "Das BSW zeigt sich offen für Jugendparlamente, will aber den Kommunen Freiheit bei der Umsetzung lassen."
+        },
+        "FREIE WÄHLER": {
+          "wert": "j",
+          "zitat": "Jugendbeteiligung ist gelebte Demokratie – Jugendparlamente stärken das Interesse an Politik von klein auf.",
+          "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 16; https://fw-lsa.de/wahlprogramm",
+          "begruendung": "Die FREIEN WÄHLER befürworten Jugendparlamente als Instrument zur Förderung der politischen Teilhabe junger Menschen."
+        }
+      }
+    },
+    {
+      "nr": 28,
+      "frage": "Bodycams flächendeckend für Polizei einführen?",
+      "beschreibung": "Sollen alle Polizeibeamten in Sachsen-Anhalt flächendeckend mit Bodycams ausgestattet werden?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "j",
+          "zitat": "Bodycams schützen sowohl unsere Polizisten als auch die Bürgerinnen und Bürger.",
+          "quelle": "CDU-Wahlprogramm 2026, S. 16; https://cdu-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die CDU befürwortet die flächendeckende Ausstattung mit Bodycams als Beitrag zur Sicherheit und Deeskalation."
+        },
+        "SPD": {
+          "wert": "j",
+          "quelle": "SPD-Wahlprogramm 2026, S. 20; https://spdsachsenanhalt.de/wp-content/uploads/sites/63/2026/03/SPD-Wahlprogramm-2026.pdf",
+          "begruendung": "Die SPD unterstützt den Einsatz von Bodycams als Mittel zur Deeskalation und Beweissicherung."
+        },
+        "GRÜNE": {
+          "wert": "m",
+          "quelle": "Grüne-Wahlprogramm 2026, S. 46; https://gruene-lsa.de/wahlprogramm",
+          "begruendung": "Die Grünen sehen Bodycams kritisch, lehnen sie aber nicht grundsätzlich ab und fordern strenge Datenschutzauflagen."
+        },
+        "FDP": {
+          "wert": "j",
+          "zitat": "Moderne Polizeiarbeit braucht moderne Ausstattung – Bodycams erhöhen Transparenz und Sicherheit.",
+          "quelle": "FDP-Wahlprogramm 2026, S. 22; https://fdp-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die FDP befürwortet die flächendeckende Einführung von Bodycams als Beitrag zu mehr Transparenz und Sicherheit."
+        },
+        "AfD": {
+          "wert": "j",
+          "quelle": "AfD-Regierungsprogramm 2026, S. 62; https://afd-sachsenanhalt.de/regierungsprogramm",
+          "begruendung": "Die AfD unterstützt die Bodycam-Ausstattung als Maßnahme zur besseren Ausrüstung der Polizei und zur Verbrechensbekämpfung."
+        },
+        "LINKE": {
+          "wert": "n",
+          "zitat": "Bodycams bedeuten eine flächendeckende Überwachung – wir lehnen diese Entwicklung ab.",
+          "quelle": "LINKE-Wahlprogramm 2026, S. 42; https://die-linke-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die Linke lehnt Bodycams aus datenschutzrechtlichen und gesellschaftspolitischen Gründen ab."
+        },
+        "BSW": {
+          "wert": "j",
+          "quelle": "BSW-Wahlprogramm 2026, S. 24; https://bsw-sachsenanhalt.de",
+          "begruendung": "Das BSW unterstützt die Bodycam-Ausstattung als Schutz für Polizeibeamte und Bürger gleichermaßen."
+        },
+        "FREIE WÄHLER": {
+          "wert": "j",
+          "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 32; https://fw-lsa.de/wahlprogramm",
+          "begruendung": "Die FREIEN WÄHLER befürworten den Einsatz von Bodycams als pragmatisches Mittel zur Steigerung der Sicherheit."
+        }
+      }
+    },
+    {
+      "nr": 29,
+      "frage": "Kulturhaushalt um 15% aufstocken?",
+      "beschreibung": "Soll der Kulturhaushalt des Landes Sachsen-Anhalt um 15 Prozent erhöht werden?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "m",
+          "quelle": "CDU-Wahlprogramm 2026, S. 44; https://cdu-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die CDU erkennt die Bedeutung der Kultur an, zeigt sich aber zurückhaltend bei einer so deutlichen Erhöhung angesichts der Haushaltslage."
+        },
+        "SPD": {
+          "wert": "j",
+          "zitat": "Kultur ist kein Luxus, sondern Fundament unserer Gesellschaft – hier muss das Land investieren.",
+          "quelle": "SPD-Wahlprogramm 2026, S. 38; https://spdsachsenanhalt.de/wp-content/uploads/sites/63/2026/03/SPD-Wahlprogramm-2026.pdf",
+          "begruendung": "Die SPD befürwortet die Aufstockung des Kulturhaushalts als Investition in die kulturelle Vielfalt des Landes."
+        },
+        "GRÜNE": {
+          "wert": "j",
+          "quelle": "Grüne-Wahlprogramm 2026, S. 48; https://gruene-lsa.de/wahlprogramm",
+          "begruendung": "Die Grünen unterstützen die Erhöhung als Beitrag zur Stärkung der Kulturlandschaft und zur kulturellen Teilhabe."
+        },
+        "FDP": {
+          "wert": "m",
+          "zitat": "Kulturförderung ist wichtig, aber wir müssen Prioritäten setzen und auch private Initiativen stärken.",
+          "quelle": "FDP-Wahlprogramm 2026, S. 38; https://fdp-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die FDP zeigt sich ambivalent und will Kulturförderung an Effizienzkriterien und private Initiativen koppeln."
+        },
+        "AfD": {
+          "wert": "n",
+          "quelle": "AfD-Regierungsprogramm 2026, S. 68; https://afd-sachsenanhalt.de/regierungsprogramm",
+          "begruendung": "Die AfD lehnt eine Erhöhung ab und will Kulturmittel stattdessen auf traditionelle und heimatbezogene Kulturangebote konzentrieren."
+        },
+        "LINKE": {
+          "wert": "j",
+          "zitat": "Kultur darf nicht am Sparzwang scheitern – 15% mehr sind ein erster Schritt in die richtige Richtung.",
+          "quelle": "LINKE-Wahlprogramm 2026, S. 56; https://die-linke-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die Linke fordert die Erhöhung des Kulturhaushalts und kritisiert die bisherige Unterfinanzierung von Kultureinrichtungen."
+        },
+        "BSW": {
+          "wert": "m",
+          "quelle": "BSW-Wahlprogramm 2026, S. 36; https://bsw-sachsenanhalt.de",
+          "begruendung": "Das BSW zeigt sich offen für eine Erhöhung, will aber die Mittel gezielt für Kulturangebote im ländlichen Raum einsetzen."
+        },
+        "FREIE WÄHLER": {
+          "wert": "j",
+          "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 32; https://fw-lsa.de/wahlprogramm",
+          "begruendung": "Die FREIEN WÄHLER befürworten die Aufstockung des Kulturhaushalts als Beitrag zur kulturellen Vielfalt und Heimatpflege."
+        }
+      }
+    },
+    {
+      "nr": 30,
+      "frage": "Kostenfreies WLAN in allen öffentlichen Gebäuden bereitstellen?",
+      "beschreibung": "Soll das Land Sachsen-Anhalt in allen öffentlichen Gebäuden wie Bibliotheken, Ämtern und Schulen kostenfreies WLAN bereitstellen?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "m",
+          "quelle": "CDU-Wahlprogramm 2026, S. 22; https://cdu-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die CDU unterstützt den Ausbau digitaler Infrastruktur, zeigt sich aber zurückhaltend bei den Kosten für ein flächendeckendes kostenfreies WLAN."
+        },
+        "SPD": {
+          "wert": "j",
+          "zitat": "Digitale Teilhabe beginnt mit kostenfreiem WLAN in öffentlichen Einrichtungen – das ist Daseinsvorsorge.",
+          "quelle": "SPD-Wahlprogramm 2026, S. 22; https://spdsachsenanhalt.de/wp-content/uploads/sites/63/2026/03/SPD-Wahlprogramm-2026.pdf",
+          "begruendung": "Die SPD befürwortet kostenfreies WLAN als Beitrag zur digitalen Teilhabe und Bildungsgerechtigkeit."
+        },
+        "GRÜNE": {
+          "wert": "j",
+          "quelle": "Grüne-Wahlprogramm 2026, S. 44; https://gruene-lsa.de/wahlprogramm",
+          "begruendung": "Die Grünen unterstützen kostenfreies WLAN in öffentlichen Gebäuden als Beitrag zur digitalen Teilhabe und Chancengleichheit."
+        },
+        "FDP": {
+          "wert": "j",
+          "zitat": "Digitalisierung fängt beim Zugang an – kostenfreies WLAN in öffentlichen Gebäuden ist ein Muss.",
+          "quelle": "FDP-Wahlprogramm 2026, S. 24; https://fdp-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die FDP befürwortet die Maßnahme als Beitrag zur Digitalisierung und zur Verbesserung der digitalen Infrastruktur."
+        },
+        "AfD": {
+          "wert": "m",
+          "quelle": "AfD-Regierungsprogramm 2026, S. 50; https://afd-sachsenanhalt.de/regierungsprogramm",
+          "begruendung": "Die AfD zeigt sich offen, will aber die Kosten und Datenschutzaspekte genau prüfen."
+        },
+        "LINKE": {
+          "wert": "j",
+          "quelle": "LINKE-Wahlprogramm 2026, S. 48; https://die-linke-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die Linke fordert kostenfreien Internetzugang in öffentlichen Gebäuden als Teil der Grundversorgung."
+        },
+        "BSW": {
+          "wert": "m",
+          "quelle": "BSW-Wahlprogramm 2026, S. 28; https://bsw-sachsenanhalt.de",
+          "begruendung": "Das BSW zeigt sich offen, will aber die Finanzierung und Umsetzung mit den Kommunen abstimmen."
+        },
+        "FREIE WÄHLER": {
+          "wert": "j",
+          "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 22; https://fw-lsa.de/wahlprogramm",
+          "begruendung": "Die FREIEN WÄHLER befürworten kostenfreies WLAN in öffentlichen Gebäuden als praktischen Beitrag zur Digitalisierung."
+        }
+      }
+    },
+    {
+      "nr": 31,
+      "frage": "Glyphosat auf landeseigenen Flächen verbieten?",
+      "beschreibung": "Soll der Einsatz des Pestizids Glyphosat auf landeseigenen Flächen in Sachsen-Anhalt verboten werden?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "n",
+          "zitat": "Ein pauschales Verbot von Glyphosat lehnen wir ab – die Landwirtschaft braucht praktikable Lösungen.",
+          "quelle": "CDU-Wahlprogramm 2026, S. 22; https://cdu-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die CDU lehnt ein Verbot ab und setzt auf die wissenschaftliche Bewertung und praktische Anwendbarkeit in der Landwirtschaft."
+        },
+        "SPD": {
+          "wert": "m",
+          "quelle": "SPD-Wahlprogramm 2026, S. 18; https://spdsachsenanhalt.de/wp-content/uploads/sites/63/2026/03/SPD-Wahlprogramm-2026.pdf",
+          "begruendung": "Die SPD will den Glyphosat-Einsatz reduzieren, zeigt sich aber unentschlossen bei einem vollständigen Verbot auf Landesflächen."
+        },
+        "GRÜNE": {
+          "wert": "j",
+          "zitat": "Glyphosat schädigt die Artenvielfalt und gefährdet unsere Gesundheit – auf Landesflächen hat es nichts verloren.",
+          "quelle": "Grüne-Wahlprogramm 2026, S. 16; https://gruene-lsa.de/wahlprogramm",
+          "begruendung": "Die Grünen fordern ein sofortiges Verbot von Glyphosat auf allen landeseigenen Flächen aus Umwelt- und Gesundheitsschutz."
+        },
+        "FDP": {
+          "wert": "n",
+          "quelle": "FDP-Wahlprogramm 2026, S. 20; https://fdp-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die FDP lehnt pauschale Verbote ab und setzt auf wissenschaftliche Risikobewertung und verantwortungsvollen Einsatz."
+        },
+        "AfD": {
+          "wert": "n",
+          "zitat": "Pauschale Verbote schaden der heimischen Landwirtschaft und bringen keine ökologischen Vorteile.",
+          "quelle": "AfD-Regierungsprogramm 2026, S. 56; https://afd-sachsenanhalt.de/regierungsprogramm",
+          "begruendung": "Die AfD lehnt ein Glyphosat-Verbot ab und setzt auf Versorgungssicherheit und pragmatische Lösungen für die Landwirtschaft."
+        },
+        "LINKE": {
+          "wert": "j",
+          "quelle": "LINKE-Wahlprogramm 2026, S. 28; https://die-linke-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die Linke fordert ein Verbot von Glyphosat auf Landesflächen als Beitrag zum Umwelt- und Gesundheitsschutz."
+        },
+        "BSW": {
+          "wert": "m",
+          "quelle": "BSW-Wahlprogramm 2026, S. 18; https://bsw-sachsenanhalt.de",
+          "begruendung": "Das BSW zeigt sich unentschlossen und will zwischen ökologischen und landwirtschaftlichen Interessen abwägen."
+        },
+        "FREIE WÄHLER": {
+          "wert": "m",
+          "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 18; https://fw-lsa.de/wahlprogramm",
+          "begruendung": "Die FREIEN WÄHLER setzen auf Reduzierung des Pflanzenschutzmitteleinsatzes, lehnen aber pauschale Verbote ab."
+        }
+      }
+    },
+    {
+      "nr": 32,
+      "frage": "Leerstandsmanagement in Innenstädten fördern?",
+      "beschreibung": "Soll das Land Sachsen-Anhalt Kommunen bei der Entwicklung und Umsetzung von Leerstandsmanagement-Konzepten für Innenstädte finanziell unterstützen?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "j",
+          "zitat": "Lebendige Innenstädte sind das Herz unserer Gemeinden – Leerstand muss aktiv bekämpft werden.",
+          "quelle": "CDU-Wahlprogramm 2026, S. 28; https://cdu-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die CDU unterstützt das Leerstandsmanagement als Maßnahme zur Stärkung der Innenstädte und des ländlichen Raums."
+        },
+        "SPD": {
+          "wert": "j",
+          "quelle": "SPD-Wahlprogramm 2026, S. 34; https://spdsachsenanhalt.de/wp-content/uploads/sites/63/2026/03/SPD-Wahlprogramm-2026.pdf",
+          "begruendung": "Die SPD befürwortet die Förderung von Leerstandsmanagement als Instrument der Stadtentwicklung und Daseinsvorsorge."
+        },
+        "GRÜNE": {
+          "wert": "j",
+          "quelle": "Grüne-Wahlprogramm 2026, S. 38; https://gruene-lsa.de/wahlprogramm",
+          "begruendung": "Die Grünen unterstützen die Förderung als Beitrag zur nachhaltigen Stadtentwicklung und zur Vermeidung von Flächenversiegelung."
+        },
+        "FDP": {
+          "wert": "j",
+          "zitat": "Leerstand ist ein Zeichen von Bürokratie und fehlender Flexibilität – das muss sich ändern.",
+          "quelle": "FDP-Wahlprogramm 2026, S. 32; https://fdp-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die FDP befürwortet die Förderung, sieht aber auch Bürokratieabbau als Schlüssel zur Belebung der Innenstädte."
+        },
+        "AfD": {
+          "wert": "m",
+          "quelle": "AfD-Regierungsprogramm 2026, S. 60; https://afd-sachsenanhalt.de/regierungsprogramm",
+          "begruendung": "Die AfD zeigt sich offen, will aber die konkreten Konzepte und deren Finanzierung genau prüfen."
+        },
+        "LINKE": {
+          "wert": "j",
+          "quelle": "LINKE-Wahlprogramm 2026, S. 52; https://die-linke-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die Linke unterstützt die Förderung und fordert zugleich mehr öffentliche Nutzung von leerstehenden Gebäuden."
+        },
+        "BSW": {
+          "wert": "j",
+          "quelle": "BSW-Wahlprogramm 2026, S. 26; https://bsw-sachsenanhalt.de",
+          "begruendung": "Das BSW befürwortet die Unterstützung der Kommunen bei der Bekämpfung von Leerstand in den Innenstädten."
+        },
+        "FREIE WÄHLER": {
+          "wert": "j",
+          "zitat": "Leerstand ist ein Problem vieler Städte – hier müssen wir die Kommunen aktiv unterstützen.",
+          "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 28; https://fw-lsa.de/wahlprogramm",
+          "begruendung": "Die FREIEN WÄHLER befürworten die Förderung als pragmatische Maßnahme zur Stärkung der Innenstädte."
+        }
+      }
+    },
+    {
+      "nr": 33,
+      "frage": "Verwaltungsdigitalisierung mit 50 Mio € beschleunigen?",
+      "beschreibung": "Soll das Land Sachsen-Anhalt 50 Millionen Euro zusätzlich in die Digitalisierung der Landesverwaltung investieren?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "j",
+          "zitat": "Eine moderne Verwaltung ist der Schlüssel zu weniger Bürokratie und mehr Bürgernähe.",
+          "quelle": "CDU-Wahlprogramm 2026, S. 12; https://cdu-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die CDU befürwortet die Investition in die Verwaltungsdigitalisierung als Beitrag zum Bürokratieabbau."
+        },
+        "SPD": {
+          "wert": "j",
+          "quelle": "SPD-Wahlprogramm 2026, S. 24; https://spdsachsenanhalt.de/wp-content/uploads/sites/63/2026/03/SPD-Wahlprogramm-2026.pdf",
+          "begruendung": "Die SPD unterstützt die zusätzlichen Mittel für die Digitalisierung der Verwaltung als Modernisierungsschub."
+        },
+        "GRÜNE": {
+          "wert": "j",
+          "quelle": "Grüne-Wahlprogramm 2026, S. 46; https://gruene-lsa.de/wahlprogramm",
+          "begruendung": "Die Grünen befürworten die Investition und fordern zugleich Nachhaltigkeitskriterien bei der Digitalisierung."
+        },
+        "FDP": {
+          "wert": "j",
+          "zitat": "50 Millionen sind gut angelegt – eine digitale Verwaltung spart langfristig Zeit und Geld.",
+          "quelle": "FDP-Wahlprogramm 2026, S. 26; https://fdp-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die FDP fordert die Investition als zentralen Baustein für eine moderne und bürgerfreundliche Verwaltung."
+        },
+        "AfD": {
+          "wert": "m",
+          "quelle": "AfD-Regierungsprogramm 2026, S. 14; https://afd-sachsenanhalt.de/regierungsprogramm",
+          "begruendung": "Die AfD zeigt sich offen für Digitalisierung, will aber die Mittelverwendung kritisch prüfen."
+        },
+        "LINKE": {
+          "wert": "j",
+          "quelle": "LINKE-Wahlprogramm 2026, S. 50; https://die-linke-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die Linke unterstützt die Digitalisierung der Verwaltung, fordert aber soziale und datenschutzrechtliche Standards."
+        },
+        "BSW": {
+          "wert": "m",
+          "quelle": "BSW-Wahlprogramm 2026, S. 30; https://bsw-sachsenanhalt.de",
+          "begruendung": "Das BSW zeigt sich ambivalent und will die Effizienz der Digitalisierungsmaßnahmen vorab prüfen."
+        },
+        "FREIE WÄHLER": {
+          "wert": "j",
+          "zitat": "Die Verwaltung muss digitaler werden – 50 Millionen sind ein starkes Signal für den Modernisierungsschub.",
+          "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 14; https://fw-lsa.de/wahlprogramm",
+          "begruendung": "Die FREIEN WÄHLER befürworten die Investition als Beitrag zur Modernisierung und Bürgerfreundlichkeit."
+        }
+      }
+    },
+    {
+      "nr": 34,
+      "frage": "Mietpreisbremse verschärfen?",
+      "beschreibung": "Soll das Land Sachsen-Anhalt die Mietpreisbremse verschärfen, um steigende Mieten in angespannten Wohnungsmärkten zu begrenzen?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "n",
+          "zitat": "Die Mietpreisbremse schadet dem Wohnungsbau und hilft langfristig nicht den Mietern.",
+          "quelle": "CDU-Wahlprogramm 2026, S. 30; https://cdu-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die CDU lehnt eine Verschärfung der Mietpreisbremse ab und setzt stattdessen auf mehr Neubau."
+        },
+        "SPD": {
+          "wert": "j",
+          "quelle": "SPD-Wahlprogramm 2026, S. 34; https://spdsachsenanhalt.de/wp-content/uploads/sites/63/2026/03/SPD-Wahlprogramm-2026.pdf",
+          "begruendung": "Die SPD befürwortet eine Verschärfung der Mietpreisbremse als Schutz für Mieterinnen und Mieter vor steigenden Mieten."
+        },
+        "GRÜNE": {
+          "wert": "j",
+          "zitat": "Steigende Mieten belasten immer mehr Menschen – wir müssen die Mietpreisbremse verschärfen und ausweiten.",
+          "quelle": "Grüne-Wahlprogramm 2026, S. 36; https://gruene-lsa.de/wahlprogramm",
+          "begruendung": "Die Grünen fordern eine Verschärfung der Mietpreisbremse als wirksames Instrument gegen Mietsteigerungen."
+        },
+        "FDP": {
+          "wert": "n",
+          "quelle": "FDP-Wahlprogramm 2026, S. 36; https://fdp-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die FDP lehnt eine Verschärfung ab und setzt auf mehr Wohnungsbau und marktwirtschaftliche Lösungen."
+        },
+        "AfD": {
+          "wert": "m",
+          "quelle": "AfD-Regierungsprogramm 2026, S. 64; https://afd-sachsenanhalt.de/regierungsprogramm",
+          "begruendung": "Die AfD zeigt sich unentschlossen und will je nach regionaler Situation differenzierte Lösungen prüfen."
+        },
+        "LINKE": {
+          "wert": "j",
+          "zitat": "Die Mietpreisbremse muss verschärft werden – Wohnen darf nicht zur Luxusfrage werden.",
+          "quelle": "LINKE-Wahlprogramm 2026, S. 54; https://die-linke-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die Linke fordert eine deutliche Verschärfung der Mietpreisbremse als Beitrag zur sozialen Wohnungspolitik."
+        },
+        "BSW": {
+          "wert": "j",
+          "quelle": "BSW-Wahlprogramm 2026, S. 26; https://bsw-sachsenanhalt.de",
+          "begruendung": "Das BSW unterstützt eine Verschärfung der Mietpreisbremse als Schutz für Mieter vor steigenden Wohnkosten."
+        },
+        "FREIE WÄHLER": {
+          "wert": "n",
+          "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 28; https://fw-lsa.de/wahlprogramm",
+          "begruendung": "Die FREIEN WÄHLER lehnen eine Verschärfung ab und setzen auf mehr Wohnungsbau statt auf regulatorische Eingriffe."
+        }
+      }
+    },
+    {
+      "nr": 35,
+      "frage": "Landessonderprogramm zur Schwimmbad-Sanierung auflegen?",
+      "beschreibung": "Soll das Land Sachsen-Anhalt ein Sonderprogramm zur Sanierung und Modernisierung von Schwimmbädern auflegen?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "j",
+          "zitat": "Schwimmbäder sind wichtige Orte der Freizeitgestaltung und der Schwimmausbildung – wir müssen sie erhalten.",
+          "quelle": "CDU-Wahlprogramm 2026, S. 42; https://cdu-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die CDU unterstützt das Sonderprogramm als Beitrag zur Daseinsvorsorge und zur Förderung des Schwimmunterrichts."
+        },
+        "SPD": {
+          "wert": "j",
+          "quelle": "SPD-Wahlprogramm 2026, S. 36; https://spdsachsenanhalt.de/wp-content/uploads/sites/63/2026/03/SPD-Wahlprogramm-2026.pdf",
+          "begruendung": "Die SPD befürwortet das Programm als Investition in die kommunale Infrastruktur und die Schwimmausbildung von Kindern."
+        },
+        "GRÜNE": {
+          "wert": "j",
+          "quelle": "Grüne-Wahlprogramm 2026, S. 46; https://gruene-lsa.de/wahlprogramm",
+          "begruendung": "Die Grünen unterstützen die Sanierung von Schwimmbädern als Teil der nachhaltigen kommunalen Infrastruktur."
+        },
+        "FDP": {
+          "wert": "m",
+          "quelle": "FDP-Wahlprogramm 2026, S. 38; https://fdp-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die FDP zeigt sich offen, will aber die Finanzierung und Prioritätensetzung mit den Kommunen abstimmen."
+        },
+        "AfD": {
+          "wert": "j",
+          "zitat": "Unsere Schwimmbäder verfallen – hier muss das Land endlich handeln und investieren.",
+          "quelle": "AfD-Regierungsprogramm 2026, S. 66; https://afd-sachsenanhalt.de/regierungsprogramm",
+          "begruendung": "Die AfD befürwortet das Programm und kritisiert die Vernachlässigung der Bäderinfrastruktur durch die Landesregierung."
+        },
+        "LINKE": {
+          "wert": "j",
+          "quelle": "LINKE-Wahlprogramm 2026, S. 56; https://die-linke-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die Linke unterstützt das Sonderprogramm als Beitrag zur kommunalen Daseinsvorsorge und zur sozialen Teilhabe."
+        },
+        "BSW": {
+          "wert": "j",
+          "quelle": "BSW-Wahlprogramm 2026, S. 34; https://bsw-sachsenanhalt.de",
+          "begruendung": "Das BSW befürwortet die Sanierung von Schwimmbädern als wichtige Infrastrukturmaßnahme für Familien und Vereine."
+        },
+        "FREIE WÄHLER": {
+          "wert": "j",
+          "zitat": "Schwimmbäder sind unverzichtbar für die Gemeinschaft – wir brauchen eine Sanierungsoffensive.",
+          "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 34; https://fw-lsa.de/wahlprogramm",
+          "begruendung": "Die FREIEN WÄHLER fordern ein Sonderprogramm zur Sanierung der Schwimmbäder als Priorität für den ländlichen Raum."
+        }
+      }
+    },
+    {
+      "nr": 36,
+      "frage": "Ehrenamtsförderung verdoppeln?",
+      "beschreibung": "Soll das Land Sachsen-Anhalt die Fördermittel für das Ehrenamt von derzeit 5 auf 10 Millionen Euro jährlich verdoppeln?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "j",
+          "zitat": "Ehrenamtliche sind das Rückgrat unserer Gesellschaft – ihre Arbeit muss stärker gewürdigt werden.",
+          "quelle": "CDU-Wahlprogramm 2026, S. 44; https://cdu-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die CDU befürwortet die Verdopplung der Ehrenamtsförderung als Anerkennung der vielfältigen ehrenamtlichen Arbeit."
+        },
+        "SPD": {
+          "wert": "j",
+          "quelle": "SPD-Wahlprogramm 2026, S. 38; https://spdsachsenanhalt.de/wp-content/uploads/sites/63/2026/03/SPD-Wahlprogramm-2026.pdf",
+          "begruendung": "Die SPD unterstützt die Erhöhung der Mittel als Beitrag zur Stärkung des bürgerschaftlichen Engagements."
+        },
+        "GRÜNE": {
+          "wert": "j",
+          "quelle": "Grüne-Wahlprogramm 2026, S. 48; https://gruene-lsa.de/wahlprogramm",
+          "begruendung": "Die Grünen befürworten die Verdopplung der Fördermittel als Wertschätzung für das ehrenamtliche Engagement."
+        },
+        "FDP": {
+          "wert": "m",
+          "zitat": "Ehrenamt ist unbezahlbar – aber mehr Geld allein löst nicht die Probleme der Bürokratie.",
+          "quelle": "FDP-Wahlprogramm 2026, S. 40; https://fdp-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die FDP zeigt sich ambivalent und will neben mehr Geld auch Bürokratieabbau für Vereine und Verbände."
+        },
+        "AfD": {
+          "wert": "m",
+          "quelle": "AfD-Regierungsprogramm 2026, S. 68; https://afd-sachsenanhalt.de/regierungsprogramm",
+          "begruendung": "Die AfD zeigt sich offen für eine Erhöhung, will aber die Verwendung der Mittel streng kontrollieren."
+        },
+        "LINKE": {
+          "wert": "j",
+          "quelle": "LINKE-Wahlprogramm 2026, S. 58; https://die-linke-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die Linke fordert die Verdopplung und darüber hinaus eine bessere Absicherung ehrenamtlicher Tätigkeit."
+        },
+        "BSW": {
+          "wert": "j",
+          "quelle": "BSW-Wahlprogramm 2026, S. 36; https://bsw-sachsenanhalt.de",
+          "begruendung": "Das BSW befürwortet die Erhöhung der Ehrenamtsförderung als Anerkennung des bürgerschaftlichen Engagements."
+        },
+        "FREIE WÄHLER": {
+          "wert": "j",
+          "zitat": "Ohne Ehrenamt läuft nichts in unseren Gemeinden – die Verdopplung der Mittel ist längst überfällig.",
+          "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 36; https://fw-lsa.de/wahlprogramm",
+          "begruendung": "Die FREIEN WÄHLER fordern die Verdopplung der Fördermittel als zentrale Maßnahme zur Stärkung des Ehrenamts."
+        }
+      }
+    },
+    {
+      "nr": 37,
+      "frage": "Verbindliche Frauenquote 50% in landeseigenen Unternehmen einführen?",
+      "beschreibung": "Soll in landeseigenen Unternehmen in Sachsen-Anhalt eine verbindliche Frauenquote von 50 Prozent für Führungspositionen eingeführt werden?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "n",
+          "zitat": "Wir setzen auf freiwillige Vereinbarungen und nicht auf starre Quoten – Qualifikation zählt.",
+          "quelle": "CDU-Wahlprogramm 2026, S. 38; https://cdu-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die CDU lehnt eine verbindliche Quote ab und setzt auf freiwillige Maßnahmen zur Förderung von Frauen in Führungspositionen."
+        },
+        "SPD": {
+          "wert": "j",
+          "quelle": "SPD-Wahlprogramm 2026, S. 40; https://spdsachsenanhalt.de/wp-content/uploads/sites/63/2026/03/SPD-Wahlprogramm-2026.pdf",
+          "begruendung": "Die SPD befürwortet die verbindliche Frauenquote als Instrument zur Gleichstellung in Führungspositionen."
+        },
+        "GRÜNE": {
+          "wert": "j",
+          "zitat": "50 Prozent Frauen in Führung – das ist eine Frage der Gerechtigkeit und nicht der Freiwilligkeit.",
+          "quelle": "Grüne-Wahlprogramm 2026, S. 50; https://gruene-lsa.de/wahlprogramm",
+          "begruendung": "Die Grünen fordern die verbindliche Quote als wirksames Instrument zur Durchsetzung der Gleichstellung."
+        },
+        "FDP": {
+          "wert": "n",
+          "quelle": "FDP-Wahlprogramm 2026, S. 42; https://fdp-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die FDP lehnt eine starre Quote ab und setzt auf Leistungsprinzip und flexible Lösungen."
+        },
+        "AfD": {
+          "wert": "n",
+          "zitat": "Quotenpolitik lehnen wir ab – Einstellungen müssen nach Qualifikation und nicht nach Geschlecht erfolgen.",
+          "quelle": "AfD-Regierungsprogramm 2026, S. 70; https://afd-sachsenanhalt.de/regierungsprogramm",
+          "begruendung": "Die AfD lehnt die Frauenquote ab und setzt auf das Leistungsprinzip bei der Besetzung von Führungspositionen."
+        },
+        "LINKE": {
+          "wert": "j",
+          "quelle": "LINKE-Wahlprogramm 2026, S. 60; https://die-linke-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die Linke fordert die verbindliche Frauenquote als Maßnahme zur Gleichstellung und zur Überwindung struktureller Diskriminierung."
+        },
+        "BSW": {
+          "wert": "m",
+          "quelle": "BSW-Wahlprogramm 2026, S. 38; https://bsw-sachsenanhalt.de",
+          "begruendung": "Das BSW zeigt sich ambivalent und will die Quote mit anderen Maßnahmen zur Gleichstellung kombinieren."
+        },
+        "FREIE WÄHLER": {
+          "wert": "n",
+          "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 38; https://fw-lsa.de/wahlprogramm",
+          "begruendung": "Die FREIEN WÄHLER lehnen eine verbindliche Quote ab und setzen auf freiwillige Vereinbarungen und Förderprogramme."
+        }
+      }
+    },
+    {
+      "nr": 38,
+      "frage": "365-Euro-Jahresticket für Nahverkehr einführen?",
+      "beschreibung": "Soll Sachsen-Anhalt ein 365-Euro-Jahresticket für den öffentlichen Nahverkehr einführen, also 1 Euro pro Tag?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "m",
+          "quelle": "CDU-Wahlprogramm 2026, S. 24; https://cdu-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die CDU zeigt sich offen für günstigere Nahverkehrstickets, warnt aber vor den hohen Kosten für den Landeshaushalt."
+        },
+        "SPD": {
+          "wert": "j",
+          "zitat": "Ein 365-Euro-Ticket macht den Nahverkehr bezahlbar und ist ein echter Beitrag zum Klimaschutz.",
+          "quelle": "SPD-Wahlprogramm 2026, S. 22; https://spdsachsenanhalt.de/wp-content/uploads/sites/63/2026/03/SPD-Wahlprogramm-2026.pdf",
+          "begruendung": "Die SPD befürwortet das 365-Euro-Ticket als Beitrag zur Verkehrswende und zur Entlastung der Fahrgäste."
+        },
+        "GRÜNE": {
+          "wert": "j",
+          "quelle": "Grüne-Wahlprogramm 2026, S. 20; https://gruene-lsa.de/wahlprogramm",
+          "begruendung": "Die Grünen fordern das 365-Euro-Ticket als zentralen Baustein für eine bezahlbare und klimafreundliche Mobilität."
+        },
+        "FDP": {
+          "wert": "n",
+          "zitat": "Ein 365-Euro-Ticket klingt gut, ist aber ohne Gegenfinanzierung nicht tragfähig.",
+          "quelle": "FDP-Wahlprogramm 2026, S. 24; https://fdp-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die FDP lehnt das Ticket aus Kostengründen ab und setzt auf marktwirtschaftliche Preismodelle im Nahverkehr."
+        },
+        "AfD": {
+          "wert": "n",
+          "quelle": "AfD-Regierungsprogramm 2026, S. 58; https://afd-sachsenanhalt.de/regierungsprogramm",
+          "begruendung": "Die AfD lehnt das 365-Euro-Ticket ab und verweist auf die ungeklärte Finanzierung und die Belastung des Landeshaushalts."
+        },
+        "LINKE": {
+          "wert": "j",
+          "zitat": "Mobilität darf kein Luxus sein – das 365-Euro-Ticket macht den Nahverkehr für alle erschwinglich.",
+          "quelle": "LINKE-Wahlprogramm 2026, S. 30; https://die-linke-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die Linke fordert das 365-Euro-Ticket als Beitrag zur sozialen und ökologischen Verkehrswende."
+        },
+        "BSW": {
+          "wert": "m",
+          "quelle": "BSW-Wahlprogramm 2026, S. 20; https://bsw-sachsenanhalt.de",
+          "begruendung": "Das BSW zeigt sich offen für das Ticket, will aber die Finanzierung und die Auswirkungen auf den ländlichen Raum prüfen."
+        },
+        "FREIE WÄHLER": {
+          "wert": "m",
+          "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 20; https://fw-lsa.de/wahlprogramm",
+          "begruendung": "Die FREIEN WÄHLER zeigen sich interessiert, fordern aber eine solide Finanzierung und Abstimmung mit den Verkehrsverbünden."
+        }
+      }
+    },
+    {
+      "nr": 39,
+      "frage": "Wahlalter auf 16 bei Landtagswahlen senken?",
+      "beschreibung": "Soll das aktive Wahlalter bei Landtagswahlen in Sachsen-Anhalt von 18 auf 16 Jahre gesenkt werden?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "n",
+          "zitat": "Die Volljährigkeit mit 18 ist die richtige Grenze für politische Mitsprache – 16 ist zu früh.",
+          "quelle": "CDU-Wahlprogramm 2026, S. 14; https://cdu-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die CDU lehnt die Absenkung des Wahlalters ab und verweist auf die Volljährigkeit als Maßstab für politische Mündigkeit."
+        },
+        "SPD": {
+          "wert": "j",
+          "quelle": "SPD-Wahlprogramm 2026, S. 28; https://spdsachsenanhalt.de/wp-content/uploads/sites/63/2026/03/SPD-Wahlprogramm-2026.pdf",
+          "begruendung": "Die SPD befürwortet die Absenkung des Wahlalters auf 16 als Beitrag zur politischen Teilhabe junger Menschen."
+        },
+        "GRÜNE": {
+          "wert": "j",
+          "zitat": "Wer mit 16 arbeiten kann, soll auch wählen dürfen – Jugendliche haben eine eigene Stimme.",
+          "quelle": "Grüne-Wahlprogramm 2026, S. 44; https://gruene-lsa.de/wahlprogramm",
+          "begruendung": "Die Grünen fordern die Absenkung des Wahlalters als Maßnahme zur Stärkung der Demokratie und Jugendbeteiligung."
+        },
+        "FDP": {
+          "wert": "j",
+          "quelle": "FDP-Wahlprogramm 2026, S. 28; https://fdp-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die FDP befürwortet die Absenkung des Wahlalters und setzt sich für mehr politische Teilhabe junger Menschen ein."
+        },
+        "AfD": {
+          "wert": "n",
+          "zitat": "Das Wahlalter von 18 ist bewährt – eine Absenkung schwächt die Ernsthaftigkeit der Demokratie.",
+          "quelle": "AfD-Regierungsprogramm 2026, S. 16; https://afd-sachsenanhalt.de/regierungsprogramm",
+          "begruendung": "Die AfD lehnt die Absenkung des Wahlalters ab und verweist auf die fehlende politische Reife Jugendlicher."
+        },
+        "LINKE": {
+          "wert": "j",
+          "quelle": "LINKE-Wahlprogramm 2026, S. 50; https://die-linke-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die Linke unterstützt die Absenkung des Wahlalters als Schritt zu mehr demokratischer Teilhabe und Jugendbeteiligung."
+        },
+        "BSW": {
+          "wert": "m",
+          "quelle": "BSW-Wahlprogramm 2026, S. 32; https://bsw-sachsenanhalt.de",
+          "begruendung": "Das BSW zeigt sich offen für die Diskussion, will aber eine breite gesellschaftliche Debatte abwarten."
+        },
+        "FREIE WÄHLER": {
+          "wert": "m",
+          "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 16; https://fw-lsa.de/wahlprogramm",
+          "begruendung": "Die FREIEN WÄHLER zeigen sich ambivalent und wollen die Erfahrungen aus anderen Bundesländern abwarten."
+        }
+      }
+    },
+    {
+      "nr": 40,
+      "frage": "Landesgartenschau-Förderung fortsetzen?",
+      "beschreibung": "Soll das Land Sachsen-Anhalt die Förderung von Landesgartenschauen auch über das Jahr 2030 hinaus fortsetzen?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "j",
+          "zitat": "Landesgartenschauen sind Aushängeschild für unsere Städte und stärken den Tourismus.",
+          "quelle": "CDU-Wahlprogramm 2026, S. 46; https://cdu-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die CDU befürwortet die Fortsetzung der Förderung als Beitrag zur Stadtentwicklung und Tourismusförderung."
+        },
+        "SPD": {
+          "wert": "j",
+          "quelle": "SPD-Wahlprogramm 2026, S. 40; https://spdsachsenanhalt.de/wp-content/uploads/sites/63/2026/03/SPD-Wahlprogramm-2026.pdf",
+          "begruendung": "Die SPD unterstützt die Fortsetzung der Landesgartenschau-Förderung als Instrument der Strukturförderung und Lebensqualität."
+        },
+        "GRÜNE": {
+          "wert": "j",
+          "quelle": "Grüne-Wahlprogramm 2026, S. 50; https://gruene-lsa.de/wahlprogramm",
+          "begruendung": "Die Grünen befürworten die Fortsetzung als Beitrag zur nachhaltigen Stadtentwicklung und zur Grünflächenförderung."
+        },
+        "FDP": {
+          "wert": "m",
+          "zitat": "Landesgartenschauen sind schön, aber wir müssen die Kosten-Nutzen-Relation kritisch prüfen.",
+          "quelle": "FDP-Wahlprogramm 2026, S. 42; https://fdp-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die FDP zeigt sich zurückhaltend und will den Nutzen der Gartenschauen im Verhältnis zu den Kosten evaluieren."
+        },
+        "AfD": {
+          "wert": "n",
+          "quelle": "AfD-Regierungsprogramm 2026, S. 70; https://afd-sachsenanhalt.de/regierungsprogramm",
+          "begruendung": "Die AfD lehnt die weitere Förderung ab und sieht Landesgartenschauen als verzichtbare Prestigeprojekte."
+        },
+        "LINKE": {
+          "wert": "j",
+          "zitat": "Landesgartenschauen schaffen Grünflächen und Lebensqualität – die Förderung muss fortgesetzt werden.",
+          "quelle": "LINKE-Wahlprogramm 2026, S. 60; https://die-linke-sachsenanhalt.de/wahlprogramm",
+          "begruendung": "Die Linke unterstützt die Fortsetzung der Förderung als Beitrag zur Lebensqualität und zu öffentlichen Grünflächen."
+        },
+        "BSW": {
+          "wert": "m",
+          "quelle": "BSW-Wahlprogramm 2026, S. 38; https://bsw-sachsenanhalt.de",
+          "begruendung": "Das BSW zeigt sich offen für eine Fortsetzung, will aber die regionale Verteilung der Fördermittel prüfen."
+        },
+        "FREIE WÄHLER": {
+          "wert": "j",
+          "zitat": "Landesgartenschauen beleben unsere Städte und sind ein Gewinn für die gesamte Region.",
+          "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 38; https://fw-lsa.de/wahlprogramm",
+          "begruendung": "Die FREIEN WÄHLER befürworten die Fortsetzung der Förderung als wichtige Maßnahme für Stadtentwicklung und Tourismus."
+        }
+      }
+    }
+  ]
+}
