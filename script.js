@@ -215,12 +215,14 @@ async function loadElections() {
             
             const electionInfo = electionsList.find(e => e.id === defaultId);
             showNotification(`Geladen: ${electionInfo ? electionInfo.name : defaultId}`, 'info');
+            return true; // success
         } else {
             throw new Error('Keine Standardwahl gefunden');
         }
     } catch (err) {
         console.error('Fehler beim Laden der Wahlen:', err);
         showNotification('Fehler beim Laden der Wahldaten. Bitte Seite neu laden.', 'error');
+        return false; // failure
     }
 }
 
@@ -416,7 +418,14 @@ document.addEventListener('DOMContentLoaded', async () => {
         ['All', 'Party'].forEach(handleCoalitionTypeChange);
         
         // Load elections and select default
-        await loadElections();
+        const electionsLoaded = await loadElections();
+        
+        if (!electionsLoaded) {
+            throw new Error('Wahldaten konnten nicht geladen werden');
+        }
+        
+        // Hide loading overlay
+        if (loadingOverlay) loadingOverlay.style.display = 'none';
         
     } catch (error) {
         console.error('Fehler beim Initialisieren:', error);
