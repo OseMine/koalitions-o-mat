@@ -1,0 +1,88 @@
+name: 🐛 Bug melden – direkt per /opencode fixen lassen
+description: Melde einen Bug und lass ihn direkt von opencode (GitHub-Action) analysieren und per Pull-Request beheben.
+title: "[Bug]: "
+labels: ["bug", "opencode"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## So funktioniert's
+        1. **Dieses Formular ausfüllen** – so präzise wie möglich (je klarer der Bug, desto besser der Fix).
+        2. **Issue erstellen.**
+        3. **Als Kommentar `/opencode` posten.** Dadurch startet die GitHub-Action
+           (`.github/workflows/opencode.yml`), opencode liest dieses Issue und den Code,
+           entwickelt den Fix und eröffnet einen Pull-Request.
+           *(Tipp: Statt `/opencode` genügt auch `/oc`.)*
+  - type: textarea
+    id: beschreibung
+    attributes:
+      label: Bugbeschreibung
+      description: Was passiert, und warum ist das falsch?
+      placeholder: |
+        Beispiel: Beim Wechsel zur Wahl „BTW 2021“ bricht der Chart zusammen, sobald eine
+        Partei in werte.json 0 % hat. In der Konsole erscheint „Cannot read properties of
+        undefined“.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduktion
+    attributes:
+      label: Schritte zum Reproduzieren
+      description: Mindestens so viele Schritte, dass opencode den Fehler nachvollziehen kann.
+      placeholder: |
+        1. `index.html` im Browser öffnen.
+        2. Die Wahl „BTW 2021“ auswählen.
+        3. Bei Frage 3 „Neutral“ antworten.
+        4. Ergebnis-Tab öffnen → Fehler tritt auf.
+    validations:
+      required: true
+  - type: textarea
+    id: erwartet
+    attributes:
+      label: Erwartetes Verhalten
+      description: Was sollte stattdessen passieren?
+    validations:
+      required: true
+  - type: textarea
+    id: tatsaechlich
+    attributes:
+      label: Tatsächliches Verhalten
+      description: Was passiert stattdessen (Fehlermeldung, falsche Zahl, abgestürzter Chart)?
+    validations:
+      required: true
+  - type: input
+    id: dateien
+    attributes:
+      label: Betroffene Dateien (falls bekannt)
+      description: Beschleunigt die Fehlersuche erheblich.
+      placeholder: "script.js, elections/btw21/fragen.json, einfache-sprache.json"
+    validations:
+      required: false
+  - type: dropdown
+    id: umgebung
+    attributes:
+      label: Umgebung
+      description: Wo tritt der Fehler auf?
+      options:
+        - Browser (Chrome / Firefox / Safari / Edge)
+        - Node.js / CLI
+        - Sonstiges
+    validations:
+      required: false
+  - type: markdown
+    attributes:
+      value: |
+        ## Nach dem Posten von `/opencode`
+        - Die Action arbeitet mit dem Modell `opencode/deepseek-v4-flash-free`.
+        - Der Fix wird **ohne direkte Änderung am Haupt-Branch** als Pull-Request vorgeschlagen –
+          ein Mensch reviewt und merged ihn.
+        - Gute Bug-Reports führen zu besseren Fixes. Wenn Details fehlen, kann opencode
+          Rückfragen im Issue stellen.
+  - type: checkboxes
+    id: zustimmung
+    attributes:
+      label: Zustimmung
+      description: Bitte bestätigen, damit die Automatik loslegen darf.
+      options:
+        - label: "Ich bin einverstanden, dass opencode (GitHub-Action) diesen Bug automatisch analysiert und einen Pull-Request mit Fix erstellt."
+          required: true
