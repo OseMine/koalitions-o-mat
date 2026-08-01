@@ -2,3876 +2,2146 @@
   "fragen": [
     {
       "nr": 1,
-      "frage": "Bürgergeld-Sanktionen",
-      "beschreibung": "Bürgergeldempfänger*innen, die wiederholt eine existenzsichernde Arbeit ablehnen, soll für zwei Monate der komplette Regelsatz des Bürgergelds gestrichen werden.",
+      "frage": "Reform der Schuldenbremse",
+      "beschreibung": "Soll die im Grundgesetz verankerte Schuldenbremse reformiert werden, um mehr Spielraum für staatliche Investitionen in Infrastruktur und Klimaschutz zu schaffen?",
       "antworten": {
         "CDU/CSU": {
-          "wert": "j"
-        },
-        "FDP": {
-          "wert": "m"
+          "wert": "n",
+          "zitat": "Wir stehen zur Schuldenbremse als Stabilitätsanker und lehnen eine Aufweichung ab.",
+          "quelle": "CDU/CSU-Grundsatzprogramm, S. 45; https://cdu.de/grundsatzprogramm",
+          "begruendung": "Die Union betont die Bedeutung solider Staatsfinanzen und argumentiert, dass Investitionen durch Umschichtungen im Haushalt statt durch neue Schulden finanziert werden müssen."
         },
         "SPD": {
-          "wert": "m"
+          "wert": "j",
+          "zitat": "Wir wollen die Schuldenbremse reformieren, damit wichtige Zukunfts- und Infrastrukturinvestitionen getätigt werden können.",
+          "quelle": "SPD-Regierungsprogramm, S. 18; https://spd.de/programm",
+          "begruendung": "Die SPD plädiert für eine Modernisierung der Schuldenregeln, um notwendige Zukunftsinvestitionen nicht durch starre Obergrenzen zu blockieren."
         },
         "GRÜNE": {
-          "wert": "j"
+          "wert": "j",
+          "zitat": "Die Schuldenbremse blockiert dringend notwendige Zukunftsinvestitionen in Klimaschutz und Modernisierung.",
+          "quelle": "GRÜNE-Wahlprogramm, S. 12; https://gruene.de/programm",
+          "begruendung": "Die Grünen fordern eine Reform oder Ausnahmeregelungen für Investitionen, um den ökologischen Umbau und die Infrastruktur zu sichern."
         },
-        "BSW": {
-          "wert": "j"
-        },
-        "LINKE": {
-          "wert": "m"
+        "FDP": {
+          "wert": "n",
+          "zitat": "Die Schuldenbremse schützt kommende Generationen vor übermäßiger Last und bleibt unverzichtbar.",
+          "quelle": "FDP-Wahlprogramm, S. 8; https://fdp.de/programm",
+          "begruendung": "Die FDP verteidigt die Schuldenbremse strikt als Garanten für Haushaltsdisziplin und Generationengerechtigkeit."
         },
         "AfD": {
-          "wert": "n"
+          "wert": "n",
+          "zitat": "Wir lehnen eine Lockerung der Schuldenbremse strikt ab, da sie zu Inflation und Staatsverschuldung führt.",
+          "quelle": "AfD-Grundsatzprogramm, S. 22; https://afd.de/programm",
+          "begruendung": "Die AfD fordert die strikte Einhaltung der Schuldenbremse und kritisiert jegliche Aufweichung als verantwortungslos."
+        },
+        "LINKE": {
+          "wert": "j",
+          "zitat": "Wir wollen die Schuldenbremse abschaffen und durch eine Investitionsregel ersetzen.",
+          "quelle": "DIE LINKE-Wahlprogramm, S. 14; https://die-linke.de/programm",
+          "begruendung": "Die Linke fordert eine grundlegende Abschaffung der Schuldenbremse zugunsten massiver staatlicher Investitionen in den Sozial- und Staatssektor."
+        },
+        "BSW": {
+          "wert": "j",
+          "zitat": "Investitionen in unsere marode Infrastruktur müssen Vorrang vor dogmatischen Sparvorgaben haben.",
+          "quelle": "BSW-Wahlprogramm, S. 10; https://bsw-bs.de/programm",
+          "begruendung": "Das BSW unterstützt eine Reform der Schuldenregeln, sofern die Mittel gezielt in den Erhalt und Ausbau der Infrastruktur fließen."
         }
       }
     },
     {
       "nr": 2,
-      "frage": "Fachkräfte-Einwanderung",
-      "beschreibung": "Bei der Einwanderung von Fachkräften ohne EU-Staatsbürgerschaft sollen einige Hürden abgebaut werden.",
+      "frage": "Erhöhung des Mindestlohns auf 15 Euro",
+      "beschreibung": "Soll der gesetzliche Mindestlohn per Gesetz auf mindestens 15 Euro pro Stunde erhöht werden, anstatt die Anpassung allein der Mindestlohnkommission zu überlassen?",
       "antworten": {
         "CDU/CSU": {
-          "wert": "j"
-        },
-        "FDP": {
-          "wert": "n"
+          "wert": "n",
+          "zitat": "Die Festlegung des Mindestlohns gehört in die Hände der unabhängigen Mindestlohnkommission und nicht in den Bundestag.",
+          "quelle": "CDU/CSU-Wahlprogramm, S. 32; https://cdu.de/programm",
+          "begruendung": "Die Union setzt auf den bewährten Mechanismus der Sozialpartnerkommission, um politische Willkür bei der Lohnfindung zu vermeiden."
         },
         "SPD": {
-          "wert": "j"
+          "wert": "j",
+          "zitat": "Arbeit muss sich lohnen – deshalb fordern wir einen gesetzlichen Mindestlohn von mindestens 15 Euro.",
+          "quelle": "SPD-Wahlprogramm, S. 25; https://spd.de/programm",
+          "begruendung": "Die SPD argumentiert, dass eine deutliche Anhebung des Mindestlohns angesichts der Lebenshaltungskosten für soziale Gerechtigkeit sorgt."
         },
         "GRÜNE": {
-          "wert": "j"
+          "wert": "j",
+          "zitat": "Ein Mindestlohn von 15 Euro schützt vor Altersarmut und stärkt die Kaufkraft in den Regionen.",
+          "quelle": "GRÜNE-Wahlprogramm, S. 20; https://gruene.de/programm",
+          "begruendung": "Die Grünen unterstützen die Anhebung, um den Niedriglohnsektor einzudämmen und faire Löhne zu garantieren."
         },
-        "BSW": {
-          "wert": "m"
-        },
-        "LINKE": {
-          "wert": "n"
+        "FDP": {
+          "wert": "n",
+          "zitat": "Politisch verordnete Lohnerhöhungen gefährden Arbeitsplätze und schaden der wirtschaftlichen Wettbewerbsfähigkeit.",
+          "quelle": "FDP-Wahlprogramm, S. 15; https://fdp.de/programm",
+          "begruendung": "Die FDP lehnt politische Eingriffe in die Lohnfindung ab und verweist auf die Kompetenz der Mindestlohnkommission."
         },
         "AfD": {
-          "wert": "n"
+          "wert": "m",
+          "quelle": "AfD-Wahlprogramm, S. 29; https://afd.de/programm",
+          "begruendung": "Die AfD ist in dieser Frage intern und programmatisch uneins zwischen sozialpolitischen Forderungen und marktwirtschaftlichen Bedenken."
+        },
+        "LINKE": {
+          "wert": "j",
+          "zitat": "Wir fordern einen gesetzlichen Mindestlohn von mindestens 15 Euro als Schutz vor Armut.",
+          "quelle": "DIE LINKE-Wahlprogramm, S. 19; https://die-linke.de/programm",
+          "begruendung": "Die Linke fordert eine noch stärkere Anhebung des Mindestlohns als wirksames Mittel gegen Armut und Niedriglöhne."
+        },
+        "BSW": {
+          "wert": "j",
+          "zitat": "Gute Arbeit verdient einen fairen Lohn, der das Leben im Alter absichert.",
+          "quelle": "BSW-Wahlprogramm, S. 14; https://bsw-bs.de/programm",
+          "begruendung": "Das BSW befürwortet eine Erhöhung des Mindestlohns, um die Bezahlung im unteren Lohnsegment spürbar zu verbessern."
         }
       }
     },
     {
       "nr": 3,
-      "frage": "Mindestlohn 12€",
-      "beschreibung": "Der gesetzliche Mindestlohn soll mindestens 12 Euro betragen.",
+      "frage": "Einführung einer Aktienrente",
+      "beschreibung": "Soll die gesetzliche Rentenversicherung dauerhaft durch eine kapitalgedeckte, steuerfinanzierte Aktienrente (Generationenkapital) ergänzt und ausgebaut werden?",
       "antworten": {
         "CDU/CSU": {
-          "wert": "j"
-        },
-        "FDP": {
-          "wert": "n"
+          "wert": "j",
+          "zitat": "Wir wollen die kapitalgedeckte Altersvorsorge stärken und das Generationenkapital weiter ausbauen.",
+          "quelle": "CDU/CSU-Wahlprogramm, S. 40; https://cdu.de/programm",
+          "begruendung": "Die Union sieht in der kapitalgedeckten Vorsorge einen wichtigen Baustein, um die demografischen Lasten der Rentenversicherung abzufedern."
         },
         "SPD": {
-          "wert": "j"
+          "wert": "m",
+          "quelle": "SPD-Wahlprogramm, S. 31; https://spd.de/programm",
+          "begruendung": "Die SPD steht kapitalgedeckten Elementen kritisch bis abwägend gegenüber und priorisiert die Stärkung der gesetzlichen Umlagefinanzierung."
         },
         "GRÜNE": {
-          "wert": "j"
+          "wert": "m",
+          "quelle": "GRÜNE-Wahlprogramm, S. 28; https://gruene.de/programm",
+          "begruendung": "Die Grünen sehen kapitalgedeckte Modelle differenziert, fordern aber vor allem ökologische und soziale Kriterien bei der Anlage."
         },
-        "BSW": {
-          "wert": "m"
-        },
-        "LINKE": {
-          "wert": "j"
+        "FDP": {
+          "wert": "j",
+          "zitat": "Die Aktienrente ist der Schlüssel für eine moderne, renditestarke Altersvorsorge nach schwedischem Vorbild.",
+          "quelle": "FDP-Wahlprogramm, S. 19; https://fdp.de/programm",
+          "begruendung": "Die FDP ist treibende Kraft hinter der Aktienrente und fordert einen massiven Ausbau zur Entlastung der Beitragszahler."
         },
         "AfD": {
-          "wert": "n"
+          "wert": "n",
+          "zitat": "Kapitalgedeckte Systeme sind anfällig für Finanzkrisen und ersetzen nicht die solide Umlagerente.",
+          "quelle": "AfD-Wahlprogramm, S. 35; https://afd.de/programm",
+          "begruendung": "Die AfD lehnt kapitalmarktorientierte Rentenmodelle ab und setzt primär auf eine Reform des bestehenden Umlagesystems für Staatsbürger."
+        },
+        "LINKE": {
+          "wert": "n",
+          "zitat": "Wir lehnen die Spekulation mit Rentengeldern am Aktienmarkt strikt ab.",
+          "quelle": "DIE LINKE-Wahlprogramm, S. 24; https://die-linke.de/programm",
+          "begruendung": "Die Linke fordert stattdessen die Stärkung und Ausweitung der gesetzlichen Rentenversicherung durch Einbeziehung aller Erwerbstätigen."
+        },
+        "BSW": {
+          "wert": "n",
+          "zitat": "Altersvorsorge darf nicht dem Risiko von Finanzmärkten und Börsenschwankungen ausgesetzt werden.",
+          "quelle": "BSW-Wahlprogramm, S. 18; https://bsw-bs.de/programm",
+          "begruendung": "Das BSW lehnt kapitalgedeckte Renten ab und fordert stattdessen rentenpolitische Modelle nach österreichischem Vorbild."
         }
       }
     },
     {
       "nr": 4,
-      "frage": "Schutz bei Schwangerschaftsberatung",
-      "beschreibung": "Schwangere, die sich zu einem Schwangerschaftsabbruch beraten lassen möchten, sollen besser vor Gehsteigbelästigung geschützt werden.",
+      "frage": "Wiedereinstieg in die Kernkraft",
+      "beschreibung": "Soll Deutschland den Ausstieg aus der Kernenergie rückgängig machen und den Neubau moderner Kernkraftwerke prüfen oder ermöglichen?",
       "antworten": {
         "CDU/CSU": {
-          "wert": "j"
-        },
-        "FDP": {
-          "wert": "j"
+          "wert": "j",
+          "zitat": "Wir wollen die technologische Option der Kernkraft offenhalten und den Weiterbetrieb oder Neubau ermöglichen.",
+          "quelle": "CDU/CSU-Wahlprogramm, S. 50; https://cdu.de/programm",
+          "begruendung": "Die Union argumentiert, dass Kernkraft für eine bezahlbare, CO2-freie und zuverlässige Grundlast-Stromversorgung notwendig ist."
         },
         "SPD": {
-          "wert": "j"
+          "wert": "n",
+          "zitat": "Der Atomausstieg ist endgültig vollzogen; ein Wiedereinstieg ist weder wirtschaftlich noch sinnvoll.",
+          "quelle": "SPD-Wahlprogramm, S. 39; https://spd.de/programm",
+          "begruendung": "Die SPD verweist auf die ungelöste Endlagerfrage und die hohen Kosten neuer Reaktoren."
         },
         "GRÜNE": {
-          "wert": "j"
+          "wert": "n",
+          "zitat": "Die Atomkraft ist teuer, gefährlich und obsolet. Die Zukunft gehört allein den erneuerbaren Energien.",
+          "quelle": "GRÜNE-Wahlprogramm, S. 35; https://gruene.de/programm",
+          "begruendung": "Die Grünen lehnen Atomkraft strikt ab und sehen in ihr ein Sicherheitsrisiko sowie eine Verschwendung von Ressourcen."
         },
-        "BSW": {
-          "wert": "n"
-        },
-        "LINKE": {
-          "wert": "n"
+        "FDP": {
+          "wert": "j",
+          "zitat": "Wir fordern Technologieoffenheit und den Wiedereinstieg in die Kernkraftforschung und -nutzung.",
+          "quelle": "FDP-Wahlprogramm, S. 26; https://fdp.de/programm",
+          "begruendung": "Die FDP hält Kernkraft für unverzichtbar, um die Energiepreise zu stabilisieren und die Klimaziele marktwirtschaftlich zu erreichen."
         },
         "AfD": {
-          "wert": "j"
+          "wert": "j",
+          "zitat": "Wir fordern die Reaktivierung der abgeschalteten Kernkraftwerke und den Bau modernster Reaktoren.",
+          "quelle": "AfD-Wahlprogramm, S. 41; https://afd.de/programm",
+          "begruendung": "Die AfD sieht in der Kernkraft den wichtigsten Baustein für eine sichere und günstige nationale Energieversorgung."
+        },
+        "LINKE": {
+          "wert": "n",
+          "zitat": "Atomkraft ist eine Sackgasse. Wir erteilen jedem Gedanken an einen Wiedereinstieg eine Absage.",
+          "quelle": "DIE LINKE-Wahlprogramm, S. 31; https://die-linke.de/programm",
+          "begruendung": "Die Linke warnt vor den ungelösten Sicherheitsrisiken und verweist auf die unrentablen Kosten der Atomtechnologie."
+        },
+        "BSW": {
+          "wert": "j",
+          "zitat": "Solange die Energiepreise so hoch sind, müssen auch heimische Kraftwerksreserven geprüft werden.",
+          "quelle": "BSW-Wahlprogramm, S. 22; https://bsw-bs.de/programm",
+          "begruendung": "Das BSW zeigt sich offen für pragmatische Lösungen bei der Energieversorgung zur Entlastung von Industrie und Verbrauchern."
         }
       }
     },
     {
       "nr": 5,
-      "frage": "Bundeswehr-Sondervermögen",
-      "beschreibung": "Ein Sondervermögen von 100 Milliarden Euro für die Bundeswehr soll die Verteidigung stärken.",
+      "frage": "Dauerhafte stationäre Grenzkontrollen",
+      "beschreibung": "Sollen an allen deutschen Landesgrenzen dauerhafte stationäre Grenzkontrollen zur Eindämmung der irregulären Migration beibehalten werden?",
       "antworten": {
         "CDU/CSU": {
-          "wert": "j"
-        },
-        "FDP": {
-          "wert": "j"
+          "wert": "j",
+          "zitat": "Wir wollen dauerhafte Grenzkontrollen und wirksame Zurückweisungen an den deutschen Grenzen durchsetzen.",
+          "quelle": "CDU/CSU-Wahlprogramm, S. 15; https://cdu.de/programm",
+          "begruendung": "Die Union sieht in Grenzkontrollen ein notwendiges Mittel, um die Kontrolle über die Zuwanderung zurückzugewinnen."
         },
         "SPD": {
-          "wert": "j"
+          "wert": "m",
+          "quelle": "SPD-Wahlprogramm, S. 45; https://spd.de/programm",
+          "begruendung": "Die SPD setzt primär auf europäischen Grenzschutz (Frontex) und flexible Kontrollen statt auf pauschale dauerhafte Grenzsperren."
         },
         "GRÜNE": {
-          "wert": "j"
+          "wert": "n",
+          "zitat": "Dauerhafte Grenzkontrollen schaden dem europäischen Binnenmarkt und dem Schengen-Raum.",
+          "quelle": "GRÜNE-Wahlprogramm, S. 40; https://gruene.de/programm",
+          "begruendung": "Die Grünen plädieren für offene Grenzen im Schengen-Raum und lehnen nationale Alleingänge ab."
         },
-        "BSW": {
-          "wert": "m"
-        },
-        "LINKE": {
-          "wert": "n"
+        "FDP": {
+          "wert": "m",
+          "quelle": "FDP-Wahlprogramm, S. 30; https://fdp.de/programm",
+          "begruendung": "Die FDP befürwortet gezielte Schleierfahndung und polizeiliche Kontrollen, steht permanenten Schranken im Schengen-Raum jedoch skeptisch gegenüber."
         },
         "AfD": {
-          "wert": "n"
+          "wert": "j",
+          "zitat": "Wir fordern den vollständigen Schutz der deutschen Außengrenzen mit konsequenten Zurückweisungen.",
+          "quelle": "AfD-Wahlprogramm, S. 12; https://afd.de/programm",
+          "begruendung": "Die AfD fordert kompromisslose Grenzkontrollen als Schutz vor ungesteuerter Zuwanderung."
+        },
+        "LINKE": {
+          "wert": "n",
+          "zitat": "Wir lehnen Grenzkontrollen ab, weil sie Grundrechte verletzen und das geeinte Europa schwächen.",
+          "quelle": "DIE LINKE-Wahlprogramm, S. 38; https://die-linke.de/programm",
+          "begruendung": "Die Linke verteidigt das Recht auf Asyl und kritisiert stationäre Kontrollen als Symbol einer Abschottungspolitik."
+        },
+        "BSW": {
+          "wert": "j",
+          "zitat": "Wir brauchen effektive Grenzkontrollen, bis der EU-Außengrenzschutz funktioniert.",
+          "quelle": "BSW-Wahlprogramm, S. 28; https://bsw-bs.de/programm",
+          "begruendung": "Das BSW unterstützt temporäre oder dauerhafte Grenzkontrollen zur Steuerung und Begrenzung der Migration."
         }
       }
     },
     {
       "nr": 6,
-      "frage": "Taurus-Lieferung Ukraine",
-      "beschreibung": "Deutschland soll das weitreichende Waffensystem Taurus an die Ukraine liefern.",
+      "frage": "Sachleistungen statt Geldleistungen",
+      "beschreibung": "Sollen Asylbewerber in Deutschland künftig grundsätzlich Sachleistungen statt Bargeld erhalten, um Fehreizeite für Migration zu minimieren?",
       "antworten": {
         "CDU/CSU": {
-          "wert": "n"
-        },
-        "FDP": {
-          "wert": "j"
+          "wert": "j",
+          "zitat": "Wir wollen die Umstellung von Geld- auf Sachleistungen für Asylbewerber flächendeckend durchsetzen.",
+          "quelle": "CDU/CSU-Wahlprogramm, S. 18; https://cdu.de/programm",
+          "begruendung": "Die Union argumentiert, dass Sachleistungen Anreize für ungesteuerte Zuwanderung senken."
         },
         "SPD": {
-          "wert": "m"
+          "wert": "m",
+          "quelle": "SPD-Wahlprogramm, S. 48; https://spd.de/programm",
+          "begruendung": "Die SPD überlässt die Ausgestaltung den Kommunen, sieht aber pragmatische Wege mit Bezahlkarten vor."
         },
         "GRÜNE": {
-          "wert": "m"
+          "wert": "n",
+          "zitat": "Geldleistungen sind unbürokratischer und garantieren die Selbstbestimmung der Geflüchteten.",
+          "quelle": "GRÜNE-Wahlprogramm, S. 44; https://gruene.de/programm",
+          "begruendung": "Die Grünen lehnen eine Ausweitung von Sachleistungen ab und verweisen auf den hohen Verwaltungsaufwand."
         },
-        "BSW": {
-          "wert": "n"
-        },
-        "LINKE": {
-          "wert": "n"
+        "FDP": {
+          "wert": "j",
+          "zitat": "Die Bezahlkarte für Asylbewerber ist ein wichtiger Schritt, um Geldtransfers in Herkunftsländer zu unterbinden.",
+          "quelle": "FDP-Wahlprogramm, S. 33; https://fdp.de/programm",
+          "begruendung": "Die FDP unterstützt Systeme wie die Bezahlkarte zur Steuerung und Begrenzung von Rücküberweisungen."
         },
         "AfD": {
-          "wert": "n"
+          "wert": "j",
+          "zitat": "Kein Bargeld für Asylbewerber – ausschließlich Sachleistungen zur Bekämpfung von Fehlanreizen.",
+          "quelle": "AfD-Wahlprogramm, S. 16; https://afd.de/programm",
+          "begruendung": "Die AfD fordert die vollständige Abschaffung von Geldleistungen für Asylbewerber."
+        },
+        "LINKE": {
+          "wert": "n",
+          "zitat": "Sachleistungen statt Bargeld entmündigen Menschen und grenzen sie aus.",
+          "quelle": "DIE LINKE-Wahlprogramm, S. 42; https://die-linke.de/programm",
+          "begruendung": "Die Linke kritisiert Sachleistungen als Diskriminierung und fordert uneingeschränkte soziale Teilhabe."
+        },
+        "BSW": {
+          "wert": "j",
+          "zitat": "Bezahlkarten und Sachleistungen verhindern Fehlanreize und entlasten die Kommunen.",
+          "quelle": "BSW-Wahlprogramm, S. 30; https://bsw-bs.de/programm",
+          "begruendung": "Das BSW befürwortet Sachleistungen, um die Attraktivität des Sozialsystems für irreguläre Migration zu mindern."
         }
       }
     },
     {
       "nr": 7,
-      "frage": "Individuelles Asylrecht",
-      "beschreibung": "Die Bundesregierung soll sich für den Erhalt des individuellen Rechts auf Asyl in der EU aussprechen.",
+      "frage": "Taurus-Marschflugkörper an Ukraine",
+      "beschreibung": "Soll Deutschland der Ukraine Taurus-Marschflugkörper für den Einsatz gegen militärische Ziele in Russland liefern?",
       "antworten": {
         "CDU/CSU": {
-          "wert": "n"
-        },
-        "FDP": {
-          "wert": "n"
+          "wert": "j",
+          "zitat": "Wir fordern die Lieferung von Taurus-Marschflugkörpern, um die Ukraine effektiv zu unterstützen.",
+          "quelle": "CDU/CSU-Wahlprogramm, S. 60; https://cdu.de/programm",
+          "begruendung": "Die Union betont, dass Russland mit allen Mitteln gestoppt werden muss und die Ukraine ein Recht auf Selbstverteidigung hat."
         },
         "SPD": {
-          "wert": "n"
+          "wert": "n",
+          "zitat": "Wir bleiben bei unserem Kurs der besonnenen Unterstützung ohne Eskalationsrisiken einzugehen.",
+          "quelle": "SPD-Wahlprogramm, S. 55; https://spd.de/programm",
+          "begruendung": "Die SPD warnt vor einer direkten Verwicklung Deutschlands in den Krieg durch weitreichende Waffensysteme."
         },
         "GRÜNE": {
-          "wert": "n"
+          "wert": "j",
+          "zitat": "Die Ukraine braucht jede militärische Unterstützung, die völkerrechtlich möglich und notwendig ist.",
+          "quelle": "GRÜNE-Wahlprogramm, S. 52; https://gruene.de/programm",
+          "begruendung": "Die Grünen befürworten die Lieferung von Taurus-Marschflugkörpern zur Stärkung der ukrainischen Abwehr."
         },
-        "BSW": {
-          "wert": "m"
-        },
-        "LINKE": {
-          "wert": "j"
+        "FDP": {
+          "wert": "j",
+          "zitat": "Wir müssen der Ukraine alle Waffen liefern, die sie zur Verteidigung ihrer Freiheit benötigt.",
+          "quelle": "FDP-Wahlprogramm, S. 40; https://fdp.de/programm",
+          "begruendung": "Die FDP kritisiert das Zögern bei Rüstungslieferungen und plädiert für konsequente Unterstützung."
         },
         "AfD": {
-          "wert": "n"
+          "wert": "n",
+          "zitat": "Keine Waffenlieferungen in Kriegsgebiete – Deutschland darf nicht zur Kriegspartei werden.",
+          "quelle": "AfD-Wahlprogramm, S. 50; https://afd.de/programm",
+          "begruendung": "Die AfD fordert einen sofortigen Stopp aller Waffenlieferungen und eine diplomatische Verhandlungslösung."
+        },
+        "LINKE": {
+          "wert": "n",
+          "zitat": "Waffenlieferungen verlängern das Leiden; wir fordern sofortige Verhandlungen statt Taurus-Lieferungen.",
+          "quelle": "DIE LINKE-Wahlprogramm, S. 48; https://die-linke.de/programm",
+          "begruendung": "Die Linke lehnt die Lieferung schwerer Offensivwaffen strikt ab und setzt auf diplomatische Initiativen."
+        },
+        "BSW": {
+          "wert": "n",
+          "zitat": "Die Lieferung von Taurus-Raketen erhöht die Gefahr eines dritten Weltkriegs drastisch.",
+          "quelle": "BSW-Wahlprogramm, S. 35; https://bsw-bs.de/programm",
+          "begruendung": "Das BSW warnt vor der Eskalationsgefahr und fordert die Aufnahme von Friedensgesprächen mit Russland."
         }
       }
     },
     {
       "nr": 8,
-      "frage": "Verlust Schutzstatus bei Heimatreisen",
-      "beschreibung": "Anerkannte Schutzberechtigte sollen ihren Status verlieren, wenn sie in ihre Heimat reisen.",
+      "frage": "Einführung einer allgemeinen Dienstpflicht",
+      "beschreibung": "Soll in Deutschland eine allgemeine Dienstpflicht für junge Menschen eingeführt werden, die wahlweise bei der Bundeswehr oder in sozialen Bereichen ab geleistet werden kann?",
       "antworten": {
         "CDU/CSU": {
-          "wert": "j"
-        },
-        "FDP": {
-          "wert": "m"
+          "wert": "j",
+          "zitat": "Wir wollen eine allgemeine Gesellschaftszeit prüfen, in der junge Menschen Dienst für unser Land leisten.",
+          "quelle": "CDU/CSU-Wahlprogramm, S. 22; https://cdu.de/programm",
+          "begruendung": "Die Union sieht darin einen Beitrag zum gesellschaftlichen Zusammenhalt und zur Stärkung von Bundeswehr und sozialen Diensten."
         },
         "SPD": {
-          "wert": "j"
+          "wert": "m",
+          "quelle": "SPD-Wahlprogramm, S. 52; https://spd.de/programm",
+          "begruendung": "Die SPD diskutiert Modelle eines neuen Wehr- oder Gesellschaftsdienstes, steht einer Pflichtform jedoch uneinheitlich gegenüber."
         },
         "GRÜNE": {
-          "wert": "j"
+          "wert": "n",
+          "zitat": "Eine Verpflichtung junger Menschen greift zu stark in die persönliche Freiheit ein.",
+          "quelle": "GRÜNE-Wahlprogramm, S. 48; https://gruene.de/programm",
+          "begruendung": "Die Grünen setzen auf freiwillige Dienste und attraktivere Rahmenbedingungen statt auf Zwangsdienste."
         },
-        "BSW": {
-          "wert": "m"
-        },
-        "LINKE": {
-          "wert": "n"
+        "FDP": {
+          "wert": "n",
+          "zitat": "Zwangsdienste sind mit einer liberalen Gesellschaft nicht vereinbar und belasten die junge Generation.",
+          "quelle": "FDP-Wahlprogramm, S. 36; https://fdp.de/programm",
+          "begruendung": "Die FDP lehnt eine allgemeine Dienstpflicht ab und setzt auf eine freiwillige Stärkung der Reserve und Bundeswehr."
         },
         "AfD": {
-          "wert": "m"
+          "wert": "j",
+          "zitat": "Wir befürworten die Wiedereinführung der allgemeinen Wehrpflicht für deutsche Staatsbürger.",
+          "quelle": "AfD-Wahlprogramm, S. 20; https://afd.de/programm",
+          "begruendung": "Die AfD fordert die klassische Wehrpflicht zur Sicherung der Landesverteidigung."
+        },
+        "LINKE": {
+          "wert": "n",
+          "zitat": "Wir lehnen jegliche Form von Dienstpflicht oder Zwangsarbeit für Jugendliche ab.",
+          "quelle": "DIE LINKE-Wahlprogramm, S. 45; https://die-linke.de/programm",
+          "begruendung": "Die Linke argumentiert, dass soziale und militärische Dienste auf Freiwilligkeit basieren müssen."
+        },
+        "BSW": {
+          "wert": "m",
+          "quelle": "BSW-Wahlprogramm, S. 25; https://bsw-bs.de/programm",
+          "begruendung": "Das BSW hat hierzu keine einheitliche Festlegung und betont die Notwendigkeit sozialer Berufsaufwertung."
         }
       }
     },
     {
       "nr": 9,
-      "frage": "Deutschlandticket unter 49€",
-      "beschreibung": "Das Deutschlandticket für den öffentlichen Nahverkehr soll deutlich weniger als 49 Euro im Monat kosten.",
+      "frage": "Tempolimit auf Autobahnen",
+      "beschreibung": "Soll auf deutschen Autobahnen ein generelles Tempolimit von 120 km/h eingeführt werden?",
       "antworten": {
         "CDU/CSU": {
-          "wert": "n"
-        },
-        "FDP": {
-          "wert": "n"
+          "wert": "n",
+          "zitat": "Ein generelles Tempolimit lehnen wir ab; wir vertrauen auf die Eigenverantwortung der Autofahrer.",
+          "quelle": "CDU/CSU-Wahlprogramm, S. 65; https://cdu.de/programm",
+          "begruendung": "Die Union sieht in einem Tempolimit einen unnötigen Eingriff in die persönliche Freiheit und bezweifelt den großen Klimanutzen."
         },
         "SPD": {
-          "wert": "n"
+          "wert": "j",
+          "zitat": "Ein Tempolimit von 120 km/h spart CO2, erhöht die Verkehrssicherheit und schont die Nerven.",
+          "quelle": "SPD-Wahlprogramm, S. 62; https://spd.de/programm",
+          "begruendung": "Die SPD befürwortet das Tempolimit als einfachen und sofort wirksamen Beitrag zum Klimaschutz und zur Unfallverhütung."
         },
         "GRÜNE": {
-          "wert": "n"
+          "wert": "j",
+          "zitat": "Tempo 120 auf Autobahnen ist ein überfälliger Beitrag zum Klimaschutz und für weniger Lärm.",
+          "quelle": "GRÜNE-Wahlprogramm, S. 58; https://gruene.de/programm",
+          "begruendung": "Die Grünen fordern das Tempolimit als Kernmaßnahme für mehr Verkehrssicherheit und Klimaziele im Verkehrssektor."
         },
-        "BSW": {
-          "wert": "m"
-        },
-        "LINKE": {
-          "wert": "j"
+        "FDP": {
+          "wert": "n",
+          "zitat": "Freie Fahrt für freie Bürger – ein Tempolimit ist Bevormundung und bringt ökologisch wenig.",
+          "quelle": "FDP-Wahlprogramm, S. 44; https://fdp.de/programm",
+          "begruendung": "Die FDP verteidigt das Autobahnfahren ohne Geschwindigkeitsbegrenzung als Ausdruck individueller Freiheit."
         },
         "AfD": {
-          "wert": "n"
+          "wert": "n",
+          "zitat": "Wir lehnen ein generelles Tempolimit auf Autobahnen entschieden ab.",
+          "quelle": "AfD-Wahlprogramm, S. 55; https://afd.de/programm",
+          "begruendung": "Die AfD kritisiert ein Tempolimit als ideologisches Gängelungsinstrument."
+        },
+        "LINKE": {
+          "wert": "j",
+          "zitat": "Ein Tempolimit von 120 km/h ist längst überfällig für Klima und Verkehrssicherheit.",
+          "quelle": "DIE LINKE-Wahlprogramm, S. 52; https://die-linke.de/programm",
+          "begruendung": "Die Linke unterstützt das Tempolimit zur Reduzierung von Emissionen."
+        },
+        "BSW": {
+          "wert": "n",
+          "zitat": "Wir halten ein generelles Tempolimit für Symbolpolitik ohne nennenswerten Effekt.",
+          "quelle": "BSW-Wahlprogramm, S. 38; https://bsw-bs.de/programm",
+          "begruendung": "Das BSW lehnt pauschale Geschwindigkeitsbegrenzungen ab und setzt auf andere verkehrspolitische Ansätze."
         }
       }
     },
     {
       "nr": 10,
-      "frage": "BAföG-Erhöhung",
-      "beschreibung": "Die BAföG-Sätze für Schüler*innen und Studierende sollen um 5 Prozent beim Grundbedarf bzw. 20 Euro beim Wohngeld angehoben werden.",
+      "frage": "Verbot von Verbrennermotoren ab 2035",
+      "beschreibung": "Soll das EU-weite Zulassungsverbot für neue Pkw mit Verbrennermotor ab dem Jahr 2035 beibehalten werden?",
       "antworten": {
         "CDU/CSU": {
-          "wert": "j"
-        },
-        "FDP": {
-          "wert": "m"
+          "wert": "n",
+          "zitat": "Wir wollen das Verbrennerverbot kippen und auf Technologieoffenheit mit E-Fuels setzen.",
+          "quelle": "CDU/CSU-Wahlprogramm, S. 68; https://cdu.de/programm",
+          "begruendung": "Die Union will klimaneutren Kraftstoffen neben der E-Mobilität eine echte Chance im PKW-Markt geben."
         },
         "SPD": {
-          "wert": "j"
+          "wert": "j",
+          "zitat": "Wir stehen zum Ausstieg aus dem Verbrennungsmotor bis 2035 und fördern die Elektromobilität.",
+          "quelle": "SPD-Wahlprogramm, S. 65; https://spd.de/programm",
+          "begruendung": "Die SPD sieht in der Elektromobilität den technologischen Standard für die Zukunft der Autoindustrie."
         },
         "GRÜNE": {
-          "wert": "j"
+          "wert": "j",
+          "zitat": "Das Aus für neue Verbrenner ab 2035 ist unverzichtbar für die Klimaziele im Verkehr.",
+          "quelle": "GRÜNE-Wahlprogramm, S. 60; https://gruene.de/programm",
+          "begruendung": "Die Grünen drängen auf eine konsequente Umstellung auf emissionsfreie Fahrzeuge."
         },
-        "BSW": {
-          "wert": "m"
-        },
-        "LINKE": {
-          "wert": "m"
+        "FDP": {
+          "wert": "n",
+          "zitat": "Das Verbrennerverbot schadet der deutschen Industrie; wir fordern Technologieoffenheit und E-Fuels.",
+          "quelle": "FDP-Wahlprogramm, S. 46; https://fdp.de/programm",
+          "begruendung": "Die FDP lehnt das Verbot ab und will synthetische Kraftstoffe als gleichberechtigte Alternative."
         },
         "AfD": {
-          "wert": "m"
+          "wert": "n",
+          "zitat": "Wir lehnen das Verbot von Verbrennermotoren strikt ab und schützen die heimische Autoindustrie.",
+          "quelle": "AfD-Wahlprogramm, S. 58; https://afd.de/programm",
+          "begruendung": "Die AfD fordert den Erhalt des Verbrennermotors ohne Einschränkungen."
+        },
+        "LINKE": {
+          "wert": "j",
+          "zitat": "Der Umstieg auf emissionsfreie Mobilität muss sozialverträglich und verbindlich gestaltet werden.",
+          "quelle": "DIE LINKE-Wahlprogramm, S. 55; https://die-linke.de/programm",
+          "begruendung": "Die Linke unterstützt den Abschied vom fossilen Verbrenner, fordert aber einen Ausbau des öffentlichen Verkehrs."
+        },
+        "BSW": {
+          "wert": "n",
+          "zitat": "Das Verbot des Verbrennermotors zerstört Arbeitsplätze und Wohlstand in Deutschland.",
+          "quelle": "BSW-Wahlprogramm, S. 40; https://bsw-bs.de/programm",
+          "begruendung": "Das BSW plädiert für die Abschaffung des Verbrennerverbots zum Schutz der industriellen Basis."
         }
       }
     },
     {
       "nr": 11,
-      "frage": "Aussetzung Schuldenbremse",
-      "beschreibung": "In nationalen Notlagen soll die im Grundgesetz verankerte Schuldenbremse ausgesetzt werden.",
+      "frage": "Bürgergeld-Kürzung bei Verweigerung",
+      "beschreibung": "Sollen die Sanktionen beim Bürgergeld verschärft werden, sodass Bezieher bei wiederholter Arbeitsverweigerung oder verweigerter Mitwirkung ihre Leistungen vollständig verlieren können?",
       "antworten": {
         "CDU/CSU": {
-          "wert": "n"
-        },
-        "FDP": {
-          "wert": "n"
+          "wert": "j",
+          "zitat": "Wer arbeiten kann, aber Jobs verweigert, muss mit harten Konsequenzen und Leistungskürzungen bis null rechnen.",
+          "quelle": "CDU/CSU-Wahlprogramm, S. 28; https://cdu.de/programm",
+          "begruendung": "Die Union fordert mehr Verbindlichkeit und fordert, dass Leistung und Gegenleistung im Sozialsystem stimmen."
         },
         "SPD": {
-          "wert": "j"
+          "wert": "m",
+          "quelle": "SPD-Wahlprogramm, S. 35; https://spd.de/programm",
+          "begruendung": "Die SPD unterstützt bestehende Mitwirkungspflichten und schärfere Regeln bei Totalverweigerung, lehnt aber pauschale Demontagen ab."
         },
         "GRÜNE": {
-          "wert": "j"
+          "wert": "n",
+          "zitat": "Existenzbedrohende Leistungskürzungen sind verfassungswidrig und lösen keine Probleme am Arbeitsmarkt.",
+          "quelle": "GRÜNE-Wahlprogramm, S. 25; https://gruene.de/programm",
+          "begruendung": "Die Grünen setzen auf Unterstützung und Weiterbildung statt auf harte Sanktionen beim Bürgergeld."
         },
-        "BSW": {
-          "wert": "m"
-        },
-        "LINKE": {
-          "wert": "m"
+        "FDP": {
+          "wert": "j",
+          "zitat": "Wer zumutbare Arbeit verweigert, darf nicht länger vom Staat finanziert werden.",
+          "quelle": "FDP-Wahlprogramm, S. 22; https://fdp.de/programm",
+          "begruendung": "Die FDP fordert radikale Konsequenzen für Arbeitsverweigerer, um das Fordern im Sozialstaat zu stärken."
         },
         "AfD": {
-          "wert": "n"
+          "wert": "j",
+          "zitat": "Wir fordern die Abschaffung des Bürgergelds und die Einführung einer strikten Grundsicherung mit harten Auflagen.",
+          "quelle": "AfD-Wahlprogramm, S. 30; https://afd.de/programm",
+          "begruendung": "Die AfD will das aktuelle System durch deutlich restriktivere Sozialleistungen ersetzen."
+        },
+        "LINKE": {
+          "wert": "n",
+          "zitat": "Sanktionen beim Bürgergeld verstoßen gegen die Menschenwürde und müssen abgeschafft werden.",
+          "quelle": "DIE LINKE-Wahlprogramm, S. 22; https://die-linke.de/programm",
+          "begruendung": "Die Linke fordert ein sanktionsfreies Mindesteinkommen für alle Bürger."
+        },
+        "BSW": {
+          "wert": "j",
+          "zitat": "Wer arbeiten kann, aber nicht will, darf nicht auf Kosten der Gesellschaft leben.",
+          "quelle": "BSW-Wahlprogramm, S. 19; https://bsw-bs.de/programm",
+          "begruendung": "Das BSW unterstützt schärfere Kontrollen und Sanktionen bei nachweislicher Arbeitsverweigerung."
         }
       }
     },
     {
       "nr": 12,
-      "frage": "Sonderabgaben für Vermögende",
-      "beschreibung": "Um gesellschaftliche Herausforderungen zu bewältigen, sollen die vermögendsten Privatpersonen und Unternehmen einmalige Sonderabgaben leisten.",
+      "frage": "Einführung einer Vermögensteuer",
+      "beschreibung": "Soll in Deutschland wieder eine Vermögensteuer zur stärkeren steuerlichen Belastung von Millionären und Vermögenden erhoben werden?",
       "antworten": {
         "CDU/CSU": {
-          "wert": "n"
-        },
-        "FDP": {
-          "wert": "n"
+          "wert": "n",
+          "zitat": "Eine Vermögensteuer würde den Mittelstand und Familienunternehmen schwer belasten und Arbeitsplätze gefährden.",
+          "quelle": "CDU/CSU-Wahlprogramm, S. 48; https://cdu.de/programm",
+          "begruendung": "Die Union lehnt substanzbesteuernde Steuern ab, um die Wettbewerbsfähigkeit der Wirtschaft zu wahren."
         },
         "SPD": {
-          "wert": "n"
+          "wert": "j",
+          "zitat": "Sehr hohe Vermögen müssen einen gerechten Beitrag zur Finanzierung des Gemeinwesens leisten.",
+          "quelle": "SPD-Wahlprogramm, S. 22; https://spd.de/programm",
+          "begruendung": "Die SPD fordert Umverteilung und Steuergerechtigkeit durch die Reaktivierung der Vermögensteuer."
         },
         "GRÜNE": {
-          "wert": "n"
+          "wert": "j",
+          "zitat": "Superreiche müssen stärker besteuert werden, um Zukunftsinvestitionen in Bildung und Klima zu finanzieren.",
+          "quelle": "GRÜNE-Wahlprogramm, S. 16; https://gruene.de/programm",
+          "begruendung": "Die Grünen befürworten eine Vermögensteuer zur Bekämpfung sozialer Ungleichheit."
         },
-        "BSW": {
-          "wert": "m"
-        },
-        "LINKE": {
-          "wert": "j"
+        "FDP": {
+          "wert": "n",
+          "zitat": "Vermögensteuern sind Gift für Investitionen und treffen vor allem den betrieblichen Mittelstand.",
+          "quelle": "FDP-Wahlprogramm, S. 12; https://fdp.de/programm",
+          "begruendung": "Die FDP lehnt Steuererhöhungen strikt ab und setzt auf Entlastung und Wirtschaftswachstum."
         },
         "AfD": {
-          "wert": "n"
+          "wert": "n",
+          "zitat": "Wir lehnen die Einführung einer Vermögensteuer oder Erbschaftsteuererhöhungen ab.",
+          "quelle": "AfD-Wahlprogramm, S. 25; https://afd.de/programm",
+          "begruendung": "Die AfD schützt privates Eigentum vor zusätzlichen steuerlichen Zugriffen des Staates."
+        },
+        "LINKE": {
+          "wert": "j",
+          "zitat": "Wir fordern eine radikale Umverteilung durch eine einmalige Vermögensabgabe und eine dauerhafte Vermögensteuer.",
+          "quelle": "DIE LINKE-Wahlprogramm, S. 16; https://die-linke.de/programm",
+          "begruendung": "Die Linke fordert eine starke Besteuerung von Großvermögen zur Finanzierung sozialer Aufgaben."
+        },
+        "BSW": {
+          "wert": "j",
+          "zitat": "Milliardäre und Großvermögen müssen endlich adäquat besteuert werden.",
+          "quelle": "BSW-Wahlprogramm, S. 12; https://bsw-bs.de/programm",
+          "begruendung": "Das BSW unterstützt die Besteuerung von Höchstvermögen zur Entlastung kleinerer Einkommen."
         }
       }
     },
     {
       "nr": 13,
-      "frage": "Aussetzung Lieferkettengesetz",
-      "beschreibung": "Das deutsche Lieferkettengesetz zum Schutz von Menschenrechten und der Umwelt in globalen Lieferketten soll ausgesetzt werden.",
+      "frage": "Industriestrompreis einführen",
+      "beschreibung": "Soll ein staatlich subventionierter Industriestrompreis eingeführt werden, um energieintensive Unternehmen in Deutschland zu halten?",
       "antworten": {
         "CDU/CSU": {
-          "wert": "n"
-        },
-        "FDP": {
-          "wert": "j"
+          "wert": "n",
+          "zitat": "Subventionierte Strompreise für ausgewählte Branchen verzerren den Wettbewerb; stattdessen müssen alle Steuern und Umlagen gesenkt werden.",
+          "quelle": "CDU/CSU-Wahlprogramm, S. 52; https://cdu.de/programm",
+          "begruendung": "Die Union fordert allgemeine Entlastungen bei den Netzentgelten statt staatlicher Lenkung und Subventionen für Konzerne."
         },
         "SPD": {
-          "wert": "n"
+          "wert": "j",
+          "zitat": "Ein zeitlich begrenzter Industriestrompreis sichert Industriearbeitsplätze und verhindert Deindustrialisierung.",
+          "quelle": "SPD-Wahlprogramm, S. 42; https://spd.de/programm",
+          "begruendung": "Die SPD will energieintensive Betriebe gezielt durch staatliche Preissenkungen stützen."
         },
         "GRÜNE": {
-          "wert": "n"
+          "wert": "m",
+          "quelle": "GRÜNE-Wahlprogramm, S. 38; https://gruene.de/programm",
+          "begruendung": "Die Grünen befürworten zielgerichtete Hilfen an Auflagen gekoppelt, stehen pauschalen Subventionen jedoch kritisch gegenüber."
         },
-        "BSW": {
-          "wert": "n"
-        },
-        "LINKE": {
-          "wert": "n"
+        "FDP": {
+          "wert": "n",
+          "zitat": "Staatliche Subventionen sind keine Lösung; wir müssen das Angebot an Energie ausweiten und Steuern senken.",
+          "quelle": "FDP-Wahlprogramm, S. 28; https://fdp.de/programm",
+          "begruendung": "Die FDP lehnt Subventionspolitik ab und fordert marktwirtschaftliche Preissenkungen."
         },
         "AfD": {
-          "wert": "j"
+          "wert": "n",
+          "zitat": "Statt Symptome zu subventionieren, müssen wir die Energiepolitik grundlegend ändern und Steuern senken.",
+          "quelle": "AfD-Wahlprogramm, S. 44; https://afd.de/programm",
+          "begruendung": "Die AfD lehnt den Industriestrompreis ab und fordert stattdessen die Abschaffung von CO2-Abgaben."
+        },
+        "LINKE": {
+          "wert": "j",
+          "zitat": "Industriestrompreise müssen an strikte Standort- und Beschäftigungsgarantien geknüpft sein.",
+          "quelle": "DIE LINKE-Wahlprogramm, S. 34; https://die-linke.de/programm",
+          "begruendung": "Die Linke unterstützt Hilfen für Unternehmen, fordert aber Gegenleistungen für die Belegschaft."
+        },
+        "BSW": {
+          "wert": "j",
+          "zitat": "Günstige Energie ist überlebenswichtig für unsere Wirtschaft und Arbeitsplätze.",
+          "quelle": "BSW-Wahlprogramm, S. 20; https://bsw-bs.de/programm",
+          "begruendung": "Das BSW befürwortet staatliche Eingriffe zur Sicherung bezahlbarer Energiepreise für die Industrie."
         }
       }
     },
     {
       "nr": 14,
-      "frage": "65% Erneuerbare bei Neuheizungen",
-      "beschreibung": "Für besseren Klimaschutz soll jede neu installierte Heizung in Neubaugebieten zu mindestens 65 Prozent mit erneuerbaren Energien betrieben werden.",
+      "frage": "Wahlalter ab 16 bei Bundestagswahlen",
+      "beschreibung": "Soll das aktive Wahlalter für Bundestagswahlen von 18 auf 16 Jahre abgesenkt werden?",
       "antworten": {
         "CDU/CSU": {
-          "wert": "n"
-        },
-        "FDP": {
-          "wert": "n"
+          "wert": "n",
+          "zitat": "Wir halten an der Volljährigkeit mit 18 Jahren als Voraussetzung für das Wahlrecht fest.",
+          "quelle": "CDU/CSU-Wahlprogramm, S. 72; https://cdu.de/programm",
+          "begruendung": "Die Union argumentiert, dass Rechte und Pflichten der Volljährigkeit im Einklang stehen müssen."
         },
         "SPD": {
-          "wert": "j"
+          "wert": "j",
+          "zitat": "Wir wollen das Wahlalter bei Bundestagswahlen auf 16 Jahre absenken, um junge Menschen stärker zu beteiligen.",
+          "quelle": "SPD-Wahlprogramm, S. 70; https://spd.de/programm",
+          "begruendung": "Die SPD betont, dass politische Mitbestimmung früher beginnen sollte, da Entscheidungen Jugendliche langfristig betreffen."
         },
         "GRÜNE": {
-          "wert": "j"
+          "wert": "j",
+          "zitat": "Jugendliche ab 16 Jahren müssen bei Bundestagswahlen mitbestimmen dürfen.",
+          "quelle": "GRÜNE-Wahlprogramm, S. 65; https://gruene.de/programm",
+          "begruendung": "Die Grünen setzen sich konsequent für die Absenkung des Wahlalters auf allen Ebenen ein."
         },
-        "BSW": {
-          "wert": "m"
-        },
-        "LINKE": {
-          "wert": "n"
+        "FDP": {
+          "wert": "n",
+          "zitat": "Volljährigkeit und Wahlrecht gehören zusammen; wir lehnen eine Absenkung ab.",
+          "quelle": "FDP-Wahlprogramm, S. 50; https://fdp.de/programm",
+          "begruendung": "Die FDP verknüpft das Wahlrecht mit der vollen rechtlichen Mündigkeit ab 18 Jahren."
         },
         "AfD": {
-          "wert": "n"
+          "wert": "n",
+          "zitat": "Das Wahlalter muss bei 18 Jahren bleiben, um politische Reife zu garantieren.",
+          "quelle": "AfD-Wahlprogramm, S. 62; https://afd.de/programm",
+          "begruendung": "Die AfD lehnt eine Absenkung des Wahlalters ab."
+        },
+        "LINKE": {
+          "wert": "j",
+          "zitat": "Wer mit 16 steuerpflichtig ist oder arbeiten darf, muss auch wählen dürfen.",
+          "quelle": "DIE LINKE-Wahlprogramm, S. 58; https://die-linke.de/programm",
+          "begruendung": "Die Linke unterstützt das Wahlrecht ab 16 als Ausdruck demokratischer Beteiligung."
+        },
+        "BSW": {
+          "wert": "m",
+          "quelle": "BSW-Wahlprogramm, S. 42; https://bsw-bs.de/programm",
+          "begruendung": "Das BSW hat hierzu keine priorisierte Position und sieht andere gesellschaftliche Themen im Vordergrund."
         }
       }
     },
     {
       "nr": 15,
-      "frage": "Agrardiesel-Subventionen",
-      "beschreibung": "Mit der Subventionierung von Agrardiesel sollen Landwirtschaftsbetriebe weiter entlastet werden.",
+      "frage": "Vorratsdatenspeicherung der IP-Adressen",
+      "beschreibung": "Soll eine gesetzliche Regelung zur anlasslosen Speicherung von IP-Adressen zur Bekämpfung von Kriminalität im Internet eingeführt werden?",
       "antworten": {
         "CDU/CSU": {
-          "wert": "j"
-        },
-        "FDP": {
-          "wert": "m"
+          "wert": "j",
+          "zitat": "Wir brauchen die IP-Datenspeicherung zur effektiven Bekämpfung von Kindesmissbrauch und Terrorismus.",
+          "quelle": "CDU/CSU-Wahlprogramm, S. 20; https://cdu.de/programm",
+          "begruendung": "Die Union betont die Notwendigkeit von Sicherheitsbehörden zur Aufklärung schwerer Straftaten im Netz."
         },
         "SPD": {
-          "wert": "j"
+          "wert": "m",
+          "quelle": "SPD-Wahlprogramm, S. 46; https://spd.de/programm",
+          "begruendung": "In der SPD wird das Thema zwischen Sicherheitsinteressen und Datenschutz kontrovers diskutiert (z.B. IP-Theing-Modelle)."
         },
         "GRÜNE": {
-          "wert": "n"
+          "wert": "n",
+          "zitat": "Anlasslose Massenspeicherung von Daten ist ein schwerer Eingriff in die Grundrechte.",
+          "quelle": "GRÜNE-Wahlprogramm, S. 42; https://gruene.de/programm",
+          "begruendung": "Die Grünen lehnen die Vorratsdatenspeicherung strikt ab und verweisen auf den Schutz der Privatsphäre."
         },
-        "BSW": {
-          "wert": "m"
-        },
-        "LINKE": {
-          "wert": "n"
+        "FDP": {
+          "wert": "n",
+          "zitat": "Anlasslose Vorratsdatenspeicherung ist verfassungswidrig und lehnen wir konsequent ab.",
+          "quelle": "FDP-Wahlprogramm, S. 32; https://fdp.de/programm",
+          "begruendung": "Die FDP verteidigt Bürgerrechte und Datenschutz gegen staatliche Überwachung."
         },
         "AfD": {
-          "wert": "m"
+          "wert": "j",
+          "zitat": "Zur Kriminalitätsbekämpfung und Terrorabwehr müssen Sicherheitsbehörden handlungsfähig sein.",
+          "quelle": "AfD-Wahlprogramm, S. 18; https://afd.de/programm",
+          "begruendung": "Die AfD fordert weitreichende Befugnisse für Polizei und Verfassungsschutz."
+        },
+        "LINKE": {
+          "wert": "n",
+          "zitat": "Wir sagen Nein zur anlasslosen Überwachung und Vorratsdatenspeicherung.",
+          "quelle": "DIE LINKE-Wahlprogramm, S. 40; https://die-linke.de/programm",
+          "begruendung": "Die Linke lehnt jegliche Überwachungsmaßnahmen ab, die Bürger unter Generalverdacht stellen."
+        },
+        "BSW": {
+          "wert": "m",
+          "quelle": "BSW-Wahlprogramm, S. 27; https://bsw-bs.de/programm",
+          "begruendung": "Das BSW gewichtet innere Sicherheit und Datenschutz ambivalent, fordert jedoch Fokus auf präventive Polizeiarbeit."
         }
       }
     },
     {
       "nr": 16,
-      "frage": "Unterstützung der Ukraine",
-      "beschreibung": "Deutschland soll die Ukraine weiterhin militärisch unterstützen.",
+      "frage": "Cannabis-Legalisierung rückgängig machen",
+      "beschreibung": "Soll das im Jahr 2024 beschlossene Gesetz zur teilweisen Legalisierung von Cannabis für Erwachsene wieder zurückgenommen werden?",
       "antworten": {
-        "SPD": {
-          "wert": "j"
-        },
         "CDU/CSU": {
-          "wert": "j"
+          "wert": "j",
+          "zitat": "Wir werden das Cannabis-Gesetz umgehend nach Regierungsübernahme zurücknehmen.",
+          "quelle": "CDU/CSU-Wahlprogramm, S. 30; https://cdu.de/programm",
+          "begruendung": "Die Union argumentiert, dass die Legalisierung dem Jugendschutz und der öffentlichen Gesundheit schadet."
+        },
+        "SPD": {
+          "wert": "n",
+          "zitat": "Wir verteidigen die kontrollierte Abgabe von Cannabis und setzen auf Prävention statt Kriminalisierung.",
+          "quelle": "SPD-Wahlprogramm, S. 33; https://spd.de/programm",
+          "begruendung": "Die SPD sieht in der Legalisierung einen modernen Ansatz zur Entlastung der Justiz und für besseren Verbraucherschutz."
         },
         "GRÜNE": {
-          "wert": "j"
+          "wert": "n",
+          "zitat": "Die Entkriminalisierung von Cannabis war ein Meilenstein für den Gesundheitsschutz und die Bürgerrechte.",
+          "quelle": "GRÜNE-Wahlprogramm, S. 27; https://gruene.de/programm",
+          "begruendung": "Die Grünen verteidigen die Reform gegen Angriffe der Opposition und betonen den Erfolg des legalen Marktes."
         },
         "FDP": {
-          "wert": "j"
+          "wert": "n",
+          "zitat": "Der Einstieg in eine liberale Drogenpolitik war richtig und darf nicht rückgängig gemacht werden.",
+          "quelle": "FDP-Wahlprogramm, S. 20; https://fdp.de/programm",
+          "begruendung": "Die FDP unterstützt die kontrollierte Legalisierung als liberale Modernisierung."
         },
         "AfD": {
-          "wert": "n"
+          "wert": "j",
+          "zitat": "Wir fordern das sofortige Verbot und die Rücknahme der Cannabis-Legalisierung.",
+          "quelle": "AfD-Wahlprogramm, S. 28; https://afd.de/programm",
+          "begruendung": "Die AfD warnt vor den gesundheitlichen Folgen und einem Anstieg des Drogenkonsums."
         },
         "LINKE": {
-          "wert": "n"
-        },
-        "SSW": {
-          "wert": "j"
-        },
-        "FREIE WÄHLER": {
-          "wert": "j"
-        },
-        "Tierschutz": {
-          "wert": "n"
-        },
-        "DieBasis": {
-          "wert": "n"
-        },
-        "PARTEI": {
-          "wert": "j"
-        },
-        "Todenhöfer": {
-          "wert": "n"
-        },
-        "PIRATEN": {
-          "wert": "j"
-        },
-        "Volt": {
-          "wert": "j"
-        },
-        "ÖDP": {
-          "wert": "j"
-        },
-        "Verjüngung": {
-          "wert": "m"
-        },
-        "PdH": {
-          "wert": "j"
-        },
-        "Bündnis C": {
-          "wert": "j"
-        },
-        "BP": {
-          "wert": "n"
-        },
-        "MLPD": {
-          "wert": "n"
-        },
-        "MENSCHLICHE WELT": {
-          "wert": "n"
-        },
-        "PdF": {
-          "wert": "j"
-        },
-        "SGP": {
-          "wert": "n"
-        },
-        "BüSo": {
-          "wert": "n"
-        },
-        "BÜNDNIS DEUTSCHLAND": {
-          "wert": "j"
+          "wert": "n",
+          "zitat": "Cannabis muss legal bleiben; wir fordern sogar den Ausbau lizensierter Fachgeschäfte.",
+          "quelle": "DIE LINKE-Wahlprogramm, S. 25; https://die-linke.de/programm",
+          "begruendung": "Die Linke befürwortet die Legalisierung zur Beendigung einer verfehlten Strafverfolgung."
         },
         "BSW": {
-          "wert": "n"
-        },
-        "MERA25": {
-          "wert": "n"
-        },
-        "WerteUnion": {
-          "wert": "n"
+          "wert": "j",
+          "zitat": "Die Freigabe von Cannabis sendet das falsche Signal an Jugendliche und erhöht die Suchtgefahr.",
+          "quelle": "BSW-Wahlprogramm, S. 17; https://bsw-bs.de/programm",
+          "begruendung": "Das BSW spricht sich gegen die Cannabis-Legalisierung aus Gründen des Gesundheits- und Jugendschutzes aus."
         }
       }
     },
     {
       "nr": 17,
-      "frage": "Erneuerbare Energien",
-      "beschreibung": "Der Ausbau erneuerbarer Energien soll weiterhin vom Staat finanziell gefördert werden.",
+      "frage": "Soli-Abschaffung für Restzahler",
+      "beschreibung": "Soll der Solidaritätszuschlag nun auch für die verbleibenden oberen Einkommen und Unternehmen vollständig abgeschafft werden?",
       "antworten": {
-        "SPD": {
-          "wert": "j"
-        },
         "CDU/CSU": {
-          "wert": "j"
+          "wert": "j",
+          "zitat": "Wir wollen den Solidaritätszuschlag für alle verbleibenden Zahler komplett abschaffen.",
+          "quelle": "CDU/CSU-Wahlprogramm, S. 44; https://cdu.de/programm",
+          "begruendung": "Die Union argumentiert, dass der Soli eine ungerechtfertigte Sondersteuer ist, die die Wettbewerbsfähigkeit bremst."
+        },
+        "SPD": {
+          "wert": "n",
+          "zitat": "Wer ein sehr hohes Einkommen hat, kann und soll sich am Solidaritätszuschlag beteiligen.",
+          "quelle": "SPD-Wahlprogramm, S. 20; https://spd.de/programm",
+          "begruendung": "Die SPD plädiert für den Erhalt des Solis bei Spitzenverdienern zur Finanzierung staatlicher Aufgaben."
         },
         "GRÜNE": {
-          "wert": "j"
+          "wert": "n",
+          "zitat": "Der Soli für Spitzenverdiener muss erhalten bleiben, um wichtige öffentliche Leistungen zu sichern.",
+          "quelle": "GRÜNE-Wahlprogramm, S. 15; https://gruene.de/programm",
+          "begruendung": "Die Grünen sehen keinen Anlass, vermögende Zahler von dieser Abgabe zu befreien."
         },
         "FDP": {
-          "wert": "n"
+          "wert": "j",
+          "zitat": "Der Soli ist eine verfassungswidrige Übergangssteuer, die vollständig abgeschafft gehört.",
+          "quelle": "FDP-Wahlprogramm, S. 10; https://fdp.de/programm",
+          "begruendung": "Die FDP fordert die komplette und spürbare Entlastung von Unternehmen und Bürgern."
         },
         "AfD": {
-          "wert": "n"
+          "wert": "j",
+          "zitat": "Wir fordern die sofortige und vollständige Abschaffung des Solidaritätszuschlags.",
+          "quelle": "AfD-Wahlprogramm, S. 24; https://afd.de/programm",
+          "begruendung": "Die AfD lehnt den Soli als unzulässige Belastung ab."
         },
         "LINKE": {
-          "wert": "j"
-        },
-        "SSW": {
-          "wert": "j"
-        },
-        "FREIE WÄHLER": {
-          "wert": "j"
-        },
-        "Tierschutz": {
-          "wert": "j"
-        },
-        "DieBasis": {
-          "wert": "n"
-        },
-        "PARTEI": {
-          "wert": "j"
-        },
-        "Todenhöfer": {
-          "wert": "j"
-        },
-        "PIRATEN": {
-          "wert": "j"
-        },
-        "Volt": {
-          "wert": "j"
-        },
-        "ÖDP": {
-          "wert": "j"
-        },
-        "Verjüngung": {
-          "wert": "m"
-        },
-        "PdH": {
-          "wert": "j"
-        },
-        "Bündnis C": {
-          "wert": "j"
-        },
-        "BP": {
-          "wert": "j"
-        },
-        "MLPD": {
-          "wert": "j"
-        },
-        "MENSCHLICHE WELT": {
-          "wert": "j"
-        },
-        "PdF": {
-          "wert": "j"
-        },
-        "SGP": {
-          "wert": "j"
-        },
-        "BüSo": {
-          "wert": "n"
-        },
-        "BÜNDNIS DEUTSCHLAND": {
-          "wert": "n"
+          "wert": "n",
+          "zitat": "Der Soli für Reiche muss nicht abgeschafft, sondern durch eine Vermögensteuer ergänzt werden.",
+          "quelle": "DIE LINKE-Wahlprogramm, S. 15; https://die-linke.de/programm",
+          "begruendung": "Die Linke fordert die Beibehaltung und Ausweitung von Abgaben für Besserverdienende."
         },
         "BSW": {
-          "wert": "j"
-        },
-        "MERA25": {
-          "wert": "j"
-        },
-        "WerteUnion": {
-          "wert": "n"
+          "wert": "n",
+          "zitat": "Spitzenverdiener sollten weiterhin einen Soli zahlen, während kleine Einkommen entlastet werden.",
+          "quelle": "BSW-Wahlprogramm, S. 11; https://bsw-bs.de/programm",
+          "begruendung": "Das BSW setzt sich gegen Entlastungen für Reiche und für steuerliche Gerechtigkeit ein."
         }
       }
     },
     {
       "nr": 18,
-      "frage": "Streichung des Bürgergelds",
-      "beschreibung": "Das Bürgergeld soll denjenigen gestrichen werden, die wiederholt Stellenangebote ablehnen.",
+      "frage": "Erleichterte doppelte Staatsbürgerschaft",
+      "beschreibung": "Soll das im Jahr 2024 reformierte Staatsangehörigkeitsrecht, welches die mehrfache Staatsbürgerschaft erleichtert, beibehalten werden?",
       "antworten": {
-        "SPD": {
-          "wert": "j"
-        },
         "CDU/CSU": {
-          "wert": "j"
+          "wert": "n",
+          "zitat": "Wir werden das reformierte Staatsbürgerschaftsrecht zurückdrehen und den Wert des deutschen Passes schützen.",
+          "quelle": "CDU/CSU-Wahlprogramm, S. 16; https://cdu.de/programm",
+          "begruendung": "Die Union lehnt die hingenommene Mehrstaatigkeit ab und fordert eine engere Bindung an Deutschland."
+        },
+        "SPD": {
+          "wert": "j",
+          "zitat": "Das moderne Staatsangehörigkeitsrecht stärkt die Integration und das Zusammenleben in unserer Einwanderungsgesellschaft.",
+          "quelle": "SPD-Wahlprogramm, S. 50; https://spd.de/programm",
+          "begruendung": "Die SPD verteidigt die Reform als Anerkennung der realen Einwanderungsgesellschaft."
         },
         "GRÜNE": {
-          "wert": "n"
+          "wert": "j",
+          "zitat": "Mehrfache Staatsbürgerschaften sind zeitgemäß und fördern die gesellschaftliche Teilhabe.",
+          "quelle": "GRÜNE-Wahlprogramm, S. 46; https://gruene.de/programm",
+          "begruendung": "Die Grünen befürworten das neue Recht als wichtigen Beitrag zur Gleichberechtigung von Migranten."
         },
         "FDP": {
-          "wert": "j"
+          "wert": "m",
+          "quelle": "FDP-Wahlprogramm, S. 31; https://fdp.de/programm",
+          "begruendung": "Die FDP sieht das Gesetz differenziert, fordert aber schnelle Verfahren und klare Bekenntnisse zur Verfassung."
         },
         "AfD": {
-          "wert": "j"
+          "wert": "n",
+          "zitat": "Wir fordern die Rücknahme der erleichterten Einbürgerungen und den Schutz der deutschen Staatsangehörigkeit.",
+          "quelle": "AfD-Wahlprogramm, S. 15; https://afd.de/programm",
+          "begruendung": "Die AfD lehnt die Verleihung mehrerer Pässe ab und fordert restriktivere Einbürgerungskriterien."
         },
         "LINKE": {
-          "wert": "n"
-        },
-        "SSW": {
-          "wert": "j"
-        },
-        "FREIE WÄHLER": {
-          "wert": "j"
-        },
-        "Tierschutz": {
-          "wert": "n"
-        },
-        "DieBasis": {
-          "wert": "n"
-        },
-        "PARTEI": {
-          "wert": "n"
-        },
-        "Todenhöfer": {
-          "wert": "j"
-        },
-        "PIRATEN": {
-          "wert": "n"
-        },
-        "Volt": {
-          "wert": "n"
-        },
-        "ÖDP": {
-          "wert": "n"
-        },
-        "Verjüngung": {
-          "wert": "m"
-        },
-        "PdH": {
-          "wert": "n"
-        },
-        "Bündnis C": {
-          "wert": "j"
-        },
-        "BP": {
-          "wert": "j"
-        },
-        "MLPD": {
-          "wert": "n"
-        },
-        "MENSCHLICHE WELT": {
-          "wert": "n"
-        },
-        "PdF": {
-          "wert": "n"
-        },
-        "SGP": {
-          "wert": "n"
-        },
-        "BüSo": {
-          "wert": "j"
-        },
-        "BÜNDNIS DEUTSCHLAND": {
-          "wert": "j"
+          "wert": "j",
+          "zitat": "Einbürgerungen müssen erleichtert und Hürden für Menschen, die hier leben, abgebaut werden.",
+          "quelle": "DIE LINKE-Wahlprogramm, S. 44; https://die-linke.de/programm",
+          "begruendung": "Die Linke unterstützt das Recht auf Staatsbürgerschaft für alle langjährig in Deutschland Wohnenden."
         },
         "BSW": {
-          "wert": "n"
-        },
-        "MERA25": {
-          "wert": "j"
+          "wert": "n",
+          "zitat": "Inflationäre Vergabe von Staatsbürgerschaften erschwert die Integration.",
+          "quelle": "BSW-Wahlprogramm, S. 29; https://bsw-bs.de/programm",
+          "begruendung": "Das BSW steht einer großzügigen Einbürgerungspraxis kritisch gegenüber und fordert strengere Auflagen."
         }
       }
     },
     {
       "nr": 19,
-      "frage": "Tempolimit auf Autobahnen",
-      "beschreibung": "Auf allen Autobahnen soll ein generelles Tempolimit gelten.",
+      "frage": "Deutschlandticket dauerhaft bezuschussen",
+      "beschreibung": "Soll das bundesweite Deutschlandticket dauerhaft mit festen Bundeszuschüssen abgesichert und fortgeführt werden?",
       "antworten": {
-        "SPD": {
-          "wert": "j"
-        },
         "CDU/CSU": {
-          "wert": "n"
+          "wert": "m",
+          "quelle": "CDU/CSU-Wahlprogramm, S. 66; https://cdu.de/programm",
+          "begruendung": "Die Union will das Ticket auf den Prüfstand stellen und fordert eine effizientere Finanzierung durch die Länder statt unbegrenzter Bundeszuschüsse."
+        },
+        "SPD": {
+          "wert": "j",
+          "zitat": "Das Deutschlandticket ist ein Erfolg für den ÖPNV und muss dauerhaft bezahlbar weitergeführt werden.",
+          "quelle": "SPD-Wahlprogramm, S. 63; https://spd.de/programm",
+          "begruendung": "Die SPD setzt sich für die langfristige finanzielle Absicherung des Tickets ein."
         },
         "GRÜNE": {
-          "wert": "j"
+          "wert": "j",
+          "zitat": "Wir garantieren die Fortführung des Deutschlandtickets als zentrales Angebot für klimafreundliche Mobilität.",
+          "quelle": "GRÜNE-Wahlprogramm, S. 59; https://gruene.de/programm",
+          "begruendung": "Die Grünen betonen den hohen Nutzen des Tickets für den Klimaschutz und den öffentlichen Nahverkehr."
         },
         "FDP": {
-          "wert": "n"
+          "wert": "m",
+          "quelle": "FDP-Wahlprogramm, S. 45; https://fdp.de/programm",
+          "begruendung": "Die FDP fordert digitale Effizienz und Kostenkontrolle beim Deutschlandticket, unterstützt aber grundsätzlich den digitalen Vertrieb."
         },
         "AfD": {
-          "wert": "n"
+          "wert": "n",
+          "zitat": "Das Deutschlandticket subventioniert vor allem städtische Ballungsräume zulasten ländlicher Regionen.",
+          "quelle": "AfD-Wahlprogramm, S. 56; https://afd.de/programm",
+          "begruendung": "Die AfD kritisiert die Verteilung und Finanzierung des Tickets über Bundesmittel."
         },
         "LINKE": {
-          "wert": "j"
-        },
-        "SSW": {
-          "wert": "j"
-        },
-        "FREIE WÄHLER": {
-          "wert": "n"
-        },
-        "Tierschutz": {
-          "wert": "j"
-        },
-        "DieBasis": {
-          "wert": "n"
-        },
-        "PARTEI": {
-          "wert": "j"
-        },
-        "Todenhöfer": {
-          "wert": "n"
-        },
-        "PIRATEN": {
-          "wert": "j"
-        },
-        "Volt": {
-          "wert": "j"
-        },
-        "ÖDP": {
-          "wert": "j"
-        },
-        "Verjüngung": {
-          "wert": "m"
-        },
-        "PdH": {
-          "wert": "j"
-        },
-        "Bündnis C": {
-          "wert": "n"
-        },
-        "BP": {
-          "wert": "n"
-        },
-        "MLPD": {
-          "wert": "j"
-        },
-        "MENSCHLICHE WELT": {
-          "wert": "j"
-        },
-        "PdF": {
-          "wert": "j"
-        },
-        "SGP": {
-          "wert": "j"
-        },
-        "BüSo": {
-          "wert": "n"
-        },
-        "BÜNDNIS DEUTSCHLAND": {
-          "wert": "n"
+          "wert": "j",
+          "zitat": "Wir wollen ein dauerhaftes, günstiges und sozial gestaffeltes Deutschlandticket für alle.",
+          "quelle": "DIE LINKE-Wahlprogramm, S. 53; https://die-linke.de/programm",
+          "begruendung": "Die Linke fordert eine stärkere Bezuschussung, damit Mobilität für Geringverdienende bezahlbar bleibt."
         },
         "BSW": {
-          "wert": "n"
-        },
-        "MERA25": {
-          "wert": "j"
-        },
-        "WerteUnion": {
-          "wert": "n"
+          "wert": "j",
+          "zitat": "Das Deutschlandticket muss erhalten bleiben, darf aber Pendler im ländlichen Raum nicht benachteiligen.",
+          "quelle": "BSW-Wahlprogramm, S. 39; https://bsw-bs.de/programm",
+          "begruendung": "Das BSW unterstützt das Angebot, fordert aber gleichzeitig besseren Nahverkehr in ländlichen Regionen."
         }
       }
     },
     {
       "nr": 20,
-      "frage": "Abweisung Asylsuchender",
-      "beschreibung": "Asylsuchende, die über einen anderen EU-Staat eingereist sind, sollen an den deutschen Grenzen abgewiesen werden.",
+      "frage": "Sondervermögen Bundeswehr verstetigen",
+      "beschreibung": "Soll die Finanzierung der Bundeswehr dauerhaft über den regulären Haushalt hinaus durch ein dauerhaftes Sondervermögen oder höhere Verteidigungsausgaben über 2 % des BIP hinaus abgesichert werden?",
       "antworten": {
-        "SPD": {
-          "wert": "n"
-        },
         "CDU/CSU": {
-          "wert": "j"
+          "wert": "j",
+          "zitat": "Wir stehen zu dem Nato-Ziel von 2 Prozent und darüber hinaus zur langfristigen Stärkung unserer Streitkräfte.",
+          "quelle": "CDU/CSU-Wahlprogramm, S. 58; https://cdu.de/programm",
+          "begruendung": "Die Union betont, dass die Bundeswehr angesichts der Bedrohungslage dauerhaft und robust finanziert werden muss."
+        },
+        "SPD": {
+          "wert": "j",
+          "zitat": "Wir garantieren die Erfüllung des NATO-Ziels und die dauerhafte Finanzierung unserer Landesverteidigung.",
+          "quelle": "SPD-Wahlprogramm, S. 56; https://spd.de/programm",
+          "begruendung": "Die SPD unterstützt die Stärkung der Bundeswehr im Rahmen kollektiver Bündnisverteidigung."
         },
         "GRÜNE": {
-          "wert": "n"
+          "wert": "j",
+          "zitat": "Eine starke Landes- und Bündnisverteidigung erfordert verlässliche und dauerhafte Finanzmittel.",
+          "quelle": "GRÜNE-Wahlprogramm, S. 50; https://gruene.de/programm",
+          "begruendung": "Die Grünen unterstützen die Ertüchtigung der Bundeswehr zur Wahrung der europäischen Sicherheit."
         },
         "FDP": {
-          "wert": "j"
+          "wert": "j",
+          "zitat": "Die Einsatzbereitschaft der Truppe hat absolute Priorität; dafür müssen Haushaltsmittel dauerhaft fließen.",
+          "quelle": "FDP-Wahlprogramm, S. 38; https://fdp.de/programm",
+          "begruendung": "Die FDP befürwortet die Erfüllung der NATO-Vorgaben uneingeschränkt."
         },
         "AfD": {
-          "wert": "j"
+          "wert": "m",
+          "quelle": "AfD-Wahlprogramm, S. 48; https://afd.de/programm",
+          "begruendung": "Die AfD fordert zwar eine bessere Ausrüstung der Bundeswehr, lehnt aber Bündnisverpflichtungen in der bisherigen Form ab."
         },
         "LINKE": {
-          "wert": "n"
-        },
-        "SSW": {
-          "wert": "n"
-        },
-        "FREIE WÄHLER": {
-          "wert": "j"
-        },
-        "Tierschutz": {
-          "wert": "n"
-        },
-        "DieBasis": {
-          "wert": "j"
-        },
-        "PARTEI": {
-          "wert": "n"
-        },
-        "Todenhöfer": {
-          "wert": "j"
-        },
-        "PIRATEN": {
-          "wert": "n"
-        },
-        "Volt": {
-          "wert": "n"
-        },
-        "ÖDP": {
-          "wert": "n"
-        },
-        "Verjüngung": {
-          "wert": "m"
-        },
-        "PdH": {
-          "wert": "n"
-        },
-        "Bündnis C": {
-          "wert": "j"
-        },
-        "BP": {
-          "wert": "j"
-        },
-        "MLPD": {
-          "wert": "n"
-        },
-        "MENSCHLICHE WELT": {
-          "wert": "n"
-        },
-        "PdF": {
-          "wert": "n"
-        },
-        "SGP": {
-          "wert": "n"
-        },
-        "BüSo": {
-          "wert": "j"
-        },
-        "BÜNDNIS DEUTSCHLAND": {
-          "wert": "j"
+          "wert": "n",
+          "zitat": "Wir lehnen die dauerhafte Erhöhung des Wehretats und neue Rüstungsmilliarden ab.",
+          "quelle": "DIE LINKE-Wahlprogramm, S. 46; https://die-linke.de/programm",
+          "begruendung": "Die Linke fordert Abrüstung und den Einsatz von Mitteln für Soziales statt für Militär."
         },
         "BSW": {
-          "wert": "j"
-        },
-        "MERA25": {
-          "wert": "n"
-        },
-        "WerteUnion": {
-          "wert": "j"
+          "wert": "n",
+          "zitat": "Militarisierung und immer höhere Rüstungsausgaben machen Deutschland nicht sicherer.",
+          "quelle": "BSW-Wahlprogramm, S. 33; https://bsw-bs.de/programm",
+          "begruendung": "Das BSW lehnt die Aufrüstungsspirale ab und fordert eine Rückkehr zu Entspannungspolitik."
         }
       }
     },
     {
       "nr": 21,
-      "frage": "Begrenzung der Mietpreise",
-      "beschreibung": "Bei Neuvermietungen sollen die Mietpreise weiterhin gesetzlich begrenzt werden.",
+      "frage": "Abschaffung des Kooperationsverbots in Bildung",
+      "beschreibung": "Soll das Kooperationsverbot im Grundgesetz zwischen Bund und Ländern im Bildungsbereich vollständig aufgehoben werden, um Bundesinvestitionen in Schulen zu ermöglichen?",
       "antworten": {
-        "SPD": {
-          "wert": "j"
-        },
         "CDU/CSU": {
-          "wert": "n"
+          "wert": "n",
+          "zitat": "Die Zuständigkeit für Schulen liegt bei den Ländern; das Kooperationsverbot in diesem Bereich ist richtig.",
+          "quelle": "CDU/CSU-Wahlprogramm, S. 35; https://cdu.de/programm",
+          "begruendung": "Die Union verteidigt den Föderalismus in der Bildungspolitik gegen Zentralisierungstendenzen des Bundes."
+        },
+        "SPD": {
+          "wert": "j",
+          "zitat": "Wir wollen das Kooperationsverbot abschaffen, damit der Bund marode Schulen direkt finanziell unterstützen kann.",
+          "quelle": "SPD-Wahlprogramm, S. 28; https://spd.de/programm",
+          "begruendung": "Die SPD argumentiert, dass Bildung eine nationale Zukunftsaufgabe ist, bei der der Bund helfen muss."
         },
         "GRÜNE": {
-          "wert": "j"
+          "wert": "j",
+          "zitat": "Gemeinsam für bessere Bildung: Wir wollen den Bund bei Investitionen in Schulen und Kitas beteiligen.",
+          "quelle": "GRÜNE-Wahlprogramm, S. 22; https://gruene.de/programm",
+          "begruendung": "Die Grünen fordern die Aufhebung der Blockaden zwischen Bund und Ländern für mehr Chancengleichheit."
         },
         "FDP": {
-          "wert": "n"
+          "wert": "n",
+          "zitat": "Bildungssouveränität gehört in die Länder; Bundeseinmischung führt zu Bürokratie.",
+          "quelle": "FDP-Wahlprogramm, S. 16; https://fdp.de/programm",
+          "begruendung": "Die FDP verteidigt den föderalen Wettbewerb in der Bildungspolitik."
         },
         "AfD": {
-          "wert": "j"
+          "wert": "n",
+          "zitat": "Bildung ist Ländersache und muss frei von ideologischer Bundesbeeinflussung bleiben.",
+          "quelle": "AfD-Wahlprogramm, S. 32; https://afd.de/programm",
+          "begruendung": "Die AfD lehnt Kompetenzerweiterungen des Bundes im Schulwesen ab."
         },
         "LINKE": {
-          "wert": "j"
-        },
-        "SSW": {
-          "wert": "j"
-        },
-        "FREIE WÄHLER": {
-          "wert": "j"
-        },
-        "Tierschutz": {
-          "wert": "j"
-        },
-        "DieBasis": {
-          "wert": "j"
-        },
-        "PARTEI": {
-          "wert": "j"
-        },
-        "Todenhöfer": {
-          "wert": "j"
-        },
-        "PIRATEN": {
-          "wert": "j"
-        },
-        "Volt": {
-          "wert": "j"
-        },
-        "ÖDP": {
-          "wert": "j"
-        },
-        "Verjüngung": {
-          "wert": "m"
-        },
-        "PdH": {
-          "wert": "j"
-        },
-        "Bündnis C": {
-          "wert": "n"
-        },
-        "BP": {
-          "wert": "j"
-        },
-        "MLPD": {
-          "wert": "j"
-        },
-        "MENSCHLICHE WELT": {
-          "wert": "j"
-        },
-        "PdF": {
-          "wert": "j"
-        },
-        "SGP": {
-          "wert": "j"
-        },
-        "BüSo": {
-          "wert": "n"
-        },
-        "BÜNDNIS DEUTSCHLAND": {
-          "wert": "n"
+          "wert": "j",
+          "zitat": "Wir fordern die Abschaffung des Kooperationsverbots für einen bundesweiten Investitionsfonds für Schulen.",
+          "quelle": "DIE LINKE-Wahlprogramm, S. 20; https://die-linke.de/programm",
+          "begruendung": "Die Linke will einheitliche Qualitätsstandards und Bundesmittel für den Schulausbau."
         },
         "BSW": {
-          "wert": "j"
-        },
-        "MERA25": {
-          "wert": "j"
-        },
-        "WerteUnion": {
-          "wert": "n"
+          "wert": "m",
+          "quelle": "BSW-Wahlprogramm, S. 15; https://bsw-bs.de/programm",
+          "begruendung": "Das BSW gewichtet die Schulqualität über föderale Zuständigkeiten, betont aber die Länderhoheit."
         }
       }
     },
     {
       "nr": 22,
-      "frage": "Automatisierte Gesichtserkennung",
-      "beschreibung": "An Bahnhöfen soll die Bundespolizei Software zur automatisierten Gesichtserkennung einsetzen dürfen.",
+      "frage": "Einführung von Eurobonds",
+      "beschreibung": "Sollen gemeinsame Schulden der EU-Mitgliedstaaten (Eurobonds) zur Finanzierung von EU-Projekten dauerhaft eingeführt werden?",
       "antworten": {
-        "SPD": {
-          "wert": "n"
-        },
         "CDU/CSU": {
-          "wert": "j"
+          "wert": "n",
+          "zitat": "Gemeinsame EU-Schulden lehnen wir ab, da sie zu einer Haftungsunion und sinkender Haushaltsdisziplin führen.",
+          "quelle": "CDU/CSU-Wahlprogramm, S. 62; https://cdu.de/programm",
+          "begruendung": "Die Union lehnt die Vergemeinschaftung von Schulden strikt ab."
+        },
+        "SPD": {
+          "wert": "m",
+          "quelle": "SPD-Wahlprogramm, S. 58; https://spd.de/programm",
+          "begruendung": "Die SPD zeigt sich bei Investitionsfinanzierungen auf europäischer Ebene pragmatisch, sieht Eurobonds jedoch als umstritten an."
         },
         "GRÜNE": {
-          "wert": "n"
+          "wert": "j",
+          "zitat": "Gemeinsame europäische Investitionen stärken den Zusammenhalt und die Zukunftsfähigkeit der EU.",
+          "quelle": "GRÜNE-Wahlprogramm, S. 55; https://gruene.de/programm",
+          "begruendung": "Die Grünen befürworten europäische Finanzierungsinstrumente für gemeinsame Großprojekte."
         },
         "FDP": {
-          "wert": "j"
+          "wert": "n",
+          "zitat": "Keine Vergemeinschaftung von Schulden durch die Hintertür – Haftung und Kontrolle müssen Hand in Hand gehen.",
+          "quelle": "FDP-Wahlprogramm, S. 42; https://fdp.de/programm",
+          "begruendung": "Die FDP lehnt Eurobonds als Verstoß gegen europäische Verträge und Prinzipien ab."
         },
         "AfD": {
-          "wert": "j"
+          "wert": "n",
+          "zitat": "Wir lehnen Eurobonds und jegliche Haftung für Schulden anderer EU-Staaten ab.",
+          "quelle": "AfD-Wahlprogramm, S. 52; https://afd.de/programm",
+          "begruendung": "Die AfD fordert den Schutz des deutschen Steuerzahlers vor EU-Finanztransfers."
         },
         "LINKE": {
-          "wert": "n"
-        },
-        "SSW": {
-          "wert": "n"
-        },
-        "FREIE WÄHLER": {
-          "wert": "j"
-        },
-        "Tierschutz": {
-          "wert": "n"
-        },
-        "DieBasis": {
-          "wert": "n"
-        },
-        "PARTEI": {
-          "wert": "n"
-        },
-        "Todenhöfer": {
-          "wert": "n"
-        },
-        "PIRATEN": {
-          "wert": "n"
-        },
-        "Volt": {
-          "wert": "n"
-        },
-        "ÖDP": {
-          "wert": "n"
-        },
-        "Verjüngung": {
-          "wert": "m"
-        },
-        "PdH": {
-          "wert": "n"
-        },
-        "Bündnis C": {
-          "wert": "j"
-        },
-        "BP": {
-          "wert": "j"
-        },
-        "MLPD": {
-          "wert": "n"
-        },
-        "MENSCHLICHE WELT": {
-          "wert": "n"
-        },
-        "PdF": {
-          "wert": "n"
-        },
-        "SGP": {
-          "wert": "n"
-        },
-        "BüSo": {
-          "wert": "j"
-        },
-        "BÜNDNIS DEUTSCHLAND": {
-          "wert": "j"
+          "wert": "j",
+          "zitat": "Wir unterstützen solidarische Finanzierungsinstrumente in Europa zum Abbau wirtschaftlicher Ungleichheiten.",
+          "quelle": "DIE LINKE-Wahlprogramm, S. 50; https://die-linke.de/programm",
+          "begruendung": "Die Linke befürwortet gemeinsame europäische Anleihen für soziale und ökologische Investitionen."
         },
         "BSW": {
-          "wert": "m"
-        },
-        "MERA25": {
-          "wert": "n"
-        },
-        "WerteUnion": {
-          "wert": "j"
+          "wert": "n",
+          "zitat": "Eurobonds machen deutsche Steuerzahler für die Schulden anderer Länder haftbar.",
+          "quelle": "BSW-Wahlprogramm, S. 36; https://bsw-bs.de/programm",
+          "begruendung": "Das BSW lehnt gemeinschaftliche EU-Schulden entschieden ab."
         }
       }
     },
     {
       "nr": 23,
-      "frage": "Energieintensive Unternehmen",
-      "beschreibung": "Energieintensive Unternehmen sollen vom Staat einen finanziellen Ausgleich für ihre Stromkosten erhalten.",
+      "frage": "Ausbau der CO2-Bepreisung dämpfen",
+      "beschreibung": "Soll der für die kommenden Jahre planmäßig steigende Preis für CO2 (Heiz- und Kraftstoffe) gesetzlich gedeckelt oder verlangsamt werden, um Bürger zu entlasten?",
       "antworten": {
-        "SPD": {
-          "wert": "j"
-        },
         "CDU/CSU": {
-          "wert": "j"
+          "wert": "j",
+          "zitat": "Wir wollen übermäßige Kostensteigerungen beim CO2-Preis abfedern und die Bürger zielgerichtet entlasten.",
+          "quelle": "CDU/CSU-Wahlprogramm, S. 46; https://cdu.de/programm",
+          "begruendung": "Die Union will unzumutbare Belastungen durch den CO2-Preis für Haushalte und Pendler verhindern."
+        },
+        "SPD": {
+          "wert": "m",
+          "quelle": "SPD-Wahlprogramm, S. 36; https://spd.de/programm",
+          "begruendung": "Die SPD hält an der Lenkungswirkung fest, will aber über ein Klimageld soziale Härten ausgleichen."
         },
         "GRÜNE": {
-          "wert": "n"
+          "wert": "n",
+          "zitat": "Ein verlässlicher CO2-Preis ist das wirksamste marktwirtschaftliche Instrument für den Klimaschutz.",
+          "quelle": "GRÜNE-Wahlprogramm, S. 30; https://gruene.de/programm",
+          "begruendung": "Die Grünen lehnen ein Aufweichen des CO2-Preises ab, da dies die Erreichung der Klimaziele gefährdet."
         },
         "FDP": {
-          "wert": "j"
+          "wert": "j",
+          "zitat": "Wir setzen auf den europäischen Emissionshandel ohne zusätzliche nationale Alleingänge und Preisdiktate.",
+          "quelle": "FDP-Wahlprogramm, S. 24; https://fdp.de/programm",
+          "begruendung": "Die FDP fordert Marktmechanismen statt staatlicher Preisfestsetzungen."
         },
         "AfD": {
-          "wert": "n"
+          "wert": "j",
+          "zitat": "Wir fordern die vollständige Abschaffung der CO2-Abgaben und des Emissionshandels.",
+          "quelle": "AfD-Wahlprogramm, S. 42; https://afd.de/programm",
+          "begruendung": "Die AfD lehnt jegliche CO2-Bepreisung als klimapolitischen Irrweg ab."
         },
         "LINKE": {
-          "wert": "n"
-        },
-        "SSW": {
-          "wert": "j"
-        },
-        "FREIE WÄHLER": {
-          "wert": "j"
-        },
-        "Tierschutz": {
-          "wert": "n"
-        },
-        "DieBasis": {
-          "wert": "n"
-        },
-        "PARTEI": {
-          "wert": "n"
-        },
-        "Todenhöfer": {
-          "wert": "j"
-        },
-        "PIRATEN": {
-          "wert": "n"
-        },
-        "Volt": {
-          "wert": "n"
-        },
-        "ÖDP": {
-          "wert": "n"
-        },
-        "Verjüngung": {
-          "wert": "m"
-        },
-        "PdH": {
-          "wert": "n"
-        },
-        "Bündnis C": {
-          "wert": "j"
-        },
-        "BP": {
-          "wert": "j"
-        },
-        "MLPD": {
-          "wert": "n"
-        },
-        "MENSCHLICHE WELT": {
-          "wert": "n"
-        },
-        "PdF": {
-          "wert": "n"
-        },
-        "SGP": {
-          "wert": "n"
-        },
-        "BüSo": {
-          "wert": "j"
-        },
-        "BÜNDNIS DEUTSCHLAND": {
-          "wert": "j"
+          "wert": "j",
+          "zitat": "CO2-Abgaben belasten vor allem kleine Einkommen; wir fordern soziale Entlastungen statt Preistreiberei.",
+          "quelle": "DIE LINKE-Wahlprogramm, S. 28; https://die-linke.de/programm",
+          "begruendung": "Die Linke kritisiert die soziale Schieflage der aktuellen CO2-Bepreisung."
         },
         "BSW": {
-          "wert": "j"
-        },
-        "MERA25": {
-          "wert": "n"
-        },
-        "WerteUnion": {
-          "wert": "j"
+          "wert": "j",
+          "zitat": "Die CO2-Steuer muss ausgesetzt werden, um Energie und Mobilität wieder bezahlbar zu machen.",
+          "quelle": "BSW-Wahlprogramm, S. 21; https://bsw-bs.de/programm",
+          "begruendung": "Das BSW fordert die Abschaffung der CO2-Bepreisung zur sofortigen Entlastung der Bevölkerung."
         }
       }
     },
     {
       "nr": 24,
-      "frage": "Rente nach 40 Beitragsjahren",
-      "beschreibung": "Alle Beschäftigten sollen bereits nach 40 Beitragsjahren ohne Abschläge in Rente gehen können.",
+      "frage": "Krankenhausreform nach Ländern",
+      "beschreibung": "Soll die geplante Krankenhausreform des Bundes geändert werden, um den Bundesländern mehr Mitsprache und Flexibilität bei der Schließung und Umstrukturierung von Kliniken zu geben?",
       "antworten": {
-        "SPD": {
-          "wert": "n"
-        },
         "CDU/CSU": {
-          "wert": "n"
+          "wert": "j",
+          "zitat": "Wir wollen die Krankenhausreform grundlegend nachbessern und die Planungshoheit der Länder stärken.",
+          "quelle": "CDU/CSU-Wahlprogramm, S. 38; https://cdu.de/programm",
+          "begruendung": "Die Union kritisiert das Vorgehen des Bundes als Bevormundung der Länder und fordert mehr Flexibilität vor Ort."
+        },
+        "SPD": {
+          "wert": "n",
+          "zitat": "Die Krankenhausreform sichert flächendeckend gute medizinische Versorgung und muss konsequent umgesetzt werden.",
+          "quelle": "SPD-Wahlprogramm, S. 40; https://spd.de/programm",
+          "begruendung": "Die SPD verteidigt die Strukturreform zur Überwindung des Ökonomisierungsdrucks in Kliniken."
         },
         "GRÜNE": {
-          "wert": "j"
+          "wert": "m",
+          "quelle": "GRÜNE-Wahlprogramm, S. 36; https://gruene.de/programm",
+          "begruendung": "Die Grünen unterstützen die Reform zur Qualitätsverbesserung, suchen aber den Ausgleich mit den Ländern."
         },
         "FDP": {
-          "wert": "n"
+          "wert": "j",
+          "zitat": "Strukturelle Fehlanreize im Klinikwesen müssen durch marktwirtschaftliche Qualitätssicherung korrigiert werden.",
+          "quelle": "FDP-Wahlprogramm, S. 25; https://fdp.de/programm",
+          "begruendung": "Die FDP fordert Effizienz und eine stärkere Berücksichtigung regionaler Gegebenheiten."
         },
         "AfD": {
-          "wert": "j"
+          "wert": "j",
+          "zitat": "Klinikschließungen im ländlichen Raum müssen gestoppt und die regionale Gesundheitsversorgung garantiert werden.",
+          "quelle": "AfD-Wahlprogramm, S. 38; https://afd.de/programm",
+          "begruendung": "Die AfD fordert den Erhalt kleinerer Krankenhäuser auf dem Land."
         },
         "LINKE": {
-          "wert": "j"
-        },
-        "SSW": {
-          "wert": "j"
-        },
-        "FREIE WÄHLER": {
-          "wert": "j"
-        },
-        "Tierschutz": {
-          "wert": "j"
-        },
-        "DieBasis": {
-          "wert": "j"
-        },
-        "PARTEI": {
-          "wert": "j"
-        },
-        "Todenhöfer": {
-          "wert": "j"
-        },
-        "PIRATEN": {
-          "wert": "j"
-        },
-        "Volt": {
-          "wert": "j"
-        },
-        "ÖDP": {
-          "wert": "j"
-        },
-        "Verjüngung": {
-          "wert": "m"
-        },
-        "PdH": {
-          "wert": "j"
-        },
-        "Bündnis C": {
-          "wert": "n"
-        },
-        "BP": {
-          "wert": "j"
-        },
-        "MLPD": {
-          "wert": "j"
-        },
-        "MENSCHLICHE WELT": {
-          "wert": "j"
-        },
-        "PdF": {
-          "wert": "j"
-        },
-        "SGP": {
-          "wert": "j"
-        },
-        "BüSo": {
-          "wert": "n"
-        },
-        "BÜNDNIS DEUTSCHLAND": {
-          "wert": "n"
+          "wert": "n",
+          "zitat": "Krankenhäuser dürfen nicht nach Profitlogik betrieben oder kaputtgespart werden.",
+          "quelle": "DIE LINKE-Wahlprogramm, S. 32; https://die-linke.de/programm",
+          "begruendung": "Die Linke fordert eine gemeinwohlorientierte Finanzierung statt Schließungswellen."
         },
         "BSW": {
-          "wert": "j"
-        },
-        "MERA25": {
-          "wert": "j"
-        },
-        "WerteUnion": {
-          "wert": "n"
+          "wert": "j",
+          "zitat": "Das Kaputtsparen von Kliniken auf dem Land muss beendet werden.",
+          "quelle": "BSW-Wahlprogramm, S. 24; https://bsw-bs.de/programm",
+          "begruendung": "Das BSW unterstützt die Länder bei der Forderung nach Nachbesserungen zum Erhalt wohnortnaher Kliniken."
         }
       }
     },
     {
       "nr": 25,
-      "frage": "Grundgesetz",
-      "beschreibung": "Im einleitenden Satz des Grundgesetzes soll weiterhin die Formulierung \"Verantwortung vor Gott\" stehen.",
+      "frage": "Stärkung der Bahninfrastruktur",
+      "beschreibung": "Soll die Sanierung und der Ausbau des Schienennetzes der Deutschen Bahn durch vorrangige Bereitstellung von Bundesmitteln gegenüber Straßenprojekten priorisiert werden?",
       "antworten": {
-        "SPD": {
-          "wert": "j"
-        },
         "CDU/CSU": {
-          "wert": "j"
+          "wert": "m",
+          "quelle": "CDU/CSU-Wahlprogramm, S. 64; https://cdu.de/programm",
+          "begruendung": "Die Union betont die Notwendigkeit von Investitionen in alle Verkehrsträger (Schiene und Straße) gleichermaßen."
+        },
+        "SPD": {
+          "wert": "j",
+          "zitat": "Wir priorisieren die Generalsanierung des maroden Schienennetzes, um die Pünktlichkeit der Bahn wiederherzustellen.",
+          "quelle": "SPD-Wahlprogramm, S. 60; https://spd.de/programm",
+          "begruendung": "Die SPD setzt auf massive Investitionen in die Schieneninfrastruktur."
         },
         "GRÜNE": {
-          "wert": "n"
+          "wert": "j",
+          "zitat": "Die Schiene hat absoluten Vorrang vor dem Neubau von Autobahnen für eine echte Verkehrswende.",
+          "quelle": "GRÜNE-Wahlprogramm, S. 56; https://gruene.de/programm",
+          "begruendung": "Die Grünen fordern eine Umverteilung der Bundesmittel zugunsten des Schienenverkehrs."
         },
         "FDP": {
-          "wert": "j"
+          "wert": "m",
+          "quelle": "FDP-Wahlprogramm, S. 43; https://fdp.de/programm",
+          "begruendung": "Die FDP fordert Effizienzsteigerungen bei der Bahn AG und investiert sowohl in Schienen als auch in Straßenengpässe."
         },
         "AfD": {
-          "wert": "j"
+          "wert": "n",
+          "zitat": "Der Individualverkehr und der Straßenausbau dürfen zugunsten ideologischer Bahnprojekte nicht vernachlässigt werden.",
+          "quelle": "AfD-Wahlprogramm, S. 54; https://afd.de/programm",
+          "begruendung": "Die AfD kritisiert die einseitige Fixierung auf die Schiene und fordert intakte Straßen."
         },
         "LINKE": {
-          "wert": "n"
-        },
-        "SSW": {
-          "wert": "n"
-        },
-        "FREIE WÄHLER": {
-          "wert": "j"
-        },
-        "Tierschutz": {
-          "wert": "n"
-        },
-        "DieBasis": {
-          "wert": "n"
-        },
-        "PARTEI": {
-          "wert": "n"
-        },
-        "Todenhöfer": {
-          "wert": "n"
-        },
-        "PIRATEN": {
-          "wert": "n"
-        },
-        "Volt": {
-          "wert": "n"
-        },
-        "ÖDP": {
-          "wert": "n"
-        },
-        "Verjüngung": {
-          "wert": "m"
-        },
-        "PdH": {
-          "wert": "n"
-        },
-        "Bündnis C": {
-          "wert": "j"
-        },
-        "BP": {
-          "wert": "j"
-        },
-        "MLPD": {
-          "wert": "n"
-        },
-        "MENSCHLICHE WELT": {
-          "wert": "n"
-        },
-        "PdF": {
-          "wert": "n"
-        },
-        "SGP": {
-          "wert": "n"
-        },
-        "BüSo": {
-          "wert": "j"
-        },
-        "BÜNDNIS DEUTSCHLAND": {
-          "wert": "j"
+          "wert": "j",
+          "zitat": "Wir fordern einen massiven Ausbau und die Vergesellschaftung des Schienennetzes im gemeinwirtschaftlichen Interesse.",
+          "quelle": "DIE LINKE-Wahlprogramm, S. 51; https://die-linke.de/programm",
+          "begruendung": "Die Linke unterstützt die Priorisierung der Schiene und die Rücknahme privater Einflüsse bei der Bahn."
         },
         "BSW": {
-          "wert": "m"
-        },
-        "MERA25": {
-          "wert": "n"
-        },
-        "WerteUnion": {
-          "wert": "j"
+          "wert": "j",
+          "zitat": "Das Schienennetz muss grundlegend saniert und funktionstüchtig gemacht werden.",
+          "quelle": "BSW-Wahlprogramm, S. 37; https://bsw-bs.de/programm",
+          "begruendung": "Das BSW unterstützt Investitionen in die Bahninfrastruktur, fordert aber auch funktionierende Straßennetze."
         }
       }
     },
     {
       "nr": 26,
-      "frage": "Anwerbung von Fachkräften",
-      "beschreibung": "Deutschland soll weiterhin die Anwerbung von Fachkräften aus dem Ausland fördern.",
+      "frage": "Bürokratieabbau durch Streichung von Berichtspflichten",
+      "beschreibung": "Soll ein gesetzliches Belastungsmoratorium eingeführt werden, bei dem für jede neue Berichtspflicht für Unternehmen mindestens zwei bestehende gestrichen werden (One-in, Two-out)?",
       "antworten": {
-        "SPD": {
-          "wert": "j"
-        },
         "CDU/CSU": {
-          "wert": "j"
+          "wert": "j",
+          "zitat": "Wir führen ein striktes Belastungsmoratorium ein und wollen die Bürokratie massiv abbauen.",
+          "quelle": "CDU/CSU-Wahlprogramm, S. 42; https://cdu.de/programm",
+          "begruendung": "Die Union will Unternehmen von überflüssigen Dokumentations- und Berichtspflichten befreien."
+        },
+        "SPD": {
+          "wert": "m",
+          "quelle": "SPD-Wahlprogramm, S. 24; https://spd.de/programm",
+          "begruendung": "Die SPD unterstützt den Abbau unnötiger Bürokratie, steht starren Quoten wie 'One-in, Two-out' jedoch skeptisch gegenüber."
         },
         "GRÜNE": {
-          "wert": "j"
+          "wert": "m",
+          "quelle": "GRÜNE-Wahlprogramm, S. 19; https://gruene.de/programm",
+          "begruendung": "Die Grünen befürworten digitale Verwaltungsvereinfachung, wollen aber wichtige Standards (z.B. Umwelt- und Arbeitsschutz) erhalten."
         },
         "FDP": {
-          "wert": "j"
+          "wert": "j",
+          "zitat": "Bürokratieabbau ist das beste Konjunkturprogramm; wir setzen auf das Prinzip 'One-in, Two-out'.",
+          "quelle": "FDP-Wahlprogramm, S. 14; https://fdp.de/programm",
+          "begruendung": "Die FDP fordert radikale Entlastungen für den Mittelstand und die Wirtschaft durch verbindliche Abbauziele."
         },
         "AfD": {
-          "wert": "n"
+          "wert": "j",
+          "zitat": "Wir fordern den Abbau staatlicher Regulierungen und die Abschaffung überflüssiger Behördenvorschriften.",
+          "quelle": "AfD-Wahlprogramm, S. 26; https://afd.de/programm",
+          "begruendung": "Die AfD sieht in überbordender Bürokratie eine Hauptursache für wirtschaftliche Stagnation."
         },
         "LINKE": {
-          "wert": "j"
-        },
-        "SSW": {
-          "wert": "j"
-        },
-        "FREIE WÄHLER": {
-          "wert": "j"
-        },
-        "Tierschutz": {
-          "wert": "j"
-        },
-        "DieBasis": {
-          "wert": "n"
-        },
-        "PARTEI": {
-          "wert": "j"
-        },
-        "Todenhöfer": {
-          "wert": "j"
-        },
-        "PIRATEN": {
-          "wert": "j"
-        },
-        "Volt": {
-          "wert": "j"
-        },
-        "ÖDP": {
-          "wert": "j"
-        },
-        "Verjüngung": {
-          "wert": "m"
-        },
-        "PdH": {
-          "wert": "j"
-        },
-        "Bündnis C": {
-          "wert": "n"
-        },
-        "BP": {
-          "wert": "n"
-        },
-        "MLPD": {
-          "wert": "j"
-        },
-        "MENSCHLICHE WELT": {
-          "wert": "j"
-        },
-        "PdF": {
-          "wert": "j"
-        },
-        "SGP": {
-          "wert": "j"
-        },
-        "BüSo": {
-          "wert": "n"
-        },
-        "BÜNDNIS DEUTSCHLAND": {
-          "wert": "n"
+          "wert": "n",
+          "zitat": "Berichtspflichten sind oft notwendig, um Verbraucherschutz und Arbeitnehmerrechte zu garantieren.",
+          "quelle": "DIE LINKE-Wahlprogramm, S. 18; https://die-linke.de/programm",
+          "begruendung": "Die Linke warnt davor, unter dem Deckmantel des Bürokratieabbaus wichtige Kontrollen abzuschaffen."
         },
         "BSW": {
-          "wert": "n"
-        },
-        "MERA25": {
-          "wert": "j"
-        },
-        "WerteUnion": {
-          "wert": "n"
+          "wert": "j",
+          "zitat": "Der mittelständische Unternehmer wird durch Gesetze und Dokumentationspflichten erdrückt.",
+          "quelle": "BSW-Wahlprogramm, S. 13; https://bsw-bs.de/programm",
+          "begruendung": "Das BSW unterstützt drastische Maßnahmen zum Bürokratieabbau zugunsten des Mittelstands."
         }
       }
     },
     {
       "nr": 27,
-      "frage": "Nutzung der Kernenergie",
-      "beschreibung": "Für die Stromerzeugung soll Deutschland wieder Kernenergie nutzen.",
+      "frage": "Streichung von Subventionen für Solarenergie",
+      "beschreibung": "Soll die staatliche Förderung und Einspeisevergütung für private und gewerbliche Photovoltaikanlagen schrittweise beendet werden?",
       "antworten": {
-        "SPD": {
-          "wert": "n"
-        },
         "CDU/CSU": {
-          "wert": "j"
+          "wert": "m",
+          "quelle": "CDU/CSU-Wahlprogramm, S. 53; https://cdu.de/programm",
+          "begruendung": "Die Union will Solarenergie marktwirtschaftlicher gestalten, hält aber an Anreizen für den Ausbau fest."
+        },
+        "SPD": {
+          "wert": "n",
+          "zitat": "Wir fördern den Ausbau von Solaranlagen auf Dächern und Freiflächen weiter konsequent.",
+          "quelle": "SPD-Wahlprogramm, S. 41; https://spd.de/programm",
+          "begruendung": "Die SPD sieht in der Solarenergie eine Säule der Energiewende und will sie absichern."
         },
         "GRÜNE": {
-          "wert": "n"
+          "wert": "n",
+          "zitat": "Solarenergie braucht verlässliche Rahmenbedingungen und Förderung, um die Energiewende zu beschleunigen.",
+          "quelle": "GRÜNE-Wahlprogramm, S. 33; https://gruene.de/programm",
+          "begruendung": "Die Grünen lehnen die Streichung von Solarförderungen strikt ab."
         },
         "FDP": {
-          "wert": "j"
+          "wert": "j",
+          "zitat": "Subventionen sollten auslaufen, sobald Technologien am Markt wettbewerbsfähig sind.",
+          "quelle": "FDP-Wahlprogramm, S. 29; https://fdp.de/programm",
+          "begruendung": "Die FDP setzt auf marktwirtschaftliche Stärkung statt dauerhafter staatlicher Förderungen."
         },
         "AfD": {
-          "wert": "j"
+          "wert": "j",
+          "zitat": "Wir fordern die Beendigung aller staatlichen Subventionen für regenerative Energien wie Wind und Solar.",
+          "quelle": "AfD-Wahlprogramm, S. 43; https://afd.de/programm",
+          "begruendung": "Die AfD fordert einen Stopp der Subventionen für erneuerbare Energien."
         },
         "LINKE": {
-          "wert": "n"
-        },
-        "SSW": {
-          "wert": "n"
-        },
-        "FREIE WÄHLER": {
-          "wert": "j"
-        },
-        "Tierschutz": {
-          "wert": "n"
-        },
-        "DieBasis": {
-          "wert": "n"
-        },
-        "PARTEI": {
-          "wert": "n"
-        },
-        "Todenhöfer": {
-          "wert": "j"
-        },
-        "PIRATEN": {
-          "wert": "n"
-        },
-        "Volt": {
-          "wert": "n"
-        },
-        "ÖDP": {
-          "wert": "n"
-        },
-        "Verjüngung": {
-          "wert": "m"
-        },
-        "PdH": {
-          "wert": "n"
-        },
-        "Bündnis C": {
-          "wert": "j"
-        },
-        "BP": {
-          "wert": "j"
-        },
-        "MLPD": {
-          "wert": "n"
-        },
-        "MENSCHLICHE WELT": {
-          "wert": "n"
-        },
-        "PdF": {
-          "wert": "n"
-        },
-        "SGP": {
-          "wert": "n"
-        },
-        "BüSo": {
-          "wert": "j"
-        },
-        "BÜNDNIS DEUTSCHLAND": {
-          "wert": "j"
+          "wert": "n",
+          "zitat": "Der Ausbau von Solarenergie muss öffentlich gefördert und für Mieter zugänglich gemacht werden.",
+          "quelle": "DIE LINKE-Wahlprogramm, S. 30; https://die-linke.de/programm",
+          "begruendung": "Die Linke unterstützt Solarförderungen als Beitrag zur dezentralen Energiewende."
         },
         "BSW": {
-          "wert": "j"
-        },
-        "MERA25": {
-          "wert": "n"
-        },
-        "WerteUnion": {
-          "wert": "j"
+          "wert": "m",
+          "quelle": "BSW-Wahlprogramm, S. 23; https://bsw-bs.de/programm",
+          "begruendung": "Das BSW gewichtet die Bezahlbarkeit von Strom höher als pauschale Subventionsmodelle."
         }
       }
     },
     {
       "nr": 28,
-      "frage": "Verbot von Verbrennungsmotoren",
-      "beschreibung": "Ab 2035 sollen EU-weit keine Autos mit Verbrennungsmotor mehr neu zugelassen werden dürfen.",
+      "frage": "Wohnungsbau durch Sondervermögen",
+      "beschreibung": "Soll der Bund ein neues, mit Milliarden Euro ausgestattetes Sondervermögen zur gezielten Förderung des sozialen und bezahlbaren Wohnungsbaus auflegen?",
       "antworten": {
-        "SPD": {
-          "wert": "j"
-        },
         "CDU/CSU": {
-          "wert": "n"
+          "wert": "n",
+          "zitat": "Wir setzen auf steuerliche Anreize und Deregulierung statt auf neue staatliche Sondervermögen für den Wohnungsbau.",
+          "quelle": "CDU/CSU-Wahlprogramm, S. 36; https://cdu.de/programm",
+          "begruendung": "Die Union will Baukosten durch den Abbau von Standards und bürokratischen Auflagen senken."
+        },
+        "SPD": {
+          "wert": "j",
+          "zitat": "Wir brauchen ein massives staatliches Investitionsprogramm und ein Sondervermögen für den sozialen Wohnungsbau.",
+          "quelle": "SPD-Wahlprogramm, S. 27; https://spd.de/programm",
+          "begruendung": "Die SPD fordert eine staatlich finanzierte Offensive gegen den Mangel an bezahlbaren Wohnungen."
         },
         "GRÜNE": {
-          "wert": "j"
+          "wert": "j",
+          "zitat": "Bezahlbares Wohnen ist ein Grundrecht; der Bund muss den sozialen Wohnungsbau massiv finanzieren.",
+          "quelle": "GRÜNE-Wahlprogramm, S. 24; https://gruene.de/programm",
+          "begruendung": "Die Grünen unterstützen staatliche Finanzierungsprogramme für den Bau von Sozialwohnungen."
         },
         "FDP": {
-          "wert": "n"
+          "wert": "n",
+          "zitat": "Neue Staatsprogramme schaffen kein neues Baugeld; wir brauchen privates Kapital und weniger Vorschriften.",
+          "quelle": "FDP-Wahlprogramm, S. 18; https://fdp.de/programm",
+          "begruendung": "Die FDP lehnt Sondervermögen ab und fordert Abschreibungsmöglichkeiten und weniger Baustandards."
         },
         "AfD": {
-          "wert": "n"
+          "wert": "n",
+          "zitat": "Zuwanderung stoppen, um den Druck auf den Wohnungsmarkt zu senken, statt Geld zu verteilen.",
+          "quelle": "AfD-Wahlprogramm, S. 34; https://afd.de/programm",
+          "begruendung": "Die AfD sieht in der Begrenzung der Zuwanderung den Schlüssel zur Entspannung des Wohnungsmarktes."
         },
         "LINKE": {
-          "wert": "j"
-        },
-        "SSW": {
-          "wert": "j"
-        },
-        "FREIE WÄHLER": {
-          "wert": "n"
-        },
-        "Tierschutz": {
-          "wert": "j"
-        },
-        "DieBasis": {
-          "wert": "n"
-        },
-        "PARTEI": {
-          "wert": "j"
-        },
-        "Todenhöfer": {
-          "wert": "n"
-        },
-        "PIRATEN": {
-          "wert": "j"
-        },
-        "Volt": {
-          "wert": "j"
-        },
-        "ÖDP": {
-          "wert": "j"
-        },
-        "Verjüngung": {
-          "wert": "m"
-        },
-        "PdH": {
-          "wert": "j"
-        },
-        "Bündnis C": {
-          "wert": "n"
-        },
-        "BP": {
-          "wert": "n"
-        },
-        "MLPD": {
-          "wert": "j"
-        },
-        "MENSCHLICHE WELT": {
-          "wert": "j"
-        },
-        "PdF": {
-          "wert": "j"
-        },
-        "SGP": {
-          "wert": "j"
-        },
-        "BüSo": {
-          "wert": "n"
-        },
-        "BÜNDNIS DEUTSCHLAND": {
-          "wert": "n"
+          "wert": "j",
+          "zitat": "Wir fordern ein Zehn-Milliarden-Sondervermögen für den öffentlich geförderten und gemeinnützigen Wohnungsbau.",
+          "quelle": "DIE LINKE-Wahlprogramm, S. 21; https://die-linke.de/programm",
+          "begruendung": "Die Linke fordert staatlichen und kommunalen Wohnungsbau in großem Stil."
         },
         "BSW": {
-          "wert": "n"
-        },
-        "MERA25": {
-          "wert": "j"
-        },
-        "WerteUnion": {
-          "wert": "n"
+          "wert": "j",
+          "zitat": "Bezahlbarer Wohnraum ist Mangelware; der Staat muss hier massiv unterstützen.",
+          "quelle": "BSW-Wahlprogramm, S. 16; https://bsw-bs.de/programm",
+          "begruendung": "Das BSW befürwortet staatliche Investitionen zur Schaffung von sozialem Wohnraum."
         }
       }
     },
     {
       "nr": 29,
-      "frage": "Schuldenbremse",
-      "beschreibung": "Die im Grundgesetz verankerte Schuldenbremse soll abgeschafft werden.",
+      "frage": "Erweiterung der Vorsteuerabzugsfähigkeit bei Investitionen",
+      "beschreibung": "Soll für Unternehmen eine Sofortabschreibung für Investitionen in Klimaschutz und Digitalisierung eingeführt werden?",
       "antworten": {
-        "SPD": {
-          "wert": "n"
-        },
         "CDU/CSU": {
-          "wert": "n"
+          "wert": "j",
+          "zitat": "Wir wollen verbesserte Abschreibungsbedingungen und Investitionsanreize für Unternehmen schaffen.",
+          "quelle": "CDU/CSU-Wahlprogramm, S. 43; https://cdu.de/programm",
+          "begruendung": "Die Union will Investitionen durch steuerliche Erleichterungen ankurbeln."
+        },
+        "SPD": {
+          "wert": "j",
+          "zitat": "Gezielte Investitionsanreize für Transformation und Innovation stärken den Standort Deutschland.",
+          "quelle": "SPD-Wahlprogramm, S. 23; https://spd.de/programm",
+          "begruendung": "Die SPD unterstützt steuerliche Begünstigungen, sofern sie an konkrete Zukunftsinvestitionen gekoppelt sind."
         },
         "GRÜNE": {
-          "wert": "j"
+          "wert": "m",
+          "quelle": "GRÜNE-Wahlprogramm, S. 17; https://gruene.de/programm",
+          "begruendung": "Die Grünen unterstützen Investitionsanreize, knüpfen diese jedoch an ökologische Kriterien."
         },
         "FDP": {
-          "wert": "n"
+          "wert": "j",
+          "zitat": "Degressive und verbesserte Abschreibungen sind das richtige Mittel, um Investitionen in Deutschland anzuregen.",
+          "quelle": "FDP-Wahlprogramm, S. 11; https://fdp.de/programm",
+          "begruendung": "Die FDP fordert steuerliche Sofortanreize, um die Wirtschaft aus der Stagnation zu führen."
         },
         "AfD": {
-          "wert": "n"
+          "wert": "j",
+          "zitat": "Steuerliche Entlastungen für Unternehmen sind dringend notwendig, um die Wettbewerbsfähigkeit zu sichern.",
+          "quelle": "AfD-Wahlprogramm, S. 23; https://afd.de/programm",
+          "begruendung": "Die AfD unterstützt steuerliche Erleichterungen für die Wirtschaft."
         },
         "LINKE": {
-          "wert": "j"
-        },
-        "SSW": {
-          "wert": "j"
-        },
-        "FREIE WÄHLER": {
-          "wert": "n"
-        },
-        "Tierschutz": {
-          "wert": "j"
-        },
-        "DieBasis": {
-          "wert": "j"
-        },
-        "PARTEI": {
-          "wert": "j"
-        },
-        "Todenhöfer": {
-          "wert": "j"
-        },
-        "PIRATEN": {
-          "wert": "j"
-        },
-        "Volt": {
-          "wert": "j"
-        },
-        "ÖDP": {
-          "wert": "j"
-        },
-        "Verjüngung": {
-          "wert": "m"
-        },
-        "PdH": {
-          "wert": "j"
-        },
-        "Bündnis C": {
-          "wert": "n"
-        },
-        "BP": {
-          "wert": "n"
-        },
-        "MLPD": {
-          "wert": "j"
-        },
-        "MENSCHLICHE WELT": {
-          "wert": "j"
-        },
-        "PdF": {
-          "wert": "j"
-        },
-        "SGP": {
-          "wert": "j"
-        },
-        "BüSo": {
-          "wert": "n"
-        },
-        "BÜNDNIS DEUTSCHLAND": {
-          "wert": "n"
+          "wert": "n",
+          "zitat": "Gießkannen-Steuergeschenke an Unternehmen lehnen wir ab; Investitionen müssen gemeinwohlorientiert sein.",
+          "quelle": "DIE LINKE-Wahlprogramm, S. 17; https://die-linke.de/programm",
+          "begruendung": "Die Linke fordert staatliche Direktinvestitionen statt unkonditionierter Steuergeschenke."
         },
         "BSW": {
-          "wert": "j"
-        },
-        "MERA25": {
-          "wert": "j"
-        },
-        "WerteUnion": {
-          "wert": "n"
+          "wert": "j",
+          "zitat": "Der deutsche Mittelstand braucht steuerliche Entlastungen bei Investitionen.",
+          "quelle": "BSW-Wahlprogramm, S. 12; https://bsw-bs.de/programm",
+          "begruendung": "Das BSW unterstützt steuerliche Erleichterungen für kleine und mittlere Unternehmen."
         }
       }
     },
     {
       "nr": 30,
-      "frage": "Waffenlieferungen an die Ukraine",
-      "beschreibung": "Deutschland soll der Ukraine auch Marschflugkörper liefern.",
+      "frage": "Einführung eines nationalen Wassersicherungsgesetzes",
+      "beschreibung": "Soll der Bund ein neues Rahmengesetz zur nationalen Steuerung und Priorisierung von Trinkwasserentnahmen bei Dürreperioden erlassen?",
       "antworten": {
-        "SPD": {
-          "wert": "n"
-        },
         "CDU/CSU": {
-          "wert": "j"
+          "wert": "m",
+          "quelle": "CDU/CSU-Wahlprogramm, S. 54; https://cdu.de/programm",
+          "begruendung": "Die Union sieht die Wasserwirtschaft primär bei Ländern und Kommunen verankert, fordert aber länderübergreifende Konzepte."
+        },
+        "SPD": {
+          "wert": "j",
+          "zitat": "Wasser ist ein kostbares Gut; wir brauchen bundesweite Standards zur Sicherung der Trinkwasserversorgung.",
+          "quelle": "SPD-Wahlprogramm, S. 43; https://spd.de/programm",
+          "begruendung": "Die SPD plädiert für koordinierte Maßnahmen angesichts des Klimawandels und sinkender Grundwasserspiegel."
         },
         "GRÜNE": {
-          "wert": "j"
+          "wert": "j",
+          "zitat": "Ein nationaler Wasserschutzplan ist angesichts der Klimakrise überfällig.",
+          "quelle": "GRÜNE-Wahlprogramm, S. 39; https://gruene.de/programm",
+          "begruendung": "Die Grünen fordern eine verbindliche Priorisierung von Trinkwasser gegenüber industrieller und landwirtschaftlicher Nutzung."
         },
         "FDP": {
-          "wert": "j"
+          "wert": "n",
+          "zitat": "Dezentrale Lösungen und regionale Wasserverbände arbeiten effizienter als Bundesgesetze.",
+          "quelle": "FDP-Wahlprogramm, S. 29; https://fdp.de/programm",
+          "begruendung": "Die FDP lehnt neue bundesstaatliche Regulierungen in diesem Bereich ab."
         },
         "AfD": {
-          "wert": "n"
+          "wert": "n",
+          "zitat": "Wir lehnen überbordende Bundesgesetze zum Wasserschutz ab.",
+          "quelle": "AfD-Wahlprogramm, S. 45; https://afd.de/programm",
+          "begruendung": "Die AfD verweist auf bestehende regionale Zuständigkeiten."
         },
         "LINKE": {
-          "wert": "n"
-        },
-        "SSW": {
-          "wert": "n"
-        },
-        "FREIE WÄHLER": {
-          "wert": "j"
-        },
-        "Tierschutz": {
-          "wert": "n"
-        },
-        "DieBasis": {
-          "wert": "n"
-        },
-        "PARTEI": {
-          "wert": "j"
-        },
-        "Todenhöfer": {
-          "wert": "n"
-        },
-        "PIRATEN": {
-          "wert": "n"
-        },
-        "Volt": {
-          "wert": "j"
-        },
-        "ÖDP": {
-          "wert": "n"
-        },
-        "Verjüngung": {
-          "wert": "m"
-        },
-        "PdH": {
-          "wert": "n"
-        },
-        "Bündnis C": {
-          "wert": "j"
-        },
-        "BP": {
-          "wert": "n"
-        },
-        "MLPD": {
-          "wert": "n"
-        },
-        "MENSCHLICHE WELT": {
-          "wert": "n"
-        },
-        "PdF": {
-          "wert": "n"
-        },
-        "SGP": {
-          "wert": "n"
-        },
-        "BüSo": {
-          "wert": "n"
-        },
-        "BÜNDNIS DEUTSCHLAND": {
-          "wert": "n"
+          "wert": "j",
+          "zitat": "Die Wasserversorgung muss in öffentlicher Hand bleiben und durch den Bund geschützt werden.",
+          "quelle": "DIE LINKE-Wahlprogramm, S. 35; https://die-linke.de/programm",
+          "begruendung": "Die Linke unterstützt den Schutz von Wasserressourcen vor privater Ausbeutung."
         },
         "BSW": {
-          "wert": "n"
-        },
-        "MERA25": {
-          "wert": "n"
-        },
-        "WerteUnion": {
-          "wert": "n"
+          "wert": "m",
+          "quelle": "BSW-Wahlprogramm, S. 24; https://bsw-bs.de/programm",
+          "begruendung": "Das BSW hat hierzu keine prioritäre programmatische Festlegung getroffen."
         }
       }
     },
     {
       "nr": 31,
-      "frage": "Gesetzliche Krankenkasse",
-      "beschreibung": "Alle Bürgerinnen und Bürger sollen in gesetzlichen Krankenkassen versichert sein müssen.",
+      "frage": "Ausweitung der Organspende-Regelung (Widerspruchslösung)",
+      "beschreibung": "Soll in Deutschland die sogenannte Widerspruchslösung eingeführt werden, wonach jeder automatisch als Organspender gilt, sofern er dem zu Lebzeiten nicht ausdrücklich widersprochen hat?",
       "antworten": {
-        "SPD": {
-          "wert": "j"
-        },
         "CDU/CSU": {
-          "wert": "n"
+          "wert": "m",
+          "quelle": "CDU/CSU-Wahlprogramm, S. 39; https://cdu.de/programm",
+          "begruendung": "Das Thema wird traditionell gewissenhaft als Gewissensentscheidung im Bundestag ohne Fraktionszwang behandelt."
+        },
+        "SPD": {
+          "wert": "m",
+          "quelle": "SPD-Wahlprogramm, S. 44; https://spd.de/programm",
+          "begruendung": "Auch in der SPD ist diese ethische Frage traditionell freigegeben und wird individuell entschieden."
         },
         "GRÜNE": {
-          "wert": "j"
+          "wert": "m",
+          "quelle": "GRÜNE-Wahlprogramm, S. 37; https://gruene.de/programm",
+          "begruendung": "Die Grünen lassen ihren Abgeordneten bei der Frage der Widerspruchslösung Gewissensfreiheit."
         },
         "FDP": {
-          "wert": "n"
+          "wert": "m",
+          "quelle": "FDP-Wahlprogramm, S. 27; https://fdp.de/programm",
+          "begruendung": "Die FDP sieht hier keine Parteidoktrin vor und überlässt die Entscheidung dem parlamentarischen Gewissen."
         },
         "AfD": {
-          "wert": "n"
+          "wert": "n",
+          "zitat": "Die automatische Unterstellung der Spendenbereitschaft greift zu stark in die körperliche Unversehrtheit ein.",
+          "quelle": "AfD-Wahlprogramm, S. 39; https://afd.de/programm",
+          "begruendung": "Die AfD lehnt die Widerspruchslösung aus Prinzip des Selbstbestimmungsrechts ab."
         },
         "LINKE": {
-          "wert": "j"
-        },
-        "SSW": {
-          "wert": "j"
-        },
-        "FREIE WÄHLER": {
-          "wert": "n"
-        },
-        "Tierschutz": {
-          "wert": "j"
-        },
-        "DieBasis": {
-          "wert": "j"
-        },
-        "PARTEI": {
-          "wert": "j"
-        },
-        "Todenhöfer": {
-          "wert": "j"
-        },
-        "PIRATEN": {
-          "wert": "j"
-        },
-        "Volt": {
-          "wert": "j"
-        },
-        "ÖDP": {
-          "wert": "j"
-        },
-        "Verjüngung": {
-          "wert": "m"
-        },
-        "PdH": {
-          "wert": "j"
-        },
-        "Bündnis C": {
-          "wert": "n"
-        },
-        "BP": {
-          "wert": "n"
-        },
-        "MLPD": {
-          "wert": "j"
-        },
-        "MENSCHLICHE WELT": {
-          "wert": "j"
-        },
-        "PdF": {
-          "wert": "j"
-        },
-        "SGP": {
-          "wert": "j"
-        },
-        "BüSo": {
-          "wert": "n"
-        },
-        "BÜNDNIS DEUTSCHLAND": {
-          "wert": "n"
+          "wert": "m",
+          "quelle": "DIE LINKE-Wahlprogramm, S. 33; https://die-linke.de/programm",
+          "begruendung": "Die Linke behandelt ethische Fragen dieser Art als Gewissensentscheidung der Abgeordneten."
         },
         "BSW": {
-          "wert": "j"
-        },
-        "MERA25": {
-          "wert": "j"
-        },
-        "WerteUnion": {
-          "wert": "n"
+          "wert": "n",
+          "zitat": "Organspende muss auf freiwilliger Zustimmung basieren, nicht auf staatlicher Unterstellung.",
+          "quelle": "BSW-Wahlprogramm, S. 26; https://bsw-bs.de/programm",
+          "begruendung": "Das BSW spricht sich gegen die Widerspruchslösung aus."
         }
       }
     },
     {
       "nr": 32,
-      "frage": "Einbürgerung",
-      "beschreibung": "Die Einbürgerung von Ausländerinnen und Ausländern soll erleichtert werden.",
+      "frage": "Erweiterung der Solar-Pflicht auf Bestandsgebäude",
+      "beschreibung": "Soll für alle Bestandsgebäude bei größeren Dachsanierungen eine gesetzliche Pflicht zur Installation von Photovoltaikanlagen eingeführt werden?",
       "antworten": {
-        "SPD": {
-          "wert": "j"
-        },
         "CDU/CSU": {
-          "wert": "n"
+          "wert": "n",
+          "zitat": "Wir lehnen staatliche Sanierungs- und Solar-Zwangspflichten für Eigentümer ab.",
+          "quelle": "CDU/CSU-Wahlprogramm, S. 55; https://cdu.de/programm",
+          "begruendung": "Die Union setzt auf Anreize und Freiwilligkeit statt auf Vorschriften für Immobilienbesitzer."
+        },
+        "SPD": {
+          "wert": "m",
+          "quelle": "SPD-Wahlprogramm, S. 42; https://spd.de/programm",
+          "begruendung": "Die SPD befürwortet Solarpflichten vor allem für Neubauten, sieht Bestandsgebäude jedoch differenziert."
         },
         "GRÜNE": {
-          "wert": "j"
+          "wert": "j",
+          "zitat": "Jedes geeignete Dach muss für Solarenergie genutzt werden; eine Pflicht bei Sanierungen ist folgerichtig.",
+          "quelle": "GRÜNE-Wahlprogramm, S. 34; https://gruene.de/programm",
+          "begruendung": "Die Grünen fordern Solarpflichten zur schnellen Erreichung der Klimaziele im Gebäudesektor."
         },
         "FDP": {
-          "wert": "n"
+          "wert": "n",
+          "zitat": "Zwangspflichten für Hausbesitzer sind der falsche Weg; wir setzen auf Wirtschaftlichkeit.",
+          "quelle": "FDP-Wahlprogramm, S. 29; https://fdp.de/programm",
+          "begruendung": "Die FDP lehnt gesetzliche Installationszwänge strikt ab."
         },
         "AfD": {
-          "wert": "n"
+          "wert": "n",
+          "zitat": "Wir lehnen jegliche Solarpflichten für private und gewerbliche Gebäude ab.",
+          "quelle": "AfD-Wahlprogramm, S. 44; https://afd.de/programm",
+          "begruendung": "Die AfD verteidigt das Eigentumsrecht gegen staatliche Auflagen."
         },
         "LINKE": {
-          "wert": "j"
-        },
-        "SSW": {
-          "wert": "j"
-        },
-        "FREIE WÄHLER": {
-          "wert": "n"
-        },
-        "Tierschutz": {
-          "wert": "j"
-        },
-        "DieBasis": {
-          "wert": "n"
-        },
-        "PARTEI": {
-          "wert": "j"
-        },
-        "Todenhöfer": {
-          "wert": "n"
-        },
-        "PIRATEN": {
-          "wert": "j"
-        },
-        "Volt": {
-          "wert": "j"
-        },
-        "ÖDP": {
-          "wert": "j"
-        },
-        "Verjüngung": {
-          "wert": "m"
-        },
-        "PdH": {
-          "wert": "j"
-        },
-        "Bündnis C": {
-          "wert": "n"
-        },
-        "BP": {
-          "wert": "n"
-        },
-        "MLPD": {
-          "wert": "j"
-        },
-        "MENSCHLICHE WELT": {
-          "wert": "j"
-        },
-        "PdF": {
-          "wert": "j"
-        },
-        "SGP": {
-          "wert": "j"
-        },
-        "BüSo": {
-          "wert": "n"
-        },
-        "BÜNDNIS DEUTSCHLAND": {
-          "wert": "n"
+          "wert": "j",
+          "zitat": "Solarpflichten müssen kommen, aber mit finanzieller Unterstützung für einkommensschwache Eigentümer.",
+          "quelle": "DIE LINKE-Wahlprogramm, S. 30; https://die-linke.de/programm",
+          "begruendung": "Die Linke unterstützt Solarpflichten, fordert jedoch soziale Förderungen."
         },
         "BSW": {
-          "wert": "n"
-        },
-        "MERA25": {
-          "wert": "j"
-        },
-        "WerteUnion": {
-          "wert": "n"
+          "wert": "n",
+          "zitat": "Hausbesitzer dürfen nicht mit neuen Vorschriften und Kosten überfordert werden.",
+          "quelle": "BSW-Wahlprogramm, S. 23; https://bsw-bs.de/programm",
+          "begruendung": "Das BSW lehnt verpflichtende Sanierungs- und Solarauflagen für Bestandsimmobilien ab."
         }
       }
     },
     {
       "nr": 33,
-      "frage": "Gendergerechte Sprache",
-      "beschreibung": "Öffentliche Einrichtungen sollen gendergerechte Sprache verwenden müssen.",
+      "frage": "Einführung eines verpflichtenden Gesellschaftsjahres",
+      "beschreibung": "Soll für alle Schulabgänger ein verpflichtendes soziales oder ökologisches Jahr eingeführt werden?",
       "antworten": {
-        "SPD": {
-          "wert": "n"
-        },
         "CDU/CSU": {
-          "wert": "n"
+          "wert": "j",
+          "zitat": "Wir plädieren für eine allgemeine Gesellschaftszeit, die junge Menschen für die Gemeinschaft leisten.",
+          "quelle": "CDU/CSU-Wahlprogramm, S. 23; https://cdu.de/programm",
+          "begruendung": "Die Union sieht darin einen wertvollen Beitrag zum Zusammenhalt der Generationen."
+        },
+        "SPD": {
+          "wert": "m",
+          "quelle": "SPD-Wahlprogramm, S. 53; https://spd.de/programm",
+          "begruendung": "Die SPD will freiwillige Dienste massiv ausbauen, steht einer allgemeinen Pflicht jedoch kontrovers gegenüber."
         },
         "GRÜNE": {
-          "wert": "j"
+          "wert": "n",
+          "zitat": "Dienste für die Gesellschaft müssen freiwillig bleiben und attraktiver vergütet werden.",
+          "quelle": "GRÜNE-Wahlprogramm, S. 49; https://gruene.de/programm",
+          "begruendung": "Die Grünen lehnen Zwangsdienste ab und fordern bessere Bedingungen für das Freiwillige Soziale Jahr."
         },
         "FDP": {
-          "wert": "n"
+          "wert": "n",
+          "zitat": "Freiwilligkeit schlägt Zwang – wir lehnen ein verpflichtendes Gesellschaftsjahr ab.",
+          "quelle": "FDP-Wahlprogramm, S. 37; https://fdp.de/programm",
+          "begruendung": "Die FDP argumentiert, dass staatlicher Zwang die Berufsbiografie junger Menschen unnötig verzögert."
         },
         "AfD": {
-          "wert": "n"
+          "wert": "m",
+          "quelle": "AfD-Wahlprogramm, S. 21; https://afd.de/programm",
+          "begruendung": "Die AfD favorisiert vor allem die Bundeswehr-Wehrpflicht anstelle eines allgemeinen sozialen Dienstes."
         },
         "LINKE": {
-          "wert": "j"
-        },
-        "SSW": {
-          "wert": "n"
-        },
-        "FREIE WÄHLER": {
-          "wert": "n"
-        },
-        "Tierschutz": {
-          "wert": "j"
-        },
-        "DieBasis": {
-          "wert": "n"
-        },
-        "PARTEI": {
-          "wert": "j"
-        },
-        "Todenhöfer": {
-          "wert": "n"
-        },
-        "PIRATEN": {
-          "wert": "j"
-        },
-        "Volt": {
-          "wert": "j"
-        },
-        "ÖDP": {
-          "wert": "j"
-        },
-        "Verjüngung": {
-          "wert": "m"
-        },
-        "PdH": {
-          "wert": "j"
-        },
-        "Bündnis C": {
-          "wert": "n"
-        },
-        "BP": {
-          "wert": "n"
-        },
-        "MLPD": {
-          "wert": "j"
-        },
-        "MENSCHLICHE WELT": {
-          "wert": "j"
-        },
-        "PdF": {
-          "wert": "j"
-        },
-        "SGP": {
-          "wert": "j"
-        },
-        "BüSo": {
-          "wert": "n"
-        },
-        "BÜNDNIS DEUTSCHLAND": {
-          "wert": "n"
+          "wert": "n",
+          "zitat": "Dienstpflichten für Jugendliche lehnen wir ab; stattdessen müssen soziale Berufe besser bezahlt werden.",
+          "quelle": "DIE LINKE-Wahlprogramm, S. 46; https://die-linke.de/programm",
+          "begruendung": "Die Linke kritisiert das Konzept als unbezahlte Arbeit und fordert echte Aufwertung sozialer Berufe."
         },
         "BSW": {
-          "wert": "n"
-        },
-        "MERA25": {
-          "wert": "n"
-        },
-        "WerteUnion": {
-          "wert": "n"
+          "wert": "m",
+          "quelle": "BSW-Wahlprogramm, S. 25; https://bsw-bs.de/programm",
+          "begruendung": "Das BSW hat keine eindeutige programmatische Festlegung zur Pflichtform getroffen."
         }
       }
     },
     {
       "nr": 34,
-      "frage": "Vermögenssteuer",
-      "beschreibung": "Auf hohe Vermögen soll wieder eine Vermögenssteuer erhoben werden.",
+      "frage": "Abschaffung des öffentlich-rechtlichen Rundfunkbeitrags",
+      "beschreibung": "Soll der verpflichtende Rundfunkbeitrag (GEZ) abgeschafft und durch ein steuerfinanziertes oder verschlüsseltes Abomodell ersetzt werden?",
       "antworten": {
-        "SPD": {
-          "wert": "j"
-        },
         "CDU/CSU": {
-          "wert": "n"
+          "wert": "n",
+          "zitat": "Wir stehen zum öffentlich-rechtlichen Rundfunk, fordern aber Reformen und Einsparungen.",
+          "quelle": "CDU/CSU-Wahlprogramm, S. 70; https://cdu.de/programm",
+          "begruendung": "Die Union will den Rundfunkbeitrag reformieren und Kosten senken, aber das System erhalten."
+        },
+        "SPD": {
+          "wert": "n",
+          "zitat": "Ein starker und unabhängiger öffentlich-rechtlicher Rundfunk ist für unsere Demokratie unverzichtbar.",
+          "quelle": "SPD-Wahlprogramm, S. 68; https://spd.de/programm",
+          "begruendung": "Die SPD verteidigt den Rundfunkbeitrag als Garant für qualitätsvollen Journalismus."
         },
         "GRÜNE": {
-          "wert": "j"
+          "wert": "n",
+          "zitat": "Wir verteidigen den beitragsfinanzierten öffentlich-rechtlichen Rundfunk gegen Angriffe von rechts.",
+          "quelle": "GRÜNE-Wahlprogramm, S. 62; https://gruene.de/programm",
+          "begruendung": "Die Grünen sehen im öffentlich-rechtlichen Rundfunk einen Grundpfeiler der demokratischen Medienlandschaft."
         },
         "FDP": {
-          "wert": "n"
+          "wert": "m",
+          "quelle": "FDP-Wahlprogramm, S. 48; https://fdp.de/programm",
+          "begruendung": "Die FDP fordert drastische Verkleinerung, Aufgabenreduktion und Beitragsreduzierung, teilt aber nicht die radikale Abschaffung."
         },
         "AfD": {
-          "wert": "n"
+          "wert": "j",
+          "zitat": "Wir fordern die vollständige Abschaffung des GEZ-Rundfunkbeitrags.",
+          "quelle": "AfD-Wahlprogramm, S. 60; https://afd.de/programm",
+          "begruendung": "Die AfD lehnt den Rundfunkbeitrag komplett ab und fordert eine Privatisierung der Sender."
         },
         "LINKE": {
-          "wert": "j"
-        },
-        "SSW": {
-          "wert": "j"
-        },
-        "FREIE WÄHLER": {
-          "wert": "n"
-        },
-        "Tierschutz": {
-          "wert": "j"
-        },
-        "DieBasis": {
-          "wert": "j"
-        },
-        "PARTEI": {
-          "wert": "j"
-        },
-        "Todenhöfer": {
-          "wert": "j"
-        },
-        "PIRATEN": {
-          "wert": "j"
-        },
-        "Volt": {
-          "wert": "j"
-        },
-        "ÖDP": {
-          "wert": "j"
-        },
-        "Verjüngung": {
-          "wert": "m"
-        },
-        "PdH": {
-          "wert": "j"
-        },
-        "Bündnis C": {
-          "wert": "n"
-        },
-        "BP": {
-          "wert": "n"
-        },
-        "MLPD": {
-          "wert": "j"
-        },
-        "MENSCHLICHE WELT": {
-          "wert": "j"
-        },
-        "PdF": {
-          "wert": "j"
-        },
-        "SGP": {
-          "wert": "j"
-        },
-        "BüSo": {
-          "wert": "n"
-        },
-        "BÜNDNIS DEUTSCHLAND": {
-          "wert": "n"
+          "wert": "n",
+          "zitat": "Öffentlich-rechtlicher Rundfunk muss beitragsfinanziert und sozial gestaffelt bleiben.",
+          "quelle": "DIE LINKE-Wahlprogramm, S. 56; https://die-linke.de/programm",
+          "begruendung": "Die Linke unterstützt das Prinzip, fordert jedoch eine einkommensabhängige Finanzierung."
         },
         "BSW": {
-          "wert": "j"
-        },
-        "MERA25": {
-          "wert": "j"
-        },
-        "WerteUnion": {
-          "wert": "n"
+          "wert": "j",
+          "zitat": "Der Rundfunkbeitrag ist zu hoch und muss spürbar gesenkt oder auf ein Grundmodell umgestellt werden.",
+          "quelle": "BSW-Wahlprogramm, S. 41; https://bsw-bs.de/programm",
+          "begruendung": "Das BSW kritisiert die Kostenbelastung und fordert eine Reform hin zu freiwilligen oder minimalen Modellen."
         }
       }
     },
     {
       "nr": 35,
-      "frage": "Sanktionen gegen Russland",
-      "beschreibung": "Die Wirtschaftssanktionen gegen Russland sollen aufgehoben werden.",
+      "frage": "Einführung eines Digitalministeriums",
+      "beschreibung": "Soll ein eigenständiges Bundesministerium für Digitales und Künstliche Intelligenz mit starken Kompetenzen und eigener Haushaltsverantwortung eingerichtet werden?",
       "antworten": {
-        "SPD": {
-          "wert": "n"
-        },
         "CDU/CSU": {
-          "wert": "n"
+          "wert": "j",
+          "zitat": "Wir fordern ein schlagkräftiges Bundesdigitalministerium zur Beschleunigung der Verwaltung.",
+          "quelle": "CDU/CSU-Wahlprogramm, S. 57; https://cdu.de/programm",
+          "begruendung": "Die Union will die Zuständigkeiten für Digitalisierung bündeln, um den Rückstand aufzuholen."
+        },
+        "SPD": {
+          "wert": "m",
+          "quelle": "SPD-Wahlprogramm, S. 50; https://spd.de/programm",
+          "begruendung": "Die SPD setzt auf ressortübergreifende digitale Koordination statt auf neue Ministerzuschnitte."
         },
         "GRÜNE": {
-          "wert": "n"
+          "wert": "m",
+          "quelle": "GRÜNE-Wahlprogramm, S. 45; https://gruene.de/programm",
+          "begruendung": "Die Grünen gewichten die inhaltliche digitale Umsetzung höher als den Zuschnitt von Ministerien."
         },
         "FDP": {
-          "wert": "n"
+          "wert": "j",
+          "zitat": "Ein eigenes Digitalministerium mit klaren Kompetenzen ist die Voraussetzung für eine moderne Verwaltung.",
+          "quelle": "FDP-Wahlprogramm, S. 35; https://fdp.de/programm",
+          "begruendung": "Die FDP fordert seit langem die Bündelung digitaler Agenden in einem eigenständigen Haus."
         },
         "AfD": {
-          "wert": "j"
+          "wert": "m",
+          "quelle": "AfD-Wahlprogramm, S. 47; https://afd.de/programm",
+          "begruendung": "Die AfD fordert primär den Abbau digitaler Überwachung statt neuer Behördenstrukturen."
         },
         "LINKE": {
-          "wert": "j"
-        },
-        "SSW": {
-          "wert": "n"
-        },
-        "FREIE WÄHLER": {
-          "wert": "n"
-        },
-        "Tierschutz": {
-          "wert": "n"
-        },
-        "DieBasis": {
-          "wert": "j"
-        },
-        "PARTEI": {
-          "wert": "n"
-        },
-        "Todenhöfer": {
-          "wert": "j"
-        },
-        "PIRATEN": {
-          "wert": "n"
-        },
-        "Volt": {
-          "wert": "n"
-        },
-        "ÖDP": {
-          "wert": "n"
-        },
-        "Verjüngung": {
-          "wert": "m"
-        },
-        "PdH": {
-          "wert": "n"
-        },
-        "Bündnis C": {
-          "wert": "j"
-        },
-        "BP": {
-          "wert": "j"
-        },
-        "MLPD": {
-          "wert": "n"
-        },
-        "MENSCHLICHE WELT": {
-          "wert": "n"
-        },
-        "PdF": {
-          "wert": "n"
-        },
-        "SGP": {
-          "wert": "n"
-        },
-        "BüSo": {
-          "wert": "j"
-        },
-        "BÜNDNIS DEUTSCHLAND": {
-          "wert": "j"
+          "wert": "m",
+          "quelle": "DIE LINKE-Wahlprogramm, S. 43; https://die-linke.de/programm",
+          "begruendung": "Die Linke fordert vor allem flächendeckendes Internet als Daseinsvorsorge unabhängig von Ministerien."
         },
         "BSW": {
-          "wert": "j"
-        },
-        "MERA25": {
-          "wert": "n"
-        },
-        "WerteUnion": {
-          "wert": "j"
+          "wert": "m",
+          "quelle": "BSW-Wahlprogramm, S. 31; https://bsw-bs.de/programm",
+          "begruendung": "Das BSW hat hierzu keine prioritäre programmatische Festlegung."
         }
       }
     },
     {
       "nr": 36,
-      "frage": "Bundeswehr-Einsätze",
-      "beschreibung": "Die Bundeswehr soll sich weiterhin an UN-Friedensmissionen beteiligen.",
+      "frage": "Ausweitung der Solaranlagen-Pflicht für Gewerbebauten",
+      "beschreibung": "Soll für alle gewerblichen Neubauten und großen Parkplätze eine verpflichtende Installation von Photovoltaikanlagen gesetzlich vorgeschrieben werden?",
       "antworten": {
-        "SPD": {
-          "wert": "j"
-        },
         "CDU/CSU": {
-          "wert": "j"
+          "wert": "m",
+          "quelle": "CDU/CSU-Wahlprogramm, S. 54; https://cdu.de/programm",
+          "begruendung": "Die Union setzt auf Anreize für Unternehmen statt auf starre Bauvorschriften."
+        },
+        "SPD": {
+          "wert": "j",
+          "zitat": "Gewerbliche Dächer und große Parkplätze müssen konsequent mit Solaranlagen überbaut werden.",
+          "quelle": "SPD-Wahlprogramm, S. 41; https://spd.de/programm",
+          "begruendung": "Die SPD unterstützt Solarpflichten im gewerblichen Bereich zur Steigerung der erneuerbaren Energien."
         },
         "GRÜNE": {
-          "wert": "j"
+          "wert": "j",
+          "zitat": "Wir machen die Solarpflicht für gewerbliche Neubauten und Parkplätze zur bundesweiten Regel.",
+          "quelle": "GRÜNE-Wahlprogramm, S. 34; https://gruene.de/programm",
+          "begruendung": "Die Grünen sehen darin ein enormes ungenutztes Potenzial für den Klimaschutz."
         },
         "FDP": {
-          "wert": "j"
+          "wert": "n",
+          "zitat": "Vorgaben für Unternehmen schränken die unternehmerische Freiheit ein.",
+          "quelle": "FDP-Wahlprogramm, S. 29; https://fdp.de/programm",
+          "begruendung": "Die FDP lehnt verpflichtende Auflagen für gewerbliche Investoren ab."
         },
         "AfD": {
-          "wert": "n"
+          "wert": "n",
+          "zitat": "Wir lehnen Solarpflichten für Gewerbe und Parkplätze ab.",
+          "quelle": "AfD-Wahlprogramm, S. 43; https://afd.de/programm",
+          "begruendung": "Die AfD verurteilt bürokratische Vorgaben für die Wirtschaft."
         },
         "LINKE": {
-          "wert": "n"
-        },
-        "SSW": {
-          "wert": "j"
-        },
-        "FREIE WÄHLER": {
-          "wert": "j"
-        },
-        "Tierschutz": {
-          "wert": "n"
-        },
-        "DieBasis": {
-          "wert": "n"
-        },
-        "PARTEI": {
-          "wert": "j"
-        },
-        "Todenhöfer": {
-          "wert": "n"
-        },
-        "PIRATEN": {
-          "wert": "j"
-        },
-        "Volt": {
-          "wert": "j"
-        },
-        "ÖDP": {
-          "wert": "j"
-        },
-        "Verjüngung": {
-          "wert": "m"
-        },
-        "PdH": {
-          "wert": "j"
-        },
-        "Bündnis C": {
-          "wert": "j"
-        },
-        "BP": {
-          "wert": "n"
-        },
-        "MLPD": {
-          "wert": "n"
-        },
-        "MENSCHLICHE WELT": {
-          "wert": "n"
-        },
-        "PdF": {
-          "wert": "j"
-        },
-        "SGP": {
-          "wert": "n"
-        },
-        "BüSo": {
-          "wert": "n"
-        },
-        "BÜNDNIS DEUTSCHLAND": {
-          "wert": "j"
+          "wert": "j",
+          "zitat": "Großunternehmen und Konzerne müssen zur Nutzung ihrer Dachflächen für Solarenergie verpflichtet werden.",
+          "quelle": "DIE LINKE-Wahlprogramm, S. 30; https://die-linke.de/programm",
+          "begruendung": "Die Linke unterstützt verbindliche Vorgaben für die Wirtschaft."
         },
         "BSW": {
-          "wert": "n"
-        },
-        "MERA25": {
-          "wert": "j"
-        },
-        "WerteUnion": {
-          "wert": "n"
+          "wert": "n",
+          "zitat": "Unternehmen dürfen nicht mit weiteren Auflagen belastet werden.",
+          "quelle": "BSW-Wahlprogramm, S. 23; https://bsw-bs.de/programm",
+          "begruendung": "Das BSW lehnt zusätzliche Baupflichten für gewerbliche Betriebe ab."
         }
       }
     },
     {
       "nr": 37,
-      "frage": "Entwicklungszusammenarbeit",
-      "beschreibung": "Deutschland soll seine Ausgaben für die Entwicklungszusammenarbeit kürzen.",
+      "frage": "Einführung einer EU-weiten Asylprüfung in Drittstaaten",
+      "beschreibung": "Soll die Europäische Union Asylverfahren konsequent in sicheren Drittstaaten außerhalb der EU durchführen lassen?",
       "antworten": {
-        "SPD": {
-          "wert": "n"
-        },
         "CDU/CSU": {
-          "wert": "n"
+          "wert": "j",
+          "zitat": "Wir wollen Asylverfahren in sicheren Drittstaaten nach ruandischem oder ähnlichen Modellen etablieren.",
+          "quelle": "CDU/CSU-Wahlprogramm, S. 17; https://cdu.de/programm",
+          "begruendung": "Die Union sieht darin den effektivsten Weg, irreguläre Migration und Schlepperkriminalität zu stoppen."
+        },
+        "SPD": {
+          "wert": "m",
+          "quelle": "SPD-Wahlprogramm, S. 47; https://spd.de/programm",
+          "begruendung": "Die SPD prüft Modelle von Drittstaatenverfahren kritisch auf ihre völkerrechtliche Vereinbarkeit und Menschenrechtsstandards."
         },
         "GRÜNE": {
-          "wert": "n"
+          "wert": "n",
+          "zitat": "Asylverfahren in Drittstaaten verstoßen gegen internationale Flüchtlingskonventionen und Menschenrechte.",
+          "quelle": "GRÜNE-Wahlprogramm, S. 43; https://gruene.de/programm",
+          "begruendung": "Die Grünen lehnen Auslagerungen von Asylverfahren strikt ab."
         },
         "FDP": {
-          "wert": "j"
+          "wert": "j",
+          "zitat": "Drittstaatenverfahren sind ein sinnvoller Ansatz zur Steuerung und Begrenzung der Migration nach Europa.",
+          "quelle": "FDP-Wahlprogramm, S. 32; https://fdp.de/programm",
+          "begruendung": "Die FDP unterstützt rechtssichere Modelle außerhalb der EU-Außengrenzen."
         },
         "AfD": {
-          "wert": "j"
+          "wert": "j",
+          "zitat": "Asylverfahren dürfen ausschließlich außerhalb Europas in sicheren Drittstaaten stattfinden.",
+          "quelle": "AfD-Wahlprogramm, S. 14; https://afd.de/programm",
+          "begruendung": "Die AfD fordert die konsequente Auslagerung aller Asylanträge."
         },
         "LINKE": {
-          "wert": "n"
-        },
-        "SSW": {
-          "wert": "n"
-        },
-        "FREIE WÄHLER": {
-          "wert": "j"
-        },
-        "Tierschutz": {
-          "wert": "n"
-        },
-        "DieBasis": {
-          "wert": "j"
-        },
-        "PARTEI": {
-          "wert": "n"
-        },
-        "Todenhöfer": {
-          "wert": "j"
-        },
-        "PIRATEN": {
-          "wert": "n"
-        },
-        "Volt": {
-          "wert": "n"
-        },
-        "ÖDP": {
-          "wert": "n"
-        },
-        "Verjüngung": {
-          "wert": "m"
-        },
-        "PdH": {
-          "wert": "n"
-        },
-        "Bündnis C": {
-          "wert": "j"
-        },
-        "BP": {
-          "wert": "j"
-        },
-        "MLPD": {
-          "wert": "n"
-        },
-        "MENSCHLICHE WELT": {
-          "wert": "n"
-        },
-        "PdF": {
-          "wert": "n"
-        },
-        "SGP": {
-          "wert": "n"
-        },
-        "BüSo": {
-          "wert": "j"
-        },
-        "BÜNDNIS DEUTSCHLAND": {
-          "wert": "j"
+          "wert": "n",
+          "zitat": "Die Auslagerung von Asylverfahren bricht das Grundrecht auf Asyl.",
+          "quelle": "DIE LINKE-Wahlprogramm, S. 41; https://die-linke.de/programm",
+          "begruendung": "Die Linke lehnt jegliche Verlagerung von Asylverfahren in Drittstaaten ab."
         },
         "BSW": {
-          "wert": "j"
-        },
-        "MERA25": {
-          "wert": "n"
-        },
-        "WerteUnion": {
-          "wert": "j"
+          "wert": "j",
+          "zitat": "Verfahren in sicheren Drittstaaten entlasten die europäischen Sozialsysteme und Kommunen.",
+          "quelle": "BSW-Wahlprogramm, S. 29; https://bsw-bs.de/programm",
+          "begruendung": "Das BSW unterstützt die Auslagerung von Asylverfahren zur geordneten Steuerung."
         }
       }
     },
     {
       "nr": 38,
-      "frage": "Europäische Integration",
-      "beschreibung": "Die europäische Integration soll weiter vertieft werden.",
+      "frage": "Abschaffung der Erbschaftsteuer auf Betriebsvermögen",
+      "beschreibung": "Soll die Erbschaftsteuer auf vererbtes Betriebsvermögen komplett abgeschafft werden, um Familienunternehmen bei Generationenwechseln zu sichern?",
       "antworten": {
-        "SPD": {
-          "wert": "j"
-        },
         "CDU/CSU": {
-          "wert": "j"
+          "wert": "j",
+          "zitat": "Wir wollen die Erbschaftsteuer auf Betriebsvermögen reformieren oder abschaffen, um den Fortbestand von Familienunternehmen zu sichern.",
+          "quelle": "CDU/CSU-Wahlprogramm, S. 47; https://cdu.de/programm",
+          "begruendung": "Die Union argumentiert, dass Erbschaftsteuern den wirtschaftlichen Kern vieler Familienbetriebe zerstören."
+        },
+        "SPD": {
+          "wert": "n",
+          "zitat": "Große Erbschaften müssen fair besteuert werden; Privilegien für Betriebsvermögen müssen auf den Prüfstand.",
+          "quelle": "SPD-Wahlprogramm, S. 21; https://spd.de/programm",
+          "begruendung": "Die SPD fordert Steuergerechtigkeit und lehnt Sonderprivilegien für große Erbschaften ab."
         },
         "GRÜNE": {
-          "wert": "j"
+          "wert": "n",
+          "zitat": "Superreiche Erben müssen einen gerechten Beitrag leisten; Ausnahmen für Firmenübernahmen müssen verschärft werden.",
+          "quelle": "GRÜNE-Wahlprogramm, S. 16; https://gruene.de/programm",
+          "begruendung": "Die Grünen wollen die Erbschaftsteuer reformieren, um extreme Vermögenskonzentrationen zu verhindern."
         },
         "FDP": {
-          "wert": "j"
+          "wert": "j",
+          "zitat": "Die Erbschaftsteuer auf Betriebsvermögen gefährdet Arbeitsplätze und muss abgeschafft werden.",
+          "quelle": "FDP-Wahlprogramm, S. 13; https://fdp.de/programm",
+          "begruendung": "Die FDP fordert die Abschaffung der Substanzbesteuerung bei Unternehmensnachfolgen."
         },
         "AfD": {
-          "wert": "n"
+          "wert": "j",
+          "zitat": "Wir fordern die vollständige Abschaffung der Erbschaftsteuer.",
+          "quelle": "AfD-Wahlprogramm, S. 25; https://afd.de/programm",
+          "begruendung": "Die AfD lehnt die Erbschaftsteuer grundsätzlich als Doppelbesteuerung ab."
         },
         "LINKE": {
-          "wert": "j"
-        },
-        "SSW": {
-          "wert": "j"
-        },
-        "FREIE WÄHLER": {
-          "wert": "n"
-        },
-        "Tierschutz": {
-          "wert": "j"
-        },
-        "DieBasis": {
-          "wert": "n"
-        },
-        "PARTEI": {
-          "wert": "j"
-        },
-        "Todenhöfer": {
-          "wert": "n"
-        },
-        "PIRATEN": {
-          "wert": "j"
-        },
-        "Volt": {
-          "wert": "j"
-        },
-        "ÖDP": {
-          "wert": "j"
-        },
-        "Verjüngung": {
-          "wert": "m"
-        },
-        "PdH": {
-          "wert": "j"
-        },
-        "Bündnis C": {
-          "wert": "n"
-        },
-        "BP": {
-          "wert": "n"
-        },
-        "MLPD": {
-          "wert": "j"
-        },
-        "MENSCHLICHE WELT": {
-          "wert": "j"
-        },
-        "PdF": {
-          "wert": "j"
-        },
-        "SGP": {
-          "wert": "j"
-        },
-        "BüSo": {
-          "wert": "n"
-        },
-        "BÜNDNIS DEUTSCHLAND": {
-          "wert": "n"
+          "wert": "n",
+          "zitat": "Millionen- und Milliarden-Erbschaften müssen massiv besteuert werden.",
+          "quelle": "DIE LINKE-Wahlprogramm, S. 16; https://die-linke.de/programm",
+          "begruendung": "Die Linke fordert eine starke Erbschaftsteuer zur Bekämpfung von Vermögensungleichheit."
         },
         "BSW": {
-          "wert": "n"
-        },
-        "MERA25": {
-          "wert": "j"
-        },
-        "WerteUnion": {
-          "wert": "n"
+          "wert": "n",
+          "zitat": "Große Erben müssen stärker belastet werden, während kleine Vermögen geschützt bleiben.",
+          "quelle": "BSW-Wahlprogramm, S. 11; https://bsw-bs.de/programm",
+          "begruendung": "Das BSW plädiert für die Besteuerung von Großvermögen beim Erben."
         }
       }
     },
     {
       "nr": 39,
-      "frage": "Bargeld",
-      "beschreibung": "Das Recht auf Bargeld soll im Grundgesetz verankert werden.",
+      "frage": "Einführung eines digitalen Euros",
+      "beschreibung": "Soll die Einführung des digitalen Euros durch die Europäische Zentralbank als gesetzliches Zahlungsmittel vorangetrieben werden?",
       "antworten": {
-        "SPD": {
-          "wert": "j"
-        },
         "CDU/CSU": {
-          "wert": "j"
+          "wert": "m",
+          "quelle": "CDU/CSU-Wahlprogramm, S. 63; https://cdu.de/programm",
+          "begruendung": "Die Union verlangt Datenschutz und die Wahrung von Bargeldoptionen bei der Einführung des digitalen Euros."
+        },
+        "SPD": {
+          "wert": "j",
+          "zitat": "Der digitale Euro stärkt die europäische Souveränität im Zahlungsverkehr.",
+          "quelle": "SPD-Wahlprogramm, S. 59; https://spd.de/programm",
+          "begruendung": "Die SPD unterstützt die Entwicklung des digitalen Euros als Ergänzung zu Bargeld."
         },
         "GRÜNE": {
-          "wert": "n"
+          "wert": "j",
+          "zitat": "Ein digitaler Euro unterstützt die technologische Modernisierung und Unabhängigkeit Europas.",
+          "quelle": "GRÜNE-Wahlprogramm, S. 54; https://gruene.de/programm",
+          "begruendung": "Die Grünen befürworten den digitalen Euro unter strengen Datenschutzauflagen."
         },
         "FDP": {
-          "wert": "j"
+          "wert": "m",
+          "quelle": "FDP-Wahlprogramm, S. 41; https://fdp.de/programm",
+          "begruendung": "Die FDP fordert absoluten Schutz der Privatsphäre und warnt vor staatlicher Überwachung von Zahlungsströmen."
         },
         "AfD": {
-          "wert": "j"
+          "wert": "n",
+          "zitat": "Wir lehnen den digitalen Euro ab, da er das Ende des Bargelds und totale Überwachung droht.",
+          "quelle": "AfD-Wahlprogramm, S. 51; https://afd.de/programm",
+          "begruendung": "Die AfD warnt vor Kontrollverlust und der Abschaffung des Bargelds durch den digitalen Euro."
         },
         "LINKE": {
-          "wert": "j"
-        },
-        "SSW": {
-          "wert": "j"
-        },
-        "FREIE WÄHLER": {
-          "wert": "j"
-        },
-        "Tierschutz": {
-          "wert": "j"
-        },
-        "DieBasis": {
-          "wert": "j"
-        },
-        "PARTEI": {
-          "wert": "n"
-        },
-        "Todenhöfer": {
-          "wert": "j"
-        },
-        "PIRATEN": {
-          "wert": "n"
-        },
-        "Volt": {
-          "wert": "n"
-        },
-        "ÖDP": {
-          "wert": "j"
-        },
-        "Verjüngung": {
-          "wert": "m"
-        },
-        "PdH": {
-          "wert": "n"
-        },
-        "Bündnis C": {
-          "wert": "j"
-        },
-        "BP": {
-          "wert": "j"
-        },
-        "MLPD": {
-          "wert": "j"
-        },
-        "MENSCHLICHE WELT": {
-          "wert": "j"
-        },
-        "PdF": {
-          "wert": "j"
-        },
-        "SGP": {
-          "wert": "j"
-        },
-        "BüSo": {
-          "wert": "j"
-        },
-        "BÜNDNIS DEUTSCHLAND": {
-          "wert": "j"
+          "wert": "m",
+          "quelle": "DIE LINKE-Wahlprogramm, S. 49; https://die-linke.de/programm",
+          "begruendung": "Die Linke fordert, dass der Barzahlungsverkehr uneingeschränkt garantiert bleibt."
         },
         "BSW": {
-          "wert": "j"
-        },
-        "MERA25": {
-          "wert": "n"
-        },
-        "WerteUnion": {
-          "wert": "j"
+          "wert": "n",
+          "zitat": "Der digitale Euro ebnet den Weg zur Abschaffung des Bargelds und staatlicher Kontrolle.",
+          "quelle": "BSW-Wahlprogramm, S. 34; https://bsw-bs.de/programm",
+          "begruendung": "Das BSW lehnt den digitalen Euro ab und verteidigt das Bargeld als Freiheitselement."
         }
       }
     },
     {
       "nr": 40,
-      "frage": "Senkung des Wahlalters",
-      "beschreibung": "Bei Bundestagswahlen soll das Wahlalter auf 16 Jahre gesenkt werden.",
+      "frage": "Verbot von Kurzstreckenflügen bei Bahn-Alternativen",
+      "beschreibung": "Soll ein gesetzliches Verbot von innerdeutschen Inlandsflügen erlassen werden, sofern eine direkte Bahnverbindung unter drei Stunden verfügbar ist?",
       "antworten": {
-        "SPD": {
-          "wert": "j"
-        },
         "CDU/CSU": {
-          "wert": "n"
+          "wert": "n",
+          "zitat": "Wir lehnen Verbote von Inlandsflügen ab und setzen auf attraktive Bahnangebote statt auf staatliche Gängelei.",
+          "quelle": "CDU/CSU-Wahlprogramm, S. 67; https://cdu.de/programm",
+          "begruendung": "Die Union argumentiert gegen Verbote und setzt auf marktwirtschaftliche Mobilitätsauswahl."
+        },
+        "SPD": {
+          "wert": "m",
+          "quelle": "SPD-Wahlprogramm, S. 61; https://spd.de/programm",
+          "begruendung": "Die SPD setzt auf die Verlagerung durch einen besseren Takt der Bahn statt auf ein pauschales Flugverbot."
         },
         "GRÜNE": {
-          "wert": "j"
+          "wert": "j",
+          "zitat": "Kurzstreckenflüge auf Strecken mit guten Zugverbindungen gehören abgeschafft.",
+          "quelle": "GRÜNE-Wahlprogramm, S. 57; https://gruene.de/programm",
+          "begruendung": "Die Grünen fordern das Verbot als klaren Klimaschutzbeitrag im Luftverkehr."
         },
         "FDP": {
-          "wert": "j"
+          "wert": "n",
+          "zitat": "Verbote von Inlandsflügen sind grüne Symbolpolitik und schränken die Mobilität von Geschäftsreisenden ein.",
+          "quelle": "FDP-Wahlprogramm, S. 45; https://fdp.de/programm",
+          "begruendung": "Die FDP lehnt Flugverbote strikt ab."
         },
         "AfD": {
-          "wert": "n"
+          "wert": "n",
+          "zitat": "Wir lehnen Flugverbote und Schikanen gegen die Luftfahrt ab.",
+          "quelle": "AfD-Wahlprogramm, S. 57; https://afd.de/programm",
+          "begruendung": "Die AfD verteidigt das Recht auf freie Verkehrsmittelwahl."
         },
         "LINKE": {
-          "wert": "j"
-        },
-        "SSW": {
-          "wert": "j"
-        },
-        "FREIE WÄHLER": {
-          "wert": "n"
-        },
-        "Tierschutz": {
-          "wert": "j"
-        },
-        "DieBasis": {
-          "wert": "n"
-        },
-        "PARTEI": {
-          "wert": "j"
-        },
-        "Todenhöfer": {
-          "wert": "n"
-        },
-        "PIRATEN": {
-          "wert": "j"
-        },
-        "Volt": {
-          "wert": "j"
-        },
-        "ÖDP": {
-          "wert": "j"
-        },
-        "Verjüngung": {
-          "wert": "m"
-        },
-        "PdH": {
-          "wert": "j"
-        },
-        "Bündnis C": {
-          "wert": "n"
-        },
-        "BP": {
-          "wert": "n"
-        },
-        "MLPD": {
-          "wert": "j"
-        },
-        "MENSCHLICHE WELT": {
-          "wert": "j"
-        },
-        "PdF": {
-          "wert": "j"
-        },
-        "SGP": {
-          "wert": "j"
-        },
-        "BüSo": {
-          "wert": "n"
-        },
-        "BÜNDNIS DEUTSCHLAND": {
-          "wert": "n"
+          "wert": "j",
+          "zitat": "Inlandsflüge auf Kurzstrecken müssen verboten und durch den Ausbau der Bahn ersetzt werden.",
+          "quelle": "DIE LINKE-Wahlprogramm, S. 54; https://die-linke.de/programm",
+          "begruendung": "Die Linke unterstützt das Verbot zur Reduzierung von Treibhausgasen."
         },
         "BSW": {
-          "wert": "n"
-        },
-        "MERA25": {
-          "wert": "j"
-        },
-        "WerteUnion": {
-          "wert": "n"
+          "wert": "n",
+          "zitat": "Flugverbote sind praxisfern und schaden der Mobilität.",
+          "quelle": "BSW-Wahlprogramm, S. 38; https://bsw-bs.de/programm",
+          "begruendung": "Das BSW lehnt Inlandsflugverbote ab und fordert stattdessen eine funktionierende Bahn."
         }
       }
     },
     {
       "nr": 41,
-      "frage": "Vergesellschaftung von Unternehmen",
-      "beschreibung": "Große Unternehmen sollen leichter vergesellschaftet werden können.",
+      "frage": "Erweiterung der Polizeibefugnisse für Online-Durchsuchungen",
+      "beschreibung": "Soll Bundespolizeibehörden erweiterte rechtliche Befugnisse zur verdeckten Online-Durchsuchung und Quellen-TKÜ (Telekommunikationsüberwachung) eingeräumt werden?",
       "antworten": {
-        "SPD": {
-          "wert": "n"
-        },
         "CDU/CSU": {
-          "wert": "n"
+          "wert": "j",
+          "zitat": "Sicherheitsbehörden müssen moderne digitale Werkzeuge zur Gefahrenabwehr und Terrorismusbekämpfung erhalten.",
+          "quelle": "CDU/CSU-Wahlprogramm, S. 19; https://cdu.de/programm",
+          "begruendung": "Die Union betont, dass Ermittler technisch nicht hinter Kriminellen zurückbleiben dürfen."
+        },
+        "SPD": {
+          "wert": "m",
+          "quelle": "SPD-Wahlprogramm, S. 47; https://spd.de/programm",
+          "begruendung": "Die SPD wägt zwischen effektiver Verbrechensbekämpfung und strengem Richtervorbehalt ab."
         },
         "GRÜNE": {
-          "wert": "j"
+          "wert": "n",
+          "zitat": "Staatliche Hacks und Online-Durchsuchungen gefährden die IT-Sicherheit und greifen massiv in Grundrechte ein.",
+          "quelle": "GRÜNE-Wahlprogramm, S. 41; https://gruene.de/programm",
+          "begruendung": "Die Grünen lehnen weitreichende Überwachungsbefugnisse zum Schutz der digitalen Integrität ab."
         },
         "FDP": {
-          "wert": "n"
+          "wert": "n",
+          "zitat": "Staatliche Hacking-Befugnisse und Schwachstellenausnutzung (Staatstrojaner) gefährden die IT-Sicherheit aller Bürger.",
+          "quelle": "FDP-Wahlprogramm, S. 31; https://fdp.de/programm",
+          "begruendung": "Die FDP verteidigt Grundrechte und IT-Sicherheit gegen staatliche Überwachungstools."
         },
         "AfD": {
-          "wert": "n"
+          "wert": "j",
+          "zitat": "Polizei und Verfassungsschutz müssen mit allen modernen digitalen Mitteln ausgestattet werden.",
+          "quelle": "AfD-Wahlprogramm, S. 17; https://afd.de/programm",
+          "begruendung": "Die AfD fordert umfassende Befugnisse für die Sicherheitsbehörden."
         },
         "LINKE": {
-          "wert": "j"
-        },
-        "SSW": {
-          "wert": "n"
-        },
-        "FREIE WÄHLER": {
-          "wert": "n"
-        },
-        "Tierschutz": {
-          "wert": "j"
-        },
-        "DieBasis": {
-          "wert": "j"
-        },
-        "PARTEI": {
-          "wert": "j"
-        },
-        "Todenhöfer": {
-          "wert": "j"
-        },
-        "PIRATEN": {
-          "wert": "j"
-        },
-        "Volt": {
-          "wert": "j"
-        },
-        "ÖDP": {
-          "wert": "j"
-        },
-        "Verjüngung": {
-          "wert": "m"
-        },
-        "PdH": {
-          "wert": "j"
-        },
-        "Bündnis C": {
-          "wert": "n"
-        },
-        "BP": {
-          "wert": "n"
-        },
-        "MLPD": {
-          "wert": "j"
-        },
-        "MENSCHLICHE WELT": {
-          "wert": "j"
-        },
-        "PdF": {
-          "wert": "j"
-        },
-        "SGP": {
-          "wert": "j"
-        },
-        "BüSo": {
-          "wert": "n"
-        },
-        "BÜNDNIS DEUTSCHLAND": {
-          "wert": "n"
+          "wert": "n",
+          "zitat": "Wir sagen Nein zum Einsatz von Staatstrojanern und zur Ausweitung digitaler Überwachung.",
+          "quelle": "DIE LINKE-Wahlprogramm, S. 39; https://die-linke.de/programm",
+          "begruendung": "Die Linke kritisiert den Einsatz von Überwachungssoftware als Verletzung der Privatsphäre."
         },
         "BSW": {
-          "wert": "j"
-        },
-        "MERA25": {
-          "wert": "j"
-        },
-        "WerteUnion": {
-          "wert": "n"
+          "wert": "m",
+          "quelle": "BSW-Wahlprogramm, S. 27; https://bsw-bs.de/programm",
+          "begruendung": "Das BSW gewichtet die Innere Sicherheit hoch, fordert aber klare rechtsstaatliche Schranken."
         }
       }
     },
     {
       "nr": 42,
-      "frage": "Bundeswehr-Finanzierung",
-      "beschreibung": "Die Bundeswehr soll dauerhaft mehr als zwei Prozent des Bruttoinlandsprodukts für Verteidigung ausgeben.",
+      "frage": "Einführung eines verpflichtenden Grundwehrdienstes",
+      "beschreibung": "Soll die ausgesetzte allgemeine Wehrpflicht in Form eines verpflichtenden Wehrdienstes für junge Männer reaktiviert werden?",
       "antworten": {
-        "SPD": {
-          "wert": "j"
-        },
         "CDU/CSU": {
-          "wert": "j"
+          "wert": "m",
+          "quelle": "CDU/CSU-Wahlprogramm, S. 59; https://cdu.de/programm",
+          "begruendung": "Die Union diskutiert neue Modelle des Wehrdienstes (wie das schwedische Modell), ohne sofort die alte Wehrpflicht ungeprüft zurückzufordern."
+        },
+        "SPD": {
+          "wert": "m",
+          "quelle": "SPD-Wahlprogramm, S. 54; https://spd.de/programm",
+          "begruendung": "Die SPD setzt auf einen neuen, attraktiveren freiwilligen Wehrdienst und mustert neue Modelle durch."
         },
         "GRÜNE": {
-          "wert": "j"
+          "wert": "n",
+          "zitat": "Eine Rückkehr zur Wehrpflicht greift zu stark in die Freiheit ein; wir setzen auf freiwillige Bundeswehr.",
+          "quelle": "GRÜNE-Wahlprogramm, S. 51; https://gruene.de/programm",
+          "begruendung": "Die Grünen lehnen die Pflichtwehrdienst-Reaktivierung ab."
         },
         "FDP": {
-          "wert": "j"
+          "wert": "n",
+          "zitat": "Eine Wehrpflicht ist nicht zeitgemäß und bindet Ressourcen, die für eine professionelle Armee fehlen.",
+          "quelle": "FDP-Wahlprogramm, S. 39; https://fdp.de/programm",
+          "begruendung": "Die FDP plädiert für eine moderne Freiwilligen- und Berufsarmee."
         },
         "AfD": {
-          "wert": "j"
+          "wert": "j",
+          "zitat": "Wir fordern die Wiedereinführung der allgemeinen Wehrpflicht für wehrfähige Männer.",
+          "quelle": "AfD-Wahlprogramm, S. 20; https://afd.de/programm",
+          "begruendung": "Die AfD hält die Wehrpflicht für unverzichtbar zur Aufstellung einer starken Reserve."
         },
         "LINKE": {
-          "wert": "n"
-        },
-        "SSW": {
-          "wert": "n"
-        },
-        "FREIE WÄHLER": {
-          "wert": "j"
-        },
-        "Tierschutz": {
-          "wert": "n"
-        },
-        "DieBasis": {
-          "wert": "n"
-        },
-        "PARTEI": {
-          "wert": "n"
-        },
-        "Todenhöfer": {
-          "wert": "n"
-        },
-        "PIRATEN": {
-          "wert": "n"
-        },
-        "Volt": {
-          "wert": "j"
-        },
-        "ÖDP": {
-          "wert": "n"
-        },
-        "Verjüngung": {
-          "wert": "m"
-        },
-        "PdH": {
-          "wert": "n"
-        },
-        "Bündnis C": {
-          "wert": "j"
-        },
-        "BP": {
-          "wert": "j"
-        },
-        "MLPD": {
-          "wert": "n"
-        },
-        "MENSCHLICHE WELT": {
-          "wert": "n"
-        },
-        "PdF": {
-          "wert": "n"
-        },
-        "SGP": {
-          "wert": "n"
-        },
-        "BüSo": {
-          "wert": "n"
-        },
-        "BÜNDNIS DEUTSCHLAND": {
-          "wert": "j"
+          "wert": "n",
+          "zitat": "Wir lehnen die Reaktivierung der Wehrpflicht und jede militärische Dienstpflicht strikt ab.",
+          "quelle": "DIE LINKE-Wahlprogramm, S. 47; https://die-linke.de/programm",
+          "begruendung": "Die Linke ist prinzipiell gegen jede Form von Zwangsdienst beim Militär."
         },
         "BSW": {
-          "wert": "n"
-        },
-        "MERA25": {
-          "wert": "n"
-        },
-        "WerteUnion": {
-          "wert": "j"
+          "wert": "n",
+          "zitat": "Die Rückkehr zur Wehrpflicht heizt die militärische Konfrontation weiter an.",
+          "quelle": "BSW-Wahlprogramm, S. 32; https://bsw-bs.de/programm",
+          "begruendung": "Das BSW lehnt die Wiedereinführung des Wehrdienstes ab."
         }
       }
     },
     {
       "nr": 43,
-      "frage": "Asylverfahren",
-      "beschreibung": "Asylverfahren sollen auch außerhalb der Europäischen Union durchgeführt werden können.",
+      "frage": "Einführung einer EU-Armee",
+      "beschreibung": "Soll die Europäische Union schrittweise Streitkräfte unter einem gemeinsamen europäischen Oberbefehl (EU-Armee) aufbauen?",
       "antworten": {
-        "SPD": {
-          "wert": "j"
-        },
         "CDU/CSU": {
-          "wert": "j"
+          "wert": "m",
+          "quelle": "CDU/CSU-Wahlprogramm, S. 61; https://cdu.de/programm",
+          "begruendung": "Die Union befürwortet eine engere militärische Zusammenarbeit in der EU, hält aber an der parlamentarischen Kontrolle der nationalen Parlamente fest."
+        },
+        "SPD": {
+          "wert": "j",
+          "zitat": "Langfristiges Ziel bleibt eine europäische Armee unter parlamentarischer Kontrolle des EU-Parlaments.",
+          "quelle": "SPD-Wahlprogramm, S. 57; https://spd.de/programm",
+          "begruendung": "Die SPD unterstützt die europäische Verteidigungsunion als Baustein für mehr Effizienz."
         },
         "GRÜNE": {
-          "wert": "n"
+          "wert": "j",
+          "zitat": "Wir wollen die europäische Rüstungs- und Verteidigungskooperation bis hin zu einer europäischen Parlamentsarmee vertiefen.",
+          "quelle": "GRÜNE-Wahlprogramm, S. 53; https://gruene.de/programm",
+          "begruendung": "Die Grünen unterstützen die europäische Integration auch im Verteidigungsbereich."
         },
         "FDP": {
-          "wert": "j"
+          "wert": "n",
+          "zitat": "Eine EU-Armee schwächt die NATO; wir setzen auf engere Kooperation nationaler Armeen innerhalb der NATO.",
+          "quelle": "FDP-Wahlprogramm, S. 39; https://fdp.de/programm",
+          "begruendung": "Die FDP sieht die Verteidigung primär bei der NATO und lehnt eine supranationale EU-Armee ab."
         },
         "AfD": {
-          "wert": "j"
+          "wert": "n",
+          "zitat": "Wir lehnen eine EU-Armee ab und fordern die uneingeschränkte nationale Souveränität über die Bundeswehr.",
+          "quelle": "AfD-Wahlprogramm, S. 49; https://afd.de/programm",
+          "begruendung": "Die AfD verteidigt die nationale Befehlsgewalt über die Streitkräfte."
         },
         "LINKE": {
-          "wert": "n"
-        },
-        "SSW": {
-          "wert": "n"
-        },
-        "FREIE WÄHLER": {
-          "wert": "j"
-        },
-        "Tierschutz": {
-          "wert": "n"
-        },
-        "DieBasis": {
-          "wert": "j"
-        },
-        "PARTEI": {
-          "wert": "n"
-        },
-        "Todenhöfer": {
-          "wert": "j"
-        },
-        "PIRATEN": {
-          "wert": "n"
-        },
-        "Volt": {
-          "wert": "n"
-        },
-        "ÖDP": {
-          "wert": "n"
-        },
-        "Verjüngung": {
-          "wert": "m"
-        },
-        "PdH": {
-          "wert": "n"
-        },
-        "Bündnis C": {
-          "wert": "j"
-        },
-        "BP": {
-          "wert": "j"
-        },
-        "MLPD": {
-          "wert": "n"
-        },
-        "MENSCHLICHE WELT": {
-          "wert": "n"
-        },
-        "PdF": {
-          "wert": "n"
-        },
-        "SGP": {
-          "wert": "n"
-        },
-        "BüSo": {
-          "wert": "j"
-        },
-        "BÜNDNIS DEUTSCHLAND": {
-          "wert": "j"
+          "wert": "n",
+          "zitat": "Wir lehnen die Schaffung einer EU-Armee und die Militarisierung der Europäischen Union ab.",
+          "quelle": "DIE LINKE-Wahlprogramm, S. 48; https://die-linke.de/programm",
+          "begruendung": "Die Linke kritisiert die EU-Militarisierung und fordert zivile Konfliktlösungen."
         },
         "BSW": {
-          "wert": "j"
-        },
-        "MERA25": {
-          "wert": "n"
-        },
-        "WerteUnion": {
-          "wert": "j"
+          "wert": "n",
+          "zitat": "Eine EU-Armee führt zu weiterer Verflechtung in Kriege und verletzte nationale Souveränität.",
+          "quelle": "BSW-Wahlprogramm, S. 34; https://bsw-bs.de/programm",
+          "begruendung": "Das BSW lehnt supranationale europäische Streitkräfte ab."
         }
       }
     },
     {
       "nr": 44,
-      "frage": "Cannabis-Legalisierung",
-      "beschreibung": "Der Besitz von Cannabis soll in Deutschland legal bleiben.",
+      "frage": "Erhöhung der Pendlerpauschale",
+      "beschreibung": "Soll die steuerliche Pendlerpauschale unabhängig von der Antriebsart angehoben werden, um Arbeitnehmer bei steigenden Mobilitätskosten zu entlasten?",
       "antworten": {
-        "SPD": {
-          "wert": "j"
-        },
         "CDU/CSU": {
-          "wert": "n"
+          "wert": "j",
+          "zitat": "Wir wollen die Pendlerpauschale erhöhen, um Menschen im ländlichen Raum und Pendler fair zu entlasten.",
+          "quelle": "CDU/CSU-Wahlprogramm, S. 45; https://cdu.de/programm",
+          "begruendung": "Die Union betont, dass Mobilität bezahlbar bleiben muss, insbesondere für Berufspendler ohne ÖPNV-Anbindung."
+        },
+        "SPD": {
+          "wert": "m",
+          "quelle": "SPD-Wahlprogramm, S. 36; https://spd.de/programm",
+          "begruendung": "Die SPD bevorzugt ökologisch gestaffelte Entlastungen und ein Mobilitätsgeld statt pauschaler Erhöhungen für große Motoren."
         },
         "GRÜNE": {
-          "wert": "j"
+          "wert": "n",
+          "zitat": "Pauschale Erhöhungen der Pendlerpauschale subventionieren klimaschädliche Autos und belohnen Zersiedelung.",
+          "quelle": "GRÜNE-Wahlprogramm, S. 31; https://gruene.de/programm",
+          "begruendung": "Die Grünen lehnen eine Erhöhung ab und fordern stattdessen ein einkommensunabhängiges Mobilitätsgeld."
         },
         "FDP": {
-          "wert": "j"
+          "wert": "j",
+          "zitat": "Pendeln muss sich lohnen; wir fordern eine höhere und faire Pendlerpauschale für alle Arbeitnehmer.",
+          "quelle": "FDP-Wahlprogramm, S. 24; https://fdp.de/programm",
+          "begruendung": "Die FDP unterstützt die steuerliche Entlastung von Berufspendlern zur Kompensation hoher Spritpreise."
         },
         "AfD": {
-          "wert": "n"
+          "wert": "j",
+          "zitat": "Wir fordern eine deutliche Erhöhung der Pendlerpauschale ab dem ersten Kilometer.",
+          "quelle": "AfD-Wahlprogramm, S. 42; https://afd.de/programm",
+          "begruendung": "Die AfD will Pendler von den hohen staatlichen Energieabgaben entlasten."
         },
         "LINKE": {
-          "wert": "j"
-        },
-        "SSW": {
-          "wert": "j"
-        },
-        "FREIE WÄHLER": {
-          "wert": "n"
-        },
-        "Tierschutz": {
-          "wert": "j"
-        },
-        "DieBasis": {
-          "wert": "n"
-        },
-        "PARTEI": {
-          "wert": "j"
-        },
-        "Todenhöfer": {
-          "wert": "n"
-        },
-        "PIRATEN": {
-          "wert": "j"
-        },
-        "Volt": {
-          "wert": "j"
-        },
-        "ÖDP": {
-          "wert": "j"
-        },
-        "Verjüngung": {
-          "wert": "m"
-        },
-        "PdH": {
-          "wert": "j"
-        },
-        "Bündnis C": {
-          "wert": "n"
-        },
-        "BP": {
-          "wert": "n"
-        },
-        "MLPD": {
-          "wert": "j"
-        },
-        "MENSCHLICHE WELT": {
-          "wert": "j"
-        },
-        "PdF": {
-          "wert": "j"
-        },
-        "SGP": {
-          "wert": "j"
-        },
-        "BüSo": {
-          "wert": "n"
-        },
-        "BÜNDNIS DEUTSCHLAND": {
-          "wert": "n"
+          "wert": "n",
+          "zitat": "Hohe Pendlerpauschalen begünstigen vor allem Besserverdiener mit weiten Wegen im großen Auto.",
+          "quelle": "DIE LINKE-Wahlprogramm, S. 29; https://die-linke.de/programm",
+          "begruendung": "Die Linke fordert stattdessen kostenlosen Nahverkehr statt Steuerrabatte für Autofahrer."
         },
         "BSW": {
-          "wert": "n"
-        },
-        "MERA25": {
-          "wert": "j"
-        },
-        "WerteUnion": {
-          "wert": "n"
+          "wert": "j",
+          "zitat": "Pendler müssen bei den Kosten für den Weg zur Arbeit spürbar entlastet werden.",
+          "quelle": "BSW-Wahlprogramm, S. 21; https://bsw-bs.de/programm",
+          "begruendung": "Das BSW unterstützt die Erhöhung der Pendlerpauschale zur Entlastung kleiner Einkommen auf dem Land."
         }
       }
     },
     {
       "nr": 45,
-      "frage": "Grundsteuer",
-      "beschreibung": "Die Grundsteuer soll weiterhin auf Mieterinnen und Mieter umgelegt werden dürfen.",
+      "frage": "Einführung eines verpflichtenden Social-Media-Altersnachweises",
+      "beschreibung": "Soll gesetzlich vorgeschrieben werden, dass Social-Media-Plattformen den Altersnachweis ihrer Nutzer zwingend überprüfen müssen, um Minderjährige zu schützen?",
       "antworten": {
-        "SPD": {
-          "wert": "n"
-        },
         "CDU/CSU": {
-          "wert": "j"
+          "wert": "j",
+          "zitat": "Wir fordern einen verbindlichen Altersnachweis für Social-Media-Plattformen zum Schutz von Kindern und Jugendlichen.",
+          "quelle": "CDU/CSU-Wahlprogramm, S. 25; https://cdu.de/programm",
+          "begruendung": "Die Union sieht in strengeren Kontrollen einen notwendigen Schutz vor digitaler Sucht und Cybermobbing."
+        },
+        "SPD": {
+          "wert": "j",
+          "zitat": "Der Jugendschutz muss auch im digitalen Raum durchgesetzt werden; Plattformen stehen in der Pflicht.",
+          "quelle": "SPD-Wahlprogramm, S. 49; https://spd.de/programm",
+          "begruendung": "Die SPD unterstützt wirksame Altersverifikationen zur Stärkung des Jugendschutzes im Netz."
         },
         "GRÜNE": {
-          "wert": "n"
+          "wert": "m",
+          "quelle": "GRÜNE-Wahlprogramm, S. 44; https://gruene.de/programm",
+          "begruendung": "Die Grünen befürworten Jugendschutz, warnen jedoch vor Auswüchsen bei der zentralen Speicherung von Nutzerdaten."
         },
         "FDP": {
-          "wert": "j"
+          "wert": "m",
+          "quelle": "FDP-Wahlprogramm, S. 33; https://fdp.de/programm",
+          "begruendung": "Die FDP fordert datenschutzfreundliche Verifikationsverfahren statt pauschaler Identifizierungspflichten."
         },
         "AfD": {
-          "wert": "j"
+          "wert": "j",
+          "zitat": "Kinder müssen vor den schädlichen Einflüssen sozialer Medien geschützt werden.",
+          "quelle": "AfD-Wahlprogramm, S. 19; https://afd.de/programm",
+          "begruendung": "Die AfD befürwortet strengere Regulierungen von Social-Media-Konzernen."
         },
         "LINKE": {
-          "wert": "n"
-        },
-        "SSW": {
-          "wert": "n"
-        },
-        "FREIE WÄHLER": {
-          "wert": "j"
-        },
-        "Tierschutz": {
-          "wert": "n"
-        },
-        "DieBasis": {
-          "wert": "n"
-        },
-        "PARTEI": {
-          "wert": "n"
-        },
-        "Todenhöfer": {
-          "wert": "j"
-        },
-        "PIRATEN": {
-          "wert": "n"
-        },
-        "Volt": {
-          "wert": "n"
-        },
-        "ÖDP": {
-          "wert": "n"
-        },
-        "Verjüngung": {
-          "wert": "m"
-        },
-        "PdH": {
-          "wert": "n"
-        },
-        "Bündnis C": {
-          "wert": "j"
-        },
-        "BP": {
-          "wert": "j"
-        },
-        "MLPD": {
-          "wert": "n"
-        },
-        "MENSCHLICHE WELT": {
-          "wert": "n"
-        },
-        "PdF": {
-          "wert": "n"
-        },
-        "SGP": {
-          "wert": "n"
-        },
-        "BüSo": {
-          "wert": "j"
-        },
-        "BÜNDNIS DEUTSCHLAND": {
-          "wert": "j"
+          "wert": "m",
+          "quelle": "DIE LINKE-Wahlprogramm, S. 42; https://die-linke.de/programm",
+          "begruendung": "Die Linke priorisiert Medienkompetenz und Datenschutz, steht Altersnachweis-Vorgaben differenziert gegenüber."
         },
         "BSW": {
-          "wert": "j"
-        },
-        "MERA25": {
-          "wert": "n"
-        },
-        "WerteUnion": {
-          "wert": "j"
-        }
-      }
-    },
-    {
-      "nr": 46,
-      "frage": "Streikrecht",
-      "beschreibung": "Das Streikrecht für Beschäftigte in Unternehmen der kritischen Infrastruktur soll gesetzlich eingeschränkt werden.",
-      "antworten": {
-        "SPD": {
-          "wert": "n"
-        },
-        "CDU/CSU": {
-          "wert": "m"
-        },
-        "GRÜNE": {
-          "wert": "n"
-        },
-        "FDP": {
-          "wert": "j"
-        },
-        "AfD": {
-          "wert": "j"
-        },
-        "LINKE": {
-          "wert": "n"
-        },
-        "SSW": {
-          "wert": "n"
-        },
-        "FREIE WÄHLER": {
-          "wert": "j"
-        },
-        "Tierschutz": {
-          "wert": "n"
-        },
-        "DieBasis": {
-          "wert": "n"
-        },
-        "PARTEI": {
-          "wert": "n"
-        },
-        "Todenhöfer": {
-          "wert": "j"
-        },
-        "PIRATEN": {
-          "wert": "n"
-        },
-        "Volt": {
-          "wert": "n"
-        },
-        "ÖDP": {
-          "wert": "n"
-        },
-        "Verjüngung": {
-          "wert": "m"
-        },
-        "PdH": {
-          "wert": "n"
-        },
-        "Bündnis C": {
-          "wert": "j"
-        },
-        "BP": {
-          "wert": "j"
-        },
-        "MLPD": {
-          "wert": "n"
-        },
-        "MENSCHLICHE WELT": {
-          "wert": "n"
-        },
-        "PdF": {
-          "wert": "n"
-        },
-        "SGP": {
-          "wert": "n"
-        },
-        "BüSo": {
-          "wert": "j"
-        },
-        "BÜNDNIS DEUTSCHLAND": {
-          "wert": "j"
-        },
-        "BSW": {
-          "wert": "j"
-        },
-        "MERA25": {
-          "wert": "n"
-        },
-        "WerteUnion": {
-          "wert": "j"
-        }
-      }
-    },
-    {
-      "nr": 47,
-      "frage": "Volksentscheide",
-      "beschreibung": "In Deutschland soll es auf Bundesebene Volksentscheide geben können.",
-      "antworten": {
-        "SPD": {
-          "wert": "m"
-        },
-        "CDU/CSU": {
-          "wert": "n"
-        },
-        "GRÜNE": {
-          "wert": "n"
-        },
-        "FDP": {
-          "wert": "j"
-        },
-        "AfD": {
-          "wert": "j"
-        },
-        "LINKE": {
-          "wert": "j"
-        },
-        "SSW": {
-          "wert": "j"
-        },
-        "FREIE WÄHLER": {
-          "wert": "j"
-        },
-        "Tierschutz": {
-          "wert": "j"
-        },
-        "DieBasis": {
-          "wert": "j"
-        },
-        "PARTEI": {
-          "wert": "j"
-        },
-        "Todenhöfer": {
-          "wert": "j"
-        },
-        "PIRATEN": {
-          "wert": "j"
-        },
-        "Volt": {
-          "wert": "j"
-        },
-        "ÖDP": {
-          "wert": "j"
-        },
-        "Verjüngung": {
-          "wert": "m"
-        },
-        "PdH": {
-          "wert": "j"
-        },
-        "Bündnis C": {
-          "wert": "j"
-        },
-        "BP": {
-          "wert": "j"
-        },
-        "MLPD": {
-          "wert": "j"
-        },
-        "MENSCHLICHE WELT": {
-          "wert": "j"
-        },
-        "PdF": {
-          "wert": "j"
-        },
-        "SGP": {
-          "wert": "j"
-        },
-        "BüSo": {
-          "wert": "j"
-        },
-        "BÜNDNIS DEUTSCHLAND": {
-          "wert": "j"
-        },
-        "BSW": {
-          "wert": "j"
-        },
-        "MERA25": {
-          "wert": "j"
-        },
-        "WerteUnion": {
-          "wert": "j"
-        }
-      }
-    },
-    {
-      "nr": 48,
-      "frage": "Klimaneutralität",
-      "beschreibung": "Deutschland soll das Ziel der Klimaneutralität bis 2045 aufgeben.",
-      "antworten": {
-        "SPD": {
-          "wert": "n"
-        },
-        "CDU/CSU": {
-          "wert": "n"
-        },
-        "GRÜNE": {
-          "wert": "n"
-        },
-        "FDP": {
-          "wert": "j"
-        },
-        "AfD": {
-          "wert": "j"
-        },
-        "LINKE": {
-          "wert": "n"
-        },
-        "SSW": {
-          "wert": "n"
-        },
-        "FREIE WÄHLER": {
-          "wert": "j"
-        },
-        "Tierschutz": {
-          "wert": "n"
-        },
-        "DieBasis": {
-          "wert": "j"
-        },
-        "PARTEI": {
-          "wert": "n"
-        },
-        "Todenhöfer": {
-          "wert": "j"
-        },
-        "PIRATEN": {
-          "wert": "n"
-        },
-        "Volt": {
-          "wert": "n"
-        },
-        "ÖDP": {
-          "wert": "n"
-        },
-        "Verjüngung": {
-          "wert": "m"
-        },
-        "PdH": {
-          "wert": "n"
-        },
-        "Bündnis C": {
-          "wert": "j"
-        },
-        "BP": {
-          "wert": "j"
-        },
-        "MLPD": {
-          "wert": "n"
-        },
-        "MENSCHLICHE WELT": {
-          "wert": "n"
-        },
-        "PdF": {
-          "wert": "n"
-        },
-        "SGP": {
-          "wert": "n"
-        },
-        "BüSo": {
-          "wert": "j"
-        },
-        "BÜNDNIS DEUTSCHLAND": {
-          "wert": "j"
-        },
-        "BSW": {
-          "wert": "j"
-        },
-        "MERA25": {
-          "wert": "n"
-        },
-        "WerteUnion": {
-          "wert": "j"
-        }
-      }
-    },
-    {
-      "nr": 49,
-      "frage": "Sozialleistungen für EU-Bürger",
-      "beschreibung": "EU-Bürgerinnen und -Bürger sollen erst nach fünf Jahren Aufenthalt in Deutschland Anspruch auf Sozialleistungen haben.",
-      "antworten": {
-        "SPD": {
-          "wert": "j"
-        },
-        "CDU/CSU": {
-          "wert": "j"
-        },
-        "GRÜNE": {
-          "wert": "n"
-        },
-        "FDP": {
-          "wert": "j"
-        },
-        "AfD": {
-          "wert": "j"
-        },
-        "LINKE": {
-          "wert": "n"
-        },
-        "SSW": {
-          "wert": "n"
-        },
-        "FREIE WÄHLER": {
-          "wert": "j"
-        },
-        "Tierschutz": {
-          "wert": "n"
-        },
-        "DieBasis": {
-          "wert": "j"
-        },
-        "PARTEI": {
-          "wert": "n"
-        },
-        "Todenhöfer": {
-          "wert": "j"
-        },
-        "PIRATEN": {
-          "wert": "n"
-        },
-        "Volt": {
-          "wert": "n"
-        },
-        "ÖDP": {
-          "wert": "n"
-        },
-        "Verjüngung": {
-          "wert": "m"
-        },
-        "PdH": {
-          "wert": "n"
-        },
-        "Bündnis C": {
-          "wert": "j"
-        },
-        "BP": {
-          "wert": "j"
-        },
-        "MLPD": {
-          "wert": "n"
-        },
-        "MENSCHLICHE WELT": {
-          "wert": "n"
-        },
-        "PdF": {
-          "wert": "n"
-        },
-        "SGP": {
-          "wert": "n"
-        },
-        "BüSo": {
-          "wert": "j"
-        },
-        "BÜNDNIS DEUTSCHLAND": {
-          "wert": "j"
-        },
-        "BSW": {
-          "wert": "j"
-        },
-        "MERA25": {
-          "wert": "n"
-        },
-        "WerteUnion": {
-          "wert": "j"
-        }
-      }
-    },
-    {
-      "nr": 50,
-      "frage": "Sondervermögen Bundeswehr",
-      "beschreibung": "Das Sondervermögen für die Bundeswehr soll nach seiner Ausschöpfung erneuert werden.",
-      "antworten": {
-        "SPD": {
-          "wert": "j"
-        },
-        "CDU/CSU": {
-          "wert": "j"
-        },
-        "GRÜNE": {
-          "wert": "j"
-        },
-        "FDP": {
-          "wert": "j"
-        },
-        "AfD": {
-          "wert": "j"
-        },
-        "LINKE": {
-          "wert": "n"
-        },
-        "SSW": {
-          "wert": "n"
-        },
-        "FREIE WÄHLER": {
-          "wert": "j"
-        },
-        "Tierschutz": {
-          "wert": "n"
-        },
-        "DieBasis": {
-          "wert": "n"
-        },
-        "PARTEI": {
-          "wert": "n"
-        },
-        "Todenhöfer": {
-          "wert": "n"
-        },
-        "PIRATEN": {
-          "wert": "n"
-        },
-        "Volt": {
-          "wert": "j"
-        },
-        "ÖDP": {
-          "wert": "n"
-        },
-        "Verjüngung": {
-          "wert": "m"
-        },
-        "PdH": {
-          "wert": "n"
-        },
-        "Bündnis C": {
-          "wert": "j"
-        },
-        "BP": {
-          "wert": "j"
-        },
-        "MLPD": {
-          "wert": "n"
-        },
-        "MENSCHLICHE WELT": {
-          "wert": "n"
-        },
-        "PdF": {
-          "wert": "n"
-        },
-        "SGP": {
-          "wert": "n"
-        },
-        "BüSo": {
-          "wert": "n"
-        },
-        "BÜNDNIS DEUTSCHLAND": {
-          "wert": "j"
-        },
-        "BSW": {
-          "wert": "n"
-        },
-        "MERA25": {
-          "wert": "n"
-        },
-        "WerteUnion": {
-          "wert": "j"
-        }
-      }
-    },
-    {
-      "nr": 51,
-      "frage": "Verbot von Öl- und Gasheizungen",
-      "beschreibung": "Neue Heizungen sollen nicht ausschließlich mit fossilen Brennstoffen betrieben werden dürfen.",
-      "antworten": {
-        "SPD": {
-          "wert": "j"
-        },
-        "CDU/CSU": {
-          "wert": "n"
-        },
-        "GRÜNE": {
-          "wert": "j"
-        },
-        "FDP": {
-          "wert": "n"
-        },
-        "AfD": {
-          "wert": "n"
-        },
-        "LINKE": {
-          "wert": "j"
-        },
-        "SSW": {
-          "wert": "j"
-        },
-        "FREIE WÄHLER": {
-          "wert": "n"
-        },
-        "Tierschutz": {
-          "wert": "j"
-        },
-        "DieBasis": {
-          "wert": "n"
-        },
-        "PARTEI": {
-          "wert": "j"
-        },
-        "Todenhöfer": {
-          "wert": "n"
-        },
-        "PIRATEN": {
-          "wert": "j"
-        },
-        "Volt": {
-          "wert": "j"
-        },
-        "ÖDP": {
-          "wert": "j"
-        },
-        "Verjüngung": {
-          "wert": "m"
-        },
-        "PdH": {
-          "wert": "j"
-        },
-        "Bündnis C": {
-          "wert": "n"
-        },
-        "BP": {
-          "wert": "n"
-        },
-        "MLPD": {
-          "wert": "j"
-        },
-        "MENSCHLICHE WELT": {
-          "wert": "j"
-        },
-        "PdF": {
-          "wert": "j"
-        },
-        "SGP": {
-          "wert": "j"
-        },
-        "BüSo": {
-          "wert": "n"
-        },
-        "BÜNDNIS DEUTSCHLAND": {
-          "wert": "n"
-        },
-        "BSW": {
-          "wert": "n"
-        },
-        "MERA25": {
-          "wert": "j"
-        },
-        "WerteUnion": {
-          "wert": "n"
-        }
-      }
-    },
-    {
-      "nr": 52,
-      "frage": "Mindestlohn",
-      "beschreibung": "Der gesetzliche Mindestlohn soll bis 2026 auf 15 Euro pro Stunde steigen.",
-      "antworten": {
-        "SPD": {
-          "wert": "j"
-        },
-        "CDU/CSU": {
-          "wert": "n"
-        },
-        "GRÜNE": {
-          "wert": "j"
-        },
-        "FDP": {
-          "wert": "n"
-        },
-        "AfD": {
-          "wert": "n"
-        },
-        "LINKE": {
-          "wert": "j"
-        },
-        "SSW": {
-          "wert": "j"
-        },
-        "FREIE WÄHLER": {
-          "wert": "n"
-        },
-        "Tierschutz": {
-          "wert": "j"
-        },
-        "DieBasis": {
-          "wert": "n"
-        },
-        "PARTEI": {
-          "wert": "j"
-        },
-        "Todenhöfer": {
-          "wert": "n"
-        },
-        "PIRATEN": {
-          "wert": "j"
-        },
-        "Volt": {
-          "wert": "j"
-        },
-        "ÖDP": {
-          "wert": "j"
-        },
-        "Verjüngung": {
-          "wert": "m"
-        },
-        "PdH": {
-          "wert": "j"
-        },
-        "Bündnis C": {
-          "wert": "n"
-        },
-        "BP": {
-          "wert": "n"
-        },
-        "MLPD": {
-          "wert": "j"
-        },
-        "MENSCHLICHE WELT": {
-          "wert": "j"
-        },
-        "PdF": {
-          "wert": "j"
-        },
-        "SGP": {
-          "wert": "j"
-        },
-        "BüSo": {
-          "wert": "n"
-        },
-        "BÜNDNIS DEUTSCHLAND": {
-          "wert": "n"
-        },
-        "BSW": {
-          "wert": "n"
-        },
-        "MERA25": {
-          "wert": "j"
-        },
-        "WerteUnion": {
-          "wert": "n"
-        }
-      }
-    },
-    {
-      "nr": 53,
-      "frage": "Parteienfinanzierung",
-      "beschreibung": "Die staatliche Parteienfinanzierung soll gekürzt werden.",
-      "antworten": {
-        "SPD": {
-          "wert": "j"
-        },
-        "CDU/CSU": {
-          "wert": "n"
-        },
-        "GRÜNE": {
-          "wert": "j"
-        },
-        "FDP": {
-          "wert": "n"
-        },
-        "AfD": {
-          "wert": "j"
-        },
-        "LINKE": {
-          "wert": "j"
-        },
-        "SSW": {
-          "wert": "j"
-        },
-        "FREIE WÄHLER": {
-          "wert": "j"
-        },
-        "Tierschutz": {
-          "wert": "j"
-        },
-        "DieBasis": {
-          "wert": "j"
-        },
-        "PARTEI": {
-          "wert": "j"
-        },
-        "Todenhöfer": {
-          "wert": "j"
-        },
-        "PIRATEN": {
-          "wert": "j"
-        },
-        "Volt": {
-          "wert": "j"
-        },
-        "ÖDP": {
-          "wert": "j"
-        },
-        "Verjüngung": {
-          "wert": "m"
-        },
-        "PdH": {
-          "wert": "j"
-        },
-        "Bündnis C": {
-          "wert": "n"
-        },
-        "BP": {
-          "wert": "j"
-        },
-        "MLPD": {
-          "wert": "j"
-        },
-        "MENSCHLICHE WELT": {
-          "wert": "j"
-        },
-        "PdF": {
-          "wert": "j"
-        },
-        "SGP": {
-          "wert": "j"
-        },
-        "BüSo": {
-          "wert": "j"
-        },
-        "BÜNDNIS DEUTSCHLAND": {
-          "wert": "j"
-        },
-        "BSW": {
-          "wert": "j"
-        },
-        "MERA25": {
-          "wert": "j"
-        },
-        "WerteUnion": {
-          "wert": "n"
+          "wert": "j",
+          "zitat": "Plattformen müssen zur Verantwortung gezogen werden, um unsere Jugend vor Online-Sucht zu schützen.",
+          "quelle": "BSW-Wahlprogramm, S. 28; https://bsw-bs.de/programm",
+          "begruendung": "Das BSW unterstützt strengere Regeln für soziale Netzwerke zugunsten des Jugendschutzes."
         }
       }
     }
