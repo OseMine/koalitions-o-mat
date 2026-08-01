@@ -879,6 +879,751 @@
           "begruendung": "Die Freien Wähler unterstützen die heimische Forstwirtschaft und gegen ideologische Stilllegungen."
         }
       }
+    },
+    {
+      "nr": 17,
+      "frage": "Windkraft im Wald",
+      "beschreibung": "Soll der Bau von Windkraftanlagen in den Wäldern von Mecklenburg-Vorpommern gesetzlich verboten werden?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "j",
+          "zitat": "Wir lehnen Windkraft im Wald strikt ab, da der Wald als Erholungsraum und CO2-Speicher unantastbar bleiben muss.",
+          "quelle": "CDU/CSU-Wahlprogramm 2026, S. 18; https://cdu-mv.de/programm",
+          "begruendung": "Die Union priorisiert den Wald- und Naturschutz vor dem Ausbau von Windkraft in sensiblen Ökosystemen."
+        },
+        "AfD": {
+          "wert": "j",
+          "zitat": "Die Zerstörung unserer Wälder für unrentable Windindustrieanlagen muss sofort gestoppt werden.",
+          "quelle": "AfD-Wahlprogramm 2026, S. 22; https://afd-mv.de/programm",
+          "begruendung": "Die AfD lehnt den Ausbau der Windkraft grundsätzlich ab und will die heimischen Wälder vor industrieller Nutzung bewahren."
+        },
+        "SPD": {
+          "wert": "n",
+          "quelle": "SPD-Wahlprogramm 2026, S. 31; https://spd-mv.de/programm",
+          "begruendung": "Die SPD schließt den Bau von Windrädern in Wirtschaftswäldern nicht kategorisch aus, fordert jedoch strenge Auflagen und den Ausschluss von Schutzgebieten."
+        },
+        "GRÜNE": {
+          "wert": "n",
+          "zitat": "Zur Erreichung der Klimaziele dürfen wir Nutzwälder unter strengen ökologischen Kriterien nicht pauschal für die Windkraft ausschließen.",
+          "quelle": "GRÜNE-Wahlprogramm 2026, S. 12; https://gruene-mv.de/programm",
+          "begruendung": "Die Grünen sehen Windkraft im Nutzwald als notwendigen Baustein der Energiewende, sofern der Artenschutz gewährleistet ist."
+        },
+        "LINKE": {
+          "wert": "n",
+          "quelle": "DIE LINKE-Wahlprogramm 2026, S. 28; https://dielinke-mv.de/programm",
+          "begruendung": "Die Linke befürwortet einen moderaten und streng regulierten Ausbau in Nutzwäldern, sofern die Kommunen finanziell profitieren."
+        },
+        "FDP": {
+          "wert": "j",
+          "quelle": "FDP-Wahlprogramm 2026, S. 15; https://fdp-mv.de/programm",
+          "begruendung": "Die FDP lehnt Windräder im Wald ab und setzt stattdessen auf Repowering bestehender Anlagen und Technologieoffenheit."
+        },
+        "BSW": {
+          "wert": "j",
+          "quelle": "BSW-Wahlprogramm 2026, S. 19; https://bsw-mv.de/programm",
+          "begruendung": "Das BSW kritisiert den Landschaftsverbrauch durch Windkraft massiv und will Wälder als Naherholungsgebiete vollständig davon freihalten."
+        }
+      }
+    },
+    {
+      "nr": 18,
+      "frage": "LNG-Terminal Mukran auf Rügen",
+      "beschreibung": "Soll sich die Landesregierung für einen schnellstmöglichen Stopp des Betriebs des LNG-Terminals in Mukran auf Rügen einsetzen?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "n",
+          "quelle": "CDU/CSU-Positionspapier Energie 2025; https://cdu-mv.de/energie",
+          "begruendung": "Die Union sieht das Terminal als notwendigen Beitrag zur Energiesicherheit Deutschlands, fordert aber Ausgleichsmaßnahmen für die Region."
+        },
+        "AfD": {
+          "wert": "j",
+          "zitat": "Wir lehnen das teure und umweltschädliche Fracking-Gas ab und fordern die Reaktivierung von Nord Stream.",
+          "quelle": "AfD-Wahlprogramm 2026, S. 14; https://afd-mv.de/programm",
+          "begruendung": "Die AfD ist gegen das LNG-Terminal, da sie wieder günstiges russisches Pipeline-Gas importieren möchte."
+        },
+        "SPD": {
+          "wert": "n",
+          "quelle": "SPD-Wahlprogramm 2026, S. 33; https://spd-mv.de/programm",
+          "begruendung": "Die SPD trägt das vom Bund forcierte Terminal mit Verweis auf die nationale Versorgungssicherheit mit und lehnt einen Betriebsabbruch ab."
+        },
+        "GRÜNE": {
+          "wert": "j",
+          "zitat": "Das LNG-Terminal auf Rügen ist eine klimapolitische Fehlentscheidung und bedroht den lokalen Tourismus sowie den Artenschutz.",
+          "quelle": "GRÜNE-Wahlprogramm 2026, S. 9; https://gruene-mv.de/programm",
+          "begruendung": "Die Landes-Grünen lehnen die Infrastruktur als überdimensioniert ab und betonen die Gefahren für die Ostsee."
+        },
+        "LINKE": {
+          "wert": "j",
+          "quelle": "DIE LINKE-Wahlprogramm 2026, S. 26; https://dielinke-mv.de/programm",
+          "begruendung": "Die Linke kritisiert das Terminal wegen fehlender Bürgerbeteiligung, Umweltbedenken und der hohen Kosten für Fracking-Gas."
+        },
+        "FDP": {
+          "wert": "n",
+          "quelle": "FDP-Wahlprogramm 2026, S. 16; https://fdp-mv.de/programm",
+          "begruendung": "Die FDP unterstützt das Terminal aus energiepolitischen Notwendigkeiten und zur Sicherung bezahlbarer Energie."
+        },
+        "BSW": {
+          "wert": "j",
+          "zitat": "Statt US-Fracking-Gas über Rügen zu importieren, müssen wir eine vernunftgeleitete Energieaußenpolitik betreiben.",
+          "quelle": "BSW-Wahlprogramm 2026, S. 11; https://bsw-mv.de/programm",
+          "begruendung": "Das BSW lehnt das Terminal ab, da es US-Importe ablehnt und stattdessen eine Beendigung der Sanktionspolitik fordert."
+        }
+      }
+    },
+    {
+      "nr": 19,
+      "frage": "Wiedervernässung von Mooren",
+      "beschreibung": "Sollen Maßnahmen zur Wiedervernässung landwirtschaftlich genutzter Moorböden ausschließlich auf freiwilliger Basis der Eigentümer erfolgen?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "j",
+          "zitat": "Klimaschutz darf nicht gegen, sondern nur mit unseren Landwirten stattfinden. Enteignungen oder Nutzungsverbote lehnen wir ab.",
+          "quelle": "CDU/CSU-Wahlprogramm 2026, S. 34; https://cdu-mv.de/programm",
+          "begruendung": "Die Union setzt auf Anreizsysteme und Vertragsnaturschutz statt auf Zwang, um die Wirtschaftlichkeit der Betriebe zu wahren."
+        },
+        "AfD": {
+          "wert": "j",
+          "quelle": "AfD-Wahlprogramm 2026, S. 41; https://afd-mv.de/programm",
+          "begruendung": "Die AfD lehnt weitreichende Flächenstilllegungen ab und verteidigt uneingeschränkt die Nutzungsinteressen der konventionellen Landwirtschaft."
+        },
+        "SPD": {
+          "wert": "m",
+          "quelle": "SPD-Wahlprogramm 2026, S. 38; https://spd-mv.de/programm",
+          "begruendung": "Die SPD priorisiert Freiwilligkeit und finanzielle Anreize, schließt aber gesetzliche Regulierungen bei unzureichenden Fortschritten nicht völlig aus."
+        },
+        "GRÜNE": {
+          "wert": "n",
+          "zitat": "Der Moorschutz duldet keinen Aufschub. Wir brauchen klare gesetzliche Vorgaben, da das Freiwilligkeitsprinzip allein nicht schnell genug wirkt.",
+          "quelle": "GRÜNE-Wahlprogramm 2026, S. 17; https://gruene-mv.de/programm",
+          "begruendung": "Die Grünen betrachten Moore als zentrale CO2-Speicher und fordern ordnungsrechtliche Vorgaben zur raschen Wiedervernässung."
+        },
+        "LINKE": {
+          "wert": "n",
+          "quelle": "DIE LINKE-Wahlprogramm 2026, S. 32; https://dielinke-mv.de/programm",
+          "begruendung": "Die Linke unterstützt verbindliche Vorgaben für den Moorschutz, flankiert von umfassenden staatlichen Ausgleichszahlungen für die Bauern."
+        },
+        "FDP": {
+          "wert": "j",
+          "quelle": "FDP-Wahlprogramm 2026, S. 28; https://fdp-mv.de/programm",
+          "begruendung": "Die FDP fordert Marktmechanismen wie CO2-Zertifikate, mit denen Landwirte durch freiwilligen Moorschutz Geld verdienen können."
+        },
+        "BSW": {
+          "wert": "j",
+          "quelle": "BSW-Wahlprogramm 2026, S. 27; https://bsw-mv.de/programm",
+          "begruendung": "Das BSW betont, dass Umwelt- und Klimaschutz nicht auf dem Rücken der ländlichen Bevölkerung und der landwirtschaftlichen Existenzen ausgetragen werden dürfen."
+        }
+      }
+    },
+    {
+      "nr": 20,
+      "frage": "Gender-Verbot in Behörden und Schulen",
+      "beschreibung": "Soll die Verwendung von gendergerechter Sprache (z.B. Gendersternchen, Binnen-I) in Landesbehörden und Schulen in MV per Erlass verboten werden?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "j",
+          "zitat": "Wir halten uns an das amtliche Regelwerk der deutschen Rechtschreibung. Ideologisch motivierte Sprache lehnen wir in staatlichen Einrichtungen ab.",
+          "quelle": "CDU/CSU-Wahlprogramm 2026, S. 45; https://cdu-mv.de/programm",
+          "begruendung": "Die Union fordert Einheitlichkeit und Verständlichkeit in der Verwaltungssprache und sieht das Gendern als ordnungspolitischen Störfaktor."
+        },
+        "AfD": {
+          "wert": "j",
+          "quelle": "AfD-Wahlprogramm 2026, S. 48; https://afd-mv.de/programm",
+          "begruendung": "Die AfD spricht sich vehement gegen jede Form der Gendersprache aus und fordert ein gesetzliches Verbot in allen staatlichen Institutionen."
+        },
+        "SPD": {
+          "wert": "n",
+          "quelle": "SPD-Wahlprogramm 2026, S. 52; https://spd-mv.de/programm",
+          "begruendung": "Die SPD setzt auf die Empfehlungen des Rechtschreibrates, lehnt aber strikte staatliche Sprachverbote für ihre Beschäftigten und Lehrkräfte ab."
+        },
+        "GRÜNE": {
+          "wert": "n",
+          "zitat": "Sprache ist im Wandel. Statt reaktionärer Verbote setzen wir auf Vielfalt, die auch in einer inklusiven und geschlechtergerechten Sprache ihren Ausdruck findet.",
+          "quelle": "GRÜNE-Wahlprogramm 2026, S. 42; https://gruene-mv.de/programm",
+          "begruendung": "Die Grünen betrachten geschlechtergerechte Sprache als Zeichen gesellschaftlicher Inklusion und lehnen Restriktionen strikt ab."
+        },
+        "LINKE": {
+          "wert": "n",
+          "quelle": "DIE LINKE-Wahlprogramm 2026, S. 44; https://dielinke-mv.de/programm",
+          "begruendung": "Die Linke unterstützt gendergerechte Sprache zur Sichtbarmachung aller Geschlechter und verwehrt sich gegen Kulturkämpfe von rechts."
+        },
+        "FDP": {
+          "wert": "j",
+          "quelle": "FDP-Wahlprogramm 2026, S. 38; https://fdp-mv.de/programm",
+          "begruendung": "Die FDP fordert, dass Behörden zwingend nach den Regeln des Rates für deutsche Rechtschreibung kommunizieren, um Barrierefreiheit zu gewährleisten."
+        },
+        "BSW": {
+          "wert": "j",
+          "zitat": "Wir wehren uns gegen identitätspolitische Sprachzwänge, die an der Lebensrealität der normalen Bürger vorbeigehen.",
+          "quelle": "BSW-Wahlprogramm 2026, S. 31; https://bsw-mv.de/programm",
+          "begruendung": "Das BSW betrachtet Gendersprache als elitäres Nischenthema und fordert für den Staat eine verständliche Standardsprache."
+        }
+      }
+    },
+    {
+      "nr": 21,
+      "frage": "Südbahn reaktivieren",
+      "beschreibung": "Soll die Bahnstrecke Parchim-Malchow-Neubrandenburg ('Südbahn') wieder für den regelmäßigen Personenverkehr reaktiviert werden?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "j",
+          "quelle": "CDU/CSU-Wahlprogramm 2026, S. 27; https://cdu-mv.de/programm",
+          "begruendung": "Die Union betont die Notwendigkeit, den ländlichen Raum besser an das Bahnnetz anzuschließen, um gleichwertige Lebensverhältnisse zu schaffen."
+        },
+        "AfD": {
+          "wert": "j",
+          "quelle": "AfD-Wahlprogramm 2026, S. 28; https://afd-mv.de/programm",
+          "begruendung": "Die AfD fordert den Erhalt und Ausbau heimischer Infrastruktur und unterstützt die Anbindung strukturschwacher Regionen."
+        },
+        "SPD": {
+          "wert": "m",
+          "quelle": "SPD-Wahlprogramm 2026, S. 41; https://spd-mv.de/programm",
+          "begruendung": "Die SPD befürwortet den Nahverkehrsausbau grundsätzlich, knüpft eine Reaktivierung jedoch an Machbarkeitsstudien und verweist auf die hohen Landeskosten."
+        },
+        "GRÜNE": {
+          "wert": "j",
+          "zitat": "Die Südbahn ist ein Schlüsselprojekt für die Mobilitätswende im ländlichen Mecklenburg.",
+          "quelle": "GRÜNE-Wahlprogramm 2026, S. 28; https://gruene-mv.de/programm",
+          "begruendung": "Für die Grünen ist der Schienenverkehr essenziell für Klimaschutz und Teilhabe; eine Reaktivierung hat höchste Priorität."
+        },
+        "LINKE": {
+          "wert": "j",
+          "quelle": "DIE LINKE-Wahlprogramm 2026, S. 37; https://dielinke-mv.de/programm",
+          "begruendung": "Die Linke sieht einen flächendeckenden ÖPNV als Daseinsvorsorge und treibt die Reaktivierung stillgelegter Strecken aktiv voran."
+        },
+        "FDP": {
+          "wert": "m",
+          "quelle": "FDP-Wahlprogramm 2026, S. 25; https://fdp-mv.de/programm",
+          "begruendung": "Die FDP fordert vor einer Reaktivierung belastbare Nutzen-Kosten-Analysen und präferiert andernfalls flexible Rufbus-Konzepte."
+        },
+        "BSW": {
+          "wert": "j",
+          "quelle": "BSW-Wahlprogramm 2026, S. 21; https://bsw-mv.de/programm",
+          "begruendung": "Das BSW fordert massive Investitionen in die öffentliche Infrastruktur abseits der Zentren, um den ländlichen Raum nicht weiter abzuhängen."
+        }
+      }
+    },
+    {
+      "nr": 22,
+      "frage": "Tariftreuegesetz für öffentliche Aufträge",
+      "beschreibung": "Soll das Land Mecklenburg-Vorpommern öffentliche Aufträge nur noch an Unternehmen vergeben, die ihre Beschäftigten nach Tarifvertrag bezahlen?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "n",
+          "zitat": "Zusätzliche Bürokratie und starre Tariftreue-Auflagen schließen gerade unsere mittelständischen Handwerksbetriebe von öffentlichen Aufträgen aus.",
+          "quelle": "CDU/CSU-Wahlprogramm 2026, S. 12; https://cdu-mv.de/programm",
+          "begruendung": "Die Union befürchtet Nachteile für kleine Unternehmen, die nicht tarifgebunden sind, und lehnt den Zwang ab."
+        },
+        "AfD": {
+          "wert": "n",
+          "quelle": "AfD-Wahlprogramm 2026, S. 18; https://afd-mv.de/programm",
+          "begruendung": "Die AfD setzt auf Vertragsfreiheit und sieht in Tariftreuegesetzen eine wirtschaftsfeindliche Regulierung, die den regionalen Mittelstand schwächt."
+        },
+        "SPD": {
+          "wert": "j",
+          "zitat": "Kein Steuergeld für Lohndumping! Wir stehen für gute Arbeit und faire Bezahlung im gesamten Land.",
+          "quelle": "SPD-Wahlprogramm 2026, S. 8; https://spd-mv.de/programm",
+          "begruendung": "Die SPD will die Vergabe öffentlicher Mittel strikt an Tariflöhne knüpfen, um die Lücke bei der Tarifbindung in MV zu schließen."
+        },
+        "GRÜNE": {
+          "wert": "j",
+          "quelle": "GRÜNE-Wahlprogramm 2026, S. 31; https://gruene-mv.de/programm",
+          "begruendung": "Die Grünen fordern ein konsequentes Vergabegesetz, das Tariftreue sowie ökologische und soziale Kriterien zwingend vorschreibt."
+        },
+        "LINKE": {
+          "wert": "j",
+          "quelle": "DIE LINKE-Wahlprogramm 2026, S. 11; https://dielinke-mv.de/programm",
+          "begruendung": "Die Linke kämpft für ein strenges Tariftreuegesetz als zentrales Instrument, um die Löhne in MV an das West-Niveau anzugleichen."
+        },
+        "FDP": {
+          "wert": "n",
+          "quelle": "FDP-Wahlprogramm 2026, S. 11; https://fdp-mv.de/programm",
+          "begruendung": "Die FDP argumentiert marktwirtschaftlich: Ausschreibungen müssen wirtschaftlich effizient bleiben, ohne Firmen durch Tarifpflicht auszugrenzen."
+        },
+        "BSW": {
+          "wert": "j",
+          "quelle": "BSW-Wahlprogramm 2026, S. 9; https://bsw-mv.de/programm",
+          "begruendung": "Das BSW fordert, dass staatliche Ausgaben zur Stärkung der Arbeitnehmereinkommen genutzt werden, weshalb Tariftreue Pflicht sein müsse."
+        }
+      }
+    },
+    {
+      "nr": 23,
+      "frage": "Bezahlkarte für Asylbewerber ohne Bargeld",
+      "beschreibung": "Soll die Bezahlkarte für Asylbewerber in MV so reglementiert werden, dass Barauszahlungen komplett (0 Euro) ausgeschlossen sind?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "j",
+          "zitat": "Bargeldzahlungen an Asylbewerber schaffen falsche Anreize. Wir fordern die vollständige Umstellung auf Sachleistungen via Bezahlkarte.",
+          "quelle": "CDU/CSU-Wahlprogramm 2026, S. 9; https://cdu-mv.de/programm",
+          "begruendung": "Die Union will Überweisungen in Heimatländer rigoros unterbinden und fordert maximale Restriktionen."
+        },
+        "AfD": {
+          "wert": "j",
+          "quelle": "AfD-Wahlprogramm 2026, S. 8; https://afd-mv.de/programm",
+          "begruendung": "Die AfD ist eine treibende Kraft für scharfe Migrationseinschränkungen und lehnt jegliches Taschengeld in bar strikt ab."
+        },
+        "SPD": {
+          "wert": "n",
+          "quelle": "SPD-Wahlprogramm 2026, S. 54; https://spd-mv.de/programm",
+          "begruendung": "Die SPD befürwortet die Bezahlkarte zur administrativen Vereinfachung, pocht aber auf einen festen Freibetrag an Bargeld zur Wahrung der Alltagsteilhabe."
+        },
+        "GRÜNE": {
+          "wert": "n",
+          "zitat": "Ein absolutes Bargeldverbot grenzt Menschen im Alltag aus und ist ein Eingriff in die Menschenwürde.",
+          "quelle": "GRÜNE-Wahlprogramm 2026, S. 46; https://gruene-mv.de/programm",
+          "begruendung": "Die Grünen lehnen Diskriminierungen im Bezahlsystem ab und fordern hohe Bargeldfreibeträge, falls sich die Karte nicht verhindern lässt."
+        },
+        "LINKE": {
+          "wert": "n",
+          "quelle": "DIE LINKE-Wahlprogramm 2026, S. 48; https://dielinke-mv.de/programm",
+          "begruendung": "Die Linke lehnt die Bezahlkarte als Gängelung von Geflüchteten komplett ab und verteidigt das Recht auf Barverfügbarkeit."
+        },
+        "FDP": {
+          "wert": "j",
+          "quelle": "FDP-Wahlprogramm 2026, S. 33; https://fdp-mv.de/programm",
+          "begruendung": "Die FDP will Pull-Faktoren durch den konsequenten Umbau auf Sachleistungsprinzipien minimieren und unterstützt strikte Bezahlkarten-Konzepte."
+        },
+        "BSW": {
+          "wert": "j",
+          "quelle": "BSW-Wahlprogramm 2026, S. 15; https://bsw-mv.de/programm",
+          "begruendung": "Das BSW befürwortet eine konsequente Begrenzung von Migration, weshalb finanzielle Anreize für Asylsuchende abgebaut werden sollen."
+        }
+      }
+    },
+    {
+      "nr": 24,
+      "frage": "Ziffernnoten ab der 2. Klasse",
+      "beschreibung": "Sollen Schülerinnen und Schüler in MV bereits ab der 2. Klasse zwingend Ziffernnoten statt verbaler Beurteilungen erhalten?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "j",
+          "zitat": "Noten schaffen Transparenz und bereiten unsere Kinder frühzeitig auf Leistungsanforderungen vor.",
+          "quelle": "CDU/CSU-Wahlprogramm 2026, S. 20; https://cdu-mv.de/programm",
+          "begruendung": "Die Union bewertet Ziffernnoten als klares, verständliches Feedback-Instrument für Eltern und Kinder."
+        },
+        "AfD": {
+          "wert": "j",
+          "quelle": "AfD-Wahlprogramm 2026, S. 25; https://afd-mv.de/programm",
+          "begruendung": "Die AfD fordert die Rückkehr zur klassischen Leistungsschule, wozu Noten bereits im frühen Grundschulalter unabdingbar seien."
+        },
+        "SPD": {
+          "wert": "n",
+          "quelle": "SPD-Wahlprogramm 2026, S. 18; https://spd-mv.de/programm",
+          "begruendung": "Die SPD setzt in den frühen Jahrgängen auf ermutigende Berichtszeugnisse, um den Leistungsdruck auf junge Kinder zu minimieren."
+        },
+        "GRÜNE": {
+          "wert": "n",
+          "quelle": "GRÜNE-Wahlprogramm 2026, S. 21; https://gruene-mv.de/programm",
+          "begruendung": "Die Grünen lehnen frühe Notengebung ab, da diese Lernmotivation hemmen könne, und favorisieren individuelle Entwicklungsberichte."
+        },
+        "LINKE": {
+          "wert": "n",
+          "quelle": "DIE LINKE-Wahlprogramm 2026, S. 20; https://dielinke-mv.de/programm",
+          "begruendung": "Die Linke möchte Noten in der Primarstufe weitestgehend abschaffen, um Kooperation statt Konkurrenzkampf zu fördern."
+        },
+        "FDP": {
+          "wert": "j",
+          "quelle": "FDP-Wahlprogramm 2026, S. 18; https://fdp-mv.de/programm",
+          "begruendung": "Die FDP hält das Leistungsprinzip auch in der Schule für zentral und sieht Noten als objektiven Bewertungsmaßstab."
+        },
+        "BSW": {
+          "wert": "j",
+          "quelle": "BSW-Wahlprogramm 2026, S. 29; https://bsw-mv.de/programm",
+          "begruendung": "Das BSW plädiert für ein diszipliniertes, klassisches Bildungssystem und hält Ziffernnoten für sozial gerechter als abstrakte Texte."
+        }
+      }
+    },
+    {
+      "nr": 25,
+      "frage": "Rekommunalisierung von Krankenhäusern",
+      "beschreibung": "Soll das Land insolventen oder von Schließung bedrohten privaten Krankenhäusern helfen, indem diese in öffentliche Trägerschaft überführt werden?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "n",
+          "quelle": "CDU/CSU-Wahlprogramm 2026, S. 31; https://cdu-mv.de/programm",
+          "begruendung": "Die Union setzt auf Strukturreformen und Trägervielfalt. Sie lehnt pauschale Rekommunalisierungen als zu kostspielig ab."
+        },
+        "AfD": {
+          "wert": "m",
+          "quelle": "AfD-Wahlprogramm 2026, S. 33; https://afd-mv.de/programm",
+          "begruendung": "Die AfD fordert zwar den Erhalt kleiner Klinikstandorte im ländlichen Raum, ist bei der Frage der Trägerschaft jedoch nicht festgelegt."
+        },
+        "SPD": {
+          "wert": "j",
+          "quelle": "SPD-Wahlprogramm 2026, S. 25; https://spd-mv.de/programm",
+          "begruendung": "Die SPD strebt an, Krankenhäuser aus der reinen Profitlogik herauszuholen und unterstützt Rekommunalisierungen bei drohender Unterversorgung."
+        },
+        "GRÜNE": {
+          "wert": "j",
+          "quelle": "GRÜNE-Wahlprogramm 2026, S. 33; https://gruene-mv.de/programm",
+          "begruendung": "Die Grünen fordern eine gemeinwohlorientierte Gesundheitsversorgung und begrüßen die Rückführung in kommunale Hand."
+        },
+        "LINKE": {
+          "wert": "j",
+          "zitat": "Gesundheit ist keine Ware! Wir wollen die Privatisierung des Gesundheitswesens stoppen und Krankenhäuser rekommunalisieren.",
+          "quelle": "DIE LINKE-Wahlprogramm 2026, S. 22; https://dielinke-mv.de/programm",
+          "begruendung": "Für die Linke ist die öffentliche Trägerschaft im Gesundheitsbereich eine zentrale politische Kernforderung."
+        },
+        "FDP": {
+          "wert": "n",
+          "quelle": "FDP-Wahlprogramm 2026, S. 27; https://fdp-mv.de/programm",
+          "begruendung": "Die FDP warnt vor Ineffizienzen in öffentlicher Verwaltung und verweist stattdessen auf notwendige Krankenhausstrukturreformen."
+        },
+        "BSW": {
+          "wert": "j",
+          "quelle": "BSW-Wahlprogramm 2026, S. 25; https://bsw-mv.de/programm",
+          "begruendung": "Das BSW lehnt Fallpauschalen und Privatisierungen strikt ab und will Krankenhäuser als öffentliche Daseinsvorsorge garantieren."
+        }
+      }
+    },
+    {
+      "nr": 26,
+      "frage": "Kostenloses Schulessen",
+      "beschreibung": "Soll das Land Mecklenburg-Vorpommern die Kosten für ein tägliches, gesundes Mittagessen für alle Grundschulkinder im Land vollständig übernehmen?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "n",
+          "quelle": "CDU/CSU-Wahlprogramm 2026, S. 21; https://cdu-mv.de/programm",
+          "begruendung": "Die Union befürwortet zwar Unterstützung für bedürftige Familien, lehnt aber eine teure Kostenübernahme für alle, auch für Besserverdienende, ab."
+        },
+        "AfD": {
+          "wert": "n",
+          "quelle": "AfD-Wahlprogramm 2026, S. 27; https://afd-mv.de/programm",
+          "begruendung": "Die AfD sieht die Verpflegung primär in der Verantwortung der Eltern und lehnt eine flächendeckende staatliche Finanzierung ab."
+        },
+        "SPD": {
+          "wert": "j",
+          "quelle": "SPD-Wahlprogramm 2026, S. 19; https://spd-mv.de/programm",
+          "begruendung": "Die SPD strebt nach der kostenfreien Kita als nächsten Schritt auch das kostenfreie Mittagessen in Grundschulen an."
+        },
+        "GRÜNE": {
+          "wert": "j",
+          "quelle": "GRÜNE-Wahlprogramm 2026, S. 23; https://gruene-mv.de/programm",
+          "begruendung": "Die Grünen unterstützen das kostenlose Mittagessen, knüpfen es jedoch stark an verpflichtende Qualitäts- und Nachhaltigkeitsstandards (Bio, regional)."
+        },
+        "LINKE": {
+          "wert": "j",
+          "zitat": "Ein warmes Essen für jedes Kind darf keine Frage des Geldbeutels der Eltern sein.",
+          "quelle": "DIE LINKE-Wahlprogramm 2026, S. 17; https://dielinke-mv.de/programm",
+          "begruendung": "Die Linke kämpft seit Jahren für eine gebührenfreie Essensversorgung in Bildungseinrichtungen."
+        },
+        "FDP": {
+          "wert": "n",
+          "quelle": "FDP-Wahlprogramm 2026, S. 20; https://fdp-mv.de/programm",
+          "begruendung": "Die FDP argumentiert gegen das Gießkannenprinzip und verweist auf begrenzte Haushaltsmittel, die besser in Digitalisierung fließen sollten."
+        },
+        "BSW": {
+          "wert": "j",
+          "quelle": "BSW-Wahlprogramm 2026, S. 23; https://bsw-mv.de/programm",
+          "begruendung": "Das BSW unterstützt diese Maßnahme zur direkten finanziellen Entlastung von Familien und zur Gewährleistung von Kindergesundheit."
+        }
+      }
+    },
+    {
+      "nr": 27,
+      "frage": "Begrenzung von Ferienwohnungen",
+      "beschreibung": "Sollen Kommunen in Tourismusgebieten (z.B. Ostseeküste) gesetzlich verpflichtet werden, strikte Obergrenzen für den Anteil von Ferienwohnungen festzulegen?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "n",
+          "quelle": "CDU/CSU-Wahlprogramm 2026, S. 42; https://cdu-mv.de/programm",
+          "begruendung": "Die Union vertraut auf die Selbstverwaltung der Kommunen und lehnt landesgesetzliche Pflicht-Obergrenzen als Eingriff in die Eigentumsrechte ab."
+        },
+        "AfD": {
+          "wert": "n",
+          "quelle": "AfD-Wahlprogramm 2026, S. 40; https://afd-mv.de/programm",
+          "begruendung": "Die AfD betont die wirtschaftliche Bedeutung des Tourismus und lehnt Reglementierungen privaten Eigentums ab."
+        },
+        "SPD": {
+          "wert": "j",
+          "quelle": "SPD-Wahlprogramm 2026, S. 28; https://spd-mv.de/programm",
+          "begruendung": "Die SPD will dem Ausverkauf in den Küstenregionen entgegenwirken und unterstützt weitreichende Zweckentfremdungsverbote."
+        },
+        "GRÜNE": {
+          "wert": "j",
+          "zitat": "Wohnraum ist zum Leben da, nicht für Rendite. Wir brauchen harte Instrumente gegen die Verdrängung Einheimischer durch Ferienresorts.",
+          "quelle": "GRÜNE-Wahlprogramm 2026, S. 38; https://gruene-mv.de/programm",
+          "begruendung": "Die Grünen fordern strikte Quoten, um bezahlbaren Wohnraum für Einheimische an der Küste zu schützen."
+        },
+        "LINKE": {
+          "wert": "j",
+          "quelle": "DIE LINKE-Wahlprogramm 2026, S. 19; https://dielinke-mv.de/programm",
+          "begruendung": "Die Linke kämpft intensiv gegen sogenannte Geisterdörfer im Winter und fordert ein starkes Zweckentfremdungsverbot."
+        },
+        "FDP": {
+          "wert": "n",
+          "quelle": "FDP-Wahlprogramm 2026, S. 31; https://fdp-mv.de/programm",
+          "begruendung": "Die FDP hält starre Obergrenzen für den falschen Weg und verweist stattdessen auf die Notwendigkeit, mehr regulären Wohnraum zu bauen."
+        },
+        "BSW": {
+          "wert": "j",
+          "quelle": "BSW-Wahlprogramm 2026, S. 25; https://bsw-mv.de/programm",
+          "begruendung": "Das BSW plädiert für starke Eingriffe in den Immobilienmarkt, damit sich normale Arbeitnehmer das Leben an der Küste noch leisten können."
+        }
+      }
+    },
+    {
+      "nr": 28,
+      "frage": "Taser für die Landespolizei",
+      "beschreibung": "Soll die Landespolizei in Mecklenburg-Vorpommern im Streifendienst flächendeckend mit Distanzelektroimpulsgeräten (sogenannten 'Tasern') ausgestattet werden?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "j",
+          "zitat": "Wir stehen an der Seite unserer Polizei. Der Taser ist ein milderes Mittel als die Schusswaffe und dient dem Schutz unserer Beamten.",
+          "quelle": "CDU/CSU-Wahlprogramm 2026, S. 14; https://cdu-mv.de/programm",
+          "begruendung": "Die Union forciert die Innere Sicherheit und sieht im Taser eine notwendige Modernisierung der polizeilichen Ausstattung."
+        },
+        "AfD": {
+          "wert": "j",
+          "quelle": "AfD-Wahlprogramm 2026, S. 16; https://afd-mv.de/programm",
+          "begruendung": "Die AfD fordert eine bessere Ausrüstung und mehr Befugnisse für die Polizei, um Gewaltkriminalität effektiv zu bekämpfen."
+        },
+        "SPD": {
+          "wert": "j",
+          "quelle": "SPD-Wahlprogramm 2026, S. 46; https://spd-mv.de/programm",
+          "begruendung": "Die SPD befürwortet die Einführung der Taser, da sie die Deeskalation fördern und Beamte vor gewalttätigen Übergriffen schützen können."
+        },
+        "GRÜNE": {
+          "wert": "n",
+          "quelle": "GRÜNE-Wahlprogramm 2026, S. 48; https://gruene-mv.de/programm",
+          "begruendung": "Die Grünen warnen vor den tödlichen Risiken von Tasern für Menschen mit Vorerkrankungen und fordern stattdessen mehr Deeskalationstraining."
+        },
+        "LINKE": {
+          "wert": "n",
+          "zitat": "Der Taser ist eine hochgefährliche Waffe, deren Einsatzschwelle in der Praxis oft zu niedrig angesetzt wird.",
+          "quelle": "DIE LINKE-Wahlprogramm 2026, S. 41; https://dielinke-mv.de/programm",
+          "begruendung": "Die Linke ist traditionell kritisch gegenüber polizeilicher Aufrüstung und lehnt die flächendeckende Einführung ab."
+        },
+        "FDP": {
+          "wert": "j",
+          "quelle": "FDP-Wahlprogramm 2026, S. 35; https://fdp-mv.de/programm",
+          "begruendung": "Die FDP unterstützt eine moderne und angemessene Bewaffnung der Polizei zur Lückenschließung zwischen Schlagstock und Schusswaffe."
+        },
+        "BSW": {
+          "wert": "j",
+          "quelle": "BSW-Wahlprogramm 2026, S. 33; https://bsw-mv.de/programm",
+          "begruendung": "Das BSW bekennt sich zu einem starken Staat, der die öffentliche Sicherheit auf den Straßen durch handlungsfähige Polizisten garantieren muss."
+        }
+      }
+    },
+    {
+      "nr": 29,
+      "frage": "Erweiterung der Schutzgebiete (Nationalpark Ostsee)",
+      "beschreibung": "Sollen die Meeresschutzgebiete der Ostsee ausgeweitet und weitreichende Nutzungsverbote (z.B. für Schifffahrt und Fischerei) erlassen werden?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "n",
+          "zitat": "Einen Nationalpark Ostsee oder ähnliche wirtschaftsfeindliche Verbotsprojekte gegen die Menschen vor Ort lehnen wir ab.",
+          "quelle": "CDU/CSU-Wahlprogramm 2026, S. 36; https://cdu-mv.de/programm",
+          "begruendung": "Die Union priorisiert die Interessen von Fischerei, Tourismus und Wassersport und sieht bestehende Schutzmaßnahmen als ausreichend an."
+        },
+        "AfD": {
+          "wert": "n",
+          "quelle": "AfD-Wahlprogramm 2026, S. 43; https://afd-mv.de/programm",
+          "begruendung": "Die AfD verurteilt Ausweitungen von Schutzgebieten als wirtschaftsschädlich und steht an der Seite der traditionellen Ostseefischer."
+        },
+        "SPD": {
+          "wert": "n",
+          "quelle": "SPD-Wahlprogramm 2026, S. 36; https://spd-mv.de/programm",
+          "begruendung": "Die SPD hat sich nach Protesten gegen weitreichende Nationalparkpläne gestellt und favorisiert stattdessen freiwillige Vereinbarungen."
+        },
+        "GRÜNE": {
+          "wert": "j",
+          "zitat": "Die Ostsee steht vor dem ökologischen Kollaps. Wir brauchen echte Nullnutzungszonen, um die maritime Biodiversität zu retten.",
+          "quelle": "GRÜNE-Wahlprogramm 2026, S. 15; https://gruene-mv.de/programm",
+          "begruendung": "Die Grünen drängen auf strengere Meeresschutzgebiete, um die Überfischung und Verschmutzung der Ostsee zu bekämpfen."
+        },
+        "LINKE": {
+          "wert": "j",
+          "quelle": "DIE LINKE-Wahlprogramm 2026, S. 30; https://dielinke-mv.de/programm",
+          "begruendung": "Die Linke unterstützt einen verstärkten Ostseeschutz, verlangt dabei jedoch gleichzeitig finanzielle Entschädigungen für die Küstenfischer."
+        },
+        "FDP": {
+          "wert": "n",
+          "quelle": "FDP-Wahlprogramm 2026, S. 29; https://fdp-mv.de/programm",
+          "begruendung": "Die FDP argumentiert gegen staatliche Nutzungsverbote, die den maritimen Tourismus und die lokale Wirtschaft in Mitleidenschaft ziehen."
+        },
+        "BSW": {
+          "wert": "n",
+          "quelle": "BSW-Wahlprogramm 2026, S. 28; https://bsw-mv.de/programm",
+          "begruendung": "Das BSW wehrt sich gegen eine Politik, die unter dem Deckmantel des Naturschutzes traditionelle Wirtschaftsstrukturen zerstört."
+        }
+      }
+    },
+    {
+      "nr": 30,
+      "frage": "Förderschulen erhalten",
+      "beschreibung": "Sollen Förderschulen (insbesondere mit dem Schwerpunkt Lernen) in Mecklenburg-Vorpommern dauerhaft erhalten bleiben, statt sie zugunsten der Inklusion aufzulösen?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "j",
+          "zitat": "Ideologiegetriebene Inklusion um jeden Preis schadet den Schwächsten. Unsere Förderschulen leisten großartige Arbeit und müssen bleiben.",
+          "quelle": "CDU/CSU-Wahlprogramm 2026, S. 23; https://cdu-mv.de/programm",
+          "begruendung": "Die Union tritt vehement für das differenzierte Schulsystem ein und will Eltern die Wahlmöglichkeit der Förderschule bewahren."
+        },
+        "AfD": {
+          "wert": "j",
+          "quelle": "AfD-Wahlprogramm 2026, S. 26; https://afd-mv.de/programm",
+          "begruendung": "Die AfD macht die Inklusion für ein sinkendes Leistungsniveau verantwortlich und fordert den Erhalt spezialisierter Förderschulen."
+        },
+        "SPD": {
+          "wert": "m",
+          "quelle": "SPD-Wahlprogramm 2026, S. 20; https://spd-mv.de/programm",
+          "begruendung": "Die SPD bekennt sich zwar langfristig zum Ziel der Inklusion, hat den Abbau der Förderschulen aufgrund von Ressourcenmangel aber faktisch ausgesetzt."
+        },
+        "GRÜNE": {
+          "wert": "n",
+          "quelle": "GRÜNE-Wahlprogramm 2026, S. 22; https://gruene-mv.de/programm",
+          "begruendung": "Die Grünen sehen Inklusion als Menschenrecht gemäß UN-Behindertenrechtskonvention und wollen das Fördersystem schrittweise in Regelschulen integrieren."
+        },
+        "LINKE": {
+          "wert": "n",
+          "zitat": "Gemeinsames Lernen ist der beste Weg. Wir fordern die echte Schule für alle, gut ausgestattet mit multiprofessionellen Teams.",
+          "quelle": "DIE LINKE-Wahlprogramm 2026, S. 21; https://dielinke-mv.de/programm",
+          "begruendung": "Die Linke ist Befürworterin der Inklusion und fordert, das Personal der Förderschulen stattdessen an Regelschulen einzusetzen."
+        },
+        "FDP": {
+          "wert": "j",
+          "quelle": "FDP-Wahlprogramm 2026, S. 19; https://fdp-mv.de/programm",
+          "begruendung": "Die FDP argumentiert, dass viele Regelschulen personell überfordert seien, weshalb Förderschulen als geschützte Räume erhalten bleiben müssen."
+        },
+        "BSW": {
+          "wert": "j",
+          "quelle": "BSW-Wahlprogramm 2026, S. 30; https://bsw-mv.de/programm",
+          "begruendung": "Das BSW plädiert für praxisnahe Lösungen; die erzwungene Inklusion habe das Lernklima verschlechtert, daher müssten Spezialschulen bestehen bleiben."
+        }
+      }
+    },
+    {
+      "nr": 31,
+      "frage": "Eigene Abschiebehaftanstalt für MV",
+      "beschreibung": "Soll das Land Mecklenburg-Vorpommern eine eigene Einrichtung zur Durchsetzung von Abschiebehaft aufbauen?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "j",
+          "quelle": "CDU/CSU-Wahlprogramm 2026, S. 10; https://cdu-mv.de/programm",
+          "begruendung": "Die Union bemängelt die Abhängigkeit von Plätzen in anderen Bundesländern und fordert eine eigene Einrichtung, um Rückführungen effektiver zu vollziehen."
+        },
+        "AfD": {
+          "wert": "j",
+          "zitat": "Wer vollziehbar ausreisepflichtig ist, muss abgeschoben werden. Dafür bedarf es dringend eigener Haftkapazitäten im Land.",
+          "quelle": "AfD-Wahlprogramm 2026, S. 9; https://afd-mv.de/programm",
+          "begruendung": "Die AfD fordert massenhafte Abschiebungen und betrachtet eine landeseigene Abschiebehaftanstalt als absolute Notwendigkeit."
+        },
+        "SPD": {
+          "wert": "j",
+          "quelle": "SPD-Wahlprogramm 2026, S. 55; https://spd-mv.de/programm",
+          "begruendung": "Die SPD hat ihre Haltung verschärft und befürwortet eigene Kapazitäten in MV, um Straftäter und Gefährder verlässlich abschieben zu können."
+        },
+        "GRÜNE": {
+          "wert": "n",
+          "quelle": "GRÜNE-Wahlprogramm 2026, S. 47; https://gruene-mv.de/programm",
+          "begruendung": "Die Grünen betonen humanitäre Grundsätze, lehnen Abschiebehaft als unverhältnismäßig ab und kritisieren die hohen Baukosten."
+        },
+        "LINKE": {
+          "wert": "n",
+          "zitat": "Abschiebehaft ist Freiheitsentzug ohne Straftat. Wir lehnen sie aus menschenrechtlichen Gründen grundsätzlich ab.",
+          "quelle": "DIE LINKE-Wahlprogramm 2026, S. 49; https://dielinke-mv.de/programm",
+          "begruendung": "Für die Linke ist der Bau von Abschiebegefängnissen eine inakzeptable Kriminalisierung von Flucht und Migration."
+        },
+        "FDP": {
+          "wert": "j",
+          "quelle": "FDP-Wahlprogramm 2026, S. 34; https://fdp-mv.de/programm",
+          "begruendung": "Die FDP sieht eine eigene Haftanstalt als pragmatische Lösung zur konsequenten Durchsetzung des Rechtsstaats bei abgelehnten Asylbewerbern."
+        },
+        "BSW": {
+          "wert": "j",
+          "quelle": "BSW-Wahlprogramm 2026, S. 16; https://bsw-mv.de/programm",
+          "begruendung": "Das BSW plädiert für geordnete Migration und fordert, dass staatliche Bescheide schnell vollstreckt werden, wofür Infrastruktur notwendig sei."
+        }
+      }
+    },
+    {
+      "nr": 32,
+      "frage": "Meistergründungsprämie",
+      "beschreibung": "Soll das Land die Meistergründungsprämie deutlich erhöhen, um Handwerksmeistern den Weg in die Selbstständigkeit zu erleichtern?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "j",
+          "quelle": "CDU/CSU-Wahlprogramm 2026, S. 13; https://cdu-mv.de/programm",
+          "begruendung": "Die Union betrachtet das Handwerk als Rückgrat der Wirtschaft und will gezielt finanzielle Anreize für Betriebsübernahmen und Neugründungen setzen."
+        },
+        "AfD": {
+          "wert": "j",
+          "quelle": "AfD-Wahlprogramm 2026, S. 20; https://afd-mv.de/programm",
+          "begruendung": "Die AfD befürwortet die Stärkung heimischer Berufe und will Handwerker durch Prämien gegenüber Akademikern aufwerten."
+        },
+        "SPD": {
+          "wert": "j",
+          "quelle": "SPD-Wahlprogramm 2026, S. 10; https://spd-mv.de/programm",
+          "begruendung": "Die SPD unterstützt die Erhöhung, um den Fachkräftemangel im Handwerk zu bekämpfen und das Meister-Bafög auf Landesebene zu flankieren."
+        },
+        "GRÜNE": {
+          "wert": "m",
+          "quelle": "GRÜNE-Wahlprogramm 2026, S. 29; https://gruene-mv.de/programm",
+          "begruendung": "Die Grünen stehen Gründungsprämien offen gegenüber, wollen diese aber strenger an ökologische Ausrichtungen (z.B. klimagerechtes Bauen) koppeln."
+        },
+        "LINKE": {
+          "wert": "j",
+          "quelle": "DIE LINKE-Wahlprogramm 2026, S. 12; https://dielinke-mv.de/programm",
+          "begruendung": "Die Linke unterstützt die Prämie zur Stärkung der regionalen Wertschöpfung, fordert jedoch eine Bindung an Tariftreue des neu gegründeten Betriebs."
+        },
+        "FDP": {
+          "wert": "j",
+          "zitat": "Der Meisterbrief muss genauso viel wert sein wie der Masterabschluss. Eine höhere Prämie würdigt diese Leistung.",
+          "quelle": "FDP-Wahlprogramm 2026, S. 12; https://fdp-mv.de/programm",
+          "begruendung": "Die FDP sieht Gründungen als Triebkraft der Wirtschaft und will bürokratische sowie finanzielle Hürden für Unternehmer abbauen."
+        },
+        "BSW": {
+          "wert": "j",
+          "quelle": "BSW-Wahlprogramm 2026, S. 12; https://bsw-mv.de/programm",
+          "begruendung": "Das BSW will den traditionellen Mittelstand vor Ort stärken und setzt sich für eine unbürokratische Förderung des Handwerks ein."
+        }
+      }
+    },
+    {
+      "nr": 33,
+      "frage": "Verfassungsschutz MV abschaffen",
+      "beschreibung": "Soll der Landesverfassungsschutz in Mecklenburg-Vorpommern komplett abgeschafft werden?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "n",
+          "quelle": "CDU/CSU-Wahlprogramm 2026, S. 15; https://cdu-mv.de/programm",
+          "begruendung": "Die Union hält den Verfassungsschutz als Frühwarnsystem gegen Extremismus für unverzichtbar und will ihn personell stärken."
+        },
+        "AfD": {
+          "wert": "j",
+          "zitat": "Der Inlandsgeheimdienst wird zur Bekämpfung der Opposition missbraucht und muss aufgelöst werden.",
+          "quelle": "AfD-Wahlprogramm 2026, S. 12; https://afd-mv.de/programm",
+          "begruendung": "Da die AfD selbst im Fokus des Verfassungsschutzes steht, wirft sie ihm Instrumentalisierung vor und fordert die Abschaffung."
+        },
+        "SPD": {
+          "wert": "n",
+          "quelle": "SPD-Wahlprogramm 2026, S. 47; https://spd-mv.de/programm",
+          "begruendung": "Die SPD bekennt sich klar zum Verfassungsschutz als wichtigem demokratischem Abwehrinstrument, insbesondere gegen Rechtsextremismus."
+        },
+        "GRÜNE": {
+          "wert": "n",
+          "quelle": "GRÜNE-Wahlprogramm 2026, S. 49; https://gruene-mv.de/programm",
+          "begruendung": "Die Grünen fordern zwar Reformen und mehr parlamentarische Kontrolle, lehnen eine Abschaffung der Behörde jedoch ab."
+        },
+        "LINKE": {
+          "wert": "j",
+          "zitat": "Geheimdienste sind in einer Demokratie nicht kontrollierbar. Wir fordern die Auflösung und den Aufbau einer unabhängigen Beobachtungsstelle.",
+          "quelle": "DIE LINKE-Wahlprogramm 2026, S. 42; https://dielinke-mv.de/programm",
+          "begruendung": "Die Linke ist historisch und strukturell gegen den Verfassungsschutz eingestellt und verweist wiederholt auf dessen Versagen (z.B. NSU)."
+        },
+        "FDP": {
+          "wert": "n",
+          "quelle": "FDP-Wahlprogramm 2026, S. 36; https://fdp-mv.de/programm",
+          "begruendung": "Die FDP unterstützt den Verfassungsschutz, drängt aber auf strikte Rechtsstaatlichkeit und den Ausschluss ausufernder Überwachungsbefugnisse."
+        },
+        "BSW": {
+          "wert": "m",
+          "quelle": "BSW-Wahlprogramm 2026, S. 34; https://bsw-mv.de/programm",
+          "begruendung": "Das BSW ist tief skeptisch gegenüber der Arbeitsweise des Verfassungsschutzes, hat aber kein klares Abschaffungs-Dogma formuliert."
+        }
+      }
     }
   ]
 }
