@@ -4,6 +4,41 @@ Code-Review vom 01.08.2026. Prioritäten: P1 = Bug / P2 = Feature / P3 = Verbess
 
 ---
 
+## Automatisiertes Review vom 2026-08-01 (zweiter Durchlauf, Fokus Mobile/Edge-Cases)
+
+### P1 – Bugs
+
+- [ ] **Swipe-Geste wechselt beim vertikalen Scrollen die Tabs (gemeldetes Mobile-Issue „glitching on scroll")** – `script.js:1374-1388`: `touchend` wertet nur `screenX`-Differenz (≥ 60 px) aus, ohne Richtungs-Check (`|dx|` vs. `|dy|`) und ohne Ausnahme für `overflow-x`-Container (`.election-toggles`, `.cmp-wrap`); `switchTab` (script.js:156) scrollt zusätzlich smooth nach oben. Fix: nur bei dominanter Horizontalbewegung + Swipes in Scroll-Containern ignorieren.
+- [ ] **Antwort-Timer wird bei manueller Navigation nicht gecancelt** – `selectAnswer()` (script.js:614-622) cleart `pendingAdvanceTimer` nur bei erneutem Antworten; Antwort + „Weiter"/Pfeiltaste überspringt die nächste Frage, Antwort auf letzter Frage + „Ergebnis anzeigen" erzeugt doppelte History-Einträge (`saveTestResult`, script.js:914). Fix: Timer in `showNextQuestion`/`showPreviousQuestion`/`skipQuestion` clearen.
+- [ ] **`createStatsSummary()` crasht bei leerem `umfragewerte`** – script.js:998: `reduce` ohne Initialwert → TypeError; Guard fehlt.
+
+### P1 – Algorithmus
+
+- [ ] **Berlin: Koalitionen-Tab standardmäßig leer + „Beste Koalition für Sie" fehlt weiterhin** – `elections/berlin-2026/config.json` `minMatchForCoalition: 20` > reales Maximum 9,1 % (verifiziert: 0/9 Mehrheitskoalitionen ≥ 20); der 40→20-Fix aus 03c6ad8 reicht für Berlin nicht. Fix: pro Wahl kalibrieren (z. B. 5) oder Default 0.
+
+### P1 – Daten
+
+- [ ] **Berlin: `sperrklausel: 5` falsch** – `elections/berlin-2026/werte.json`; Abgeordnetenhaus Berlin hat seit 2021 keine 5-%-Hürde (Urteil Verfassungsgerichtshof 2020) → BSW/FDP/PARTEI/Volt/Tierschutz fälschlich aus Koalitionen und Sitzverteilung ausgeschlossen. Fix: `meta.sperrklausel: 0`.
+
+### P2 – Fehlende Features
+
+- [ ] **Chart-Container nach „Keine Daten"-Zustand dauerhaft zerstört** – `createTopicChart()` (script.js:1109-1113), `createPartyOverviewChart()` (1018-1023), `createCoalitionPotentialChart()` (1060-1064): `parentElement.innerHTML`-Ersatz entfernt das Chart-Element, `initChart()` findet es nie wieder → Chart kommt nach Leerzustand (z. B. Historie „Alle löschen") nie zurück. Fix: Overlay statt Container-Ersatz.
+- [ ] **Kein Guard, wenn ECharts-CDN nicht lädt** – `echarts.init()` (script.js:978, 719) wirft `ReferenceError` (Offline/Adblock) → Daten-Tab/Ergebnis-Chart fallen aus.
+
+### P3 – Verbesserungen
+
+- [ ] **Hartkodiertes „Alle Parteien"** – script.js:345 nutzt `t('allParties')` nicht.
+- [ ] **Hartkodierter Leertext „Test durchführen, um Ihre Themenverteilung zu sehen"** – script.js:1112, nicht übersetzt.
+- [ ] **`t('noData')` fehlt in `einfache-sprache.json`** – script.js:1021, nur Fallback.
+- [ ] **Ergebnis-Pie-Chart wird bei Theme-Wechsel nicht neu gezeichnet** – `redrawCharts()` (script.js:1265-1268) prüft nur Daten-Tab.
+- [ ] **`determineTopic()`-Fallback klassifiziert ohne `thema`-Feld schlecht** – verifiziert: 19/40 LSA- und 7/45 btw-Fragen landeten in „Sonstiges"; `prompt-gemini-fragen.md` erwähnt Pflichtfeld `thema` nicht.
+- [ ] **Radar-Chart zeigt 0 % für Topics ohne Parteiantworten** – `analyzePartyTopics()` (script.js:1134) → wirkt wie extreme Ablehnung.
+- [ ] **`parteien.json`-Fallback-Fetch ist ein 404** – script.js:272, toter Code.
+- [ ] **`chartInstances` hält zerstörte Chart-Referenzen** – doppeltes `dispose()` beim nächsten `initChart()`.
+- [ ] **`minMatch`-Slider behält angefassten Wert über Wahlwechsel** – script.js:214-217 setzt nur bei unangetastetem Slider.
+
+---
+
 ## Automatisiertes Review vom 2026-08-01 (gesamtes Projekt)
 
 ### P1 – Bugs
