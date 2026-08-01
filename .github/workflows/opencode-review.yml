@@ -48,13 +48,17 @@ jobs:
                Algorithmen (Übereinstimmungsrechnung, Koalitionsberechnung,
                Themenzuordnung, Sitzverteilung). Verifiziere Verdachtsfälle, indem du
                Funktionen mit den echten Datendateien ausführst.
-            3. Schreibe den vollständigen Review als reports/review-YYYY-MM-DD.md
-               (Ordner bei Bedarf anlegen).
+            3. Lege reports/review-YYYY-MM-DD.md SOFRÜH WIE MÖGLICH an und fülle
+               es während des Reviews schrittweise (Ordner bei Bedarf anlegen).
+               Schreibe das Review nicht erst ganz am Ende.
             4. Hänge neue Befunde als datierten Abschnitt oben in todo.md an,
                bestehende Einträge unangetastet lassen.
-            5. Committe die Änderungen auf einem neuen Branch opencode/review-<Datum>
-               und öffne einen Pull Request mit einer kurzen Zusammenfassung.
+
+            WICHTIG: Committe NICHT, pushe NICHT und öffne KEINEN Pull Request
+            selbst. Die GitHub-Action erkennt die geänderten Dateien automatisch,
+            committed und pusht sie auf einen Branch und erstellt den Pull Request.
+            Beende deine Antwort direkt nach Schritt 4.
 
             Regeln: Keinen Anwendungscode verändern, nur Berichte und todo.md.
             Keine Findings ohne konkrete Datei-/Funktionsnamen. Wenn keine neuen
-            Befunde existieren, trotzdem Report und PR mit „Keine neuen Befunde" erstellen.
+            Befunde existieren, trotzdem Report mit „Keine neuen Befunde" erstellen.
