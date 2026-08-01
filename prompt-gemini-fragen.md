@@ -75,11 +75,24 @@ BSW
 FREIE WÄHLER   (only in some state elections)
 SSW            (only in Schleswig-Holstein / Berlin)
 Volt
-Tierschutzpartei
+Tierschutz     (not "Tierschutzpartei" – the app uses the short name)
 PARTEI
 ÖDP
 DieBasis
 BÜNDNIS DEUTSCHLAND
+Todenhöfer
+PIRATEN
+Verjüngung
+PdH
+Bündnis C
+BP
+MLPD
+MENSCHLICHE WELT
+PdF
+SGP
+BüSo
+MERA25
+WerteUnion
 ```
 
 **You must be told which parties are relevant for this election.** Use only those party names, exactly as listed above.
@@ -117,7 +130,7 @@ For each question you must:
 - **Description** (`beschreibung`): A full sentence proposing a concrete policy action. Must be answerable with Yes/No/Neutral. Include specific details (numbers, dates, names) where real.
 - **Controversy**: Choose questions where at least 2–3 parties disagree — if all parties agree, the question is not useful
 - **Balance**: Cover a wide range of topics: economy, social policy, environment, migration, security, digitalization, EU/foreign, education, healthcare, housing, infrastructure
-- **More is better**: Generate 15–20 questions. Cover the full spectrum of policy areas. Avoid duplication.
+- **More is better**: Generate 40–50 questions. Cover the full spectrum of policy areas. Avoid duplication.
 
 ### Party Answer Distribution
 - Vary which parties agree/disagree across questions
@@ -201,3 +214,15 @@ This works because: the coal phase-out date was actively debated in the 2025 cam
 Generate a complete `fragen.json` file with **40-50 questions** following all rules above. Every party answer must include `"wert"`, `"quelle"`, and `"begruendung"` (at minimum). Include `"zitat"` whenever you can find a direct quote.
 
 Output ONLY the valid JSON, wrapped in a code block.
+
+---
+
+## Optional: Simple-Language Versions
+
+The app also ships `einfache-sprache.json`, which holds simplified versions of every question for accessibility. When you generate questions, optionally also provide for each question a `frage` (headline) and `beschreibung` (description) in **einfache Sprache**: short sentences, common everyday words, no jargon, no subordinate clauses. Example:
+
+```json
+{
+  "1": { "frage": "Kohleausstieg bis 2030", "beschreibung": "Soll Deutschland schon 2030 mit der Kohle aufhören? Oder erst 2038?" }
+}
+```
