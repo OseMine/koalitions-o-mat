@@ -4,7 +4,7 @@ You are generating questions for the **Koalitions-O-Mat** — a web app that let
 
 ## Your Task
 
-Research the **current election-specific programs and official party positions** for a given election, then produce a `fragen.json` file with **15–20 questions** that are:
+Research the **current election-specific programs and official party positions** for a given election, then produce a `fragen.json` file with **40-50 questions** that are:
 
 - **Salient** — covering the most important and debated issues of that election
 - **Differentiating** — parties should disagree enough that answers reveal meaningful differences

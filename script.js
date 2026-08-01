@@ -30,6 +30,17 @@ function showElectionSelector() {
     document.getElementById('appContent').style.display = 'none';
 }
 
+function startTestWithDefaultElection() {
+    const saved = localStorage.getItem('activeElectionId');
+    if (saved && electionDataCache[saved]) {
+        setActiveElection(saved);
+        return;
+    }
+    if (electionsList.length && electionDataCache[electionsList[0].id]) {
+        setActiveElection(electionsList[0].id);
+    }
+}
+
 // ===== Tab Switching =====
 function switchTab(tabName) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -345,16 +356,21 @@ function initializeTest() {
                     </div>`;
                 }).join('')}
             </div>` : '';
+        const topic = determineTopic(f.frage);
+        const topicColor = (config.topics[topic] && config.topics[topic].color) || '#999';
         return `
         <div class="question ${i === 0 ? 'active' : ''}" data-q="${i}">
-            <div class="q-counter">Frage ${i + 1} von ${questions.length}</div>
-            <div class="progress-bar"><div class="progress-fill" style="width:${(i / questions.length) * 100}%"></div></div>
+            <div class="q-top-row">
+                <span class="q-topic" style="--topic-color:${topicColor}">${topic}</span>
+                <span class="q-counter">${i + 1} / ${questions.length}</span>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" style="width:${((i + 1) / questions.length) * 100}%"></div></div>
             <h3 class="q-text">${f.frage}</h3>
             <p class="q-desc">${f.beschreibung}</p>
             <div class="q-answers">
-                <button class="q-btn" data-a="j" onclick="selectAnswer(${i},'j')">Ja</button>
-                <button class="q-btn" data-a="n" onclick="selectAnswer(${i},'n')">Nein</button>
-                <button class="q-btn" data-a="m" onclick="selectAnswer(${i},'m')">Neutral</button>
+                <button class="q-btn q-btn-yes" data-a="j" onclick="selectAnswer(${i},'j')"><span class="q-btn-icon">✓</span>Stimme zu</button>
+                <button class="q-btn q-btn-mid" data-a="m" onclick="selectAnswer(${i},'m')"><span class="q-btn-icon">◌</span>Neutral</button>
+                <button class="q-btn q-btn-no" data-a="n" onclick="selectAnswer(${i},'n')"><span class="q-btn-icon">✗</span>Stimme nicht zu</button>
             </div>
             ${sourcesHtml}
         </div>`;
@@ -374,6 +390,14 @@ function selectAnswer(idx, answer) {
     } else {
         setTimeout(() => showNextQuestion(), 300);
     }
+}
+
+function skipQuestion() {
+    if (currentQuestion === window.parteienData.fragen.length - 1) {
+        showTestResults();
+        return;
+    }
+    showNextQuestion();
 }
 
 function toggleSources(idx) {
@@ -409,9 +433,7 @@ function updateNavButtons() {
     document.getElementById('prevQuestion').disabled = currentQuestion === 0;
     document.getElementById('nextQuestion').style.display = currentQuestion === len - 1 ? 'none' : 'block';
     document.getElementById('showResults').style.display = currentQuestion === len - 1 ? 'block' : 'none';
-}
-
-function berechneUserMatchNachThema(partei) {
+}function berechneUserMatchNachThema(partei) {
     const topics = {};
     if (!window.parteienData || !window.parteienData.fragen) return topics;
     window.parteienData.fragen.forEach((f, i) => {
@@ -598,7 +620,8 @@ function showTestResults() {
     html += `</div>`;
 
     // Restart button
-    html += `<div style="text-align:center;margin-top:16px">
+    html += `<div style="text-align:center;margin-top:16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+        <button class="tr-back-btn" onclick="backToTest()">Antworten ändern</button>
         <button class="tr-restart-btn" onclick="resetTestAndRestart()">Test wiederholen</button>
     </div>`;
 
@@ -615,6 +638,22 @@ function resetTestAndRestart() {
     document.getElementById('testResults').innerHTML = '';
     resetTest();
     initializeTest();
+}
+
+function backToTest() {
+    const qc = document.getElementById('questionContainer');
+    if (qc) qc.style.display = 'block';
+    const tc = document.querySelector('.test-controls');
+    if (tc) tc.style.display = 'flex';
+    document.getElementById('testResults').innerHTML = '';
+    const questions = document.querySelectorAll('#questionContainer .question');
+    if (questions.length) {
+        questions.forEach(q => q.classList.remove('active'));
+        const q = document.querySelector(`#questionContainer .question[data-q="${currentQuestion}"]`);
+        if (q) q.classList.add('active');
+        updateNavButtons();
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function berechneUserMatch(partei) {
@@ -986,5 +1025,20 @@ document.addEventListener('DOMContentLoaded', async () => {
             e.target.closest('.party-cb').classList.toggle('checked', e.target.checked);
             updateKoalitionen();
         }
+    });
+
+    // Keyboard shortcuts for the test (1=zu, 2=neutral, 3=nicht zu, arrows=navigate)
+    document.addEventListener('keydown', e => {
+        if (!document.getElementById('test-content').classList.contains('active')) return;
+        if (document.getElementById('testResults').innerHTML) return;
+        const qc = document.getElementById('questionContainer');
+        if (!qc || !qc.children.length) return;
+        const tag = e.target.tagName;
+        if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return;
+        if (e.key === 'ArrowRight') { showNextQuestion(); }
+        else if (e.key === 'ArrowLeft') { showPreviousQuestion(); }
+        else if (e.key === '1') { selectAnswer(currentQuestion, 'j'); }
+        else if (e.key === '2') { selectAnswer(currentQuestion, 'm'); }
+        else if (e.key === '3') { selectAnswer(currentQuestion, 'n'); }
     });
 });

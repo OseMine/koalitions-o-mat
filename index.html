@@ -35,9 +35,14 @@
         <div id="welcomeScreen" class="welcome-screen">
             <div class="welcome-icon">🗳️</div>
             <h2>Willkommen beim Koalitions-O-Mat</h2>
-            <p>Wählen Sie oben eine Wahl aus, um mögliche Koalitionen zu sehen, Ihre Positionen mit Parteien zu vergleichen und den passenden Koalitionspartner zu finden.</p>
+            <p>Finden Sie heraus, welche Partei und welche Koalition am besten zu Ihnen passt.</p>
+            <div class="welcome-steps">
+                <div class="welcome-step"><span class="ws-num">1</span><span>Wahl auswählen</span></div>
+                <div class="welcome-step"><span class="ws-num">2</span><span>Fragen beantworten</span></div>
+                <div class="welcome-step"><span class="ws-num">3</span><span>Ergebnis entdecken</span></div>
+            </div>
+            <button type="button" class="welcome-start" onclick="startTestWithDefaultElection()">Test starten</button>
             <p class="welcome-hint">Klicken Sie auf eine Wahl oben, um zu starten.</p>
-            
         </div>
 
         <!-- ===== Main App (hidden until election selected) ===== -->
@@ -61,8 +66,9 @@
                     <p class="test-intro">Beantworten Sie die Fragen und finden Sie heraus, welche Partei am besten zu Ihnen passt.</p>
                     <div id="questionContainer" class="question-container"></div>
                     <div class="test-controls">
-                        <button id="prevQuestion" onclick="showPreviousQuestion()" disabled>Zurück</button>
-                        <button id="nextQuestion" onclick="showNextQuestion()">Weiter</button>
+                        <button id="prevQuestion" onclick="showPreviousQuestion()" disabled>← Zurück</button>
+                        <button id="skipQuestion" onclick="skipQuestion()" class="btn-ghost">Überspringen</button>
+                        <button id="nextQuestion" onclick="showNextQuestion()">Weiter →</button>
                         <button id="showResults" onclick="showTestResults()" style="display:none">Ergebnis anzeigen</button>
                     </div>
                     <div id="testResults" class="test-results"></div>
