@@ -9,6 +9,7 @@ const chartInstances = {};
 let simpleLangData = null;
 let pendingShare = null;
 let suppressHistorySave = false;
+let pendingAdvanceTimer = null;
 
 // ===== Simple Language =====
 function isSimpleLang() { return localStorage.getItem('simpleLang') === '1'; }
@@ -97,7 +98,12 @@ function shareResults() {
 }
 
 function parseShareHash() {
-    const h = decodeURIComponent(location.hash || '');
+    let h;
+    try {
+        h = decodeURIComponent(location.hash || '');
+    } catch (_) {
+        return null;
+    }
     const m = h.match(/^#w=([^&]+)&a=([^&]+)(?:&i=([^&]*))?$/);
     if (!m) return null;
     const answers = {};
@@ -199,6 +205,10 @@ function setActiveElection(electionId) {
     }
     if (window.werteData.meta && window.werteData.meta.sperrklausel != null)
         config.thresholds.sperrklausel = window.werteData.meta.sperrklausel;
+    if (window.werteData.meta && window.werteData.meta.sitze != null) {
+        if (!config.meta) config.meta = {};
+        config.meta.gesamtSitze = window.werteData.meta.sitze;
+    }
 
     // Default-Mindestübereinstimmung aus Konfig, wenn Slider nicht angefasst
     const slider = document.getElementById('minMatch');
@@ -331,8 +341,9 @@ function populatePartyDropdowns() {
 
     const filter = document.getElementById('partyFilter');
     if (filter) {
+        const filterOptions = parties.filter(p => p.partei !== 'Andere');
         filter.innerHTML = '<option value="">Alle Parteien</option>'
-            + relevant.map(p => `<option value="${p.partei}">${p.partei} (${p.prozent}%)</option>`).join('');
+            + filterOptions.map(p => `<option value="${p.partei}">${p.partei} (${p.prozent}%)</option>`).join('');
     }
 
     const excludeContainer = document.getElementById('excludePartiesCheckboxes');
@@ -600,11 +611,15 @@ function selectAnswer(idx, answer) {
         b.classList.toggle('selected', b.dataset.a === answer);
     });
     saveTestState();
-    if (idx === window.parteienData.fragen.length - 1) {
-        setTimeout(() => showTestResults(), 400);
-    } else {
-        setTimeout(() => showNextQuestion(), 300);
-    }
+    if (pendingAdvanceTimer) { clearTimeout(pendingAdvanceTimer); pendingAdvanceTimer = null; }
+    pendingAdvanceTimer = setTimeout(() => {
+        pendingAdvanceTimer = null;
+        if (idx === window.parteienData.fragen.length - 1) {
+            showTestResults();
+        } else {
+            showNextQuestion();
+        }
+    }, idx === window.parteienData.fragen.length - 1 ? 400 : 300);
 }
 
 function skipQuestion() {
@@ -658,8 +673,9 @@ function updateNavButtons() {
         if (!pa || pa === 'm') return;
         const topic = determineTopic(f);
         if (!topics[topic]) topics[topic] = { match: 0, total: 0 };
-        topics[topic].total++;
-        if (ua === pa) topics[topic].match++;
+        const w = frageGewicht(i);
+        topics[topic].total += w;
+        if (ua === pa) topics[topic].match += w;
     });
     const result = {};
     Object.entries(topics).forEach(([t, d]) => {
@@ -895,20 +911,6 @@ function backToTest() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-function berechneUserMatch(partei) {
-    let match = 0, total = 0;
-    if (!window.parteienData || !window.parteienData.fragen) return 0;
-    window.parteienData.fragen.forEach((f, i) => {
-        const ua = userAnswers[i];
-        if (!ua || ua === 'm') return;
-        const pa = getAnswerValue(f.antworten, partei);
-        if (!pa || pa === 'm') return;
-        total++;
-        if (ua === pa) match++;
-    });
-    return total > 0 ? (match / total) * 100 : 0;
-}
-
 function saveTestResult(results) {
     if (suppressHistorySave) return;
     const history = JSON.parse(localStorage.getItem('testHistory') || '[]');
@@ -918,6 +920,7 @@ function saveTestResult(results) {
         answers: { ...userAnswers },
         results: results.slice(0, 5)
     });
+    if (history.length > 50) history.splice(0, history.length - 50);
     localStorage.setItem('testHistory', JSON.stringify(history));
     showNotification(t('resultSaved', 'Ergebnis gespeichert!'), 'success');
 }
@@ -1012,6 +1015,12 @@ function createPartyOverviewChart() {
     const chart = initChart('partyOverviewChart');
     if (!chart) return;
     const parties = window.werteData.umfragewerte.filter(p => p.prozent >= 1).sort((a, b) => b.prozent - a.prozent);
+    if (!parties.length) {
+        chart.dispose();
+        document.getElementById('partyOverviewChart').parentElement.innerHTML =
+            `<p style="color:var(--on-surface-muted);text-align:center;padding:40px 0">${t('noData', 'Keine Daten')}</p>`;
+        return;
+    }
     const maxVal = Math.ceil(Math.max(...parties.map(p => p.prozent)) / 5) * 5;
     chart.setOption(Object.assign(echartsTheme(), {
         grid: { left: 100, right: 50, top: 10, bottom: 10 },
@@ -1114,18 +1123,11 @@ function createTopicChart() {
     });
     const entries = Object.entries(topics).map(([k, v]) => [k, v.length ? v.reduce((a, b) => a + b) / v.length : 0]);
     chart.setOption(Object.assign(echartsTheme(), {
-        series: [{
-            type: 'pie', radius: ['30%', '70%'], roseType: 'radius', avoidLabelOverlap: true,
-            itemStyle: { borderRadius: 4, borderColor: cssVar('--surface', '#fff'), borderWidth: 2 },
-            label: { show: true, formatter: p => (p.value > 15 ? `${p.name}\n${p.value.toFixed(0)}%` : ''), fontSize: 12, fontWeight: 'bold', color: '#fff' },
-            labelLine: { length: 6, length2: 8 },
-            data: entries.map(([k, v]) => ({
-                value: v, name: k,
-                itemStyle: { color: (config.topics[k] && config.topics[k].color) || config.chartColors.neutral }
-            })),
-            animationDuration: 900
-        }],
-        tooltip: { trigger: 'item', formatter: p => `${p.name}<br/><strong>${p.value.toFixed(0)}%</strong>` }
+        grid: { left: 90, right: 60, top: 10, bottom: 10 },
+        xAxis: { type: 'value', min: 0, max: 100, axisLabel: { formatter: '{value}%', color: cssVar('--on-surface-muted'), fontSize: 10 }, splitLine: { lineStyle: { color: cssVar('--outline') + '40' } }, axisLine: { show: false }, axisTick: { show: false } },
+        yAxis: { type: 'category', data: entries.map(([k]) => k), axisLabel: { fontSize: 11, color: cssVar('--on-surface-muted') }, axisLine: { show: false }, axisTick: { show: false }, splitLine: { show: false } },
+        series: [{ type: 'bar', data: entries.map(([k, v]) => ({ value: v, itemStyle: { color: (config.topics[k] && config.topics[k].color) || config.chartColors.neutral, borderRadius: [0, 4, 4, 0] } })), barMaxWidth: 22, label: { show: true, position: 'right', formatter: p => p.value.toFixed(0) + '%', color: cssVar('--on-surface-muted'), fontSize: 11 }, animationDuration: 800 }],
+        tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, formatter: p => `${p[0].name}<br/><strong>${p[0].value.toFixed(0)}%</strong>` }
     }), true);
 }
 
@@ -1206,7 +1208,9 @@ function updatePartyComparison() {
 }
 
 function berechneSitze(parteien) {
-    const gesamt = (config.meta && config.meta.gesamtSitze) || 736;
+    const gesamt = (config.meta && config.meta.gesamtSitze)
+        || (window.werteData && window.werteData.meta && window.werteData.meta.sitze)
+        || 736;
     const above = parteien.filter(p => p.prozent >= config.thresholds.sperrklausel);
     const gueltig = above.reduce((s, p) => s + p.prozent, 0);
     const seats = above.map(p => {
@@ -1297,9 +1301,17 @@ function toggleSimpleLanguage() {
         const testVisible = document.getElementById('test-content').classList.contains('active');
         if (testVisible) {
             if (document.getElementById('testResults').innerHTML) {
+                suppressHistorySave = true;
                 showTestResults();
+                suppressHistorySave = false;
             } else {
+                const resumeAt = currentQuestion;
                 initializeTest();
+                currentQuestion = resumeAt;
+                document.querySelectorAll('#questionContainer .question').forEach(q => q.classList.remove('active'));
+                const q = document.querySelector(`#questionContainer .question[data-q="${currentQuestion}"]`);
+                if (q) q.classList.add('active');
+                updateNavButtons();
             }
         } else if (document.getElementById('koalitionen-content').classList.contains('active')) {
             updateKoalitionen();

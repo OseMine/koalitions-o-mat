@@ -1,8 +1,7 @@
 {
   "thresholds": {
     "sperrklausel": 5,
-    "relevantParties": 3,
-    "minMatchForCoalition": 40,
+    "minMatchForCoalition": 20,
     "maxCoalitionSize": 4
   }
 }
