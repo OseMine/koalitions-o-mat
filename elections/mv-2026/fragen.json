@@ -53,7 +53,8 @@
           "quelle": "FREIE WÄHLER MV, Kommunal- und Landesprogramm 2026, S. 11; https://freiewaehler-mv.de",
           "begruendung": "Die Freien Wähler unterstützen größere Abstände und eine Stärkung der kommunalen Planungshoheit."
         }
-      }
+      },
+      "thema": "Umwelt"
     },
     {
       "nr": 2,
@@ -108,7 +109,8 @@
           "quelle": "FREIE WÄHLER MV, Programm 2026, S. 16; https://freiewaehler-mv.de",
           "begruendung": "Die Freien Wähler unterstützen die Beitragsfreiheit, fordern jedoch eine ausfinanzierte Kostenerstattung für die Kommunen."
         }
-      }
+      },
+      "thema": "Soziales"
     },
     {
       "nr": 3,
@@ -163,7 +165,8 @@
           "quelle": "FREIE WÄHLER MV, Programm 2026, S. 14; https://freiewaehler-mv.de",
           "begruendung": "Die Freien Wähler unterstützen die Verbeamtung, um im interregionalen Wettbewerb konkurrenzfähig zu bleiben."
         }
-      }
+      },
+      "thema": "Soziales"
     },
     {
       "nr": 4,
@@ -218,7 +221,8 @@
           "quelle": "FREIE WÄHLER MV, Programm 2026, S. 18; https://freiewaehler-mv.de",
           "begruendung": "Die Freien Wähler fordern einen Rettungsschirm des Landes für gefährdete Kliniken im ländlichen Raum."
         }
-      }
+      },
+      "thema": "Soziales"
     },
     {
       "nr": 5,
@@ -273,7 +277,8 @@
           "quelle": "FREIE WÄHLER MV, Programm 2026, S. 15; https://freiewaehler-mv.de",
           "begruendung": "Die Freien Wähler plädieren für die Wiedereinführung von G9 zur Entlastung der Schülerschaft."
         }
-      }
+      },
+      "thema": "Soziales"
     },
     {
       "nr": 6,
@@ -328,7 +333,8 @@
           "quelle": "FREIE WÄHLER MV, Programm 2026, S. 22; https://freiewaehler-mv.de",
           "begruendung": "Die Freien Wähler machen die Unterstützung von der vorherigen Verbesserung des ländlichen Busnetzes abhängig."
         }
-      }
+      },
+      "thema": "Umwelt"
     },
     {
       "nr": 7,
@@ -383,7 +389,8 @@
           "quelle": "FREIE WÄHLER MV, Programm 2026, S. 9; https://freiewaehler-mv.de",
           "begruendung": "Die Freien Wähler sehen die Handlungsfähigkeit der Kommunen gefährdet und fordern strikte Zuweisungsgrenzen."
         }
-      }
+      },
+      "thema": "Inneres"
     },
     {
       "nr": 8,
@@ -438,7 +445,8 @@
           "quelle": "FREIE WÄHLER MV, Programm 2026, S. 11; https://freiewaehler-mv.de",
           "begruendung": "Die Freien Wähler unterstützen eine moderne Ausstattung und adäquate Befugnisse für die Einsatzkräfte."
         }
-      }
+      },
+      "thema": "Inneres"
     },
     {
       "nr": 9,
@@ -493,7 +501,8 @@
           "quelle": "FREIE WÄHLER MV, Programm 2026, S. 20; https://freiewaehler-mv.de",
           "begruendung": "Die Freien Wähler plädieren für die Stärkung kommunaler Gesellschaften vor Ort."
         }
-      }
+      },
+      "thema": "Soziales"
     },
     {
       "nr": 10,
@@ -548,7 +557,8 @@
           "quelle": "FREIE WÄHLER MV, Programm 2026, S. 17; https://freiewaehler-mv.de",
           "begruendung": "Die Freien Wähler unterstützen passgenaue Ausnahmen für Tourismusgemeinden zur Stärkung der lokalen Ökonomie."
         }
-      }
+      },
+      "thema": "Wirtschaft"
     },
     {
       "nr": 11,
@@ -603,7 +613,8 @@
           "quelle": "FREIE WÄHLER MV, Programm 2026, S. 21; https://freiewaehler-mv.de",
           "begruendung": "Die Freien Wähler fordern Wahlfreiheit für Landwirte und lehnen eine ideologische Ausrichtung ab."
         }
-      }
+      },
+      "thema": "Umwelt"
     },
     {
       "nr": 12,
@@ -658,7 +669,8 @@
           "quelle": "FREIE WÄHLER MV, Programm 2026, S. 7; https://freiewaehler-mv.de",
           "begruendung": "Die Freien Wähler machen sich stark für den Ausbau direkter Mitbestimmungsrechte."
         }
-      }
+      },
+      "thema": "Inneres"
     },
     {
       "nr": 13,
@@ -713,7 +725,8 @@
           "quelle": "FREIE WÄHLER MV, Programm 2026, S. 19; https://freiewaehler-mv.de",
           "begruendung": "Die Freien Wähler befürworten eine deutliche Erhöhung der Mittel für den Tourismussektor."
         }
-      }
+      },
+      "thema": "Wirtschaft"
     },
     {
       "nr": 14,
@@ -768,7 +781,8 @@
           "quelle": "FREIE WÄHLER MV, Programm 2026, S. 8; https://freiewaehler-mv.de",
           "begruendung": "Die Freien Wähler befürworten eine konsequente Digitalisierung zur Effizienzsteigerung."
         }
-      }
+      },
+      "thema": "Digitales"
     },
     {
       "nr": 15,
@@ -823,7 +837,8 @@
           "quelle": "FREIE WÄHLER MV, Programm 2026, S. 20; https://freiewaehler-mv.de",
           "begruendung": "Die Freien Wähler warnen vor Benachteiligungen des Mittelstands bei öffentlichen Aufträgen."
         }
-      }
+      },
+      "thema": "Wirtschaft"
     },
     {
       "nr": 16,
@@ -878,7 +893,8 @@
           "quelle": "FREIE WÄHLER MV, Programm 2026, S. 22; https://freiewaehler-mv.de",
           "begruendung": "Die Freien Wähler unterstützen die heimische Forstwirtschaft und gegen ideologische Stilllegungen."
         }
-      }
+      },
+      "thema": "Umwelt"
     },
     {
       "nr": 17,
@@ -923,7 +939,8 @@
           "quelle": "BSW-Wahlprogramm 2026, S. 19; https://bsw-mv.de/programm",
           "begruendung": "Das BSW kritisiert den Landschaftsverbrauch durch Windkraft massiv und will Wälder als Naherholungsgebiete vollständig davon freihalten."
         }
-      }
+      },
+      "thema": "Umwelt"
     },
     {
       "nr": 18,
@@ -968,7 +985,8 @@
           "quelle": "BSW-Wahlprogramm 2026, S. 11; https://bsw-mv.de/programm",
           "begruendung": "Das BSW lehnt das Terminal ab, da es US-Importe ablehnt und stattdessen eine Beendigung der Sanktionspolitik fordert."
         }
-      }
+      },
+      "thema": "Umwelt"
     },
     {
       "nr": 19,
@@ -1012,7 +1030,8 @@
           "quelle": "BSW-Wahlprogramm 2026, S. 27; https://bsw-mv.de/programm",
           "begruendung": "Das BSW betont, dass Umwelt- und Klimaschutz nicht auf dem Rücken der ländlichen Bevölkerung und der landwirtschaftlichen Existenzen ausgetragen werden dürfen."
         }
-      }
+      },
+      "thema": "Umwelt"
     },
     {
       "nr": 20,
@@ -1057,7 +1076,8 @@
           "quelle": "BSW-Wahlprogramm 2026, S. 31; https://bsw-mv.de/programm",
           "begruendung": "Das BSW betrachtet Gendersprache als elitäres Nischenthema und fordert für den Staat eine verständliche Standardsprache."
         }
-      }
+      },
+      "thema": "Inneres"
     },
     {
       "nr": 21,
@@ -1100,7 +1120,8 @@
           "quelle": "BSW-Wahlprogramm 2026, S. 21; https://bsw-mv.de/programm",
           "begruendung": "Das BSW fordert massive Investitionen in die öffentliche Infrastruktur abseits der Zentren, um den ländlichen Raum nicht weiter abzuhängen."
         }
-      }
+      },
+      "thema": "Umwelt"
     },
     {
       "nr": 22,
@@ -1144,7 +1165,8 @@
           "quelle": "BSW-Wahlprogramm 2026, S. 9; https://bsw-mv.de/programm",
           "begruendung": "Das BSW fordert, dass staatliche Ausgaben zur Stärkung der Arbeitnehmereinkommen genutzt werden, weshalb Tariftreue Pflicht sein müsse."
         }
-      }
+      },
+      "thema": "Wirtschaft"
     },
     {
       "nr": 23,
@@ -1188,7 +1210,8 @@
           "quelle": "BSW-Wahlprogramm 2026, S. 15; https://bsw-mv.de/programm",
           "begruendung": "Das BSW befürwortet eine konsequente Begrenzung von Migration, weshalb finanzielle Anreize für Asylsuchende abgebaut werden sollen."
         }
-      }
+      },
+      "thema": "Inneres"
     },
     {
       "nr": 24,
@@ -1231,7 +1254,8 @@
           "quelle": "BSW-Wahlprogramm 2026, S. 29; https://bsw-mv.de/programm",
           "begruendung": "Das BSW plädiert für ein diszipliniertes, klassisches Bildungssystem und hält Ziffernnoten für sozial gerechter als abstrakte Texte."
         }
-      }
+      },
+      "thema": "Soziales"
     },
     {
       "nr": 25,
@@ -1274,7 +1298,8 @@
           "quelle": "BSW-Wahlprogramm 2026, S. 25; https://bsw-mv.de/programm",
           "begruendung": "Das BSW lehnt Fallpauschalen und Privatisierungen strikt ab und will Krankenhäuser als öffentliche Daseinsvorsorge garantieren."
         }
-      }
+      },
+      "thema": "Soziales"
     },
     {
       "nr": 26,
@@ -1317,7 +1342,8 @@
           "quelle": "BSW-Wahlprogramm 2026, S. 23; https://bsw-mv.de/programm",
           "begruendung": "Das BSW unterstützt diese Maßnahme zur direkten finanziellen Entlastung von Familien und zur Gewährleistung von Kindergesundheit."
         }
-      }
+      },
+      "thema": "Soziales"
     },
     {
       "nr": 27,
@@ -1360,7 +1386,8 @@
           "quelle": "BSW-Wahlprogramm 2026, S. 25; https://bsw-mv.de/programm",
           "begruendung": "Das BSW plädiert für starke Eingriffe in den Immobilienmarkt, damit sich normale Arbeitnehmer das Leben an der Küste noch leisten können."
         }
-      }
+      },
+      "thema": "Soziales"
     },
     {
       "nr": 28,
@@ -1404,7 +1431,8 @@
           "quelle": "BSW-Wahlprogramm 2026, S. 33; https://bsw-mv.de/programm",
           "begruendung": "Das BSW bekennt sich zu einem starken Staat, der die öffentliche Sicherheit auf den Straßen durch handlungsfähige Polizisten garantieren muss."
         }
-      }
+      },
+      "thema": "Inneres"
     },
     {
       "nr": 29,
@@ -1448,7 +1476,8 @@
           "quelle": "BSW-Wahlprogramm 2026, S. 28; https://bsw-mv.de/programm",
           "begruendung": "Das BSW wehrt sich gegen eine Politik, die unter dem Deckmantel des Naturschutzes traditionelle Wirtschaftsstrukturen zerstört."
         }
-      }
+      },
+      "thema": "Umwelt"
     },
     {
       "nr": 30,
@@ -1492,7 +1521,8 @@
           "quelle": "BSW-Wahlprogramm 2026, S. 30; https://bsw-mv.de/programm",
           "begruendung": "Das BSW plädiert für praxisnahe Lösungen; die erzwungene Inklusion habe das Lernklima verschlechtert, daher müssten Spezialschulen bestehen bleiben."
         }
-      }
+      },
+      "thema": "Soziales"
     },
     {
       "nr": 31,
@@ -1536,7 +1566,8 @@
           "quelle": "BSW-Wahlprogramm 2026, S. 16; https://bsw-mv.de/programm",
           "begruendung": "Das BSW plädiert für geordnete Migration und fordert, dass staatliche Bescheide schnell vollstreckt werden, wofür Infrastruktur notwendig sei."
         }
-      }
+      },
+      "thema": "Inneres"
     },
     {
       "nr": 32,
@@ -1579,7 +1610,8 @@
           "quelle": "BSW-Wahlprogramm 2026, S. 12; https://bsw-mv.de/programm",
           "begruendung": "Das BSW will den traditionellen Mittelstand vor Ort stärken und setzt sich für eine unbürokratische Förderung des Handwerks ein."
         }
-      }
+      },
+      "thema": "Wirtschaft"
     },
     {
       "nr": 33,
@@ -1623,7 +1655,8 @@
           "quelle": "BSW-Wahlprogramm 2026, S. 34; https://bsw-mv.de/programm",
           "begruendung": "Das BSW ist tief skeptisch gegenüber der Arbeitsweise des Verfassungsschutzes, hat aber kein klares Abschaffungs-Dogma formuliert."
         }
-      }
+      },
+      "thema": "Inneres"
     }
   ]
 }

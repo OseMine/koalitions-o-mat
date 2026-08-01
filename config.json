@@ -21,28 +21,32 @@
   },
   "topics": {
     "Wirtschaft": {
-      "keywords": ["Steuer", "Wirtschaft", "Finanzen", "Haushalt", "Mindestlohn", "Bürgergeld", "Rente", "Arbeit"],
+      "keywords": ["Steuer", "Wirtschaft", "Finanzen", "Haushalt", "Mindestlohn", "Bürgergeld", "Rente", "Arbeit", "Schuldenbremse", "Soli", "Aktienrente", "Vermögen", "Subvention", "Investition", "Miete", "Erbschaft"],
       "color": "#FFA726"
     },
     "Soziales": {
-      "keywords": ["Sozial", "Rente", "Bildung", "Gesundheit", "Bürgergeld", "Familie", "Pflege", "Kinder"],
+      "keywords": ["Sozial", "Rente", "Bildung", "Gesundheit", "Bürgergeld", "Familie", "Pflege", "Kinder", "Schule", "Kita", "Wohnungsbau", "Wohnung", "Krankenhaus", "Organspende", "Studiengebühren", "Mindestlohn"],
       "color": "#42A5F5"
     },
     "Umwelt": {
-      "keywords": ["Klima", "Umwelt", "Energie", "Verkehr", "Erneuerbar", "Heizung", "Mobilität"],
+      "keywords": ["Klima", "Umwelt", "Energie", "Verkehr", "Erneuerbar", "Heizung", "Mobilität", "Kernkraft", "Kernenergie", "Windkraft", "Solar", "Tempolimit", "Verbrenner", "Bahn", "CO2", "Wasser", "ÖPNV", "Kohle", "Radweg", "Moor", "Wald"],
       "color": "#66BB6A"
     },
     "Außenpolitik": {
-      "keywords": ["Außen", "EU", "Europa", "NATO", "Ukraine", "International", "Verteidigung"],
+      "keywords": ["Außen", "EU", "Europa", "NATO", "Ukraine", "International", "Verteidigung", "Taurus", "Bundeswehr", "Wehrpflicht", "Armee", "Eurobonds"],
       "color": "#AB47BC"
     },
     "Inneres": {
-      "keywords": ["Polizei", "Sicherheit", "Migration", "Asyl", "Integration", "Einwanderung", "Justiz"],
+      "keywords": ["Polizei", "Sicherheit", "Migration", "Asyl", "Integration", "Einwanderung", "Justiz", "Grenzkontrolle", "Staatsbürgerschaft", "Cannabis", "Wahlalter", "Videoüberwachung", "Bodycam", "Taser", "Böller", "Abschiebung", "Verfassungsschutz", "Demokratie", "Bürgerrat", "Volksentscheid", "Gendern", "Gendersprache", "Rundfunk"],
       "color": "#EF5350"
     },
     "Digitales": {
-      "keywords": ["Digital", "Internet", "Netz", "Daten", "KI", "Technologie"],
+      "keywords": ["Digital", "Internet", "Netz", "Daten", "KI", "Technologie", "Digitalisierung", "WLAN", "Social-Media", "Vorratsdatenspeicherung"],
       "color": "#26C6DA"
+    },
+    "Sonstiges": {
+      "keywords": [],
+      "color": "#9E9E9E"
     }
   },
   "chartColors": {

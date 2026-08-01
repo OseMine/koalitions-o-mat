@@ -1,0 +1,60 @@
+name: opencode-review
+
+on:
+  workflow_dispatch:
+    inputs:
+      focus:
+        description: "Optional: Fokusbereich des Reviews (z. B. 'script.js Algorithmen')"
+        required: false
+        type: string
+  schedule:
+    - cron: "0 6 * * 1" # Montag 06:00 UTC
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: write
+      pull-requests: write
+      issues: write
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Run OpenCode review
+        uses: anomalyco/opencode/github@latest
+        env:
+          # OpenCode Zen API-Key als Secret anlegen:
+          # GitHub → Settings → Secrets and variables → Actions → OPENCODE_API_KEY
+          # (Key unter https://opencode.ai/auth abrufen; Free-Modelle kosten nichts)
+          OPENCODE_API_KEY: ${{ secrets.OPENCODE_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          model: opencode/deepseek-v4-flash-free
+          agent: reviewer
+          use_github_token: true
+          prompt: |
+            Automatisiertes Code-Review des Koalitions-O-Mat.
+            Fokusbereich: ${{ github.event.inputs.focus || 'das gesamte Projekt' }}
+
+            Gehe vor wie im Reviewer-Agent beschrieben:
+            1. Lies README.md, config.json, script.js, index.html, styles.css,
+               einfache-sprache.json, elections.json und alles unter elections/ sowie die
+               bestehende todo.md.
+            2. Finde Bugs, fehlende Features und Verbesserungsvorschläge für die
+               Algorithmen (Übereinstimmungsrechnung, Koalitionsberechnung,
+               Themenzuordnung, Sitzverteilung). Verifiziere Verdachtsfälle, indem du
+               Funktionen mit den echten Datendateien ausführst.
+            3. Schreibe den vollständigen Review als reports/review-YYYY-MM-DD.md
+               (Ordner bei Bedarf anlegen).
+            4. Hänge neue Befunde als datierten Abschnitt oben in todo.md an,
+               bestehende Einträge unangetastet lassen.
+            5. Committe die Änderungen auf einem neuen Branch opencode/review-<Datum>
+               und öffne einen Pull Request mit einer kurzen Zusammenfassung.
+
+            Regeln: Keinen Anwendungscode verändern, nur Berichte und todo.md.
+            Keine Findings ohne konkrete Datei-/Funktionsnamen. Wenn keine neuen
+            Befunde existieren, trotzdem Report und PR mit „Keine neuen Befunde" erstellen.

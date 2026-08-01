@@ -6,6 +6,7 @@ Interaktiver Koalitionsrechner und Parteien-Test für die Bundestagswahl 2029 un
 
 - **Parteien-Test** – Eigene Positionen zu politischen Fragen mit Parteien und Koalitionen abgleichen (Wahl-O-Mat-Stil: Themen-Badge, Fortschrittsanzeige, Überspringen, Tastatursteuerung 1/2/3 und Pfeiltasten)
 - **Willkommensseite** – Hero mit Schritt-Erklärung und klickbaren Wahl-Karten (Parteien- und Fragenzahl pro Wahl) zum direkten Start
+- **Parteien & Kandidaten** – Eigene Seite pro Wahl mit allen Parteien: Umfragewerte, Programmbeschreibungen, Kandidatinnen und Kandidaten, Partei-Websites (optional in `werte.json`)
 - **Alle Koalitionen** – Alle möglichen Mehrheits-/Minderheitskoalitionen mit Übereinstimmungswert
 - **Filter** – Mindestübereinstimmung, Koalitionsart (Mehrheit/Minderheit/Alle), nach Partei filtern, Parteien ausschließen
 - **Parteien vergleichen** – Positionen mehrerer Parteien nebeneinander mit Quellen und Begründungen
@@ -13,6 +14,7 @@ Interaktiver Koalitionsrechner und Parteien-Test für die Bundestagswahl 2029 un
 - **Einfache Sprache** – Umschalter für alle UI-Texte und 125 Fragen in einfacher Sprache
 - **Dark/Light Mode** – mit automatischer Systemerkennung
 - **Ergebnis-Historie** – Testergebnisse werden gespeichert
+- **Transparenz** – Hinweis auf Willkommensseite und Footer: privates Projekt, keine Verbindung zu Parteien, Organisationen oder staatlichen Stellen, keine finanzielle Förderung
 
 ## Wahlen & Datenquellen
 
@@ -26,7 +28,7 @@ Interaktiver Koalitionsrechner und Parteien-Test für die Bundestagswahl 2029 un
 ## Datenstruktur
 
 - `elections/<id>/fragen.json` – Fragen mit Parteipositionen (`wert`, `zitat`, `quelle`, `begruendung`)
-- `elections/<id>/werte.json` – Umfragewerte und Wahl-Metadaten (Sperrklausel, Sitzzahl)
+- `elections/<id>/werte.json` – Umfragewerte und Wahl-Metadaten (Sperrklausel, Sitzzahl); optional pro Partei: `beschreibung`, `kandidaten` (`name`, `rolle`), `website`
 - `elections/<id>/config.json` – optionale Schwellenwerte pro Wahl
 - `einfache-sprache.json` – Übersetzungen für UI-Texte und Fragen in einfacher Sprache
 - `config.json` – globale Farben und Themen-Kategorien
@@ -36,6 +38,12 @@ Interaktiver Koalitionsrechner und Parteien-Test für die Bundestagswahl 2029 un
 - Vanilla JavaScript, ECharts, CSS Custom Properties
 - Kein Framework – läuft ohne Build-Tool, einfach per Static-Server servieren (z. B. `python -m http.server 3000`)
 - LocalStorage für Theme, aktive Wahl, Einfache-Sprache-Einstellung und Test-Historie
+
+## Automatisiertes Code-Review
+
+Die GitHub Action [`.github/workflows/opencode-review.yml`](.github/workflows/opencode-review.yml) lässt OpenCode (Modell `opencode/deepseek-v4-flash-free` über OpenCode Zen) den Code wöchentlich und manuell reviewen: Bugs, fehlende Features und Algorithmus-Verbesserungen werden als `reports/review-<Datum>.md` geschrieben, in `todo.md` übernommen und als Pull Request geöffnet. Der Reviewer-Agent liegt in [`.opencode/agent/reviewer.md`](.opencode/agent/reviewer.md).
+
+Einrichtung: Secret `OPENCODE_API_KEY` in GitHub → Settings → Secrets and variables → Actions anlegen (Key unter https://opencode.ai/auth).
 
 ## Fragen generieren
 

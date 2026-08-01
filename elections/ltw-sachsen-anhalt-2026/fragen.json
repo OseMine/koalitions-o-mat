@@ -48,7 +48,8 @@
           "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 22; https://fw-lsa.de/wahlprogramm",
           "begruendung": "Die FREIEN WÄHLER unterstützen die Schulpflicht, setzen aber auf pragmatische Lösungen und mehr Praxisbezug im Bildungssystem."
         }
-      }
+      },
+      "thema": "Soziales"
     },
     {
       "nr": 2,
@@ -98,7 +99,8 @@
           "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 14; https://fw-lsa.de/wahlprogramm",
           "begruendung": "Die FREIEN WÄHLER setzen auf 'verfügbare und preiswerte Energie' ohne ideologische Vorfestlegungen. Pragmatischer Ansatz ohne klare Position zum Windkraft-Ausbau."
         }
-      }
+      },
+      "thema": "Umwelt"
     },
     {
       "nr": 3,
@@ -149,7 +151,8 @@
           "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 18; https://fw-lsa.de/wahlprogramm",
           "begruendung": "Die FREIEN WÄHLER unterstützen kostenfreie Kitas als Teil der Familienförderung und zur Stärkung der Vereinbarkeit von Familie und Beruf."
         }
-      }
+      },
+      "thema": "Soziales"
     },
     {
       "nr": 4,
@@ -198,7 +201,8 @@
           "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 26; https://fw-lsa.de/wahlprogramm",
           "begruendung": "Die FREIEN WÄHLER setzen auf gute medizinische Versorgung ohne ideologische Vorfestlegungen zur Eigentumsfrage."
         }
-      }
+      },
+      "thema": "Soziales"
     },
     {
       "nr": 5,
@@ -247,7 +251,8 @@
           "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 30; https://fw-lsa.de/wahlprogramm",
           "begruendung": "Die FREIEN WÄHLER setzen auf bessere Ausstattung der Polizei, haben aber keine konkrete Zahl für die Aufstockung genannt."
         }
-      }
+      },
+      "thema": "Inneres"
     },
     {
       "nr": 6,
@@ -297,7 +302,8 @@
           "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 20; https://fw-lsa.de/wahlprogramm",
           "begruendung": "Die FREIEN WÄHLER unterstützen kostenfreies Schulessen als Teil der Familienförderung und Bildungsgerechtigkeit."
         }
-      }
+      },
+      "thema": "Soziales"
     },
     {
       "nr": 7,
@@ -351,7 +357,8 @@
           "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 24; https://fw-lsa.de/wahlprogramm",
           "begruendung": "Die FREIEN WÄHLER setzen auf individuelle Förderung und pragmatische Lösungen, ohne sich klar für oder gegen Förderschulen zu positionieren."
         }
-      }
+      },
+      "thema": "Soziales"
     },
     {
       "nr": 8,
@@ -403,7 +410,8 @@
           "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 28; https://fw-lsa.de/wahlprogramm",
           "begruendung": "Die FREIEN WÄHLER haben keine klare Position zu den Staatsleistungen an Kirchen, betonen aber den Wert kirchlicher Einrichtungen im ländlichen Raum."
         }
-      }
+      },
+      "thema": "Sonstiges"
     },
     {
       "nr": 9,
@@ -450,7 +458,8 @@
           "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 16; https://fw-lsa.de/wahlprogramm",
           "begruendung": "Die FREIEN WÄHLER positionieren sich nicht klar zu einem AfD-Verbotsverfahren und setzen auf politische Auseinandersetzung statt Verbote."
         }
-      }
+      },
+      "thema": "Inneres"
     },
     {
       "nr": 10,
@@ -498,7 +507,8 @@
           "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 12; https://fw-lsa.de/wahlprogramm",
           "begruendung": "Die FREIEN WÄHLER setzen sich traditionell für mehr direkte Demokratie und niedrigere Hürden für Volksbegehren ein."
         }
-      }
+      },
+      "thema": "Inneres"
     },
     {
       "nr": 11,
@@ -545,7 +555,8 @@
           "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 12; https://fw-lsa.de/wahlprogramm",
           "begruendung": "Die FREIEN WÄHLER befürworten Bürgerräte als ergänzendes Instrument der direkten Demokratie."
         }
-      }
+      },
+      "thema": "Inneres"
     },
     {
       "nr": 12,
@@ -594,7 +605,8 @@
           "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 14; https://fw-lsa.de/wahlprogramm",
           "begruendung": "Die FREIEN WÄHLER setzen auf einen pragmatischen Energiemix und schließen Kernenergie nicht kategorisch aus, fordern aber keine aktive Wiedereinführung."
         }
-      }
+      },
+      "thema": "Umwelt"
     },
     {
       "nr": 13,
@@ -643,7 +655,8 @@
           "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 14; https://fw-lsa.de/wahlprogramm",
           "begruendung": "Die FREIEN WÄHLER setzen auf verfügbare und preiswerte Energie ohne ideologische Vorfestlegungen zum Kohleausstieg."
         }
-      }
+      },
+      "thema": "Umwelt"
     },
     {
       "nr": 14,
@@ -693,7 +706,8 @@
           "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 14; https://fw-lsa.de/wahlprogramm",
           "begruendung": "Die FREIEN WÄHLER setzen auf pragmatische Lösungen ohne ideologische Vorfestlegungen zu Solarparks."
         }
-      }
+      },
+      "thema": "Umwelt"
     },
     {
       "nr": 15,
@@ -743,7 +757,8 @@
           "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 16; https://fw-lsa.de/wahlprogramm",
           "begruendung": "Die FREIEN WÄHLER haben keine klare Position zur Kürzung der Demokratieförderung, betonen aber die Bedeutung politischer Bildung."
         }
-      }
+      },
+      "thema": "Inneres"
     },
     {
       "nr": 16,
@@ -792,7 +807,8 @@
           "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 18; https://fw-lsa.de/wahlprogramm",
           "begruendung": "Die FREIEN WÄHLER setzen auf Integration durch Arbeit, haben aber keine klare Position zu einer verpflichtenden Arbeitspflicht."
         }
-      }
+      },
+      "thema": "Inneres"
     },
     {
       "nr": 17,
@@ -846,7 +862,8 @@
           "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 28; https://fw-lsa.de/wahlprogramm",
           "begruendung": "Die FREIEN WÄHLER unterstützen Landarzt-Stipendien als pragmatische Maßnahme gegen den Ärztemangel im ländlichen Raum."
         }
-      }
+      },
+      "thema": "Soziales"
     },
     {
       "nr": 18,
@@ -894,7 +911,8 @@
           "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 30; https://fw-lsa.de/wahlprogramm",
           "begruendung": "Die FREIEN WÄHLER haben keine klare Position zur Kündigung der Rundfunkstaatsverträge, fordern aber Reformen des öffentlich-rechtlichen Rundfunks."
         }
-      }
+      },
+      "thema": "Sonstiges"
     },
     {
       "nr": 19,
@@ -945,7 +963,8 @@
           "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 16; https://fw-lsa.de/wahlprogramm",
           "begruendung": "Die FREIEN WÄHLER lehnen ein pauschales Tempolimit ab und setzen auf lokale Lösungen und Aufklärung statt Verbote."
         }
-      }
+      },
+      "thema": "Umwelt"
     },
     {
       "nr": 20,
@@ -995,7 +1014,8 @@
           "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 18; https://fw-lsa.de/wahlprogramm",
           "begruendung": "Die FREIEN WÄHLER fordern eine konsequente Sanierungsoffensive für Landesstraßen als Priorität für den ländlichen Raum."
         }
-      }
+      },
+      "thema": "Umwelt"
     },
     {
       "nr": 21,
@@ -1045,7 +1065,8 @@
           "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 14; https://fw-lsa.de/wahlprogramm",
           "begruendung": "Die FREIEN WÄHLER befürworten die Verkleinerung als Beitrag zur Effizienzsteigerung und Kostensenkung des Parlaments."
         }
-      }
+      },
+      "thema": "Inneres"
     },
     {
       "nr": 22,
@@ -1095,7 +1116,8 @@
           "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 26; https://fw-lsa.de/wahlprogramm",
           "begruendung": "Die FREIEN WÄHLER zeigen sich offen, wollen aber kommunale Lösungen vor landeseigenen Gesellschaften prüfen."
         }
-      }
+      },
+      "thema": "Soziales"
     },
     {
       "nr": 23,
@@ -1144,7 +1166,8 @@
           "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 16; https://fw-lsa.de/wahlprogramm",
           "begruendung": "Die FREIEN WÄHLER setzen auf nachhaltige Waldwirtschaft ohne pauschale Verbote, wollen aber Kahlschläge reduzieren."
         }
-      }
+      },
+      "thema": "Umwelt"
     },
     {
       "nr": 24,
@@ -1195,7 +1218,8 @@
           "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 20; https://fw-lsa.de/wahlprogramm",
           "begruendung": "Die FREIEN WÄHLER fordern eine realistische Flüchtlingspolitik, lehnen aber starre Obergrenzen ab und setzen auf Integration."
         }
-      }
+      },
+      "thema": "Inneres"
     },
     {
       "nr": 25,
@@ -1245,7 +1269,8 @@
           "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 30; https://fw-lsa.de/wahlprogramm",
           "begruendung": "Die FREIEN WÄHLER befürworten das Programm als Maßnahme gegen die steigende Altersarmut im Land."
         }
-      }
+      },
+      "thema": "Soziales"
     },
     {
       "nr": 26,
@@ -1294,7 +1319,8 @@
           "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 24; https://fw-lsa.de/wahlprogramm",
           "begruendung": "Die FREIEN WÄHLER unterstützen eine bessere Hochschulfinanzierung, fordern aber eine Gesamtschau über alle Bildungsbereiche."
         }
-      }
+      },
+      "thema": "Soziales"
     },
     {
       "nr": 27,
@@ -1344,7 +1370,8 @@
           "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 16; https://fw-lsa.de/wahlprogramm",
           "begruendung": "Die FREIEN WÄHLER befürworten Jugendparlamente als Instrument zur Förderung der politischen Teilhabe junger Menschen."
         }
-      }
+      },
+      "thema": "Inneres"
     },
     {
       "nr": 28,
@@ -1394,7 +1421,8 @@
           "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 32; https://fw-lsa.de/wahlprogramm",
           "begruendung": "Die FREIEN WÄHLER befürworten den Einsatz von Bodycams als pragmatisches Mittel zur Steigerung der Sicherheit."
         }
-      }
+      },
+      "thema": "Inneres"
     },
     {
       "nr": 29,
@@ -1444,7 +1472,8 @@
           "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 32; https://fw-lsa.de/wahlprogramm",
           "begruendung": "Die FREIEN WÄHLER befürworten die Aufstockung des Kulturhaushalts als Beitrag zur kulturellen Vielfalt und Heimatpflege."
         }
-      }
+      },
+      "thema": "Sonstiges"
     },
     {
       "nr": 30,
@@ -1493,7 +1522,8 @@
           "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 22; https://fw-lsa.de/wahlprogramm",
           "begruendung": "Die FREIEN WÄHLER befürworten kostenfreies WLAN in öffentlichen Gebäuden als praktischen Beitrag zur Digitalisierung."
         }
-      }
+      },
+      "thema": "Digitales"
     },
     {
       "nr": 31,
@@ -1543,7 +1573,8 @@
           "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 18; https://fw-lsa.de/wahlprogramm",
           "begruendung": "Die FREIEN WÄHLER setzen auf Reduzierung des Pflanzenschutzmitteleinsatzes, lehnen aber pauschale Verbote ab."
         }
-      }
+      },
+      "thema": "Umwelt"
     },
     {
       "nr": 32,
@@ -1593,7 +1624,8 @@
           "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 28; https://fw-lsa.de/wahlprogramm",
           "begruendung": "Die FREIEN WÄHLER befürworten die Förderung als pragmatische Maßnahme zur Stärkung der Innenstädte."
         }
-      }
+      },
+      "thema": "Wirtschaft"
     },
     {
       "nr": 33,
@@ -1643,7 +1675,8 @@
           "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 14; https://fw-lsa.de/wahlprogramm",
           "begruendung": "Die FREIEN WÄHLER befürworten die Investition als Beitrag zur Modernisierung und Bürgerfreundlichkeit."
         }
-      }
+      },
+      "thema": "Digitales"
     },
     {
       "nr": 34,
@@ -1693,7 +1726,8 @@
           "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 28; https://fw-lsa.de/wahlprogramm",
           "begruendung": "Die FREIEN WÄHLER lehnen eine Verschärfung ab und setzen auf mehr Wohnungsbau statt auf regulatorische Eingriffe."
         }
-      }
+      },
+      "thema": "Soziales"
     },
     {
       "nr": 35,
@@ -1743,7 +1777,8 @@
           "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 34; https://fw-lsa.de/wahlprogramm",
           "begruendung": "Die FREIEN WÄHLER fordern ein Sonderprogramm zur Sanierung der Schwimmbäder als Priorität für den ländlichen Raum."
         }
-      }
+      },
+      "thema": "Sonstiges"
     },
     {
       "nr": 36,
@@ -1793,7 +1828,8 @@
           "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 36; https://fw-lsa.de/wahlprogramm",
           "begruendung": "Die FREIEN WÄHLER fordern die Verdopplung der Fördermittel als zentrale Maßnahme zur Stärkung des Ehrenamts."
         }
-      }
+      },
+      "thema": "Sonstiges"
     },
     {
       "nr": 37,
@@ -1843,7 +1879,8 @@
           "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 38; https://fw-lsa.de/wahlprogramm",
           "begruendung": "Die FREIEN WÄHLER lehnen eine verbindliche Quote ab und setzen auf freiwillige Vereinbarungen und Förderprogramme."
         }
-      }
+      },
+      "thema": "Soziales"
     },
     {
       "nr": 38,
@@ -1893,7 +1930,8 @@
           "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 20; https://fw-lsa.de/wahlprogramm",
           "begruendung": "Die FREIEN WÄHLER zeigen sich interessiert, fordern aber eine solide Finanzierung und Abstimmung mit den Verkehrsverbünden."
         }
-      }
+      },
+      "thema": "Umwelt"
     },
     {
       "nr": 39,
@@ -1943,7 +1981,8 @@
           "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 16; https://fw-lsa.de/wahlprogramm",
           "begruendung": "Die FREIEN WÄHLER zeigen sich ambivalent und wollen die Erfahrungen aus anderen Bundesländern abwarten."
         }
-      }
+      },
+      "thema": "Inneres"
     },
     {
       "nr": 40,
@@ -1994,7 +2033,8 @@
           "quelle": "FREIE WÄHLER-Wahlprogramm 2026, S. 38; https://fw-lsa.de/wahlprogramm",
           "begruendung": "Die FREIEN WÄHLER befürworten die Fortsetzung der Förderung als wichtige Maßnahme für Stadtentwicklung und Tourismus."
         }
-      }
+      },
+      "thema": "Sonstiges"
     }
   ]
 }

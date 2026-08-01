@@ -7,6 +7,8 @@ let currentQuestion = 0;
 let userAnswers = {};
 const chartInstances = {};
 let simpleLangData = null;
+let pendingShare = null;
+let suppressHistorySave = false;
 
 // ===== Simple Language =====
 function isSimpleLang() { return localStorage.getItem('simpleLang') === '1'; }
@@ -34,6 +36,102 @@ function getAnswerSources(answer, partei) {
     return typeof val === 'object' && val !== null ? val : null;
 }
 
+// ===== Wichtige Fragen & Test-Fortsetzen =====
+let importantQuestions = new Set();
+
+function testStateKey() { return 'testState-' + activeElectionId; }
+
+function loadTestState() {
+    try {
+        const s = JSON.parse(localStorage.getItem(testStateKey()) || 'null');
+        if (!s || !window.parteienData) return null;
+        if (s.q !== window.parteienData.fragen.length) return null;
+        return s;
+    } catch (_) { return null; }
+}
+
+function saveTestState() {
+    if (!activeElectionId || !window.parteienData) return;
+    localStorage.setItem(testStateKey(), JSON.stringify({
+        q: window.parteienData.fragen.length,
+        answers: { ...userAnswers },
+        important: [...importantQuestions]
+    }));
+}
+
+function clearTestState() {
+    localStorage.removeItem(testStateKey());
+}
+
+function frageGewicht(idx) {
+    return importantQuestions.has(idx) ? 2 : 1;
+}
+
+function toggleImportant(idx) {
+    if (importantQuestions.has(idx)) importantQuestions.delete(idx);
+    else importantQuestions.add(idx);
+    const btn = document.querySelector(`.question[data-q="${idx}"] .q-important`);
+    if (btn) btn.classList.toggle('active', importantQuestions.has(idx));
+    saveTestState();
+}
+
+// ===== Teilen per URL =====
+function shareResults() {
+    const answered = Object.entries(userAnswers).filter(([, a]) => a && a !== 'm');
+    if (!answered.length) {
+        showNotification(t('shareEmpty', 'Beantworten Sie zuerst Fragen.'), 'error');
+        return;
+    }
+    const answers = answered.map(([i, a]) => i + ':' + a).join(',');
+    const imp = [...importantQuestions].join(',');
+    const url = location.origin + location.pathname + '#w=' + encodeURIComponent(activeElectionId)
+        + '&a=' + answers + (imp ? '&i=' + imp : '');
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(
+            () => showNotification(t('shareCopied', 'Link in die Zwischenablage kopiert!'), 'success'),
+            () => showNotification(url, 'info')
+        );
+    } else {
+        showNotification(url, 'info');
+    }
+}
+
+function parseShareHash() {
+    const h = decodeURIComponent(location.hash || '');
+    const m = h.match(/^#w=([^&]+)&a=([^&]+)(?:&i=([^&]*))?$/);
+    if (!m) return null;
+    const answers = {};
+    m[2].split(',').forEach(seg => {
+        const [i, a] = seg.split(':');
+        if (i != null && (a === 'j' || a === 'n' || a === 'm')) answers[Number(i)] = a;
+    });
+    const important = new Set((m[3] || '').split(',').filter(Boolean).map(Number));
+    return { electionId: m[1], answers, important };
+}
+
+function applyPendingShare() {
+    if (!pendingShare || pendingShare.electionId !== activeElectionId || !window.parteienData) return;
+    const questions = window.parteienData.fragen;
+    userAnswers = { ...pendingShare.answers };
+    importantQuestions = new Set(pendingShare.important);
+    currentQuestion = Math.max(0, questions.length - 1);
+    questions.forEach((f, i) => {
+        if (userAnswers[i]) {
+            document.querySelectorAll(`.question[data-q="${i}"] .q-btn`).forEach(b => {
+                b.classList.toggle('selected', b.dataset.a === userAnswers[i]);
+            });
+        }
+    });
+    document.querySelectorAll('.q-important').forEach(btn => {
+        btn.classList.toggle('active', importantQuestions.has(Number(btn.dataset.q)));
+    });
+    saveTestState();
+    suppressHistorySave = true;
+    showTestResults();
+    suppressHistorySave = false;
+    pendingShare = null;
+}
+
 // ===== App State =====
 function showApp() {
     document.getElementById('welcomeScreen').style.display = 'none';
@@ -58,6 +156,7 @@ function switchTab(tabName) {
     if (el) el.classList.add('active');
 
     if (tabName === 'koalitionen') updateKoalitionen();
+    else if (tabName === 'parteien') initializeParteienPage();
     else if (tabName === 'test') {
         // If results are showing, keep results view
         const resultsEl = document.getElementById('testResults');
@@ -80,6 +179,8 @@ function switchTab(tabName) {
 function setActiveElection(electionId) {
     activeElectionId = electionId;
     localStorage.setItem('activeElectionId', electionId);
+    koalitionenCache = null;
+    koalitionenCacheKey = '';
 
     document.querySelectorAll('.election-toggle').forEach(b => {
         b.classList.toggle('active', b.dataset.eid === electionId);
@@ -99,6 +200,12 @@ function setActiveElection(electionId) {
     if (window.werteData.meta && window.werteData.meta.sperrklausel != null)
         config.thresholds.sperrklausel = window.werteData.meta.sperrklausel;
 
+    // Default-Mindestübereinstimmung aus Konfig, wenn Slider nicht angefasst
+    const slider = document.getElementById('minMatch');
+    if (slider && !slider.dataset.touched && config.thresholds.minMatchForCoalition != null) {
+        slider.value = Math.min(100, config.thresholds.minMatchForCoalition);
+    }
+
     // Update election name in info bar
     const election = electionsList.find(e => e.id === electionId);
     document.getElementById('electionNameDisplay').textContent = election ? election.name : electionId;
@@ -108,6 +215,10 @@ function setActiveElection(electionId) {
     populatePartyDropdowns();
     updateKoalitionen();
     switchTab('test');
+
+    if (pendingShare && pendingShare.electionId === electionId) {
+        applyPendingShare();
+    }
 }
 
 function populateElectionSelector(selectedId) {
@@ -164,7 +275,9 @@ async function loadElections() {
         } catch (_) { /* ignore */ }
 
         const saved = localStorage.getItem('activeElectionId');
-        let defaultId = saved && electionsList.find(e => e.id === saved) ? saved : null;
+        let defaultId = pendingShare && pendingShare.electionId && electionsList.find(e => e.id === pendingShare.electionId)
+            ? pendingShare.electionId
+            : (saved && electionsList.find(e => e.id === saved) ? saved : null);
 
         await Promise.all(electionsList.map(async (election) => {
             try {
@@ -206,15 +319,25 @@ function populatePartyDropdowns() {
     const parties = window.werteData.umfragewerte
         .filter(p => p.prozent >= config.thresholds.sperrklausel);
 
+    // Include parties below the threshold if they answer questions
+    const hasFragen = window.parteienData && window.parteienData.fragen && window.parteienData.fragen.length;
+    const answeredParties = hasFragen
+        ? window.werteData.umfragewerte.filter(p =>
+            p.partei !== 'Andere' && window.parteienData.fragen.some(f => f.antworten && f.antworten[p.partei] != null))
+        : parties;
+    const relevant = answeredParties.length
+        ? answeredParties
+        : parties;
+
     const filter = document.getElementById('partyFilter');
     if (filter) {
         filter.innerHTML = '<option value="">Alle Parteien</option>'
-            + parties.map(p => `<option value="${p.partei}">${p.partei} (${p.prozent}%)</option>`).join('');
+            + relevant.map(p => `<option value="${p.partei}">${p.partei} (${p.prozent}%)</option>`).join('');
     }
 
     const excludeContainer = document.getElementById('excludePartiesCheckboxes');
     if (excludeContainer) {
-        excludeContainer.innerHTML = parties.map(p => `
+        excludeContainer.innerHTML = relevant.map(p => `
             <label class="party-cb">
                 <input type="checkbox" value="${p.partei}">
                 <span>${p.partei}</span>
@@ -224,7 +347,8 @@ function populatePartyDropdowns() {
 
     const cbContainer = document.getElementById('comparePartiesCheckboxes');
     if (cbContainer) {
-        cbContainer.innerHTML = window.werteData.umfragewerte.map((p, i) => `
+        const compareParties = relevant.length >= 2 ? relevant : window.werteData.umfragewerte;
+        cbContainer.innerHTML = compareParties.map((p, i) => `
             <label class="party-cb ${i < 2 ? 'checked' : ''}">
                 <input type="checkbox" value="${p.partei}" ${i < 2 ? 'checked' : ''}>
                 <span>${p.partei}</span>
@@ -234,9 +358,48 @@ function populatePartyDropdowns() {
     }
 }
 
+// ===== Parteien & Kandidaten Page =====
+function initializeParteienPage() {
+    const container = document.getElementById('partyInfoList');
+    if (!container || !window.werteData) return;
+    const parties = [...(window.werteData.umfragewerte || [])].sort((a, b) => b.prozent - a.prozent);
+    if (!parties.length) {
+        container.innerHTML = `<div class="empty-state"><span class="empty-icon">🗳️</span><p>${t('noPartyInfo', 'Keine Parteidaten für diese Wahl verfügbar.')}</p></div>`;
+        return;
+    }
+    container.innerHTML = parties.map(p => {
+        const color = getPartyColor(p.partei);
+        const desc = p.beschreibung
+            ? `<p class="party-info-desc">${p.beschreibung}</p>`
+            : `<p class="party-info-desc party-info-empty">${t('noPartyInfo', 'Weitere Informationen zu dieser Partei folgen.')}</p>`;
+        const candidates = p.kandidaten && p.kandidaten.length
+            ? `<div class="party-candidates"><h4>${t('partyCandidates', 'Kandidatinnen und Kandidaten')}</h4><ul>${p.kandidaten.map(k => `<li><strong>${k.name}</strong>${k.rolle ? ` – ${k.rolle}` : ''}</li>`).join('')}</ul></div>`
+            : '';
+        const website = p.website
+            ? `<a class="party-info-website" href="${p.website}" target="_blank" rel="noopener noreferrer">${t('partyWebsite', 'Zur Partei-Website')} ↗</a>`
+            : '';
+        return `
+            <div class="party-info-card">
+                <div class="party-info-head">
+                    <span class="party-info-name" style="color:${color}">${p.partei}</span>
+                    <span class="party-info-pct" style="color:${color}">${p.prozent.toFixed(1)}%</span>
+                </div>
+                ${desc}
+                ${candidates}
+                ${website}
+            </div>`;
+    }).join('');
+}
+
 // ===== Coalition Calculation =====
+let koalitionenCache = null;
+let koalitionenCacheKey = '';
+
 function berechneKoalitionen(type = 'mehrheit', excludeParties = []) {
     if (!config || !window.werteData || !window.parteienData) return [];
+    const key = type + '|' + excludeParties.join(',');
+    if (koalitionenCache && koalitionenCacheKey === key) return koalitionenCache;
+    const maxSize = (config.thresholds && config.thresholds.maxCoalitionSize) || 4;
     const parties = window.werteData.umfragewerte.filter(
         p => p.partei !== 'Andere' && p.prozent >= config.thresholds.sperrklausel && !excludeParties.includes(p.partei)
     );
@@ -244,7 +407,7 @@ function berechneKoalitionen(type = 'mehrheit', excludeParties = []) {
     const n = parties.length;
     for (let i = 1; i < (1 << n); i++) {
         const kParties = parties.filter((_, j) => i & (1 << j));
-        if (kParties.length < 2) continue;
+        if (kParties.length < 2 || kParties.length > maxSize) continue;
         const sum = kParties.reduce((s, p) => s + p.prozent, 0);
         let ok = false;
         if (type === 'mehrheit') ok = sum > 50;
@@ -255,37 +418,46 @@ function berechneKoalitionen(type = 'mehrheit', excludeParties = []) {
             koalitionen.push({ parteien: kParties.map(p => p.partei), prozente: sum, uebereinstimmung: ueber, anzahl: kParties.length });
         }
     }
+    koalitionenCache = koalitionen;
+    koalitionenCacheKey = key;
     return koalitionen;
 }
 
 function berechneUebereinstimmung(parteien) {
-    let match = 0, total = 0;
+    let sum = 0, total = 0;
     if (!window.parteienData || !window.parteienData.fragen) return 0;
     window.parteienData.fragen.forEach(f => {
         const answers = parteien.map(p => getAnswerValue(f.antworten, p.partei));
-        if (!answers.includes('m')) {
-            total++;
-            if (answers.every(a => a === 'j') || answers.every(a => a === 'n')) match++;
-        }
+        const ja = answers.filter(a => a === 'j').length;
+        const nein = answers.filter(a => a === 'n').length;
+        const m = answers.length - ja - nein;
+        let consistency;
+        if (ja > 0 && nein > 0) consistency = 0;
+        else if (ja > 0 || nein > 0) consistency = (ja + nein) / answers.length;
+        else consistency = 0.5;
+        sum += consistency;
+        total++;
     });
-    return total > 0 ? (match / total) * 100 : 0;
+    return total > 0 ? (sum / total) * 100 : 0;
 }
 
 function berechneUserMatchFuerKoalition(parteiNames) {
     let sum = 0, count = 0;
     if (!window.parteienData || !window.parteienData.fragen) return 0;
+    const prozentOf = {};
+    (window.werteData.umfragewerte || []).forEach(p => { prozentOf[p.partei] = p.prozent || 0; });
     window.parteienData.fragen.forEach((f, i) => {
         const ua = userAnswers[i];
         if (!ua || ua === 'm') return;
-        let agree = 0, disagree = 0;
+        let agreeW = 0, denom = 0;
         parteiNames.forEach(name => {
             const pa = getAnswerValue(f.antworten, name);
             if (!pa || pa === 'm') return;
-            if (pa === ua) agree++;
-            else disagree++;
+            const w = prozentOf[name] || 1;
+            denom += w;
+            if (pa === ua) agreeW += w;
         });
-        const denom = agree + disagree;
-        if (denom > 0) { sum += agree / denom; count++; }
+        if (denom > 0) { sum += (agreeW / denom) * frageGewicht(i); count += frageGewicht(i); }
     });
     return count > 0 ? (sum / count) * 100 : 0;
 }
@@ -309,7 +481,9 @@ function updateKoalitionen() {
     koalitionen.forEach(k => {
         k.benutzerMatch = berechneUserMatchFuerKoalition(k.parteien);
     });
-    koalitionen.sort((a, b) => b.uebereinstimmung - a.uebereinstimmung);
+    const anyUserAnswer = Object.values(userAnswers).some(a => a && a !== 'm');
+    if (anyUserAnswer) koalitionen.sort((a, b) => b.benutzerMatch - a.benutzerMatch);
+    else koalitionen.sort((a, b) => b.uebereinstimmung - a.uebereinstimmung);
 
     const container = document.getElementById('coalitionResults');
     if (!koalitionen.length) {
@@ -365,10 +539,12 @@ function resetTest() {
 function initializeTest() {
     if (!window.parteienData || !window.parteienData.fragen) return;
     currentQuestion = 0;
-    userAnswers = {};
+    const questions = window.parteienData.fragen;
+    const saved = loadTestState();
+    userAnswers = saved ? saved.answers : {};
+    importantQuestions = new Set(saved ? saved.important : []);
     const container = document.getElementById('questionContainer');
     if (!container) return;
-    const questions = window.parteienData.fragen;
     container.innerHTML = questions.map((f, i) => {
         // Build sources list for this question
         const partyEntries = Object.keys(f.antworten).filter(p => {
@@ -390,21 +566,25 @@ function initializeTest() {
                     </div>`;
                 }).join('')}
             </div>` : '';
-        const topic = determineTopic(f.frage);
+        const topic = determineTopic(f);
         const topicColor = (config.topics[topic] && config.topics[topic].color) || '#999';
+        const answerSel = userAnswers[i] ? userAnswers[i] : '';
         return `
         <div class="question ${i === 0 ? 'active' : ''}" data-q="${i}">
             <div class="q-top-row">
                 <span class="q-topic" style="--topic-color:${topicColor}">${topic}</span>
-                <span class="q-counter">${i + 1} / ${questions.length}</span>
+                <span class="q-actions">
+                    <button type="button" class="q-important ${importantQuestions.has(i) ? 'active' : ''}" data-q="${i}" onclick="toggleImportant(${i})" title="${t('importantHint', 'Wichtige Frage (zählt doppelt)')}" aria-label="${t('importantHint', 'Wichtige Frage (zählt doppelt)')}">★</button>
+                    <span class="q-counter">${i + 1} / ${questions.length}</span>
+                </span>
             </div>
             <div class="progress-bar"><div class="progress-fill" style="width:${((i + 1) / questions.length) * 100}%"></div></div>
             <h3 class="q-text">${simpleQuestionText(f, 'frage')}</h3>
             <p class="q-desc">${simpleQuestionText(f, 'beschreibung')}</p>
             <div class="q-answers">
-                <button class="q-btn q-btn-yes" data-a="j" onclick="selectAnswer(${i},'j')"><span class="q-btn-icon">✓</span>${t('answerYes', 'Stimme zu')}</button>
-                <button class="q-btn q-btn-mid" data-a="m" onclick="selectAnswer(${i},'m')"><span class="q-btn-icon">◌</span>${t('answerNeutral', 'Neutral')}</button>
-                <button class="q-btn q-btn-no" data-a="n" onclick="selectAnswer(${i},'n')"><span class="q-btn-icon">✗</span>${t('answerNo', 'Stimme nicht zu')}</button>
+                <button class="q-btn q-btn-yes ${answerSel === 'j' ? 'selected' : ''}" data-a="j" onclick="selectAnswer(${i},'j')"><span class="q-btn-icon">✓</span>${t('answerYes', 'Stimme zu')}</button>
+                <button class="q-btn q-btn-mid ${answerSel === 'm' ? 'selected' : ''}" data-a="m" onclick="selectAnswer(${i},'m')"><span class="q-btn-icon">◌</span>${t('answerNeutral', 'Neutral')}</button>
+                <button class="q-btn q-btn-no ${answerSel === 'n' ? 'selected' : ''}" data-a="n" onclick="selectAnswer(${i},'n')"><span class="q-btn-icon">✗</span>${t('answerNo', 'Stimme nicht zu')}</button>
             </div>
             ${sourcesHtml}
         </div>`;
@@ -419,6 +599,7 @@ function selectAnswer(idx, answer) {
     document.querySelectorAll(`.question[data-q="${idx}"] .q-btn`).forEach(b => {
         b.classList.toggle('selected', b.dataset.a === answer);
     });
+    saveTestState();
     if (idx === window.parteienData.fragen.length - 1) {
         setTimeout(() => showTestResults(), 400);
     } else {
@@ -475,7 +656,7 @@ function updateNavButtons() {
         if (!ua || ua === 'm') return;
         const pa = getAnswerValue(f.antworten, partei);
         if (!pa || pa === 'm') return;
-        const topic = determineTopic(f.frage);
+        const topic = determineTopic(f);
         if (!topics[topic]) topics[topic] = { match: 0, total: 0 };
         topics[topic].total++;
         if (ua === pa) topics[topic].match++;
@@ -515,7 +696,12 @@ function togglePartyDetail(partei) {
 function initTestResultPieChart(results) {
     const el = document.getElementById('testResultPieChart');
     if (!el) return;
+    if (chartInstances['testResultPieChart']) {
+        chartInstances['testResultPieChart'].dispose();
+        delete chartInstances['testResultPieChart'];
+    }
     const chart = echarts.init(el);
+    chartInstances['testResultPieChart'] = chart;
     chart.setOption(Object.assign(echartsTheme(), {
         tooltip: { trigger: 'item', formatter: p => `${p.name}: <strong>${p.value.toFixed(1)}%</strong>` },
         series: [{
@@ -542,7 +728,15 @@ function showTestResults() {
     const controls = document.querySelector('.test-controls');
     if (controls) controls.style.display = 'none';
 
-    const parties = window.werteData.umfragewerte.filter(p => p.prozent >= config.thresholds.sperrklausel);
+    // Include all parties that answer questions (not just those above the threshold)
+    const hasFragen = window.parteienData && window.parteienData.fragen && window.parteienData.fragen.length;
+    const parties = window.werteData.umfragewerte.filter(p => {
+        if (p.partei === 'Andere') return false;
+        if (hasFragen) {
+            return window.parteienData.fragen.some(f => f.antworten && f.antworten[p.partei] != null);
+        }
+        return p.prozent >= config.thresholds.sperrklausel;
+    });
     const results = parties.map(p => {
         let agreed = 0, total = 0;
         if (window.parteienData && window.parteienData.fragen) {
@@ -551,8 +745,9 @@ function showTestResults() {
                 if (!ua || ua === 'm') return;
                 const pa = getAnswerValue(f.antworten, p.partei);
                 if (!pa || pa === 'm') return;
-                total++;
-                if (ua === pa) agreed++;
+                const w = frageGewicht(i);
+                total += w;
+                if (ua === pa) agreed += w;
             });
         }
         return {
@@ -563,6 +758,12 @@ function showTestResults() {
             total
         };
     }).sort((a, b) => b.match - a.match);
+
+    if (!results.length) {
+        showNotification(t('noResults', 'Keine Partei über der Sperrklausel.'), 'error');
+        backToTest();
+        return;
+    }
 
     const electionName = getActiveElectionName();
     const totalAnswered = Object.values(userAnswers).filter(a => a !== undefined && a !== null).length;
@@ -594,11 +795,14 @@ function showTestResults() {
         <div id="testResultPieChart" style="height:260px;width:100%"></div>
     </div>`;
 
-    // Best coalition
+    // Best coalition: majority > 50%, max size, min internal agreement, user match
     const allKoal = berechneKoalitionen('beide');
     allKoal.forEach(k => { k.benutzerMatch = berechneUserMatchFuerKoalition(k.parteien); });
-    allKoal.sort((a, b) => b.benutzerMatch - a.benutzerMatch);
-    const best = allKoal.length && allKoal[0].benutzerMatch > 0 ? allKoal[0] : null;
+    const maxSize = (config.thresholds && config.thresholds.maxCoalitionSize) || 4;
+    const minCoalMatch = (config.thresholds && config.thresholds.minMatchForCoalition) || 0;
+    const best = allKoal
+        .filter(k => k.anzahl <= maxSize && k.prozente > 50 && k.uebereinstimmung >= minCoalMatch)
+        .sort((a, b) => b.benutzerMatch - a.benutzerMatch)[0] || null;
     if (best) {
         const colors = best.parteien.map(p => getPartyColor(p));
         html += `<div class="tr-best-section">
@@ -670,6 +874,7 @@ function resetTestAndRestart() {
     const tc = document.querySelector('.test-controls');
     if (tc) tc.style.display = 'flex';
     document.getElementById('testResults').innerHTML = '';
+    clearTestState();
     resetTest();
     initializeTest();
 }
@@ -705,6 +910,7 @@ function berechneUserMatch(partei) {
 }
 
 function saveTestResult(results) {
+    if (suppressHistorySave) return;
     const history = JSON.parse(localStorage.getItem('testHistory') || '[]');
     history.push({
         date: new Date().toISOString(),
@@ -713,7 +919,48 @@ function saveTestResult(results) {
         results: results.slice(0, 5)
     });
     localStorage.setItem('testHistory', JSON.stringify(history));
-    showNotification('Ergebnis gespeichert!', 'success');
+    showNotification(t('resultSaved', 'Ergebnis gespeichert!'), 'success');
+}
+
+function renderTestHistory() {
+    const container = document.getElementById('historyList');
+    if (!container) return;
+    const history = JSON.parse(localStorage.getItem('testHistory') || '[]');
+    if (!history.length) {
+        container.innerHTML = `<p class="history-empty">${t('historyEmpty', 'Noch keine gespeicherten Ergebnisse.')}</p>`;
+        return;
+    }
+    container.innerHTML = [...history].reverse().map((h, revIdx) => {
+        const idx = history.length - 1 - revIdx;
+        const top = (h.results && h.results[0]) || null;
+        const election = electionsList.find(e => e.id === h.electionId);
+        const name = election ? election.name : (h.electionId || '?');
+        const date = new Date(h.date).toLocaleString();
+        return `
+            <div class="history-item">
+                <div class="history-item-main">
+                    <span class="history-item-date">${date}</span>
+                    <span class="history-item-election">${name}</span>
+                    ${top ? `<span class="history-item-top" style="color:${getPartyColor(top.partei)}"><strong>${top.match.toFixed(1)}%</strong> ${top.partei}</span>` : ''}
+                </div>
+                <button class="history-item-delete" onclick="deleteTestHistoryEntry(${idx})" aria-label="${t('historyDelete', 'Eintrag löschen')}">✕</button>
+            </div>`;
+    }).join('');
+}
+
+function deleteTestHistoryEntry(idx) {
+    const history = JSON.parse(localStorage.getItem('testHistory') || '[]');
+    if (idx < 0 || idx >= history.length) return;
+    history.splice(idx, 1);
+    localStorage.setItem('testHistory', JSON.stringify(history));
+    renderTestHistory();
+    createTopicChart();
+}
+
+function clearTestHistory() {
+    localStorage.removeItem('testHistory');
+    renderTestHistory();
+    createTopicChart();
 }
 
 // ===== Daten & Charts =====
@@ -737,6 +984,7 @@ function initializeDaten() {
     createCoalitionPotentialChart();
     createPartyPositionsChart();
     createTopicChart();
+    renderTestHistory();
 }
 
 function createStatsSummary() {
@@ -847,19 +1095,20 @@ function createTopicChart() {
     const chart = initChart('topicDistributionChart');
     if (!chart) return;
     const history = JSON.parse(localStorage.getItem('testHistory') || '[]');
-    if (!history.length) {
+    const electionId = getActiveElectionId();
+    const latest = history.filter(h => !h.electionId || h.electionId === electionId).pop();
+    if (!latest) {
         chart.dispose();
         document.getElementById('topicDistributionChart').parentElement.innerHTML =
             '<p style="color:var(--on-surface-muted);text-align:center;padding:40px 0">Test durchführen, um Ihre Themenverteilung zu sehen</p>';
         return;
     }
-    const latest = history[history.length - 1];
     const topics = {};
     Object.entries(latest.answers || {}).forEach(([i, a]) => {
         if (!window.parteienData || !window.parteienData.fragen) return;
         const q = window.parteienData.fragen[i];
         if (!q) return;
-        const topic = determineTopic(q.frage);
+        const topic = determineTopic(q);
         if (!topics[topic]) topics[topic] = [];
         topics[topic].push(a === 'j' ? 100 : a === 'n' ? 0 : 50);
     });
@@ -885,7 +1134,7 @@ function analyzePartyTopics(partei) {
     Object.keys(config.topics).forEach(t => topics[t] = []);
     if (!window.parteienData || !window.parteienData.fragen) return Object.fromEntries(Object.keys(config.topics).map(t => [t, 0]));
     window.parteienData.fragen.forEach(f => {
-        const topic = determineTopic(f.frage);
+        const topic = determineTopic(f);
         if (topics[topic]) {
             const a = getAnswerValue(f.antworten, partei);
             topics[topic].push(a === 'j' ? 100 : a === 'n' ? 0 : 50);
@@ -898,9 +1147,13 @@ function analyzePartyTopics(partei) {
     return result;
 }
 
-function determineTopic(question) {
+function determineTopic(f) {
+    if (f && typeof f === 'object') {
+        if (f.thema && config.topics[f.thema]) return f.thema;
+        f = f.frage || '';
+    }
     for (const [topic, data] of Object.entries(config.topics)) {
-        if (data.keywords.some(w => question.toLowerCase().includes(w.toLowerCase())))
+        if (data.keywords.some(w => f.toLowerCase().includes(w.toLowerCase())))
             return topic;
     }
     return 'Sonstiges';
@@ -954,9 +1207,19 @@ function updatePartyComparison() {
 
 function berechneSitze(parteien) {
     const gesamt = (config.meta && config.meta.gesamtSitze) || 736;
-    const gueltig = parteien.filter(p => p.prozent >= config.thresholds.sperrklausel).reduce((s, p) => s + p.prozent, 0);
-    return parteien.filter(p => p.prozent >= config.thresholds.sperrklausel)
-        .map(p => ({ partei: p.partei, prozent: p.prozent, sitze: Math.round((p.prozent / gueltig) * gesamt) }))
+    const above = parteien.filter(p => p.prozent >= config.thresholds.sperrklausel);
+    const gueltig = above.reduce((s, p) => s + p.prozent, 0);
+    const seats = above.map(p => {
+        const exact = (p.prozent / gueltig) * gesamt;
+        return { partei: p.partei, prozent: p.prozent, sitze: Math.floor(exact), rest: exact - Math.floor(exact) };
+    });
+    let verteilt = seats.reduce((s, p) => s + p.sitze, 0);
+    seats.sort((a, b) => b.rest - a.rest);
+    for (let i = 0; i < seats.length && verteilt < gesamt; i++) {
+        seats[i].sitze++;
+        verteilt++;
+    }
+    return seats.map(({ partei, prozent, sitze }) => ({ partei, prozent, sitze }))
         .sort((a, b) => b.sitze - a.sitze);
 }
 
@@ -1028,6 +1291,8 @@ function toggleSimpleLanguage() {
     const btn = document.getElementById('simpleLangToggle');
     if (btn) btn.classList.toggle('active', on);
     applyStaticI18n();
+    const welcomeVisible = document.getElementById('welcomeScreen').style.display !== 'none';
+    if (welcomeVisible) renderWelcomeCards();
     if (activeElectionId && electionDataCache[activeElectionId]) {
         const testVisible = document.getElementById('test-content').classList.contains('active');
         if (testVisible) {
@@ -1038,6 +1303,8 @@ function toggleSimpleLanguage() {
             }
         } else if (document.getElementById('koalitionen-content').classList.contains('active')) {
             updateKoalitionen();
+        } else if (document.getElementById('parteien-content').classList.contains('active')) {
+            initializeParteienPage();
         } else if (document.getElementById('daten-content').classList.contains('active')) {
             initializeDaten();
         }
@@ -1056,10 +1323,16 @@ function applySavedSimpleLang() {
 document.addEventListener('DOMContentLoaded', async () => {
     applySavedTheme();
     applySavedSimpleLang();
+    pendingShare = parseShareHash();
 
     document.querySelectorAll('.tab-button').forEach(b => {
         b.addEventListener('click', () => switchTab(b.dataset.tab));
     });
+
+    const minMatchSlider = document.getElementById('minMatch');
+    if (minMatchSlider) {
+        minMatchSlider.addEventListener('input', () => { minMatchSlider.dataset.touched = '1'; });
+    }
 
     const loadingOverlay = document.getElementById('loadingOverlay');
     if (loadingOverlay) loadingOverlay.style.display = 'flex';
