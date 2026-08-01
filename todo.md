@@ -4,6 +4,39 @@ Code-Review vom 01.08.2026. Prioritäten: P1 = Bug / P2 = Feature / P3 = Verbess
 
 ---
 
+## Automatisiertes Review vom 2026-08-01 (2. Durchlauf, gesamtes Projekt)
+
+### P1 – Bugs
+
+- [ ] **Doppelte Historie durch Re-Entry in `showTestResults`** – `selectAnswer()` (script.js:614-622) plant auf der letzten Frage `showTestResults()` per `setTimeout(400)`; Klick auf „Ergebnis anzeigen" (index.html:80) oder „Überspringen" (`skipQuestion()`, script.js:625-631) in diesem Fenster führt zu doppeltem `saveTestResult()` + doppeltem Toast. Timer wird nur im `selectAnswer`-Pfad gelöscht; Re-Entry-Guard fehlt.
+- [ ] **„Beste Koalition für Sie" falsch bei 0 beantworteten Fragen** – `showTestResults()` (script.js:815-821) sortiert nur nach `benutzerMatch` ohne `anyUserAnswer`-Guard (vgl. `updateKoalitionen`, script.js:495-497); bei 0 Antworten gewinnt die erste Mehrheitskoalition in Bitmasken-Reihenfolge (btw2029: AfD+CDU/CSU+GRÜNE 10,4 % statt AfD+CDU/CSU+SPD 28,1 %).
+- [ ] **Antwort-Timer springt Frage per Pfeiltaste** – `pendingAdvanceTimer` wird nur bei erneuter Antwort gelöscht (script.js:614), nicht bei `showNextQuestion()` per ArrowRight (script.js:1409); Frage wird ohne Anzeige übersprungen.
+
+### P1 – Algorithmus
+
+- [ ] **`minMatchForCoalition: 20` lässt Berliner Koalitionen-Tab weiterhin leer** – verifiziert: 0 von 9 Berliner Mehrheitskoalitionen ≥ 20 % (max 9,1 %); Senkung 40→20 aus Vorbefund reicht für Berlin nicht. Schwelle pro Wahl kalibrieren oder Hinweis „Mindestübereinstimmung senken".
+- [ ] **`berechneUebereinstimmung` zählt fehlende Positionen als 0,5-Konsistenz** – script.js:437-453; `getAnswerValue`-Default `'m'` (script.js:29-32) wertet Fragen ohne Parteiposition als 0,5 → Neutralitäts-Inflation (btw2029 SPD 40 % m, ltw BSW 50 %, FREIE WÄHLER 48 %). Fragen ohne Positionen aus der Basis herausrechnen.
+
+### P1 – Einfache Sprache / i18n
+
+- [ ] **Hartkodierte deutsche Strings ohne `t()`** – script.js:1112 (Themenverteilung-Leertext), script.js:576 (Präfix „Quelle: "), script.js:707 (Detail-Legende „✓ Zustimmung …"); Keys fehlen in `einfache-sprache.json`.
+- [ ] **Key `noPartyInfo` mit zwei unterschiedlichen Fallbacks** – script.js:378 vs. 385; unterschiedlicher Text im Normalmodus.
+
+### P2 – Fehlende Features / Usability
+
+- [ ] **Parteien mit wenigen beantworteten Fragen verzerren Ergebnisliste** – Berlin: Volt/Tierschutz 3/52, MV: FREIE WÄHLER 16/33; `showTestResults()` (script.js:747-776) berechnet Match nur über beantwortete Fragen → 2 von 3 = 66,7 % möglich. Mindest-Abdeckung (≥ 50 %) oder Hinweis „nur X von N Fragen beantwortet".
+- [ ] **„Parteien ausschließen"-Checkboxen teils wirkungslos** – `populatePartyDropdowns()` (script.js:333-341) listet Parteien unter der Sperrklausel, die `berechneKoalitionen()` (script.js:414-416) ohnehin ausschließt; Partei-Filter-Dropdown listet nur ≥ Sperrklausel (script.js:344-347) → inkonsistente Listen.
+- [ ] **Teilen-Link verliert neutrale Antworten** – `shareResults()` (script.js:81-82) filtert `'m'` heraus; nach `applyPendingShare()` weichen Zähler und Ergebnis ab.
+
+### P3 – Verbesserungen
+
+- [ ] **`createStatsSummary` crasht bei leerer `umfragewerte`** – `reduce` ohne Initialwert (script.js:998); Leer-Guard fehlt.
+- [ ] **`maxCoalitionSize: 5` in ltw-sachsen-anhalt-2026/config.json wirkungslos** – nur 4 Parteien über der Sperrklausel; auf 4 setzen oder kommentieren.
+- [ ] **`simpleLangToggle`-Button-Label hartkodiert** – index.html:22 „Einfache Sprache" nicht über `data-i18n`.
+- [ ] **Neutral-Inflation wirkt auch auf die „Beste Koalition"-Auswahl** – Folge aus `berechneUebereinstimmung`; neutrale Koalitionen (50 %) können echte inhaltliche Übereinstimmungen schlagen.
+
+---
+
 ## Automatisiertes Review vom 2026-08-01 (gesamtes Projekt)
 
 ### P1 – Bugs
