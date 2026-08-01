@@ -1370,20 +1370,31 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 
-    // Swipe gesture for tab nav
-    let touchStartX = 0, touchEndX = 0;
+    // Swipe gesture for tab nav – nur bewusste horizontale Swipes auslösen.
+    // Vertikales Scrollen (mit leichter horizontaler Finger-Drift) darf nie den Tab wechseln.
+    let touchStartX = 0, touchStartY = 0, swipeDisabled = false;
     const containerEl = document.querySelector('.container');
     if (containerEl) {
-        containerEl.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
+        containerEl.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+            touchStartY = e.changedTouches[0].screenY;
+            // Nicht innerhalb horizontal scrollbarer Bereiche auslösen
+            swipeDisabled = !!(e.target && e.target.closest && e.target.closest('.election-toggles, .cmp-wrap, .tr-detail-table'));
+        }, { passive: true });
         containerEl.addEventListener('touchend', e => {
-            touchEndX = e.changedTouches[0].screenX;
-            const diff = touchStartX - touchEndX;
-            if (Math.abs(diff) < 60) return;
+            if (swipeDisabled) return;
+            const touchEndX = e.changedTouches[0].screenX;
+            const touchEndY = e.changedTouches[0].screenY;
+            const diffX = touchStartX - touchEndX;
+            const diffY = touchStartY - touchEndY;
+            // Horizontal muss klar überwiegen, sonst war es ein (vertikaler) Scroll
+            if (Math.abs(diffX) < 70) return;
+            if (Math.abs(diffY) > Math.abs(diffX) * 1.2) return;
             const tabs = [...document.querySelectorAll('.tab-button')];
             const idx = tabs.findIndex(t => t.classList.contains('active'));
             if (idx === -1) return;
-            if (diff > 0 && idx < tabs.length - 1) switchTab(tabs[idx + 1].dataset.tab);
-            else if (diff < 0 && idx > 0) switchTab(tabs[idx - 1].dataset.tab);
+            if (diffX > 0 && idx < tabs.length - 1) switchTab(tabs[idx + 1].dataset.tab);
+            else if (diffX < 0 && idx > 0) switchTab(tabs[idx - 1].dataset.tab);
         }, { passive: true });
     }
 
@@ -1396,6 +1407,16 @@ document.addEventListener('DOMContentLoaded', async () => {
             e.target.closest('.party-cb').classList.toggle('checked', e.target.checked);
             updateKoalitionen();
         }
+    });
+
+    // ECharts bei Viewport-Änderungen neu dimensionieren
+    // (Mobile-URL-Bar ein-/ausblenden, Rotation) – sonst wirken Charts abgeschnitten/verzerrt
+    let chartResizeTimer = null;
+    window.addEventListener('resize', () => {
+        clearTimeout(chartResizeTimer);
+        chartResizeTimer = setTimeout(() => {
+            Object.values(chartInstances).forEach(c => { if (c && c.resize) c.resize(); });
+        }, 150);
     });
 
     // Keyboard shortcuts for the test (1=zu, 2=neutral, 3=nicht zu, arrows=navigate)
