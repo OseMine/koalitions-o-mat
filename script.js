@@ -6,6 +6,21 @@ let electionDataCache = {};
 let currentQuestion = 0;
 let userAnswers = {};
 const chartInstances = {};
+let simpleLangData = null;
+
+// ===== Simple Language =====
+function isSimpleLang() { return localStorage.getItem('simpleLang') === '1'; }
+function t(key, fallback) {
+    if (!isSimpleLang() || !simpleLangData || !simpleLangData.ui) return fallback !== undefined ? fallback : key;
+    return simpleLangData.ui[key] || (fallback !== undefined ? fallback : key);
+}
+function simpleQuestionText(f, field) {
+    if (isSimpleLang() && simpleLangData && simpleLangData.fragen && activeElectionId) {
+        const q = simpleLangData.fragen[activeElectionId] && simpleLangData.fragen[activeElectionId][String(f.nr)];
+        if (q && q[field]) return q[field];
+    }
+    return f[field];
+}
 
 // ===== Answer Helpers (support legacy string and new object formats) =====
 function getAnswerValue(answer, partei) {
@@ -130,6 +145,11 @@ async function loadElections() {
         electionsList = data.elections || [];
         if (!electionsList.length) throw new Error('Keine Wahlen gefunden');
 
+        try {
+            const simpleRes = await fetch('einfache-sprache.json');
+            if (simpleRes.ok) simpleLangData = await simpleRes.json();
+        } catch (_) { /* ignore */ }
+
         const saved = localStorage.getItem('activeElectionId');
         let defaultId = saved && electionsList.find(e => e.id === saved) ? saved : null;
 
@@ -163,7 +183,7 @@ async function loadElections() {
         setActiveElection(defaultId);
     } catch (err) {
         console.error('Fehler:', err);
-        showNotification('Fehler beim Laden der Daten. Seite neu laden.', 'error');
+        showNotification(t('errorLoading', 'Fehler beim Laden der Daten. Seite neu laden.'), 'error');
     }
 }
 
@@ -279,11 +299,11 @@ function updateKoalitionen() {
 
     const container = document.getElementById('coalitionResults');
     if (!koalitionen.length) {
-        container.innerHTML = '<div class="empty-state"><span class="empty-icon">🔍</span><p>Keine passenden Koalitionen gefunden.</p></div>';
+        container.innerHTML = `<div class="empty-state"><span class="empty-icon">🔍</span><p>${t('noCoalitions', 'Keine passenden Koalitionen gefunden.')}</p></div>`;
         return;
     }
 
-    let html = `<p class="result-count">${koalitionen.length} Koalitionen gefunden</p>`;
+    let html = `<p class="result-count">${koalitionen.length} ${t('coalitionsFound', 'Koalitionen gefunden')}</p>`;
     const grouped = {};
     koalitionen.forEach(k => {
         if (!grouped[k.anzahl]) grouped[k.anzahl] = [];
@@ -291,7 +311,7 @@ function updateKoalitionen() {
     });
 
     Object.entries(grouped).sort(([a], [b]) => a - b).forEach(([size, list]) => {
-        html += `<h3 class="group-title">${size}-Parteien-Koalitionen</h3>`;
+        html += `<h3 class="group-title">${size}-${t('partyCoalitions', 'Parteien-Koalitionen')}</h3>`;
         list.forEach(k => {
             const colors = k.parteien.map(p => getPartyColor(p));
             html += `
@@ -300,9 +320,9 @@ function updateKoalitionen() {
                         ${k.parteien.map((p, i) => `<span class="party-chip" style="--pcolor:${colors[i]}">${p}</span>`).join(' <span class="plus">+</span> ')}
                     </div>
                     <div class="coalition-meta">
-                        <span class="meta-item"><strong>${k.prozente.toFixed(1)}%</strong> Gesamt</span>
-                        <span class="meta-item"><strong>${k.uebereinstimmung.toFixed(1)}%</strong> Interne Übereinstimmung</span>
-                        <span class="meta-item"><strong>${k.benutzerMatch.toFixed(1)}%</strong> Mit Ihnen</span>
+                        <span class="meta-item"><strong>${k.prozente.toFixed(1)}%</strong> ${t('total', 'Gesamt')}</span>
+                        <span class="meta-item"><strong>${k.uebereinstimmung.toFixed(1)}%</strong> ${t('internalMatch', 'Interne Übereinstimmung')}</span>
+                        <span class="meta-item"><strong>${k.benutzerMatch.toFixed(1)}%</strong> ${t('withYou', 'Mit Ihnen')}</span>
                     </div>
                     <div class="coalition-bar">
                         <div class="coalition-bar-fill" style="width:${k.uebereinstimmung}%"></div>
@@ -342,12 +362,12 @@ function initializeTest() {
             return s && (s.quelle || s.begruendung || s.zitat);
         });
         const sourcesHtml = partyEntries.length > 0 ? `
-            <button type="button" class="q-sources-toggle" onclick="toggleSources(${i})">Quellen &amp; Begründungen ▾</button>
+            <button type="button" class="q-sources-toggle" onclick="toggleSources(${i})">${t('sourcesClosed', 'Quellen & Begründungen ▾')}</button>
             <div class="q-sources" id="qSources${i}">
                 ${partyEntries.map(p => {
                     const s = getAnswerSources(f.antworten, p);
                     const label = getAnswerValue(f.antworten, p);
-                    const labelText = label === 'j' ? 'Ja' : label === 'n' ? 'Nein' : 'Neutral';
+                    const labelText = label === 'j' ? t('legendYes', 'Ja') : label === 'n' ? t('legendNo', 'Nein') : t('legendNeutral', 'Neutral');
                     return `<div class="qs-row">
                         <div class="qs-party" style="color:${getPartyColor(p)}">${p} <span class="qs-label cmp-${label}">${labelText}</span></div>
                         ${s.zitat ? `<div class="qs-zitat">„${s.zitat}”</div>` : ''}
@@ -365,12 +385,12 @@ function initializeTest() {
                 <span class="q-counter">${i + 1} / ${questions.length}</span>
             </div>
             <div class="progress-bar"><div class="progress-fill" style="width:${((i + 1) / questions.length) * 100}%"></div></div>
-            <h3 class="q-text">${f.frage}</h3>
-            <p class="q-desc">${f.beschreibung}</p>
+            <h3 class="q-text">${simpleQuestionText(f, 'frage')}</h3>
+            <p class="q-desc">${simpleQuestionText(f, 'beschreibung')}</p>
             <div class="q-answers">
-                <button class="q-btn q-btn-yes" data-a="j" onclick="selectAnswer(${i},'j')"><span class="q-btn-icon">✓</span>Stimme zu</button>
-                <button class="q-btn q-btn-mid" data-a="m" onclick="selectAnswer(${i},'m')"><span class="q-btn-icon">◌</span>Neutral</button>
-                <button class="q-btn q-btn-no" data-a="n" onclick="selectAnswer(${i},'n')"><span class="q-btn-icon">✗</span>Stimme nicht zu</button>
+                <button class="q-btn q-btn-yes" data-a="j" onclick="selectAnswer(${i},'j')"><span class="q-btn-icon">✓</span>${t('answerYes', 'Stimme zu')}</button>
+                <button class="q-btn q-btn-mid" data-a="m" onclick="selectAnswer(${i},'m')"><span class="q-btn-icon">◌</span>${t('answerNeutral', 'Neutral')}</button>
+                <button class="q-btn q-btn-no" data-a="n" onclick="selectAnswer(${i},'n')"><span class="q-btn-icon">✗</span>${t('answerNo', 'Stimme nicht zu')}</button>
             </div>
             ${sourcesHtml}
         </div>`;
@@ -405,7 +425,7 @@ function toggleSources(idx) {
     const btn = el && el.previousElementSibling;
     if (!el) return;
     el.classList.toggle('open');
-    if (btn) btn.textContent = el.classList.contains('open') ? 'Quellen & Begründungen ▴' : 'Quellen & Begründungen ▾';
+    if (btn) btn.textContent = el.classList.contains('open') ? t('sourcesOpen', 'Quellen & Begründungen ▴') : t('sourcesClosed', 'Quellen & Begründungen ▾');
 }
 
 function showNextQuestion() {
@@ -462,12 +482,12 @@ function togglePartyDetail(partei) {
     window.parteienData.fragen.forEach((f, i) => {
         const ua = userAnswers[i];
         const pa = getAnswerValue(f.antworten, partei);
-        const uaLbl = ua === 'j' ? 'Ja' : ua === 'n' ? 'Nein' : '—';
-        const paLbl = pa === 'j' ? 'Ja' : pa === 'n' ? 'Nein' : '—';
+        const uaLbl = ua === 'j' ? t('legendYes', 'Ja') : ua === 'n' ? t('legendNo', 'Nein') : '—';
+        const paLbl = pa === 'j' ? t('legendYes', 'Ja') : pa === 'n' ? t('legendNo', 'Nein') : '—';
         const match = ua && ua !== 'm' && pa && pa !== 'm' ? (ua === pa ? '✓' : '✗') : '—';
         const mClass = match === '✓' ? 'cmp-match-y' : match === '✗' ? 'cmp-match-n' : '';
         html += `<tr>
-            <td class="cmp-q">${f.frage}</td>
+            <td class="cmp-q">${simpleQuestionText(f, 'frage')}</td>
             <td class="cmp-a cmp-${ua || 'm'}">${uaLbl}</td>
             <td class="cmp-a cmp-${pa || 'm'}">${paLbl}</td>
             <td class="${mClass}" style="text-align:center;font-size:1.2rem;font-weight:700">${match}</td>
@@ -534,29 +554,29 @@ function showTestResults() {
     const totalAnswered = Object.values(userAnswers).filter(a => a !== undefined && a !== null).length;
     const totalQuestions = window.parteienData ? window.parteienData.fragen.length : 0;
 
-    let html = `<div class="test-results-header"><h3>Ihre Übereinstimmung mit den Parteien</h3>`;
-    if (electionName) html += `<p class="election-label">Wahl: ${electionName}</p>`;
+    let html = `<div class="test-results-header"><h3>${t('yourMatchTitle', 'Ihre Übereinstimmung mit den Parteien')}</h3>`;
+    if (electionName) html += `<p class="election-label">${t('election', 'Wahl:')} ${electionName}</p>`;
     html += `</div>`;
 
     html += `<div class="tr-summary">
         <div class="tr-stat">
             <span class="tr-stat-val" style="color:${getPartyColor(results[0].partei)}">${results[0].match.toFixed(1)}%</span>
-            <span class="tr-stat-lbl">Beste Übereinstimmung</span>
+            <span class="tr-stat-lbl">${t('bestMatch', 'Beste Übereinstimmung')}</span>
             <span class="tr-stat-sub" style="color:${getPartyColor(results[0].partei)}">${results[0].partei}</span>
         </div>
         <div class="tr-stat">
             <span class="tr-stat-val">${totalAnswered}/${totalQuestions}</span>
-            <span class="tr-stat-lbl">Fragen beantwortet</span>
+            <span class="tr-stat-lbl">${t('questionsAnswered', 'Fragen beantwortet')}</span>
         </div>
         <div class="tr-stat">
             <span class="tr-stat-val">${results.length}</span>
-            <span class="tr-stat-lbl">Parteien verglichen</span>
+            <span class="tr-stat-lbl">${t('partiesCompared', 'Parteien verglichen')}</span>
         </div>
     </div>`;
 
     // Pie chart
     html += `<div class="tr-pie-section">
-        <h3>Übereinstimmung im Überblick</h3>
+        <h3>${t('matchOverview', 'Übereinstimmung im Überblick')}</h3>
         <div id="testResultPieChart" style="height:260px;width:100%"></div>
     </div>`;
 
@@ -568,15 +588,15 @@ function showTestResults() {
     if (best) {
         const colors = best.parteien.map(p => getPartyColor(p));
         html += `<div class="tr-best-section">
-            <h3>Beste Koalition für Sie</h3>
+            <h3>${t('bestCoalitionForYou', 'Beste Koalition für Sie')}</h3>
             <div class="coalition-card">
                 <div class="coalition-parties">
                     ${best.parteien.map((p, i) => `<span class="party-chip" style="--pcolor:${colors[i]}">${p}</span>`).join(' <span class="plus">+</span> ')}
                 </div>
                 <div class="coalition-meta">
-                    <span class="meta-item"><strong>${best.prozente.toFixed(1)}%</strong> Gesamt</span>
-                    <span class="meta-item"><strong>${best.uebereinstimmung.toFixed(1)}%</strong> Interne Übereinstimmung</span>
-                    <span class="meta-item"><strong>${best.benutzerMatch.toFixed(1)}%</strong> Mit Ihnen</span>
+                    <span class="meta-item"><strong>${best.prozente.toFixed(1)}%</strong> ${t('total', 'Gesamt')}</span>
+                    <span class="meta-item"><strong>${best.uebereinstimmung.toFixed(1)}%</strong> ${t('internalMatch', 'Interne Übereinstimmung')}</span>
+                    <span class="meta-item"><strong>${best.benutzerMatch.toFixed(1)}%</strong> ${t('withYou', 'Mit Ihnen')}</span>
                 </div>
                 <div class="coalition-bar"><div class="coalition-bar-fill" style="width:${best.uebereinstimmung}%"></div></div>
             </div>
@@ -611,9 +631,9 @@ function showTestResults() {
                 <div class="match-bar-wrap">
                     <div class="match-bar-fill" style="width:${r.match}%;background:${color}"></div>
                 </div>
-                <div class="tr-card-agreed">${r.agreed} von ${r.total} Fragen zugestimmt</div>
+                <div class="tr-card-agreed">${r.agreed} ${t('agreedOf', 'von')} ${r.total} ${t('agreedQuestions', 'Fragen zugestimmt')}</div>
                 ${topicsHtml}
-                <button class="tr-detail-btn" onclick="togglePartyDetail('${r.partei}')">Fragen-Vergleich ▾</button>
+                <button class="tr-detail-btn" onclick="togglePartyDetail('${r.partei}')">${t('detailToggle', 'Fragen-Vergleich ▾')}</button>
                 <div class="tr-detail" id="trDetail-${r.partei}" style="display:none"></div>
             </div>`;
     });
@@ -621,8 +641,8 @@ function showTestResults() {
 
     // Restart button
     html += `<div style="text-align:center;margin-top:16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
-        <button class="tr-back-btn" onclick="backToTest()">Antworten ändern</button>
-        <button class="tr-restart-btn" onclick="resetTestAndRestart()">Test wiederholen</button>
+        <button class="tr-back-btn" onclick="backToTest()">${t('changeAnswers', 'Antworten ändern')}</button>
+        <button class="tr-restart-btn" onclick="resetTestAndRestart()">${t('restartTest', 'Test wiederholen')}</button>
     </div>`;
 
     container.innerHTML = html;
@@ -712,9 +732,8 @@ function createStatsSummary() {
     const above = parties.filter(p => p.prozent >= config.thresholds.sperrklausel);
     const strongest = parties.reduce((a, b) => a.prozent > b.prozent ? a : b);
     container.innerHTML = `
-        <div class="stat-card"><div class="stat-val">${parties.length}</div><div class="stat-lbl">Parteien</div></div>
-        <div class="stat-card"><div class="stat-val">${above.length}</div><div class="stat-lbl">Über ${config.thresholds.sperrklausel}%-Hürde</div></div>
-        <div class="stat-card"><div class="stat-val">${strongest.partei}</div><div class="stat-lbl">Stärkste (${strongest.prozent.toFixed(1)}%)</div></div>
+        <div class="stat-card"><div class="stat-val">${parties.length}</div><div class="stat-lbl">${t('partiesStat', 'Parteien')}</div></div>
+        <div class="stat-card"><div class="stat-val">${above.length}</div><div class="stat-lbl">${t('aboveThreshold', 'Über')} ${config.thresholds.sperrklausel}%-${t('aboveThreshold2', 'Hürde')}</div></div>        <div class="stat-card"><div class="stat-val">${strongest.partei}</div><div class="stat-lbl">${t('strongest', 'Stärkste')} (${strongest.prozent.toFixed(1)}%)</div></div>
     `;
 }
 
@@ -753,11 +772,11 @@ function createSeatChart() {
             itemStyle: { borderRadius: 4, borderColor: cssVar('--surface', '#fff'), borderWidth: 2 },
             label: { show: true, position: 'outside', formatter: p => p.name.split(' (')[0], fontSize: 11, color: cssVar('--on-surface') },
             labelLine: { length: 8, length2: 10 },
-            data: seats.map(p => ({ value: p.sitze, name: `${p.partei} (${p.sitze} Sitze)`, itemStyle: { color: getPartyColor(p.partei) } })),
+            data: seats.map(p => ({ value: p.sitze, name: `${p.partei} (${p.sitze} ${t('seats', 'Sitze')})`, itemStyle: { color: getPartyColor(p.partei) } })),
             animationDuration: 1000
         }],
-        tooltip: { trigger: 'item', formatter: p => `${p.name}<br/><strong>${p.value} Sitze (${p.percent.toFixed(1)}%)</strong>` },
-        graphic: [{ type: 'text', left: 'center', top: 'center', style: { text: total + '\nSitze', textAlign: 'center', fill: cssVar('--on-surface'), font: 'bold 28px system-ui, sans-serif', lineHeight: 34 }, z: 100 }]
+        tooltip: { trigger: 'item', formatter: p => `${p.name}<br/><strong>${p.value} ${t('seats', 'Sitze')} (${p.percent.toFixed(1)}%)</strong>` },
+        graphic: [{ type: 'text', left: 'center', top: 'center', style: { text: total + '\n' + t('seats', 'Sitze'), textAlign: 'center', fill: cssVar('--on-surface'), font: 'bold 28px system-ui, sans-serif', lineHeight: 34 }, z: 100 }]
     }), true);
 }
 
@@ -770,7 +789,7 @@ function createCoalitionPotentialChart() {
     if (!koalitionen.length) {
         chart.dispose();
         document.getElementById('coalitionPotentialChart').parentElement.innerHTML =
-            '<p style="color:var(--on-surface-muted);text-align:center;padding:40px 0">Keine Mehrheitskoalitionen</p>';
+            `<p style="color:var(--on-surface-muted);text-align:center;padding:40px 0">${t('noMajorityCoalitions', 'Keine Mehrheitskoalitionen')}</p>`;
         return;
     }
     chart.setOption(Object.assign(echartsTheme(), {
@@ -778,7 +797,7 @@ function createCoalitionPotentialChart() {
         xAxis: { type: 'value', max: 100, axisLabel: { formatter: '{value}%', color: cssVar('--on-surface-muted'), fontSize: 10 }, splitLine: { lineStyle: { color: cssVar('--outline') + '40' } }, axisLine: { show: false }, axisTick: { show: false } },
         yAxis: { type: 'category', data: koalitionen.map(k => k.parteien.join(' + ')), axisLabel: { fontSize: 10, color: cssVar('--on-surface-muted') }, axisLine: { show: false }, axisTick: { show: false }, splitLine: { show: false } },
         series: [{ type: 'bar', data: koalitionen.map(k => ({ value: k.uebereinstimmung, itemStyle: { color: getPartyColor(k.parteien[0]) + 'CC', borderRadius: [0, 3, 3, 0] } })), barMaxWidth: 22, label: { show: true, position: 'right', formatter: p => p.value.toFixed(1) + '%', color: cssVar('--on-surface-muted'), fontSize: 10 }, animationDuration: 700 }],
-        tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, formatter: p => `${p[0].name}<br/>Übereinstimmung: <strong>${p[0].value.toFixed(1)}%</strong>` }
+        tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, formatter: p => `${p[0].name}<br/>${t('agreement', 'Übereinstimmung:')} <strong>${p[0].value.toFixed(1)}%</strong>` }
     }), true);
 }
 
@@ -890,22 +909,22 @@ function updatePartyComparison() {
     const parties = Array.from(checked).map(cb => cb.value);
     const container = document.getElementById('comparisonTable');
     if (!parties.length) {
-        container.innerHTML = '<p style="color:var(--on-surface-muted)">Wählen Sie Parteien zum Vergleichen aus.</p>';
+        container.innerHTML = `<p style="color:var(--on-surface-muted)">${t('chooseParties', 'Wählen Sie Parteien zum Vergleichen aus.')}</p>`;
         return;
     }
     if (!window.parteienData || !window.parteienData.fragen) {
-        container.innerHTML = '<p style="color:var(--on-surface-muted)">Keine Fragen für diese Wahl verfügbar.</p>';
+        container.innerHTML = `<p style="color:var(--on-surface-muted)">${t('noQuestions', 'Keine Fragen für diese Wahl verfügbar.')}</p>`;
         return;
     }
     let html = '<div class="cmp-wrap"><table class="cmp-table"><tr><th>Frage</th>';
     parties.forEach(p => html += `<th style="color:${getPartyColor(p)}">${p}</th>`);
     html += '</tr>';
     window.parteienData.fragen.forEach((f, i) => {
-        html += `<tr><td class="cmp-q">${f.frage}</td>`;
+        html += `<tr><td class="cmp-q">${simpleQuestionText(f, 'frage')}</td>`;
         parties.forEach(p => {
             const a = getAnswerValue(f.antworten, p);
             const src = getAnswerSources(f.antworten, p);
-            const label = a === 'j' ? 'Ja' : a === 'n' ? 'Nein' : '—';
+            const label = a === 'j' ? t('legendYes', 'Ja') : a === 'n' ? t('legendNo', 'Nein') : t('legendNeutral', 'Neutral');
             if (src && (src.quelle || src.begruendung)) {
                 html += `<td class="cmp-a cmp-${a || 'm'}"><span class="cmp-hint" title="${(src.quelle||'')} ${(src.begruendung||'')}">${label}</span></td>`;
             } else {
@@ -915,7 +934,7 @@ function updatePartyComparison() {
         html += '</tr>';
     });
     html += '</table></div>';
-    html += '<div class="legend"><span class="legend-j">■ Ja</span><span class="legend-n">■ Nein</span><span class="legend-m">■ Neutral</span></div>';
+    html += '<div class="legend"><span class="legend-j">■ ' + t('legendYes', 'Ja') + '</span><span class="legend-n">■ ' + t('legendNo', 'Nein') + '</span><span class="legend-m">■ ' + t('legendNeutral', 'Neutral') + '</span></div>';
     container.innerHTML = html;
 }
 
@@ -967,9 +986,49 @@ function redrawCharts() {
         initializeDaten();
 }
 
+// ===== Simple Language Toggle =====
+function applyStaticI18n() {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        const val = t(key, null);
+        if (val !== null) el.textContent = val;
+    });
+}
+
+function toggleSimpleLanguage() {
+    const on = !isSimpleLang();
+    localStorage.setItem('simpleLang', on ? '1' : '0');
+    const btn = document.getElementById('simpleLangToggle');
+    if (btn) btn.classList.toggle('active', on);
+    applyStaticI18n();
+    if (activeElectionId && electionDataCache[activeElectionId]) {
+        const testVisible = document.getElementById('test-content').classList.contains('active');
+        if (testVisible) {
+            if (document.getElementById('testResults').innerHTML) {
+                showTestResults();
+            } else {
+                initializeTest();
+            }
+        } else if (document.getElementById('koalitionen-content').classList.contains('active')) {
+            updateKoalitionen();
+        } else if (document.getElementById('daten-content').classList.contains('active')) {
+            initializeDaten();
+        }
+        const comparisonEl = document.getElementById('comparisonTable');
+        if (comparisonEl && comparisonEl.innerHTML) updatePartyComparison();
+    }
+}
+
+function applySavedSimpleLang() {
+    const btn = document.getElementById('simpleLangToggle');
+    if (btn) btn.classList.toggle('active', isSimpleLang());
+    applyStaticI18n();
+}
+
 // ===== Bootstrap =====
 document.addEventListener('DOMContentLoaded', async () => {
     applySavedTheme();
+    applySavedSimpleLang();
 
     document.querySelectorAll('.tab-button').forEach(b => {
         b.addEventListener('click', () => switchTab(b.dataset.tab));
@@ -993,8 +1052,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             loadingOverlay.innerHTML = `
                 <div style="text-align:center">
                     <div style="font-size:48px;margin-bottom:16px">⚠️</div>
-                    <div class="loading-text">Fehler beim Laden.<br><small style="color:var(--on-surface-muted)">Bitte Seite neu laden</small></div>
-                    <button onclick="location.reload()" style="margin-top:20px;padding:12px 28px;background:var(--primary);color:white;border:none;border-radius:var(--radius-sm);cursor:pointer;font-size:1rem">Neu laden</button>
+                    <div class="loading-text">${t('errorTitle', 'Fehler beim Laden.')}<br><small style="color:var(--on-surface-muted)">${t('errorReloadHint', 'Bitte Seite neu laden')}</small></div>
+                    <button onclick="location.reload()" style="margin-top:20px;padding:12px 28px;background:var(--primary);color:white;border:none;border-radius:var(--radius-sm);cursor:pointer;font-size:1rem">${t('reload', 'Neu laden')}</button>
                 </div>`;
         }
     }

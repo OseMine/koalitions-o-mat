@@ -1,0 +1,798 @@
+{
+  "ui": {
+    "loading": "Daten werden geladen...",
+    "electionLabel": "Wahl:",
+    "welcomeTitle": "Willkommen beim Koalitions-O-Mat",
+    "welcomeSubtitle": "Finden Sie heraus: Welche Partei passt zu Ihnen? Welche Koalition passt zu Ihnen?",
+    "step1": "Wahl auswählen",
+    "step2": "Fragen beantworten",
+    "step3": "Ergebnis sehen",
+    "startTest": "Test starten",
+    "welcomeHint": "Klicken Sie oben auf eine Wahl, um zu starten.",
+    "changeElection": "Wechseln",
+    "tabTest": "Parteien-Test",
+    "tabKoalitionen": "Koalitionen",
+    "tabDaten": "Daten & Charts",
+    "testIntro": "Beantworten Sie die Fragen. Dann sehen Sie: Welche Partei passt am besten zu Ihnen?",
+    "back": "← Zurück",
+    "skip": "Überspringen",
+    "next": "Weiter →",
+    "showResults": "Ergebnis anzeigen",
+    "minMatch": "Mindest-Übereinstimmung:",
+    "coalitionType": "Koalitionsart:",
+    "typeMajority": "Mehrheit (>50%)",
+    "typeMinority": "Minderheit (<50%)",
+    "typeAll": "Alle",
+    "filterParty": "Partei filtern:",
+    "allParties": "Alle Parteien",
+    "excludeParties": "Parteien ausschließen:",
+    "chartPoll": "Umfragewerte",
+    "chartSeats": "Sitzverteilung",
+    "chartCoalitionPotential": "Koalitionspotential",
+    "chartPositions": "Parteipositionen nach Themen",
+    "chartTopics": "Ihre Themenverteilung",
+    "comparisonTitle": "Parteien im Vergleich",
+    "selectParties": "Parteien auswählen:",
+    "answerYes": "Stimme zu",
+    "answerNeutral": "Neutral",
+    "answerNo": "Stimme nicht zu",
+    "sourcesOpen": "Quellen & Begründungen ▴",
+    "sourcesClosed": "Quellen & Begründungen ▾",
+    "bestMatch": "Beste Übereinstimmung",
+    "questionsAnswered": "Fragen beantwortet",
+    "partiesCompared": "Parteien verglichen",
+    "matchOverview": "Übereinstimmung im Überblick",
+    "bestCoalitionForYou": "Beste Koalition für Sie",
+    "total": "Gesamt",
+    "internalMatch": "Interne Übereinstimmung",
+    "withYou": "Mit Ihnen",
+    "agreedOf": "von",
+    "agreedQuestions": "Fragen zugestimmt",
+    "detailToggle": "Fragen-Vergleich ▾",
+    "changeAnswers": "Antworten ändern",
+    "restartTest": "Test wiederholen",
+    "yourMatchTitle": "Ihre Übereinstimmung mit den Parteien",
+    "election": "Wahl:",
+    "noCoalitions": "Keine passenden Koalitionen gefunden.",
+    "coalitionsFound": "Koalitionen gefunden",
+    "partyCoalitions": "Parteien-Koalitionen",
+    "chooseParties": "Wählen Sie Parteien zum Vergleichen aus.",
+    "noQuestions": "Keine Fragen für diese Wahl verfügbar.",
+    "legendYes": "Ja",
+    "legendNo": "Nein",
+    "legendNeutral": "Neutral",
+    "noMajorityCoalitions": "Keine Mehrheitskoalitionen",
+    "seats": "Sitze",
+    "agreement": "Übereinstimmung:",
+    "partiesStat": "Parteien",
+    "aboveThreshold": "über der",
+    "aboveThreshold2": "Hürde",
+    "strongest": "Stärkste",
+    "errorLoading": "Fehler beim Laden der Daten. Seite neu laden.",
+    "errorTitle": "Fehler beim Laden.",
+    "errorReloadHint": "Bitte Seite neu laden",
+    "reload": "Neu laden"
+  },
+  "fragen": {
+    "btw2029": {
+      "1": {
+        "frage": "Bürgergeld: Geld streichen",
+        "beschreibung": "Wer Bürgergeld bekommt und eine Arbeit ablehnt, dem soll zwei Monate lang das ganze Geld gestrichen werden."
+      },
+      "2": {
+        "frage": "Fachkräfte aus dem Ausland",
+        "beschreibung": "Fachkräfte ohne EU-Pass sollen leichter nach Deutschland kommen dürfen."
+      },
+      "3": {
+        "frage": "Mindestlohn: 12 Euro",
+        "beschreibung": "Der Mindestlohn soll mindestens 12 Euro pro Stunde betragen."
+      },
+      "4": {
+        "frage": "Schutz bei Schwangerschafts-Beratung",
+        "beschreibung": "Schwangere sollen vor Beratungsstellen besser vor Belästigung geschützt werden."
+      },
+      "5": {
+        "frage": "100 Milliarden für die Bundeswehr",
+        "beschreibung": "Die Bundeswehr soll 100 Milliarden Euro extra bekommen. Damit soll die Verteidigung stärker werden."
+      },
+      "6": {
+        "frage": "Taurus-Waffen für die Ukraine",
+        "beschreibung": "Deutschland soll das Waffensystem Taurus an die Ukraine liefern."
+      },
+      "7": {
+        "frage": "Recht auf Asyl",
+        "beschreibung": "Die Regierung soll sich dafür einsetzen, dass das Recht auf Asyl in der EU bleibt."
+      },
+      "8": {
+        "frage": "Schutz-Status verlieren",
+        "beschreibung": "Wer Schutz bekommt und in sein Heimatland reist, soll den Schutz verlieren."
+      },
+      "9": {
+        "frage": "Deutschlandticket: unter 49 Euro",
+        "beschreibung": "Das Deutschlandticket für Bus und Bahn soll deutlich weniger als 49 Euro kosten."
+      },
+      "10": {
+        "frage": "Mehr BAföG",
+        "beschreibung": "Schüler und Studenten sollen mehr BAföG bekommen."
+      },
+      "11": {
+        "frage": "Schuldenbremse aussetzen",
+        "beschreibung": "In einer Notlage soll der Staat mehr Schulden machen dürfen."
+      },
+      "12": {
+        "frage": "Extra-Steuer für Reiche",
+        "beschreibung": "Sehr reiche Menschen und große Firmen sollen einmal extra Steuern zahlen."
+      },
+      "13": {
+        "frage": "Lieferkettengesetz: pausieren",
+        "beschreibung": "Das Gesetz, das Menschenrechte in Lieferketten schützt, soll pausieren."
+      },
+      "14": {
+        "frage": "Neue Heizungen: 65 % erneuerbar",
+        "beschreibung": "Neue Heizungen in Neubau-Gebieten sollen zu 65 % mit erneuerbarer Energie laufen."
+      },
+      "15": {
+        "frage": "Agrardiesel: Unterstützung",
+        "beschreibung": "Bauern sollen weiter Geld für ihren Diesel bekommen."
+      },
+      "16": {
+        "frage": "Ukraine unterstützen",
+        "beschreibung": "Deutschland soll die Ukraine weiter mit dem Militär unterstützen."
+      },
+      "17": {
+        "frage": "Erneuerbare Energien fördern",
+        "beschreibung": "Der Staat soll den Ausbau von erneuerbaren Energien weiter fördern."
+      },
+      "18": {
+        "frage": "Bürgergeld streichen",
+        "beschreibung": "Wer oft Stellen ablehnt, dem soll das Bürgergeld gestrichen werden."
+      },
+      "19": {
+        "frage": "Tempolimit auf Autobahnen",
+        "beschreibung": "Auf allen Autobahnen soll ein Tempolimit gelten."
+      },
+      "20": {
+        "frage": "Asylsuchende abweisen",
+        "beschreibung": "Asylsuchende, die über ein anderes EU-Land kommen, sollen an der Grenze abgewiesen werden."
+      },
+      "21": {
+        "frage": "Mieten begrenzen",
+        "beschreibung": "Bei neuen Mietverträgen sollen die Mieten weiter begrenzt werden."
+      },
+      "22": {
+        "frage": "Gesichtserkennung an Bahnhöfen",
+        "beschreibung": "Die Bundespolizei soll an Bahnhöfen Kameras mit Gesichtserkennung benutzen dürfen."
+      },
+      "23": {
+        "frage": "Hilfe für große Strom-Kunden",
+        "beschreibung": "Firmen, die viel Strom brauchen, sollen vom Staat Geld für ihre Strom-Kosten bekommen."
+      },
+      "24": {
+        "frage": "Rente nach 40 Jahren",
+        "beschreibung": "Wer 40 Jahre eingezahlt hat, soll ohne Abzüge in Rente gehen können."
+      },
+      "25": {
+        "frage": "Grundgesetz: Satz ändern",
+        "beschreibung": "Im Grundgesetz soll der Satz \"Verantwortung vor Gott\" bleiben."
+      },
+      "26": {
+        "frage": "Fachkräfte anwerben",
+        "beschreibung": "Deutschland soll weiter Fachkräfte aus dem Ausland holen."
+      },
+      "27": {
+        "frage": "Kernenergie nutzen",
+        "beschreibung": "Deutschland soll wieder Strom aus Atomkraft machen."
+      },
+      "28": {
+        "frage": "Keine Verbrenner-Autos mehr",
+        "beschreibung": "Ab 2035 sollen in der EU keine neuen Autos mit Benzin oder Diesel erlaubt sein."
+      },
+      "29": {
+        "frage": "Schuldenbremse abschaffen",
+        "beschreibung": "Die Schuldenbremse im Grundgesetz soll abgeschafft werden."
+      },
+      "30": {
+        "frage": "Marschflugkörper für die Ukraine",
+        "beschreibung": "Deutschland soll der Ukraine auch Marschflugkörper liefern."
+      },
+      "31": {
+        "frage": "Alle in die gesetzliche Krankenkasse",
+        "beschreibung": "Alle Menschen sollen in einer gesetzlichen Krankenkasse versichert sein."
+      },
+      "32": {
+        "frage": "Einbürgerung erleichtern",
+        "beschreibung": "Ausländer sollen leichter die deutsche Staatsbürgerschaft bekommen können."
+      },
+      "33": {
+        "frage": "Gendergerechte Sprache",
+        "beschreibung": "Öffentliche Einrichtungen sollen gendergerechte Sprache benutzen müssen."
+      },
+      "34": {
+        "frage": "Vermögenssteuer",
+        "beschreibung": "Auf hohe Vermögen soll wieder eine Steuer kommen."
+      },
+      "35": {
+        "frage": "Sanktionen gegen Russland",
+        "beschreibung": "Die Wirtschafts-Sanktionen gegen Russland sollen aufhören."
+      },
+      "36": {
+        "frage": "Bundeswehr bei UN-Missionen",
+        "beschreibung": "Die Bundeswehr soll weiter bei Friedens-Missionen der UN mitmachen."
+      },
+      "37": {
+        "frage": "Entwicklungs-Hilfe kürzen",
+        "beschreibung": "Deutschland soll weniger Geld für Entwicklungshilfe ausgeben."
+      },
+      "38": {
+        "frage": "Europa stärker vereinen",
+        "beschreibung": "Die Länder in Europa sollen enger zusammenarbeiten."
+      },
+      "39": {
+        "frage": "Bargeld",
+        "beschreibung": "Das Recht auf Bargeld soll ins Grundgesetz kommen."
+      },
+      "40": {
+        "frage": "Wahlalter: 16 Jahre",
+        "beschreibung": "Bei der Bundestagswahl sollen Menschen ab 16 Jahren wählen dürfen."
+      },
+      "41": {
+        "frage": "Firmen vergesellschaften",
+        "beschreibung": "Große Firmen sollen leichter in öffentliches Eigentum übergehen können."
+      },
+      "42": {
+        "frage": "Mehr Geld für die Bundeswehr",
+        "beschreibung": "Die Bundeswehr soll dauerhaft mehr als 2 % des Bruttoinlandsprodukts bekommen."
+      },
+      "43": {
+        "frage": "Asylverfahren außerhalb der EU",
+        "beschreibung": "Asylverfahren sollen auch außerhalb der EU möglich sein."
+      },
+      "44": {
+        "frage": "Cannabis erlaubt",
+        "beschreibung": "Cannabis soll in Deutschland erlaubt bleiben."
+      },
+      "45": {
+        "frage": "Grundsteuer auf Mieter umlegen",
+        "beschreibung": "Vermieter sollen die Grundsteuer weiter auf die Mieter umlegen dürfen."
+      },
+      "46": {
+        "frage": "Streikrecht einschränken",
+        "beschreibung": "Bei wichtigen Firmen wie Strom und Wasser soll das Streikrecht eingeschränkt werden."
+      },
+      "47": {
+        "frage": "Volksentscheide im Bund",
+        "beschreibung": "In Deutschland soll es auch beim Bund Volksentscheide geben."
+      },
+      "48": {
+        "frage": "Klimaneutralität bis 2045",
+        "beschreibung": "Deutschland soll das Ziel, bis 2045 klimaneutral zu sein, aufgeben."
+      },
+      "49": {
+        "frage": "Sozialleistungen für EU-Bürger",
+        "beschreibung": "EU-Bürger sollen erst nach 5 Jahren in Deutschland Sozialleistungen bekommen."
+      },
+      "50": {
+        "frage": "Sondervermögen Bundeswehr: erneuern",
+        "beschreibung": "Wenn das Sondervermögen für die Bundeswehr aufgebraucht ist, soll es neues Geld geben."
+      },
+      "51": {
+        "frage": "Keine Öl- und Gas-Heizungen",
+        "beschreibung": "Neue Heizungen sollen nicht nur mit Öl oder Gas laufen dürfen."
+      },
+      "52": {
+        "frage": "Mindestlohn: 15 Euro",
+        "beschreibung": "Der Mindestlohn soll bis 2026 auf 15 Euro pro Stunde steigen."
+      },
+      "53": {
+        "frage": "Parteien-Finanzierung kürzen",
+        "beschreibung": "Die Parteien sollen weniger Geld vom Staat bekommen."
+      }
+    },
+    "ltw-sachsen-anhalt-2026": {
+      "1": {
+        "frage": "Schulpflicht abschaffen?",
+        "beschreibung": "Soll die Schulpflicht in Sachsen-Anhalt abgeschafft werden? Dann müssten Kinder nicht mehr zur Schule gehen, sondern können zu Hause lernen."
+      },
+      "2": {
+        "frage": "Windkraft-Ausbau stoppen?",
+        "beschreibung": "Soll der Bau von Windrädern in Sachsen-Anhalt für eine Zeit gestoppt werden?"
+      },
+      "3": {
+        "frage": "Kitas kostenlos?",
+        "beschreibung": "Sollen alle Kitas in Sachsen-Anhalt ab dem ersten Kind kostenlos sein?"
+      },
+      "4": {
+        "frage": "Private Krankenhäuser verstaatlichen?",
+        "beschreibung": "Soll das Land Krankenhäuser, die in privater Hand sind, zurückkaufen können, wenn es Probleme gibt?"
+      },
+      "5": {
+        "frage": "Mehr Polizei?",
+        "beschreibung": "Soll die Polizei in Sachsen-Anhalt auf über 8.000 Mitarbeiter aufgestockt werden?"
+      },
+      "6": {
+        "frage": "Kostenloses Schulessen?",
+        "beschreibung": "Soll das Land das Mittagessen in allen Schulen ganz bezahlen?"
+      },
+      "7": {
+        "frage": "Förderschulen abschaffen?",
+        "beschreibung": "Sollen weniger Förderschulen geben? Sollen alle Kinder gemeinsam an normalen Schulen lernen?"
+      },
+      "8": {
+        "frage": "Kein Geld mehr für Kirchen?",
+        "beschreibung": "Soll Sachsen-Anhalt aufhören, den Kirchen Geld zu geben?"
+      },
+      "9": {
+        "frage": "AfD-Verbot prüfen?",
+        "beschreibung": "Soll Sachsen-Anhalt im Bundesrat ein AfD-Verbot prüfen lassen?"
+      },
+      "10": {
+        "frage": "Direkte Demokratie erleichtern?",
+        "beschreibung": "Sollen die Menschen leichter selbst über wichtige Fragen abstimmen können?"
+      },
+      "11": {
+        "frage": "Bürgerräte einführen?",
+        "beschreibung": "Sollen bei schwierigen Entscheidungen im Land Bürgerräte mitentscheiden?"
+      },
+      "12": {
+        "frage": "Kernenergie wieder einführen?",
+        "beschreibung": "Soll sich Sachsen-Anhalt im Bundesrat für Atomkraft einsetzen?"
+      },
+      "13": {
+        "frage": "Kohleausstieg stoppen?",
+        "beschreibung": "Soll der Ausstieg aus der Kohleenergie gestoppt werden?"
+      },
+      "14": {
+        "frage": "Solarparks stoppen?",
+        "beschreibung": "Soll der Bau neuer großer Solarparks gestoppt werden?"
+      },
+      "15": {
+        "frage": "Demokratie-Förderung kürzen?",
+        "beschreibung": "Soll das Land weniger Geld für Demokratie-Projekte und Parteien-Stiftungen ausgeben?"
+      },
+      "16": {
+        "frage": "Arbeitspflicht für Asylbewerber?",
+        "beschreibung": "Sollen alle Asylbewerber in Sachsen-Anhalt arbeiten müssen?"
+      },
+      "17": {
+        "frage": "Stipendien für Landärzte?",
+        "beschreibung": "Soll das Land Medizin-Studenten Geld geben, wenn sie danach auf dem Land arbeiten?"
+      },
+      "18": {
+        "frage": "Rundfunk-Verträge kündigen?",
+        "beschreibung": "Soll Sachsen-Anhalt die Verträge mit den Rundfunkanstalten kündigen?"
+      },
+      "19": {
+        "frage": "Tempolimit 130?",
+        "beschreibung": "Soll auf Autobahnen in Sachsen-Anhalt ein Tempolimit von 130 km/h gelten?"
+      },
+      "20": {
+        "frage": "Landesstraßen sanieren?",
+        "beschreibung": "Soll das Land 100 Millionen Euro für die Reparatur von Landesstraßen ausgeben?"
+      },
+      "21": {
+        "frage": "Landtag verkleinern?",
+        "beschreibung": "Soll der Landtag von 97 auf 83 Abgeordnete verkleinert werden?"
+      },
+      "22": {
+        "frage": "Eigene Wohnungs-Gesellschaft?",
+        "beschreibung": "Soll das Land eine eigene Firma gründen, die Wohnungen baut und vermietet?"
+      },
+      "23": {
+        "frage": "Kahlschlag verbieten?",
+        "beschreibung": "Soll es verboten sein, ganze Waldstücke im Land abzuholzen?"
+      },
+      "24": {
+        "frage": "Obergrenze für Flüchtlinge?",
+        "beschreibung": "Soll Sachsen-Anhalt festlegen, wie viele Flüchtlinge das Land pro Jahr aufnimmt?"
+      },
+      "25": {
+        "frage": "Gegen Altersarmut?",
+        "beschreibung": "Soll das Land ein Programm gegen Armut im Alter machen? Es soll 20 Millionen Euro pro Jahr kosten."
+      },
+      "26": {
+        "frage": "Mehr Geld für Hochschulen?",
+        "beschreibung": "Soll das Budget der Hochschulen um 10 Prozent erhöht werden?"
+      },
+      "27": {
+        "frage": "Jugend-Parlamente?",
+        "beschreibung": "Sollen alle Städte und Gemeinden Jugend-Parlamente einführen?"
+      },
+      "28": {
+        "frage": "Bodycams für alle Polizisten?",
+        "beschreibung": "Sollen alle Polizisten in Sachsen-Anhalt eine kleine Kamera am Körper tragen?"
+      },
+      "29": {
+        "frage": "Mehr Geld für Kultur?",
+        "beschreibung": "Soll das Land 15 Prozent mehr Geld für Kultur ausgeben?"
+      },
+      "30": {
+        "frage": "WLAN in allen öffentlichen Gebäuden?",
+        "beschreibung": "Soll es in allen öffentlichen Gebäuden wie Ämtern und Schulen kostenloses WLAN geben?"
+      },
+      "31": {
+        "frage": "Glyphosat verbieten?",
+        "beschreibung": "Soll das Pflanzengift Glyphosat auf Flächen des Landes verboten werden?"
+      },
+      "32": {
+        "frage": "Leere Läden managen?",
+        "beschreibung": "Soll das Land Städten helfen, leere Läden in der Innenstadt zu nutzen?"
+      },
+      "33": {
+        "frage": "Digitalisierung schneller?",
+        "beschreibung": "Soll das Land 50 Millionen Euro extra für die Digitalisierung der Verwaltung ausgeben?"
+      },
+      "34": {
+        "frage": "Mietpreisbremse verschärfen?",
+        "beschreibung": "Soll das Land die Mieten stärker begrenzen, wo sie schnell steigen?"
+      },
+      "35": {
+        "frage": "Schwimmbäder sanieren?",
+        "beschreibung": "Soll das Land ein Programm zur Sanierung von Schwimmbädern machen?"
+      },
+      "36": {
+        "frage": "Mehr Geld für Ehrenamt?",
+        "beschreibung": "Soll das Land doppelt so viel Geld für ehrenamtliche Helfer ausgeben?"
+      },
+      "37": {
+        "frage": "Frauenquote bei Firmen des Landes?",
+        "beschreibung": "Sollen bei Firmen des Landes 50 Prozent der Führungsposten an Frauen gehen?"
+      },
+      "38": {
+        "frage": "365-Euro-Ticket?",
+        "beschreibung": "Soll es in Sachsen-Anhalt ein Jahresticket für Bus und Bahn für 365 Euro geben? Das ist 1 Euro pro Tag."
+      },
+      "39": {
+        "frage": "Wahlalter 16?",
+        "beschreibung": "Sollen bei der Landtagswahl Menschen ab 16 Jahren wählen dürfen?"
+      },
+      "40": {
+        "frage": "Landesgartenschauen weiter fördern?",
+        "beschreibung": "Soll das Land Landesgartenschauen auch nach 2030 weiter fördern?"
+      }
+    },
+    "berlin-2026": {
+      "1": {
+        "frage": "Autoarme Innenstadt",
+        "beschreibung": "Sollen wichtige Straßen in der Berliner Innenstadt, zum Beispiel die Friedrichstraße, für Autos gesperrt werden? Stattdessen sollen Fußgänger und Fahrräder Platz bekommen."
+      },
+      "2": {
+        "frage": "Abitur nach 9 Jahren",
+        "beschreibung": "Sollen Berliner Schüler das Abitur wieder nach 9 Jahren machen statt nach 8 Jahren?"
+      },
+      "3": {
+        "frage": "Studiengebühren für Nicht-EU-Studenten",
+        "beschreibung": "Sollen Studenten aus Nicht-EU-Ländern in Berlin Studiengebühren zahlen?"
+      },
+      "4": {
+        "frage": "Kein Alkohol an Kriminalitäts-Orten",
+        "beschreibung": "Soll an bekannten Orten mit viel Kriminalität zeitweise kein Alkohol getrunken werden dürfen?"
+      },
+      "5": {
+        "frage": "Solaranlagen-Pflicht",
+        "beschreibung": "Soll bei der Reparatur großer Dächer eine Solaranlage Pflicht werden?"
+      },
+      "6": {
+        "frage": "Große Wohn-Firmen vergesellschaften",
+        "beschreibung": "Soll Berlin große Wohnungs-Firmen mit mehr als 3.000 Wohnungen in öffentliches Eigentum übernehmen?"
+      },
+      "7": {
+        "frage": "Tempelhofer Feld bebauen",
+        "beschreibung": "Soll am Rand des Tempelhofer Feldes gebaut werden, um bezahlbare Wohnungen zu schaffen?"
+      },
+      "8": {
+        "frage": "A100 weiterbauen?",
+        "beschreibung": "Soll der Bau der Autobahn A100 in Berlin gestoppt werden?"
+      },
+      "9": {
+        "frage": "Mehr Radwege",
+        "beschreibung": "Sollen auf Hauptstraßen Spuren für Autos und Parkplätze zu Radwegen umgebaut werden?"
+      },
+      "10": {
+        "frage": "29-Euro-Ticket",
+        "beschreibung": "Soll Berlin das 29-Euro-Ticket für Bus und Bahn weiter bezuschussen?"
+      },
+      "11": {
+        "frage": "Görlitzer Park: Zaun und Nachtsperre",
+        "beschreibung": "Soll der Görlitzer Park nachts geschlossen werden, um Drogen und Gewalt zu bekämpfen?"
+      },
+      "12": {
+        "frage": "Mehr Video-Überwachung",
+        "beschreibung": "Soll die Polizei an Orten mit viel Kriminalität mehr Kameras mit Gesichtserkennung einsetzen dürfen?"
+      },
+      "13": {
+        "frage": "Taser für die Berliner Polizei",
+        "beschreibung": "Sollen alle Polizisten in Berlin Taser bekommen?"
+      },
+      "14": {
+        "frage": "Lehrer verbeamten",
+        "beschreibung": "Sollen Lehrer an öffentlichen Schulen in Berlin weiter verbeamtet werden?"
+      },
+      "15": {
+        "frage": "Pflicht-Vorschuljahr bei Sprach-Problemen",
+        "beschreibung": "Sollen Kinder mit Sprach-Problemen ein verpflichtendes Vorschuljahr besuchen müssen?"
+      },
+      "16": {
+        "frage": "Kostenloses Schulessen",
+        "beschreibung": "Soll das Mittagessen an Grundschulen für alle Kinder kostenlos bleiben?"
+      },
+      "17": {
+        "frage": "Bezahlkarte ohne Bargeld",
+        "beschreibung": "Sollen Asylbewerber höchstens 50 Euro Bargeld pro Monat abheben können?"
+      },
+      "18": {
+        "frage": "Klimaneutral bis 2040",
+        "beschreibung": "Soll Berlin schon bis 2040 klimaneutral sein statt erst bis 2045?"
+      },
+      "19": {
+        "frage": "Mehr verkaufsoffene Sonntage",
+        "beschreibung": "Sollen Geschäfte in Berlin an mehr Sonntagen öffnen dürfen?"
+      },
+      "20": {
+        "frage": "Schutz für Clubs",
+        "beschreibung": "Soll Berlin einen Fonds einrichten, um Musik-Clubs zu schützen?"
+      },
+      "21": {
+        "frage": "Gas- und Fernwärme zurückkaufen",
+        "beschreibung": "Soll Berlin die Gas- und Fernwärme-Netze von privaten Firmen zurückkaufen?"
+      },
+      "22": {
+        "frage": "Senat darf mehr bestimmen",
+        "beschreibung": "Soll der Berliner Senat den Bezirken bei wichtigen Entscheidungen Vorschriften machen dürfen?"
+      },
+      "23": {
+        "frage": "Wahlalter 16 in Berlin",
+        "beschreibung": "Sollen bei der Berliner Wahl Menschen ab 16 Jahren wählen dürfen?"
+      },
+      "24": {
+        "frage": "Wahlrecht für Nicht-EU-Bürger",
+        "beschreibung": "Sollen Menschen ohne EU-Pass, die seit 5 Jahren in Berlin leben, bei Bezirks-Wahlen wählen dürfen?"
+      },
+      "25": {
+        "frage": "Mindestlohn bei öffentlichen Aufträgen",
+        "beschreibung": "Sollen Firmen bei öffentlichen Aufträgen mindestens 15 Euro pro Stunde zahlen?"
+      },
+      "26": {
+        "frage": "Universitäten dürfen ausschließen",
+        "beschreibung": "Sollen Universitäten Studenten bei schweren Straftaten von der Uni schmeißen können?"
+      },
+      "27": {
+        "frage": "Weniger Ferienwohnungen",
+        "beschreibung": "Soll es strengere Regeln für Ferienwohnungen wie Airbnb geben?"
+      },
+      "28": {
+        "frage": "Straßenbahn in den Westen",
+        "beschreibung": "Soll Berlin zuerst die Straßenbahn ausbauen, bevor neue U-Bahnen gebaut werden?"
+      },
+      "29": {
+        "frage": "Parkgebühren überall",
+        "beschreibung": "Soll in allen dicht besiedelten Gebieten Berlins Parken Geld kosten?"
+      },
+      "30": {
+        "frage": "Stärkere Polizei-Beauftragte",
+        "beschreibung": "Soll die unabhängige Stelle, die Beschwerden über die Polizei prüft, mehr Macht und Geld bekommen?"
+      },
+      "31": {
+        "frage": "Keine Noten in der Grundschule",
+        "beschreibung": "Sollen Grundschüler in den Klassen 1 bis 4 keine Ziffern-Noten bekommen, sondern Texte?"
+      },
+      "32": {
+        "frage": "City-Maut",
+        "beschreibung": "Sollen Autofahrer in der Berliner Innenstadt Maut zahlen?"
+      },
+      "33": {
+        "frage": "Keine Schottergärten, grüne Dächer",
+        "beschreibung": "Sollen Schottergärten verboten werden? Sollen neue Gebäude begrünte Dächer bekommen?"
+      },
+      "34": {
+        "frage": "Geld für freie Kultur",
+        "beschreibung": "Soll Berlin der freien Kultur-Szene weiter das ganze Geld geben, ohne zu kürzen?"
+      },
+      "35": {
+        "frage": "Alle Krankenhäuser in öffentlicher Hand",
+        "beschreibung": "Soll Berlin garantieren, dass alle Standorte von Vivantes und der Charité offen bleiben?"
+      },
+      "36": {
+        "frage": "Hundesteuer abschaffen",
+        "beschreibung": "Soll die Steuer für Hunde in Berlin abgeschafft werden?"
+      },
+      "37": {
+        "frage": "Kein Böllern in Berlin",
+        "beschreibung": "Soll privates Feuerwerk zu Silvester in ganz Berlin verboten werden?"
+      },
+      "38": {
+        "frage": "Mietendeckel wieder einführen",
+        "beschreibung": "Soll Berlin die Möglichkeit bekommen, die Mieten wieder zu deckeln?"
+      },
+      "39": {
+        "frage": "Kameras an Schulen",
+        "beschreibung": "Sollen Schulen Schulhöfe und Eingänge mit Kameras überwachen dürfen?"
+      },
+      "40": {
+        "frage": "Cannabis-Verkauf testen",
+        "beschreibung": "Soll Berlin Modell-Projekte machen, in denen Erwachsene Cannabis legal kaufen können?"
+      },
+      "41": {
+        "frage": "Barrierefreier Nahverkehr",
+        "beschreibung": "Soll der Ausbau von Aufzügen an Bahnhöfen wichtiger sein als neue U-Bahn-Linien?"
+      },
+      "42": {
+        "frage": "Housing First ausbauen",
+        "beschreibung": "Soll Berlin doppelt so viel Geld ausgeben, damit obdachlose Menschen direkt eine Wohnung bekommen?"
+      },
+      "43": {
+        "frage": "Islamischer Religionsunterricht",
+        "beschreibung": "Soll es an Berliner Schulen islamischen Religionsunterricht als reguläres Fach geben?"
+      },
+      "44": {
+        "frage": "A100 zurückbauen",
+        "beschreibung": "Sollen fertige Teile der A100 zu normalen Stadtstraßen werden?"
+      },
+      "45": {
+        "frage": "Keine Pferdekutschen",
+        "beschreibung": "Sollen Pferdekutschen in Berlin verboten werden, um die Tiere zu schützen?"
+      },
+      "46": {
+        "frage": "Kiezblocks in allen Bezirken",
+        "beschreibung": "Sollen Wohnviertel mit Kiezblocks vor Durchgangsverkehr geschützt werden?"
+      },
+      "47": {
+        "frage": "Kein Gendern in der Verwaltung",
+        "beschreibung": "Soll Gendern mit Sternchen oder Unterstrich in Berliner Behörden und Schulen verboten werden?"
+      },
+      "48": {
+        "frage": "Gemeinschaftsschulen statt Gymnasien",
+        "beschreibung": "Soll das Schulsystem in Berlin schrittweise auf Gemeinschaftsschulen umgestellt werden?"
+      },
+      "49": {
+        "frage": "Härtere Abschiebungen",
+        "beschreibung": "Soll Berlin Menschen, die ausreisen müssen, konsequenter abschieben?"
+      },
+      "50": {
+        "frage": "Vivantes-Tochter-Firmen zurückholen",
+        "beschreibung": "Sollen die ausgegliederten Firmen von Charité und Vivantes wieder in die Kliniken eingegliedert werden?"
+      },
+      "51": {
+        "frage": "Grunderwerbssteuer senken",
+        "beschreibung": "Soll die Steuer beim Kauf der ersten eigenen Wohnung gesenkt werden?"
+      },
+      "52": {
+        "frage": "Kein Tanzverbot",
+        "beschreibung": "Soll das Tanzverbot an stillen Feiertagen in Berlin abgeschafft werden?"
+      }
+    },
+    "mv-2026": {
+      "1": {
+        "frage": "Größere Abstände für Windräder",
+        "beschreibung": "Soll der Abstand von Windrädern zu Wohnhäusern weiter vergrößert werden?"
+      },
+      "2": {
+        "frage": "Kitas komplett kostenlos",
+        "beschreibung": "Soll das Land alle Elternbeiträge für Krippe und Kita übernehmen, damit die Betreuung kostenlos ist?"
+      },
+      "3": {
+        "frage": "Lehrer verbeamten",
+        "beschreibung": "Sollen alle neuen Lehrer in MV verbeamtet werden?"
+      },
+      "4": {
+        "frage": "Kleine Krankenhäuser erhalten",
+        "beschreibung": "Soll die Landesregierung mit Geld verhindern, dass kleine Krankenhäuser auf dem Land schließen?"
+      },
+      "5": {
+        "frage": "Abitur nach 9 Jahren",
+        "beschreibung": "Sollen Gymnasien in MV wieder zum Abitur nach 9 Jahren zurückkehren, damit es weniger Druck gibt?"
+      },
+      "6": {
+        "frage": "365-Euro-Ticket",
+        "beschreibung": "Soll es in MV ein Jahresticket für Bus und Bahn für 365 Euro geben?"
+      },
+      "7": {
+        "frage": "Obergrenze für Flüchtlinge",
+        "beschreibung": "Soll das Land festlegen, wie viele Flüchtlinge jede Gemeinde aufnehmen muss, damit nichts überlastet wird?"
+      },
+      "8": {
+        "frage": "Mehr Befugnisse für die Polizei",
+        "beschreibung": "Soll die Polizei in MV mehr Überwachung einsetzen dürfen, zum Beispiel automatische Kennzeichen-Erfassung?"
+      },
+      "9": {
+        "frage": "Eigene Wohnungs-Gesellschaft",
+        "beschreibung": "Soll MV eine eigene Firma gründen, die bezahlbare Mietwohnungen baut und vermietet?"
+      },
+      "10": {
+        "frage": "Läden länger am Sonntag offen",
+        "beschreibung": "Sollen Geschäfte in Tourismus-Regionen an Sonn- und Feiertagen länger öffnen dürfen?"
+      },
+      "11": {
+        "frage": "Mehr Öko-Landwirtschaft",
+        "beschreibung": "Soll das Land die Umstellung auf Bio-Landwirtschaft mehr fördern, um 30 Prozent Öko-Fläche zu erreichen?"
+      },
+      "12": {
+        "frage": "Volksentscheide erleichtern",
+        "beschreibung": "Sollen die Menschen in MV leichter Volksbegehren und Volksentscheide machen können?"
+      },
+      "13": {
+        "frage": "Mehr Geld für Tourismus",
+        "beschreibung": "Soll das Land mehr Geld für Tourismus-Werbung und Urlaubs-Orte ausgeben?"
+      },
+      "14": {
+        "frage": "Behörden digital",
+        "beschreibung": "Soll das Land feste Fristen setzen, bis wann alle Anträge online möglich sein müssen?"
+      },
+      "15": {
+        "frage": "Mindestlohn bei öffentlichen Aufträgen",
+        "beschreibung": "Sollen öffentliche Aufträge nur an Firmen gehen, die einen hohen Mindestlohn zahlen?"
+      },
+      "16": {
+        "frage": "Weniger Holz einschlagen",
+        "beschreibung": "Soll in den Wäldern des Landes weniger Holz für den Verkauf abgeholzt werden?"
+      },
+      "17": {
+        "frage": "Keine Windräder im Wald",
+        "beschreibung": "Soll der Bau von Windrädern in den Wäldern von MV verboten werden?"
+      },
+      "18": {
+        "frage": "LNG-Terminal stoppen",
+        "beschreibung": "Soll sich die Landesregierung dafür einsetzen, dass das LNG-Terminal in Mukran schnellstmöglich stoppt?"
+      },
+      "19": {
+        "frage": "Moore wieder vernässen",
+        "beschreibung": "Sollen Moore nur wieder nass gemacht werden, wenn die Eigentümer freiwillig zustimmen?"
+      },
+      "20": {
+        "frage": "Kein Gendern in Behörden",
+        "beschreibung": "Soll Gendern mit Sternchen oder Binnen-I in Behörden und Schulen von MV verboten werden?"
+      },
+      "21": {
+        "frage": "Südbahn wieder aktiv",
+        "beschreibung": "Soll die Bahnstrecke Parchim–Malchow–Neubrandenburg wieder regelmäßig für Fahrgäste fahren?"
+      },
+      "22": {
+        "frage": "Tarifverträge bei öffentlichen Aufträgen",
+        "beschreibung": "Sollen öffentliche Aufträge nur an Firmen gehen, die nach Tarifvertrag bezahlen?"
+      },
+      "23": {
+        "frage": "Bezahlkarte ohne Bargeld",
+        "beschreibung": "Sollen Asylbewerber mit der Bezahlkarte gar kein Bargeld mehr abheben können?"
+      },
+      "24": {
+        "frage": "Noten ab der 2. Klasse",
+        "beschreibung": "Sollen Schüler in MV schon ab der 2. Klasse Ziffern-Noten bekommen statt Texten?"
+      },
+      "25": {
+        "frage": "Krankenhäuser zurück in öffentliche Hand",
+        "beschreibung": "Soll das Land privaten Krankenhäusern helfen, die in öffentliche Trägerschaft übergehen?"
+      },
+      "26": {
+        "frage": "Kostenloses Schulessen",
+        "beschreibung": "Soll das Land das tägliche Mittagessen für alle Grundschulkinder bezahlen?"
+      },
+      "27": {
+        "frage": "Weniger Ferienwohnungen",
+        "beschreibung": "Sollen Gemeinden an der Küste festlegen dürfen, wie viele Ferienwohnungen es geben darf?"
+      },
+      "28": {
+        "frage": "Taser für die Polizei",
+        "beschreibung": "Sollen alle Polizisten im Streifendienst in MV Taser bekommen?"
+      },
+      "29": {
+        "frage": "Mehr Schutzgebiete in der Ostsee",
+        "beschreibung": "Sollen die Schutzgebiete in der Ostsee vergrößert werden, mit Verboten für Schiffe und Fischer?"
+      },
+      "30": {
+        "frage": "Förderschulen erhalten",
+        "beschreibung": "Sollen Förderschulen in MV erhalten bleiben statt aufgelöst zu werden?"
+      },
+      "31": {
+        "frage": "Eigene Abschiebe-Haft in MV",
+        "beschreibung": "Soll MV eine eigene Einrichtung für Abschiebe-Haft bauen?"
+      },
+      "32": {
+        "frage": "Meister-Prämie erhöhen",
+        "beschreibung": "Soll das Land die Prämie für Handwerks-Meister, die sich selbstständig machen, deutlich erhöhen?"
+      },
+      "33": {
+        "frage": "Verfassungsschutz abschaffen",
+        "beschreibung": "Soll der Verfassungsschutz in MV komplett abgeschafft werden?"
+      }
+    }
+  }
+}

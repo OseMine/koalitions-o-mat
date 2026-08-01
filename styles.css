@@ -84,6 +84,15 @@ body {
 }
 .theme-toggle:hover, .github-link:hover { border-color: var(--primary); background: var(--primary-container); color: var(--primary); }
 
+.simple-lang-toggle {
+    height: 40px; padding: 0 14px; border-radius: 999px; display: inline-flex; align-items: center; gap: 6px;
+    background: var(--surface-variant); border: 1.5px solid var(--outline); cursor: pointer;
+    color: var(--on-surface-variant); font-family: var(--font); font-size: 0.85rem; font-weight: 500;
+    transition: all 0.2s; flex-shrink: 0; white-space: nowrap;
+}
+.simple-lang-toggle:hover { border-color: var(--primary); color: var(--primary); background: var(--primary-container); }
+.simple-lang-toggle.active { background: var(--primary); border-color: var(--primary); color: var(--on-primary); }
+
 /* ===== Election Bar ===== */
 .election-bar {
     display: flex; align-items: center; gap: 10px; padding: 10px 16px;

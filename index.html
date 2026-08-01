@@ -12,13 +12,14 @@
     <div id="loadingOverlay" class="loading-overlay">
         <div style="text-align: center;">
             <div class="spinner"></div>
-            <div class="loading-text">Daten werden geladen...</div>
+            <div class="loading-text" data-i18n="loading">Daten werden geladen...</div>
         </div>
     </div>
     <div class="container">
         <div class="header-row">
             <h1>Koalitions-O-Mat</h1>
             <div class="header-right">
+                <button type="button" id="simpleLangToggle" class="simple-lang-toggle" onclick="toggleSimpleLanguage()" aria-label="Einfache Sprache umschalten">✏️ Einfache Sprache</button>
                 <button type="button" id="themeToggle" class="theme-toggle" onclick="toggleTheme()" aria-label="Theme umschalten">💻</button>
                 <a href="https://github.com/OseMine/koalitions-o-mat" target="_blank" class="github-link" aria-label="Quellcode auf GitHub">
                     <svg width="22" height="22" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
@@ -27,22 +28,22 @@
         </div>
 
         <div class="election-bar">
-            <span class="election-label">Wahl:</span>
+            <span class="election-label" data-i18n="electionLabel">Wahl:</span>
             <div class="election-toggles" id="globalElectionToggles"></div>
         </div>
 
         <!-- ===== Initial Welcome Screen ===== -->
         <div id="welcomeScreen" class="welcome-screen">
             <div class="welcome-icon">🗳️</div>
-            <h2>Willkommen beim Koalitions-O-Mat</h2>
-            <p>Finden Sie heraus, welche Partei und welche Koalition am besten zu Ihnen passt.</p>
+            <h2 data-i18n="welcomeTitle">Willkommen beim Koalitions-O-Mat</h2>
+            <p data-i18n="welcomeSubtitle">Finden Sie heraus, welche Partei und welche Koalition am besten zu Ihnen passt.</p>
             <div class="welcome-steps">
-                <div class="welcome-step"><span class="ws-num">1</span><span>Wahl auswählen</span></div>
-                <div class="welcome-step"><span class="ws-num">2</span><span>Fragen beantworten</span></div>
-                <div class="welcome-step"><span class="ws-num">3</span><span>Ergebnis entdecken</span></div>
+                <div class="welcome-step"><span class="ws-num">1</span><span data-i18n="step1">Wahl auswählen</span></div>
+                <div class="welcome-step"><span class="ws-num">2</span><span data-i18n="step2">Fragen beantworten</span></div>
+                <div class="welcome-step"><span class="ws-num">3</span><span data-i18n="step3">Ergebnis entdecken</span></div>
             </div>
-            <button type="button" class="welcome-start" onclick="startTestWithDefaultElection()">Test starten</button>
-            <p class="welcome-hint">Klicken Sie auf eine Wahl oben, um zu starten.</p>
+            <button type="button" class="welcome-start" onclick="startTestWithDefaultElection()" data-i18n="startTest">Test starten</button>
+            <p class="welcome-hint" data-i18n="welcomeHint">Klicken Sie auf eine Wahl oben, um zu starten.</p>
         </div>
 
         <!-- ===== Main App (hidden until election selected) ===== -->
@@ -51,25 +52,25 @@
             <!-- ===== Election info bar ===== -->
             <div class="election-info" id="electionInfo">
                 <span class="election-name" id="electionNameDisplay"></span>
-                <button class="btn-ghost" id="changeElectionBtn" onclick="showElectionSelector()">Wechseln</button>
+                <button class="btn-ghost" id="changeElectionBtn" onclick="showElectionSelector()" data-i18n="changeElection">Wechseln</button>
             </div>
 
             <div class="tabs">
-                <button type="button" class="tab-button active" data-tab="test">Parteien-Test</button>
-                <button type="button" class="tab-button" data-tab="koalitionen">Koalitionen</button>
-                <button type="button" class="tab-button" data-tab="daten">Daten &amp; Charts</button>
+                <button type="button" class="tab-button active" data-tab="test" data-i18n="tabTest">Parteien-Test</button>
+                <button type="button" class="tab-button" data-tab="koalitionen" data-i18n="tabKoalitionen">Koalitionen</button>
+                <button type="button" class="tab-button" data-tab="daten" data-i18n="tabDaten">Daten &amp; Charts</button>
             </div>
 
             <!-- ===== Test Tab ===== -->
             <div id="test-content" class="tab-content active">
                 <div class="test-container">
-                    <p class="test-intro">Beantworten Sie die Fragen und finden Sie heraus, welche Partei am besten zu Ihnen passt.</p>
+                    <p class="test-intro" data-i18n="testIntro">Beantworten Sie die Fragen und finden Sie heraus, welche Partei am besten zu Ihnen passt.</p>
                     <div id="questionContainer" class="question-container"></div>
                     <div class="test-controls">
-                        <button id="prevQuestion" onclick="showPreviousQuestion()" disabled>← Zurück</button>
-                        <button id="skipQuestion" onclick="skipQuestion()" class="btn-ghost">Überspringen</button>
-                        <button id="nextQuestion" onclick="showNextQuestion()">Weiter →</button>
-                        <button id="showResults" onclick="showTestResults()" style="display:none">Ergebnis anzeigen</button>
+                        <button id="prevQuestion" onclick="showPreviousQuestion()" disabled data-i18n="back">← Zurück</button>
+                        <button id="skipQuestion" onclick="skipQuestion()" class="btn-ghost" data-i18n="skip">Überspringen</button>
+                        <button id="nextQuestion" onclick="showNextQuestion()" data-i18n="next">Weiter →</button>
+                        <button id="showResults" onclick="showTestResults()" style="display:none" data-i18n="showResults">Ergebnis anzeigen</button>
                     </div>
                     <div id="testResults" class="test-results"></div>
                 </div>
@@ -80,28 +81,28 @@
                 <div class="filter-options">
                     <div class="filter-row">
                         <label>
-                            <span>Mindestübereinstimmung:</span>
+                            <span data-i18n="minMatch">Mindestübereinstimmung:</span>
                             <input type="range" id="minMatch" min="0" max="100" value="0" step="5" oninput="updateKoalitionen()">
                             <span id="minMatchLabel">0%</span>
                         </label>
                         <label>
-                            <span>Koalitionsart:</span>
+                            <span data-i18n="coalitionType">Koalitionsart:</span>
                             <select id="coalitionType" onchange="updateKoalitionen()">
-                                <option value="mehrheit">Mehrheit (>50%)</option>
-                                <option value="minderheit">Minderheit (<50%)</option>
-                                <option value="beide">Alle</option>
+                                <option value="mehrheit" data-i18n="typeMajority">Mehrheit (>50%)</option>
+                                <option value="minderheit" data-i18n="typeMinority">Minderheit (<50%)</option>
+                                <option value="beide" data-i18n="typeAll">Alle</option>
                             </select>
                         </label>
                         <label>
-                            <span>Partei filtern:</span>
+                            <span data-i18n="filterParty">Partei filtern:</span>
                             <select id="partyFilter" onchange="updateKoalitionen()">
-                                <option value="">Alle Parteien</option>
+                                <option value="" data-i18n="allParties">Alle Parteien</option>
                             </select>
                         </label>
                     </div>
                     <div class="filter-row" style="margin-top:10px">
                         <label style="flex:1">
-                            <span>Parteien ausschließen:</span>
+                            <span data-i18n="excludeParties">Parteien ausschließen:</span>
                             <div class="party-checkboxes" id="excludePartiesCheckboxes"></div>
                         </label>
                     </div>
@@ -115,33 +116,33 @@
 
                 <div class="chart-grid">
                     <div class="chart-card wide">
-                        <h3>Umfragewerte</h3>
+                        <h3 data-i18n="chartPoll">Umfragewerte</h3>
                         <div class="chart-container"><div id="partyOverviewChart"></div></div>
                     </div>
                     <div class="chart-card">
-                        <h3>Sitzverteilung</h3>
+                        <h3 data-i18n="chartSeats">Sitzverteilung</h3>
                         <div class="chart-container"><div id="seatChart"></div></div>
                     </div>
                     <div class="chart-card">
-                        <h3>Koalitionspotential</h3>
+                        <h3 data-i18n="chartCoalitionPotential">Koalitionspotential</h3>
                         <div class="chart-container"><div id="coalitionPotentialChart"></div></div>
                     </div>
                     <div class="chart-card wide">
-                        <h3>Parteipositionen nach Themen</h3>
+                        <h3 data-i18n="chartPositions">Parteipositionen nach Themen</h3>
                         <div class="chart-container"><div id="partyPositionsChart"></div></div>
                     </div>
                     <div class="chart-card wide">
-                        <h3>Ihre Themenverteilung</h3>
+                        <h3 data-i18n="chartTopics">Ihre Themenverteilung</h3>
                         <div class="chart-container"><div id="topicDistributionChart"></div></div>
                     </div>
                 </div>
 
                 <div class="comparison-section">
-                    <h3>Parteien im Vergleich</h3>
+                    <h3 data-i18n="comparisonTitle">Parteien im Vergleich</h3>
                     <div class="filter-options compact">
                         <div class="filter-row">
                             <label>
-                                <span>Parteien auswählen:</span>
+                                <span data-i18n="selectParties">Parteien auswählen:</span>
                                 <div class="party-checkboxes" id="comparePartiesCheckboxes"></div>
                             </label>
                         </div>
