@@ -1,12 +1,6 @@
 {
   "elections": [
     {
-      "id": "btw2025",
-      "name": "Bundestagswahl 2025 (Ergebnis)",
-      "type": "Bundestagswahl",
-      "year": 2025
-    },
-    {
       "id": "btw2029",
       "name": "Bundestagswahl 2029 (Umfrage)",
       "type": "Bundestagswahl",

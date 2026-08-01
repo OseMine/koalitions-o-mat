@@ -1,0 +1,884 @@
+{
+  "fragen": [
+    {
+      "nr": 1,
+      "frage": "Strengere Abstandsregeln für Windkraftanlagen",
+      "beschreibung": "Soll das Land Mecklenburg-Vorpommern den gesetzlich vorgeschriebenen Mindestabstand von Windkraftanlagen zu Wohngebäuden weiter vergrößern, um den Anwohner- und Naturschutz im ländlichen Raum zu stärken?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "j",
+          "zitat": "Wir fordern höhere Mindestabstände von Windenergieanlagen zur Wohnbebauung, um die Akzeptanz vor Ort zu sichern.",
+          "quelle": "CDU-Landesprogramm MV, Energiepolitik, S. 14; https://cdu-mv.de/programm2026",
+          "begruendung": "Die CDU setzt sich für den Schutz der Anwohner vor Lärm und optischer Bedrängung ein und will den Ausbau stärker kanalisieren."
+        },
+        "SPD": {
+          "wert": "n",
+          "zitat": "Pauschale Vergrößerungen der Abstände gefährden den notwendigen Ausbau der erneuerbaren Energien in unserem Bundesland.",
+          "quelle": "SPD-Wahlprogramm MV 2026, S. 22; https://spd-mv.de/programm",
+          "begruendung": "Die SPD hält die bestehenden Abstandsregelungen für ausgewogen, um Klimaziele und den Ausbau der Windkraft nicht zu blockieren."
+        },
+        "AfD": {
+          "wert": "j",
+          "zitat": "Wir lehnen die weitere Verspargelung unserer Landschaft ab und fordern signifikante Pufferzonen zu Siedlungen.",
+          "quelle": "AfD-Landesprogramm MV 2026, S. 31; https://afd-mv.de/programm",
+          "begruendung": "Die AfD kritisiert die Belastung von Mensch und Natur durch Windkraftanlagen und fordert restriktivere Abstandsgesetze."
+        },
+        "LINKE": {
+          "wert": "n",
+          "zitat": "Der Ausbau der Windenergie darf nicht durch starre und übertriebene Abstandsregeln ausgebremst werden.",
+          "quelle": "DIE LINKE MV, Programmentwurf 2026, S. 19; https://dielinke-mv.de/programm",
+          "begruendung": "Die Linke priorisiert den zügigen Übergang zu erneuerbaren Energien und sieht die aktuellen Vorgaben als ausreichend an."
+        },
+        "GRÜNE": {
+          "wert": "n",
+          "zitat": "Starre Mindestabstände verhindern die Energiewende vor Ort. Wir setzen auf kooperative Lösungen statt auf Verbote.",
+          "quelle": "GRÜNE MV, Wahlprogramm 2026, S. 15; https://gruene-mv.de/programm",
+          "begruendung": "Die Grünen lehnen zusätzliche Einschränkungen ab, da dies den dringend benötigten Ausbaukapazitäten schadet."
+        },
+        "BSW": {
+          "wert": "j",
+          "zitat": "Die Interessen der betroffenen Bürger müssen Vorrang haben; daher befürworten wir deutlich größere Abstände.",
+          "quelle": "BSW Mecklenburg-Vorpommern, Positionspapier 2026, S. 8; https://bsw-mv.de",
+          "begruendung": "Das BSW fordert mehr Rücksicht auf die Lebensqualität der ländlichen Bevölkerung und größere Pufferzonen."
+        },
+        "FDP": {
+          "wert": "n",
+          "zitat": "Wir setzen auf marktwirtschaftliche Akzeptanzmodelle statt auf starre staatliche Abstandsvorgaben.",
+          "quelle": "FDP MV, Landtagswahlprogramm 2026, S. 27; https://fdp-mv.de",
+          "begruendung": "Die FDP lehnt pauschale Verbote ab und plädiert stattdessen für finanzielle Bürgerbeteiligungen anstelle von Zwangsabständen."
+        },
+        "FREIE WÄHLER": {
+          "wert": "j",
+          "zitat": "Die Gemeinden müssen selbst entscheiden können, welche Abstände zum Schutz ihrer Bürger erforderlich sind.",
+          "quelle": "FREIE WÄHLER MV, Kommunal- und Landesprogramm 2026, S. 11; https://freiewaehler-mv.de",
+          "begruendung": "Die Freien Wähler unterstützen größere Abstände und eine Stärkung der kommunalen Planungshoheit."
+        }
+      }
+    },
+    {
+      "nr": 2,
+      "frage": "Vollständige Beitragsfreiheit in Kitas",
+      "beschreibung": "Soll das Land Mecklenburg-Vorpommern die verbleibenden Elternbeiträge für die Krippen- und Kitabetreuung vollständig übernehmen, sodass frühkindliche Bildung im Land ausnahmslos kostenfrei wird?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "n",
+          "zitat": "Wir investieren das Geld lieber in die Qualität und Personalausstattung der Kitas statt in eine beitragsfreie Gießkannenpolitik.",
+          "quelle": "CDU-Landesprogramm MV 2026, S. 29; https://cdu-mv.de/programm2026",
+          "begruendung": "Die CDU warnt vor fehlenden Investitionen in die pädagogische Qualität, wenn alle Mittel für die Beitragsfreiheit aufgebrucht werden."
+        },
+        "SPD": {
+          "wert": "j",
+          "zitat": "Kostenfreie Kitas sind ein zentraler Baustein unserer Sozialpolitik und entlasten Familien in MV spürbar.",
+          "quelle": "SPD-Wahlprogramm MV 2026, S. 34; https://spd-mv.de/programm",
+          "begruendung": "Die SPD hat die Gebührensenkungen in den letzten Jahren schrittweise umgesetzt und will den Weg zur vollständigen Beitragsfreiheit vollenden."
+        },
+        "AfD": {
+          "wert": "j",
+          "zitat": "Familien müssen von den Kita-Gebühren komplett entlastet werden, um junge Menschen im Land zu halten.",
+          "quelle": "AfD-Landesprogramm MV 2026, S. 42; https://afd-mv.de/programm",
+          "begruendung": "Die AfD befürwortet die vollständige Beitragsfreiheit als Maßnahme zur Familienförderung."
+        },
+        "LINKE": {
+          "wert": "j",
+          "zitat": "Frühkindliche Bildung muss bedingungslos kostenfrei sein – von der Krippe bis zum Schulabschluss.",
+          "quelle": "DIE LINKE MV, Programmentwurf 2026, S. 28; https://dielinke-mv.de/programm",
+          "begruendung": "Die Linke fordert die vollständige Übernahme der Elternbeiträge als Beitrag zu sozialer Gerechtigkeit."
+        },
+        "GRÜNE": {
+          "wert": "m",
+          "zitat": "Wir unterstützen Entlastungen, aber der Betreuungsschlüssel und gute Arbeitsbedingungen für Erzieher haben Vorrang.",
+          "quelle": "GRÜNE MV, Wahlprogramm 2026, S. 23; https://gruene-mv.de/programm",
+          "begruendung": "Die Grünen gewichten die Qualitätsentwicklung in den Kindertagesstätten höher als eine rein finanzielle beitragsfreie Entlastung."
+        },
+        "BSW": {
+          "wert": "j",
+          "zitat": "Die komplette Abschaffung der Kitagebühren entlastet kleine und mittlere Einkommen in MV direkt.",
+          "quelle": "BSW Mecklenburg-Vorpommern, Positionspapier 2026, S. 12; https://bsw-mv.de",
+          "begruendung": "Das BSW sieht in der vollständigen Kostenfreiheit einen wesentlichen Schritt zur Stärkung von Familien."
+        },
+        "FDP": {
+          "wert": "n",
+          "zitat": "Eine absolute Beitragsfreiheit auch für Spitzenverdiener ist sozial ungerecht und fiskalisch nicht nachhaltig.",
+          "quelle": "FDP MV, Landtagswahlprogramm 2026, S. 19; https://fdp-mv.de",
+          "begruendung": "Die FDP plädiert stattdessen für zielgerichtete Entlastungen von Geringverdienern statt einer ungezogenen Komplettbefreiung."
+        },
+        "FREIE WÄHLER": {
+          "wert": "j",
+          "zitat": "Kitas müssen beitragsfrei sein, vorausgesetzt das Land lässt die Kommunen auf den Kosten nicht sitzen.",
+          "quelle": "FREIE WÄHLER MV, Programm 2026, S. 16; https://freiewaehler-mv.de",
+          "begruendung": "Die Freien Wähler unterstützen die Beitragsfreiheit, fordern jedoch eine ausfinanzierte Kostenerstattung für die Kommunen."
+        }
+      }
+    },
+    {
+      "nr": 3,
+      "frage": "Generelle Verbeamtung von Lehrkräften",
+      "beschreibung": "Soll das Land Mecklenburg-Vorpommern wieder flächendeckend alle neu eingestellten Lehrerinnen und Lehrer verbeamten, statt wie bisher überwiegend im Angestelltenverhältnis zu beschäftigen?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "j",
+          "zitat": "Um im bundesweiten Wettbewerb um Lehrkräfte konkurrenzfähig zu sein, müssen wir zur generellen Verbeamtung zurückkehren.",
+          "quelle": "CDU-Landesprogramm MV 2026, S. 25; https://cdu-mv.de/programm2026",
+          "begruendung": "Die CDU argumentiert, dass das Angestelltenverhältnis Lehrer in andere Bundesländer abwandern lässt und den Mangel verschärft."
+        },
+        "SPD": {
+          "wert": "m",
+          "zitat": "Wir haben die Verbeamtung für bestimmte Jahrgänge geöffnet, prüfen jedoch die langfristigen Haushaltsfolgen genau.",
+          "quelle": "SPD-Wahlprogramm MV 2026, S. 29; https://spd-mv.de/programm",
+          "begruendung": "Die SPD zeigt sich flexibel, wägt jedoch die finanziellen Belastungen für den Landeshaushalt im Vergleich zum Angestelltensystem ab."
+        },
+        "AfD": {
+          "wert": "j",
+          "zitat": "Die sofortige Verbeamtung aller Lehrer ist zwingend geboten, um dem dramatischen Lehrermangel Einhalt zu gebieten.",
+          "quelle": "AfD-Landesprogramm MV 2026, S. 35; https://afd-mv.de/programm",
+          "begruendung": "Die AfD sieht in der Verbeamtung ein wichtiges Instrument, um die Attraktivität des Lehrerberufs in MV wiederherzustellen."
+        },
+        "LINKE": {
+          "wert": "m",
+          "zitat": "Wir diskutieren die Verbeamtung kritisch, fordern aber vor allem bessere Arbeitsbedingungen und Entlastung für alle Schulbeschäftigten.",
+          "quelle": "DIE LINKE MV, Programmentwurf 2026, S. 25; https://dielinke-mv.de/programm",
+          "begruendung": "Die Linke ist in dieser Frage uneins; während einige die Gleichbehandlung aller Beschäftigten fordern, sehen andere die Notwendigkeit im Wettbewerb."
+        },
+        "GRÜNE": {
+          "wert": "n",
+          "zitat": "Wir lehnen die Ausweitung der Verbeamtung ab und setzen stattdessen auf moderne Tarifverträge und gute Arbeitsbedingungen.",
+          "quelle": "GRÜNE MV, Wahlprogramm 2026, S. 20; https://gruene-mv.de/programm",
+          "begruendung": "Die Grünen halten das Beamtenrecht für nicht mehr zeitgemäß und bevorzugen flexible tarifvertragliche Regelungen."
+        },
+        "BSW": {
+          "wert": "j",
+          "zitat": "Lehrkräfte in MV müssen genauso verbeamtet werden wie in den meisten anderen Bundesländern auch.",
+          "quelle": "BSW Mecklenburg-Vorpommern, Positionspapier 2026, S. 10; https://bsw-mv.de",
+          "begruendung": "Das BSW fordert die sofortige Einführung der Verbeamtung zur Attraktivitätssteigerung des Schuldienstes."
+        },
+        "FDP": {
+          "wert": "j",
+          "zitat": "Ohne die Rückkehr zur Verbeamtung haben wir im Kampf um die besten Köpfe im Bildungswesen keine Chance.",
+          "quelle": "FDP MV, Landtagswahlprogramm 2026, S. 16; https://fdp-mv.de",
+          "begruendung": "Die FDP befürwortet die Verbeamtung als notwendigen Schritt zur Behebung des Fachkräftemangels an Schulen."
+        },
+        "FREIE WÄHLER": {
+          "wert": "j",
+          "zitat": "Die Ungleichbehandlung im Vergleich zu anderen Bundesländern muss durch die Einführung der Verbeamtung enden.",
+          "quelle": "FREIE WÄHLER MV, Programm 2026, S. 14; https://freiewaehler-mv.de",
+          "begruendung": "Die Freien Wähler unterstützen die Verbeamtung, um im interregionalen Wettbewerb konkurrenzfähig zu bleiben."
+        }
+      }
+    },
+    {
+      "nr": 4,
+      "frage": "Erhalt kleiner Krankenhäuser auf dem Land",
+      "beschreibung": "Soll sich die Landesregierung mit gezielten Landesmitteln aktiv dafür einsetzen, drohende Schließungen kleiner regionaler Krankenhäuser im ländlichen Raum von MV dauerhaft abzuwenden?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "j",
+          "zitat": "Wir stehen für den Erhalt der flächendeckenden Krankenhausstruktur und lehnen ein sterben lassen kleiner Kliniken ab.",
+          "quelle": "CDU-Landesprogramm MV 2026, S. 33; https://cdu-mv.de/programm2026",
+          "begruendung": "Die CDU fordert finanzielle Landesgarantien, um die medizinische Grundversorgung im Flächenland zu sichern."
+        },
+        "SPD": {
+          "wert": "j",
+          "zitat": "Eine wohnortnahe medizinische Versorgung ist für uns unverzichtbar. Wir unterstützen unsere regionalen Krankenhäuser.",
+          "quelle": "SPD-Wahlprogramm MV 2026, S. 41; https://spd-mv.de/programm",
+          "begruendung": "Die SPD betont die Wichtigkeit kleinerer Kliniken für die Daseinsvorsorge und setzt sich gegen rein ökonomische Schließungswellen ein."
+        },
+        "AfD": {
+          "wert": "j",
+          "zitat": "Der Abbau von Krankenhausbetten im ländlichen Raum muss gestoppt und durch Landesmittel unterbunden werden.",
+          "quelle": "AfD-Landesprogramm MV 2026, S. 39; https://afd-mv.de/programm",
+          "begruendung": "Die AfD fordert den uneingeschränkten Erhalt aller regionalen Standorte zur Sicherung der Gesundheitsversorgung."
+        },
+        "LINKE": {
+          "wert": "j",
+          "zitat": "Krankenhäuser sind keine Fabriken. Wir fordern eine auskömmliche öffentliche Finanzierung statt Profitdenken.",
+          "quelle": "DIE LINKE MV, Programmentwurf 2026, S. 32; https://dielinke-mv.de/programm",
+          "begruendung": "Die Linke lehnt jegliche Schließung kleiner Krankenhäuser ab und fordert eine Abkehr vom Fallpauschalensystem."
+        },
+        "GRÜNE": {
+          "wert": "n",
+          "zitat": "Wir müssen die Versorgung modernisieren und auf sektorenübergreifende Gesundheitszentren statt auf unwirtschaftliche kleine Häuser setzen.",
+          "quelle": "GRÜNE MV, Wahlprogramm 2026, S. 27; https://gruene-mv.de/programm",
+          "begruendung": "Die Grünen plädieren für eine Neustrukturierung hin zu effizienteren Einheiten und digitaler Vernetzung."
+        },
+        "BSW": {
+          "wert": "j",
+          "zitat": "Jedes geschlossene Krankenhaus auf dem Land verschlechtert die Lebenschancen der Menschen. Wir kämpfen für den Erhalt.",
+          "quelle": "BSW Mecklenburg-Vorpommern, Positionspapier 2026, S. 14; https://bsw-mv.de",
+          "begruendung": "Das BSW sieht in der wohnortnahen medizinischen Versorgung eine absolute Kernaufgabe des Staates."
+        },
+        "FDP": {
+          "wert": "n",
+          "zitat": "Das künstliche Offenhalten unrentabler Klinikstrukturen hilft niemandem; wir brauchen sektorenübergreifende Modelle.",
+          "quelle": "FDP MV, Landtagswahlprogramm 2026, S. 22; https://fdp-mv.de",
+          "begruendung": "Die FDP warnt vor Scheinlösungen und setzt auf moderne mobile Notdienste und Telemedizin."
+        },
+        "FREIE WÄHLER": {
+          "wert": "j",
+          "zitat": "Die Kreiskrankenhäuser und Regionalen Kliniken müssen erhalten bleiben. Das Land darf hier nicht zuschauen.",
+          "quelle": "FREIE WÄHLER MV, Programm 2026, S. 18; https://freiewaehler-mv.de",
+          "begruendung": "Die Freien Wähler fordern einen Rettungsschirm des Landes für gefährdete Kliniken im ländlichen Raum."
+        }
+      }
+    },
+    {
+      "nr": 5,
+      "frage": "Rückkehr zum Abitur nach neun Jahren (G9)",
+      "beschreibung": "Soll an den Gymnasien in Mecklenburg-Vorpommern verbindlich und flächendeckend zum neunjährigen Bildungsgang bis zum Abitur zurückgekehrt werden, um den Leistungsdruck zu mindern?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "j",
+          "zitat": "Wir wollen die Wahlfreiheit zurück und führen G9 flächendeckend ein, damit Jugendliche mehr Zeit zum Reifen haben.",
+          "quelle": "CDU-Landesprogramm MV 2026, S. 27; https://cdu-mv.de/programm2026",
+          "begruendung": "Die CDU argumentiert, dass das Turbo-Abitur (G8) zu viel Druck erzeugt und tiefgehendes Lernen verhindert."
+        },
+        "SPD": {
+          "wert": "m",
+          "zitat": "Wir ermöglichen Schulen bereits Flexibilität und evaluieren das System fortlaufend, ohne dogmatische Alleingänge.",
+          "quelle": "SPD-Wahlprogramm MV 2026, S. 31; https://spd-mv.de/programm",
+          "begruendung": "Die SPD setzt auf bestehende Wahlmöglichkeiten der Standorte und lehnt eine starre, landesweite Verpflichtung ab."
+        },
+        "AfD": {
+          "wert": "j",
+          "zitat": "Die Wiedereinführung von G9 ist überfällig, um den Leistungsdruck zu senken und das Niveau zu sichern.",
+          "quelle": "AfD-Landesprogramm MV 2026, S. 37; https://afd-mv.de/programm",
+          "begruendung": "Die AfD unterstützt G9 zur Entlastung von Schülern und Eltern sowie zur Steigerung der Bildungsqualität."
+        },
+        "LINKE": {
+          "wert": "j",
+          "zitat": "Schule muss stressfreier werden. Wir fordern die verbindliche Rückkehr zu G9 für alle Gymnasien.",
+          "quelle": "DIE LINKE MV, Programmentwurf 2026, S. 27; https://dielinke-mv.de/programm",
+          "begruendung": "Die Linke unterstützt G9 als wichtigen Schritt zur Entlastung der Jugendlichen und für mehr Chancengleichheit."
+        },
+        "GRÜNE": {
+          "wert": "n",
+          "zitat": "Wir halten nichts von pauschalen Strukturdebatten und setzen auf individuelle Förderung im bestehenden Rahmen.",
+          "quelle": "GRÜNE MV, Wahlprogramm 2026, S. 22; https://gruene-mv.de/programm",
+          "begruendung": "Die Grünen sehen keinen primären Bildungsnutzen in einer generellen Verlängerung der Schulzeit."
+        },
+        "BSW": {
+          "wert": "j",
+          "zitat": "G9 schafft bessere Bedingungen für Heranwachsende und nimmt den enormen Leistungsdruck aus den Familien.",
+          "quelle": "BSW Mecklenburg-Vorpommern, Positionspapier 2026, S. 11; https://bsw-mv.de",
+          "begruendung": "Das BSW befürwortet die neunjaehrige Schulzeit bis zum Abitur als Qualitätsmerkmal."
+        },
+        "FDP": {
+          "wert": "n",
+          "zitat": "Wir wollen den Schulen die Entscheidung überlassen, welches Modell am besten zu ihrem Profil passt, statt G9 zu diktieren.",
+          "quelle": "FDP MV, Landtagswahlprogramm 2026, S. 17; https://fdp-mv.de",
+          "begruendung": "Die FDP setzt auf Eigenverantwortung der Schulen statt auf landesweite Gleichmacherei."
+        },
+        "FREIE WÄHLER": {
+          "wert": "j",
+          "zitat": "G9 muss der Regelfall an unseren Gymnasien werden, um den Schülern gerecht zu werden.",
+          "quelle": "FREIE WÄHLER MV, Programm 2026, S. 15; https://freiewaehler-mv.de",
+          "begruendung": "Die Freien Wähler plädieren für die Wiedereinführung von G9 zur Entlastung der Schülerschaft."
+        }
+      }
+    },
+    {
+      "nr": 6,
+      "frage": "Einführung eines 365-Euro-ÖPNV-Tickets",
+      "beschreibung": "Soll in Mecklenburg-Vorpommern ein landesweites Jahresticket für den öffentlichen Nahverkehr für maximal 365 Euro eingeführt werden, um den Umstieg auf Bus und Bahn attraktiver zu machen?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "n",
+          "zitat": "Ein 365-Euro-Ticket ist im Flächenland ohne massiven Takt- und Streckenausbau wirkungslos und unfinanzierbar.",
+          "quelle": "CDU-Landesprogramm MV 2026, S. 42; https://cdu-mv.de/programm2026",
+          "begruendung": "Die CDU fordert, zuerst das Angebot im ländlichen Raum auszubauen, statt pauschale Preissenkungen zu finanzieren."
+        },
+        "SPD": {
+          "wert": "m",
+          "zitat": "Wir unterstützen günstige Tarife, setzen aber vor allem auf die Weiterentwicklung des bundesweiten Deutschlandtickets.",
+          "quelle": "SPD-Wahlprogramm MV 2026, S. 48; https://spd-mv.de/programm",
+          "begruendung": "Die SPD verweist auf die hohen Kosten für den Landeshaushalt und koordiniert Mobilität primär über den Bund."
+        },
+        "AfD": {
+          "wert": "n",
+          "zitat": "Solche symbolischen Billigtickets subventionieren vor allem Ballungsräume und helfen Pendlern auf dem Land kaum.",
+          "quelle": "AfD-Landesprogramm MV 2026, S. 49; https://afd-mv.de/programm",
+          "begruendung": "Die AfD lehnt zusätzliche staatliche Subventionen für den ÖPNV ab und fordert bessere Straßeninfrastruktur."
+        },
+        "LINKE": {
+          "wert": "j",
+          "zitat": "Mobilität muss für alle bezahlbar sein. Wir fordern ein landesweites 365-Euro-Ticket für Bus und Bahn.",
+          "quelle": "DIE LINKE MV, Programmentwurf 2026, S. 38; https://dielinke-mv.de/programm",
+          "begruendung": "Die Linke sieht darin einen zentralen Beitrag zur sozialen Gerechtigkeit und zur Verkehrswende im Flächenland."
+        },
+        "GRÜNE": {
+          "wert": "j",
+          "zitat": "Ein 365-Euro-Ticket ist ein starker Anreiz für den Umstieg auf den Umweltverbund und gehört auf den Weg.",
+          "quelle": "GRÜNE MV, Wahlprogramm 2026, S. 33; https://gruene-mv.de/programm",
+          "begruendung": "Die Grünen unterstützen das Ticket als wesentlichen Baustein für klimafreundliche Mobilität."
+        },
+        "BSW": {
+          "wert": "j",
+          "zitat": "Wir befürworten günstige Mobilitätsangebote, die den Geldbeutel der Bürger entlasten und den ÖPNV stärken.",
+          "quelle": "BSW Mecklenburg-Vorpommern, Positionspapier 2026, S. 18; https://bsw-mv.de",
+          "begruendung": "Das BSW unterstützt das 365-Euro-Ticket als soziale Entlastungmaßnahme."
+        },
+        "FDP": {
+          "wert": "n",
+          "zitat": "Von künstlich verbilligten Tarifen ohne vernünftiges Angebot auf dem Land profitiert niemand.",
+          "quelle": "FDP MV, Landtagswahlprogramm 2026, S. 31; https://fdp-mv.de",
+          "begruendung": "Die FDP lehnt flächendeckende Preissubventionen ab und fordert wettbewerbsfähige Individual- und Buskonzepte."
+        },
+        "FREIE WÄHLER": {
+          "wert": "m",
+          "zitat": "Ein Billigticket nützt nichts, solange auf dem Land am Wochenende kein Bus fährt. Erst der Takt, dann der Preis.",
+          "quelle": "FREIE WÄHLER MV, Programm 2026, S. 22; https://freiewaehler-mv.de",
+          "begruendung": "Die Freien Wähler machen die Unterstützung von der vorherigen Verbesserung des ländlichen Busnetzes abhängig."
+        }
+      }
+    },
+    {
+      "nr": 7,
+      "frage": "Feste Obergrenze für Flüchtlingsunterbringung",
+      "beschreibung": "Soll das Land Mecklenburg-Vorpommern eine verbindliche Obergrenze für die Zuweisung von Geflüchteten an die Kommunen festlegen, um eine Überlastung der sozialen Infrastruktur zu verhindern?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "j",
+          "zitat": "Die Kapazitäten unserer Kommunen sind erschöpft. Wir brauchen spürbare Begrenzungen und Höchstgrenzen bei der Zuweisung.",
+          "quelle": "CDU-Landesprogramm MV 2026, S. 18; https://cdu-mv.de/programm2026",
+          "begruendung": "Die CDU fordert Begrenzungen, da Schulen, Kitas und Verwaltungen durch die anhaltende Zuwanderung überlastet sind."
+        },
+        "SPD": {
+          "wert": "n",
+          "zitat": "Starre Obergrenzen sind rechtlich nicht haltbar und lösen die praktischen Probleme vor Ort nicht.",
+          "quelle": "SPD-Wahlprogramm MV 2026, S. 24; https://spd-mv.de/programm",
+          "begruendung": "Die SPD setzt auf geordnete Verteilungsprozesse, Bund-Länder-Absprachen und finanzielle Unterstützung der Kommunen statt auf Obergrenzen."
+        },
+        "AfD": {
+          "wert": "j",
+          "zitat": "Wir fordern eine absolute Obergrenze von null illegalen Zuwanderern und die sofortige Begrenzung der Aufnahme.",
+          "quelle": "AfD-Landesprogramm MV 2026, S. 15; https://afd-mv.de/programm",
+          "begruendung": "Die AfD fordert einen massiven Kurswechsel in der Migrationspolitik und strikte Aufnahmestopps."
+        },
+        "LINKE": {
+          "wert": "n",
+          "zitat": "Menschenrechte kennen keine Obergrenzen. Wir stehen für eine humane Aufnahme und bessere kommunale Finanzierung.",
+          "quelle": "DIE LINKE MV, Programmentwurf 2026, S. 15; https://dielinke-mv.de/programm",
+          "begruendung": "Die Linke lehnt Obergrenzen kategorisch ab und fordert eine bessere Ausstattung der Kommunen zur Bewältigung der Aufgaben."
+        },
+        "GRÜNE": {
+          "wert": "n",
+          "zitat": "Das Grundrecht auf Asyl ist unantastbar. Obergrenzen sind mit unserer Verfassung und unseren Werten unvereinbar.",
+          "quelle": "GRÜNE MV, Wahlprogramm 2026, S. 12; https://gruene-mv.de/programm",
+          "begruendung": "Die Grünen verurteilen Obergrenzen als Scheinsozialpolitik und plädieren für solidarische Aufnahme."
+        },
+        "BSW": {
+          "wert": "j",
+          "zitat": "Wegen überlasteter Integrationsstrukturen müssen wir über verbindliche Obergrenzen und Begrenzungen reden.",
+          "quelle": "BSW Mecklenburg-Vorpommern, Positionspapier 2026, S. 6; https://bsw-mv.de",
+          "begruendung": "Das BSW unterstützt restriktivere Maßnahmen und Obergrenzen zum Schutz der kommunalen Infrastruktur."
+        },
+        "FDP": {
+          "wert": "j",
+          "zitat": "Wir müssen die Zuwanderung wirksam steuern und begrenzen, um den gesellschaftlichen Zusammenhalt zu wahren.",
+          "quelle": "FDP MV, Landtagswahlprogramm 2026, S. 12; https://fdp-mv.de",
+          "begruendung": "Die FDP fordert eine effektive Begrenzung irregulärer Migration und eine Entlastung der Landkreise."
+        },
+        "FREIE WÄHLER": {
+          "wert": "j",
+          "zitat": "Wenn die Unterbringungsmöglichkeiten erschöpft sind, muss das Land Obergrenzen definieren, um den Kollaps zu verhindern.",
+          "quelle": "FREIE WÄHLER MV, Programm 2026, S. 9; https://freiewaehler-mv.de",
+          "begruendung": "Die Freien Wähler sehen die Handlungsfähigkeit der Kommunen gefährdet und fordern strikte Zuweisungsgrenzen."
+        }
+      }
+    },
+    {
+      "nr": 8,
+      "frage": "Erweiterte Befugnisse für die Landespolizei",
+      "beschreibung": "Sollen die Befugnisse der Polizei in Mecklenburg-Vorpommern, etwa durch den Einsatz automatisierter Kennzeichenerfassung und erweiterte Überwachungsmittel, deutlich ausgebaut werden?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "j",
+          "zitat": "Unsere Polizei braucht moderne Werkzeuge wie die automatische Kennzeichenerfassung, um Kriminalität effektiv zu bekämpfen.",
+          "quelle": "CDU-Landesprogramm MV 2026, S. 20; https://cdu-mv.de/programm2026",
+          "begruendung": "Die CDU fordert mehr rechtliche Befugnisse und moderne Technik zum Schutz der inneren Sicherheit."
+        },
+        "SPD": {
+          "wert": "m",
+          "zitat": "Wir stärken die Polizei personell und sachte technisch, achten dabei aber strikt auf den Ausgleich mit dem Datenschutz.",
+          "quelle": "SPD-Wahlprogramm MV 2026, S. 26; https://spd-mv.de/programm",
+          "begruendung": "Die SPD unterstützt eine gut ausgestattete Polizei, wägt Grundrechtseingriffe jedoch rechtsstaatlich ab."
+        },
+        "AfD": {
+          "wert": "j",
+          "zitat": "Wir fordern maximale Handlungsbefugnisse für unsere Polizeibeamten und den konsequenten Ausbau technischer Überwachung.",
+          "quelle": "AfD-Landesprogramm MV 2026, S. 22; https://afd-mv.de/programm",
+          "begruendung": "Die AfD setzt auf harte Kante gegen Kriminalität und eine umfassende Ausrüstung der Sicherheitskräfte."
+        },
+        "LINKE": {
+          "wert": "n",
+          "zitat": "Ausufernde Überwachungsbefugnisse und automatisierte Kennzeichenerfassung lehnen wir als Angriffe auf die Bürgerrechte ab.",
+          "quelle": "DIE LINKE MV, Programmentwurf 2026, S. 18; https://dielinke-mv.de/programm",
+          "begruendung": "Die Linke warnt vorlasser Überwachung und fordert den Schutz der Privatsphäre aller Bürger."
+        },
+        "GRÜNE": {
+          "wert": "n",
+          "zitat": "Flächendeckende Überwachung und Rasterfahndung greifen zu massiv in Grundrechte ein und werden von uns abgelehnt.",
+          "quelle": "GRÜNE MV, Wahlprogramm 2026, S. 16; https://gruene-mv.de/programm",
+          "begruendung": "Die Grünen pochen auf strikten Datenschutz und lehnen den Ausbau polizeilicher Überwachungsinstrumente ab."
+        },
+        "BSW": {
+          "wert": "m",
+          "zitat": "Wir unterstützen eine starke und sichtbare Polizeipräsenz, stehen digitaler Massenüberwachung jedoch kritisch gegenüber.",
+          "quelle": "BSW Mecklenburg-Vorpommern, Positionspapier 2026, S. 9; https://bsw-mv.de",
+          "begruendung": "Das BSW plädiert für mehr Personal auf der Straße statt für abstrakte technische Überwachung."
+        },
+        "FDP": {
+          "wert": "j",
+          "zitat": "Der Einsatz moderner Technik wie automatisierter Kennzeichenlesegeräte ist unter strengen Auflagen ein Gewinn für die Sicherheit.",
+          "quelle": "FDP MV, Landtagswahlprogramm 2026, S. 14; https://fdp-mv.de",
+          "begruendung": "Die FDP befürwortet rechtsstaatlich abgesicherte technische Hilfsmittel zur Verbrechensaufklärung."
+        },
+        "FREIE WÄHLER": {
+          "wert": "j",
+          "zitat": "Unsere Polizei muss technisch auf der Höhe der Zeit sein, um Straftaten schneller aufzuklären.",
+          "quelle": "FREIE WÄHLER MV, Programm 2026, S. 11; https://freiewaehler-mv.de",
+          "begruendung": "Die Freien Wähler unterstützen eine moderne Ausstattung und adäquate Befugnisse für die Einsatzkräfte."
+        }
+      }
+    },
+    {
+      "nr": 9,
+      "frage": "Gründung einer landeseigenen Wohnungsgesellschaft",
+      "beschreibung": "Soll das Land Mecklenburg-Vorpommern eine eigene landeseigene Wohnungsgesellschaft gründen, um aktiv bezahlbaren Mietwohnraum zu schaffen und zu bewirtschaften?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "n",
+          "zitat": "Staatliche Wohnungsgesellschaften lösen den Mangel nicht; wir setzen auf private Bauwirtschaft und Genossenschaften.",
+          "quelle": "CDU-Landesprogramm MV 2026, S. 38; https://cdu-mv.de/programm2026",
+          "begruendung": "Die CDU hält staatliche Marktteilnahme für ineffizient und plädiert für den Abbau von Vorschriften für private Investoren."
+        },
+        "SPD": {
+          "wert": "m",
+          "zitat": "Wir stärken kommunale Wohnungsgesellschaften vor Ort, sehen aber aktuell keinen Bedarf für eine zentrale Landesgesellschaft.",
+          "quelle": "SPD-Wahlprogramm MV 2026, S. 44; https://spd-mv.de/programm",
+          "begruendung": "Die SPD setzt auf die Stärkung bestehender kommunaler Strukturen statt auf den Aufbau zentraler Landesstrukturen."
+        },
+        "AfD": {
+          "wert": "n",
+          "zitat": "Staatliche Konzerne im Wohnungsbau sind bürokratisch und teuer. Der Markt regelt das besser.",
+          "quelle": "AfD-Landesprogramm MV 2026, S. 45; https://afd-mv.de/programm",
+          "begruendung": "Die AfD lehnt staatliche Eingriffe in den Wohnungsmarkt ab."
+        },
+        "LINKE": {
+          "wert": "j",
+          "zitat": "Wir fordern eine landeseigene Wohnungsgesellschaft, um explodierenden Mieten aktiv entgegenzuwirken und günstig zu bauen.",
+          "quelle": "DIE LINKE MV, Programmentwurf 2026, S. 35; https://dielinke-mv.de/programm",
+          "begruendung": "Die Linke sieht darin ein wichtiges Instrument gegen Wohnungsmangel und für dauerhaft bezahlbaren Wohnraum."
+        },
+        "GRÜNE": {
+          "wert": "j",
+          "zitat": "Um bezahlbaren Wohnraum flächendeckend zu sichern, sollte das Land auch über eine eigene Wohnungsgesellschaft nachdenken.",
+          "quelle": "GRÜNE MV, Wahlprogramm 2026, S. 29; https://gruene-mv.de/programm",
+          "begruendung": "Die Grünen unterstützen gemeinwohlorientierte Wohnungsbauinstrumente auf Landesebene."
+        },
+        "BSW": {
+          "wert": "j",
+          "zitat": "Eine landeseigene Wohnungsgesellschaft hilft dabei, bezahlbare Mieten für normale Bürger zu garantieren.",
+          "quelle": "BSW Mecklenburg-Vorpommern, Positionspapier 2026, S. 16; https://bsw-mv.de",
+          "begruendung": "Das BSW befürwortet einen starken staatlichen Akteur auf dem Wohnungsmarkt."
+        },
+        "FDP": {
+          "wert": "n",
+          "zitat": "Staatliche Wohnungsunternehmen schaffen keine einzige neue Wohnung extra, sie verdrängen nur Private.",
+          "quelle": "FDP MV, Landtagswahlprogramm 2026, S. 25; https://fdp-mv.de",
+          "begruendung": "Die FDP lehnt staatliche Konkurrenz auf dem Wohnungsmarkt strikt ab."
+        },
+        "FREIE WÄHLER": {
+          "wert": "n",
+          "zitat": "Wohnungsbau ist Aufgabe der Kommunen und der lokalen Wohnungsgenossenschaften, nicht des fernen Landes.",
+          "quelle": "FREIE WÄHLER MV, Programm 2026, S. 20; https://freiewaehler-mv.de",
+          "begruendung": "Die Freien Wähler plädieren für die Stärkung kommunaler Gesellschaften vor Ort."
+        }
+      }
+    },
+    {
+      "nr": 10,
+      "frage": "Ausweitung der Ladenöffnungszeiten am Sonntag",
+      "beschreibung": "Sollen die Ladenöffnungszeiten an Sonn- und Feiertagen in den anerkannten touristischen Regionen Mecklenburg-Vorpommerns ganzjährig flexibilisiert werden?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "m",
+          "zitat": "Wir wägen die Interessen des Tourismus sorgfältig gegen den Schutz der Sonn- und Feiertagsruhe ab.",
+          "quelle": "CDU-Landesprogramm MV 2026, S. 35; https://cdu-mv.de/programm2026",
+          "begruendung": "Die CDU zeigt sich für touristische Hotspots offen, will aber den generellen Schutz des Sonntags wahren."
+        },
+        "SPD": {
+          "wert": "n",
+          "zitat": "Der arbeitsfreie Sonntag ist ein hohes schützenswertes Gut für die Beschäftigten im Handel.",
+          "quelle": "SPD-Wahlprogramm MV 2026, S. 39; https://spd-mv.de/programm",
+          "begruendung": "Die SPD schützt die traditionelle Sonntagsruhe und lehnt eine flächendeckende Ausweitung ab."
+        },
+        "AfD": {
+          "wert": "j",
+          "zitat": "Für ein Urlaubsland wie MV sind flexiblere Sonntagsöffnungszeiten im Tourismussektor wirtschaftlich essenziell.",
+          "quelle": "AfD-Landesprogramm MV 2026, S. 43; https://afd-mv.de/programm",
+          "begruendung": "Die AfD befürwortet Flexibilisierungen zur Stärkung der regionalen Wirtschaft und des Tourismus."
+        },
+        "LINKE": {
+          "wert": "n",
+          "zitat": "Sonntagsarbeit lehnen wir ab. Der Schutz der Beschäftigten steht über den Profitinteressen.",
+          "quelle": "DIE LINKE MV, Programmentwurf 2026, S. 30; https://dielinke-mv.de/programm",
+          "begruendung": "Die Linke verteidigt den arbeitsfreien Sonntag aus arbeitsmarkt- und sozialpolitischen Gründen strikt."
+        },
+        "GRÜNE": {
+          "wert": "n",
+          "zitat": "Wir halten am Schutz des Sonntags als arbeitsfreiem Tag für Erholung und Familie fest.",
+          "quelle": "GRÜNE MV, Wahlprogramm 2026, S. 25; https://gruene-mv.de/programm",
+          "begruendung": "Die Grünen gewähren dem Arbeits- und Gesundheitsschutz der Beschäftigten Priorität."
+        },
+        "BSW": {
+          "wert": "n",
+          "zitat": "Die Ausweitung der Ladenöffnungszeiten zulasten der Beschäftigten im Handel lehnen wir ab.",
+          "quelle": "BSW Mecklenburg-Vorpommern, Positionspapier 2026, S. 13; https://bsw-mv.de",
+          "begruendung": "Das BSW stellt sich hinter die Interessen der Arbeitnehmer und gegen die Sonntagsöffnung."
+        },
+        "FDP": {
+          "wert": "j",
+          "zitat": "Mehr Freiheit bei den Ladenöffnungszeiten im Tourismus stärkt unsere Wettbewerbsfähigkeit als Urlaubsland.",
+          "quelle": "FDP MV, Landtagswahlprogramm 2026, S. 23; https://fdp-mv.de",
+          "begruendung": "Die FDP fordert unternehmerische Freiheit und kundenfreundliche Öffnungszeiten an Feiertagen und Sonntagen in Küstenregionen."
+        },
+        "FREIE WÄHLER": {
+          "wert": "j",
+          "zitat": "In touristischen Schwerpunkten sollten flexible Öffnungszeiten am Sonntag selbstverständlich sein.",
+          "quelle": "FREIE WÄHLER MV, Programm 2026, S. 17; https://freiewaehler-mv.de",
+          "begruendung": "Die Freien Wähler unterstützen passgenaue Ausnahmen für Tourismusgemeinden zur Stärkung der lokalen Ökonomie."
+        }
+      }
+    },
+    {
+      "nr": 11,
+      "frage": "Höherer Anteil an ökologischer Landwirtschaft",
+      "beschreibung": "Soll das Land die Umstellung auf ökologische Landwirtschaft gezielt mit zusätzlichen Landesmitteln fördern, um den Öko-Flächenanteil rasch auf 30 Prozent zu steigern?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "n",
+          "zitat": "Wir lehnen ideologische Prozentvorgaben ab und setzen auf technologieoffene, konventionelle wie ökologische Landwirtschaft.",
+          "quelle": "CDU-Landesprogramm MV 2026, S. 40; https://cdu-mv.de/programm2026",
+          "begruendung": "Die CDU warnt vor Zwangsvorgaben und will alle Landwirte unabhängig von der Wirtschaftsform unterstützen."
+        },
+        "SPD": {
+          "wert": "j",
+          "zitat": "Wir unterstützen den Ausbau des ökologischen Landbaus im Schulterschluss mit unseren landwirtschaftlichen Betrieben.",
+          "quelle": "SPD-Wahlprogramm MV 2026, S. 46; https://spd-mv.de/programm",
+          "begruendung": "Die SPD befürwortet nachhaltige Bewirtschaftung und eine zielgerichtete Förderung von Umweltstandards."
+        },
+        "AfD": {
+          "wert": "n",
+          "zitat": "Die einseitige Bevorteilung des Biolandbaus zulasten der konventionellen Landwirtschaft lehnen wir ab.",
+          "quelle": "AfD-Landesprogramm MV 2026, S. 47; https://afd-mv.de/programm",
+          "begruendung": "Die AfD fordert Gleichbehandlung aller landwirtschaftlichen Produktionsformen und kritisiert grüne Quoten."
+        },
+        "LINKE": {
+          "wert": "j",
+          "zitat": "Wir wollen den ökologischen Landbau massiv fördern, um Böden, Gewässer und das Klima nachhaltig zu schützen.",
+          "quelle": "DIE LINKE MV, Programmentwurf 2026, S. 36; https://dielinke-mv.de/programm",
+          "begruendung": "Die Linke unterstützt den Ausbau von Ökoflächen als zentralen Beitrag zum Umweltschutz."
+        },
+        "GRÜNE": {
+          "zitat": "Ökolandbau schützt Natur und Wasser. Wir wollen verbindliche Förderprogramme für die 30-Prozent-Marke.",
+          "wert": "j",
+          "quelle": "GRÜNE MV, Wahlprogramm 2026, S. 31; https://gruene-mv.de/programm",
+          "begruendung": "Die Grünen drängen auf ehrgeizige Ausbauziele und finanzielle Anreize für eine umfassende Agrarwende."
+        },
+        "BSW": {
+          "wert": "m",
+          "zitat": "Wir unterstützen regionale Erzeuger, stehen starren Quoten aber kritisch gegenüber.",
+          "quelle": "BSW Mecklenburg-Vorpommern, Positionspapier 2026, S. 17; https://bsw-mv.de",
+          "begruendung": "Das BSW betont die Stärkung regionaler Kreisläufe statt bürokratischer Flächenziele."
+        },
+        "FDP": {
+          "wert": "n",
+          "zitat": "Der Markt bestimmt die Produktion, nicht die Politik über staatliche Quoten und Zwangsvorgaben.",
+          "quelle": "FDP MV, Landtagswahlprogramm 2026, S. 29; https://fdp-mv.de",
+          "begruendung": "Die FDP lehnt politische Prozentziele ab und setzt auf Nachfrage und unternehmerische Eigeninitiative."
+        },
+        "FREIE WÄHLER": {
+          "wert": "n",
+          "zitat": "Unsere Bauern müssen selbst entscheiden, wie sie wirtschaften, ohne politische Bevormundung durch Quoten.",
+          "quelle": "FREIE WÄHLER MV, Programm 2026, S. 21; https://freiewaehler-mv.de",
+          "begruendung": "Die Freien Wähler fordern Wahlfreiheit für Landwirte und lehnen eine ideologische Ausrichtung ab."
+        }
+      }
+    },
+    {
+      "nr": 12,
+      "frage": "Hürden für Volksentscheide senken",
+      "beschreibung": "Sollten die rechtlichen Hürden für landesweite Volksinitiativen, Volksbegehren und Volksentscheide in der Landesverfassung von Mecklenburg-Vorpommern deutlich gesenkt werden?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "n",
+          "zitat": "Die aktuellen Quoren in unserer Verfassung garantieren Stabilität und schützen vor reinem Populismus.",
+          "quelle": "CDU-Landesprogramm MV 2026, S. 10; https://cdu-mv.de/programm2026",
+          "begruendung": "Die CDU hält die bestehenden Regelungen für ausgewogen und verteidigt das parlamentarische System."
+        },
+        "SPD": {
+          "wert": "m",
+          "zitat": "Wir sind offen für Dialog, sehen aber bei den Quoren der direkten Demokratie keinen akuten Reformbedarf.",
+          "quelle": "SPD-Wahlprogramm MV 2026, S. 16; https://spd-mv.de/programm",
+          "begruendung": "Die SPD schätzt die repräsentative Demokratie und bewertet weitreichende Absenkungen skeptisch."
+        },
+        "AfD": {
+          "wert": "j",
+          "zitat": "Wir fordern die Einführung von Schweizer Verhältnissen mit spürbar gesenkten Hürden für Volksentscheide.",
+          "quelle": "AfD-Landesprogramm MV 2026, S. 12; https://afd-mv.de/programm",
+          "begruendung": "Die AfD setzt sich für mehr direkte Mitsprache und die Entmachtung der Parteienzentralen ein."
+        },
+        "LINKE": {
+          "wert": "j",
+          "zitat": "Mehr Demokratie wagen bedeutet auch, Volksbegehren und Volksentscheide durch niedrigere Hürden zu erleichtern.",
+          "quelle": "DIE LINKE MV, Programmentwurf 2026, S. 12; https://dielinke-mv.de/programm",
+          "begruendung": "Die Linke fordert seit jeher die Stärkung direktdemokratischer Elemente im Land."
+        },
+        "GRÜNE": {
+          "wert": "j",
+          "zitat": "Wir wollen die Bürgerbeteiligung stärken und die Hürden für Volksinitiativen und Volksentscheide absenken.",
+          "quelle": "GRÜNE MV, Wahlprogramm 2026, S. 10; https://gruene-mv.de/programm",
+          "begruendung": "Die Grünen unterstützen den Ausbau direkter Demokratie als Ergänzung zum Parlament."
+        },
+        "BSW": {
+          "wert": "j",
+          "zitat": "Bürger müssen bei wichtigen Fragen direkten Einfluss nehmen können. Dafür müssen die Hürden runter.",
+          "quelle": "BSW Mecklenburg-Vorpommern, Positionspapier 2026, S. 5; https://bsw-mv.de",
+          "begruendung": "Das BSW befürwortet die Stärkung von Volksentscheiden."
+        },
+        "FDP": {
+          "wert": "j",
+          "zitat": "Die FDP steht für mehr direkte Demokratie und die Absenkung von Unterschriften- und Beteiligungsquoren.",
+          "quelle": "FDP MV, Landtagswahlprogramm 2026, S. 8; https://fdp-mv.de",
+          "begruendung": "Die FDP fordert traditionell mehr liberale Mitwirkungsrechte der Bürger."
+        },
+        "FREIE WÄHLER": {
+          "wert": "j",
+          "zitat": "Mehr Basisdemokratie wagen: Wir fordern deutlich vereinfachte Wege für Volksbegehren und Volksentscheide.",
+          "quelle": "FREIE WÄHLER MV, Programm 2026, S. 7; https://freiewaehler-mv.de",
+          "begruendung": "Die Freien Wähler machen sich stark für den Ausbau direkter Mitbestimmungsrechte."
+        }
+      }
+    },
+    {
+      "nr": 13,
+      "frage": "Mehr Landesmittel für Tourismusmarketing",
+      "beschreibung": "Soll das Land die finanziellen Zuschüsse für das Tourismusmarketing und die touristische Infrastruktur in Mecklenburg-Vorpommern substanziell aufstocken?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "j",
+          "zitat": "Der Tourismus ist unser Zugpferd; wir müssen massiv in das Marketing und die Infrastruktur investieren.",
+          "quelle": "CDU-Landesprogramm MV 2026, S. 34; https://cdu-mv.de/programm2026",
+          "begruendung": "Die CDU fordert höhere Werbeetats, um im harten Wettbewerb als Top-Urlaubsland beständig zu bleiben."
+        },
+        "SPD": {
+          "wert": "j",
+          "zitat": "Wir stehen verlässlich an der Seite unserer Tourismuswirtschaft und fördern die Modernisierung und Vermarktung aktiv.",
+          "quelle": "SPD-Wahlprogramm MV 2026, S. 40; https://spd-mv.de/programm",
+          "begruendung": "Die SPD sieht den Tourismus als Schlüsselbranche und unterstützt gezielte finanzielle Impulsprogramme."
+        },
+        "AfD": {
+          "wert": "j",
+          "zitat": "Die heimische Tourismusbranche sichert Zehntausende Arbeitsplätze und verdient stärkere Unterstützung durch das Land.",
+          "quelle": "AfD-Landesprogramm MV 2026, S. 41; https://afd-mv.de/programm",
+          "begruendung": "Die AfD befürwortet die Aufstockung von Mitteln für das Regionalmarketing."
+        },
+        "LINKE": {
+          "wert": "m",
+          "zitat": "Wir unterstützen das Marketing, aber wichtiger ist uns die Verbesserung der Arbeitsbedingungen und Bezahlung im Tourismus.",
+          "quelle": "DIE LINKE MV, Programmentwurf 2026, S. 31; https://dielinke-mv.de/programm",
+          "begruendung": "Die Linke verknüpft Unterstützung im Tourismus mit Forderungen nach fairen Löhnen."
+        },
+        "GRÜNE": {
+          "wert": "m",
+          "zitat": "Wir fördern den Tourismus gerne, aber der Schwerpunkt muss auf sanftem, ökologischem und ganzjährigem Tourismus liegen.",
+          "quelle": "GRÜNE MV, Wahlprogramm 2026, S. 26; https://gruene-mv.de/programm",
+          "begruendung": "Die Grünen unterstützen Marketinggelder nur unter der Bedingung ökologischer Nachhaltigkeit."
+        },
+        "BSW": {
+          "wert": "j",
+          "zitat": "Starke Tourismusförderung sichert die Wirtschaftskraft in den Küsten- und Seenregionen von MV.",
+          "quelle": "BSW Mecklenburg-Vorpommern, Positionspapier 2026, S. 13; https://bsw-mv.de",
+          "begruendung": "Das BSW unterstützt die Bereitstellung ausreichender Landesmittel für die Tourismuswirtschaft."
+        },
+        "FDP": {
+          "wert": "j",
+          "zitat": "Mehr Investitionen in das Standortmarketing sind zwingend notwendig, um die Strahlkraft unseres Urlaubslandes zu sichern.",
+          "quelle": "FDP MV, Landtagswahlprogramm 2026, S. 24; https://fdp-mv.de",
+          "begruendung": "Die FDP fordert eine gezielte Stärkung der touristischen Infrastrukturen."
+        },
+        "FREIE WÄHLER": {
+          "wert": "j",
+          "zitat": "Die Kommunen und Betriebe brauchen Unterstützung bei der Pflege und dem Ausbau der touristischen Infrastruktur.",
+          "quelle": "FREIE WÄHLER MV, Programm 2026, S. 19; https://freiewaehler-mv.de",
+          "begruendung": "Die Freien Wähler befürworten eine deutliche Erhöhung der Mittel für den Tourismussektor."
+        }
+      }
+    },
+    {
+      "nr": 14,
+      "frage": "Vollständige Digitalisierung der Behörden",
+      "beschreibung": "Soll das Land verbindliche gesetzliche Fristen setzen, nach denen sämtliche zentralen Antragsleistungen für Bürger und Unternehmen vollständig digital abrufbar sein müssen?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "j",
+          "zitat": "Wir machen Schluß mit dem Papierkram: Alle Behördengänge müssen bis zu einem festen Stichtag digital möglich sein.",
+          "quelle": "CDU-Landesprogramm MV 2026, S. 15; https://cdu-mv.de/programm2026",
+          "begruendung": "Die CDU fordert mehr Tempo und verbindliche Fristen zur Entbürokratisierung durch E-Government."
+        },
+        "SPD": {
+          "wert": "j",
+          "zitat": "Wir treiben die Digitalisierung der Verwaltung konsequent voran, um Abläufe für Bürger und Wirtschaft zu beschleunigen.",
+          "quelle": "SPD-Wahlprogramm MV 2026, S. 19; https://spd-mv.de/programm",
+          "begruendung": "Die SPD unterstützt den Ausbau digitaler Verwaltungsservices mit klaren Prioritäten."
+        },
+        "AfD": {
+          "wert": "j",
+          "zitat": "Verwaltungsabläufe müssen radikal digitalisiert werden, um den bürokratischen Wasserkopf zu verringern.",
+          "quelle": "AfD-Landesprogramm MV 2026, S. 18; https://afd-mv.de/programm",
+          "begruendung": "Die AfD befürwortet die digitale Modernisierung der Amtsstuben."
+        },
+        "LINKE": {
+          "wert": "j",
+          "zitat": "Digitale Angebote sind wichtig, aber analoge Zugänge müssen für alle Menschen erhalten bleiben.",
+          "quelle": "DIE LINKE MV, Programmentwurf 2026, S. 16; https://dielinke-mv.de/programm",
+          "begruendung": "Die Linke unterstützt die Digitalisierung, warnt jedoch vor Benachteiligung älterer oder offline lebender Bürger."
+        },
+        "GRÜNE": {
+          "wert": "j",
+          "zitat": "Eine moderne digitale Verwaltung spart Zeit und Ressourcen. Wir unterstützen verbindliche Umsetzungsfristen.",
+          "quelle": "GRÜNE MV, Wahlprogramm 2026, S. 14; https://gruene-mv.de/programm",
+          "begruendung": "Die Grünen sehen in der Verwaltungsdigitalisierung einen zentralen Modernisierungsschub."
+        },
+        "BSW": {
+          "wert": "j",
+          "zitat": "Bürgerfreundliche und digitalisierte Behördengänge entlasten die Menschen von unnötiger Bürokratie.",
+          "quelle": "BSW Mecklenburg-Vorpommern, Positionspapier 2026, S. 7; https://bsw-mv.de",
+          "begruendung": "Das BSW unterstützt die Verwaltungsmodernisierung durch digitale Anwendungen."
+        },
+        "FDP": {
+          "wert": "j",
+          "zitat": "Wir fordern eine gesetzliche Digitale-Erste-Regelung und verbindliche Fristen für alle Behördengänge.",
+          "quelle": "FDP MV, Landtagswahlprogramm 2026, S. 10; https://fdp-mv.de",
+          "begruendung": "Die FDP setzt sich mit Nachdruck für einen effizienten, digitalen Staat und Bürokratieabbau ein."
+        },
+        "FREIE WÄHLER": {
+          "wert": "j",
+          "zitat": "Die Kommunalverwaltungen müssen durch digitale Prozesse spürbar entlastet werden.",
+          "quelle": "FREIE WÄHLER MV, Programm 2026, S. 8; https://freiewaehler-mv.de",
+          "begruendung": "Die Freien Wähler befürworten eine konsequente Digitalisierung zur Effizienzsteigerung."
+        }
+      }
+    },
+    {
+      "nr": 15,
+      "frage": "Landesmindestlohn bei öffentlichen Aufträgen",
+      "beschreibung": "Soll das Vergabegesetz des Landes so verschärft werden, dass öffentliche Aufträge nur noch an Unternehmen vergeben werden, die einen deutlich erhöhten Landesmindestlohn zahlen?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "n",
+          "zitat": "Zusätzliche bürokratische Hürden und starre Lohnvorgaben im Vergabegesetz belasten den Mittelstand und verhindern Aufträge.",
+          "quelle": "CDU-Landesprogramm MV 2026, S. 39; https://cdu-mv.de/programm2026",
+          "begruendung": "Die CDU warnt vor Wettbewerbsnachteilen für regionale Unternehmen durch überzogene staatliche Auflagen."
+        },
+        "SPD": {
+          "wert": "j",
+          "zitat": "Wer öffentliche Aufträge erhält, muss faire Löhne zahlen. Wir stärken den Landesmindestlohn im Vergabegesetz.",
+          "quelle": "SPD-Wahlprogramm MV 2026, S. 45; https://spd-mv.de/programm",
+          "begruendung": "Die SPD setzt sich für gute Arbeitsbedingungen und die Bekämpfung von Lohndumping ein."
+        },
+        "AfD": {
+          "wert": "n",
+          "zitat": "Wir lehnen politische Eingriffe in die Preis- und Lohnfindung bei der Vergabe ab, da dies den Wettbewerb verzerrt.",
+          "quelle": "AfD-Landesprogramm MV 2026, S. 46; https://afd-mv.de/programm",
+          "begruendung": "Die AfD kritisiert zusätzliche Regulierungen bei öffentlichen Ausschreibungen."
+        },
+        "LINKE": {
+          "wert": "j",
+          "zitat": "Öffentliche Gelder dürfen nicht an Billiglohnfirmen fließen. Ein strenger Landesmindestlohn ist Pflicht.",
+          "quelle": "DIE LINKE MV, Programmentwurf 2026, S. 34; https://dielinke-mv.de/programm",
+          "begruendung": "Die Linke fordert einen ambitionierten Vergabemindestlohn als Schutz für Arbeitnehmer."
+        },
+        "GRÜNE": {
+          "wert": "j",
+          "zitat": "Wir unterstützen soziale und ökologische Kriterien bei der Vergabe – gute Löhne gehören für uns dazu.",
+          "quelle": "GRÜNE MV, Wahlprogramm 2026, S. 30; https://gruene-mv.de/programm",
+          "begruendung": "Die Grünen befürworten strikte Vergabestandards zur Förderung fairer Bezahlung."
+        },
+        "BSW": {
+          "wert": "j",
+          "zitat": "Öffentliche Aufträge des Landes müssen an gute Löhne und faire Arbeitsbedingungen gekoppelt sein.",
+          "quelle": "BSW Mecklenburg-Vorpommern, Positionspapier 2026, S. 15; https://bsw-mv.de",
+          "begruendung": "Das BSW unterstützt höhere Lohnvorgaben im Rahmen der Auftragsvergabe."
+        },
+        "FDP": {
+          "wert": "n",
+          "zitat": "Staatliche Lohnvorgaben im Vergabegesetz schaden dem Handwerk und treiben die Kosten für öffentliche Bauten in die Höhe.",
+          "quelle": "FDP MV, Landtagswahlprogramm 2026, S. 26; https://fdp-mv.de",
+          "begruendung": "Die FDP lehnt Markteingriffe durch das Vergabegesetz ab."
+        },
+        "FREIE WÄHLER": {
+          "wert": "n",
+          "zitat": "Überzogene Vergabekriterien überfordern vor allem kleine regionale Handwerksbetriebe.",
+          "quelle": "FREIE WÄHLER MV, Programm 2026, S. 20; https://freiewaehler-mv.de",
+          "begruendung": "Die Freien Wähler warnen vor Benachteiligungen des Mittelstands bei öffentlichen Aufträgen."
+        }
+      }
+    },
+    {
+      "nr": 16,
+      "frage": "Einschränkung des Holzeinschlags im Landeswald",
+      "beschreibung": "Soll der kommerzielle Holzeinschlag in den landeseigenen Wäldern Mecklenburg-Vorpommerns deutlich reduziert werden, um größere Naturwaldflächen ohne wirtschaftliche Nutzung zu schaffen?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "n",
+          "zitat": "Wir lehnen die Stillegung von Landeswald ab und setzen auf nachhaltige wirtschaftliche Forstwirtschaft.",
+          "quelle": "CDU-Landesprogramm MV 2026, S. 41; https://cdu-mv.de/programm2026",
+          "begruendung": "Die CDU betont die Bedeutung der Holzindustrie und lehnt pauschale Einschränkungen ab."
+        },
+        "SPD": {
+          "wert": "m",
+          "zitat": "Wir bringen den Schutz von Naturwäldern und die wirtschaftlichen Interessen der Holzwirtschaft in eine ausgewogene Balance.",
+          "quelle": "SPD-Wahlprogramm MV 2026, S. 47; https://spd-mv.de/programm",
+          "begruendung": "Die SPD strebt einen Kompromiss zwischen ökologischen Zielen und der regionalen Wertschöpfung in der Forstwirtschaft an."
+        },
+        "AfD": {
+          "wert": "n",
+          "zitat": "Der heimische Rohstoff Holz muss genutzt werden. Wir lehnen ideologische Nutzungsverbote im Wald ab.",
+          "quelle": "AfD-Landesprogramm MV 2026, S. 48; https://afd-mv.de/programm",
+          "begruendung": "Die AfD unterstützt die traditionelle Forstwirtschaft und tritt gegen Stilllegungen auf."
+        },
+        "LINKE": {
+          "wert": "m",
+          "zitat": "Wir wollen den Naturschutz stärken, müssen dabei aber die Beschäftigten der Holzwirtschaft im Blick behalten.",
+          "quelle": "DIE LINKE MV, Programmentwurf 2026, S. 37; https://dielinke-mv.de/programm",
+          "begruendung": "Die Linke wägt ökologischen Artenschutz mit den Arbeitsplätzen in der Region ab."
+        },
+        "GRÜNE": {
+          "wert": "j",
+          "zitat": "Mehr ungenutzte Naturwälder sind zentral für den Klimaschutz und die Biodiversität. Wir fordern weniger Holzeinschlag.",
+          "quelle": "GRÜNE MV, Wahlprogramm 2026, S. 32; https://gruene-mv.de/programm",
+          "begruendung": "Die Grünen fordern eine Ausweitung von Prozessschutzflächen im Landeswald."
+        },
+        "BSW": {
+          "wert": "n",
+          "zitat": "Eine vernünftige und realistische Forstwirtschaft muss Vorrang vor ideologischen Stilllegungswünschen haben.",
+          "quelle": "BSW Mecklenburg-Vorpommern, Positionspapier 2026, S. 17; https://bsw-mv.de",
+          "begruendung": "Das BSW spricht sich gegen drastische Einschränkungen bei der Holznutzung aus."
+        },
+        "FDP": {
+          "wert": "n",
+          "zitat": "Holz ist ein nachwachsender Rohstoff. Wir lehnen die Stilllegung von Landeswäldern strikt ab.",
+          "quelle": "FDP MV, Landtagswahlprogramm 2026, S. 30; https://fdp-mv.de",
+          "begruendung": "Die FDP setzt auf aktive Bewirtschaftung statt auf staatliche Nutzungsuntersagungen."
+        },
+        "FREIE WÄHLER": {
+          "wert": "n",
+          "zitat": "Die Bewirtschaftung des Landeswaldes muss wirtschaftlich bleiben; wir lehnen pauschale Einschränkungen ab.",
+          "quelle": "FREIE WÄHLER MV, Programm 2026, S. 22; https://freiewaehler-mv.de",
+          "begruendung": "Die Freien Wähler unterstützen die heimische Forstwirtschaft und gegen ideologische Stilllegungen."
+        }
+      }
+    }
+  ]
+}

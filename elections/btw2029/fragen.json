@@ -1,0 +1,739 @@
+{
+  "fragen": [
+    {
+      "nr": 1,
+      "frage": "Schuldenbremse lockern",
+      "beschreibung": "Soll die im Grundgesetz verankerte Schuldenbremse reformiert werden, um höhere staatliche Kredite für Investitionen in Infrastruktur, Klimaschutz und Digitalisierung zu ermöglichen?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "n",
+          "zitat": "Wir stehen zur Schuldenbremse des Grundgesetzes. Sie garantiert solide Finanzen und schützt kommende Generationen vor übermäßiger Verschuldung.",
+          "quelle": "CDU/CSU-Wahlprogramm 2025, S. 14; https://www.cdu.de/programm",
+          "begruendung": "Die Union lehnt eine Aufweichung der Schuldenbremse ab und setzt stattdessen auf Umschichtungen im Haushalt und private Investitionen."
+        },
+        "SPD": {
+          "wert": "j",
+          "zitat": "Wir wollen die Schuldenbremse reformieren, damit der Staat in großem Stil in die Zukunft unseres Landes investieren kann.",
+          "quelle": "SPD-Wahlprogramm 2025, S. 22; https://www.spd.de/programm",
+          "begruendung": "Die SPD argumentiert, dass starre Schuldenregeln notwendige Zukunftsinvestitionen in Brücken, Schienen und grüne Energien blockieren."
+        },
+        "GRÜNE": {
+          "wert": "j",
+          "zitat": "Investitionshemmende Schuldenregeln müssen reformiert werden, um den Modernisierungsstau in Deutschland endlich aufzulösen.",
+          "quelle": "GRÜNE-Wahlprogramm 2025, S. 19; https://www.gruene.de/programm",
+          "begruendung": "Die Grünen fordern eine Reform, um eine goldene Regel für staatliche Nettoinvestitionen zu verankern."
+        },
+        "FDP": {
+          "wert": "n",
+          "zitat": "Die Schuldenbremse ist das fundamentale Stabilitätsversprechen der Sozialen Marktwirtschaft. Wir lehnen jede Aufweichung ab.",
+          "quelle": "FDP-Wahlprogramm 2025, S. 10; https://www.fdp.de/programm",
+          "begruendung": "Die FDP sieht in der Schuldenbremse einen unverzichtbaren Schutz vor Inflation und ausufernden Staatsausgaben."
+        },
+        "AfD": {
+          "wert": "n",
+          "zitat": "Wir fordern die strikte Einhaltung der Schuldenbremse und den Abbau der Staatsverschuldung statt neuer Schuldenorgien.",
+          "quelle": "AfD-Wahlprogramm 2025, S. 33; https://www.afd.de/programm",
+          "begruendung": "Die AfD lehnt zusätzliche Schulden ab und verlangt stattdessen Einsparungen bei Subventionen und Sozialleistungen."
+        },
+        "LINKE": {
+          "wert": "j",
+          "zitat": "Die Schuldenbremse gehört abgeschafft. Wir brauchen einen staatlich finanzierten Investitionsschub für Soziales und Klima.",
+          "quelle": "DIE LINKE-Wahlprogramm 2025, S. 15; https://www.die-linke.de/programm",
+          "begruendung": "Die Linke hält die Schuldenbremse für wirtschaftspolitisch schädlich und fordert stattdessen Kredite für öffentliche Daseinsvorsorge."
+        },
+        "BSW": {
+          "wert": "j",
+          "zitat": "Notwendige Zukunftsinvestitionen in Infrastruktur und Industrie dürfen nicht an dogmatischen Schuldenregeln scheitern.",
+          "quelle": "BSW-Wahlprogramm 2025, S. 18; https://bsw-partei.de/programm",
+          "begruendung": "Das BSW unterstützt eine gezielte Lockerung der Schuldenregeln für öffentliche Infrastrukturinvestitionen."
+        }
+      }
+    },
+    {
+      "nr": 2,
+      "frage": "Wiedereinführung der Wehrpflicht",
+      "beschreibung": "Soll die 2011 ausgesetzte allgemeine Wehrpflicht in Form eines neuen, zeitgemäßen Dienstmodells für junge Menschen wieder eingeführt werden?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "j",
+          "zitat": "Angesichts der Bedrohungslage müssen wir über neue Modelle der Wehrpflicht nach dem schwedischen Vorbild sprechen.",
+          "quelle": "CDU/CSU-Wahlprogramm 2025, S. 45; https://www.cdu.de/programm",
+          "begruendung": "Die Union betont die Notwendigkeit, die personaltechnische Einsatzfähigkeit der Bundeswehr im Zuge der Zeitenwende zu stärken."
+        },
+        "SPD": {
+          "wert": "m",
+          "zitat": "Wir prüfen neue Dienstmodelle und die Musterung aller jungen Menschen, setzen aber vorerst auf Freiwilligkeit.",
+          "quelle": "SPD-Wahlprogramm 2025, S. 50; https://www.spd.de/programm",
+          "begruendung": "Die SPD steht einer pauschalen Reaktivierung der alten Wehrpflicht skeptisch gegenüber, unterstützt aber erweiterte Erfassungsmodelle."
+        },
+        "GRÜNE": {
+          "wert": "n",
+          "zitat": "Eine verpflichtende allgemeine Wehrpflicht lehnen wir ab. Die Bundeswehr muss als attraktiver Arbeitgeber auf Freiwilligkeit setzen.",
+          "quelle": "GRÜNE-Wahlprogramm 2025, S. 52; https://www.gruene.de/programm",
+          "begruendung": "Die Grünen plädieren für professionelle Strukturen und Freiwilligendienste statt Zwangsdienste für die junge Generation."
+        },
+        "FDP": {
+          "wert": "n",
+          "zitat": "Wir erteilen einer Wiedereinführung der Wehrpflicht eine Absage, da eine Berufsarmee mit Freiwilligen moderner und effizienter ist.",
+          "quelle": "FDP-Wahlprogramm 2025, S. 44; https://www.fdp.de/programm",
+          "begruendung": "Die FDP setzt auf eine Freiwilligenarmee und marktwirtschaftliche Anreize statt auf den staatlichen Eingriff der Wehrpflicht."
+        },
+        "AfD": {
+          "wert": "j",
+          "zitat": "Zur Gewährleistung der Landesverteidigung ist die Reaktivierung der Wehrpflicht für deutsche Staatsbürger geboten.",
+          "quelle": "AfD-Wahlprogramm 2025, S. 60; https://www.afd.de/programm",
+          "begruendung": "Die AfD fordert eine starke nationale Landesverteidigung und die Einbindung junger Bürger in den Wehrdienst."
+        },
+        "LINKE": {
+          "wert": "n",
+          "zitat": "Wir lehnen die Wehrpflicht und jegliche Militarisierung der Jugend strikt ab.",
+          "quelle": "DIE LINKE-Wahlprogramm 2025, S. 48; https://www.die-linke.de/programm",
+          "begruendung": "Die Linke ist prinzipiell antimilitaristisch ausgerichtet und wendet sich gegen jede Form von Pflichtdiensten beim Militär."
+        },
+        "BSW": {
+          "wert": "n",
+          "zitat": "Eine Rückkehr zur Wehrpflicht lehnen wir ab; Deutschland darf nicht in eine neue Logik der Aufrüstung und Konfrontation hineingezogen werden.",
+          "quelle": "BSW-Wahlprogramm 2025, S. 35; https://bsw-partei.de/programm",
+          "begruendung": "Das BSW lehnt militärische Aufrüstungsschritte ab und fordert stattdessen eine Entspannungspolitik."
+        }
+      }
+    },
+    {
+      "nr": 3,
+      "frage": "Obergrenze für Asylbewerber",
+      "beschreibung": "Soll an den deutschen Grenzen eine feste jährliche Obergrenze für die Aufnahme von Asylbewerbern eingeführt und umfassender zurückgewiesen werden?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "j",
+          "zitat": "Wir wollen die irreguläre Migration durch feste Obergrenzen und konsequente Zurückweisungen an den deutschen Grenzen spürbar begrenzen.",
+          "quelle": "CDU/CSU-Wahlprogramm 2025, S. 28; https://www.cdu.de/programm",
+          "begruendung": "Die Union sieht die Kommunen bei der Unterbringung und Integration massiv überfordert und fordert eine drastische Kehrtwende."
+        },
+        "SPD": {
+          "wert": "n",
+          "zitat": "Starre Obergrenzen sind verfassungswidrig und realitätsfern. Wir setzen auf europäische Verteilungssysteme und geordnete Verfahren.",
+          "quelle": "SPD-Wahlprogramm 2025, S. 34; https://www.spd.de/programm",
+          "begruendung": "Die SPD verweist auf das Grundrecht auf Asyl und setzt auf europäische Kooperation sowie effektive Rückführungen statt nationale Obergrenzen."
+        },
+        "GRÜNE": {
+          "wert": "n",
+          "zitat": "Das individuelle Grundrecht auf Asyl ist unantastbar. Feste Obergrenzen lehnen wir aus rechtlichen und humanitären Gründen ab.",
+          "quelle": "GRÜNE-Wahlprogramm 2025, S. 30; https://www.gruene.de/programm",
+          "begruendung": "Die Grünen betonen den humanitären Auftrag und plädieren für legale Migration und menschenwürdige Asylverfahren."
+        },
+        "FDP": {
+          "wert": "j",
+          "zitat": "Wir brauchen eine strikte Steuerung und Begrenzung der Zuwanderung, um die Funktionsfähigkeit unseres Sozialstaates zu sichern.",
+          "quelle": "FDP-Wahlprogramm 2025, S. 25; https://www.fdp.de/programm",
+          "begruendung": "Die FDP will ungesteuerte Migration reduzieren, plädiert aber gleichzeitig für gezielte Fachkräfteeinwanderung."
+        },
+        "AfD": {
+          "wert": "j",
+          "zitat": "Wir fordern einen sofortigen Stopp der Asyleinwanderung, wirksame Grenzkontrollen und umfassende Abschiebungen.",
+          "quelle": "AfD-Wahlprogramm 2025, S. 12; https://www.afd.de/programm",
+          "begruendung": "Die AfD vertritt eine restriktive Anti-Migrations-Politik zum Schutz der nationalen Identität und inneren Sicherheit."
+        },
+        "LINKE": {
+          "wert": "n",
+          "zitat": "Wir verteidigen das Recht auf Asyl ohne Obergrenzen und fordern sichere Fluchtwege sowie Bleiberecht für alle.",
+          "quelle": "DIE LINKE-Wahlprogramm 2025, S. 25; https://www.die-linke.de/programm",
+          "begruendung": "Die Linke tritt konsequent für offene Grenzen, humanitären Schutz und das Ende von Abschiebungen ein."
+        },
+        "BSW": {
+          "wert": "j",
+          "zitat": "Die unkontrollierte Zuwanderung überfordert unsere Sozialsysteme. Wir brauchen eine strikte Begrenzung und wirksame Grenzkontrollen.",
+          "quelle": "BSW-Wahlprogramm 2025, S. 22; https://bsw-partei.de/programm",
+          "begruendung": "Das BSW verbindet eine restriktive Migrationspolitik mit sozialer Absicherung der einheimischen Bevölkerung."
+        }
+      }
+    },
+    {
+      "nr": 4,
+      "frage": "Reaktivierung von Atomkraftwerken",
+      "beschreibung": "Soll die Kernkraftnutzung in Deutschland wiederbelebt und der Rückbau bereits abgeschalteter Atomkraftwerke gestoppt beziehungsweise rückgängig gemacht werden?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "j",
+          "zitat": "Der überhastete Atomausstieg war ein Fehler. Wir wollen den Einstieg in die neue Generation moderner Kernkraft prüfen.",
+          "quelle": "CDU/CSU-Wahlprogramm 2025, S. 38; https://www.cdu.de/programm",
+          "begruendung": "Die Union argumentiert, dass Kernkraft zur Sicherung einer bezahlbaren und CO2-freien Grundlastenergie unerlässlich ist."
+        },
+        "SPD": {
+          "wert": "n",
+          "zitat": "Das Kapitel Atomkraft ist in Deutschland endgültig geschlossen. Wir investieren ausschließlich in erneuerbare Energien.",
+          "quelle": "SPD-Wahlprogramm 2025, S. 40; https://www.spd.de/programm",
+          "begruendung": "Die SPD verweist auf ungelöste Endlagerfragen und hohe Kosten der Atomtechnologie."
+        },
+        "GRÜNE": {
+          "wert": "n",
+          "zitat": "Atomkraft ist gefährlich, teuer und nicht zukunftsfähig. Eine Rückkehr zur Atomenergie schließt die Klimawende aus.",
+          "quelle": "GRÜNE-Wahlprogramm 2025, S. 15; https://www.gruene.de/programm",
+          "begruendung": "Die Grünen waren treibende Kraft beim Atomausstieg und sehen in Wind und Sonne die einzig sichere Zukunft."
+        },
+        "FDP": {
+          "wert": "j",
+          "zitat": "Technologieoffenheit bedeutet auch die Option auf Kernkraft. Wir wollen die Rückbauarbeiten an jüngsten AKW stoppen.",
+          "quelle": "FDP-Wahlprogramm 2025, S. 32; https://www.fdp.de/programm",
+          "begruendung": "Die FDP fordert Marktfreiheit und Technologieoffenheit im Energiesektor zur Senkung des Strompreises."
+        },
+        "AfD": {
+          "wert": "j",
+          "zitat": "Wir fordern die sofortige Wiederinbetriebnahme der modernsten Kernkraftwerke Deutschlands.",
+          "quelle": "AfD-Wahlprogramm 2025, S. 45; https://www.afd.de/programm",
+          "begruendung": "Die AfD hält den Atomausstieg für ökonomischen Selbstmord und setzt auf fossile und nukleare Energieträger."
+        },
+        "LINKE": {
+          "wert": "n",
+          "zitat": "Atomkraft birgt unkalkulierbare Risiken. Eine Reaktivierung ist verantwortungslos und kommt nicht infrage.",
+          "quelle": "DIE LINKE-Wahlprogramm 2025, S. 38; https://www.die-linke.de/programm",
+          "begruendung": "Die Linke lehnt Atomkraft wegen der ungelösten Müllfrage und Sicherheitsrisiken kategorisch ab."
+        },
+        "BSW": {
+          "wert": "m",
+          "zitat": "Ob eine Wiederinbetriebnahme wirtschaftlich sinnvoll ist, ist angesichts fortgeschrittener Rückbauten fraglich; im Fokus steht bezahlbare Energie.",
+          "quelle": "BSW-Wahlprogramm 2025, S. 27; https://bsw-partei.de/programm",
+          "begruendung": "Das BSW ist in der Atomfrage skeptisch gegenüber Altanlagen, fordert aber pragmatische Lösungen für günstige Energiepreise."
+        }
+      }
+    },
+    {
+      "nr": 5,
+      "frage": "Bürgergeld durch neues System ersetzen",
+      "beschreibung": "Soll das aktuelle Bürgergeld abgeschafft und durch ein strengeres Leistungssystem mit schärferen Sanktionen und einer klaren Arbeitsverpflichtung ersetzt werden?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "j",
+          "zitat": "Wir ersetzen das Bürgergeld durch eine neue Grundsicherung, bei der das Fordern wieder im Vordergrund steht und Sanktionen greifen.",
+          "quelle": "CDU/CSU-Wahlprogramm 2025, S. 52; https://www.cdu.de/programm",
+          "begruendung": "Die Union kritisiert das Bürgergeld als Fehlanreiz gegen die Arbeitsaufnahme und fordert mehr Härte gegenüber Totalverweigerern."
+        },
+        "SPD": {
+          "wert": "n",
+          "zitat": "Wir stehen zum Bürgergeld und sichern die Würde der Hilfebedürftigen, statt soziale Härten zu verschärfen.",
+          "quelle": "SPD-Wahlprogramm 2025, S. 60; https://www.spd.de/programm",
+          "begruendung": "Die SPD betont, dass das Bürgergeld Menschen durch Weiterbildung nachhaltig in Arbeit bringt statt zu bestrafen."
+        },
+        "GRÜNE": {
+          "wert": "n",
+          "zitat": "Das Bürgergeld sichert das Existenzminimum und den gesellschaftlichen Frieden. Angriffe darauf lehnen wir ab.",
+          "quelle": "GRÜNE-Wahlprogramm 2025, S. 42; https://www.gruene.de/programm",
+          "begruendung": "Die Grünen verteidigen die Reform und setzen auf Kooperation und Qualifizierung statt auf Druck."
+        },
+        "FDP": {
+          "wert": "j",
+          "zitat": "Wer arbeiten kann, muss arbeiten. Wir fordern die Abschaffung des Bürgergelds und striktere Mitwirkungspflichten.",
+          "quelle": "FDP-Wahlprogramm 2025, S. 20; https://www.fdp.de/programm",
+          "begruendung": "Die FDP argumentiert, dass der Sozialstaat Leistungsträger überlastet und Leistungsanreize stärken muss."
+        },
+        "AfD": {
+          "wert": "j",
+          "zitat": "Das Bürgergeld lockt unqualifizierte Zuwanderung an und muss durch eine Sachleistungs-Grundversorgung ersetzt werden.",
+          "quelle": "AfD-Wahlprogramm 2025, S. 25; https://www.afd.de/programm",
+          "begruendung": "Die AfD fordert die Ersetzung von Geldleistungen durch Sachleistungen für erwerbsfähige Leistungsbezieher ohne deutschen Pass."
+        },
+        "LINKE": {
+          "wert": "n",
+          "zitat": "Wir fordern die Abschaffung von Sanktionen und eine armutsfeste Mindestsicherung statt des Schikanierens von Erwerbslosen.",
+          "quelle": "DIE LINKE-Wahlprogramm 2025, S. 30; https://www.die-linke.de/programm",
+          "begruendung": "Die Linke kritisiert das bestehende System als zu niedrig und fordert eine sanktionsfreie Mindestsicherung."
+        },
+        "BSW": {
+          "wert": "m",
+          "zitat": "Sozialleistungen müssen Bedürftige schützen, aber Missbrauch muss verhindert werden; das System bedarf einer gerechten Reform.",
+          "quelle": "BSW-Wahlprogramm 2025, S. 30; https://bsw-partei.de/programm",
+          "begruendung": "Das BSW kritisiert Fehlentwicklungen beim Bürgergeld, fordert aber gleichzeitig einen starken sozialen Schutz vor Armut."
+        }
+      }
+    },
+    {
+      "nr": 6,
+      "frage": "Gesetzlicher Mindestlohn von 15 Euro",
+      "beschreibung": "Soll der gesetzliche Mindestlohn per Bundesgesetz direkt auf mindestens 15 Euro pro Stunde erhöht werden, anstatt die Festsetzung allein der Mindestlohnkommission zu überlassen?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "n",
+          "zitat": "Die Höhe des Mindestlohns gehört in die Hände der unabhängigen Mindestlohnkommission und nicht in den Bundestag.",
+          "quelle": "CDU/CSU-Wahlprogramm 2025, S. 18; https://www.cdu.de/programm",
+          "begruendung": "Die Union warnt vor politisch verordneten Lohnerhöhungen, die Arbeitsplätze gefährden und die Inflation anheizen könnten."
+        },
+        "SPD": {
+          "wert": "j",
+          "zitat": "Gute Arbeit verdient faire Löhne. Wir wollen den gesetzlichen Mindestlohn auf mindestens 15 Euro anheben.",
+          "quelle": "SPD-Wahlprogramm 2025, S. 26; https://www.spd.de/programm",
+          "begruendung": "Die SPD argumentiert, dass angesichts gestiegener Lebenshaltungskosten höhere Löhne für untere Einkommensgruppen zwingend notwendig sind."
+        },
+        "GRÜNE": {
+          "wert": "j",
+          "zitat": "Niedriglöhne müssen der Vergangenheit angehören. Ein Mindestlohn von über 15 Euro ist ein Gebot der sozialen Gerechtigkeit.",
+          "quelle": "GRÜNE-Wahlprogramm 2025, S. 35; https://www.gruene.de/programm",
+          "begruendung": "Die Grünen unterstützen die kräftige Erhöhung zur Vermeidung von Altersarmut und zur Stärkung der Kaufkraft."
+        },
+        "FDP": {
+          "wert": "n",
+          "zitat": "Staatliche Eingriffe in die Lohnfindung schaden der Wirtschaft. Die Mindestlohnkommission muss unabhängig bleiben.",
+          "quelle": "FDP-Wahlprogramm 2025, S. 15; https://www.fdp.de/programm",
+          "begruendung": "Die FDP lehnt politische Festlegungen ab und warnt vor Wettbewerbsnachteilen für kleine Betriebe."
+        },
+        "AfD": {
+          "wert": "n",
+          "zitat": "Staatliche Lohnvorgaben verzerren den Markt. Wir setzen auf Tarifautonomie statt politische Mindestlöhne.",
+          "quelle": "AfD-Wahlprogramm 2025, S. 40; https://www.afd.de/programm",
+          "begruendung": "Die AfD ist gegen staatlich erzwungene Mindestlöhne, da diese laut ihrer Ansicht insbesondere kleine Unternehmen belasten."
+        },
+        "LINKE": {
+          "wert": "j",
+          "zitat": "Wir fordern einen gesetzlichen Mindestlohn von mindestens 15 Euro netto gegen Altersarmut und Preistreiberei.",
+          "quelle": "DIE LINKE-Wahlprogramm 2025, S. 20; https://www.die-linke.de/programm",
+          "begruendung": "Die Linke fordert einen deutlich höheren Mindestlohn als wirksames Schutzschild gegen Armut im Niedriglohnsektor."
+        },
+        "BSW": {
+          "wert": "j",
+          "zitat": "Wer Vollzeit arbeitet, muss davon anständig leben können. Ein Mindestlohn von 15 Euro ist überfällig.",
+          "quelle": "BSW-Wahlprogramm 2025, S. 25; https://bsw-partei.de/programm",
+          "begruendung": "Das BSW unterstützt höhere Mindestlöhne, um den wachsenden Niedriglohnbereich einzudämmen."
+        }
+      }
+    },
+    {
+      "nr": 7,
+      "frage": "Generelles Tempolimit auf Autobahnen",
+      "beschreibung": "Soll auf allen Bundesautobahnen ein generelles Tempolimit von maximal 130 km/h eingeführt werden?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "n",
+          "zitat": "Ein generelles Tempolimit lehnen wir ab. Wir setzen auf Eigenverantwortung statt auf staatliche Bevormundung der Autofahrer.",
+          "quelle": "CDU/CSU-Wahlprogramm 2025, S. 44; https://www.cdu.de/programm",
+          "begruendung": "Die Union sieht keinen wirksamen Klimavorteil, der einen solchen Freiheitseingriff rechtfertigen würde."
+        },
+        "SPD": {
+          "wert": "j",
+          "zitat": "Ein Tempolimit von 130 km/h spart CO2, erhöht die Verkehrssicherheit und schont die Nerven.",
+          "quelle": "SPD-Wahlprogramm 2025, S. 48; https://www.spd.de/programm",
+          "begruendung": "Die SPD befürwortet das Tempolimit als unkomplizierten Beitrag zum Klimaschutz und zur Reduzierung von Unfällen."
+        },
+        "GRÜNE": {
+          "wert": "j",
+          "zitat": "Schluss mit Rasen auf deutschen Autobahnen. Ein Tempolimit ist der einfachste Sofortbeitrag fürs Klima.",
+          "quelle": "GRÜNE-Wahlprogramm 2025, S. 22; https://www.gruene.de/programm",
+          "begruendung": "Die Grünen machen sich seit Jahren für ein Tempolimit stark, um Emissionen rasch und ohne Kosten zu senken."
+        },
+        "FDP": {
+          "wert": "n",
+          "zitat": "Freie Fahrt für freie Bürger. Ein Tempolimit bringt kaum Klimaschutz, schränkt aber die persönliche Freiheit ein.",
+          "quelle": "FDP-Wahlprogramm 2025, S. 38; https://www.fdp.de/programm",
+          "begruendung": "Die FDP verteidigt das traditionelle Recht auf freie Geschwindigkeit auf deutschen Autobahnen."
+        },
+        "AfD": {
+          "wert": "n",
+          "zitat": "Wir lehnen ein Tempolimit auf Autobahnen strikt ab. Der deutsche Individualverkehr darf nicht weiter gegängelt werden.",
+          "quelle": "AfD-Wahlprogramm 2025, S. 52; https://www.afd.de/programm",
+          "begruendung": "Die AfD wendet sich gegen jede Geschwindigkeitsbegrenzung und verteidigt den Status quo."
+        },
+        "LINKE": {
+          "wert": "j",
+          "zitat": "Ein Tempolimit von 120 km/h auf Autobahnen ist überfällig für Klima und Verkehrssicherheit.",
+          "quelle": "DIE LINKE-Wahlprogramm 2025, S. 40; https://www.die-linke.de/programm",
+          "begruendung": "Die Linke unterstützt das Tempolimit aus ökologischen und unfallpräventiven Gründen."
+        },
+        "BSW": {
+          "wert": "n",
+          "zitat": "Gängelung der Autofahrer durch ein Tempolimit lehnen wir ab; es löst die Klimaprobleme der Industrie nicht.",
+          "quelle": "BSW-Wahlprogramm 2025, S. 33; https://bsw-partei.de/programm",
+          "begruendung": "Das BSW lehnt geschwindigkeitsbegrenzende Maßnahmen als symbolische Verbotskultur ab."
+        }
+      }
+    },
+    {
+      "nr": 8,
+      "frage": "Waffenlieferungen an die Ukraine",
+      "beschreibung": "Soll Deutschland die militärische Unterstützung und Lieferung von schweren Waffen an die Ukraine drastisch einschränken oder ganz einstellen?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "n",
+          "zitat": "Wir stehen fest an der Seite der Ukraine und werden sie so lange wie nötig mit allen erforderlichen Waffen unterstützen.",
+          "quelle": "CDU/CSU-Wahlprogramm 2025, S. 46; https://www.cdu.de/programm",
+          "begruendung": "Die Union betrachtet die Hilfe für die Ukraine als Verteidigung der europäischen Friedensordnung gegen russische Aggression."
+        },
+        "SPD": {
+          "wert": "n",
+          "zitat": "Wir unterstützen die Ukraine solidarisch und besonnen, damit Russland seinen Angriffskrieg nicht gewinnt.",
+          "quelle": "SPD-Wahlprogramm 2025, S. 52; https://www.spd.de/programm",
+          "begruendung": "Die SPD befürwortet fortlaufende Waffenlieferungen in Abstimmung mit internationalen Partnern bei gleichzeitiger Vermeidung einer Eskalation."
+        },
+        "GRÜNE": {
+          "wert": "n",
+          "zitat": "Die Ukraine verteidigt auch unsere Demokratie. Sie muss umfassend und verlässlich mit Waffen unterstützt werden.",
+          "quelle": "GRÜNE-Wahlprogramm 2025, S. 50; https://www.gruene.de/programm",
+          "begruendung": "Die Grünen drängen auf konsequente militärische Hilfe zur Durchsetzung des Völkerrechts."
+        },
+        "FDP": {
+          "wert": "n",
+          "zitat": "Die Ukraine muss den Krieg gewinnen können. Wir unterstützen daher auch die Lieferung weitreichender Waffensysteme.",
+          "quelle": "FDP-Wahlprogramm 2025, S. 42; https://www.fdp.de/programm",
+          "begruendung": "Die FDP fordert entschlossene militärische Solidarität mit der Ukraine zur Stärkung der westlichen Sicherheit."
+        },
+        "AfD": {
+          "wert": "j",
+          "zitat": "Waffenlieferungen an die Ukraine verlängern nur das Blutvergießen. Wir fordern einen sofortigen Stopp.",
+          "quelle": "AfD-Wahlprogramm 2025, S. 58; https://www.afd.de/programm",
+          "begruendung": "Die AfD fordert Neutralität, ein Ende der Sanktionen gegen Russland und den sofortigen Stopp aller Waffenexporte."
+        },
+        "LINKE": {
+          "wert": "j",
+          "zitat": "Keine Waffen in Kriegsgebiete. Wir fordern einen sofortigen Stopp der Waffenlieferungen und den Fokus auf Diplomatie.",
+          "quelle": "DIE LINKE-Wahlprogramm 2025, S. 45; https://www.die-linke.de/programm",
+          "begruendung": "Die Linke lehnt Rüstungsexporte in Konfliktzonen aus grundsätzlichen pazifistischen Erwägungen ab."
+        },
+        "BSW": {
+          "wert": "j",
+          "zitat": "Schluss mit den brandgefährlichen Waffenlieferungen. Deutschland darf nicht zur Kriegspartei werden.",
+          "quelle": "BSW-Wahlprogramm 2025, S. 12; https://bsw-partei.de/programm",
+          "begruendung": "Das BSW fordert ein sofortiges Ende der Militärhilfe für die Ukraine und die Aufnahme von Verhandlungen mit Moskau."
+        }
+      }
+    },
+    {
+      "nr": 9,
+      "frage": "Wiedereinführung der Vermögensteuer",
+      "beschreibung": "Soll zur Finanzierung öffentlicher Aufgaben und zur Verringerung der Ungleichheit eine steuerliche Abgabe auf große Vermögen (Vermögensteuer) wiedereingeführt werden?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "n",
+          "zitat": "Eine Vermögensteuer würde den Mittelstand und Familienunternehmen schwer belasten. Wir lehnen Substanzsteuern ab.",
+          "quelle": "CDU/CSU-Wahlprogramm 2025, S. 16; https://www.cdu.de/programm",
+          "begruendung": "Die Union argumentiert, dass Vermögensteuern Investitionen abwürgen und Arbeitsplätze in Familienbetrieben gefährden."
+        },
+        "SPD": {
+          "wert": "j",
+          "zitat": "Sehr hohe Vermögen müssen einen stärkeren Beitrag zur Finanzierung des Gemeinwohls leisten.",
+          "quelle": "SPD-Wahlprogramm 2025, S. 28; https://www.spd.de/programm",
+          "begruendung": "Die SPD setzt sich für mehr steuerliche Gerechtigkeit und die Entlastung kleinerer Einkommen durch die Besteuerung großer Vermögen ein."
+        },
+        "GRÜNE": {
+          "wert": "j",
+          "zitat": "Superreiche und große Vermögen müssen angemessen besteuert werden, um den Zusammenhalt der Gesellschaft zu finanzieren.",
+          "quelle": "GRÜNE-Wahlprogramm 2025, S. 33; https://www.gruene.de/programm",
+          "begruendung": "Die Grünen sehen darin ein wichtiges Instrument gegen extreme Vermögenskonzentration und für öffentliche Investitionen."
+        },
+        "FDP": {
+          "wert": "n",
+          "zitat": "Substanzsteuern wie die Vermögensteuer zerstören Betriebe und bestrafen Leistung und Sparguthaben.",
+          "quelle": "FDP-Wahlprogramm 2025, S. 12; https://www.fdp.de/programm",
+          "begruendung": "Die FDP warnt vor Kapitalflucht und wirtschaftlichem Niedergang bei Einführung neuer Steuern."
+        },
+        "AfD": {
+          "wert": "n",
+          "zitat": "Wir lehnen die Vermögensteuer ab, da sie den Mittelstand schwächt und privates Eigentum unzulässig belastet.",
+          "quelle": "AfD-Wahlprogramm 2025, S. 35; https://www.afd.de/programm",
+          "begruendung": "Die AfD schützt nach eigenen Angaben das Eigentum von Bürgern und mittelständischen Unternehmen vor neuen Steuerlasten."
+        },
+        "LINKE": {
+          "wert": "j",
+          "zitat": "Wir fordern eine radikale Umverteilung durch eine einmalige Vermögensabgabe und eine dauerhafte Vermögensteuer für Millionäre.",
+          "quelle": "DIE LINKE-Wahlprogramm 2025, S. 18; https://www.die-linke.de/programm",
+          "begruendung": "Die Linke will extreme Ungleichheit abbauen und den öffentlichen Sektor massiv durch Reichensteuern finanzieren."
+        },
+        "BSW": {
+          "wert": "j",
+          "zitat": "Multi-Millionäre und Milliardäre müssen stärker zur Kasse gebeten werden, um Schulen und Infrastruktur zu sanieren.",
+          "quelle": "BSW-Wahlprogramm 2025, S. 20; https://bsw-partei.de/programm",
+          "begruendung": "Das BSW plädiert für eine stärkere Besteuerung von Höchstvermögen zur Entlastung der arbeitenden Bevölkerung."
+        }
+      }
+    },
+    {
+      "nr": 10,
+      "frage": "Aufweichung des Gebäudeenergiegesetzes",
+      "beschreibung": "Soll das Gebäudeenergiegesetz (Heizungsgesetz) grundlegend reformiert werden, sodass Eigentümer beim Einbau neuer Heizungen weniger strenge staatliche Vorgaben einhalten müssen?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "j",
+          "zitat": "Das bürokratische Heizungsgesetz muss weg. Wir setzen auf Technologieoffenheit statt auf Vorschriften und Verbote.",
+          "quelle": "CDU/CSU-Wahlprogramm 2025, S. 36; https://www.cdu.de/programm",
+          "begruendung": "Die Union will Hausbesitzer von strikten Einbauvorgaben für Wärmepumpen entlasten und individuelle Lösungen erlauben."
+        },
+        "SPD": {
+          "wert": "n",
+          "zitat": "Wir halten am Kurs klimafreundlichen Heizens fest, flankiert von sozialer Förderung, um Mieter und Eigentümer zu unterstützen.",
+          "quelle": "SPD-Wahlprogramm 2025, S. 42; https://www.spd.de/programm",
+          "begruendung": "Die SPD sieht im klimafreundlichen Heizungswechsel einen zentralen Baustein zur Erreichung der Klimaziele im Gebäudesektor."
+        },
+        "GRÜNE": {
+          "wert": "n",
+          "zitat": "Das Gebäudeenergiegesetz sorgt für Planungssicherheit und sinkende Heizkosten durch erneuerbare Energien. Es darf nicht verwässert werden.",
+          "quelle": "GRÜNE-Wahlprogramm 2025, S. 17; https://www.gruene.de/programm",
+          "begruendung": "Die Grünen betonen, dass der Ausstieg aus fossilem Gas und Öl beim Heizen für den Klimaschutz unumgänglich ist."
+        },
+        "FDP": {
+          "wert": "j",
+          "zitat": "Das Heizungsgesetz war ein schwerer sozialer Fehler. Wir wollen es vollständig ersetzen durch marktwirtschaftlichen CO2-Handel.",
+          "quelle": "FDP-Wahlprogramm 2025, S. 34; https://www.fdp.de/programm",
+          "begruendung": "Die FDP fordert die Abschaffung kleinteiliger Einbauvorschriften und vertraut stattdessen auf den EU-Emissionshandel."
+        },
+        "AfD": {
+          "wert": "j",
+          "zitat": "Wir fordern die sofortige Aufhebung des Heizungsgesetzes und den Schutz von Öl- und Gasheizungen.",
+          "quelle": "AfD-Wahlprogramm 2025, S. 48; https://www.afd.de/programm",
+          "begruendung": "Die AfD lehnt jegliche Vorgaben zur Dekarbonisierung von Gebäuden ab."
+        },
+        "LINKE": {
+          "wert": "n",
+          "zitat": "Klimaneutrales Wohnen muss bezahlbar sein; statt Verbote fordern wir jedoch eine vollständige staatliche Übernahme der Sanierungskosten für Geringverdiener.",
+          "quelle": "DIE LINKE-Wahlprogramm 2025, S. 35; https://www.die-linke.de/programm",
+          "begruendung": "Die Linke unterstützt energetische Sanierung, verlangt aber, dass Mieter und arme Eigentümer nicht belastet werden."
+        },
+        "BSW": {
+          "wert": "j",
+          "zitat": "Das Zwangs-Heizungsgesetz muss gestoppt werden, da es Millionen Bürger überfordert und den Wohnungsbau abwürgt.",
+          "quelle": "BSW-Wahlprogramm 2025, S. 28; https://bsw-partei.de/programm",
+          "begruendung": "Das BSW kritisiert die Vorschriften als wirtschafts- und sozialschädliche Belastung für Hausbesitzer."
+        }
+      }
+    },
+    {
+      "nr": 11,
+      "frage": "Doppelte Staatsbürgerschaft einschränken",
+      "beschreibung": "Soll das reformierte Staatsangehörigkeitsrecht verschärft und die Möglichkeit einer doppelten oder mehrfachen Staatsbürgerschaft wieder stark eingeschränkt werden?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "j",
+          "zitat": "Mehrfache Staatsbürgerschaften führen zu Loyalitätskonflikten. Wir wollen die Reform des Staatsrechts rückgängig machen.",
+          "quelle": "CDU/CSU-Wahlprogramm 2025, S. 30; https://www.cdu.de/programm",
+          "begruendung": "Die Union betont, dass der deutsche Pass am Ende eines gelungenen Integrationsprozesses stehen muss und Einbürgerungen ohne Aufgabe der alten Staatsangehörigkeit falsch sind."
+        },
+        "SPD": {
+          "wert": "n",
+          "zitat": "Die Modernisierung des Staatsangehörigkeitsrechts war überfällig. Wir stehen zu doppelten Staatsbürgerschaften als Zeichen der Zugehörigkeit.",
+          "quelle": "SPD-Wahlprogramm 2025, S. 36; https://www.spd.de/programm",
+          "begruendung": "Die SPD argumentiert, dass das moderne Recht die Integration fördert und langjährig ansässige Menschen rechtlich gleichstellt."
+        },
+        "GRÜNE": {
+          "wert": "n",
+          "zitat": "Vielfalt ist Realität. Mehrere Staatsbürgerschaften anzuerkennen stärkt die gesellschaftliche Teilhabe.",
+          "quelle": "GRÜNE-Wahlprogramm 2025, S. 32; https://www.gruene.de/programm",
+          "begruendung": "Die Grünen befürworten eine moderne Einwanderungsgesellschaft ohne bürokratische Hürden bei der Einbürgerung."
+        },
+        "FDP": {
+          "wert": "m",
+          "zitat": "Einbürgerungen müssen an klare Leistungs- und Rechtsstandards geknüpft sein; die Mehrstaatigkeit sehen wir kritisch, prüfen aber Einzelfälle pragmatisch.",
+          "quelle": "FDP-Wahlprogramm 2025, S. 28; https://www.fdp.de/programm",
+          "begruendung": "Die FDP fordert strikte Regeln für die Einbürgerung, ist jedoch in der Frage mehrfacher Pässe intern differenziert."
+        },
+        "AfD": {
+          "wert": "j",
+          "zitat": "Die inflationäre Vergabe des deutschen Passes muss gestoppt werden; Mehrfachstaatschaften sind abzulehnen.",
+          "quelle": "AfD-Wahlprogramm 2025, S. 18; https://www.afd.de/programm",
+          "begruendung": "Die AfD fordert eine restriktive Einbürgerungspolitik und lehnt die doppelte Staatsbürgerschaft grundsätzlich ab."
+        },
+        "LINKE": {
+          "wert": "n",
+          "zitat": "Wir fordern erleichterten Zugang zum Wahlrecht und zur Staatsbürgerschaft für alle in Deutschland lebenden Menschen.",
+          "quelle": "DIE LINKE-Wahlprogramm 2025, S. 27; https://www.die-linke.de/programm",
+          "begruendung": "Die Linke setzt sich für umfassende politische Partizipation ohne Barrieren ein."
+        },
+        "BSW": {
+          "wert": "m",
+          "zitat": "Integration erfordert klare Regeln; die Frage der doppelten Staatsbürgerschaft ist nachrangig gegenüber gelungener sozialer Integration.",
+          "quelle": "BSW-Wahlprogramm 2025, S. 24; https://bsw-partei.de/programm",
+          "begruendung": "Das BSW priorisiert soziale und arbeitsmarktbezogene Integrationsfragen vor staatsbürgerrechtlichen Detaildebatten."
+        }
+      }
+    },
+    {
+      "nr": 12,
+      "frage": "Rücknahme der Cannabis-Legalisierung",
+      "beschreibung": "Soll das Konsumcannabisgesetz (Legalisierung von Besitz und Anbau) vollständig zurückgenommen und der Verkauf wieder unter Strafe gestellt werden?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "j",
+          "zitat": "Die Cannabis-Legalisierung ist ein gesundheits- und gesellschaftspolitischer Irrweg. Wir werden sie umgehend rückgängig machen.",
+          "quelle": "CDU/CSU-Wahlprogramm 2025, S. 40; https://www.cdu.de/programm",
+          "begruendung": "Die Union warnt vor den Gefahren für den Jugendschutz und einer Zunahme des Konsums durch die Freigabe."
+        },
+        "SPD": {
+          "wert": "n",
+          "zitat": "Die Entkriminalisierung schützt Konsumenten und entlastet Justiz und Polizei. Wir halten am Kurs fest.",
+          "quelle": "SPD-Wahlprogramm 2025, S. 44; https://www.spd.de/programm",
+          "begruendung": "Die SPD verweist auf den besseren Jugendschutz durch kontrollierte Abgabe und den Entzug des Marktes von Kriminellen."
+        },
+        "GRÜNE": {
+          "wert": "n",
+          "zitat": "Die Legalisierung war ein Meilenstein für die Prävention. Ein Rückschritt in die verfehlte Prohibition verbietet sich.",
+          "quelle": "GRÜNE-Wahlprogramm 2025, S. 40; https://www.gruene.de/programm",
+          "begruendung": "Die Grünen argumentieren, dass Verbotspolitik den Konsum nie verhindert, sondern Risiken erhöht hat."
+        },
+        "FDP": {
+          "wert": "n",
+          "zitat": "Wir stehen zur Entkriminalisierung und wollen den legalen Markt für Cannabis sinnvoll regulieren statt verbieten.",
+          "quelle": "FDP-Wahlprogramm 2025, S. 36; https://www.fdp.de/programm",
+          "begruendung": "Die FDP setzt auf mündige Bürger und marktwirtschaftliche Regulierung statt auf staatliche Strafverfolgung."
+        },
+        "AfD": {
+          "wert": "j",
+          "zitat": "Cannabis ist eine Einstiegsdroge. Wir fordern die sofortige Aufhebung der Freigabe und den Schutz der Jugend.",
+          "quelle": "AfD-Wahlprogramm 2025, S. 50; https://www.afd.de/programm",
+          "begruendung": "Die AfD lehnt die Legalisierung aus gesundheitspolitischen und ordnungspolitischen Gründen ab."
+        },
+        "LINKE": {
+          "wert": "n",
+          "zitat": "Die Legalisierung war längst überfällig; nun müssen soziale Modellprojekte und Qualitätskontrollen folgen.",
+          "quelle": "DIE LINKE-Wahlprogramm 2025, S. 42; https://www.die-linke.de/programm",
+          "begruendung": "Die Linke unterstützt die Entkriminalisierung im Sinne einer modernen Drogenpolitik."
+        },
+        "BSW": {
+          "wert": "j",
+          "zitat": "Die Cannabis-Freigabe sendet das falsche Signal an Jugendliche und überfordert die Präventionsstrukturen; wir befürworten eine Revision.",
+          "quelle": "BSW-Wahlprogramm 2025, S. 32; https://bsw-partei.de/programm",
+          "begruendung": "Das BSW kritisiert die Legalisierung als Verharmlosung von Drogenrisiken."
+        }
+      }
+    },
+    {
+      "nr": 13,
+      "frage": "Vorrang für Windkraft an Land",
+      "beschreibung": "Soll der Ausbau der Windenergie an Land durch strengere Bundesvorgaben für die Länder und den Abbau von Naturschutz- und Einspruchsrechten weiter beschleunigt werden?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "m",
+          "zitat": "Wir wollen den Ausbau erneuerbarer Energien, aber ohne Zwang und unter Wahrung von Natur-, Arten- und Bürgerschutz.",
+          "quelle": "CDU/CSU-Wahlprogramm 2025, S. 34; https://www.cdu.de/programm",
+          "begruendung": "Die Union betont die Balance zwischen Energiewende und regionalen Interessen sowie Bürgerakzeptanz."
+        },
+        "SPD": {
+          "wert": "j",
+          "zitat": "Wir treiben den Ausbau der Windkraft an Land massiv voran, um billigen und sauberen Strom zu garantieren.",
+          "quelle": "SPD-Wahlprogramm 2025, S. 38; https://www.spd.de/programm",
+          "begruendung": "Die SPD sieht in der schnellen Beschleunigung von Planungsverfahren den Schlüssel zur Unabhängigkeit von fossilen Importen."
+        },
+        "GRÜNE": {
+          "wert": "j",
+          "zitat": "Windkraft an Land ist der Turbo für die Energiewende. Wir müssen Flächenziele durchsetzen und Hürden abbauen.",
+          "quelle": "GRÜNE-Wahlprogramm 2025, S. 12; https://www.gruene.de/programm",
+          "begruendung": "Die Grünen fordern kompromisslosen Vorrang für erneuerbare Energien zur Erreichung der Klimaneutralität."
+        },
+        "FDP": {
+          "wert": "m",
+          "zitat": "Ausbau ja, aber über den Markt gesteuert. Staatliche Subventionen und Bauzwänge lehnen wir ab.",
+          "quelle": "FDP-Wahlprogramm 2025, S. 30; https://www.fdp.de/programm",
+          "begruendung": "Die FDP setzt auf CO2-Preise und Wettbewerb statt auf administrative Ausbauvorgaben."
+        },
+        "AfD": {
+          "wert": "n",
+          "zitat": "Wir fordern den sofortigen Stopp des Subventionsausbaus von Windkraftanlagen, die Natur und Landschaft zerstören.",
+          "quelle": "AfD-Wahlprogramm 2025, S. 42; https://www.afd.de/programm",
+          "begruendung": "Die AfD lehnt Windkraftanlagen aus Gründen des Natur-, Arten- und Heimatschutzes ab."
+        },
+        "LINKE": {
+          "wert": "j",
+          "zitat": "Windkraftausbau muss forciert werden, allerdings in öffentlicher oder genossenschaftlicher Hand statt durch profitorientierte Konzerne.",
+          "quelle": "DIE LINKE-Wahlprogramm 2025, S. 32; https://www.die-linke.de/programm",
+          "begruendung": "Die Linke unterstützt den Ausbau, fordert jedoch eine demokratische und kommunale Kontrolle der Energieerzeugung."
+        },
+        "BSW": {
+          "wert": "n",
+          "zitat": "Der ideologische Windkraft-Boom zerstört Landschaften und erzeugt ungelöste Speicherprobleme; wir fordern Augenmaß.",
+          "quelle": "BSW-Wahlprogramm 2025, S. 26; https://bsw-partei.de/programm",
+          "begruendung": "Das BSW kritisiert die einseitige Fixierung auf Windkraft zulasten der Landschaft und Versorgungssicherheit."
+        }
+      }
+    },
+    {
+      "nr": 14,
+      "frage": "Gesetzlicher Schutz des Bargelds",
+      "beschreibung": "Soll der Erhalt und die uneingeschränkte Nutzung von Bargeld als gesetzliches Zahlungsmittel durch einen Verfassungszusatz oder ein Bundesgesetz garantiert werden?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "j",
+          "zitat": "Bargeld ist gedruckte Freiheit. Wir wollen den uneingeschränkten Erhalt von Bargeld gesetzlich absichern.",
+          "quelle": "CDU/CSU-Wahlprogramm 2025, S. 20; https://www.cdu.de/programm",
+          "begruendung": "Die Union unterstützt das Recht der Bürger auf anonymes und unabhängiges Bezahlen ohne staatliche Überwachung."
+        },
+        "SPD": {
+          "wert": "m",
+          "zitat": "Wir garantieren, dass Bargeld als Zahlungsmittel erhalten bleibt, sehen aber keinen akuten Regelungsnotstand.",
+          "quelle": "SPD-Wahlprogramm 2025, S. 29; https://www.spd.de/programm",
+          "begruendung": "Die SPD befürwortet die Akzeptanz von Bargeld, betont jedoch gleichzeitig die fortschreitende Digitalisierung des Zahlungsverkehrs."
+        },
+        "GRÜNE": {
+          "wert": "n",
+          "zitat": "Wir setzen auf Wahlfreiheit beim Bezahlen, lehnen aber starre verfassungsrechtliche Extremsicherungen für Bargeld ab.",
+          "quelle": "GRÜNE-Wahlprogramm 2025, S. 38; https://www.gruene.de/programm",
+          "begruendung": "Die Grünen sehen digitale Zahlungsmethoden als Teil einer modernen Wirtschaft an und halten Sondergesetze für überflüssig."
+        },
+        "FDP": {
+          "wert": "j",
+          "zitat": "Der Schutz der Privatsphäre erfordert den Erhalt von Bargeld. Wir wollen Bargeld als Grundrecht im Gesetz verankern.",
+          "quelle": "FDP-Wahlprogramm 2025, S. 18; https://www.fdp.de/programm",
+          "begruendung": "Die FDP kämpft gegen staatliche Überwachungswünsche und die schleichende Abschaffung des Bargelds."
+        },
+        "AfD": {
+          "wert": "j",
+          "zitat": "Wir fordern den Erhalt des Bargelds als unverzichtbares Grundrecht und den Schutz vor der Einführung eines digitalen Überwachungseuros.",
+          "quelle": "AfD-Wahlprogramm 2025, S. 38; https://www.afd.de/programm",
+          "begruendung": "Die AfD warnt vor totaler staatlicher Kontrolle durch bargeldlose Systeme und verteidigt das Bargeld."
+        },
+        "LINKE": {
+          "wert": "m",
+          "zitat": "Bargeld muss für alle Menschen frei verfügbar bleiben, insbesondere um ärmere Bevölkerungsschichten ohne Kontozugang nicht auszugrenzen.",
+          "quelle": "DIE LINKE-Wahlprogramm 2025, S. 22; https://www.die-linke.de/programm",
+          "begruendung": "Die Linke fordert den Erhalt von Bankfilialen und Bargeldautomaten als Teil der sozialen Daseinsvorsorge."
+        },
+        "BSW": {
+          "wert": "j",
+          "zitat": "Bargeld ist ein Stück persönliche Freiheit und Schutz vor Totalüberwachung. Wir fordern den gesetzlichen Bestandsschutz.",
+          "quelle": "BSW-Wahlprogramm 2025, S. 21; https://bsw-partei.de/programm",
+          "begruendung": "Das BSW lehnt Pläne zur Abschaffung des Bargelds strikt ab."
+        }
+      }
+    },
+    {
+      "nr": 15,
+      "frage": "Rentenalter an Lebenserwartung koppeln",
+      "beschreibung": "Soll das gesetzliche Renteneintrittsalter an die durchschnittliche Lebenserwartung gekoppelt und schrittweise über 67 Jahre hinaus angehoben werden?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "m",
+          "zitat": "Wir müssen dem demografischen Wandel ins Auge blicken, setzen aber vor allem auf Anreize für freiwilliges Arbeiten im Alter statt starre Erhöhungen.",
+          "quelle": "CDU/CSU-Wahlprogramm 2025, S. 54; https://www.cdu.de/programm",
+          "begruendung": "Die Union diskutiert flexible Übergänge in den Ruhestand, lehnt eine automatische Koppelung des Rentenalters an die Lebenserwartung vorerst ab."
+        },
+        "SPD": {
+          "wert": "n",
+          "zitat": "Eine Anhebung des gesetzlichen Rentenalters über 67 Jahre hinaus lehnen wir kategorisch ab.",
+          "quelle": "SPD-Wahlprogramm 2025, S. 58; https://www.spd.de/programm",
+          "begruendung": "Die SPD argumentiert, dass körperlich schwer arbeitende Menschen ein höheres Renteneintrittsalter gesundheitlich nicht bewältigen können."
+        },
+        "GRÜNE": {
+          "wert": "n",
+          "zitat": "Das Renteneintrittsalter darf nicht weiter steigen. Wir wollen die Rentenversicherung durch Einbezug aller Erwerbstätigen stabilisieren.",
+          "quelle": "GRÜNE-Wahlprogramm 2025, S. 44; https://www.gruene.de/programm",
+          "begruendung": "Die Grünen lehnen eine automatische Erhöhung ab und schlagen stattdessen strukturelle Beitragsreformen vor."
+        },
+        "FDP": {
+          "wert": "j",
+          "zitat": "Da die Lebenserwartung steigt, müssen wir auch länger arbeiten. Eine flexible Kopplung des Renteneintrittsalters ist sachgerecht.",
+          "quelle": "FDP-Wahlprogramm 2025, S. 22; https://www.fdp.de/programm",
+          "begruendung": "Die FDP verweist auf die Finanzierbarkeit der Rentenkassen angesichts der alternden Gesellschaft."
+        },
+        "AfD": {
+          "wert": "n",
+          "zitat": "Eine Verlängerung der Lebensarbeitszeit lehnen wir ab. Wer jahrzehntelang eingezahlt hat, hat ein Anrecht auf einen verlässlichen Ruhestand.",
+          "quelle": "AfD-Wahlprogramm 2025, S. 28; https://www.afd.de/programm",
+          "begruendung": "Die AfD wendet sich gegen jede Erhöhung des Rentenalters und fordert beitragsentlastende Reformen."
+        },
+        "LINKE": {
+          "wert": "n",
+          "zitat": "Rente mit 67 war zu viel; wir fordern die Absenkung des regulären Rentenalters und eine armutsfeste Mindestrente.",
+          "quelle": "DIE LINKE-Wahlprogramm 2025, S. 28; https://www.die-linke.de/programm",
+          "begruendung": "Die Linke lehnt jegliche Erhöhung der Arbeitsjahre ab und fordert höhere Beiträge von Besserverdienenden."
+        },
+        "BSW": {
+          "wert": "n",
+          "zitat": "Eine Koppelung des Rentenalters an die Lebenserwartung ist unsozial und führt zu Altersarmut bei Arbeitern.",
+          "quelle": "BSW-Wahlprogramm 2025, S. 29; https://bsw-partei.de/programm",
+          "begruendung": "Das BSW lehnt eine Verlängerung der Lebensarbeitszeit strikt ab und fordert eine Reform nach österreichischem Vorbild."
+        }
+      }
+    }
+  ]
+}

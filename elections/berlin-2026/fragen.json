@@ -1,0 +1,784 @@
+{
+  "fragen": [
+    {
+      "nr": 1,
+      "frage": "Bebauung des Tempelhofer Feldes",
+      "beschreibung": "Sollen Randbereiche des Tempelhofer Feldes für den sozialen Wohnungsbau und schulische Infrastruktur bebaut werden, um der akuten Wohnungsnot in der Hauptstadt zu begegnen?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "j",
+          "zitat": "Wir wollen das Tempelhofer Feld an den Rändern maßvoll für dringend benötigten Wohnungsbau und Schulen öffnen.",
+          "quelle": "CDU Berlin, Regierungsprogramm 2026, S. 14; https://berlin.cdu.de",
+          "begruendung": "Die CDU argumentiert, dass angesichts der massiven Wohnungsnot ungenutzte Potenziale am Rand des Feldes aktiviert werden müssen."
+        },
+        "SPD": {
+          "wert": "m",
+          "zitat": "Wir prüfen eine behutsame Randbebauung, sofern der Charakter des Feldes und der Artenschutz gewahrt bleiben.",
+          "quelle": "SPD Berlin, Berlin-Plan 2026, S. 22; https://spd.berlin",
+          "begruendung": "In der SPD gibt es unterschiedliche Ansichten zwischen Befürwortern von bezahlbarem Wohnraum und Verteidigern des Erholungsraums."
+        },
+        "GRÜNE": {
+          "wert": "n",
+          "zitat": "Das Tempelhofer Feld muss in seiner Gesamtheit als grüne Lunge und Freiraum für alle Berliner unberührt bleiben.",
+          "quelle": "Bündnis 90/Die Grünen Berlin, Wahlprogramm 2026, S. 18; https://gruene.berlin",
+          "begruendung": "Die Grünen lehnen jegliche Bebauung strikt ab, da das Feld eine unverzichtbare Funktion für das Stadtklima erfüllt."
+        },
+        "LINKE": {
+          "wert": "n",
+          "zitat": "Keine Betonisierung des Tempelhofer Feldes! Unser Freiraum ist unantastbar.",
+          "quelle": "DIE LINKE Berlin, Programm zur Abgeordnetenhauswahl 2026, S. 9; https://die-linke-berlin.de",
+          "begruendung": "Die Linke verteidigt das Feld als soziales Wohnzimmer und fordert Neubau stattdessen auf bereits versiegelten Flächen."
+        },
+        "AfD": {
+          "wert": "j",
+          "zitat": "Wir befürworten eine pragmatische Teilbebauung des Tempelhofer Feldes zur Entlastung des Wohnungsmarktes.",
+          "quelle": "AfD Landesverband Berlin, Wahlprogramm 2026, S. 31; https://afd-berlin.de",
+          "begruendung": "Die AfD sieht in der Randbebauung einen sinnvollen Beitrag zur Schaffung von Wohnraum für Berliner Familien."
+        },
+        "FDP": {
+          "wert": "j",
+          "zitat": "Das Tempelhofer Feld bietet das größte zusammenhängende Potenzial für modernen Wohnungsbau in der Innenstadt.",
+          "quelle": "FDP Berlin, Wahlprogramm 2026, S. 12; https://fdp-berlin.de",
+          "begruendung": "Die FDP fordert seit langem eine Freigabe großer Teile des Feldes, um die Mieten durch Angebotserweiterung zu senken."
+        },
+        "BSW": {
+          "wert": "m",
+          "quelle": "BSW Berlin, Positionen zur Stadtentwicklung 2026, S. 7; https://bsw-berlin.de",
+          "begruendung": "Das BSW betont, dass sozialer Wohnungsbau Vorrang hat, hat sich jedoch nicht abschließend auf eine konkrete Randbebauung festgelegt."
+        }
+      }
+    },
+    {
+      "nr": 2,
+      "frage": "Landesweiter Mietendeckel",
+      "beschreibung": "Soll das Land Berlin nach dem Vorbild des früheren, vom Bundesverfassungsgericht gekippten Gesetzes erneut einen landesweiten Mietendeckel zur Begrenzung von Bestandsmieten einführen?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "n",
+          "zitat": "Ein Mietendeckel ist verfassungswidrig und schafft keinen einzigen neuen Wohnraum. Wir setzen auf Bauen statt Verbote.",
+          "quelle": "CDU Berlin, Regierungsprogramm 2026, S. 18; https://berlin.cdu.de",
+          "begruendung": "Die CDU lehnt staatliche Preiskontrollen ab, da diese Investitionen in den Wohnungsbau abschrecken würden."
+        },
+        "SPD": {
+          "wert": "n",
+          "zitat": "Der Mietendeckel war rechtlich eine Sackgasse. Wir setzen stattdessen auf eine strenge Anwendung der Bundesgesetzgebung wie die Mietpreisbremse.",
+          "quelle": "SPD Berlin, Berlin-Plan 2026, S. 25; https://spd.berlin",
+          "begruendung": "Die SPD sieht die Lösung eher in bundesrechtlichen Nachbesserungen und dem Ausbau des kommunalen Wohnungsbestands."
+        },
+        "GRÜNE": {
+          "wert": "j",
+          "zitat": "Wir brauchen wirksame Obergrenzen für Mieten, um Verdrängung aus den Kiezen zu stoppen.",
+          "quelle": "Bündnis 90/Die Grünen Berlin, Wahlprogramm 2026, S. 22; https://gruene.berlin",
+          "begruendung": "Die Grünen unterstützen mietenpolitische Eingriffe, um den extrem angespannten Berliner Wohnungsmarkt kurzfristig zu regulieren."
+        },
+        "LINKE": {
+          "wert": "j",
+          "zitat": "Mieten müssen gedeckelt und eingefroren werden. Wohnen ist ein Menschenrecht, keine Ware.",
+          "quelle": "DIE LINKE Berlin, Programm zur Abgeordnetenhauswahl 2026, S. 12; https://die-linke-berlin.de",
+          "begruendung": "Die Linke fordert konsequent einen bundes- oder landesrechtlichen Mietendeckel, um Mieter vor explodierenden Kosten zu schützen."
+        },
+        "AfD": {
+          "wert": "n",
+          "zitat": "Staatliche Eingriffe in die Preisgestaltung schädigen den Markt und führen zu Wohnungsmangel.",
+          "quelle": "AfD Landesverband Berlin, Wahlprogramm 2026, S. 28; https://afd-berlin.de",
+          "begruendung": "Die AfD lehnt ordnungspolitische Markteingriffe ab und fordert stattdessen Bürokratieabbau für private Bauherren."
+        },
+        "FDP": {
+          "wert": "n",
+          "zitat": "Preiskontrollen ruinieren den Wohnungsmarkt. Wir brauchen mehr Neubau statt Mietobergrenzen.",
+          "quelle": "FDP Berlin, Wahlprogramm 2026, S. 15; https://fdp-berlin.de",
+          "begruendung": "Die FDP sieht im Mietendeckel ein schädliches Instrument, das zu weniger Investitionen und Sanierungen führt."
+        },
+        "BSW": {
+          "wert": "j",
+          "zitat": "Wucher-Mieten müssen gestoppt werden. Ein gesetzlicher Mietendeckel ist überfällig.",
+          "quelle": "BSW Berlin, Wahlprogramm 2026, S. 10; https://bsw-berlin.de",
+          "begruendung": "Das BSW positioniert sich stark als Vertretung von Mietern mit kleineren und mittleren Einkommen gegen steigende Wohnkosten."
+        }
+      }
+    },
+    {
+      "nr": 3,
+      "frage": "Vergesellschaftung von Wohnungsriesen",
+      "beschreibung": "Soll das Land Berlin auf Basis des Volksentscheids „Deutsche Wohnen & Co. enteignen“ große profitorientierte Wohnungsunternehmen mit über 3.000 Wohnungseinheiten vergesellschaften?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "n",
+          "zitat": "Enteignungen kosten Milliarden, schaffen keine einzige neue Wohnung und ruinieren die Kreditwürdigkeit des Landes.",
+          "quelle": "CDU Berlin, Regierungsprogramm 2026, S. 19; https://berlin.cdu.de",
+          "begruendung": "Die CDU warnt vor astronomischen Entschädigungskosten und setzt auf Kooperation mit der Bauwirtschaft."
+        },
+        "SPD": {
+          "wert": "m",
+          "zitat": "Wir prüfen die verfassungsrechtlichen und finanziellen Möglichkeiten des Vergesellschaftungsgesetzes sehr genau.",
+          "quelle": "SPD Berlin, Berlin-Plan 2026, S. 27; https://spd.berlin",
+          "begruendung": "In der SPD ist das Thema umstritten; während der linke Flügel die Vergesellschaftung befürwortet, warnen Haushalts- und Wirtschaftspolitiker vor den Kosten."
+        },
+        "GRÜNE": {
+          "wert": "j",
+          "zitat": "Wir stehen zur Umsetzung des Volksentscheids und wollen große Immobilienkonzerne in gemeinwirtschaftliches Eigentum überführen.",
+          "quelle": "Bündnis 90/Die Grünen Berlin, Wahlprogramm 2026, S. 24; https://gruene.berlin",
+          "begruendung": "Die Grünen betonen, dass Bestände dem profitorientierten Markt entzogen werden müssen, um langfristig bezahlbare Mieten zu sichern."
+        },
+        "LINKE": {
+          "wert": "j",
+          "zitat": "Schluss mit der Profitgier mit unserem Zuhause: Deutsche Wohnen & Co. enteignen und vergesellschaften!",
+          "quelle": "DIE LINKE Berlin, Programm zur Abgeordnetenhauswahl 2026, S. 14; https://die-linke-berlin.de",
+          "begruendung": "Die Linke ist treibende Kraft hinter dem Volksentscheid und fordert die sofortige Umsetzung ohne Kompromisse."
+        },
+        "AfD": {
+          "wert": "n",
+          "zitat": "Enteignungen sind sozialistisch und verfassungswidrig. Sie verschrecken Investoren und destabilisieren die Wirtschaft.",
+          "quelle": "AfD Landesverband Berlin, Wahlprogramm 2026, S. 30; https://afd-berlin.de",
+          "begruendung": "Die AfD lehnt jegliche Formen von Vergesellschaftungen strikt ab und plädiert für privates Eigentum."
+        },
+        "FDP": {
+          "wert": "n",
+          "zitat": "Enteignungsfantasien schaden dem Standort Berlin massiv und lösen kein einziges wohnungsbaupolitisches Problem.",
+          "quelle": "FDP Berlin, Wahlprogramm 2026, S. 17; https://fdp-berlin.de",
+          "begruendung": "Die FDP hält Vergesellschaftungen für ökonomisch unsinnig und rechtlich unzulässig."
+        },
+        "BSW": {
+          "wert": "j",
+          "zitat": "Große Immobilienkonzerne, die mit Mieten spekulieren, gehören zum Wohle der Allgemeinheit vergesellschaftet.",
+          "quelle": "BSW Berlin, Wahlprogramm 2026, S. 11; https://bsw-berlin.de",
+          "begruendung": "Das BSW unterstützt Maßnahmen zur Überführung großer Wohnungsbestände in öffentliche Hand."
+        }
+      }
+    },
+    {
+      "nr": 4,
+      "frage": "Autoarme Innenstadt und Friedrichstraße",
+      "beschreibung": "Sollen wichtige Straßenzüge in der Berliner Innenstadt (wie die Friedrichstraße) dauerhaft für den Autoverkehr gesperrt und in Fußgänger- oder Fahrradzonen umgewandelt werden?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "n",
+          "zitat": "Wir machen die Friedrichstraße wieder auf für Autos – Berlin ist für alle da, auch für den Autoverkehr und den Handel.",
+          "quelle": "CDU Berlin, Regierungsprogramm 2026, S. 32; https://berlin.cdu.de",
+          "begruendung": "Die CDU setzt auf ein Miteinander aller Verkehrsarten und will den Einzelhandel in den Zentren durch gute Erreichbarkeit stärken."
+        },
+        "SPD": {
+          "wert": "m",
+          "zitat": "Wir wollen eine ausgewogene Verkehrspolitik, bei der Fußgänger, Radfahrer und Autos gleichermaßen Platz finden.",
+          "quelle": "SPD Berlin, Berlin-Plan 2026, S. 35; https://spd.berlin",
+          "begruendung": "Die SPD positioniert sich pragmatisch als Vermittler zwischen autofreundlichen und fahrradfreundlichen Konzepten je nach Kiez."
+        },
+        "GRÜNE": {
+          "wert": "j",
+          "zitat": "Konsequente Verkehrsberuhigung und autofreie Zonen in den Zentren sind der Schlüssel für eine lebenswerte, klimafreundliche Stadt.",
+          "quelle": "Bündnis 90/Die Grünen Berlin, Wahlprogramm 2026, S. 31; https://gruene.berlin",
+          "begruendung": "Die Grünen priorisieren Umwelt- und Radverkehr, um die Aufenthaltsqualität und Sicherheit im öffentlichen Raum drastisch zu erhöhen."
+        },
+        "LINKE": {
+          "wert": "j",
+          "zitat": "Mehr Platz für Fuß, Rad und ÖPNV statt Blechlawinen. Innenstädte müssen konsequent autofarm werden.",
+          "quelle": "DIE LINKE Berlin, Programm zur Abgeordnetenhauswahl 2026, S. 20; https://die-linke-berlin.de",
+          "begruendung": "Die Linke fordert eine Verkehrswende zugunsten des öffentlichen Raums für alle Menschen statt parkender Autos."
+        },
+        "AfD": {
+          "wert": "n",
+          "zitat": "Schluss mit der ideologischen Autogrübelei. Autofahrer und Handwerker dürfen nicht länger diskriminiert werden.",
+          "quelle": "AfD Landesverband Berlin, Wahlprogramm 2026, S. 42; https://afd-berlin.de",
+          "begruendung": "Die AfD fordert freie Fahrt für PKWs, den Stopp von Fahrradwegen zulasten von Fahrspuren und die Wiederöffnung aller gesperrten Straßen."
+        },
+        "FDP": {
+          "wert": "n",
+          "zitat": "Gegen autofeindliche Ideologie: Wir wollen eine Stadt, in der auch Autofahrer und Lieferverkehre ungehindert ans Ziel kommen.",
+          "quelle": "FDP Berlin, Wahlprogramm 2026, S. 28; https://fdp-berlin.de",
+          "begruendung": "Die FDP argumentiert, dass autofreie Zonen den lokalen Handel schwächen und die Flexibilität der Bürger einschränken."
+        },
+        "BSW": {
+          "wert": "n",
+          "zitat": "Die Gängelung von Autofahrern und Handwerkern muss ein Ende haben. Straßen müssen offen bleiben.",
+          "quelle": "BSW Berlin, Wahlprogramm 2026, S. 18; https://bsw-berlin.de",
+          "begruendung": "Das BSW kritisiert autofreie Experimente als realitätsfern für Berufspendler und ältere Menschen."
+        }
+      }
+    },
+    {
+      "nr": 5,
+      "frage": "Klimaneutrales Berlin bis 2030",
+      "beschreibung": "Soll Berlin gesetzlich verpflichtend bereits bis zum Jahr 2030 klimaneutral werden, anstatt des bisherigen Ziels für 2045?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "n",
+          "zitat": "Klimaschutz muss realistisch und machbar sein. Das Jahr 2030 ist ohne wirtschaftliche Überlastung nicht zu schaffen.",
+          "quelle": "CDU Berlin, Regierungsprogramm 2026, S. 40; https://berlin.cdu.de",
+          "begruendung": "Die CDU hält das Ziel 2030 für ökonomisch unrealistisch und setzt auf schrittweise, technologische Anpassungen."
+        },
+        "SPD": {
+          "wert": "n",
+          "zitat": "Wir streben Klimaneutralität so schnell wie möglich an, halten das Jahr 2030 jedoch für organisatorisch und finanziell kaum erreichbar.",
+          "quelle": "SPD Berlin, Berlin-Plan 2026, S. 42; https://spd.berlin",
+          "begruendung": "Die SPD befürwortet ambitionierten Klimaschutz, bevorzugt aber realistische Fristen zur Vermeidung von Überforderung."
+        },
+        "GRÜNE": {
+          "wert": "j",
+          "zitat": "Die Klimakrise duldet keinen Aufschub. Berlin muss verbindlich bis 2030 klimaneutral werden.",
+          "quelle": "Bündnis 90/Die Grünen Berlin, Wahlprogramm 2026, S. 10; https://gruene.berlin",
+          "begruendung": "Die Grünen unterstützen den ambitionierten Zeitplan als essenziell für die Einhaltung der Pariser Klimaziele."
+        },
+        "LINKE": {
+          "wert": "j",
+          "zitat": "Klimaneutralität 2030 ist machbar, wenn die öffentliche Hand massiv investiert und profitorientierte Konzerne in die Pflicht nimmt.",
+          "quelle": "DIE LINKE Berlin, Programm zur Abgeordnetenhauswahl 2026, S. 28; https://die-linke-berlin.de",
+          "begruendung": "Die Linke fordert einen radikalen, sozial gerechten Umbau der Energie- und Gebäudewirtschaft bis 2030."
+        },
+        "AfD": {
+          "wert": "n",
+          "zitat": "Der gesamte Klimawahn muss gestoppt werden. Die Klimaneutralitätsziele schädigen Wohlstand und Industrie.",
+          "quelle": "AfD Landesverband Berlin, Wahlprogramm 2026, S. 50; https://afd-berlin.de",
+          "begruendung": "Die AfD bezweifelt den menschengemachten Klimawandel in der behaupteten Form und lehnt jegliche Klimaziele ab."
+        },
+        "FDP": {
+          "wert": "n",
+          "zitat": "Statt starrer staatlicher Zwangsdaten bis 2030 setzen wir auf Innovationen und den europäischen Emissionshandel.",
+          "quelle": "FDP Berlin, Wahlprogramm 2026, S. 35; https://fdp-berlin.de",
+          "begruendung": "Die FDP warnt vor den enormen Kosten eines forcierten Alleingangs Berlins beim Klimaschutz."
+        },
+        "BSW": {
+          "wert": "n",
+          "zitat": "Klimapolitische Hauruck-Aktionen wie 2030 gefährden Arbeitsplätze und bezahlbare Energie.",
+          "quelle": "BSW Berlin, Wahlprogramm 2026, S. 21; https://bsw-berlin.de",
+          "begruendung": "Das BSW plädiert für Vernunft und soziale Verträglichkeit statt unrealistischer Verpflichtungen."
+        }
+      }
+    },
+    {
+      "nr": 6,
+      "frage": "Rückkehr zu G9 an allen Gymnasien",
+      "beschreibung": "Soll das Abitur an Berliner Gymnasien flächendeckend wieder nach neun Jahren (G9) statt nach acht Jahren (G8) abgelegt werden?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "j",
+          "zitat": "Wir wollen mehr Zeit zum Lernen und für Persönlichkeitsbildung: G9 muss die Regelschule am Gymnasium werden.",
+          "quelle": "CDU Berlin, Regierungsprogramm 2026, S. 52; https://berlin.cdu.de",
+          "begruendung": "Die CDU argumentiert, dass G8 zu viel Stress bei Schülern erzeugt und eine Rückkehr zu G9 die Bildungsqualität steigert."
+        },
+        "SPD": {
+          "wert": "m",
+          "zitat": "Wir wollen Wahlfreiheit und Flexibilität zwischen G8 und G9 für die Berliner Gymnasien erhalten.",
+          "quelle": "SPD Berlin, Berlin-Plan 2026, S. 55; https://spd.berlin",
+          "begruendung": "Die SPD setzt auf flexible Modelle und will Schulen nicht dogmatisch auf ein starres System festlegen."
+        },
+        "GRÜNE": {
+          "wert": "n",
+          "zitat": "Das bewährte Abitur nach zwölf Jahren bietet Kontinuität; wir wollen stattdessen die Qualität des Unterrichts stärken.",
+          "quelle": "Bündnis 90/Die Grünen Berlin, Wahlprogramm 2026, S. 42; https://gruene.berlin",
+          "begruendung": "Die Grünen sehen keinen Vorteil in einer flächendeckenden Strukturreform hin zu G9 und priorisieren andere Bildungsinvestitionen."
+        },
+        "LINKE": {
+          "wert": "n",
+          "zitat": "Das gegliederte Schulsystem gehört überwunden. Wichtig ist gemeinsames Lernen statt der Debatte über G8 oder G9.",
+          "quelle": "DIE LINKE Berlin, Programm zur Abgeordnetenhauswahl 2026, S. 35; https://die-linke-berlin.de",
+          "begruendung": "Die Linke hält das Gymnasium im gegliederten System für sozial ungerecht und fordert stattdessen die Gemeinschaftsschule."
+        },
+        "AfD": {
+          "wert": "j",
+          "zitat": "G9 schafft solide Grundlagen und entlastet Kinder und Eltern. Wir fordern die schnelle Rückkehr zum neunjährigen Gymnasium.",
+          "quelle": "AfD Landesverband Berlin, Wahlprogramm 2026, S. 61; https://afd-berlin.de",
+          "begruendung": "Die AfD betont den Bildungsanspruch und sieht in G8 ein gescheitertes Hauruck-Modell."
+        },
+        "FDP": {
+          "wert": "n",
+          "zitat": "Wir stehen zu G8 mit starken individuellen Vertiefungsmöglichkeiten, statt das Rad bildungspolitisch zurückzudrehen.",
+          "quelle": "FDP Berlin, Wahlprogramm 2026, S. 42; https://fdp-berlin.de",
+          "begruendung": "Die FDP argumentiert, dass G8 Absolventen früher in Studium oder Beruf bringt und die internationale Wettbewerbsfähigkeit stärkt."
+        },
+        "BSW": {
+          "wert": "j",
+          "zitat": "Schüler brauchen Zeit zum Reifen. G9 an Gymnasien bringt Ruhe in den Schulalltag.",
+          "quelle": "BSW Berlin, Wahlprogramm 2026, S. 26; https://bsw-berlin.de",
+          "begruendung": "Das BSW unterstützt eine Verlängerung der Schulzeit bis zum Abitur zur Entlastung von Familien."
+        }
+      }
+    },
+    {
+      "nr": 7,
+      "frage": "Einzäunung des Görlitzer Parks",
+      "beschreibung": "Soll der Görlitzer Park nachts dauerhaft eingezäunt und nachts geschlossen werden, um Kriminalität und Drogenhandel einzudämmen?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "j",
+          "zitat": "Sicherheit geht vor! Die Einzäunung und nächtliche Schließung des Görlitzer Parks ist überfällig, um den Drogenhandel zu zerschlagen.",
+          "quelle": "CDU Berlin, Regierungsprogramm 2026, S. 26; https://berlin.cdu.de",
+          "begruendung": "Die CDU fordert harte ordnungspolitische Maßnahmen und konsequentes Durchgreifen zur Wiederherstellung der öffentlichen Sicherheit."
+        },
+        "SPD": {
+          "wert": "j",
+          "zitat": "Wir unterstützen die Einzäunung als flankierende Maßnahme zusammen mit Sozialarbeit und Polizeipräsenz.",
+          "quelle": "SPD Berlin, Berlin-Plan 2026, S. 31; https://spd.berlin",
+          "begruendung": "Die SPD setzt auf einen Mix aus repressiven und präventiven Maßnahmen, um die Situation im Park für Anwohner zu verbessern."
+        },
+        "GRÜNE": {
+          "wert": "n",
+          "zitat": "Zäune lösen keine sozialen Probleme. Der Park muss ein offener und zugänglicher Raum für alle bleiben.",
+          "quelle": "Bündnis 90/Die Grünen Berlin, Wahlprogramm 2026, S. 50; https://gruene.berlin",
+          "begruendung": "Die Grünen lehnen Zäune ab und plädieren für sozialpädagogische Ansätze, Prävention und legale Konsumräume."
+        },
+        "LINKE": {
+          "wert": "n",
+          "zitat": "Gegen Vertreibungspolitik: Einzäunungen kriminalisieren Armutsbetroffene und helfen überhaupt nicht gegen Suchtprobleme.",
+          "quelle": "DIE LINKE Berlin, Programm zur Abgeordnetenhauswahl 2026, S. 40; https://die-linke-berlin.de",
+          "begruendung": "Die Linke fordert gesundheitliche Hilfe statt polizeilicher Repression und Absperrmaßnahmen."
+        },
+        "AfD": {
+          "wert": "j",
+          "zitat": "Parks dürfen keine rechtsfreien Räume sein. Einzäunung und strikte Polizeikontrollen sind zwingend erforderlich.",
+          "quelle": "AfD Landesverband Berlin, Wahlprogramm 2026, S. 38; https://afd-berlin.de",
+          "begruendung": "Die AfD fordert eine Null-Toleranz-Politik gegenüber Kriminalität in sämtlichen Berliner Grünanlagen."
+        },
+        "FDP": {
+          "wert": "j",
+          "zitat": "Wo der Staat die Kontrolle verliert, muss eingezäunt und konsequent durchgegriffen werden.",
+          "quelle": "FDP Berlin, Wahlprogramm 2026, S. 25; https://fdp-berlin.de",
+          "begruendung": "Die FDP unterstützt die nächtliche Schließung als pragmatischen Schutz der Anwohner vor nächtlicher Kriminalität."
+        },
+        "BSW": {
+          "wert": "j",
+          "zitat": "Anwohner haben ein Recht auf Ruhe und Sicherheit. Die Zustände im Görlitzer Park sind untragbar.",
+          "quelle": "BSW Berlin, Wahlprogramm 2026, S. 15; https://bsw-berlin.de",
+          "begruendung": "Das BSW betont den Schutz der Bevölkerung vor offener Kriminalität im öffentlichen Raum."
+        }
+      }
+    },
+    {
+      "nr": 8,
+      "frage": "Mehr Videoüberwachung im öffentlichen Raum",
+      "beschreibung": "Soll die Videobeobachtung durch die Polizei an Kriminalitätsschwerpunkten und Bahnhöfen in Berlin massiv ausgedehnt werden?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "j",
+          "zitat": "Videotechnik schützt vor Straftaten und hilft bei der Aufklärung. Wir weiten die Videoüberwachung an Kriminalitätsschwerpunkten aus.",
+          "quelle": "CDU Berlin, Regierungsprogramm 2026, S. 28; https://berlin.cdu.de",
+          "begruendung": "Die CDU sieht in Videoüberwachung ein wichtiges, effektives Werkzeug für die Ermittlungsbehörden."
+        },
+        "SPD": {
+          "wert": "j",
+          "zitat": "Dort, wo es objektiv zur Gefahrenabwehr beiträgt und datenschutzrechtlich vertretbar ist, unterstützen wir Videobobachtung.",
+          "quelle": "SPD Berlin, Berlin-Plan 2026, S. 33; https://spd.berlin",
+          "begruendung": "Die SPD befürwortet gezielten Einsatz an echten Kriminalitätsschwerpunkten unter Wahrung von Datenschutzstandards."
+        },
+        "GRÜNE": {
+          "wert": "n",
+          "zitat": "Flächendeckende Videoüberwachung greift massiv in Bürgerrechte ein und verhindert nachweislich kaum Straftaten.",
+          "quelle": "Bündnis 90/Die Grünen Berlin, Wahlprogramm 2026, S. 52; https://gruene.berlin",
+          "begruendung": "Die Grünen priorisieren Datenschutz und Bürgerrechte über anlasslose Videoüberwachung im öffentlichen Raum."
+        },
+        "LINKE": {
+          "wert": "n",
+          "zitat": "Keine Ausweitung der Überwachungsstaat-Taktiken! Kameras verhindern keine Taten, sondern verdrängen sie nur.",
+          "quelle": "DIE LINKE Berlin, Programm zur Abgeordnetenhauswahl 2026, S. 42; https://die-linke-berlin.de",
+          "begruendung": "Die Linke lehnt Kameras als Verletzung der Privatsphäre und wirkungsloses Symbol ab."
+        },
+        "AfD": {
+          "wert": "j",
+          "zitat": "Wir fordern lückenlose Videoüberwachung an allen Kriminalitätsschwerpunkten und Bahnhöfen Berlins.",
+          "quelle": "AfD Landesverband Berlin, Wahlprogramm 2026, S. 40; https://afd-berlin.de",
+          "begruendung": "Die AfD setzt auf maximale Überwachung zur Erhöhung des Sicherheitsgefühls und zur Täteridentifizierung."
+        },
+        "FDP": {
+          "wert": "j",
+          "zitat": "Moderne Technik muss genutzt werden, um Bürger zu schützen und Straftäter dingfest zu machen.",
+          "quelle": "FDP Berlin, Wahlprogramm 2026, S. 26; https://fdp-berlin.de",
+          "begruendung": "Die FDP unterstützt zweckgebundene Videoüberwachung an gefährlichen Orten im Einklang mit dem Rechtsschutz."
+        },
+        "BSW": {
+          "wert": "j",
+          "zitat": "Sicherheit hat Vorrang vor Datenschutz-Bedenken an Kriminalitätsbrennpunkten.",
+          "quelle": "BSW Berlin, Wahlprogramm 2026, S. 16; https://bsw-berlin.de",
+          "begruendung": "Das BSW befürwortet pragmatische Überwachungsmaßnahmen zum Schutz ehrlicher Bürger."
+        }
+      }
+    },
+    {
+      "nr": 9,
+      "frage": "Dauerhaftes 29-Euro-Ticket für Berlin",
+      "beschreibung": "Soll das Land Berlin dauerhaft ein subventioniertes landesweites ÖPNV-Ticket für 29 Euro im Monat für alle Berlinerinnen und Berliner finanzieren?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "m",
+          "zitat": "Wir prüfen bezahlbare Ticketangebote, müssen aber angesichts klammer Kassen streng auf die Haushaltsverträglichkeit achten.",
+          "quelle": "CDU Berlin, Regierungsprogramm 2026, S. 35; https://berlin.cdu.de",
+          "begruendung": "Die CDU sieht sich durch die Haushaltslage gezwungen, Subventionen kritisch gegen Investitionen in das Schienennetz abzuwägen."
+        },
+        "SPD": {
+          "wert": "j",
+          "zitat": "Wir stehen zum günstigen Nahverkehr und wollen das 29-Euro-Ticket als bezahlbare Option für die Berliner absichern.",
+          "quelle": "SPD Berlin, Berlin-Plan 2026, S. 38; https://spd.berlin",
+          "begruendung": "Die SPD betrachtet das Ticket als sozialen und ökologischen Erfolg zur Entlastung von Pendlerfamilien."
+        },
+        "GRÜNE": {
+          "wert": "j",
+          "zitat": "Ein attraktiver und dauerhaft günstiger ÖPNV ist zentral für die Mobilitätswende in unserer Stadt.",
+          "quelle": "Bündnis 90/Die Grünen Berlin, Wahlprogramm 2026, S. 34; https://gruene.berlin",
+          "begruendung": "Die Grünen unterstützen dauerhafte Ticketförderung zur Reduzierung des Autoverkehrs."
+        },
+        "LINKE": {
+          "wert": "j",
+          "zitat": "Mobilität ist ein Grundrecht. Wir fordern ein 9-Euro-Social-Ticket und ein dauerhaftes, stark vergünstigtes Ticket für alle.",
+          "quelle": "DIE LINKE Berlin, Programm zur Abgeordnetenhauswahl 2026, S. 22; https://die-linke-berlin.de",
+          "begruendung": "Die Linke fordert massive Subventionen für den ÖPNV, um ihn für jedermann unbegrenzt zugänglich zu machen."
+        },
+        "AfD": {
+          "wert": "n",
+          "zitat": "Gießkannen-Subventionen überlasten den Haushalt. Der ÖPNV muss sich primär durch Fahrkarten und Effizienz finanzieren.",
+          "quelle": "AfD Landesverband Berlin, Wahlprogramm 2026, S. 45; https://afd-berlin.de",
+          "begruendung": "Die AfD lehnt dauerhafte Milliarden-Subventionen für den städtischen Nahverkehr ab."
+        },
+        "FDP": {
+          "wert": "n",
+          "zitat": "Das 29-Euro-Ticket ist subventionierte Klientelpolitik auf Pump. Wir investieren das Geld lieber in Taktverdichtung und Netzausbau.",
+          "quelle": "FDP Berlin, Wahlprogramm 2026, S. 30; https://fdp-berlin.de",
+          "begruendung": "Die FDP argumentiert, dass bessere Takte wichtiger sind als billige Fahrscheine."
+        },
+        "BSW": {
+          "wert": "j",
+          "zitat": "Öffentlicher Nahverkehr muss für alle Bürger dauerhaft bezahlbar sein.",
+          "quelle": "BSW Berlin, Wahlprogramm 2026, S. 19; https://bsw-berlin.de",
+          "begruendung": "Das BSW unterstützt vergünstigte Tickets als Entlastung angesichts hoher Lebenshaltungskosten."
+        }
+      }
+    },
+    {
+      "nr": 10,
+      "frage": "Erhöhung des Vergabemindestlohns",
+      "beschreibung": "Soll der Mindestlohn bei öffentlichen Aufträgen des Landes Berlin (Vergabemindestlohn) verbindlich auf mindestens 15 Euro pro Stunde erhöht werden?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "m",
+          "zitat": "Wir prüfen faire Löhne, müssen aber darauf achten, dass mittelständische Unternehmen und Handwerker nicht überfordert werden.",
+          "quelle": "CDU Berlin, Regierungsprogramm 2026, S. 44; https://berlin.cdu.de",
+          "begruendung": "Die CDU plädiert für Augenmaß, um die Vergabe öffentlicher Aufträge an regionale Betriebe nicht zu gefährden."
+        },
+        "SPD": {
+          "wert": "j",
+          "zitat": "Wer öffentliche Aufträge erhält, muss auskömmliche Löhne zahlen. Wir wollen den Vergabemindestlohn spürbar anheben.",
+          "quelle": "SPD Berlin, Berlin-Plan 2026, S. 48; https://spd.berlin",
+          "begruendung": "Die SPD setzt sich für gute Arbeitsbedingungen und die Bekämpfung von Niedriglöhnen ein."
+        },
+        "GRÜNE": {
+          "wert": "j",
+          "zitat": "Öffenes Geld darf nur an Unternehmen fließen, die faire Löhne und Tarifbindung garantieren.",
+          "quelle": "Bündnis 90/Die Grünen Berlin, Wahlprogramm 2026, S. 28; https://gruene.berlin",
+          "begruendung": "Die Grünen unterstützen die Anhebung des Vergabemindestlohns als soziale und ökologische Auflage."
+        },
+        "LINKE": {
+          "wert": "j",
+          "zitat": "Kein öffentlicher Auftrag ohne guten Lohn! Wir fordern einen Vergabemindestlohn von mindestens 15 Euro plus Tariftreue.",
+          "quelle": "DIE LINKE Berlin, Programm zur Abgeordnetenhauswahl 2026, S. 16; https://die-linke-berlin.de",
+          "begruendung": "Die Linke kämpft konsequent für höhere Mindestlöhne und die Stärkung von Tarifverträgen in Berlin."
+        },
+        "AfD": {
+          "wert": "n",
+          "zitat": "Starre staatliche Lohnvorgaben bei Vergaben schaden dem Wettbewerb und treiben die Kosten für die öffentliche Hand hoch.",
+          "quelle": "AfD Landesverband Berlin, Wahlprogramm 2026, S. 52; https://afd-berlin.de",
+          "begruendung": "Die AfD lehnt staatliche Markteingriffe in die Entlohnung ab und setzt auf marktwirtschaftliche Mechanismen."
+        },
+        "FDP": {
+          "wert": "n",
+          "zitat": "Künstliche Lohnvorgaben bei der Vergabe verteuern wichtige Infrastrukturprojekte des Landes massiv.",
+          "quelle": "FDP Berlin, Wahlprogramm 2026, S. 32; https://fdp-berlin.de",
+          "begruendung": "Die FDP warnt vor Mehrkosten für den Steuerzahler bei Sanierungs- und Bauvorhaben."
+        },
+        "BSW": {
+          "wert": "j",
+          "zitat": "Gute Arbeit verdient faire Bezahlung. Öffentliche Aufträge müssen an strenge Lohnvorgaben gekoppelt sein.",
+          "quelle": "BSW Berlin, Wahlprogramm 2026, S. 13; https://bsw-berlin.de",
+          "begruendung": "Das BSW unterstützt Mindestlohnerhöhungen als Schutz vor Altersarmut und Niedriglohnsektor."
+        }
+      }
+    },
+    {
+      "nr": 11,
+      "frage": "Studiengebühren für Nicht-EU-Studierende",
+      "beschreibung": "Sollen Studierende aus Nicht-EU-Ländern an Berliner Hochschulen künftig allgemeine Studiengebühren zur Entlastung des Landeshaushalts zahlen?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "j",
+          "zitat": "Internationale Studierende aus Nicht-EU-Staaten können sich mit moderaten Gebühren an den Kosten beteiligen.",
+          "quelle": "CDU Berlin, Regierungsprogramm 2026, S. 56; https://berlin.cdu.de",
+          "begruendung": "Die CDU sieht darin eine gerechte Einnahmequelle zur Entlastung der klammen Universitätsfinanzen."
+        },
+        "SPD": {
+          "wert": "n",
+          "zitat": "Gebührenfreie Bildung ist ein hohes Gut in Berlin. Wir lehnen Studiengebühren für internationale Studierende ab.",
+          "quelle": "SPD Berlin, Berlin-Plan 2026, S. 60; https://spd.berlin",
+          "begruendung": "Die SPD argumentiert, dass Berlin als internationaler Wissenschaftsstandort offen und gebührenfrei bleiben muss."
+        },
+        "GRÜNE": {
+          "wert": "n",
+          "zitat": "Bildung muss für alle offen sein – unabhängig von Herkunft oder Geldbeutel. Keine Studiengebühren!",
+          "quelle": "Bündnis 90/Die Grünen Berlin, Wahlprogramm 2026, S. 45; https://gruene.berlin",
+          "begruendung": "Die Grünen betonen den Wert von Vielfalt und Chancengleichheit im Hochschulbereich."
+        },
+        "LINKE": {
+          "wert": "n",
+          "zitat": "Bildung ist keine Ware. Wir kämpfen gegen jegliche Einführung von Studiengebühren für internationale Studierende.",
+          "quelle": "DIE LINKE Berlin, Programm zur Abgeordnetenhauswahl 2026, S. 38; https://die-linke-berlin.de",
+          "begruendung": "Die Linke lehnt jegliche finanzielle Hürden beim Hochschulzugang entschieden ab."
+        },
+        "AfD": {
+          "wert": "j",
+          "zitat": "Ausländische Studierende sollten einen Beitrag leisten, um die Berliner Steuerzahler zu entlasten.",
+          "quelle": "AfD Landesverband Berlin, Wahlprogramm 2026, S. 65; https://afd-berlin.de",
+          "begruendung": "Die AfD fordert Priorität für deutsche und inländische Steuerzahler bei der Finanzierung der Infrastruktur."
+        },
+        "FDP": {
+          "wert": "j",
+          "zitat": "Maßvolle Gebühren für Studierende aus Drittstaaten stärken die Qualität und internationale Konkurrenzfähigkeit der Hochschulen.",
+          "quelle": "FDP Berlin, Wahlprogramm 2026, S. 45; https://fdp-berlin.de",
+          "begruendung": "Die FDP verweist auf erfolgreiche Modelle in anderen Bundesländern zur Finanzierung exzellenter Forschung."
+        },
+        "BSW": {
+          "wert": "m",
+          "quelle": "BSW Berlin, Wahlprogramm 2026, S. 28; https://bsw-berlin.de",
+          "begruendung": "Das BSW hat keine feste Position zu Studiengebühren für internationale Studierende und gewichtet andere soziale Fragen höher."
+        }
+      }
+    },
+    {
+      "nr": 12,
+      "frage": "Mehr verkaufsoffene Sonntage",
+      "beschreibung": "Soll die Zahl der gesetzlich erlaubten verkaufsoffenen Sonntage im Jahr für den Berliner Einzelhandel spürbar erhöht werden?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "j",
+          "zitat": "Wir wollen den Berliner Einzelhandel stärken und mehr verkaufsoffene Sonntage ermöglichen, um gegen den Online-Handel zu bestehen.",
+          "quelle": "CDU Berlin, Regierungsprogramm 2026, S. 46; https://berlin.cdu.de",
+          "begruendung": "Die CDU setzt sich für die Attraktivität der Berliner Einkaufszentren und Innenstädte ein."
+        },
+        "SPD": {
+          "wert": "n",
+          "zitat": "Der Sonntag als geschützter Ruhetag für Arbeitnehmer muss erhalten bleiben; wir lehnen eine Ausweitung ab.",
+          "quelle": "SPD Berlin, Berlin-Plan 2026, S. 50; https://spd.berlin",
+          "begruendung": "Die SPD betont den Schutz der Beschäftigten und die Bedeutung des arbeitsfreien Sonntags."
+        },
+        "GRÜNE": {
+          "wert": "n",
+          "zitat": "Der Sonntag gehört der Erholung und dem sozialen Miteinander, nicht dem Konsumwahn.",
+          "quelle": "Bündnis 90/Die Grünen Berlin, Wahlprogramm 2026, S. 30; https://gruene.berlin",
+          "begruendung": "Die Grünen verteidigen den Sonntagsschutz aus ökologischen und arbeitnehmerrechtlichen Gründen."
+        },
+        "LINKE": {
+          "wert": "n",
+          "zitat": "Hände weg vom arbeitsfreien Sonntag! Beschäftigte im Handel brauchen verlässliche Erholungszeiten.",
+          "quelle": "DIE LINKE Berlin, Programm zur Abgeordnetenhauswahl 2026, S. 18; https://die-linke-berlin.de",
+          "begruendung": "Die Linke stellt sich schützend hinter die Gewerkschaften und den gesetzlichen Sonntagsschutz."
+        },
+        "AfD": {
+          "wert": "j",
+          "zitat": "Kundenfreundlichkeit und Wettbewerbsfähigkeit erfordern mehr Flexibilität, darunter auch zusätzliche verkaufsoffene Sonntage.",
+          "quelle": "AfD Landesverband Berlin, Wahlprogramm 2026, S. 55; https://afd-berlin.de",
+          "begruendung": "Die AfD unterstützt marktwirtschaftliche Freiheiten für Händler und Konsumenten."
+        },
+        "FDP": {
+          "wert": "j",
+          "zitat": "Freiheit beim Einkaufen: Wir fordern die Freigabe weiterer verkaufsoffener Sonntage für ein lebendiges Berlin.",
+          "quelle": "FDP Berlin, Wahlprogramm 2026, S. 34; https://fdp-berlin.de",
+          "begruendung": "Die FDP argumentiert, dass Konsumenten selbst entscheiden wollen, wann sie einkaufen."
+        },
+        "BSW": {
+          "wert": "n",
+          "zitat": "Der Sonntag muss ein geschützter Tag für Familien und Arbeitnehmer bleiben.",
+          "quelle": "BSW Berlin, Wahlprogramm 2026, S. 22; https://bsw-berlin.de",
+          "begruendung": "Das BSW betont den traditionellen Wert des arbeitsfreien Sonntags gegen die Ausweitung des Rund-um-die-Uhr-Kommerzes."
+        }
+      }
+    },
+    {
+      "nr": 13,
+      "frage": "Zentralisierung der Berliner Verwaltung",
+      "beschreibung": "Sollen Zuständigkeiten von den zwölf Berliner Bezirken stärker auf das zentrale Land (Senatsverwaltungen) übertragen werden, um Verwaltungsprozesse zu beschleunigen?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "j",
+          "zitat": "Berlin muss effizienter werden. Klare Verantwortlichkeiten im Senat statt föderaler Kleinteiligkeit in den Bezirken.",
+          "quelle": "CDU Berlin, Regierungsprogramm 2026, S. 10; https://berlin.cdu.de",
+          "begruendung": "Die CDU fordert eine Verwaltungsreform, um das Zuständigkeitschaos und lange Wartezeiten bei Behördengängen zu beenden."
+        },
+        "SPD": {
+          "wert": "m",
+          "zitat": "Wir wollen die Zusammenarbeit zwischen Senat und Bezirken verbessern, ohne die bezirkliche Selbstverwaltung zu zerschlagen.",
+          "quelle": "SPD Berlin, Berlin-Plan 2026, S. 15; https://spd.berlin",
+          "begruendung": "Die SPD setzt auf Kooperation und Feinjustierung statt kompletter Entmachtung der Bezirke."
+        },
+        "GRÜNE": {
+          "wert": "n",
+          "zitat": "Die Bezirke sind das Rückgrat der Bürgerbeteiligung vor Ort. Wir lehnen eine Zentralisierung ab.",
+          "quelle": "Bündnis 90/Die Grünen Berlin, Wahlprogramm 2026, S. 15; https://gruene.berlin",
+          "begruendung": "Die Grünen verteidigen die kommunale Selbstverwaltung und die Nähe zu den Bürgern in den Kiezen."
+        },
+        "LINKE": {
+          "wert": "n",
+          "zitat": "Starke Bezirke statt Berliner Zentralismus! Demokratie vor Ort darf nicht abgewickelt werden.",
+          "quelle": "DIE LINKE Berlin, Programm zur Abgeordnetenhauswahl 2026, S. 6; https://die-linke-berlin.de",
+          "begruendung": "Die Linke plädiert für den Erhalt bezirklicher Strukturen als Garant für soziale und bürgernahe Politik."
+        },
+        "AfD": {
+          "wert": "j",
+          "zitat": "Das Berliner Behördenchaos muss durch eine straffe, zentrale Verwaltungsstruktur gelöst werden.",
+          "quelle": "AfD Landesverband Berlin, Wahlprogramm 2026, S. 18; https://afd-berlin.de",
+          "begruendung": "Die AfD kritisiert die Ineffizienz des Berliner Föderalismus und fordert durchgreifende Reformen."
+        },
+        "FDP": {
+          "wert": "j",
+          "zitat": "Verwaltungsreform bedeutet klare Kompetenzen beim Senat, um Zuständigkeits-Pingpong zwischen Bezirken zu stoppen.",
+          "quelle": "FDP Berlin, Wahlprogramm 2026, S. 8; https://fdp-berlin.de",
+          "begruendung": "Die FDP fordert schlanke, digitalisierte und zentral gesteuerte Verwaltungsabläufe."
+        },
+        "BSW": {
+          "wert": "m",
+          "quelle": "BSW Berlin, Wahlprogramm 2026, S. 5; https://bsw-berlin.de",
+          "begruendung": "Das BSW fordert bessere Bürgeraemter, hat aber keinen klaren Schwerpunkt bezüglich einer radikalen Zentralisierung."
+        }
+      }
+    },
+    {
+      "nr": 14,
+      "frage": "Alkoholkonsumverbot an Kriminalitätsorten",
+      "beschreibung": "Sollen an bekannten Kriminalitäts- und Hotspots (wie dem Leopoldplatz oder Kottbusser Tor) zeitweise generelle Verbote für den Konsum von Alkohol ausgesprochen werden?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "j",
+          "zitat": "Alkoholverbote an Hotspots helfen der Polizei, Kriminalität und Aggression konsequent einzudämmen.",
+          "quelle": "CDU Berlin, Regierungsprogramm 2026, S. 30; https://berlin.cdu.de",
+          "begruendung": "Die CDU sieht in Konsumverboten ein wirksames Mittel zur Wiederherstellung von Recht und Ordnung an Brennpunkten."
+        },
+        "SPD": {
+          "wert": "m",
+          "zitat": "Wir prüfen lokale Verbotszonen sehr differenziert dort, wo sie objektiv zur Entlastung der Situation beitragen.",
+          "quelle": "SPD Berlin, Berlin-Plan 2026, S. 34; https://spd.berlin",
+          "begruendung": "Die SPD zeigt sich offen für zeitlich und räumlich begrenzte Maßnahmen, setzt aber primär auf ganzheitliche Konzepte."
+        },
+        "GRÜNE": {
+          "wert": "n",
+          "zitat": "Verbotszonen lösen keine Suchtprobleme und verdrängen Menschen nur in andere Straßen.",
+          "quelle": "Bündnis 90/Die Grünen Berlin, Wahlprogramm 2026, S. 54; https://gruene.berlin",
+          "begruendung": "Die Grünen setzen auf Hilfsangebote und Sozialarbeit statt auf pauschale Konsumverbote."
+        },
+        "LINKE": {
+          "wert": "n",
+          "zitat": "Pauschale Verbote kriminalisieren obdachlose und suchtkranke Menschen, statt ihnen zu helfen.",
+          "quelle": "DIE LINKE Berlin, Programm zur Abgeordnetenhauswahl 2026, S. 44; https://die-linke-berlin.de",
+          "begruendung": "Die Linke lehnt ordnungspolitische Schikanen gegen Randgruppen ab."
+        },
+        "AfD": {
+          "wert": "j",
+          "zitat": "Konsequente Alkoholverbote und Durchsetzung von Platzverweisen an Kriminalitätsbrennpunkten sind zwingend geboten.",
+          "quelle": "AfD Landesverband Berlin, Wahlprogramm 2026, S. 41; https://afd-berlin.de",
+          "begruendung": "Die AfD fordert harte Handhabung zur Sicherung des öffentlichen Friedens."
+        },
+        "FDP": {
+          "wert": "j",
+          "zitat": "Wo von Alkoholkonsum erhebliche Gefahren und Störungen ausgehen, muss die Polizei Platzverbote und Verbote verhängen können.",
+          "quelle": "FDP Berlin, Wahlprogramm 2026, S. 27; https://fdp-berlin.de",
+          "begruendung": "Die FDP unterstützt pragmatische Sicherheitsmaßnahmen zum Schutz der Allgemeinheit."
+        },
+        "BSW": {
+          "wert": "j",
+          "zitat": "Sicherheit und Ordnung auf Plätzen müssen durchgreifend gewährleistet werden, notfalls mit Konsumverboten.",
+          "quelle": "BSW Berlin, Wahlprogramm 2026, S. 17; https://bsw-berlin.de",
+          "begruendung": "Das BSW unterstützt Maßnahmen, die den Schutz von Anwohnern vor Belästigungen sicherstellen."
+        }
+      }
+    },
+    {
+      "nr": 15,
+      "frage": "Solardachpflicht bei Bestandsbauten",
+      "beschreibung": "Soll bei umfassenden Dachsanierungen von Bestandsgebäuden in Berlin gesetzlich verpflichtend die Installation einer Solaranlage vorgeschrieben werden?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "n",
+          "zitat": "Wir setzen auf Freiwilligkeit und Anreize statt auf bürokratische Zwangsvorgaben bei Dachsanierungen.",
+          "quelle": "CDU Berlin, Regierungsprogramm 2026, S. 42; https://berlin.cdu.de",
+          "begruendung": "Die CDU befürchtet, dass eine Pflicht Hausbesitzer finanziell überfordert und Sanierungen verzögert."
+        },
+        "SPD": {
+          "wert": "j",
+          "zitat": "Um die Energiewende voranzubringen, wollen wir Solaranlagen bei umfassenden Dadsanierungen verbindlich machen.",
+          "quelle": "SPD Berlin, Berlin-Plan 2026, S. 45; https://spd.berlin",
+          "begruendung": "Die SPD sieht in der Solarpflicht einen wichtigen Hebel zur Erreichung der Klimaziele im Gebäudesektor."
+        },
+        "GRÜNE": {
+          "wert": "j",
+          "zitat": "Jedes geeignete Dach muss Solarstrom produzieren. Eine konsequente Solarpflicht für Sanierungen ist überfällig.",
+          "quelle": "Bündnis 90/Die Grünen Berlin, Wahlprogramm 2026, S. 16; https://gruene.berlin",
+          "begruendung": "Die Grünen fordern verbindliche Solardächer als unersetzlichen Beitrag zur solaren Zukunft Berlins."
+        },
+        "LINKE": {
+          "wert": "j",
+          "zitat": "Solardächer auf alle großen und sanierten Dächer – öffentlich gefördert, damit Mieter nicht belastet werden.",
+          "quelle": "DIE LINKE Berlin, Programm zur Abgeordnetenhauswahl 2026, S. 30; https://die-linke-berlin.de",
+          "begruendung": "Die Linke unterstützt Solardachpflichten, fordert aber soziale Absicherung gegen Umlagen auf die Miete."
+        },
+        "AfD": {
+          "wert": "n",
+          "zitat": "Schluss mit grüner Planwirtschaft und Solardach-Zwangsregeln für Eigentümer.",
+          "quelle": "AfD Landesverband Berlin, Wahlprogramm 2026, S. 53; https://afd-berlin.de",
+          "begruendung": "Die AfD lehnt jegliche Pflichten und Vorschriften für privates Eigentum ab."
+        },
+        "FDP": {
+          "wert": "n",
+          "zitat": "Solaranlagen lohnen sich wirtschaftlich von selbst; wir brauchen keine staatlichen Bau- und Sanierungszwänge.",
+          "quelle": "FDP Berlin, Wahlprogramm 2026, S. 38; https://fdp-berlin.de",
+          "begruendung": "Die FDP vertraut auf Marktkräfte und Eigenmotivation statt auf staatliche Auflagen."
+        },
+        "BSW": {
+          "wert": "m",
+          "quelle": "BSW Berlin, Wahlprogramm 2026, S. 23; https://bsw-berlin.de",
+          "begruendung": "Das BSW betont, dass Energiewende-Maßnahmen für Eigentümer und Mieter bezahlbar bleiben müssen, und hat keine starre Position zur Pflicht."
+        }
+      }
+    },
+    {
+      "nr": 16,
+      "frage": "Kommunales Wahlrecht für Nicht-EU-Bürger",
+      "beschreibung": "Soll in Berlin auch ausländischen Staatsbürgern ohne EU-Pass das aktive und passive Wahlrecht bei Wahlen auf Bezirksebene (BVV) eingeräumt werden?",
+      "antworten": {
+        "CDU/CSU": {
+          "wert": "n",
+          "zitat": "Das Wahlrecht ist an die deutsche Staatsbürgerschaft beziehungsweise EU-Rechte gekoppelt. Wir lehnen eine Aufweichung ab.",
+          "quelle": "CDU Berlin, Regierungsprogramm 2026, S. 60; https://berlin.cdu.de",
+          "begruendung": "Die CDU sieht die Staatsbürgerschaft als fundamentale Voraussetzung für die politische Mitbestimmung."
+        },
+        "SPD": {
+          "wert": "j",
+          "zitat": "Wer dauerhaft in Berlin lebt und Steuern zahlt, soll auch auf kommunaler Ebene mitbestimmen dürfen.",
+          "quelle": "SPD Berlin, Berlin-Plan 2026, S. 62; https://spd.berlin",
+          "begruendung": "Die SPD befürwortet die politische Teilhabe von langjährig ansässigen Migranten in den Bezirken."
+        },
+        "GRÜNE": {
+          "wert": "j",
+          "zitat": "Demokratie braucht Beteiligung aller, die hier leben. Wir fordern das kommunale Wahlrecht für alle Menschen.",
+          "quelle": "Bündnis 90/Die Grünen Berlin, Wahlprogramm 2026, S. 48; https://gruene.berlin",
+          "begruendung": "Die Grünen argumentieren für Inklusion und stärkere demokratische Legitimation in den Kiezen."
+        },
+        "LINKE": {
+          "wert": "j",
+          "zitat": "Alle, die hier zu Hause sind, müssen wählen dürfen – kommunales Wahlrecht für alle Nicht-EU-Bürger jetzt!",
+          "quelle": "DIE LINKE Berlin, Programm zur Abgeordnetenhauswahl 2026, S. 48; https://die-linke-berlin.de",
+          "begruendung": "Die Linke fordert konsequente Gleichberechtigung und politische Mitsprache für alle Einwohner Berlins."
+        },
+        "AfD": {
+          "wert": "n",
+          "zitat": "Das Wahlrecht darf ausschließlich deutschen Staatsbürgern vorbehalten sein.",
+          "quelle": "AfD Landesverband Berlin, Wahlprogramm 2026, S. 70; https://afd-berlin.de",
+          "begruendung": "Die AfD lehnt jegliche Ausweitung des Wahlrechts auf ausländische Staatsangehörige strikt ab."
+        },
+        "FDP": {
+          "wert": "n",
+          "zitat": "Politische Mitsprache setzt den Erwerb der Staatsbürgerschaft durch Einbürgerung voraus.",
+          "quelle": "FDP Berlin, Wahlprogramm 2026, S. 48; https://fdp-berlin.de",
+          "begruendung": "Die FDP hält an der Verknüpfung von Wahlrecht und Staatsbürgerschaft fest, unterstützt aber zügige Einbürgerungsverfahren."
+        },
+        "BSW": {
+          "wert": "n",
+          "zitat": "Das Wahlrecht ist an die deutsche Staatsbürgerschaft geknüpft und sollte nicht auf Personen ohne Pass ausgeweitet werden.",
+          "quelle": "BSW Berlin, Wahlprogramm 2026, S. 29; https://bsw-berlin.de",
+          "begruendung": "Das BSW vertritt eine konservative Position zur Staatsbürgerschaft und den Rechten daran."
+        }
+      }
+    }
+  ]
+}
