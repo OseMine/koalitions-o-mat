@@ -4,12 +4,13 @@ Interaktiver Koalitionsrechner und Parteien-Test für die Bundestagswahl 2029 un
 
 ## Funktionen
 
-- **Parteien-Test** – Eigene Positionen zu politischen Fragen mit Parteien und Koalitionen abgleichen (Wahl-O-Mat-Stil: Themen-Badge, Fortschrittsanzeige, Überspringen, Tastatursteuerung 1/2/3 und Pfeiltasten, Willkommensscreen)
+- **Parteien-Test** – Eigene Positionen zu politischen Fragen mit Parteien und Koalitionen abgleichen (Wahl-O-Mat-Stil: Themen-Badge, Fortschrittsanzeige, Überspringen, Tastatursteuerung 1/2/3 und Pfeiltasten)
+- **Willkommensseite** – Hero mit Schritt-Erklärung und klickbaren Wahl-Karten (Parteien- und Fragenzahl pro Wahl) zum direkten Start
 - **Alle Koalitionen** – Alle möglichen Mehrheits-/Minderheitskoalitionen mit Übereinstimmungswert
 - **Filter** – Mindestübereinstimmung, Koalitionsart (Mehrheit/Minderheit/Alle), nach Partei filtern, Parteien ausschließen
 - **Parteien vergleichen** – Positionen mehrerer Parteien nebeneinander mit Quellen und Begründungen
 - **Daten & Charts** – Umfragewerte, Sitzverteilung, Koalitionspotential, Parteipositionen nach Themen, Themenverteilung
-- **Einfache Sprache** – Umschalter für alle UI-Texte und 178 Fragen in einfacher Sprache
+- **Einfache Sprache** – Umschalter für alle UI-Texte und 125 Fragen in einfacher Sprache
 - **Dark/Light Mode** – mit automatischer Systemerkennung
 - **Ergebnis-Historie** – Testergebnisse werden gespeichert
 

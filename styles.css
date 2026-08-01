@@ -189,11 +189,12 @@ body {
 .empty-icon { font-size: 2rem; display: block; margin-bottom: 8px; }
 
 /* ===== Welcome Screen ===== */
-.welcome-screen { text-align: center; padding: 48px 20px; }
+.welcome-screen { text-align: center; padding: 40px 20px; }
+.welcome-hero { max-width: 640px; margin: 0 auto; }
 .welcome-icon { font-size: 3rem; margin-bottom: 12px; }
 .welcome-screen h2 { font-size: clamp(1.4rem, 4vw, 1.8rem); margin: 0 0 10px; color: var(--on-surface); }
-.welcome-screen > p { color: var(--on-surface-variant); max-width: 480px; margin: 0 auto 20px; }
-.welcome-steps { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 24px; }
+.welcome-hero > p { color: var(--on-surface-variant); max-width: 480px; margin: 0 auto 20px; }
+.welcome-steps { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 8px; }
 .welcome-step {
     display: flex; align-items: center; gap: 8px; padding: 10px 16px;
     background: var(--surface); border: 1px solid var(--outline); border-radius: var(--radius-sm);
@@ -203,13 +204,23 @@ body {
     width: 24px; height: 24px; border-radius: 50%; background: var(--primary); color: var(--on-primary);
     display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; flex-shrink: 0;
 }
-.welcome-start {
-    padding: 14px 40px; font-size: 1.05rem; font-weight: 600; min-height: 52px;
-    background: var(--primary); color: var(--on-primary); border: none; border-radius: 999px;
-    cursor: pointer; font-family: var(--font); transition: all 0.2s; box-shadow: var(--shadow-md);
+.welcome-cards {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 14px; max-width: 880px; margin: 28px auto 0; text-align: left;
 }
-.welcome-start:hover { background: var(--primary-hover); transform: translateY(-1px); }
-.welcome-hint { font-size: 0.82rem; color: var(--on-surface-muted) !important; margin-top: 16px !important; }
+.welcome-card {
+    display: flex; flex-direction: column; gap: 8px; padding: 22px 20px;
+    background: var(--surface); border: 1px solid var(--outline); border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-sm); cursor: pointer; font-family: var(--font);
+    transition: all 0.2s; color: inherit;
+}
+.welcome-card:hover { border-color: var(--primary); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.welcome-card-type { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase; color: var(--primary); }
+.welcome-card-name { font-size: 1.02rem; font-weight: 700; color: var(--on-surface); }
+.welcome-card-stats { font-size: 0.85rem; color: var(--on-surface-variant); display: flex; align-items: center; gap: 6px; }
+.welcome-card-sep { opacity: 0.5; }
+.welcome-card-start { font-size: 0.88rem; font-weight: 600; color: var(--primary); margin-top: 4px; }
+.welcome-hint { font-size: 0.82rem; color: var(--on-surface-muted) !important; margin-top: 20px !important; }
 
 /* ===== Test ===== */
 .test-intro { color: var(--on-surface-variant); font-size: 0.95rem; margin-bottom: 16px; }
@@ -419,7 +430,7 @@ body {
 
 /* Touch devices: no sticky hover */
 @media (hover: none) {
-    .q-btn:hover, .welcome-start:hover, .tr-restart-btn:hover, .tr-back-btn:hover {
+    .q-btn:hover, .tr-restart-btn:hover, .tr-back-btn:hover {
         transform: none; box-shadow: var(--shadow-sm); filter: none;
     }
     .theme-toggle:hover, .github-link:hover, .simple-lang-toggle:hover,
@@ -471,10 +482,10 @@ body {
     /* Sticky tabs for quick switching */
     .tabs { position: sticky; top: 0; z-index: 100; background: var(--surface-variant); }
 
-    /* Welcome: stacked steps, full-width button */
+    /* Welcome: stacked steps, card grid single column */
     .welcome-steps { flex-direction: column; align-items: stretch; max-width: 340px; margin-left: auto; margin-right: auto; }
     .welcome-step { justify-content: flex-start; }
-    .welcome-start { width: 100%; max-width: 340px; }
+    .welcome-cards { grid-template-columns: 1fr; max-width: 420px; margin-left: auto; margin-right: auto; }
 
     /* Notification respects safe area */
     .notification { bottom: calc(24px + env(safe-area-inset-bottom, 0px)); left: 16px; right: 16px; transform: none; max-width: none; margin: 0 auto; }

@@ -45,17 +45,6 @@ function showElectionSelector() {
     document.getElementById('appContent').style.display = 'none';
 }
 
-function startTestWithDefaultElection() {
-    const saved = localStorage.getItem('activeElectionId');
-    if (saved && electionDataCache[saved]) {
-        setActiveElection(saved);
-        return;
-    }
-    if (electionsList.length && electionDataCache[electionsList[0].id]) {
-        setActiveElection(electionsList[0].id);
-    }
-}
-
 // ===== Tab Switching =====
 function switchTab(tabName) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -130,6 +119,28 @@ function populateElectionSelector(selectedId) {
     `).join('');
 }
 
+function renderWelcomeCards() {
+    const container = document.getElementById('welcomeElectionCards');
+    if (!container) return;
+    container.innerHTML = electionsList.map(e => {
+        const data = electionDataCache[e.id];
+        const partyCount = data && data.werte && data.werte.umfragewerte ? data.werte.umfragewerte.length : 0;
+        const questionCount = data && data.fragen && data.fragen.fragen ? data.fragen.fragen.length : 0;
+        return `
+            <button type="button" class="welcome-card" onclick="setActiveElection('${e.id}')">
+                <span class="welcome-card-type">${e.type || ''}</span>
+                <span class="welcome-card-name">${e.name}</span>
+                <span class="welcome-card-stats">
+                    <span>${partyCount} ${t('welcomeCardParties', 'Parteien')}</span>
+                    <span class="welcome-card-sep">·</span>
+                    <span>${questionCount} ${t('welcomeCardQuestions', 'Fragen')}</span>
+                </span>
+                <span class="welcome-card-start">${t('startTest', 'Test starten')} →</span>
+            </button>
+        `;
+    }).join('');
+}
+
 // ===== Data Loading =====
 async function loadElections() {
     try {
@@ -173,6 +184,7 @@ async function loadElections() {
         }));
 
         populateElectionSelector(defaultId);
+        renderWelcomeCards();
 
         // If no default, show welcome screen
         if (!defaultId || !electionDataCache[defaultId]) {

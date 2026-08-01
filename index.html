@@ -34,16 +34,18 @@
 
         <!-- ===== Initial Welcome Screen ===== -->
         <div id="welcomeScreen" class="welcome-screen">
-            <div class="welcome-icon">🗳️</div>
-            <h2 data-i18n="welcomeTitle">Willkommen beim Koalitions-O-Mat</h2>
-            <p data-i18n="welcomeSubtitle">Finden Sie heraus, welche Partei und welche Koalition am besten zu Ihnen passt.</p>
-            <div class="welcome-steps">
-                <div class="welcome-step"><span class="ws-num">1</span><span data-i18n="step1">Wahl auswählen</span></div>
-                <div class="welcome-step"><span class="ws-num">2</span><span data-i18n="step2">Fragen beantworten</span></div>
-                <div class="welcome-step"><span class="ws-num">3</span><span data-i18n="step3">Ergebnis entdecken</span></div>
+            <div class="welcome-hero">
+                <div class="welcome-icon">🗳️</div>
+                <h2 data-i18n="welcomeTitle">Willkommen beim Koalitions-O-Mat</h2>
+                <p data-i18n="welcomeSubtitle">Finden Sie heraus, welche Partei und welche Koalition am besten zu Ihnen passt.</p>
+                <div class="welcome-steps">
+                    <div class="welcome-step"><span class="ws-num">1</span><span data-i18n="step1">Wahl auswählen</span></div>
+                    <div class="welcome-step"><span class="ws-num">2</span><span data-i18n="step2">Fragen beantworten</span></div>
+                    <div class="welcome-step"><span class="ws-num">3</span><span data-i18n="step3">Ergebnis entdecken</span></div>
+                </div>
             </div>
-            <button type="button" class="welcome-start" onclick="startTestWithDefaultElection()" data-i18n="startTest">Test starten</button>
-            <p class="welcome-hint" data-i18n="welcomeHint">Klicken Sie auf eine Wahl oben, um zu starten.</p>
+            <div class="welcome-cards" id="welcomeElectionCards"></div>
+            <p class="welcome-hint" data-i18n="welcomeHint">Wählen Sie eine Wahl aus, um zu starten.</p>
         </div>
 
         <!-- ===== Main App (hidden until election selected) ===== -->
