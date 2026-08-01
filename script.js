@@ -38,11 +38,13 @@ function getAnswerSources(answer, partei) {
 function showApp() {
     document.getElementById('welcomeScreen').style.display = 'none';
     document.getElementById('appContent').style.display = 'block';
+    document.getElementById('electionBar').style.display = 'flex';
 }
 
 function showElectionSelector() {
     document.getElementById('welcomeScreen').style.display = 'block';
     document.getElementById('appContent').style.display = 'none';
+    document.getElementById('electionBar').style.display = 'none';
 }
 
 // ===== Tab Switching =====
@@ -999,11 +1001,24 @@ function redrawCharts() {
 }
 
 // ===== Simple Language Toggle =====
+const staticI18nOriginals = new Map();
+
+function snapshotStaticI18n() {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        if (!staticI18nOriginals.has(el)) staticI18nOriginals.set(el, el.textContent);
+    });
+}
+
 function applyStaticI18n() {
+    snapshotStaticI18n();
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.dataset.i18n;
         const val = t(key, null);
-        if (val !== null) el.textContent = val;
+        if (val !== null) {
+            el.textContent = val;
+        } else if (staticI18nOriginals.has(el)) {
+            el.textContent = staticI18nOriginals.get(el);
+        }
     });
 }
 
