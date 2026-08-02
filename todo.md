@@ -4,6 +4,25 @@ Code-Review vom 01.08.2026. Prioritäten: P1 = Bug / P2 = Feature / P3 = Verbess
 
 ---
 
+## Review vom 2026-08-02 (5. Lauf, PR #18: Issue #17-Fixes im Merge-Review)
+
+Merge-Review des PR „Issue #17 behoben: Swipe fix + Review umgesetzt" (`reports/review-2026-08-02-f.md`). Ergebnis: **PR mergefähig**, alle drei P1-Fixes zu Issue #17 sowie die P2/P3-Mitfixes per Node-Simulation und gegen die echten Datendateien verifiziert, keine Regressionen. Die folgenden Punkte sind Nachbesserungsvorschläge.
+
+### P3 – Verbesserungen (neu)
+
+- [ ] **Swipe-Abbruch permanent nach EINEM vertikal-dominierten `touchmove`-Event** – script.js:1641-1644: das erste Touchmove mit nur 2 px Y / 1 px X deaktiviert die Geste dauerhaft; simulierte horizontale Swipe (2,4)→(150,8) wird verworfen. Vorschlag: Richtungsprüfung erst ab ~10 px Dead-Zone oder Flag bei später horizontal-dominanter Bewegung wieder aufheben.
+- [ ] **`partyFilter` im Koalitionen-Tab listet Parteien < Sperrklausel, Filter-Ergebnis ist dann leer** – `populatePartyDropdowns()` (script.js:400-402) nutzt `relevant`, `updateKoalitionen()` (script.js:593-595) filtert nur Koalitionen → „FDP" (btw2029) ergibt „Keine passenden Koalitionen gefunden" ohne Erklärung. Begründung aus Report-e („Filter auf Ergebnisliste") trifft nicht zu.
+- [ ] **Koalitions-Share-Link ohne Antworten hinterlässt Ergebnissicht mit lauter „–" im Test-Tab** – `applyPendingShare()` (script.js:146-183) ruft `showTestResults()` auch bei leerem `answers` auf; Vorschlag: bei leerem `answers` + nur `coalitionState` überspringen.
+- [ ] **Zeilenreferenzen in todo.md/Report-e verschoben** – `script.js:1620-1657` vs. tatsächlich 1628-1664, `403-413` vs. 405-419, `1425` vs. 1424, `82-113` vs. 82-116 (kosmetisch).
+
+### Verifiziert (Bestätigung der PR-Befunde)
+
+- [x] Swipe-Fix (Issue #17): `touchmove`-Tracking + `.tabs`-Bindung + `swipeDisabled`-Reset – per Simulation verifiziert (diagonale Flicks `80/95` und `72/84` wechseln keinen Tab mehr, sauberer horizontaler Swipe 120/10 schon).
+- [x] Ausschluss-Checkboxen: Menge = Parteien ≥ Sperrklausel, konsistent mit `berechneKoalitionen()` (alle 4 Wahlen).
+- [x] Koalitionswerte unverändert: btw2029 max 50,9 %, LSA 52,0 %, Berlin 48,0 %, MV 58,7 %; Sitzsummen 630/87/130/71; keine fehlenden Parteien/Farben; i18n-Keys `questionCol`/`shareEmpty`/`shareCopied` vorhanden.
+
+---
+
 ## Bugfix vom 2026-08-02 (Issue #17: Swipe-Handler & Folgebefunde)
 
 Alle unten aufgeführten Befunde aus dem 4. Lauf wurden in `script.js` umgesetzt und per Node gegen die echten Datendateien verifiziert (`node --check script.js` OK, Swipe-Simulation, Share-Parsing-Test, Koalitions-/Sitzwerte unverändert). Vollständiger Bericht: `reports/review-2026-08-02-e.md`.
