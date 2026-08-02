@@ -94,7 +94,8 @@
     "errorLoading": "Fehler beim Laden der Daten. Seite neu laden.",
     "errorTitle": "Fehler beim Laden.",
     "errorReloadHint": "Bitte Seite neu laden",
-    "reload": "Neu laden"
+    "reload": "Neu laden",
+    "noData": "Keine Daten"
   },
   "fragen": {
     "ltw-sachsen-anhalt-2026": {
