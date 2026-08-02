@@ -4,6 +4,35 @@ Code-Review vom 01.08.2026. Prioritäten: P1 = Bug / P2 = Feature / P3 = Verbess
 
 ---
 
+## Review vom 2026-08-02 (4. Lauf, Issue #17: Tab-Wechsel beim vertikalen Scrollen)
+
+Fokus: Issue #17 – Swipe-Geste wechselt beim vertikalen Scrollen weiterhin Tabs. Vollständiger Bericht: `reports/review-2026-08-02-d.md`. Ursache per Node-Simulation bestätigt: Der Handler prüft nur Start-/Endkoordinaten, diagonale Flicks (z. B. 80 px horizontal / 95 px vertikal) passieren die 1.2×-Regel.
+
+### P1 – Bugs
+
+- [ ] **Swipe-Handler ohne `touchmove`-Tracking** – `script.js:1613-1639` vergleicht nur `touchend`-Differenzen; verifiziert lösen `diffX=80/diffY=95` (95 < 96) und `diffX=72/diffY=84` fälschlich einen Tab-Wechsel aus. Fix: `touchmove`-Abbruch bei vertikal-dominanter Bewegung oder Flick-Erkennung (Dauer < 250 ms) oder `e.touches.length === 1`.
+- [ ] **Swipe auf gesamten `.container` gebunden** – nur `.election-toggles/.cmp-wrap/.tr-detail-table` ausgenommen; sticky Tab-Leiste (styles.css:593) und lange Frage-Seiten sind Hotspots. Fix: Swipe nur auf `.tabs`-Leiste auslösen.
+- [ ] **`swipeDisabled` wird bei `touchcancel` nicht zurückgesetzt** – Flag bleibt nach abgebrochener Geste stehen (script.js:1618-1623); im `touchend`-Handler zurücksetzen.
+
+### P2 – Fehlende Features
+
+- [ ] **Ausschluss-Checkboxen für Parteien < Sperrklausel wirkungslos** (offen seit 2. Lauf, weiter reproduziert) – `populatePartyDropdowns()` (script.js:403-411) listet FDP/BSW (btw2029), `berechneKoalitionen()` (script.js:468-470) ignoriert sie → Häkchen ändert nichts. Checkboxen nur ≥ 5 % anzeigen oder in der Berechnung berücksichtigen.
+
+### P3 – Verbesserungen
+
+- [ ] **Ranking bei wenigen beantworteten Fragen irreführend** – Berlin: Volt/Tierschutz (3/52, alle „j") erreichen 100 % und verdrängen große Parteien (script.js:918-942); `fewAnswersHint` normalisiert nicht. Mindestzahl vergleichbarer Fragen für die Sortierung.
+- [ ] **Hartkodierter Tabellenkopf „Frage" in `updatePartyComparison()`** – script.js:1416 nutzt nicht `t('questionCol')` (anders als script.js:849).
+- [ ] **Hartkodierte `aria-label`s in index.html** – Z. 22-24 (Einfache Sprache/Theme/GitHub) nicht i18n-fähig.
+- [ ] **„Ergebnis teilen" im Koalitionen-Tab ohne Test blockiert** – `shareResults()` (script.js:85-89) verlangt j/n/m-Antworten; Koalitions-Sicht (Filter) ohne Test nicht teilbar. `&c=` auch ohne Antworten zulassen.
+
+### Verifiziert weiter offen (aus früheren Läufen)
+
+- [ ] `berechneUebereinstimmung()` ohne Umfragewert-Gewichtung (script.js:501-524)
+- [ ] 10 „Sonstiges"-Fragen (btw2029 1, LSA 6, Berlin 3) – Kategorie „Kultur" fehlt
+- [ ] Datenqualität „CDU/CSU" vs. „CDU"; „SSW" (0,5 %) in Berlin-Umfrage unplausibel
+
+---
+
 ## Bugfix-Implementierung vom 2026-08-03 (Issue: resolve Bugs)
 
 Alle unten markierten Befunde wurden in `script.js`/`index.html`/`styles.css`/`einfache-sprache.json`/`werte.json` umgesetzt und per Node gegen die echten Datendateien verifiziert (`node --check script.js` OK, alle JSON valide, i18n-Key-Check vollständig). Vollständiger Bericht: `reports/review-2026-08-03.md`.
