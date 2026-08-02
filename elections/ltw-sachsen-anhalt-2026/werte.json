@@ -1,16 +1,89 @@
 {
   "umfragewerte": [
-    { "partei": "AfD", "prozent": 41.0 },
-    { "partei": "CDU/CSU", "prozent": 24.0 },
-    { "partei": "LINKE", "prozent": 14.0 },
-    { "partei": "SPD", "prozent": 5.0 },
-    { "partei": "BSW", "prozent": 4.0 },
-    { "partei": "FDP", "prozent": 4.0 },
-    { "partei": "GRÜNE", "prozent": 4.0 },
-    { "partei": "FREIE WÄHLER", "prozent": 2.0 },
-    { "partei": "Tierschutz", "prozent": 1.0 },
-    { "partei": "PARTEI", "prozent": 0.5 },
-    { "partei": "Volt", "prozent": 0.5 }
+    {
+      "partei": "AfD",
+      "prozent": 41,
+      "beschreibung": "Die AfD Sachsen-Anhalt ist laut Umfragen stärkste Kraft. Sie fordert eine restriktive Migrationspolitik, weniger Windkraftausbau und eine Politik gegen den Einfluss der etablierten Parteien.",
+      "website": "https://www.afd.de",
+      "kandidaten": [
+        {
+          "name": "Martin Reichardt",
+          "rolle": "Landesvorsitzender"
+        }
+      ]
+    },
+    {
+      "partei": "CDU/CSU",
+      "prozent": 24,
+      "beschreibung": "Die CDU Sachsen-Anhalt stellt seit Jahren den Ministerpräsidenten. Sie setzt auf wirtschaftliche Stabilität, Investitionen in die Infrastruktur und eine geordnete Migrationspolitik.",
+      "website": "https://www.cdu.de",
+      "kandidaten": [
+        {
+          "name": "Reiner Haseloff",
+          "rolle": "Ministerpräsident"
+        }
+      ]
+    },
+    {
+      "partei": "LINKE",
+      "prozent": 14,
+      "beschreibung": "DIE LINKE in Sachsen-Anhalt fordert soziale Gerechtigkeit, kostenlose Bildung, bezahlbaren Wohnraum und eine klare Absage an Rechtsradikalismus.",
+      "website": "https://www.die-linke.de"
+    },
+    {
+      "partei": "SPD",
+      "prozent": 5,
+      "beschreibung": "Die SPD Sachsen-Anhalt setzt auf soziale Sicherheit, gute Arbeit, Bildung und eine tolerante Gesellschaft.",
+      "website": "https://www.spd.de",
+      "kandidaten": [
+        {
+          "name": "Katja Pähle",
+          "rolle": "Landesvorsitzende"
+        }
+      ]
+    },
+    {
+      "partei": "BSW",
+      "prozent": 4,
+      "beschreibung": "Das Bündnis Sahra Wagenknecht in Sachsen-Anhalt fordert die Entlastung kleiner Einkommen, bezahlbare Energie und eine strikte Ablehnung von Waffenlieferungen.",
+      "website": "https://bsw-partei.de"
+    },
+    {
+      "partei": "FDP",
+      "prozent": 4,
+      "beschreibung": "Die FDP Sachsen-Anhalt steht für wirtschaftliche Freiheit, weniger Bürokratie und eine moderne digitale Verwaltung.",
+      "website": "https://www.fdp.de"
+    },
+    {
+      "partei": "GRÜNE",
+      "prozent": 4,
+      "beschreibung": "Die Grünen in Sachsen-Anhalt setzen auf Klimaschutz, den Ausbau der Erneuerbaren und eine weltoffene, tolerante Gesellschaft.",
+      "website": "https://www.gruene.de"
+    },
+    {
+      "partei": "FREIE WÄHLER",
+      "prozent": 2,
+      "beschreibung": "Die Freien Wähler Sachsen-Anhalt vertreten kommunale Interessen, direkte Demokratie und regionale Wirtschaft.",
+      "website": "https://www.freiewaehler.eu"
+    },
+    {
+      "partei": "Tierschutz",
+      "prozent": 1,
+      "beschreibung": "Die Tierschutzpartei in Sachsen-Anhalt fordert Tierrechte und eine nachhaltige Landwirtschaft.",
+      "website": "https://www.tierschutzpartei.de"
+    },
+    {
+      "partei": "PARTEI",
+      "prozent": 0.5,
+      "beschreibung": "Die PARTEI in Sachsen-Anhalt verbindet Satire mit politischen Forderungen für mehr Transparenz und Bürgerrechte.",
+      "website": "https://www.die-partei.de"
+    },
+    {
+      "partei": "Volt",
+      "prozent": 0.5,
+      "beschreibung": "Volt in Sachsen-Anhalt tritt für europäische Zusammenarbeit, Klimaschutz und digitale Modernisierung ein.",
+      "website": "https://www.voltdeutschland.org"
+    }
   ],
   "meta": {
     "name": "Landtagswahl Sachsen-Anhalt 2026",

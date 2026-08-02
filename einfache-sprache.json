@@ -95,7 +95,11 @@
     "errorTitle": "Fehler beim Laden.",
     "errorReloadHint": "Bitte Seite neu laden",
     "reload": "Neu laden",
-    "noData": "Keine Daten"
+    "noData": "Keine Daten",
+    "topicChartEmpty": "Machen Sie einen Test, dann sehen Sie Ihre Themen-Verteilung.",
+    "resetAnswers": "Antworten zurücksetzen",
+    "answersReset": "Antworten zurückgesetzt",
+    "resumeHint": "Fortgesetzt: {done} von {total} Fragen beantwortet"
   },
   "fragen": {
     "ltw-sachsen-anhalt-2026": {
@@ -602,6 +606,188 @@
       "33": {
         "frage": "Verfassungsschutz abschaffen",
         "beschreibung": "Soll der Verfassungsschutz in MV komplett abgeschafft werden?"
+      }
+    },
+    "btw2029": {
+      "1": {
+        "frage": "Schuldenbremse ändern",
+        "beschreibung": "Die Schuldenbremse ist eine Regel im Grundgesetz. Sie sagt: Der Staat darf nicht zu viele Schulden machen. Soll diese Regel geändert werden? Dann kann der Staat mehr Geld für Straßen, Bahn und Klimaschutz ausgeben."
+      },
+      "2": {
+        "frage": "Mindestlohn: 15 Euro?",
+        "beschreibung": "Der Mindestlohn ist das wenigste Geld, das eine Firma einem Arbeitnehmer bezahlen darf. Soll der Mindestlohn per Gesetz auf 15 Euro pro Stunde steigen?"
+      },
+      "3": {
+        "frage": "Aktienrente einführen?",
+        "beschreibung": "Soll der Staat Geld aus der Rentenversicherung an der Börse anlegen? Mit dem Gewinn sollen die Renten bezahlt werden."
+      },
+      "4": {
+        "frage": "Atomkraft wieder einführen?",
+        "beschreibung": "Soll Deutschland wieder Atomkraftwerke bauen? Die alten Atomkraftwerke sind vor einigen Jahren abgeschaltet worden."
+      },
+      "5": {
+        "frage": "Feste Grenzkontrollen?",
+        "beschreibung": "Sollen an den Grenzen zu anderen Ländern dauerhaft Polizisten kontrollieren, wer nach Deutschland kommt?"
+      },
+      "6": {
+        "frage": "Sachleistungen statt Geld für Asylbewerber?",
+        "beschreibung": "Sollen Asylbewerber kein Bargeld mehr bekommen, sondern nur noch Sachen wie Essen und Kleidung?"
+      },
+      "7": {
+        "frage": "Taurus-Raketen an die Ukraine?",
+        "beschreibung": "Soll Deutschland der Ukraine weitreichende Raketen liefern? Die Ukraine braucht sie im Krieg gegen Russland."
+      },
+      "8": {
+        "frage": "Dienst-Pflicht für junge Menschen?",
+        "beschreibung": "Sollen alle jungen Menschen ein Jahr lang helfen müssen? Zum Beispiel beim Militär oder in der Pflege?"
+      },
+      "9": {
+        "frage": "Tempolimit auf Autobahnen?",
+        "beschreibung": "Soll auf allen Autobahnen in Deutschland höchstens 120 Kilometer pro Stunde erlaubt sein?"
+      },
+      "10": {
+        "frage": "Verbot von Benzin-Autos ab 2035?",
+        "beschreibung": "Sollen ab dem Jahr 2035 keine neuen Autos mit Benzin oder Diesel mehr verkauft werden dürfen?"
+      },
+      "11": {
+        "frage": "Bürgergeld kürzen?",
+        "beschreibung": "Sollen Menschen, die keine Arbeit annehmen wollen, weniger oder gar kein Geld mehr vom Staat bekommen?"
+      },
+      "12": {
+        "frage": "Steuer für reiche Menschen?",
+        "beschreibung": "Sollen Menschen mit sehr viel Geld eine extra Steuer auf ihr Vermögen zahlen?"
+      },
+      "13": {
+        "frage": "Billiger Strom für Firmen?",
+        "beschreibung": "Soll der Staat Firmen, die sehr viel Strom brauchen, Geld geben, damit ihr Strom billiger wird?"
+      },
+      "14": {
+        "frage": "Wählen ab 16 Jahren?",
+        "beschreibung": "Sollen Menschen schon mit 16 Jahren bei der Bundestagswahl wählen dürfen? Heute muss man dafür 18 Jahre alt sein."
+      },
+      "15": {
+        "frage": "IP-Adressen speichern?",
+        "beschreibung": "Soll der Staat die IP-Adresse von allen Menschen im Internet speichern? Die IP-Adresse zeigt, von welchem Computer man im Netz ist."
+      },
+      "16": {
+        "frage": "Cannabis-Verbot zurück?",
+        "beschreibung": "Cannabis ist seit 2024 für Erwachsene erlaubt. Soll das Verbot von Cannabis wieder kommen?"
+      },
+      "17": {
+        "frage": "Solidaritätszuschlag abschaffen?",
+        "beschreibung": "Der Solidaritätszuschlag ist eine extra Steuer für sehr gut verdienende Menschen. Soll diese Steuer ganz abgeschafft werden?"
+      },
+      "18": {
+        "frage": "Zwei Pässe erlauben?",
+        "beschreibung": "Sollen Menschen mit einem anderen Pass auch den deutschen Pass bekommen können, ohne ihren alten Pass abgeben zu müssen?"
+      },
+      "19": {
+        "frage": "Deutschlandticket behalten?",
+        "beschreibung": "Das Deutschlandticket gilt für fast alle Busse und Bahnen. Soll der Staat es weiter mit Geld unterstützen?"
+      },
+      "20": {
+        "frage": "Mehr Geld für die Bundeswehr?",
+        "beschreibung": "Die Bundeswehr ist die Armee von Deutschland. Soll sie dauerhaft mehr Geld bekommen als bisher geplant?"
+      },
+      "21": {
+        "frage": "Bund darf Schulen unterstützen?",
+        "beschreibung": "Heute darf der Bund den Ländern kein Geld für Schulen geben. Soll sich das ändern?"
+      },
+      "22": {
+        "frage": "Gemeinsame Schulden in Europa?",
+        "beschreibung": "Sollen die Länder der EU zusammen Schulden machen und sich das Geld teilen?"
+      },
+      "23": {
+        "frage": "CO2-Preis begrenzen?",
+        "beschreibung": "Beim Heizen und Tanken wird eine Abgabe für CO2 bezahlt. Soll diese Abgabe nicht weiter steigen?"
+      },
+      "24": {
+        "frage": "Länder bestimmen über Krankenhäuser?",
+        "beschreibung": "Sollen die Bundesländer selbst entscheiden dürfen, welche Krankenhäuser offen bleiben und welche schließen?"
+      },
+      "25": {
+        "frage": "Mehr Geld für die Bahn?",
+        "beschreibung": "Sollen Straßen-Projekte warten, damit mehr Geld in Bahn-Schienen und Bahnhöfe fließen kann?"
+      },
+      "26": {
+        "frage": "Weniger Papierkram für Firmen?",
+        "beschreibung": "Sollen Firmen weniger Berichte an den Staat schicken müssen? Für jede neue Berichtspflicht sollen zwei alte wegfallen."
+      },
+      "27": {
+        "frage": "Weniger Geld für Solar-Anlagen?",
+        "beschreibung": "Soll der Staat aufhören, Geld an Menschen zu zahlen, die Solar-Anlagen auf dem Dach haben?"
+      },
+      "28": {
+        "frage": "Mehr Geld für Wohnungen?",
+        "beschreibung": "Soll der Staat viel Geld ausgeben, damit mehr bezahlbare Wohnungen gebaut werden?"
+      },
+      "29": {
+        "frage": "Sofortige Abschreibung?",
+        "beschreibung": "Sollen Firmen neue Investitionen sofort von der Steuer absetzen können, statt über viele Jahre?"
+      },
+      "30": {
+        "frage": "Wasser-Regeln bei Dürre?",
+        "beschreibung": "Soll der Staat Regeln machen, wer bei Wassermangel zuerst Wasser bekommt?"
+      },
+      "31": {
+        "frage": "Jeder ist Organspender?",
+        "beschreibung": "Soll jeder Mensch automatisch Organspender sein? Nur wer das nicht will, muss es aufschreiben."
+      },
+      "32": {
+        "frage": "Solar-Pflicht bei Dach-Reparaturen?",
+        "beschreibung": "Soll bei großen Dach-Reparaturen immer eine Solar-Anlage auf das Dach müssen?"
+      },
+      "33": {
+        "frage": "Pflicht-Jahr für alle?",
+        "beschreibung": "Sollen alle jungen Menschen nach der Schule ein Jahr lang helfen müssen? Zum Beispiel in der Pflege oder im Umweltschutz?"
+      },
+      "34": {
+        "frage": "Rundfunkbeitrag abschaffen?",
+        "beschreibung": "Jeder Haushalt muss heute Geld für Fernsehen und Radio bezahlen. Soll diese Abgabe abgeschafft werden?"
+      },
+      "35": {
+        "frage": "Ministerium für Digitales?",
+        "beschreibung": "Soll es ein eigenes Ministerium für Digitales und künstliche Intelligenz geben?"
+      },
+      "36": {
+        "frage": "Solar-Pflicht für Firmen-Gebäude?",
+        "beschreibung": "Sollen neue Firmen-Gebäude und große Parkplätze immer eine Solar-Anlage bekommen müssen?"
+      },
+      "37": {
+        "frage": "Asyl-Anträge im Ausland prüfen?",
+        "beschreibung": "Sollen Asyl-Anträge in Ländern außerhalb der EU geprüft werden, statt in Deutschland?"
+      },
+      "38": {
+        "frage": "Keine Erbschaft-Steuer für Firmen?",
+        "beschreibung": "Soll die Steuer wegfallen, wenn eine Firma an die Familie weitergegeben wird?"
+      },
+      "39": {
+        "frage": "Digitales Geld vom Staat?",
+        "beschreibung": "Soll es eine elektronische Version des Euro geben, die die Europäische Zentralbank herausgibt?"
+      },
+      "40": {
+        "frage": "Kurze Flüge verbieten?",
+        "beschreibung": "Sollen Flüge innerhalb Deutschlands verboten werden, wenn man auch mit der Bahn in unter drei Stunden hinkommt?"
+      },
+      "41": {
+        "frage": "Polizei darf Computer durchsuchen?",
+        "beschreibung": "Soll die Polizei heimlich Computer von Verdächtigen ausspähen dürfen?"
+      },
+      "42": {
+        "frage": "Wehrdienst-Pflicht für Männer?",
+        "beschreibung": "Sollen junge Männer wieder zum Militär müssen? Die Wehrpflicht wurde vor vielen Jahren ausgesetzt."
+      },
+      "43": {
+        "frage": "Europäische Armee?",
+        "beschreibung": "Sollen die Länder der EU zusammen eine Armee mit einem gemeinsamen Chef haben?"
+      },
+      "44": {
+        "frage": "Mehr Geld für Fahrt zur Arbeit?",
+        "beschreibung": "Sollen Menschen, die zur Arbeit fahren, mehr Geld von der Steuer absetzen können?"
+      },
+      "45": {
+        "frage": "Alter bei Social Media prüfen?",
+        "beschreibung": "Sollen soziale Netzwerke prüfen müssen, wie alt ihre Nutzer sind, um Kinder zu schützen?"
       }
     }
   }

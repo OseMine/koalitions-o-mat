@@ -326,6 +326,13 @@ body {
 .test-controls button:disabled { opacity: 0.35; cursor: not-allowed; }
 .test-controls .btn-ghost { min-width: 90px; color: var(--on-surface-muted); }
 
+/* Hinweis beim Fortsetzen einer früheren Test-Sitzung */
+.resume-hint {
+    text-align: center; margin: 0 0 14px; padding: 10px 16px; font-size: 0.88rem;
+    background: var(--primary-container); color: var(--on-primary-container, var(--on-surface));
+    border: 1px solid var(--outline); border-radius: var(--radius-sm);
+}
+
 .test-results-header { margin-bottom: 12px; }
 .test-results-header h3 { font-size: 1.05rem; margin: 0 0 4px; }
 .election-label { color: var(--on-surface-muted); font-size: 0.85rem; margin-bottom: 12px; }
@@ -465,6 +472,10 @@ body {
 .chart-card h3 { font-size: 0.95rem; margin: 0 0 8px; padding-bottom: 8px; border-bottom: 1.5px solid var(--outline); color: var(--on-surface); }
 .chart-container { flex: 1; min-height: 240px; position: relative; }
 .chart-container > div { width: 100% !important; height: 100% !important; min-height: 240px; }
+.chart-placeholder {
+    display: flex; align-items: center; justify-content: center; text-align: center;
+    color: var(--on-surface-muted); font-size: 0.9rem; padding: 20px; min-height: 240px;
+}
 
 /* ===== Comparison ===== */
 .comparison-section { margin-top: 8px; }
