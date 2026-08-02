@@ -4,6 +4,40 @@ Code-Review vom 01.08.2026. Prioritäten: P1 = Bug / P2 = Feature / P3 = Verbess
 
 ---
 
+## Automatisiertes Review vom 2026-08-02 (2. Lauf, Nachtrag)
+
+Vollständiger Bericht: `reports/review-2026-08-02-b.md`. Alle Befunde per Node gegen die echten Datendateien verifiziert.
+
+### P1 – Bugs
+
+- [ ] **Rein neutrale Nutzer-Antworten → 0 % für alle Parteien trotz „X/X Fragen beantwortet"** – `showTestResults()` (script.js:817-837) überspringt `m`-Antworten komplett (`if (!ua || ua === 'm') return`), `total=0` → `match=0`; `totalAnswered` (script.js:847) zählt `m` aber mit. Verifiziert: 45×`m` → alle 7 Parteien 0,0 % bei Anzeige „45/45 Fragen beantwortet". Betrifft auch `berechneUserMatchFuerKoalition()` (script.js:475) und `berechneUserMatchNachThema()` (script.js:726). Fix: bei `total===0` „–"/„zu wenig Antworten" statt 0 % oder nur j/n zählen.
+
+### P2 – Fehlende Features
+
+- [ ] **`saveTestResult()` speichert auch bei 0 verwertbaren Antworten** – übersprungener Test landet als „0,0 % AfD"-Eintrag in der Historie und verdrängt via `createTopicChart()` (script.js:1198, `.pop()`) das letzte echte Ergebnis aus der Themenverteilung. Speichern nur bei ≥ 1 j/n-Antwort.
+- [ ] **Kein Transparenz-Hinweis, dass Koalitionen rein mathematisch sind** – AfD+GRÜNE+LINKE+SPD (btw2029) wird gelistet, obwohl AfD–GRÜNE 0 % Paar-Übereinstimmung hat; Methodik-Box (index.html:127) und README klären politische Realisierbarkeit nicht.
+- [ ] **Kein Hinweis, dass neutrale Antworten die Frage aus dem Match entfernen** – Methodik-Box erklärt nur die 2×-Gewichtung; ohne Hinweis wirken 0 % nach rein neutraler Beantwortung wie ein Fehler.
+- [ ] **„Ergebnis teilen"-Button im Koalitionen-Tab teilt den Test, nicht die Koalitions-Sicht** – `shareResults()` (script.js:81) kodiert nur Antworten + wichtige Fragen; Filter (Mindestmatch, Ausschlüsse, Typ) gehen verloren.
+- [ ] **Partei-Filter-Dropdown inkonsistent mit dem Ergebnis** – FDP/BSW (btw2029) erscheinen im Ergebnis, fehlen aber im Filter (script.js:350-355); Ausschluss-Checkboxen enthalten sie dagegen.
+- [ ] **Cross-Election-Leak bei `fragen.json`-Ladefehler** – `window.parteienData = data.fragen || window.parteienData` (script.js:211) behält bei Ladefehler die Fragen der vorherigen Wahl; auf null zurücksetzen.
+
+### P3 – Verbesserungen
+
+- [ ] **Paar-Durchschnitt verdeckt Fundamentalkonflikte** – AfD+CDU/CSU+GRÜNE = 33,7 % interne Übereinstimmung trotz AfD–GRÜNE=0 % und CDU/CSU–GRÜNE=10 %; Minimum-Paar-Agreement zusätzlich anzeigen.
+- [ ] **`berechneUebereinstimmung()` ohne Umfragewert-Gewichtung** – kleine Parteien zählen wie große; Gewichtung nur in `berechneUserMatchFuerKoalition()` (script.js:482).
+- [ ] **10 Fragen in „Sonstiges" (Kultur/Ehrenamt/Kirchen/Rundfunk/Schwimmbäder/Gartenschau/Tanzverbot)** – ltw 6, Berlin 3, btw2029 1; Kategorie „Kultur" oder Zuordnung „Soziales".
+- [ ] **`maxCoalitionSize: 5` in `elections/ltw-sachsen-anhalt-2026/config.json` abweichend** – alle anderen 3 Wahlen nutzen 4; funktional wirkungslos, aber inkonsistent.
+- [ ] **README „125 Fragen in einfacher Sprache" veraltet** – tatsächlich 170 (45+40+52+33).
+- [ ] **Hartkodierte Strings „Quelle: " (script.js:629) und „Frage" (script.js:752, 1278)** – i18n-Keys ergänzen.
+- [ ] **Berlin: Volt/Tierschutz 49/52 × neutral** – Match aus nur 3 Fragen (Paar GRÜNE+Volt = 100 %); als „keine Position" kennzeichnen oder entfernen.
+- [ ] **`createCoalitionPotentialChart()` sortiert den `koalitionenCache` in-place** (script.js:1149) – Cache-Referenz wird mutiert.
+- [ ] **„Beste Koalition für Sie" ignoriert Ausschluss-Filter des Koalitionen-Tabs** – `berechneKoalitionen('beide')` ohne `excludeParties` (script.js:881).
+- [ ] **ECharts-CDN ohne Fallback** – `echarts.init` (script.js:779, 1052) wirft bei CDN-Ausfall; Fehlermeldung/Offline-Hinweis ergänzen.
+- [ ] **`minMatch`-Slider-Label initial „0 %"** (index.html:102) bis zum ersten `updateKoalitionen()`.
+- [ ] **`deleteTestHistoryEntry()`/`clearTestHistory()` zeichnen `createTopicChart()` bei verstecktem Daten-Tab** – echarts.init auf 0×0-Container (script.js:1031, 1037).
+
+---
+
 ## Fixes vom 2026-08-02 (Issue: Resolve todo.md)
 
 ### P1 – Bugs
