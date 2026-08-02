@@ -1,18 +1,95 @@
 {
   "umfragewerte": [
-    { "partei": "AfD", "prozent": 19.0 },
-    { "partei": "CDU/CSU", "prozent": 18.0 },
-    { "partei": "LINKE", "prozent": 18.0 },
-    { "partei": "GRÜNE", "prozent": 16.0 },
-    { "partei": "SPD", "prozent": 13.0 },
-    { "partei": "BSW", "prozent": 4.0 },
-    { "partei": "FDP", "prozent": 4.0 },
-    { "partei": "PARTEI", "prozent": 2.0 },
-    { "partei": "Volt", "prozent": 2.0 },
-    { "partei": "Tierschutz", "prozent": 2.0 },
-    { "partei": "FREIE WÄHLER", "prozent": 1.0 },
-    { "partei": "SSW", "prozent": 0.5 },
-    { "partei": "PIRATEN", "prozent": 0.5 }
+    {
+      "partei": "AfD",
+      "prozent": 19,
+      "beschreibung": "Die AfD Berlin fordert eine strikte Sicherheits- und Migrationspolitik, mehr Videoüberwachung und eine Abkehr von ideologischen Stadtprojekten.",
+      "website": "https://www.afd.de",
+      "kandidaten": [
+        {
+          "name": "Kristin Brinker",
+          "rolle": "Landesvorsitzende"
+        }
+      ]
+    },
+    {
+      "partei": "CDU/CSU",
+      "prozent": 18,
+      "beschreibung": "Die CDU Berlin stellt den Regierenden Bürgermeister. Sie setzt auf Innere Sicherheit, bezahlbares Wohnen, Wirtschaft und eine effiziente Verwaltung.",
+      "website": "https://www.cdu.de",
+      "kandidaten": [
+        {
+          "name": "Kai Wegner",
+          "rolle": "Regierender Bürgermeister"
+        }
+      ]
+    },
+    {
+      "partei": "LINKE",
+      "prozent": 18,
+      "beschreibung": "DIE LINKE Berlin fordert die Vergesellschaftung großer Wohnungskonzerne, bezahlbare Mieten und eine soziale Stadtpolitik.",
+      "website": "https://www.die-linke.de"
+    },
+    {
+      "partei": "GRÜNE",
+      "prozent": 16,
+      "beschreibung": "Die Grünen Berlin treiben eine verkehrswende- und klimafreundliche Stadtpolitik voran: autofreie Innenstadt, mehr Radwege und den Erhalt des Tempelhofer Feldes.",
+      "website": "https://www.gruene.de"
+    },
+    {
+      "partei": "SPD",
+      "prozent": 13,
+      "beschreibung": "Die SPD Berlin verbindet soziale Sicherheit, bezahlbares Wohnen und wirtschaftliche Entwicklung mit einer pragmatischen Stadtpolitik.",
+      "website": "https://www.spd.de"
+    },
+    {
+      "partei": "BSW",
+      "prozent": 4,
+      "beschreibung": "Das BSW Berlin fordert bezahlbare Mieten und Energie, lehnt Waffenlieferungen ab und setzt auf soziale Entlastung.",
+      "website": "https://bsw-partei.de"
+    },
+    {
+      "partei": "FDP",
+      "prozent": 4,
+      "beschreibung": "Die FDP Berlin steht für wirtschaftliche Freiheit und digitale Verwaltung und lehnt ideologische Stadtplanung ab.",
+      "website": "https://www.fdp.de"
+    },
+    {
+      "partei": "PARTEI",
+      "prozent": 2,
+      "beschreibung": "Die PARTEI Berlin ist für ihre satirischen Kampagnen bekannt und fordert mehr Bürgerbeteiligung und Transparenz.",
+      "website": "https://www.die-partei.de"
+    },
+    {
+      "partei": "Volt",
+      "prozent": 2,
+      "beschreibung": "Volt Berlin tritt für europäische Lösungen in der Stadtpolitik, Klimaschutz und digitale Innovation ein.",
+      "website": "https://www.voltdeutschland.org"
+    },
+    {
+      "partei": "Tierschutz",
+      "prozent": 2,
+      "beschreibung": "Die Tierschutzpartei Berlin fordert Tierrechte, ein Verbot von Pferdekutschen und eine nachhaltige Stadtentwicklung.",
+      "website": "https://www.tierschutzpartei.de"
+    },
+    {
+      "partei": "FREIE WÄHLER",
+      "prozent": 1,
+      "beschreibung": "Die Freien Wähler Berlin setzen auf Bürgerbeteiligung und pragmatische Lösungen für die Bezirke.",
+      "website": "https://www.freiewaehler.eu"
+    },
+    {
+      "partei": "SSW",
+      "prozent": 0.5,
+      "beschreibung": "Der SSW vertritt die dänische und friesische Minderheit und fordert Minderheitenrechte auch in Berlin.",
+      "website": "https://www.ssw.de"
+    },
+    {
+      "partei": "PIRATEN",
+      "prozent": 0.5,
+      "beschreibung": "Die Piratenpartei Berlin setzt sich für Bürgerrechte, Datenschutz, Transparenz und digitale Freiheit ein.",
+      "website": "https://www.piratenpartei.de"
+    }
   ],
   "meta": {
     "name": "Abgeordnetenhaus Berlin 2026",

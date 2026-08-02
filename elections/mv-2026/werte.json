@@ -1,15 +1,77 @@
 {
   "umfragewerte": [
-    { "partei": "AfD", "prozent": 36.0 },
-    { "partei": "SPD", "prozent": 29.0 },
-    { "partei": "LINKE", "prozent": 12.0 },
-    { "partei": "CDU/CSU", "prozent": 9.0 },
-    { "partei": "GRÜNE", "prozent": 5.0 },
-    { "partei": "BSW", "prozent": 4.0 },
-    { "partei": "FDP", "prozent": 2.0 },
-    { "partei": "FREIE WÄHLER", "prozent": 1.5 },
-    { "partei": "Tierschutz", "prozent": 1.0 },
-    { "partei": "PARTEI", "prozent": 0.5 }
+    {
+      "partei": "AfD",
+      "prozent": 36,
+      "beschreibung": "Die AfD Mecklenburg-Vorpommern fordert eine strikte Migrationspolitik, den Erhalt ländlicher Strukturen und eine Politik gegen die etablierten Parteien.",
+      "website": "https://www.afd.de",
+      "kandidaten": [
+        {
+          "name": "Leif-Erik Holm",
+          "rolle": "Landesvorsitzender"
+        }
+      ]
+    },
+    {
+      "partei": "SPD",
+      "prozent": 29,
+      "beschreibung": "Die SPD Mecklenburg-Vorpommern stellt die Ministerpräsidentin und setzt auf soziale Sicherheit, Kinderbetreuung und ländliche Infrastruktur.",
+      "website": "https://www.spd.de",
+      "kandidaten": [
+        {
+          "name": "Manuela Schwesig",
+          "rolle": "Ministerpräsidentin"
+        }
+      ]
+    },
+    {
+      "partei": "LINKE",
+      "prozent": 12,
+      "beschreibung": "DIE LINKE in Mecklenburg-Vorpommern fordert soziale Gerechtigkeit, bezahlbares Wohnen und eine Abkehr von militärischer Aufrüstung.",
+      "website": "https://www.die-linke.de"
+    },
+    {
+      "partei": "CDU/CSU",
+      "prozent": 9,
+      "beschreibung": "Die CDU Mecklenburg-Vorpommern setzt auf wirtschaftliche Entwicklung, Landwirtschaft und den Erhalt ländlicher Regionen.",
+      "website": "https://www.cdu.de"
+    },
+    {
+      "partei": "GRÜNE",
+      "prozent": 5,
+      "beschreibung": "Die Grünen in Mecklenburg-Vorpommern setzen auf Klimaschutz, den Schutz der Ostsee und eine ökologische Landwirtschaft.",
+      "website": "https://www.gruene.de"
+    },
+    {
+      "partei": "BSW",
+      "prozent": 4,
+      "beschreibung": "Das BSW Mecklenburg-Vorpommern fordert bezahlbare Energie, soziale Entlastung und lehnt Waffenlieferungen ab.",
+      "website": "https://bsw-partei.de"
+    },
+    {
+      "partei": "FDP",
+      "prozent": 2,
+      "beschreibung": "Die FDP Mecklenburg-Vorpommern steht für wirtschaftliche Freiheit, weniger Bürokratie und Tourismusförderung.",
+      "website": "https://www.fdp.de"
+    },
+    {
+      "partei": "FREIE WÄHLER",
+      "prozent": 1.5,
+      "beschreibung": "Die Freien Wähler Mecklenburg-Vorpommern vertreten kommunale Interessen und direkte Demokratie.",
+      "website": "https://www.freiewaehler.eu"
+    },
+    {
+      "partei": "Tierschutz",
+      "prozent": 1,
+      "beschreibung": "Die Tierschutzpartei in Mecklenburg-Vorpommern fordert Tierrechte und nachhaltige Landwirtschaft.",
+      "website": "https://www.tierschutzpartei.de"
+    },
+    {
+      "partei": "PARTEI",
+      "prozent": 0.5,
+      "beschreibung": "Die PARTEI in Mecklenburg-Vorpommern verbindet Satire mit Forderungen nach Transparenz und Bürgerrechten.",
+      "website": "https://www.die-partei.de"
+    }
   ],
   "meta": {
     "name": "Landtagswahl Mecklenburg-Vorpommern 2026",
