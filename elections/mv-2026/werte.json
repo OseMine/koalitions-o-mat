@@ -76,6 +76,7 @@
   "meta": {
     "name": "Landtagswahl Mecklenburg-Vorpommern 2026",
     "sperrklausel": 5,
-    "sitze": 71
+    "sitze": 71,
+    "verfahren": "dhondt"
   }
 }

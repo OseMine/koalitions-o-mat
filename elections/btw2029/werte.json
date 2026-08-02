@@ -82,6 +82,7 @@
   "meta": {
     "name": "Bundestagswahl 2029 (Umfrage Juli 2026)",
     "sperrklausel": 5,
-    "sitze": 630
+    "sitze": 630,
+    "verfahren": "sainteLague"
   }
 }
