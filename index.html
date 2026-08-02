@@ -72,12 +72,14 @@
             <div id="test-content" class="tab-content active">
                 <div class="test-container">
                     <p class="test-intro" data-i18n="testIntro">Beantworten Sie die Fragen und finden Sie heraus, welche Partei am besten zu Ihnen passt.</p>
+                    <div id="resumeHint" class="resume-hint" style="display:none"></div>
                     <div id="questionContainer" class="question-container"></div>
                     <div class="test-controls">
                         <button id="prevQuestion" onclick="showPreviousQuestion()" disabled data-i18n="back">← Zurück</button>
                         <button id="skipQuestion" onclick="skipQuestion()" class="btn-ghost" data-i18n="skip">Überspringen</button>
                         <button id="nextQuestion" onclick="showNextQuestion()" data-i18n="next">Weiter →</button>
                         <button id="showResults" onclick="showTestResults()" style="display:none" data-i18n="showResults">Ergebnis anzeigen</button>
+                        <button id="resetAnswers" onclick="resetAnswers()" class="btn-ghost" data-i18n="resetAnswers">Antworten zurücksetzen</button>
                     </div>
                     <div id="testResults" class="test-results"></div>
                 </div>

@@ -1,18 +1,83 @@
 {
   "umfragewerte": [
-    { "partei": "AfD", "prozent": 27.0 },
-    { "partei": "CDU/CSU", "prozent": 21.0 },
-    { "partei": "GRÜNE", "prozent": 16.0 },
-    { "partei": "LINKE", "prozent": 13.0 },
-    { "partei": "SPD", "prozent": 12.0 },
-    { "partei": "FDP", "prozent": 4.0 },
-    { "partei": "BSW", "prozent": 3.0 },
-    { "partei": "FREIE WÄHLER", "prozent": 1.5 },
-    { "partei": "Volt", "prozent": 1.0 },
-    { "partei": "Tierschutz", "prozent": 0.5 },
-    { "partei": "PARTEI", "prozent": 0.5 },
-    { "partei": "SSW", "prozent": 0.2 },
-    { "partei": "BÜNDNIS DEUTSCHLAND", "prozent": 0.2 }
+    {
+      "partei": "AfD",
+      "prozent": 27,
+      "beschreibung": "Die AfD (Alternative für Deutschland) setzt auf restriktive Migrationspolitik, den Erhalt des Verbrennungsmotors, die Ablehnung der CO2-Bepreisung und eine strikte Schuldenbremse. In der Wirtschaftspolitik fordert sie Steuersenkungen und weniger EU-Integration.",
+      "website": "https://www.afd.de"
+    },
+    {
+      "partei": "CDU/CSU",
+      "prozent": 21,
+      "beschreibung": "Die Unionsparteien CDU und CSU stehen für marktwirtschaftliche Politik mit solider Haushaltsführung, eine gedeckelte Migration, den Erhalt der Schuldenbremse und Technologieoffenheit (u.a. Kernkraft und E-Fuels). In der Sozialpolitik setzen sie auf Leistungsgerechtigkeit.",
+      "website": "https://www.cdu.de"
+    },
+    {
+      "partei": "GRÜNE",
+      "prozent": 16,
+      "beschreibung": "Bündnis 90/Die Grünen verfolgen eine ambitionierte Klimapolitik mit Ausbau der Erneuerbaren, Tempolimit und CO2-Bepreisung. Gesellschaftspolitisch setzen sie auf Teilhabe, Chancengleichheit und eine liberale Migrations- und Drogenpolitik.",
+      "website": "https://www.gruene.de"
+    },
+    {
+      "partei": "LINKE",
+      "prozent": 13,
+      "beschreibung": "DIE LINKE fordert Umverteilung von Vermögen, höhere Steuern für Reiche, die Abschaffung der Schuldenbremse und einen Ausbau des Sozialstaats. In der Außen- und Sicherheitspolitik lehnt sie Waffenlieferungen und Rüstungsexporte ab.",
+      "website": "https://www.die-linke.de"
+    },
+    {
+      "partei": "SPD",
+      "prozent": 12,
+      "beschreibung": "Die SPD verbindet soziale Gerechtigkeit mit wirtschaftlicher Stabilität: höherer Mindestlohn, eine Reform der Schuldenbremse für Investitionen und der Erhalt des Sozialstaats. In der Außenpolitik setzt sie auf Zurückhaltung bei Waffenlieferungen.",
+      "website": "https://www.spd.de"
+    },
+    {
+      "partei": "FDP",
+      "prozent": 4,
+      "beschreibung": "Die FDP steht für wirtschaftliche Freiheit, Steuersenkungen, Bürokratieabbau und Technologieoffenheit. Sie lehnt Subventionen, Tempolimit und Schuldenmacherei ab und setzt auf marktwirtschaftliche Lösungen und liberale Bürgerrechte.",
+      "website": "https://www.fdp.de"
+    },
+    {
+      "partei": "BSW",
+      "prozent": 3,
+      "beschreibung": "Das Bündnis Sahra Wagenknecht verbindet sozialpolitische Forderungen mit einer kritischen Haltung zu Migration, Waffenlieferungen und grüner Klimapolitik. Es fordert bezahlbare Energie und die Entlastung kleiner Einkommen.",
+      "website": "https://bsw-partei.de"
+    },
+    {
+      "partei": "FREIE WÄHLER",
+      "prozent": 1.5,
+      "beschreibung": "Die Freien Wähler setzen sich für kommunale Selbstbestimmung, direkte Demokratie und regionale Wirtschaft ein. Sie lehnen zentralistische Vorgaben ab und fordern eine pragmatische Politik ohne ideologische Festlegungen.",
+      "website": "https://www.freiewaehler.eu"
+    },
+    {
+      "partei": "Volt",
+      "prozent": 1,
+      "beschreibung": "Volt ist eine paneuropäische Partei, die für mehr europäische Integration, Klimaschutz mit Technologieoffenheit, Digitalisierung und soziale Chancengleichheit eintritt.",
+      "website": "https://www.voltdeutschland.org"
+    },
+    {
+      "partei": "Tierschutz",
+      "prozent": 0.5,
+      "beschreibung": "Die Tierschutzpartei setzt sich konsequent für Tierrechte, einen Ausstieg aus der Massentierhaltung und eine ökologisch-nachhaltige Landwirtschaft ein.",
+      "website": "https://www.tierschutzpartei.de"
+    },
+    {
+      "partei": "PARTEI",
+      "prozent": 0.5,
+      "beschreibung": "Die Partei für Arbeit, Recht, Tierschutz, Elitenförderung und basisdemokratische Initiative (Die PARTEI) verbindet satirische Aktionen mit ernsthaften Forderungen zu Transparenz, Tierschutz und Bürgerrechten.",
+      "website": "https://www.die-partei.de"
+    },
+    {
+      "partei": "SSW",
+      "prozent": 0.2,
+      "beschreibung": "Der Südschleswigsche Wählerverband vertritt die dänische und friesische Minderheit und tritt für Minderheitenrechte sowie eine liberale, soziale Politik ein.",
+      "website": "https://www.ssw.de"
+    },
+    {
+      "partei": "BÜNDNIS DEUTSCHLAND",
+      "prozent": 0.2,
+      "beschreibung": "Das Bündnis Deutschland fordert eine konservative Wende in Migrations-, Finanz- und Energiepolitik, weniger Bürokratie und eine Stärkung nationaler Souveränität.",
+      "website": "https://buendnis-deutschland.de"
+    }
   ],
   "meta": {
     "name": "Bundestagswahl 2029 (Umfrage Juli 2026)",
