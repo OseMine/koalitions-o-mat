@@ -14,7 +14,7 @@ Interaktiver Koalitionsrechner und Parteien-Test für die Bundestagswahl 2029 un
 - **Einfache Sprache** – Umschalter für alle UI-Texte und alle 170 Fragen (45 Bundestag + 40 Sachsen-Anhalt + 52 Berlin + 33 Mecklenburg-Vorpommern) in einfacher Sprache
 - **Dark/Light Mode** – mit automatischer Systemerkennung
 - **Ergebnis-Historie** – Testergebnisse werden gespeichert
-- **Ergebnis teilen** – Testergebnis als kompakte URL teilen (Wahl, Antworten, wichtige Fragen); beim Öffnen wird das Ergebnis ohne History-Eintrag wiederhergestellt
+- **Ergebnis teilen** – Testergebnis als kompakte URL teilen (Wahl, Antworten, wichtige Fragen, neutrale Antworten); beim Öffnen wird das Ergebnis ohne History-Eintrag wiederhergestellt. Im Koalitionen-Tab werden zusätzlich die Filter (Typ, Mindestmatch, Partei-Filter, Ausschlüsse) mitgeteilt
 - **Fortsetzen & Zurücksetzen** – frühere Testsitzungen werden angezeigt („Fortgesetzt: X von Y Fragen beantwortet") und fortgesetzt; Antworten lassen sich jederzeit per Button zurücksetzen
 - **Transparenz** – Hinweis auf Willkommensseite und Footer: privates Projekt, keine Verbindung zu Parteien, Organisationen oder staatlichen Stellen, keine finanzielle Förderung
 

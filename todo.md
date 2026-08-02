@@ -4,30 +4,67 @@ Code-Review vom 01.08.2026. Prioritäten: P1 = Bug / P2 = Feature / P3 = Verbess
 
 ---
 
+## Bugfix-Implementierung vom 2026-08-03 (Issue: resolve Bugs)
+
+Alle unten markierten Befunde wurden in `script.js`/`index.html`/`styles.css`/`einfache-sprache.json`/`werte.json` umgesetzt und per Node gegen die echten Datendateien verifiziert (`node --check script.js` OK, alle JSON valide, i18n-Key-Check vollständig). Vollständiger Bericht: `reports/review-2026-08-03.md`.
+
+### P1 – Bugs
+
+- [x] **Einfache Sprache wird beim Reload nicht angewendet** – `applyStaticI18n()` wird jetzt in `loadElections()` nach dem Fetch von `einfache-sprache.json` erneut aufgerufen (script.js:335-337).
+- [x] **`createSeatChart()` ohne Leer-Guard** – bei keiner Partei über der Sperrklausel zeigt `createSeatChart()` jetzt `showChartPlaceholder('seatChart', …)` statt eines leeren Pie-Charts „0 Sitze" (script.js:1261-1266).
+- [x] **Rein neutrale Antworten → 0 %** – `match` ist jetzt `null` statt 0 und wird als „–" angezeigt; Pie-Chart und `saveTestResult()` entfallen bei `usableAnswered === 0`; neuer Hinweis `neutralHint`; `berechneUserMatchFuerKoalition()` liefert bei 0 verwertbaren Antworten `null` (Anzeige „–", Sortierung ans Ende).
+- [x] **`noPartyInfo`-Key mit zwei Fallback-Texten** – der zweite Text nutzt jetzt den eigenen Key `partyInfoPending` (script.js:436).
+- [x] **Hartkodierte Strings** – „Quelle: " (`sourceLabel`), Tabellenkopf „Frage/Sie" (`questionCol`/`youCol`), Legende ✓/✗/— (`legendAgree`/`legendDisagree`/`legendNotComparable`), Toggle-Label „Einfache Sprache" (`simpleLangLabel`, index.html:22).
+
+### P2 – Fehlende Features
+
+- [x] **„Fortsetzen" springt nach Reload zu Frage 1** – `saveTestState()` speichert jetzt `currentQuestion`; `initializeTest()` stellt die Position wieder her (geclampt); `showNextQuestion()`/`showPreviousQuestion()` persistieren die Position.
+- [x] **`saveTestResult()` bei 0 verwertbaren Antworten** – Historie-Speicherung nur noch bei `usableAnswered > 0` (übersprungener Test verdrängt kein echtes Ergebnis mehr).
+- [x] **Teilen-Link verliert neutrale Antworten** – `shareResults()` kodiert jetzt auch `m`-Antworten (Filter: j/n/m statt nur j/n).
+- [x] **Parteien mit wenigen beantworteten Fragen** – Partei-Karten zeigen „Nur X von N Fragen beantwortet" (`fewAnswersHint`); verifiziert: Berlin Volt/Tierschutz nur 3/52.
+- [x] **„Ergebnis teilen" im Koalitionen-Tab** – `shareResults()` hängt `&c=` (Typ/Mindestmatch/Partei-Filter/Ausschlüsse) an; `applyPendingShare()` stellt die Koalitions-Sicht wieder her.
+- [x] **Partei-Filter-Dropdown inkonsistent** – Filter listet jetzt alle antwortenden Parteien (auch unter der Sperrklausel), passend zur Ergebnisliste.
+- [x] **Cross-Election-Leak** – `window.parteienData = data.fragen || null` statt `|| window.parteienData`; `initializeTest()` zeigt bei fehlenden Fragen einen Empty-State.
+
+### P3 – Verbesserungen
+
+- [x] **Sitzverteilung d'Hondt/Sainte-Laguë** – Verfahren pro Wahl via `meta.verfahren` konfigurierbar (btw2029 `sainteLague`, Landtagswahlen `dhondt`); verifiziert: LSA AfD 43 statt 42, alle Summen = `gesamtSitze`.
+- [x] **Paar-Durchschnitt verdeckt Fundamentalkonflikte** – neue `berechnePaarAgreements()` + `minPaar` in Koalitions-Karten und „Beste Koalition" (z. B. AfD+CDU/CSU+GRÜNE 33,7 % bei AfD–GRÜNE 0 %).
+- [x] **`createCoalitionPotentialChart()` sortiert Cache in-place** – Kopie via `.slice()`.
+- [x] **„Beste Koalition für Sie" ignoriert Ausschluss-Filter** – nutzt jetzt `berechneKoalitionen('beide', excludeParties)`.
+- [x] **ECharts-CDN ohne Fallback** – `initChart()`/`initTestResultPieChart()` zeigen `chartLoadError`-Platzhalter statt zu werfen.
+- [x] **Historie-Löschung bei verstecktem Daten-Tab** – `createTopicChart()` nur bei aktivem Daten-Tab.
+- [x] **`welcome-card-type` nicht i18n** – Keys `typeBundestagswahl`/`typeLandtagswahl`/`typeAbgeordnetenhauswahl`.
+- [x] **`minMatch`-Slider-Label initial „0 %"** – Label wird in `setActiveElection()` synchronisiert.
+- [x] **`maxCoalitionSize: 5` in LSA** – auf 4 vereinheitlicht.
+- [x] **Transparenz-Hinweise** – Methodik-Box und Ergebnis erwähnen: neutrale Antworten fließen nicht ein (`neutralHint`/`methodologyNote`), Koalitionen sind rein mathematisch (`methodologyMathHint`).
+
+---
+
 ## Review vom 2026-08-02 (3. Lauf, MD-Abgleich, HEAD `183fea0`)
 
-Fokus (Issue #13): Abgleich von `README.md`/`todo.md` mit dem Code-Stand und Zusammenführung aller `reports/*.md` in diese Liste. Status per Node gegen die echten Datendateien und `script.js` verifiziert. Vollständiger Bericht: `reports/review-2026-08-02-c.md`.
+Fokus (Issue #13): Abgleich von `README.md`/`todo.md` mit dem Code-Stand und Zusammenführung aller `reports/*.md` in diese Liste. Status per Node gegen die echten Datendateien und `script.js` verifiziert. Vollständiger Bericht: `reports/review-2026-08-02-c.md`. **Alle unten offenen Punkte sind durch den Bugfix-Lauf vom 2026-08-03 behoben.**
 
 ### P1 – Bugs
 
 - [x] **`pendingAdvanceTimer`-Race beim Wahlwechsel** (2. Lauf, war fälschlich offen) – gefixt: `resetTest()` ruft `cancelPendingAdvance()` (script.js:556), `setActiveElection()` ruft `resetTest()`.
 - [x] **`createStatsSummary()` TypeError bei leerem `umfragewerte`** (2. Lauf, war fälschlich offen) – gefixt durch Empty-Guard (script.js:1088-1091).
-- [ ] **Einfache Sprache wird beim Reload nicht angewendet** (2. Lauf, weiterhin offen) – `applySavedSimpleLang()` (script.js:1435) läuft vor dem `einfache-sprache.json`-Fetch; `applyStaticI18n()` wird nach `loadElections()` nicht erneut aufgerufen.
-- [ ] **`berechneSitze()`-Befund präzisiert** (2. Lauf) – kein NaN mehr (leere Liste → leeres Array, keine Division durch 0), aber `createSeatChart()` (script.js:1128) ohne Leer-Guard → leeres Pie-Chart „0 Sitze"; Empty-State ergänzen.
-- [ ] **Rein neutrale Antworten → 0 % für alle Parteien trotz „X/X Fragen beantwortet"** (Nachtrag, weiterhin offen) – `showTestResults()` (script.js:822) überspringt `m`, `totalAnswered` (script.js:847) zählt es aber mit; betrifft auch `berechneUserMatchFuerKoalition()` (script.js:477) und `berechneUserMatchNachThema()` (script.js:731).
-- [ ] **`noPartyInfo`-Key mit zwei Fallback-Texten** (aus review-2026-08-01, neu übernommen) – `initializeParteienPage()` (script.js:386 vs. 393): „Keine Parteidaten…" vs. „Weitere Informationen…".
+- [x] **Einfache Sprache wird beim Reload nicht angewendet** (2. Lauf) – gefixt am 2026-08-03: `applyStaticI18n()` wird in `loadElections()` nach dem `einfache-sprache.json`-Fetch erneut aufgerufen.
+- [x] **`berechneSitze()`-Befund präzisiert** (2. Lauf) – kein NaN mehr (leere Liste → leeres Array), `createSeatChart()` hat jetzt einen Leer-Guard mit Empty-State.
+- [x] **Rein neutrale Antworten → 0 % für alle Parteien trotz „X/X Fragen beantwortet"** (Nachtrag) – gefixt am 2026-08-03: `match` `null` → „–", `neutralHint`, `saveTestResult()`-Guard, `berechneUserMatchFuerKoalition()` → `null`.
+- [x] **`noPartyInfo`-Key mit zwei Fallback-Texten** (aus review-2026-08-01) – gefixt am 2026-08-03: eigener Key `partyInfoPending`.
 
 ### P1 – Einfache Sprache
 
 - [x] **btw2029 ohne einfache Sprache** – erledigt: `einfache-sprache.json` übersetzt alle 45 btw2029-Fragen; Gesamtabdeckung 170 (45+40+52+33). P2-Eintrag „Kein Hinweis auf fehlende einfache Sprache bei btw2029" (2. Lauf) ist damit gegenstandslos.
-- [ ] **Hartkodierte Strings** – „Quelle: " (script.js:629), Tabellenkopf „Frage/Sie" (script.js:752), Legende „✓/✗/—" (script.js:767), Toggle-Label „Einfache Sprache" (index.html:22); Platzhalter „Test durchführen…" ist über `topicChartEmpty` gelöst.
+- [x] **Hartkodierte Strings** – gefixt am 2026-08-03: `sourceLabel`, `questionCol`/`youCol`, `legendAgree`/`legendDisagree`/`legendNotComparable`, `simpleLangLabel`.
 
 ### P2 – Fehlende Features
 
-- [ ] **„Fortsetzen" springt nach Reload immer zu Frage 1** (2. Lauf, weiterhin offen) – `saveTestState()` (script.js:55-62) speichert kein `currentQuestion`; `initializeTest()` (script.js:593) startet bei 0.
-- [ ] **`saveTestResult()` speichert auch bei 0 verwertbaren Antworten** (Nachtrag, weiterhin offen) – übersprungener Test landet als „0,0 %"-Historie-Eintrag und verdrängt via `createTopicChart()` (script.js:1198) das letzte echte Ergebnis.
-- [ ] **Teilen-Link verliert neutrale Antworten** (aus review-2026-08-01, neu übernommen) – `shareResults()` (script.js:82) filtert `m`; nach `applyPendingShare()` fehlen sie.
-- [ ] **Parteien mit wenigen beantworteten Fragen verzerren Ergebnisliste** (aus review-2026-08-01, neu übernommen) – Berlin: Volt/Tierschutz antworten nur auf 3/52 Fragen, landen aber mit hohem Match im Ranking (Paar GRÜNE+Volt = 100 %); Mindest-Abdeckung oder Hinweis „nur X von N Fragen beantwortet".
+- [x] **„Fortsetzen" springt nach Reload immer zu Frage 1** (2. Lauf) – gefixt am 2026-08-03: `currentQuestion` wird gespeichert und wiederhergestellt.
+- [x] **`saveTestResult()` speichert auch bei 0 verwertbaren Antworten** (Nachtrag) – gefixt am 2026-08-03: Speicherung nur bei ≥ 1 j/n-Antwort.
+- [x] **Teilen-Link verliert neutrale Antworten** (aus review-2026-08-01) – gefixt am 2026-08-03: `m` wird mitkodiert.
+- [x] **Parteien mit wenigen beantworteten Fragen verzerren Ergebnisliste** (aus review-2026-08-01) – gefixt am 2026-08-03: Hinweis „Nur X von N Fragen beantwortet" (`fewAnswersHint`).
 
 ### P3 – Verbesserungen
 
@@ -40,24 +77,24 @@ Fokus (Issue #13): Abgleich von `README.md`/`todo.md` mit dem Code-Stand und Zus
 
 ### P1 – Bugs
 
-- [ ] **Einfache Sprache wird beim Reload nicht angewendet** – `applySavedSimpleLang()` (script.js:1328-1332) läuft im `DOMContentLoaded`-Handler vor dem asynchronen Fetch von `einfache-sprache.json` (`loadElections()`, script.js:282-285); `t()` (script.js:16-19) liefert mit `simpleLangData=null` nur Fallbacks → alle statischen `[data-i18n]`-Texte (Tabs, Buttons, Hero, Footer) bleiben bei `simpleLang=1` normaldeutsch, bis der Toggle manuell geklickt wird. Fix: `applyStaticI18n()` nach `loadElections()` erneut aufrufen.
+- [x] **Einfache Sprache wird beim Reload nicht angewendet** – gefixt am 2026-08-03: `applyStaticI18n()` wird in `loadElections()` nach dem `einfache-sprache.json`-Fetch erneut aufgerufen.
 - [x] **`pendingAdvanceTimer`-Race beim Wahlwechsel** – gefixt: `selectAnswer()`-Timer (script.js:672-679) wird von `resetTest()` über `cancelPendingAdvance()` (script.js:556/660-662) gecleart; `setActiveElection()` ruft `resetTest()`.
 - [x] **`createStatsSummary()` wirft TypeError bei leerem `umfragewerte`** – gefixt durch Empty-Guard (script.js:1088-1091); `reduce` nur noch auf nicht-leerer Liste.
-- [ ] **`berechneSitze()` ohne Leer-Guard (NaN-Aussage präzisiert, siehe 3. Lauf)** – kein NaN mehr (leere `above`-Liste → leeres Array), aber `createSeatChart()` (script.js:1128-1146) zeigt bei keiner Partei über der Sperrklausel ein leeres Pie-Chart „0 Sitze" statt Empty-State.
+- [x] **`berechneSitze()` ohne Leer-Guard (NaN-Aussage präzisiert, siehe 3. Lauf)** – gefixt am 2026-08-03: `createSeatChart()` zeigt bei keiner Partei über der Sperrklausel einen Empty-State statt des leeren Pie-Charts.
 
 ### P2 – Fehlende Features
 
-- [ ] **„Fortsetzen" springt nach Reload immer zu Frage 1** – `saveTestState()` (script.js:54-61) speichert nur `answers` + `important`, nicht `currentQuestion`; `initializeTest()` (script.js:552) startet wieder bei 0 → Position wird nie wiederhergestellt.
+- [x] **„Fortsetzen" springt nach Reload immer zu Frage 1** – gefixt am 2026-08-03: `saveTestState()` speichert `currentQuestion`; `initializeTest()` stellt die Position wieder her.
 - [x] **Kein Hinweis auf fehlende einfache Sprache bei btw2029** – gegenstandslos: btw2029 ist inzwischen vollständig übersetzt (`einfache-sprache.json`, 45 Fragen; Gesamt 170).
 
 ### P3 – Verbesserungen
 
-- [ ] **Sitzverteilung nutzt Largest-Remainder statt d'Hondt/Sainte-Laguë** – `berechneSitze()` (script.js:1210-1228): Bundestag = Sainte-Laguë, Landtagswahlen meist d'Hondt; verifiziert weicht ltw-sachsen-anhalt um 1 Sitz ab (AfD 42 statt 43, LINKE 15 statt 14). Verfahren pro Wahl konfigurierbar machen (`meta.verfahren`).
-- [ ] **Hardcodierte Strings nicht übersetzbar** – „Quelle: " (script.js:576), Tabellenkopf „Frage/Sie" (script.js:692), Legende „✓ Zustimmung / ✗ Ablehnung / — Nicht vergleichbar" (script.js:707), Platzhalter „Test durchführen…" (script.js:1112), Toggle-Label „Einfache Sprache" (index.html:22).
+- [x] **Sitzverteilung nutzt Largest-Remainder statt d'Hondt/Sainte-Laguë** – gefixt am 2026-08-03: Verfahren pro Wahl konfigurierbar via `meta.verfahren` (`sainteLague` für btw2029, `dhondt` für Landtagswahlen); verifiziert weicht ltw-sachsen-anhalt jetzt nicht mehr ab (AfD 43 statt 42, LINKE 14 statt 15).
+- [x] **Hardcodierte Strings nicht übersetzbar** – gefixt am 2026-08-03: `sourceLabel`, `questionCol`/`youCol`, `legendAgree`/`legendDisagree`/`legendNotComparable`, `simpleLangLabel`; Platzhalter „Test durchführen…" war bereits über `topicChartEmpty` gelöst.
 - [ ] **Datenqualität: „CDU/CSU" statt „CDU" in Berlin/MV/LSA** – `werte.json`/`fragen.json`; `partyColors` (config.json:3) kennt kein „CDU"; „SSW" (0,5 %) in der Berlin-Umfrage unplausibel (nur Schleswig-Holstein).
 - [ ] **Ausschluss-Checkboxen für Parteien < 5 % wirkungslos** – `populatePartyDropdowns()` (script.js:334-337) listet sie, `berechneKoalitionen()` (script.js:414-416) ignoriert sie (BSW/FDP in btw2029).
-- [ ] **Fallback `data.fragen || window.parteienData` mischt Wahlen** – `setActiveElection()` (script.js:199): fehlt `fragen.json`, zeigt der Test Fragen der letzten Wahl mit neuen Umfragewerten; stattdessen Leer-State + Fehlermeldung.
-- [ ] **`welcome-card-type` nicht i18n** – `renderWelcomeCards()` (script.js:254) gibt `e.type` roh aus.
+- [x] **Fallback `data.fragen || window.parteienData` mischt Wahlen** – gefixt am 2026-08-03: `window.parteienData = data.fragen || null` + Empty-State in `initializeTest()`.
+- [x] **`welcome-card-type` nicht i18n** – gefixt am 2026-08-03: Keys `typeBundestagswahl`/`typeLandtagswahl`/`typeAbgeordnetenhauswahl`.
 
 Hinweis (erledigt seit 1. Lauf): `noData`-Key ist inzwischen vorhanden (`einfache-sprache.json` Zeile 98) – der P3-Eintrag „`noData`-Key fehlt" weiter unten ist abgehakt.
 
@@ -78,31 +115,31 @@ Vollständiger Bericht: `reports/review-2026-08-02-b.md`. Alle Befunde per Node 
 
 ### P1 – Bugs
 
-- [ ] **Rein neutrale Nutzer-Antworten → 0 % für alle Parteien trotz „X/X Fragen beantwortet"** – `showTestResults()` (script.js:817-837) überspringt `m`-Antworten komplett (`if (!ua || ua === 'm') return`), `total=0` → `match=0`; `totalAnswered` (script.js:847) zählt `m` aber mit. Verifiziert: 45×`m` → alle 7 Parteien 0,0 % bei Anzeige „45/45 Fragen beantwortet". Betrifft auch `berechneUserMatchFuerKoalition()` (script.js:475) und `berechneUserMatchNachThema()` (script.js:726). Fix: bei `total===0` „–"/„zu wenig Antworten" statt 0 % oder nur j/n zählen.
+- [x] **Rein neutrale Nutzer-Antworten → 0 % für alle Parteien trotz „X/X Fragen beantwortet"** – gefixt am 2026-08-03: `match` ist bei `total===0` jetzt `null` (Anzeige „–" statt 0 %), `neutralHint` erklärt das Verhalten, `saveTestResult()` wird nur bei ≥ 1 j/n-Antwort aufgerufen; `berechneUserMatchFuerKoalition()` liefert `null` statt 0.
 
 ### P2 – Fehlende Features
 
-- [ ] **`saveTestResult()` speichert auch bei 0 verwertbaren Antworten** – übersprungener Test landet als „0,0 % AfD"-Eintrag in der Historie und verdrängt via `createTopicChart()` (script.js:1198, `.pop()`) das letzte echte Ergebnis aus der Themenverteilung. Speichern nur bei ≥ 1 j/n-Antwort.
-- [ ] **Kein Transparenz-Hinweis, dass Koalitionen rein mathematisch sind** – AfD+GRÜNE+LINKE+SPD (btw2029) wird gelistet, obwohl AfD–GRÜNE 0 % Paar-Übereinstimmung hat; Methodik-Box (index.html:127) und README klären politische Realisierbarkeit nicht.
-- [ ] **Kein Hinweis, dass neutrale Antworten die Frage aus dem Match entfernen** – Methodik-Box erklärt nur die 2×-Gewichtung; ohne Hinweis wirken 0 % nach rein neutraler Beantwortung wie ein Fehler.
-- [ ] **„Ergebnis teilen"-Button im Koalitionen-Tab teilt den Test, nicht die Koalitions-Sicht** – `shareResults()` (script.js:81) kodiert nur Antworten + wichtige Fragen; Filter (Mindestmatch, Ausschlüsse, Typ) gehen verloren.
-- [ ] **Partei-Filter-Dropdown inkonsistent mit dem Ergebnis** – FDP/BSW (btw2029) erscheinen im Ergebnis, fehlen aber im Filter (script.js:350-355); Ausschluss-Checkboxen enthalten sie dagegen.
-- [ ] **Cross-Election-Leak bei `fragen.json`-Ladefehler** – `window.parteienData = data.fragen || window.parteienData` (script.js:211) behält bei Ladefehler die Fragen der vorherigen Wahl; auf null zurücksetzen.
+- [x] **`saveTestResult()` speichert auch bei 0 verwertbaren Antworten** – gefixt am 2026-08-03: Historie-Speicherung nur bei `usableAnswered > 0`; übersprungener Test verdrängt kein echtes Ergebnis mehr.
+- [x] **Kein Transparenz-Hinweis, dass Koalitionen rein mathematisch sind** – gefixt am 2026-08-03: neuer `methodologyMathHint` in der Methodik-Box; zusätzlich `minPaar`-Anzeige macht Fundamentalkonflikte (z. B. AfD–GRÜNE 0 %) sichtbar.
+- [x] **Kein Hinweis, dass neutrale Antworten die Frage aus dem Match entfernen** – gefixt am 2026-08-03: `neutralHint` im Ergebnis + Ergänzung in `methodologyNote`.
+- [x] **„Ergebnis teilen"-Button im Koalitionen-Tab teilt den Test, nicht die Koalitions-Sicht** – gefixt am 2026-08-03: `&c=`-Parameter (Typ, Mindestmatch, Partei-Filter, Ausschlüsse) wird im Koalitionen-Tab mitgeteilt und von `applyPendingShare()` wiederhergestellt.
+- [x] **Partei-Filter-Dropdown inkonsistent mit dem Ergebnis** – gefixt am 2026-08-03: Filter nutzt `relevant` (antwortende Parteien inkl. unter Sperrklausel) statt nur ≥ 5 %.
+- [x] **Cross-Election-Leak bei `fragen.json`-Ladefehler** – gefixt am 2026-08-03: `window.parteienData = data.fragen || null`.
 
 ### P3 – Verbesserungen
 
-- [ ] **Paar-Durchschnitt verdeckt Fundamentalkonflikte** – AfD+CDU/CSU+GRÜNE = 33,7 % interne Übereinstimmung trotz AfD–GRÜNE=0 % und CDU/CSU–GRÜNE=10 %; Minimum-Paar-Agreement zusätzlich anzeigen.
+- [x] **Paar-Durchschnitt verdeckt Fundamentalkonflikte** – gefixt am 2026-08-03: `berechnePaarAgreements()` + `minPaar` in Koalitions-Karten und „Beste Koalition".
 - [ ] **`berechneUebereinstimmung()` ohne Umfragewert-Gewichtung** – kleine Parteien zählen wie große; Gewichtung nur in `berechneUserMatchFuerKoalition()` (script.js:482).
 - [ ] **10 Fragen in „Sonstiges" (Kultur/Ehrenamt/Kirchen/Rundfunk/Schwimmbäder/Gartenschau/Tanzverbot)** – ltw 6, Berlin 3, btw2029 1; Kategorie „Kultur" oder Zuordnung „Soziales".
-- [ ] **`maxCoalitionSize: 5` in `elections/ltw-sachsen-anhalt-2026/config.json` abweichend** – alle anderen 3 Wahlen nutzen 4; funktional wirkungslos, aber inkonsistent.
+- [x] **`maxCoalitionSize: 5` in `elections/ltw-sachsen-anhalt-2026/config.json` abweichend** – gefixt am 2026-08-03: auf 4 vereinheitlicht.
 - [x] **README „125 Fragen in einfacher Sprache" veraltet** – korrigiert auf 170 (45+40+52+33) in `README.md` Z. 14 (siehe 3. Lauf).
-- [ ] **Hartkodierte Strings „Quelle: " (script.js:629) und „Frage" (script.js:752, 1278)** – i18n-Keys ergänzen.
-- [ ] **Berlin: Volt/Tierschutz 49/52 × neutral** – Match aus nur 3 Fragen (Paar GRÜNE+Volt = 100 %); als „keine Position" kennzeichnen oder entfernen.
-- [ ] **`createCoalitionPotentialChart()` sortiert den `koalitionenCache` in-place** (script.js:1149) – Cache-Referenz wird mutiert.
-- [ ] **„Beste Koalition für Sie" ignoriert Ausschluss-Filter des Koalitionen-Tabs** – `berechneKoalitionen('beide')` ohne `excludeParties` (script.js:881).
-- [ ] **ECharts-CDN ohne Fallback** – `echarts.init` (script.js:779, 1052) wirft bei CDN-Ausfall; Fehlermeldung/Offline-Hinweis ergänzen.
-- [ ] **`minMatch`-Slider-Label initial „0 %"** (index.html:102) bis zum ersten `updateKoalitionen()`.
-- [ ] **`deleteTestHistoryEntry()`/`clearTestHistory()` zeichnen `createTopicChart()` bei verstecktem Daten-Tab** – echarts.init auf 0×0-Container (script.js:1031, 1037).
+- [x] **Hartkodierte Strings „Quelle: " (script.js:629) und „Frage" (script.js:752, 1278)** – gefixt am 2026-08-03: i18n-Keys `sourceLabel`, `questionCol`/`youCol` ergänzt.
+- [x] **Berlin: Volt/Tierschutz 49/52 × neutral** – gefixt am 2026-08-03: Partei-Karten zeigen „Nur X von N Fragen beantwortet" (`fewAnswersHint`).
+- [x] **`createCoalitionPotentialChart()` sortiert den `koalitionenCache` in-place** (script.js:1149) – gefixt am 2026-08-03: `.slice()` vor dem Sortieren.
+- [x] **„Beste Koalition für Sie" ignoriert Ausschluss-Filter des Koalitionen-Tabs** – gefixt am 2026-08-03: `berechneKoalitionen('beide', excludeParties)`.
+- [x] **ECharts-CDN ohne Fallback** – gefixt am 2026-08-03: `initChart()`/`initTestResultPieChart()` zeigen `chartLoadError`-Platzhalter.
+- [x] **`minMatch`-Slider-Label initial „0 %"** (index.html:102) – gefixt am 2026-08-03: Label wird in `setActiveElection()` synchronisiert.
+- [x] **`deleteTestHistoryEntry()`/`clearTestHistory()` zeichnen `createTopicChart()` bei verstecktem Daten-Tab** – gefixt am 2026-08-03: nur bei aktivem Daten-Tab.
 
 ---
 

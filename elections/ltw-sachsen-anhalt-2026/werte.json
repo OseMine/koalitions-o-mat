@@ -88,6 +88,7 @@
   "meta": {
     "name": "Landtagswahl Sachsen-Anhalt 2026",
     "sperrklausel": 5,
-    "sitze": 87
+    "sitze": 87,
+    "verfahren": "dhondt"
   }
 }

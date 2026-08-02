@@ -333,6 +333,20 @@ body {
     border: 1px solid var(--outline); border-radius: var(--radius-sm);
 }
 
+/* Hinweis, dass neutrale Antworten nicht in die Übereinstimmung einfließen */
+.neutral-hint {
+    text-align: center; margin: 0 0 14px; padding: 8px 16px; font-size: 0.85rem;
+    color: var(--on-surface-muted); background: var(--surface-variant);
+    border: 1px dashed var(--outline); border-radius: var(--radius-sm);
+}
+
+/* Hinweis bei Parteien, die nur wenige Fragen beantworten */
+.tr-few-answers {
+    margin: 6px 0 8px; padding: 6px 10px; font-size: 0.78rem;
+    color: var(--warning, #B26A00); background: var(--surface-variant);
+    border-left: 3px solid var(--warning, #FFA726); border-radius: 4px;
+}
+
 .test-results-header { margin-bottom: 12px; }
 .test-results-header h3 { font-size: 1.05rem; margin: 0 0 4px; }
 .election-label { color: var(--on-surface-muted); font-size: 0.85rem; margin-bottom: 12px; }

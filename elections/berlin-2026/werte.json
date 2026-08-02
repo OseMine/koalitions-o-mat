@@ -94,6 +94,7 @@
   "meta": {
     "name": "Abgeordnetenhaus Berlin 2026",
     "sperrklausel": 5,
-    "sitze": 130
+    "sitze": 130,
+    "verfahren": "dhondt"
   }
 }
