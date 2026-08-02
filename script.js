@@ -83,14 +83,6 @@ function shareResults() {
     // Neutrale Antworten (m) mitschicken – nur völlig unbeantwortete Fragen fehlen,
     // damit ein geteiltes Ergebnis exakt dem Original entspricht.
     const answered = Object.entries(userAnswers).filter(([, a]) => a === 'j' || a === 'n' || a === 'm');
-    if (!answered.length) {
-        showNotification(t('shareEmpty', 'Beantworten Sie zuerst Fragen.'), 'error');
-        return;
-    }
-    // Kompakte Kodierung: "index+antwort" ohne Trennzeichen (z. B. 0j1n3j) – deutlich kürzer
-    // als das frühere "0:j,1:n,3:j". Alte Links mit ":"/"," werden beim Parsen weiter akzeptiert.
-    const answers = answered.map(([i, a]) => i + a).join('');
-    const imp = [...importantQuestions].join(',');
     // Im Koalitionen-Tab zusätzlich die Filter-Sicht teilen (Typ, Mindestmatch,
     // Partei-Filter, Ausschlüsse), damit der Link die Koalitions-Sicht wiederherstellt.
     let coalitionParam = '';
@@ -102,6 +94,15 @@ function shareResults() {
         const excludes = Array.from(document.querySelectorAll('#excludePartiesCheckboxes input:checked')).map(cb => cb.value);
         coalitionParam = '&c=' + encodeURIComponent([type, minMatch, partyFilter, excludes.join(',')].join('|'));
     }
+    // Ohne beantwortete Fragen UND ohne Koalitions-Sicht gibt es nichts zu teilen.
+    if (!answered.length && !coalitionParam) {
+        showNotification(t('shareEmpty', 'Beantworten Sie zuerst Fragen.'), 'error');
+        return;
+    }
+    // Kompakte Kodierung: "index+antwort" ohne Trennzeichen (z. B. 0j1n3j) – deutlich kürzer
+    // als das frühere "0:j,1:n,3:j". Alte Links mit ":"/"," werden beim Parsen weiter akzeptiert.
+    const answers = answered.map(([i, a]) => i + a).join('');
+    const imp = [...importantQuestions].join(',');
     const url = location.origin + location.pathname + '#w=' + encodeURIComponent(activeElectionId)
         + '&a=' + answers + (imp ? '&i=' + imp : '') + coalitionParam;
     if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -121,7 +122,8 @@ function parseShareHash() {
     } catch (_) {
         return null;
     }
-    const m = h.match(/^#w=([^&]+)&a=([^&]+)(?:&i=([^&]*))?(?:&c=([^&]*))?$/);
+    // &a= darf leer sein (Koalitions-Sicht ohne beantwortete Fragen teilen)
+    const m = h.match(/^#w=([^&]+)&a=([^&]*)(?:&i=([^&]*))?(?:&c=([^&]*))?$/);
     if (!m) return null;
     const raw = m[2];
     const answers = {};
@@ -400,9 +402,15 @@ function populatePartyDropdowns() {
             + filterOptions.map(p => `<option value="${p.partei}">${p.partei} (${p.prozent}%)</option>`).join('');
     }
 
+    // Ausschluss-Checkboxen nur für Parteien ≥ Sperrklausel: `berechneKoalitionen()`
+    // (script.js:468-470) berücksichtigt ausschließlich diese Parteien – Parteien unter
+    // der Sperrklausel (z. B. FDP/BSW in btw2029) sind nicht koalitionsrelevant und
+    // ein Häkchen wäre wirkungslos und irreführend.
     const excludeContainer = document.getElementById('excludePartiesCheckboxes');
     if (excludeContainer) {
-        excludeContainer.innerHTML = relevant.map(p => `
+        excludeContainer.innerHTML = parties
+            .filter(p => p.partei !== 'Andere')
+            .map(p => `
             <label class="party-cb">
                 <input type="checkbox" value="${p.partei}">
                 <span>${p.partei}</span>
@@ -1413,7 +1421,7 @@ function updatePartyComparison() {
         container.innerHTML = `<p style="color:var(--on-surface-muted)">${t('noQuestions', 'Keine Fragen für diese Wahl verfügbar.')}</p>`;
         return;
     }
-    let html = '<div class="cmp-wrap"><table class="cmp-table"><tr><th>Frage</th>';
+    let html = '<div class="cmp-wrap"><table class="cmp-table"><tr><th>' + t('questionCol', 'Frage') + '</th>';
     parties.forEach(p => html += `<th style="color:${getPartyColor(p)}">${p}</th>`);
     html += '</tr>';
     window.parteienData.fragen.forEach((f, i) => {
@@ -1610,19 +1618,35 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 
-    // Swipe gesture for tab nav – nur bewusste horizontale Swipes auslösen.
-    // Vertikales Scrollen (mit leichter horizontaler Finger-Drift) darf nie den Tab wechseln.
+    // Swipe gesture for tab nav – nur bewusste horizontale Swipes auf der Tab-Leiste.
+    // Fix (Issue #17): Die Geste ist NICHT am gesamten `.container` gebunden, sondern nur
+    // an der `.tabs`-Leiste. So kann ein vertikaler Scroll im Inhaltsbereich (Fragen,
+    // Koalitionen, Ergebnisse) nie einen Tab wechseln. Zusätzlich bricht ein `touchmove`-
+    // Tracking die Geste ab, sobald die vertikale Bewegung die horizontale überwiegt
+    // (diagonale Scroll-Flicks wie diffX=80/diffY=95 passieren die 1.2×-Endprüfung sonst).
+    // `swipeDisabled` wird in `touchend`/`touchcancel` zuverlässig zurückgesetzt.
     let touchStartX = 0, touchStartY = 0, swipeDisabled = false;
-    const containerEl = document.querySelector('.container');
-    if (containerEl) {
-        containerEl.addEventListener('touchstart', e => {
+    const tabsEl = document.querySelector('.tabs');
+    if (tabsEl) {
+        tabsEl.addEventListener('touchstart', e => {
+            if (e.touches.length !== 1) { swipeDisabled = true; return; }
             touchStartX = e.changedTouches[0].screenX;
             touchStartY = e.changedTouches[0].screenY;
-            // Nicht innerhalb horizontal scrollbarer Bereiche auslösen
-            swipeDisabled = !!(e.target && e.target.closest && e.target.closest('.election-toggles, .cmp-wrap, .tr-detail-table'));
+            swipeDisabled = false;
         }, { passive: true });
-        containerEl.addEventListener('touchend', e => {
+        tabsEl.addEventListener('touchmove', e => {
             if (swipeDisabled) return;
+            // Sobald die vertikale Bewegung überwiegt, ist es ein (vertikaler) Scroll –
+            // die Geste wird verworfen, damit diagonale Flicks keinen Tab wechseln.
+            const t = e.changedTouches[0];
+            if (Math.abs(t.screenY - touchStartY) > Math.abs(t.screenX - touchStartX)) {
+                swipeDisabled = true;
+            }
+        }, { passive: true });
+        const finishSwipe = e => {
+            const stillActive = !swipeDisabled;
+            swipeDisabled = false; // Zustand für die nächste Geste immer zurücksetzen
+            if (!stillActive) return;
             const touchEndX = e.changedTouches[0].screenX;
             const touchEndY = e.changedTouches[0].screenY;
             const diffX = touchStartX - touchEndX;
@@ -1635,7 +1659,9 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (idx === -1) return;
             if (diffX > 0 && idx < tabs.length - 1) switchTab(tabs[idx + 1].dataset.tab);
             else if (diffX < 0 && idx > 0) switchTab(tabs[idx - 1].dataset.tab);
-        }, { passive: true });
+        };
+        tabsEl.addEventListener('touchend', finishSwipe, { passive: true });
+        tabsEl.addEventListener('touchcancel', () => { swipeDisabled = false; }, { passive: true });
     }
 
     document.addEventListener('change', e => {
