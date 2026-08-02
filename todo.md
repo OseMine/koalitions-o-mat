@@ -4,19 +4,51 @@ Code-Review vom 01.08.2026. Prioritäten: P1 = Bug / P2 = Feature / P3 = Verbess
 
 ---
 
+## Review vom 2026-08-02 (3. Lauf, MD-Abgleich, HEAD `183fea0`)
+
+Fokus (Issue #13): Abgleich von `README.md`/`todo.md` mit dem Code-Stand und Zusammenführung aller `reports/*.md` in diese Liste. Status per Node gegen die echten Datendateien und `script.js` verifiziert. Vollständiger Bericht: `reports/review-2026-08-02-c.md`.
+
+### P1 – Bugs
+
+- [x] **`pendingAdvanceTimer`-Race beim Wahlwechsel** (2. Lauf, war fälschlich offen) – gefixt: `resetTest()` ruft `cancelPendingAdvance()` (script.js:556), `setActiveElection()` ruft `resetTest()`.
+- [x] **`createStatsSummary()` TypeError bei leerem `umfragewerte`** (2. Lauf, war fälschlich offen) – gefixt durch Empty-Guard (script.js:1088-1091).
+- [ ] **Einfache Sprache wird beim Reload nicht angewendet** (2. Lauf, weiterhin offen) – `applySavedSimpleLang()` (script.js:1435) läuft vor dem `einfache-sprache.json`-Fetch; `applyStaticI18n()` wird nach `loadElections()` nicht erneut aufgerufen.
+- [ ] **`berechneSitze()`-Befund präzisiert** (2. Lauf) – kein NaN mehr (leere Liste → leeres Array, keine Division durch 0), aber `createSeatChart()` (script.js:1128) ohne Leer-Guard → leeres Pie-Chart „0 Sitze"; Empty-State ergänzen.
+- [ ] **Rein neutrale Antworten → 0 % für alle Parteien trotz „X/X Fragen beantwortet"** (Nachtrag, weiterhin offen) – `showTestResults()` (script.js:822) überspringt `m`, `totalAnswered` (script.js:847) zählt es aber mit; betrifft auch `berechneUserMatchFuerKoalition()` (script.js:477) und `berechneUserMatchNachThema()` (script.js:731).
+- [ ] **`noPartyInfo`-Key mit zwei Fallback-Texten** (aus review-2026-08-01, neu übernommen) – `initializeParteienPage()` (script.js:386 vs. 393): „Keine Parteidaten…" vs. „Weitere Informationen…".
+
+### P1 – Einfache Sprache
+
+- [x] **btw2029 ohne einfache Sprache** – erledigt: `einfache-sprache.json` übersetzt alle 45 btw2029-Fragen; Gesamtabdeckung 170 (45+40+52+33). P2-Eintrag „Kein Hinweis auf fehlende einfache Sprache bei btw2029" (2. Lauf) ist damit gegenstandslos.
+- [ ] **Hartkodierte Strings** – „Quelle: " (script.js:629), Tabellenkopf „Frage/Sie" (script.js:752), Legende „✓/✗/—" (script.js:767), Toggle-Label „Einfache Sprache" (index.html:22); Platzhalter „Test durchführen…" ist über `topicChartEmpty` gelöst.
+
+### P2 – Fehlende Features
+
+- [ ] **„Fortsetzen" springt nach Reload immer zu Frage 1** (2. Lauf, weiterhin offen) – `saveTestState()` (script.js:55-62) speichert kein `currentQuestion`; `initializeTest()` (script.js:593) startet bei 0.
+- [ ] **`saveTestResult()` speichert auch bei 0 verwertbaren Antworten** (Nachtrag, weiterhin offen) – übersprungener Test landet als „0,0 %"-Historie-Eintrag und verdrängt via `createTopicChart()` (script.js:1198) das letzte echte Ergebnis.
+- [ ] **Teilen-Link verliert neutrale Antworten** (aus review-2026-08-01, neu übernommen) – `shareResults()` (script.js:82) filtert `m`; nach `applyPendingShare()` fehlen sie.
+- [ ] **Parteien mit wenigen beantworteten Fragen verzerren Ergebnisliste** (aus review-2026-08-01, neu übernommen) – Berlin: Volt/Tierschutz antworten nur auf 3/52 Fragen, landen aber mit hohem Match im Ranking (Paar GRÜNE+Volt = 100 %); Mindest-Abdeckung oder Hinweis „nur X von N Fragen beantwortet".
+
+### P3 – Verbesserungen
+
+- [x] **README aktualisiert** – „125 Fragen in einfacher Sprache" → 170 (README.md Z. 14); neue Features dokumentiert (Teilen-Link, Fortsetzen-Hinweis, Antworten zurücksetzen, paarweiser Koalitionsalgorithmus).
+- [x] **`reports/*.md` in diese Liste übernommen** – alle offenen Befunde aus review-2026-08-01/-02/-02-b sind jetzt in `todo.md` vertreten (inkl. drei zuvor fehlender), Status verifiziert.
+
+---
+
 ## Automatisiertes Review vom 2026-08-02 (2. Lauf, HEAD `918d05f`)
 
 ### P1 – Bugs
 
 - [ ] **Einfache Sprache wird beim Reload nicht angewendet** – `applySavedSimpleLang()` (script.js:1328-1332) läuft im `DOMContentLoaded`-Handler vor dem asynchronen Fetch von `einfache-sprache.json` (`loadElections()`, script.js:282-285); `t()` (script.js:16-19) liefert mit `simpleLangData=null` nur Fallbacks → alle statischen `[data-i18n]`-Texte (Tabs, Buttons, Hero, Footer) bleiben bei `simpleLang=1` normaldeutsch, bis der Toggle manuell geklickt wird. Fix: `applyStaticI18n()` nach `loadElections()` erneut aufrufen.
-- [ ] **`pendingAdvanceTimer`-Race beim Wahlwechsel** – `selectAnswer()`-Timer (script.js:614-622) wird von `setActiveElection()`/`resetTest()` (script.js:540-548) nicht gecleart → Wahlwechsel innerhalb 300 ms lässt den Timer in die neue Wahl feuern (Test springt auf Frage 2 / doppeltes `showTestResults`).
-- [ ] **`createStatsSummary()` wirft TypeError bei leerem `umfragewerte`** – `parties.reduce()` ohne Initialwert (script.js:998) → „Reduce of empty array" → Daten-Tab bricht ab, sobald eine Wahl ohne Umfragewerte angelegt wird.
-- [ ] **`berechneSitze()` erzeugt NaN bei keiner Partei über der Sperrklausel** – `gueltig = 0` (script.js:1215) → Division durch 0 → NaN-Sitze im Seat-Chart (`createSeatChart()`, script.js:1038-1051); Leer-Guard fehlt.
+- [x] **`pendingAdvanceTimer`-Race beim Wahlwechsel** – gefixt: `selectAnswer()`-Timer (script.js:672-679) wird von `resetTest()` über `cancelPendingAdvance()` (script.js:556/660-662) gecleart; `setActiveElection()` ruft `resetTest()`.
+- [x] **`createStatsSummary()` wirft TypeError bei leerem `umfragewerte`** – gefixt durch Empty-Guard (script.js:1088-1091); `reduce` nur noch auf nicht-leerer Liste.
+- [ ] **`berechneSitze()` ohne Leer-Guard (NaN-Aussage präzisiert, siehe 3. Lauf)** – kein NaN mehr (leere `above`-Liste → leeres Array), aber `createSeatChart()` (script.js:1128-1146) zeigt bei keiner Partei über der Sperrklausel ein leeres Pie-Chart „0 Sitze" statt Empty-State.
 
 ### P2 – Fehlende Features
 
 - [ ] **„Fortsetzen" springt nach Reload immer zu Frage 1** – `saveTestState()` (script.js:54-61) speichert nur `answers` + `important`, nicht `currentQuestion`; `initializeTest()` (script.js:552) startet wieder bei 0 → Position wird nie wiederhergestellt.
-- [ ] **Kein Hinweis auf fehlende einfache Sprache bei btw2029** – globaler Toggle schaltet für die Standard-Wahl still auf Normaltext zurück (`simpleQuestionText()`, script.js:20-26); keine Kennzeichnung auf Willkommens-Karte oder im Test.
+- [x] **Kein Hinweis auf fehlende einfache Sprache bei btw2029** – gegenstandslos: btw2029 ist inzwischen vollständig übersetzt (`einfache-sprache.json`, 45 Fragen; Gesamt 170).
 
 ### P3 – Verbesserungen
 
@@ -63,7 +95,7 @@ Vollständiger Bericht: `reports/review-2026-08-02-b.md`. Alle Befunde per Node 
 - [ ] **`berechneUebereinstimmung()` ohne Umfragewert-Gewichtung** – kleine Parteien zählen wie große; Gewichtung nur in `berechneUserMatchFuerKoalition()` (script.js:482).
 - [ ] **10 Fragen in „Sonstiges" (Kultur/Ehrenamt/Kirchen/Rundfunk/Schwimmbäder/Gartenschau/Tanzverbot)** – ltw 6, Berlin 3, btw2029 1; Kategorie „Kultur" oder Zuordnung „Soziales".
 - [ ] **`maxCoalitionSize: 5` in `elections/ltw-sachsen-anhalt-2026/config.json` abweichend** – alle anderen 3 Wahlen nutzen 4; funktional wirkungslos, aber inkonsistent.
-- [ ] **README „125 Fragen in einfacher Sprache" veraltet** – tatsächlich 170 (45+40+52+33).
+- [x] **README „125 Fragen in einfacher Sprache" veraltet** – korrigiert auf 170 (45+40+52+33) in `README.md` Z. 14 (siehe 3. Lauf).
 - [ ] **Hartkodierte Strings „Quelle: " (script.js:629) und „Frage" (script.js:752, 1278)** – i18n-Keys ergänzen.
 - [ ] **Berlin: Volt/Tierschutz 49/52 × neutral** – Match aus nur 3 Fragen (Paar GRÜNE+Volt = 100 %); als „keine Position" kennzeichnen oder entfernen.
 - [ ] **`createCoalitionPotentialChart()` sortiert den `koalitionenCache` in-place** (script.js:1149) – Cache-Referenz wird mutiert.
