@@ -4,6 +4,75 @@ Code-Review vom 01.08.2026. Prioritäten: P1 = Bug / P2 = Feature / P3 = Verbess
 
 ---
 
+## Review vom 2026-08-02 (5. Lauf, PR #18: Issue #17-Fixes im Merge-Review)
+
+Merge-Review des PR „Issue #17 behoben: Swipe fix + Review umgesetzt" (`reports/review-2026-08-02-f.md`). Ergebnis: **PR mergefähig**, alle drei P1-Fixes zu Issue #17 sowie die P2/P3-Mitfixes per Node-Simulation und gegen die echten Datendateien verifiziert, keine Regressionen. Die folgenden Punkte sind Nachbesserungsvorschläge.
+
+### P3 – Verbesserungen (neu)
+
+- [ ] **Swipe-Abbruch permanent nach EINEM vertikal-dominierten `touchmove`-Event** – script.js:1641-1644: das erste Touchmove mit nur 2 px Y / 1 px X deaktiviert die Geste dauerhaft; simulierte horizontale Swipe (2,4)→(150,8) wird verworfen. Vorschlag: Richtungsprüfung erst ab ~10 px Dead-Zone oder Flag bei später horizontal-dominanter Bewegung wieder aufheben.
+- [ ] **`partyFilter` im Koalitionen-Tab listet Parteien < Sperrklausel, Filter-Ergebnis ist dann leer** – `populatePartyDropdowns()` (script.js:400-402) nutzt `relevant`, `updateKoalitionen()` (script.js:593-595) filtert nur Koalitionen → „FDP" (btw2029) ergibt „Keine passenden Koalitionen gefunden" ohne Erklärung. Begründung aus Report-e („Filter auf Ergebnisliste") trifft nicht zu.
+- [ ] **Koalitions-Share-Link ohne Antworten hinterlässt Ergebnissicht mit lauter „–" im Test-Tab** – `applyPendingShare()` (script.js:146-183) ruft `showTestResults()` auch bei leerem `answers` auf; Vorschlag: bei leerem `answers` + nur `coalitionState` überspringen.
+- [ ] **Zeilenreferenzen in todo.md/Report-e verschoben** – `script.js:1620-1657` vs. tatsächlich 1628-1664, `403-413` vs. 405-419, `1425` vs. 1424, `82-113` vs. 82-116 (kosmetisch).
+
+### Verifiziert (Bestätigung der PR-Befunde)
+
+- [x] Swipe-Fix (Issue #17): `touchmove`-Tracking + `.tabs`-Bindung + `swipeDisabled`-Reset – per Simulation verifiziert (diagonale Flicks `80/95` und `72/84` wechseln keinen Tab mehr, sauberer horizontaler Swipe 120/10 schon).
+- [x] Ausschluss-Checkboxen: Menge = Parteien ≥ Sperrklausel, konsistent mit `berechneKoalitionen()` (alle 4 Wahlen).
+- [x] Koalitionswerte unverändert: btw2029 max 50,9 %, LSA 52,0 %, Berlin 48,0 %, MV 58,7 %; Sitzsummen 630/87/130/71; keine fehlenden Parteien/Farben; i18n-Keys `questionCol`/`shareEmpty`/`shareCopied` vorhanden.
+
+---
+
+## Bugfix vom 2026-08-02 (Issue #17: Swipe-Handler & Folgebefunde)
+
+Alle unten aufgeführten Befunde aus dem 4. Lauf wurden in `script.js` umgesetzt und per Node gegen die echten Datendateien verifiziert (`node --check script.js` OK, Swipe-Simulation, Share-Parsing-Test, Koalitions-/Sitzwerte unverändert). Vollständiger Bericht: `reports/review-2026-08-02-e.md`.
+
+### P1 – Bugs
+
+- [x] **Swipe-Handler ohne `touchmove`-Tracking** – Handler ist jetzt nur noch an der `.tabs`-Leiste gebunden (script.js:1620-1657); ein `touchmove`-Listener bricht die Geste ab, sobald die vertikale Bewegung die horizontale überwiegt. Simuliert: die reproduzierten diagonalen Scroll-Flicks `diffX=80/diffY=95` und `diffX=72/diffY=84` lösen keinen Tab-Wechsel mehr aus; ein sauberer horizontaler Swipe (120/10) funktioniert weiter.
+- [x] **Swipe auf gesamten `.container` gebunden** – die Geste wird nur noch auf `.tabs` ausgelöst (das natürliche Ziel für Tab-Wechsel); ein vertikaler Scroll im Inhaltsbereich (Fragen/Koalitionen/Ergebnisse) kann nie mehr einen Tab wechseln. Die auf Mobilgeräten sticky Tab-Leiste bleibt als einziger Hotspot übrig – dort ist ein horizontaler Wisch auch gewollt.
+- [x] **`swipeDisabled` wird bei `touchcancel` nicht zurückgesetzt** – `touchend`/`touchcancel` setzen das Flag jetzt zuverlässig zurück; zusätzlich `e.touches.length === 1`-Guard für Multi-Touch.
+
+### P2 – Fehlende Features
+
+- [x] **Ausschluss-Checkboxen für Parteien < Sperrklausel wirkungslos** – `populatePartyDropdowns()` (script.js:403-413) zeigt jetzt nur noch Parteien ≥ Sperrklausel (exakt die, die `berechneKoalitionen()` berücksichtigt); per Node für alle 4 Wahlen verifiziert (Bund: AfD/CDU/CSU/GRÜNE/LINKE/SPD usw.). Das `partyFilter`-Dropdown listet weiterhin alle antwortenden Parteien – das ist gewollt (Filter auf Ergebnisse).
+
+### P3 – Verbesserungen
+
+- [x] **Hartkodierter Tabellenkopf „Frage" in `updatePartyComparison()`** – nutzt jetzt `t('questionCol')` (script.js:1425), konsistent zu `togglePartyDetail()`.
+- [x] **„Ergebnis teilen" im Koalitionen-Tab ohne Test blockiert** – `shareResults()` (script.js:82-113) erlaubt `&c=` auch ohne beantwortete Fragen; `parseShareHash()` akzeptiert leere `&a=` (Regex `([^&]*)`). Verifiziert: `#w=btw2029&a=&c=…` wird korrekt geparst und stellt die Koalitions-Sicht wieder her.
+
+---
+
+## Review vom 2026-08-02 (4. Lauf, Issue #17: Tab-Wechsel beim vertikalen Scrollen)
+
+Fokus: Issue #17 – Swipe-Geste wechselt beim vertikalen Scrollen weiterhin Tabs. Vollständiger Bericht: `reports/review-2026-08-02-d.md`. Ursache per Node-Simulation bestätigt: Der Handler prüft nur Start-/Endkoordinaten, diagonale Flicks (z. B. 80 px horizontal / 95 px vertikal) passieren die 1.2×-Regel.
+
+### P1 – Bugs
+
+- [x] **Swipe-Handler ohne `touchmove`-Tracking** – gefixt am 2026-08-02 (siehe Abschnitt „Bugfix vom 2026-08-02"): `touchmove`-Listener bricht die Geste bei vertikal-dominanter Bewegung ab; diagonaler Flick `diffX=80/diffY=95` und `diffX=72/diffY=84` lösen keinen Tab-Wechsel mehr aus.
+- [x] **Swipe auf gesamten `.container` gebunden** – gefixt am 2026-08-02: Swipe wird nur noch auf der `.tabs`-Leiste ausgelöst; `.election-toggles/.cmp-wrap/.tr-detail-table`-Ausnahme entfällt.
+- [x] **`swipeDisabled` wird bei `touchcancel` nicht zurückgesetzt** – gefixt am 2026-08-02: `touchend`/`touchcancel` setzen das Flag zurück, zusätzlich `e.touches.length === 1`-Guard.
+
+### P2 – Fehlende Features
+
+- [x] **Ausschluss-Checkboxen für Parteien < Sperrklausel wirkungslos** (offen seit 2. Lauf) – gefixt am 2026-08-02: `populatePartyDropdowns()` zeigt nur noch Parteien ≥ Sperrklausel; FDP/BSW (btw2029) erscheinen nicht mehr als wirkungslose Checkboxen.
+
+### P3 – Verbesserungen
+
+- [ ] **Ranking bei wenigen beantworteten Fragen irreführend** – Berlin: Volt/Tierschutz (3/52, alle „j") erreichen 100 % und verdrängen große Parteien (script.js:918-942); `fewAnswersHint` normalisiert nicht. Mindestzahl vergleichbarer Fragen für die Sortierung.
+- [x] **Hartkodierter Tabellenkopf „Frage" in `updatePartyComparison()`** – gefixt am 2026-08-02: nutzt `t('questionCol')` (script.js:1425).
+- [ ] **Hartkodierte `aria-label`s in index.html** – Z. 22-24 (Einfache Sprache/Theme/GitHub) nicht i18n-fähig.
+- [x] **„Ergebnis teilen" im Koalitionen-Tab ohne Test blockiert** – gefixt am 2026-08-02: `&c=` auch ohne beantwortete Fragen; `parseShareHash()` akzeptiert leere `&a=`.
+
+### Verifiziert weiter offen (aus früheren Läufen)
+
+- [ ] `berechneUebereinstimmung()` ohne Umfragewert-Gewichtung (script.js:501-524)
+- [ ] 10 „Sonstiges"-Fragen (btw2029 1, LSA 6, Berlin 3) – Kategorie „Kultur" fehlt
+- [ ] Datenqualität „CDU/CSU" vs. „CDU"; „SSW" (0,5 %) in Berlin-Umfrage unplausibel
+
+---
+
 ## Bugfix-Implementierung vom 2026-08-03 (Issue: resolve Bugs)
 
 Alle unten markierten Befunde wurden in `script.js`/`index.html`/`styles.css`/`einfache-sprache.json`/`werte.json` umgesetzt und per Node gegen die echten Datendateien verifiziert (`node --check script.js` OK, alle JSON valide, i18n-Key-Check vollständig). Vollständiger Bericht: `reports/review-2026-08-03.md`.
@@ -92,7 +161,7 @@ Fokus (Issue #13): Abgleich von `README.md`/`todo.md` mit dem Code-Stand und Zus
 - [x] **Sitzverteilung nutzt Largest-Remainder statt d'Hondt/Sainte-Laguë** – gefixt am 2026-08-03: Verfahren pro Wahl konfigurierbar via `meta.verfahren` (`sainteLague` für btw2029, `dhondt` für Landtagswahlen); verifiziert weicht ltw-sachsen-anhalt jetzt nicht mehr ab (AfD 43 statt 42, LINKE 14 statt 15).
 - [x] **Hardcodierte Strings nicht übersetzbar** – gefixt am 2026-08-03: `sourceLabel`, `questionCol`/`youCol`, `legendAgree`/`legendDisagree`/`legendNotComparable`, `simpleLangLabel`; Platzhalter „Test durchführen…" war bereits über `topicChartEmpty` gelöst.
 - [ ] **Datenqualität: „CDU/CSU" statt „CDU" in Berlin/MV/LSA** – `werte.json`/`fragen.json`; `partyColors` (config.json:3) kennt kein „CDU"; „SSW" (0,5 %) in der Berlin-Umfrage unplausibel (nur Schleswig-Holstein).
-- [ ] **Ausschluss-Checkboxen für Parteien < 5 % wirkungslos** – `populatePartyDropdowns()` (script.js:334-337) listet sie, `berechneKoalitionen()` (script.js:414-416) ignoriert sie (BSW/FDP in btw2029).
+- [x] **Ausschluss-Checkboxen für Parteien < 5 % wirkungslos** – gefixt am 2026-08-02: `populatePartyDropdowns()` (script.js:403-413) zeigt nur noch Parteien ≥ Sperrklausel; BSW/FDP (btw2029) erscheinen nicht mehr als wirkungslose Checkboxen.
 - [x] **Fallback `data.fragen || window.parteienData` mischt Wahlen** – gefixt am 2026-08-03: `window.parteienData = data.fragen || null` + Empty-State in `initializeTest()`.
 - [x] **`welcome-card-type` nicht i18n** – gefixt am 2026-08-03: Keys `typeBundestagswahl`/`typeLandtagswahl`/`typeAbgeordnetenhauswahl`.
 
