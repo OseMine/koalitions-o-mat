@@ -4,6 +4,42 @@ Code-Review vom 01.08.2026. Prioritäten: P1 = Bug / P2 = Feature / P3 = Verbess
 
 ---
 
+## Automatisiertes Review vom 2026-08-02 (2. Lauf, HEAD `918d05f`)
+
+### P1 – Bugs
+
+- [ ] **Einfache Sprache wird beim Reload nicht angewendet** – `applySavedSimpleLang()` (script.js:1328-1332) läuft im `DOMContentLoaded`-Handler vor dem asynchronen Fetch von `einfache-sprache.json` (`loadElections()`, script.js:282-285); `t()` (script.js:16-19) liefert mit `simpleLangData=null` nur Fallbacks → alle statischen `[data-i18n]`-Texte (Tabs, Buttons, Hero, Footer) bleiben bei `simpleLang=1` normaldeutsch, bis der Toggle manuell geklickt wird. Fix: `applyStaticI18n()` nach `loadElections()` erneut aufrufen.
+- [ ] **`pendingAdvanceTimer`-Race beim Wahlwechsel** – `selectAnswer()`-Timer (script.js:614-622) wird von `setActiveElection()`/`resetTest()` (script.js:540-548) nicht gecleart → Wahlwechsel innerhalb 300 ms lässt den Timer in die neue Wahl feuern (Test springt auf Frage 2 / doppeltes `showTestResults`).
+- [ ] **`createStatsSummary()` wirft TypeError bei leerem `umfragewerte`** – `parties.reduce()` ohne Initialwert (script.js:998) → „Reduce of empty array" → Daten-Tab bricht ab, sobald eine Wahl ohne Umfragewerte angelegt wird.
+- [ ] **`berechneSitze()` erzeugt NaN bei keiner Partei über der Sperrklausel** – `gueltig = 0` (script.js:1215) → Division durch 0 → NaN-Sitze im Seat-Chart (`createSeatChart()`, script.js:1038-1051); Leer-Guard fehlt.
+
+### P2 – Fehlende Features
+
+- [ ] **„Fortsetzen" springt nach Reload immer zu Frage 1** – `saveTestState()` (script.js:54-61) speichert nur `answers` + `important`, nicht `currentQuestion`; `initializeTest()` (script.js:552) startet wieder bei 0 → Position wird nie wiederhergestellt.
+- [ ] **Kein Hinweis auf fehlende einfache Sprache bei btw2029** – globaler Toggle schaltet für die Standard-Wahl still auf Normaltext zurück (`simpleQuestionText()`, script.js:20-26); keine Kennzeichnung auf Willkommens-Karte oder im Test.
+
+### P3 – Verbesserungen
+
+- [ ] **Sitzverteilung nutzt Largest-Remainder statt d'Hondt/Sainte-Laguë** – `berechneSitze()` (script.js:1210-1228): Bundestag = Sainte-Laguë, Landtagswahlen meist d'Hondt; verifiziert weicht ltw-sachsen-anhalt um 1 Sitz ab (AfD 42 statt 43, LINKE 15 statt 14). Verfahren pro Wahl konfigurierbar machen (`meta.verfahren`).
+- [ ] **Hardcodierte Strings nicht übersetzbar** – „Quelle: " (script.js:576), Tabellenkopf „Frage/Sie" (script.js:692), Legende „✓ Zustimmung / ✗ Ablehnung / — Nicht vergleichbar" (script.js:707), Platzhalter „Test durchführen…" (script.js:1112), Toggle-Label „Einfache Sprache" (index.html:22).
+- [ ] **Datenqualität: „CDU/CSU" statt „CDU" in Berlin/MV/LSA** – `werte.json`/`fragen.json`; `partyColors` (config.json:3) kennt kein „CDU"; „SSW" (0,5 %) in der Berlin-Umfrage unplausibel (nur Schleswig-Holstein).
+- [ ] **Ausschluss-Checkboxen für Parteien < 5 % wirkungslos** – `populatePartyDropdowns()` (script.js:334-337) listet sie, `berechneKoalitionen()` (script.js:414-416) ignoriert sie (BSW/FDP in btw2029).
+- [ ] **Fallback `data.fragen || window.parteienData` mischt Wahlen** – `setActiveElection()` (script.js:199): fehlt `fragen.json`, zeigt der Test Fragen der letzten Wahl mit neuen Umfragewerten; stattdessen Leer-State + Fehlermeldung.
+- [ ] **`welcome-card-type` nicht i18n** – `renderWelcomeCards()` (script.js:254) gibt `e.type` roh aus.
+
+Hinweis (erledigt seit 1. Lauf): `noData`-Key ist inzwischen vorhanden (`einfache-sprache.json` Zeile 98) – der P3-Eintrag „`noData`-Key fehlt" weiter unten ist abgehakt.
+
+---
+
+## Bugfix vom 2026-08-02 (Issue: Abgeordnetenhauswahl ist keine Landtagswahl)
+
+### P1 – Bugs
+
+- [x] **Berlin 2026 fälschlich als „Landtagswahl" ausgewiesen** – `elections.json` (`type` des `berlin-2026`-Eintrags) auf `"Abgeordnetenhauswahl"` korrigiert; angezeigt über `renderWelcomeCards()` (script.js:254). Keine Logik verzweigt auf den Typ.
+- [x] **FDP-Begründung „Berliner Landtagswahlen"** – `elections/berlin-2026/fragen.json` (Frage 23, FDP) auf „Berliner Abgeordnetenhauswahl" korrigiert.
+
+---
+
 ## Automatisiertes Review vom 2026-08-02 (2. Lauf, Nachtrag)
 
 Vollständiger Bericht: `reports/review-2026-08-02-b.md`. Alle Befunde per Node gegen die echten Datendateien verifiziert.
