@@ -4,6 +4,15 @@ Code-Review vom 01.08.2026. Prioritäten: P1 = Bug / P2 = Feature / P3 = Verbess
 
 ---
 
+## Bugfix vom 2026-08-02 (Issue: Abgeordnetenhauswahl ist keine Landtagswahl)
+
+### P1 – Bugs
+
+- [x] **Berlin 2026 fälschlich als „Landtagswahl" ausgewiesen** – `elections.json` (`type` des `berlin-2026`-Eintrags) auf `"Abgeordnetenhauswahl"` korrigiert; angezeigt über `renderWelcomeCards()` (script.js:254). Keine Logik verzweigt auf den Typ.
+- [x] **FDP-Begründung „Berliner Landtagswahlen"** – `elections/berlin-2026/fragen.json` (Frage 23, FDP) auf „Berliner Abgeordnetenhauswahl" korrigiert.
+
+---
+
 ## Automatisiertes Review vom 2026-08-02 (gesamtes Projekt)
 
 ### P1 – Bugs
