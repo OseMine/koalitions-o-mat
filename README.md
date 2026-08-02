@@ -7,6 +7,7 @@ Interaktiver Koalitionsrechner und Parteien-Test für die Bundestagswahl 2029 un
 - **Parteien-Test** – Eigene Positionen zu politischen Fragen mit Parteien und Koalitionen abgleichen (Wahl-O-Mat-Stil: Themen-Badge, Fortschrittsanzeige, Überspringen, Tastatursteuerung 1/2/3 und Pfeiltasten)
 - **Willkommensseite** – Hero mit Schritt-Erklärung und klickbaren Wahl-Karten (Parteien- und Fragenzahl pro Wahl) zum direkten Start
 - **Parteien & Kandidaten** – Eigene Seite pro Wahl mit allen Parteien: Umfragewerte, Programmbeschreibungen, Kandidatinnen und Kandidaten, Partei-Websites (optional in `werte.json`)
+- **Partei-Seiten** – Jede Partei hat eine eigene Detailseite (über „Details, Programm & News"): Spitzenkandidat:in, Veränderung der Umfragewerte über die Zeit (Diagramm, optional `verlauf`), die wichtigsten Punkte des Wahlprogramms mit „Was bedeutet das?"-Einordnung, eine Einschätzung zu Machbarkeit/Möglich-Umgesetzt werden (basierend auf Umfragewerten) sowie einen Nachrichten-Feed (RSS, optional `rss` pro Partei). Die Seite ist neutral, mobil optimiert und über einen eigenen Share-Button (Link mit `&p=<Partei>`) teilbar.
 - **Alle Koalitionen** – Alle möglichen Mehrheits-/Minderheitskoalitionen mit Übereinstimmungswert (paarweiser Vergleich der Parteipositionen)
 - **Filter** – Mindestübereinstimmung, Koalitionsart (Mehrheit/Minderheit/Alle), nach Partei filtern, Parteien ausschließen
 - **Parteien vergleichen** – Positionen mehrerer Parteien nebeneinander mit Quellen und Begründungen
@@ -30,7 +31,7 @@ Interaktiver Koalitionsrechner und Parteien-Test für die Bundestagswahl 2029 un
 ## Datenstruktur
 
 - `elections/<id>/fragen.json` – Fragen mit Parteipositionen (`wert`, `zitat`, `quelle`, `begruendung`)
-- `elections/<id>/werte.json` – Umfragewerte und Wahl-Metadaten (Sperrklausel, Sitzzahl); optional pro Partei: `beschreibung`, `kandidaten` (`name`, `rolle`), `website`
+- `elections/<id>/werte.json` – Umfragewerte und Wahl-Metadaten (Sperrklausel, Sitzzahl); optional pro Partei: `beschreibung`, `kandidaten` (`name`, `rolle`), `spitzenkandidat` (Name eines Eintrags aus `kandidaten`), `verlauf` (`label`, `prozent` für die Zeit-Entwicklung), `rss` (Array von RSS-/Atom-Feed-URLs für den Nachrichten-Feed), `website`
 - `elections/<id>/config.json` – optionale Schwellenwerte pro Wahl
 - `einfache-sprache.json` – Übersetzungen für UI-Texte und Fragen in einfacher Sprache
 - `config.json` – globale Farben und Themen-Kategorien
