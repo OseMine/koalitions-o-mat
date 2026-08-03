@@ -68,6 +68,11 @@ body {
     color: var(--on-surface);
     font-size: 16px;
     -webkit-font-smoothing: antialiased;
+    /* Mobile-Fix (Issue #21): verhindert versehentliches horizontales Scrollen
+       der Seite (z. B. durch breite ECharts-Canvases oder lange URLs).
+       overflow-x: clip schneidet nur horizontal ab und erzeugt keinen
+       Scroll-Container – position:sticky der Tabs funktioniert weiter. */
+    overflow-x: clip;
 }
 
 .container { max-width: 920px; margin: 0 auto; padding: 12px 16px 32px; }
@@ -131,7 +136,10 @@ body {
 .tab-button.active { background: var(--surface); color: var(--primary); box-shadow: var(--shadow-sm); font-weight: 600; }
 .tab-content { display: none; padding: 4px 0 16px; }
 .tab-content.active { display: block; animation: fadeIn 0.25s ease; }
-@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+/* Mobile-Fix (Issue #21): kein translateY in der Animation – eine sich bewegende
+   Frage kann Taps verschlucken ("Antwort-Buttons registrieren nicht").
+   Rein per Opacity einblenden, damit die Buttons stabil an ihrer Position bleiben. */
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
 /* ===== Filter Options ===== */
 .filter-options {
@@ -553,16 +561,15 @@ body {
 
 @media (max-width: 600px) {
     .election-bar { flex-direction: column; align-items: stretch; }
+    /* Mobile-Fix (Issue #21): statt horizontal scrollbarer Leiste (nowrap +
+       overflow-x:auto) die Wahlen umbrechen lassen – kein versehentlicher
+       horizontaler Scroll auf der Willkommens-Seite. */
     .election-toggles {
         justify-content: flex-start;
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        padding-bottom: 4px;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
+        flex-wrap: wrap;
     }
-    .election-toggles::-webkit-scrollbar { display: none; }
-    .election-toggle { flex-shrink: 0; }
+    .election-toggle { flex-shrink: 1; white-space: normal; text-align: left; max-width: 100%; }
+    .election-toggle .toggle-dot { flex-shrink: 0; }
     .stats-summary { grid-template-columns: repeat(3, 1fr); gap: 6px; }
     .stat-card { padding: 10px; }
     .stat-val { font-size: 1.2rem; }
@@ -610,7 +617,10 @@ body {
     .simple-lang-toggle { width: 40px; padding: 0; justify-content: center; }
     .simple-lang-toggle .simple-lang-label { display: none; }
     .tabs { border-radius: 0; margin: 8px -10px 12px; padding: 4px 10px; }
-    .tab-button { font-size: 0.8rem; padding: 8px 10px; }
+    /* Mobile-Fix (Issue #21): "Parteien & Kandidaten" etc. sind auf schmalen
+       Screens breiter als ihr Slice – statt Abschneiden (overflow:hidden) darf
+       das Label umbrechen, damit kein Inhalt verloren geht. */
+    .tab-button { font-size: 0.78rem; padding: 8px 4px; white-space: normal; line-height: 1.25; }
     .filter-row { flex-direction: column; gap: 10px; }
     .filter-row label { width: 100%; }
     .chart-grid { grid-template-columns: 1fr; }

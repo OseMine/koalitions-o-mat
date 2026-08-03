@@ -651,10 +651,13 @@ function renderPartyProgramm(party) {
         container.innerHTML = `<p class="party-muted">${t('party.programmEmpty', 'Keine Positionen für diese Partei im Fragenkatalog.')}</p>`;
         return;
     }
-    container.innerHTML = entries.map(([topic, t]) => {
+    // Achtung: Variable NICHT `t` nennen – das würde die i18n-Funktion t() überschatten
+    // und renderPartyProgramm() mit "TypeError: t is not a function" crashen lassen
+    // (Partei-Seite blieb leer, Teilen-Link zeigte dem Empfänger die Fehler-Ansicht).
+    container.innerHTML = entries.map(([topic, tdata]) => {
         const topicColor = (config.topics[topic] && config.topics[topic].color) || '#999';
-        const ja = t.j.slice(0, 3);
-        const nein = t.n.slice(0, 3);
+        const ja = tdata.j.slice(0, 3);
+        const nein = tdata.n.slice(0, 3);
         return `
             <div class="party-prog-topic">
                 <div class="party-prog-topic-head" style="--tcolor:${topicColor}">${escapeHtml(topic)}</div>
@@ -1060,6 +1063,9 @@ function initializeTest() {
     }).join('');
     updateNavButtons();
     document.getElementById('testResults').innerHTML = '';
+    // Mobile-Fix: Beim Start/Fortsetzen die Antwort-Buttons sichtbar machen
+    // (block:'nearest' scrollt nur, wenn die Buttons außerhalb des Viewports sind).
+    scrollQuestionButtonsIntoView();
 }
 
 function cancelPendingAdvance() {
@@ -1111,6 +1117,7 @@ function showNextQuestion() {
         questions[currentQuestion].classList.add('active');
         updateNavButtons();
         saveTestState();
+        scrollQuestionButtonsIntoView();
     }
 }
 
@@ -1123,6 +1130,21 @@ function showPreviousQuestion() {
         questions[currentQuestion].classList.add('active');
         updateNavButtons();
         saveTestState();
+        scrollQuestionButtonsIntoView();
+    }
+}
+
+// Mobile-Fix (Issue #21): Fragen haben unterschiedliche Höhen – nach dem
+// Auto-Weiter können die Antwort-Buttons der nächsten Frage unterhalb des
+// sichtbaren Bereichs liegen ("Buttons registrieren nicht" / wirken tot).
+// Die Buttons der aktiven Frage werden deshalb in den sichtbaren Bereich gerollt.
+// block:'nearest' scrollt nur minimal (bzw. gar nicht, wenn bereits sichtbar).
+function scrollQuestionButtonsIntoView() {
+    const answers = document.querySelector('#questionContainer .question.active .q-answers');
+    if (answers && typeof answers.scrollIntoView === 'function') {
+        try {
+            answers.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        } catch (_) { /* ältere Browser */ }
     }
 }
 
@@ -1415,8 +1437,8 @@ function backToTest() {
         const q = document.querySelector(`#questionContainer .question[data-q="${currentQuestion}"]`);
         if (q) q.classList.add('active');
         updateNavButtons();
+        scrollQuestionButtonsIntoView();
     }
-    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function saveTestResult(results) {

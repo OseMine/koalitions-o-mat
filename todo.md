@@ -4,6 +4,28 @@ Code-Review vom 01.08.2026. Prioritäten: P1 = Bug / P2 = Feature / P3 = Verbess
 
 ---
 
+## Mobile-Fixes vom 2026-08-03 (Issue #21: Buttons registrieren nicht + horizontales Scrollen + Partei-Seiten leer + Teilen-Fehler)
+
+Umsetzung und Verifikation per Headless-Chromium (CDP, Viewports 320/360/390 px). Vollständiger Bericht: `reports/review-2026-08-03-mobile.md`.
+
+### P1 – Bugs
+
+- [x] **Partei-Seite ohne Inhalte** – `renderPartyProgramm()` (script.js:654): `entries.map(([topic, t]) => …)` überschattet die i18n-Funktion `t()` → `TypeError: t is not a function` → „Wahlprogramm" leer, `loadPartyNews()` nie erreicht (News hängt). Fix: Variable in `tdata` umbenannt. Verifiziert: AfD 29 Programm-Punkte/7 Themen, CDU/CSU (LSA) 20 Punkte.
+- [x] **Teilen-Link zeigt dem Empfänger einen Fehler** – derselbe Crash in `renderPartyProgramm()` propagierte bis zum globalen Bootstrap-Catch → „⚠️ Fehler beim Laden." statt der geteilten Partei-Seite. Fix: siehe oben; Empfänger-Navigation `#w=…&p=AfD` öffnet die Partei-Seite ohne Fehler.
+- [x] **Antwort-Buttons „registrieren nicht"** – nach dem Auto-Weiter lagen die Buttons der nächsten Frage unterhalb des Viewports (CDP: Q1-Button y=787 > 740). Fix: neue `scrollQuestionButtonsIntoView()` (script.js, `block:'nearest'`) in `showNextQuestion()`/`showPreviousQuestion()`/`initializeTest()`/`backToTest()`; `fadeIn`-Animation auf reine Opacity reduziert (styles.css), damit ein sich bewegendes Element keine Taps verschluckt.
+
+### P2 – Fehlende Features
+
+- [x] **Horizontales Scrollen durch überlaufenden Inhalt** – (1) Tab-Leiste: Labels brachen nicht um und wurden durch `overflow:hidden` abgeschnitten (scrollWidth 462 > 320); Fix: `white-space:normal` für `.tab-button` ≤480 px. (2) `.election-toggles`-Carousel (`nowrap`+`overflow-x:auto`), „Bundestagswahl 2029 (Umfrage)" allein 338 px breit; Fix: `flex-wrap:wrap` + `.election-toggle` darf umbrechen (≤600 px). (3) Body-Guard `overflow-x: clip` (styles.css) – kein horizontaler Seiten-Scroll durch breite Charts/URLs, `position:sticky` bleibt funktionsfähig.
+
+### Verifiziert
+
+- [x] Kein horizontales Seiten-Overflow auf allen 4 Tabs bei 320/360 px (`scrollWidth === innerWidth`).
+- [x] Tab-Buttons ohne abgeschnittene Labels; Antwort-Buttons der Folgefrage im Viewport (inView:true).
+- [x] Partei-Seiten öffnen ohne Exception (inkl. Kandidat „Reiner Haseloff" LSA); Teilen-Links (Partei & Ergebnis `&a=0j1n2m`) werden beim Empfänger korrekt wiederhergestellt, keine Fehler-Notification.
+
+---
+
 ## Review vom 2026-08-02 (5. Lauf, PR #18: Issue #17-Fixes im Merge-Review)
 
 Merge-Review des PR „Issue #17 behoben: Swipe fix + Review umgesetzt" (`reports/review-2026-08-02-f.md`). Ergebnis: **PR mergefähig**, alle drei P1-Fixes zu Issue #17 sowie die P2/P3-Mitfixes per Node-Simulation und gegen die echten Datendateien verifiziert, keine Regressionen. Die folgenden Punkte sind Nachbesserungsvorschläge.
