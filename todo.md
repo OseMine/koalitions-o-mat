@@ -4,6 +4,43 @@ Code-Review vom 01.08.2026. Prioritäten: P1 = Bug / P2 = Feature / P3 = Verbess
 
 ---
 
+## Review vom 2026-08-03 (6. Lauf, gesamtes Projekt)
+
+Vollständiger Bericht: `reports/review-2026-08-03-b.md`. Keine neuen harten P1-Bugs; Koalitionswerte, Sitzsummen und i18n-Abdeckung per Node gegen die echten Datendateien re-verifiziert (siehe „Verifiziert"). Neue P2/P3-Befunde:
+
+### P2 – Fehlende Features / UX
+
+- [ ] **Wahlwechsel springt immer auf den Test-Tab** – `setActiveElection()` endet mit `switchTab('test')` (script.js:284); Wechsel über den `election-bar`-Toggle aus einem anderen Tab (z. B. Daten & Charts) landet unvermittelt bei Frage 1. Vorschlag: zuvor aktiven Tab beibehalten.
+- [ ] **Kein Feedback bei Ladefehler einer Nicht-Default-Wahl** – bei `fetch`-Fehler (script.js:352-369) bleibt die Wahl in `electionsList`, aber `electionDataCache[id]` leer; Klick auf die Karte bricht still bei `if (!data) return;` (script.js:242) ab. Vorschlag: deaktivierte Karte mit Hinweis.
+
+### P3 – Verbesserungen
+
+- [ ] **`party.notFound`-Key fehlt in einfache-sprache.json** – `openPartyPage()` (script.js:509) nutzt `t('party.notFound', …)`; verifiziert: `es.ui['party.notFound']` → `undefined` → Einfach-Sprache-Fallback auf Normalsprache. Key ergänzen.
+- [ ] **`user-match-bar` rendert `width:null%` bei `benutzerMatch === null`** – `updateKoalitionen()` (script.js:939); ungültiges CSS, mit Guard abfangen.
+- [ ] **Einfache-Sprache-Toggle setzt Partei-Vergleichsauswahl zurück** – `toggleSimpleLanguage()` → `populatePartyDropdowns()` (script.js:1853) baut `comparePartiesCheckboxes` neu auf (erste 2 Parteien); Auswahl sichern.
+- [ ] **Parteiname in `togglePartyDetail` unescaped** – `onclick="togglePartyDetail('${r.partei}')"` (script.js:1370) ohne `escapeHtmlAttr` (vgl. script.js:473); Parteiename mit `'` würde den Aufruf brechen.
+- [ ] **MV: GRÜNE exakt 5 %** – `>= sperrklausel` schließt GRÜNE (5 %) in `berechneKoalitionen()`/`berechneSitze()` ein (verifiziert); Grenzwert-Entscheidung ggf. als Datenhinweis dokumentieren.
+
+### Verifiziert (Re-Verifizierung dieses Laufes)
+
+- [x] Koalitionswerte unverändert: btw2029 50,9 %, LSA 52,0 %, Berlin 48,0 %, MV 58,7 %; Minderheits-Koalitionen mit erwartbar hohen Werten (GRÜNE+SPD 95,7 % in btw2029).
+- [x] Sitzsummen 630/87/130/71 = `meta.sitze`, Verfahren `sainteLague`/`dhondt` pro Wahl.
+- [x] i18n: alle `data-i18n`- und `t()`-Keys vorhanden – bis auf `party.notFound`.
+- [x] Keine Parteien in `fragen.json` fehlend in `werte.json`; keine Partei ohne Farbe; keine ungültigen `wert`-Werte.
+- [x] `einfache-sprache.json` deckt alle 170 Fragen (45+40+52+33) samt `beschreibung` ab.
+
+### Weiterhin offen (aus früheren Läufen, Zeilennummern aktualisiert)
+
+- [ ] **Swipe-Abbruch innerhalb einer Geste permanent** – erster vertikal-dominanter `touchmove` (script.js:1943-1950) deaktiviert die Geste bis `touchend`; Dead-Zone ~10 px oder Re-Arming.
+- [ ] **`partyFilter` mit Partei < Sperrklausel ergibt leere Liste ohne Erklärung** – `populatePartyDropdowns()` (script.js:400-409) listet < 5 %-Parteien, `updateKoalitionen()` (script.js:896-898) filtert nur auf Koalitionen.
+- [ ] **Koalitions-Share-Link ohne Antworten zeigt im Test-Tab lauter „–"** – `applyPendingShare()` (script.js:164) ruft `showTestResults()` auch bei leerem `answers`.
+- [ ] **`berechneUebereinstimmung` ohne Umfragewert-Gewichtung** (script.js:812-835).
+- [ ] **10 „Sonstiges"-Fragen, Kategorie „Kultur" fehlt** (btw2029 1, LSA 6, Berlin 3); Keyword „Rundfunk" unter „Inneres" würde btw2029 #34 bei fehlendem `thema` falsch zuordnen.
+- [ ] **Hartkodierte `aria-label`s in index.html:22-24** (Einfache Sprache/Theme/GitHub).
+- [ ] **Datenqualität „CDU/CSU" vs. „CDU"; „SSW" (0,5 %) in Berlin unplausibel.**
+
+---
+
 ## Review vom 2026-08-02 (5. Lauf, PR #18: Issue #17-Fixes im Merge-Review)
 
 Merge-Review des PR „Issue #17 behoben: Swipe fix + Review umgesetzt" (`reports/review-2026-08-02-f.md`). Ergebnis: **PR mergefähig**, alle drei P1-Fixes zu Issue #17 sowie die P2/P3-Mitfixes per Node-Simulation und gegen die echten Datendateien verifiziert, keine Regressionen. Die folgenden Punkte sind Nachbesserungsvorschläge.
