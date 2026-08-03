@@ -62,5 +62,6 @@
     "sperrklausel": 5,
     "minMatchForCoalition": 20,
     "maxCoalitionSize": 4
-  }
+  },
+  "newsProxy": "https://api.allorigins.win/raw?url="
 } 

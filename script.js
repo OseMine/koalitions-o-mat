@@ -123,7 +123,7 @@ function parseShareHash() {
         return null;
     }
     // &a= darf leer sein (Koalitions-Sicht ohne beantwortete Fragen teilen)
-    const m = h.match(/^#w=([^&]+)&a=([^&]*)(?:&i=([^&]*))?(?:&c=([^&]*))?$/);
+    const m = h.match(/^#w=([^&]+)&a=([^&]*)(?:&i=([^&]*))?(?:&c=([^&]*))?(?:&p=([^&]*))?$/);
     if (!m) return null;
     const raw = m[2];
     const answers = {};
@@ -140,7 +140,7 @@ function parseShareHash() {
         while ((mm = re.exec(raw))) answers[Number(mm[1])] = mm[2];
     }
     const important = new Set((m[3] || '').split(',').filter(Boolean).map(Number));
-    return { electionId: m[1], answers, important, coalitionState: m[4] || null };
+    return { electionId: m[1], answers, important, coalitionState: m[4] || null, party: m[5] || null };
 }
 
 function applyPendingShare() {
@@ -197,6 +197,7 @@ function showElectionSelector() {
 
 // ===== Tab Switching =====
 function switchTab(tabName) {
+    if (partyPageOpen) closePartyPage();
     window.scrollTo({ top: 0, behavior: 'smooth' });
     document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
     const btn = document.querySelector(`.tab-button[data-tab="${tabName}"]`);
@@ -228,6 +229,7 @@ function switchTab(tabName) {
 // ===== Election Selection =====
 function setActiveElection(electionId) {
     activeElectionId = electionId;
+    if (partyPageOpen) closePartyPage();
     localStorage.setItem('activeElectionId', electionId);
     koalitionenCache = null;
     koalitionenCacheKey = '';
@@ -282,7 +284,14 @@ function setActiveElection(electionId) {
     switchTab('test');
 
     if (pendingShare && pendingShare.electionId === electionId) {
-        applyPendingShare();
+        if (pendingShare.party) {
+            // Partei-Seite direkt öffnen (geteilter Link), ohne Test-Ergebnis anzuwenden
+            const party = pendingShare.party;
+            pendingShare = null;
+            openPartyPage(party);
+        } else {
+            applyPendingShare();
+        }
     }
 }
 
@@ -448,7 +457,7 @@ function initializeParteienPage() {
         const candidates = p.kandidaten && p.kandidaten.length
             ? `<div class="party-candidates"><h4>${t('partyCandidates', 'Kandidatinnen und Kandidaten')}</h4><ul>${p.kandidaten.map(k => `<li><strong>${k.name}</strong>${k.rolle ? ` – ${k.rolle}` : ''}</li>`).join('')}</ul></div>`
             : '';
-        const website = p.website
+const website = p.website
             ? `<a class="party-info-website" href="${p.website}" target="_blank" rel="noopener noreferrer">${t('partyWebsite', 'Zur Partei-Website')} ↗</a>`
             : '';
         return `
@@ -460,8 +469,302 @@ function initializeParteienPage() {
                 ${desc}
                 ${candidates}
                 ${website}
+                <div class="party-info-actions">
+                    <button type="button" class="party-detail-link" onclick="openPartyPage('${escapeHtmlAttr(p.partei)}')">${t('partyDetailOpen', 'Details, Programm & News')} →</button>
+                </div>
             </div>`;
     }).join('');
+}
+
+// ===== Party Detail Page =====
+let partyPageOpen = false;
+let currentPartyPageName = null;
+let currentPartyData = null;
+function getTop(p) {
+    if (!p) return null;
+    if (p.spitzenkandidat) {
+        const m = Array.isArray(p.kandidaten) ? p.kandidaten.find(k => k.name === p.spitzenkandidat) : null;
+        if (m) return m;
+    }
+    if (Array.isArray(p.kandidaten) && p.kandidaten.length) {
+        const top = p.kandidaten.find(k => {
+            const r = k.rolle || '';
+            return /Spitzenkandidat|Spitzenbewerbung|Kanzlerkandidat|Ministerpr\u00e4sident|Regierender B\u00fcrgermeister|Landesvorsitz/i.test(r);
+        });
+        return top || p.kandidaten[0];
+    }
+    return null;
+}
+
+function escapeHtmlAttr(s) {
+    return escapeHtml(s).replace(/"/g, '&quot;');
+}
+function escapeHtml(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
+
+function openPartyPage(partyName) {
+    if (!window.werteData) return;
+    const party = (window.werteData.umfragewerte || []).find(p => p.partei === partyName);
+    if (!party) { showNotification(t('party.notFound', 'Partei nicht gefunden.'), 'error'); return; }
+    partyPageOpen = true;
+    currentPartyPageName = party.partei;
+    currentPartyData = party;
+    const page = document.getElementById('partyPage');
+    const content = document.getElementById('partyPageContent');
+    const color = getPartyColor(party.partei);
+    const top = getTop(party);
+    const hasProgramm = window.parteienData && window.parteienData.fragen;
+
+    content.innerHTML = `
+        <header class="party-page-head">
+            <div class="party-page-head-top">
+                <button type="button" class="party-page-back" onclick="closePartyPage()">← ${t('party.back', 'Zurück zur Liste')}</button>
+                <button type="button" class="share-btn party-share-btn" onclick="sharePartyPage('${escapeHtmlAttr(party.partei)}')">${t('party.share', 'Seite teilen')}</button>
+            </div>
+            <div class="party-page-titleblock">
+                <span class="party-page-name" id="partyPageTitle" style="color:${color}">${party.partei}</span>
+                <span class="party-page-pct" style="color:${color}">${party.prozent.toFixed(1)}%</span>
+            </div>
+            ${party.beschreibung ? `<p class="party-page-desc">${party.beschreibung}</p>` : ''}
+        </header>
+
+        ${top ? `
+        <section class="party-sec">
+            <h3>${t('party.candidate', 'Spitzenkandidat:in')}</h3>
+            <div class="party-cand-card">
+                <div class="party-cand-avatar" style="background:${color}">${escapeHtml(top.name.charAt(0))}</div>
+                <div class="party-cand-meta">
+                    <strong>${escapeHtml(top.name)}</strong>
+                    ${top.rolle ? `<span class="party-cand-role">${escapeHtml(top.rolle)}</span>` : ''}
+                    ${party.website ? `<a class="party-info-website" href="${escapeHtml(party.website)}" target="_blank" rel="noopener noreferrer">${t('partyWebsite', 'Zur Partei-Website')} ↗</a>` : ''}
+                </div>
+            </div>
+        </section>`
+        : (party.website ? `<section class="party-sec"><a class="party-info-website" href="${party.website}" target="_blank" rel="noopener noreferrer">${t('partyWebsite', 'Zur Partei-Website')} ↗</a></section>` : '')}
+
+        <section class="party-sec">
+            <h3>${t('party.timeline', 'Veränderung über die Zeit')}</h3>
+            <div id="partyTimelineChart" style="height:220px;width:100%"></div>
+            <p class="party-timeline-note" id="partyTimelineNote"></p>
+        </section>
+
+        ${hasProgramm ? `
+        <section class="party-sec">
+            <h3>${t('party.programm', 'Die wichtigsten Punkte des Wahlprogramms')}</h3>
+            <div id="partyProgramm"></div>
+            <p class="party-meta-note">${t('party.programmNote', 'Die Punkte basieren auf den Positionen dieser Partei in diesem Test. „Ja" bedeutet Zustimmung zur Aussage, „Nein" Ablehnung.')}</p>
+        </section>
+        <section class="party-sec">
+            <h3>${t('party.feasibility', 'Was ist möglich – und was nicht?')}</h3>
+            <div id="partyFeasibility" class="party-feasibility"></div>
+            <p class="party-meta-note">${t('party.feasibilityNote', 'Diese Einschätzung beruht nur auf den Umfragewerten. Eine Umsetzung hängt von der Zusammensetzung des Parlaments, Koalitionen und politischen Mehrheiten ab.')}</p>
+        </section>
+        ` : ''}
+
+        <section class="party-sec">
+            <h3>${t('party.news', 'Aktuelle Nachrichten')}</h3>
+            <div id="partyNews" class="party-news">
+                <p class="party-muted">${t('party.loading', 'Nachrichten werden geladen…')}</p>
+            </div>
+        </section>
+
+        <div class="party-page-footer">
+            <button type="button" class="btn-ghost" onclick="closePartyPage()">${t('party.back', 'Zurück zur Liste')}</button>
+        </div>
+    `;
+
+    page.style.display = 'block';
+    Array.from(document.querySelectorAll('.tab-content')).forEach(c => c.style.display = 'none');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    renderPartyTimeline(party);
+    if (hasProgramm) { renderPartyProgramm(party); renderPartyFeasibility(party); }
+    loadPartyNews(party);
+}
+
+function closePartyPage() {
+    partyPageOpen = false;
+    const page = document.getElementById('partyPage');
+    const tabName = activeTabName();
+    page.style.display = 'none';
+    document.querySelectorAll('.tab-content').forEach(c => {
+        c.style.display = '';
+        c.classList.toggle('active', c.id === tabName + '-content');
+    });
+    const btn = document.querySelector(`.tab-button[data-tab="${tabName}"]`);
+    if (btn) btn.classList.add('active');
+    // Charts im Overlay entsorgen, damit keine Leaken entstehen
+    ['partyTimelineChart','partyProgrammChart'].forEach(id => {
+        if (chartInstances[id]) { chartInstances[id].dispose(); delete chartInstances[id]; }
+    });
+}
+
+function activeTabName() {
+    const active = document.querySelector('.tab-button.active');
+    return active ? active.dataset.tab : 'parteien';
+}
+
+function renderPartyTimeline(party) {
+    const noteEl = document.getElementById('partyTimelineNote');
+    const chartId = 'partyTimelineChart';
+    const chartEl = document.getElementById(chartId);
+    const verlauf = Array.isArray(party.verlauf) && party.verlauf.length ? party.verlauf : null;
+    if (!verlauf) {
+        if (chartEl) chartEl.style.display = 'none';
+        if (noteEl) noteEl.textContent = t('party.timelineEmpty', 'Noch keine historische Umfragewerte für diese Partei vorhanden. Dieser Bereich zeigt die Entwicklung der Umfragewerte über die Zeit, sobald Daten vorliegen.');
+        return;
+    }
+    const chart = initChart(chartId);
+    if (!chart) return;
+    chart.off('click');
+    chart.setOption(Object.assign(echartsTheme(), {
+        grid: { left: 46, right: 20, top: 10, bottom: 28 },
+        tooltip: { trigger: 'axis', formatter: p => `${p[0].name}: <strong>${p[0].value}%</strong>` },
+        xAxis: { type: 'category', boundaryGap: false, data: verlauf.map(v => v.label), axisLabel: { color: cssVar('--on-surface-muted'), fontSize: 10 }, axisLine: { lineStyle: { color: cssVar('--outline') } } },
+        yAxis: { type: 'value', axisLabel: { formatter: '{value}%', color: cssVar('--on-surface-muted'), fontSize: 10 }, splitLine: { lineStyle: { color: cssVar('--outline') + '40' } } },
+        series: [{
+            type: 'line', smooth: true, symbol: 'circle', symbolSize: 7, lineStyle: { width: 3, color: getPartyColor(party.partei) },
+            itemStyle: { color: getPartyColor(party.partei) }, areaStyle: { opacity: 0.08 },
+            data: verlauf.map(v => ({ value: v.prozent, name: v.label }))
+        }],
+        graphic: [{ type: 'text', right: 6, top: 4, style: { text: t('party.current', 'aktuell'), fill: cssVar('--on-surface-muted'), fontSize: 10 } }]
+    }), true);
+}
+
+function renderPartyProgramm(party) {
+    const container = document.getElementById('partyProgramm');
+    if (!container || !window.parteienData || !window.parteienData.fragen) return;
+    const topics = {};
+    window.parteienData.fragen.forEach(f => {
+        const val = getAnswerValue(f.antworten, party.partei);
+        if (val !== 'j' && val !== 'n') return;
+        const topic = determineTopic(f);
+        if (!topics[topic]) topics[topic] = { j: [], n: [] };
+        topics[topic][val === 'j' ? 'j' : 'n'].push({
+            text: escapeHtml(simpleQuestionText(f, 'frage')),
+            zitat: getAnswerSources(f.antworten, party.partei)?.zitat
+        });
+    });
+    const entries = Object.entries(topics).filter(([, t]) => (t.j.length + t.n.length) > 0);
+    if (!entries.length) {
+        container.innerHTML = `<p class="party-muted">${t('party.programmEmpty', 'Keine Positionen für diese Partei im Fragenkatalog.')}</p>`;
+        return;
+    }
+    container.innerHTML = entries.map(([topic, t]) => {
+        const topicColor = (config.topics[topic] && config.topics[topic].color) || '#999';
+        const ja = t.j.slice(0, 3);
+        const nein = t.n.slice(0, 3);
+        return `
+            <div class="party-prog-topic">
+                <div class="party-prog-topic-head" style="--tcolor:${topicColor}">${escapeHtml(topic)}</div>
+                ${ja.length ? `<div class="party-prog-list">
+                    ${ja.map(q => `<div class="party-prog-item pr-ja"><span class="party-prog-tag">${t('legendYes','Ja')}</span><div>${q.text}${q.zitat ? `<div class="party-prog-zitat">„${escapeHtml(q.zitat)}”</div>` : ''}</div></div>`).join('')}
+                </div>` : ''}
+                ${nein.length ? `<div class="party-prog-list">
+                    ${nein.map(q => `<div class="party-prog-item pr-ne"><span class="party-prog-tag">${t('legendNo','Nein')}</span><div>${q.text}${q.zitat ? `<div class="party-prog-zitat">„${escapeHtml(q.zitat)}”</div>` : ''}</div></div>`).join('')}
+                </div>` : ''}
+            </div>`;
+    }).join('');
+}
+
+function renderPartyFeasibility(party) {
+    const container = document.getElementById('partyFeasibility');
+    if (!container) return;
+    const pct = party.prozent || 0;
+    const majority = pct > 50;
+    const above = pct >= (config.thresholds.sperrklausel || 5);
+    const html = `
+        <div class="party-feas-card">
+            <span class="party-feas-badge ${majority ? 'ok' : ''}">${majority ? t('party.feasPossible','Alleinstarke Mehrheit möglich') : t('party.feasCoalition','Mehrheit nur mit Partnern')}</span>
+            <p>${majority
+                ? t('party.feasMajorityText', 'Nach den aktuellen Umfragewerten ({pct}%) könnte diese Partei rechnerisch eine Mehrheit erreichen. Eine Umsetzung hängt dennoch von der Zusammensetzung des Parlaments und möglichen Koalitionen ab.').replace('{pct}', pct.toFixed(1))
+                : t('party.feasText', 'Nach den aktuellen Umfragewerten hat diese Partei {pct}%. Für eine Mehrheit im Parlament bräuchte sie Koalitionspartner. Ihre wichtigsten Vorhaben können also nur gemeinsam mit anderen umgesetzt werden.').replace('{pct}', pct.toFixed(1))}
+            </p>
+            ${!above ? `<p class="party-feas-note">${t('party.feasUnder', 'Diese Partei liegt derzeit unter der Sperrklausel von {klausel}% und würde bei einer Wahl ohne Sonderregeln keine Sitze erhalten.').replace('{klausel}', config.thresholds.sperrklausel)}</p>` : ''}
+        </div>`;
+    container.innerHTML = html;
+}
+
+function sharePartyPage(party) {
+    if (!party || !activeElectionId) return;
+    const url = location.origin + location.pathname + '#w=' + encodeURIComponent(activeElectionId) + '&a=&p=' + encodeURIComponent(party);
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(
+            () => showNotification(t('shareCopied', 'Link in die Zwischenablage kopiert!'), 'success'),
+            () => showNotification(url, 'info')
+        );
+    } else {
+        showNotification(url, 'info');
+    }
+}
+
+function loadPartyNews(party) {
+    const container = document.getElementById('partyNews');
+    if (!container) return;
+    const feeds = Array.isArray(party.rss) ? party.rss : [];
+    if (!feeds.length) {
+        container.innerHTML = `<p class="party-muted">${t('party.newsEmpty', 'Für diese Seite sind noch keine Nachrichten-Quellen eingerichtet.')}</p>`;
+        return;
+    }
+    Promise.all(feeds.map(url => fetchNewsFeedProxy(url)
+        .then(res => parseRss(res))
+        .catch(() => null)
+    )).then(results => {
+        const items = results.filter(Boolean);
+        // dedup
+        const seen = new Set(); const flat = [];
+        items.flat().forEach(it => { if (!seen.has(it.link)) { seen.add(it.link); flat.push(it); } });
+        flat.sort((a, b) => Date.parse(b.date || '') - Date.parse(a.date || ''));
+        if (!flat.length) {
+            container.innerHTML = `<p class="party-muted">${t('party.newsError', 'Nachrichten konnten nicht geladen werden. Bitte später erneut versuchen.')}</p>`;
+            return;
+        }
+        container.innerHTML = `<ul class="party-news-list">${flat.slice(0, 8).map(it => `
+            <li class="party-news-item">
+                <a href="${escapeHtmlAttr(it.link)}" target="_blank" rel="noopener noreferrer">${escapeHtml(it.title)}</a>
+                ${it.date ? `<span class="party-news-date">${formatNewsDate(it.date)}</span>` : ''}
+            </li>`).join('')}</ul>
+            <p class="party-muted party-news-source">${t('party.newsSource', 'Nachrichtenfeed automatisch geladen (RSS). Auswahl & Zusammensetzung können nicht kontrolliert werden.')}</p>`;
+    }).catch(() => {
+        container.innerHTML = `<p class="party-muted">${t('party.newsError', 'Nachrichten konnten nicht geladen werden. Bitte später erneut versuchen.')}</p>`;
+    });
+}
+
+function fetchNewsFeedProxy(url) {
+    const proxy = (config && config.newsProxy) || 'https://api.allorigins.win/raw?url=';
+    return fetch(proxy + encodeURIComponent(url)).then(r => { if (!r.ok) throw new Error('feed'); return r.text(); });
+}
+
+function parseRss(text) {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(text, 'text/xml');
+    if (!doc || doc.getElementsByTagName('parsererror').length) return [];
+    const items = doc.querySelectorAll('item, entry');
+    return Array.from(items).slice(0, 20).map(it => ({
+        title: (it.querySelector('title') || {}).textContent || '',
+        link: (it.querySelector('link') || {}).textContent || (it.querySelector('link[href]') || {}).getAttribute('href') || '',
+        date: (it.querySelector('pubDate') || it.querySelector('published') || it.querySelector('updated') || {}).textContent || ''
+    })).filter(it => it.title && it.link);
+}
+
+function formatNewsDate(d) {
+    const ts = Date.parse(d);
+    if (isNaN(ts)) return '';
+    try { return new Date(ts).toLocaleDateString(); } catch (_) { return ''; }
+}
+
+// Ensure party detail reopens on simple-lang toggle or resize
+function refreshPartyPageIfOpen() {
+    if (partyPageOpen && currentPartyPageName) {
+        openPartyPage(currentPartyPageName);
+    }
+}
+function redrawPartyTimelineIfOpen() {
+    if (partyPageOpen && currentPartyData) {
+        const chartEl = document.getElementById('partyTimelineChart');
+        if (chartEl && chartEl.style.display !== 'none') renderPartyTimeline(currentPartyData);
+    }
 }
 
 // ===== Coalition Calculation =====
@@ -1505,6 +1808,8 @@ function applySavedTheme() {
 function redrawCharts() {
     if (document.getElementById('daten-content').classList.contains('active'))
         initializeDaten();
+    // Partei-Seiten-Chart beim Theme-Wechsel ebenfalls neu zeichnen
+    redrawPartyTimelineIfOpen();
     // Ergebnis-Pie-Chart beim Theme-Wechsel ebenfalls neu zeichnen
     if (document.getElementById('test-content').classList.contains('active')
         && document.getElementById('testResults').innerHTML && lastTestResults) {
@@ -1570,6 +1875,7 @@ function toggleSimpleLanguage() {
         }
         const comparisonEl = document.getElementById('comparisonTable');
         if (comparisonEl && comparisonEl.innerHTML) updatePartyComparison();
+        refreshPartyPageIfOpen();
     }
 }
 
@@ -1687,6 +1993,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Keyboard shortcuts for the test (1=zu, 2=neutral, 3=nicht zu, arrows=navigate)
     document.addEventListener('keydown', e => {
+        if (partyPageOpen) return;
         if (!document.getElementById('test-content').classList.contains('active')) return;
         if (document.getElementById('testResults').innerHTML) return;
         const qc = document.getElementById('questionContainer');
