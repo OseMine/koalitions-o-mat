@@ -6,13 +6,13 @@ Code-Review vom 01.08.2026. Prioritäten: P1 = Bug / P2 = Feature / P3 = Verbess
 
 ## Mobile-Fixes vom 2026-08-03 (Issue #21: Buttons registrieren nicht + horizontales Scrollen + Partei-Seiten leer + Teilen-Fehler)
 
-Umsetzung und Verifikation per Headless-Chromium (CDP, Viewports 320/360/390 px). Vollständiger Bericht: `reports/review-2026-08-03-mobile.md`.
+Umsetzung und Verifikation per Headless-Chromium (CDP, Viewports 320/360/375 px). Vollständiger Bericht: `reports/review-2026-08-03-mobile.md`.
 
 ### P1 – Bugs
 
 - [x] **Partei-Seite ohne Inhalte** – `renderPartyProgramm()` (script.js:654): `entries.map(([topic, t]) => …)` überschattet die i18n-Funktion `t()` → `TypeError: t is not a function` → „Wahlprogramm" leer, `loadPartyNews()` nie erreicht (News hängt). Fix: Variable in `tdata` umbenannt. Verifiziert: AfD 29 Programm-Punkte/7 Themen, CDU/CSU (LSA) 20 Punkte.
 - [x] **Teilen-Link zeigt dem Empfänger einen Fehler** – derselbe Crash in `renderPartyProgramm()` propagierte bis zum globalen Bootstrap-Catch → „⚠️ Fehler beim Laden." statt der geteilten Partei-Seite. Fix: siehe oben; Empfänger-Navigation `#w=…&p=AfD` öffnet die Partei-Seite ohne Fehler.
-- [x] **Antwort-Buttons „registrieren nicht"** – nach dem Auto-Weiter lagen die Buttons der nächsten Frage unterhalb des Viewports (CDP: Q1-Button y=787 > 740). Fix: neue `scrollQuestionButtonsIntoView()` (script.js, `block:'nearest'`) in `showNextQuestion()`/`showPreviousQuestion()`/`initializeTest()`/`backToTest()`; `fadeIn`-Animation auf reine Opacity reduziert (styles.css), damit ein sich bewegendes Element keine Taps verschluckt.
+- [x] **Antwort-Buttons „registrieren nicht"** – nach dem Auto-Weiter lagen die Buttons der nächsten Frage unterhalb des Viewports (CDP: Q2-Button y=787 > 740). Fix: neue `scrollQuestionButtonsIntoView()` (script.js, `block:'nearest'`) in `showNextQuestion()`/`showPreviousQuestion()`/`initializeTest()`/`backToTest()`; `fadeIn`-Animation auf reine Opacity reduziert (styles.css), damit ein sich bewegendes Element keine Taps verschluckt.
 
 ### P2 – Fehlende Features
 
@@ -22,7 +22,44 @@ Umsetzung und Verifikation per Headless-Chromium (CDP, Viewports 320/360/390 px)
 
 - [x] Kein horizontales Seiten-Overflow auf allen 4 Tabs bei 320/360 px (`scrollWidth === innerWidth`).
 - [x] Tab-Buttons ohne abgeschnittene Labels; Antwort-Buttons der Folgefrage im Viewport (inView:true).
-- [x] Partei-Seiten öffnen ohne Exception (inkl. Kandidat „Reiner Haseloff" LSA); Teilen-Links (Partei & Ergebnis `&a=0j1n2m`) werden beim Empfänger korrekt wiederhergestellt, keine Fehler-Notification.
+- [x] Partei-Seiten öffnen ohne Exception (inkl. Kandidat „Reiner Haseloff" LSA); Teilen-Links (Partei & Ergebnis) werden beim Empfänger korrekt wiederhergestellt, keine Fehler-Notification.
+
+---
+
+## Review vom 2026-08-03 (6. Lauf, gesamtes Projekt)
+
+Vollständiger Bericht: `reports/review-2026-08-03-b.md`. Keine neuen harten P1-Bugs; Koalitionswerte, Sitzsummen und i18n-Abdeckung per Node gegen die echten Datendateien re-verifiziert (siehe „Verifiziert"). Neue P2/P3-Befunde:
+
+### P2 – Fehlende Features / UX
+
+- [ ] **Wahlwechsel springt immer auf den Test-Tab** – `setActiveElection()` endet mit `switchTab('test')` (script.js:283); Wechsel über den `election-bar`-Toggle aus einem anderen Tab (z. B. Daten-/Charts) landet überraschend bei Frage 1. Vorschlag: zuvor aktiver Tab beibehalten.
+- [ ] **Kein Feedback bei Ladefehler einer Nicht-Default-Wahl** – bei `fetch`-Fehler (script.js:352-356) bleibt die Wahl in `electionsList`, aber `electionDataCache[id]` leer; Klick auf die Karte bricht still bei `if (!data) return;` ab. Vorschlag: deaktivierte Karte mit Laden-Fehler-Hinweis.
+
+### P3 – Verbesserungen
+
+- [ ] **`party.notFound`-Key fehlt in einfache-sprache.json** – `openPartyPage()` (script.js:509) nutzt `t('party.notFound', …)`; verifiziert: `es.ui['party.notFound']` → `undefined` → Einfach-Sprache-Fallback. Key ergänzen.
+- [ ] **`user-match-bar` rendert ungültiges CSS bei `null`** – `updateKoalitionen()` (script.js:939) schreibt `width:null%` ohne Guard; leerwert abfangen.
+- [ ] **Einfache-Sprache-Toggle setzt Partei-Vergleichsauswahl zurück** – `toggleSimpleLanguage()` → `populatePartyDropdowns()` (script.js:1853) baut `comparePartiesCheckboxes` neu auf (erste 2 Parteien); Auswahl stehen lassen.
+- [ ] **Parteiname in `togglePartyDetail` unescaped** – `onclick="togglePartyDetail('${r.partei}')"` (script.js:1370) ohne `escapeHtmlAttr` (vgl. script.js:473); Parteiename mit `'` würde den Aufruf brechen.
+- [ ] **MV: GRÜNE exakt 5 %** – `>= 5`-Prüfung schließt GRÜNE (5 %) in `berechneKoalitionen()`/`berechneSitze()`. Grenzwert-Entscheidung als Datenhinweis dokumentieren.
+
+### Verifiziert (Re-Verifizierung dieses Laufes)
+
+- [x] Koalitionswerte unverändert: btw2029 50,9 %, LSA 52,0 %, Berlin 48,0 %, MV 58,7 %; Minderheits-Koalitionen mit erwartbar hohen Werten.
+- [x] Sitzsummen 630/87/130/71 = `meta.sitze`, Verfahren `sainteLague`/`dhondt` pro Wahl.
+- [x] i18n: alle `data-i18n`- und `t()`-Keys vorhanden – bis auf `party.notFound`.
+- [x] Keine Parteien in `fragen.json` fehlend in `werte.json`; keine Partei ohne Farbe; keine ungültigen `wert`-Werte.
+- [x] `einfache-sprache.json` deckt alle 170 Fragen (45+40+52+33) samt `beschreibung` ab.
+
+### Weiterhin offen (aus früheren Läufen, Zeilennummern aktualisiert)
+
+- [ ] **Swipe-Abbruch innerhalb einer Geste permanent** – erster vertikal-dominanter `touchmove` (script.js:1793-1950) deaktiviert die Geste bis `touchend`; Dead-Zone ~10 px oder Re-Arming.
+- [ ] **`partyFilter` mit Partei < Sperrklausel ergibt leere Liste ohne Erklärung** – `populatePartyDropdowns()` (script.js:400-409) listet < 5 %-Parteien, `updateKoalitionen()` (script.js:896-898) filtert nur auf Koalitionen.
+- [ ] **Koalitions-Share-Link ohne Antworten zeigt im Test-Tab lauter „–"** – `applyPendingShare()` (script.js:164) ruft `showTestResults()` auch bei leerem `answers`.
+- [ ] **`berechneUebereinstimmung` ohne Umfragewert-Gewichtung** (script.js:812-835).
+- [ ] **10 „Sonstiges"-Fragen, Kategorie „Kultur" fehlt** (btw2029 1, LSA 6, Berlin 3); Keyword „Rundfunk" unter „Inneres" würde btw2029 #34 bei fehlendem `thema` falsch zuordnen.
+- [ ] **Harte `aria-label`s in index.html:22-24** (Einfache Sprache/Theme/GitHub).
+- [ ] **Datenqualität: „CDU/CSU" vs. „CDU"; „SSW" (0,5 %) in Berlin unplausibel.**
 
 ---
 
