@@ -4,6 +4,34 @@ Code-Review vom 01.08.2026. Prioritäten: P1 = Bug / P2 = Feature / P3 = Verbess
 
 ---
 
+## Review vom 2026-08-03 (Partei-Seite: Inhalte, Historie-Daten, Nachrichten)
+
+Fokus der Nutzer-Meldung: „Auf der Partei-Seite sind Inhalte nur über den geteilten Link sichtbar; die historischen Daten funktionieren nicht; Aktuelle Nachrichten laden nicht (und sollten neutral und unabhängig von jeder Partei sein)." Verifiziert per Node gegen die echten Datendateien (`elections/*/werte.json`) und die Partei-Seiten-Funktionen in `script.js` (DOM-Shim-Harness). Vollständiger Bericht: `reports/review-2026-08-03-party-site.md`.
+
+### P1 – Neutralität
+
+- [ ] **News-Feed lädt Partei-eigene Feeds und widerspricht der Neutralitäts-Zusage** – `loadPartyNews()` (script.js:705) + `rss` in `elections/btw2029/werte.json`: afd.de/feed, cdu.de/feed, gruene.de/rss-feed, spd.de/rss/feed/aktuell, fdp.de/rss.xml, die-linke.de/feed, bsw-partei.de/feed sind Eigenkanäle (Eigendarstellung), keine neutralen Nachrichten. Widerspricht `transparencyText` (index.html:51), Footer und README:10 („neutral"). Empfehlung: neutrale, unabhängige Quellen (z. B. Tagesschau-Themenseite je Partei) nutzen oder Sektion als „Eigendarstellung der Partei" kennzeichnen bzw. entfernen; `party.newsSource`-Text anpassen.
+
+### P1 – Bugs
+
+- [ ] **Kein Code-Unterschied zwischen direktem Öffnen und Teilen-Link reproduzierbar** – `openPartyPage()` (script.js:506) ist in beiden Pfaden identisch (Harness: Programm rendert in allen 4 Wahlen). Die Wahrnehmung „Inhalte nur über Teilen-Link" stammt vermutlich aus den Tap-/Daten-Lücken unten.
+- [ ] **`party.notFound` fehlt weiterhin in `einfache-sprache.json`** – re-verifiziert: `es.ui['party.notFound']` → `undefined` (Fallback greift); offen seit 2026-08-03-b.
+
+### P2 – Fehlende Features
+
+- [ ] **`verlauf` (Historie) fehlt in 3 von 4 Wahlen** – `ltw-sachsen-anhalt-2026`, `berlin-2026`, `mv-2026`/`werte.json`: keine Partei mit `verlauf`; nur btw2029 (7 größte Parteien) hat Daten. `renderPartyTimeline()` (script.js:608) zeigt nur den Empty-Text → „Historie funktioniert nicht" ist eine Datenlücke.
+- [ ] **`rss` fehlt in 3 von 4 Wahlen** – News-Sektion kippt in `party.newsEmpty` („noch keine Nachrichten-Quellen eingerichtet"); in btw2029 fehlen `verlauf`/`rss` zusätzlich für FREIE WÄHLER, Volt, Tierschutz, PARTEI, SSW, BÜNDNIS DEUTSCHLAND.
+- [ ] **News-Fetch ohne Timeout/Retry** – `fetchNewsFeedProxy()` (script.js:737) ohne `AbortController`; Proxy `api.allorigins.win/raw` fragil (getestet ~5,5 s); bei Hänger bleibt „Nachrichten werden geladen…" (`party.loading`) dauerhaft stehen.
+- [ ] **Partei-eigene Feeds ungekennzeichnet** – kein Hinweis, dass die Nachrichten aus Partei-Kanälen stammen.
+
+### P3 – Verbesserungen
+
+- [ ] **„Details, Programm & News"-Button ist kleines Tap-Ziel** – `.party-detail-link` (styles.css:749) ohne `min-height`/44-px-Tap-Fläche; plausible Ursache für „Inhalte nur über Teilen-Link erreichbar" (Issue #21 fixte nur Antwort-Buttons).
+- [ ] **Leere Historien-Sektion wirkt wie ein Bug** – bei fehlendem `verlauf` zusätzlich zum Empty-Text einen deaktivierten Platzhalter statt komplett leerer Sektion anbieten.
+- [ ] **README:10 präzisieren** – „neutral" vs. Partei-eigene RSS-Feeds ehrlich dokumentieren (auch `party.newsSource`).
+
+---
+
 ## Mobile-Fixes vom 2026-08-03 (Issue #21: Buttons registrieren nicht + horizontales Scrollen + Partei-Seiten leer + Teilen-Fehler)
 
 Umsetzung und Verifikation per Headless-Chromium (CDP, Viewports 320/360/375 px). Vollständiger Bericht: `reports/review-2026-08-03-mobile.md`.
