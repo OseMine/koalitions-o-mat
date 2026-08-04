@@ -4,6 +4,34 @@ Code-Review vom 01.08.2026. Prioritäten: P1 = Bug / P2 = Feature / P3 = Verbess
 
 ---
 
+## Review vom 2026-08-04 (gesamtes Projekt, Node-Simulation + DOM-Harness)
+
+Vollständiger Bericht: `reports/review-2026-08-04.md`. Koalitions-/Sitzwerte und i18n-Abdeckung per Node gegen die echten Datendateien re-verifiziert (siehe „Verifiziert").
+
+### P1 – Bugs
+
+- [ ] **„Fortsetzen" zeigt nach Reload Frage 1 statt der gespeicherten Position** – `initializeTest()` (script.js:1045) setzt die `active`-Klasse immer auf Frage 0 (`i === 0`), obwohl `currentQuestion` wiederhergestellt wird (script.js:1003–1005). Per DOM-Harness verifiziert: gespeichertes `currentQuestion=12` → sichtbar `data-q=0`, Nav-Status 12 → „Weiter" springt auf Frage 14 statt 13. Die frühere `[x]`-Markierung betraf nur die Variable, nicht die Anzeige. Fix analog `backToTest()` (script.js:1436–1438).
+
+### P2 – Fehlende Features
+
+- [ ] **Partei-Vergleich: Quellen & Begründungen nur per Hover** – `updatePartyComparison()` (script.js:1752–1763) versteckt `quelle`/`begruendung` im `title`-Tooltip; auf Mobilgeräten unerreichbar, obwohl README:13 „mit Quellen und Begründungen" zusagt.
+- [ ] **Kein Prompt/Asset für fehlende `werte.json`-Zusatzdaten** – README:51 verlinkt nur `prompt-gemini-fragen.md`; es fehlt ein `prompt-gemini-daten.md` für `verlauf`, `rss`, `kandidaten`, `spitzenkandidat` (Datenlücke in 3 von 4 Wahlen). Build-on für Issue „Another Md file for Gemini".
+
+### P3 – Verbesserungen
+
+- [ ] **`prompt-gemini-fragen.md` ohne Pflichtfeld `thema`** – neue Gemini-Fragen ohne `thema` treffen den Keyword-Fallback von `determineTopic()` (script.js:1713) daneben (z. B. btw2029 #34 „Rundfunk"→„Inneres", LSA #33 „Verwaltungsdigitalisierung"→„Außenpolitik"). `thema` als Pflichtfeld im Prompt ergänzen.
+- [ ] **Inkonsistentes HTML-Escaping** – unescaped: `p.beschreibung` (script.js:455, 529), `p.website`-href (:461), `s.zitat`/`s.begruendung`/`s.quelle` (:1035–1037), `title`-Attribut Vergleich (:1759); Rest nutzt `escapeHtml`/`escapeHtmlAttr`.
+- [ ] **`renderPartyProgramm()` kürzt still auf 3 Punkte pro Thema/Richtung** (script.js:659–660 `slice(0,3)`) ohne „weitere X Punkte"-Hinweis.
+- [ ] **Kein UI-Hinweis auf Tastatursteuerung (1/2/3/Pfeile)** – README:7 dokumentiert sie, der Test-Tab zeigt sie nicht an.
+
+### Verifiziert
+
+- [x] Koalitionswerte unverändert: btw2029 max 50,9 %, LSA 52,0 %, Berlin 48,0 %, MV 58,7 %; Sitzsummen 630/87/130/71, Verfahren `sainteLague`/`dhondt`.
+- [x] i18n vollständig bis auf `party.notFound`; einfache Sprache deckt 170 Fragen.
+- [x] Keine fehlenden Parteien/Farben, keine ungültigen `wert`-Werte, keine doppelten `nr`, alle `thema`-Werte gültig.
+
+---
+
 ## Review vom 2026-08-03 (Partei-Seite: Inhalte, Historie-Daten, Nachrichten)
 
 Fokus der Nutzer-Meldung: „Auf der Partei-Seite sind Inhalte nur über den geteilten Link sichtbar; die historischen Daten funktionieren nicht; Aktuelle Nachrichten laden nicht (und sollten neutral und unabhängig von jeder Partei sein)." Verifiziert per Node gegen die echten Datendateien (`elections/*/werte.json`) und die Partei-Seiten-Funktionen in `script.js` (DOM-Shim-Harness). Vollständiger Bericht: `reports/review-2026-08-03-party-site.md`.
