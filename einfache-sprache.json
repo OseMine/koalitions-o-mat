@@ -835,12 +835,23 @@
     }
   },
   "parteien": {
-    "AfD": "Die AfD möchte weniger Zuwanderung nach Deutschland. Sie möchte die heimische Wirtschaft und traditionelle Energiequellen fördern. Der Verfassungsschutz beobachtet die Partei in Sachsen-Anhalt.",
-    "CDU/CSU": "Die CDU ist eine konservative Partei. Sie möchte Firmen unterstützen, für mehr Sicherheit sorgen und Straßen sowie digitale Netze auf dem Land ausbauen.",
-    "LINKE": "Die Linke fordert mehr soziale Gerechtigkeit. Sie möchte bezahlbare Wohnungen, höhere Löhne sowie mehr Geld für Schulen und Krankenhäuser.",
-    "SPD": "Die SPD setzt sich für Arbeitnehmerinnen und Arbeitnehmer ein. Sie möchte faire Löhne, gute Schulen und Klimaschutz, der für alle Menschen bezahlbar bleibt.",
-    "GRÜNE": "Die Grünen möchten die Umwelt und das Klima schützen. Sie fordern mehr Busse und Bahnen, erneuerbare Energien und eine umweltfreundliche Landwirtschaft.",
-    "BSW": "Das Bündnis Sahra Wagenknecht fordert höhere Löhne und mehr Geld für die Pflege. Gleichzeitig möchte die Partei die Zuwanderung begrenzen und setzt auf Diplomatie.",
-    "FDP": "Die FDP steht für persönliche Freiheit und die Wirtschaft. Sie möchte Regeln für Unternehmen vereinfachen und das Internet sowie Behörden schneller digitalisieren."
+    "ltw-sachsen-anhalt-2026": {
+      "AfD": "Die AfD möchte weniger Zuwanderung nach Deutschland. Sie möchte die heimische Wirtschaft und traditionelle Energiequellen fördern. Der Verfassungsschutz beobachtet die Partei in Sachsen-Anhalt.",
+      "CDU/CSU": "Die CDU ist eine konservative Partei. Sie möchte Firmen unterstützen, für mehr Sicherheit sorgen und Straßen sowie digitale Netze auf dem Land ausbauen.",
+      "LINKE": "Die Linke fordert mehr soziale Gerechtigkeit. Sie möchte bezahlbare Wohnungen, höhere Löhne sowie mehr Geld für Schulen und Krankenhäuser.",
+      "SPD": "Die SPD setzt sich für Arbeitnehmerinnen und Arbeitnehmer ein. Sie möchte faire Löhne, gute Schulen und Klimaschutz, der für alle Menschen bezahlbar bleibt.",
+      "GRÜNE": "Die Grünen möchten die Umwelt und das Klima schützen. Sie fordern mehr Busse und Bahnen, erneuerbare Energien und eine umweltfreundliche Landwirtschaft.",
+      "BSW": "Das Bündnis Sahra Wagenknecht fordert höhere Löhne und mehr Geld für die Pflege. Gleichzeitig möchte die Partei die Zuwanderung begrenzen und setzt auf Diplomatie.",
+      "FDP": "Die FDP steht für persönliche Freiheit und die Wirtschaft. Sie möchte Regeln für Unternehmen vereinfachen und das Internet sowie Behörden schneller digitalisieren."
+    },
+    "berlin-2026": {
+      "LINKE": "Die Linke möchte günstige Wohnungen und Stopps für Mieterhöhungen in Berlin. Sie möchte Busse und Bahnen ausbauen und arme Menschen unterstützen.",
+      "CDU/CSU": "Die CDU möchte mehr Sicherheit und eine moderne Verwaltung in Berlin. Sie setzt sich für den Bau neuer Wohnungen und eine starke Wirtschaft ein.",
+      "GRÜNE": "Die Grünen möchten die Umwelt und das Klima schützen. Sie setzen sich für Busse, Bahnen, Radwege und gute Schulen ein.",
+      "AfD": "Die AfD möchte die Zuwanderung begrenzen und mehr Polizei einsetzen. Sie geht kritisch mit vielen Umwelt-Regeln um.",
+      "SPD": "Die SPD möchte kostenlose Bildung von der Kita bis zur Uni. Sie setzt sich für bezahlbare Wohnungen und gute Arbeit ein.",
+      "BSW": "Das Bündnis Sahra Wagenknecht möchte kleinere Preise für Strom und Heizung. Es fordert mehr Hilfe für Menschen mit wenig Geld.",
+      "FDP": "Die FDP möchte weniger Bürokratie und mehr Computer-Nutzung in den Ämtern. Sie möchte die Wirtschaft und private Bauherren unterstützen."
+    }
   }
 }

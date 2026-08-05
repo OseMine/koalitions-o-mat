@@ -16,7 +16,8 @@ let lastTestResults = null;
 function isSimpleLang() { return localStorage.getItem('simpleLang') === '1'; }
 function simplePartyText(partei) {
     if (!isSimpleLang() || !simpleLangData || !simpleLangData.parteien) return '';
-    return simpleLangData.parteien[partei] || '';
+    const byElection = simpleLangData.parteien[activeElectionId];
+    return (byElection && byElection[partei]) || '';
 }
 function t(key, fallback) {
     if (!isSimpleLang() || !simpleLangData || !simpleLangData.ui) return fallback !== undefined ? fallback : key;

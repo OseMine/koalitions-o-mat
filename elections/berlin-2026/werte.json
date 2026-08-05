@@ -1,100 +1,184 @@
 {
+  "meta": {
+    "name": "Abgeordnetenhauswahl Berlin 2026",
+    "sperrklausel": 5,
+    "sitze": 130,
+    "verfahren": "saintelague"
+  },
   "umfragewerte": [
     {
-      "partei": "AfD",
-      "prozent": 19,
-      "beschreibung": "Die AfD Berlin fordert eine strikte Sicherheits- und Migrationspolitik, mehr Videoüberwachung und eine Abkehr von ideologischen Stadtprojekten.",
-      "website": "https://www.afd.de",
+      "partei": "LINKE",
+      "prozent": 22,
+      "beschreibung": "Die Linke Berlin setzt ihre politischen Schwerpunkte auf bezahlbaren Wohnraum, den Mietenstopp und den Ausbau des öffentlichen Nahverkehrs. Die Partei fordert die Rekommunalisierung wesentlicher Versorgungsstrukturen sowie gezielte Maßnahmen zur Bekämpfung von Armut und sozialer Ungleichheit in der Hauptstadt.",
+      "website": "https://www.die-linke-berlin.de",
       "kandidaten": [
         {
-          "name": "Kristin Brinker",
-          "rolle": "Landesvorsitzende"
+          "name": "Elif Eralp",
+          "rolle": "Spitzenkandidatin und stellvertretende Landesvorsitzende"
+        },
+        {
+          "name": "Maximilian Schirmer",
+          "rolle": "Landesvorsitzender"
         }
+      ],
+      "spitzenkandidat": "Elif Eralp",
+      "verlauf": [
+        { "label": "Feb 2023", "prozent": 12 },
+        { "label": "Okt 2024", "prozent": 14 },
+        { "label": "Mai 2025", "prozent": 18 },
+        { "label": "Jul 2026", "prozent": 22 }
+      ],
+      "rss": [
+        "https://www.tagesschau.de/inland/regional/berlin/index~rss2.xml"
       ]
     },
     {
       "partei": "CDU/CSU",
-      "prozent": 18,
-      "beschreibung": "Die CDU Berlin stellt den Regierenden Bürgermeister. Sie setzt auf Innere Sicherheit, bezahlbares Wohnen, Wirtschaft und eine effiziente Verwaltung.",
-      "website": "https://www.cdu.de",
+      "prozent": 20,
+      "beschreibung": "Die CDU Berlin vertritt christdemokratische und konservativ-liberale Positionen. Zu ihren Kernfeldern gehören die Aufrechterhaltung der inneren Sicherheit, die Modernisierung der öffentlichen Verwaltung sowie eine wirtschaftsorientierte Infrastruktur- und Baupolitik zur Förderung von neuem Wohnraum.",
+      "website": "https://www.cdu-berlin.de",
       "kandidaten": [
         {
-          "name": "Kai Wegner",
-          "rolle": "Regierender Bürgermeister"
+          "name": "Stefan Evers",
+          "rolle": "Spitzenkandidat und kommissarischer Landesvorsitzender"
+        },
+        {
+          "name": "Lukas Krieger",
+          "rolle": "Kommissarischer Generalsekretär"
         }
+      ],
+      "spitzenkandidat": "Stefan Evers",
+      "verlauf": [
+        { "label": "Feb 2023", "prozent": 28 },
+        { "label": "Okt 2024", "prozent": 25 },
+        { "label": "Mai 2025", "prozent": 22 },
+        { "label": "Jul 2026", "prozent": 20 }
+      ],
+      "rss": [
+        "https://www.tagesschau.de/inland/regional/berlin/index~rss2.xml"
       ]
     },
     {
-      "partei": "LINKE",
-      "prozent": 18,
-      "beschreibung": "DIE LINKE Berlin fordert die Vergesellschaftung großer Wohnungskonzerne, bezahlbare Mieten und eine soziale Stadtpolitik.",
-      "website": "https://www.die-linke.de"
+      "partei": "GRÜNE",
+      "prozent": 17,
+      "beschreibung": "Bündnis 90/Die Grünen Berlin fokussieren sich auf konsequenten Klimaschutz, den Ausbau der erneuerbaren Energien und die Umsetzung der Verkehrswende. Darüber hinaus setzen sie sich für chancengerechte Bildung, soziale Teilhabe und gemeinwohlorientierten Wohnungsbau ein.",
+      "website": "https://gruene-berlin.de",
+      "kandidaten": [
+        {
+          "name": "Werner Graf",
+          "rolle": "Spitzenkandidat und Fraktionsvorsitzender"
+        },
+        {
+          "name": "Bettina Jarasch",
+          "rolle": "Co-Spitzenkandidatin"
+        }
+      ],
+      "spitzenkandidat": "Werner Graf",
+      "verlauf": [
+        { "label": "Feb 2023", "prozent": 18 },
+        { "label": "Okt 2024", "prozent": 19 },
+        { "label": "Mai 2025", "prozent": 18 },
+        { "label": "Jul 2026", "prozent": 17 }
+      ],
+      "rss": [
+        "https://www.tagesschau.de/inland/regional/berlin/index~rss2.xml"
+      ]
     },
     {
-      "partei": "GRÜNE",
+      "partei": "AfD",
       "prozent": 16,
-      "beschreibung": "Die Grünen Berlin treiben eine verkehrswende- und klimafreundliche Stadtpolitik voran: autofreie Innenstadt, mehr Radwege und den Erhalt des Tempelhofer Feldes.",
-      "website": "https://www.gruene.de"
+      "beschreibung": "Die AfD Berlin vertritt rechtspopulistische und konservative Grundsätze mit Schwerpunkten in der Migrations- und Sicherheitspolitik. Sie fordert verstärkte Grenzkontrollen, eine Neuausrichtung der Kriminalitätsbekämpfung sowie eine kritische Überprüfung bestehender Umwelt- und Energieauflagen.",
+      "website": "https://afd-berlin.de",
+      "kandidaten": [
+        {
+          "name": "Kristin Brinker",
+          "rolle": "Spitzenkandidatin und Landesvorsitzende"
+        }
+      ],
+      "spitzenkandidat": "Kristin Brinker",
+      "verlauf": [
+        { "label": "Feb 2023", "prozent": 9 },
+        { "label": "Okt 2024", "prozent": 13 },
+        { "label": "Mai 2025", "prozent": 15 },
+        { "label": "Jul 2026", "prozent": 16 }
+      ],
+      "rss": [
+        "https://www.tagesschau.de/inland/regional/berlin/index~rss2.xml"
+      ]
     },
     {
       "partei": "SPD",
-      "prozent": 13,
-      "beschreibung": "Die SPD Berlin verbindet soziale Sicherheit, bezahlbares Wohnen und wirtschaftliche Entwicklung mit einer pragmatischen Stadtpolitik.",
-      "website": "https://www.spd.de"
+      "prozent": 12,
+      "beschreibung": "Die SPD Berlin legt ihren Schwerpunkt auf soziale Infrastruktur, kostenfreie Bildung von der Kita bis zur Hochschule und faire Arbeitsbedingungen. Die Partei strebt verstärkten bezahlbaren Wohnungsbau, die Sicherung des Zusammenhalts und gezielte Investitionen in öffentliche Einrichtungen an.",
+      "website": "https://www.spd.berlin",
+      "kandidaten": [
+        {
+          "name": "Steffen Krach",
+          "rolle": "Spitzenkandidat und Landesvorsitzender"
+        },
+        {
+          "name": "Bettina König",
+          "rolle": "Landesvorsitzende"
+        }
+      ],
+      "spitzenkandidat": "Steffen Krach",
+      "verlauf": [
+        { "label": "Feb 2023", "prozent": 18 },
+        { "label": "Okt 2024", "prozent": 16 },
+        { "label": "Mai 2025", "prozent": 14 },
+        { "label": "Jul 2026", "prozent": 12 }
+      ],
+      "rss": [
+        "https://www.tagesschau.de/inland/regional/berlin/index~rss2.xml"
+      ]
     },
     {
       "partei": "BSW",
       "prozent": 4,
-      "beschreibung": "Das BSW Berlin fordert bezahlbare Mieten und Energie, lehnt Waffenlieferungen ab und setzt auf soziale Entlastung.",
-      "website": "https://bsw-partei.de"
+      "beschreibung": "Das Bündnis Sahra Wagenknecht Berlin vertritt linkskonservative Ansätze mit dem Ziel, soziale Sicherheit und wirtschaftliche Handlungsfähigkeit zu stärken. Es fordert Entlastungen bei Energie- und Lebenshaltungskosten, eine Neuausrichtung der Asylpolitik und verstärkte Investitionen in die Daseinsvorsorge.",
+      "website": "https://bsw-vg.de",
+      "kandidaten": [
+        {
+          "name": "Alexander King",
+          "rolle": "Spitzenkandidat und Landesvorsitzender"
+        }
+      ],
+      "spitzenkandidat": "Alexander King",
+      "verlauf": [
+        { "label": "Okt 2024", "prozent": 6 },
+        { "label": "Mai 2025", "prozent": 5 },
+        { "label": "Jan 2026", "prozent": 4 },
+        { "label": "Jul 2026", "prozent": 4 }
+      ],
+      "rss": [
+        "https://www.tagesschau.de/inland/regional/berlin/index~rss2.xml"
+      ]
     },
     {
       "partei": "FDP",
-      "prozent": 4,
-      "beschreibung": "Die FDP Berlin steht für wirtschaftliche Freiheit und digitale Verwaltung und lehnt ideologische Stadtplanung ab.",
-      "website": "https://www.fdp.de"
-    },
-    {
-      "partei": "PARTEI",
-      "prozent": 2,
-      "beschreibung": "Die PARTEI Berlin ist für ihre satirischen Kampagnen bekannt und fordert mehr Bürgerbeteiligung und Transparenz.",
-      "website": "https://www.die-partei.de"
-    },
-    {
-      "partei": "Volt",
-      "prozent": 2,
-      "beschreibung": "Volt Berlin tritt für europäische Lösungen in der Stadtpolitik, Klimaschutz und digitale Innovation ein.",
-      "website": "https://www.voltdeutschland.org"
-    },
-    {
-      "partei": "Tierschutz",
-      "prozent": 2,
-      "beschreibung": "Die Tierschutzpartei Berlin fordert Tierrechte, ein Verbot von Pferdekutschen und eine nachhaltige Stadtentwicklung.",
-      "website": "https://www.tierschutzpartei.de"
-    },
-    {
-      "partei": "FREIE WÄHLER",
-      "prozent": 1,
-      "beschreibung": "Die Freien Wähler Berlin setzen auf Bürgerbeteiligung und pragmatische Lösungen für die Bezirke.",
-      "website": "https://www.freiewaehler.eu"
-    },
-    {
-      "partei": "SSW",
-      "prozent": 0.5,
-      "beschreibung": "Der SSW vertritt die dänische und friesische Minderheit und fordert Minderheitenrechte auch in Berlin.",
-      "website": "https://www.ssw.de"
-    },
-    {
-      "partei": "PIRATEN",
-      "prozent": 0.5,
-      "beschreibung": "Die Piratenpartei Berlin setzt sich für Bürgerrechte, Datenschutz, Transparenz und digitale Freiheit ein.",
-      "website": "https://www.piratenpartei.de"
+      "prozent": 3,
+      "beschreibung": "Die FDP Berlin setzt auf freie Marktwirtschaft, Entbürokratisierung und die durchgehende Digitalisierung von Verwaltungsprozessen. Sie befürwortet Investitionen in Bildung und Mittelstand sowie flexiblere Bauauflagen zur Beschleunigung von privaten Wohnungsbauprojekten.",
+      "website": "https://www.fdp-berlin.de",
+      "kandidaten": [
+        {
+          "name": "Christoph Meyer",
+          "rolle": "Spitzenkandidat und Landesvorsitzender"
+        },
+        {
+          "name": "Maren Jasper-Winter",
+          "rolle": "Stellvertretende Landesvorsitzende"
+        }
+      ],
+      "spitzenkandidat": "Christoph Meyer",
+      "verlauf": [
+        { "label": "Feb 2023", "prozent": 5 },
+        { "label": "Okt 2024", "prozent": 4 },
+        { "label": "Mai 2025", "prozent": 3 },
+        { "label": "Jul 2026", "prozent": 3 }
+      ],
+      "rss": [
+        "https://www.tagesschau.de/inland/regional/berlin/index~rss2.xml"
+      ]
     }
-  ],
-  "meta": {
-    "name": "Abgeordnetenhaus Berlin 2026",
-    "sperrklausel": 5,
-    "sitze": 130,
-    "verfahren": "dhondt"
-  }
+  ]
 }
