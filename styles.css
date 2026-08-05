@@ -559,7 +559,7 @@ body {
 }
 
 /* Touch devices: no sticky hover */
-@media (hover: none) {
+@media (hover: none), (pointer: coarse) {
     .q-btn:hover, .tr-restart-btn:hover, .tr-back-btn:hover {
         transform: none; box-shadow: var(--shadow-sm); filter: none;
     }
@@ -569,18 +569,36 @@ body {
         background: inherit; color: inherit; border-color: var(--outline);
     }
     .election-toggle:hover { border-color: var(--outline); color: var(--on-surface-variant); background: transparent; }
+    /* Mobile-Fix (Issue #27): Tastatursteuerung ist nur mit physischer Tastatur sinnvoll –
+       Hinweis auf Touch-Geräten ausblenden. (1/2/3/Pfeiltasten) */
+    .keyboard-hint { display: none; }
+    /* Taktiles Feedback für Touch – ein optisches "gedrückt"-Gefühl statt Hover */
+    .q-btn:active { transform: scale(0.97); filter: brightness(0.97); box-shadow: none; }
+    .tab-button:active, .election-toggle:active { transform: scale(0.98); }
+    .welcome-card:active { transform: translateY(-1px) scale(0.99); }
 }
 
 @media (max-width: 600px) {
+    /* ===== Navbar (Header) ===== */
+    .header-row { gap: 8px; }
+    .header-right { gap: 4px; }
+
+    /* ===== Election Box ===== */
     .election-bar { flex-direction: column; align-items: stretch; }
-    /* Mobile-Fix (Issue #21): statt horizontal scrollbarer Leiste (nowrap +
-       overflow-x:auto) die Wahlen umbrechen lassen – kein versehentlicher
+    /* Mobile-Fit: statt horizontal scrollbarer Leiste (nowrap +
+       overflow-x: auto) die Wahlen umbrechen lassen – kein versehentlicher
        horizontaler Scroll auf der Willkommens-Seite. */
     .election-toggles {
         justify-content: flex-start;
         flex-wrap: wrap;
+        gap: 6px;
     }
-    .election-toggle { flex-shrink: 1; white-space: normal; text-align: left; max-width: 100%; }
+    /* Größere Touch-Ziele: min-height 44px, Label darf umbrechen */
+    .election-label { white-space: normal; line-height: 1.3; margin-bottom: 4px; }
+    .election-toggle {
+        flex: 1 1 auto; flex-shrink: 1; white-space: normal; text-align: left;
+        max-width: 100%; min-height: 44px; padding: 8px 14px; font-size: 0.85rem;
+    }
     .election-toggle .toggle-dot { flex-shrink: 0; }
     .stats-summary { grid-template-columns: repeat(3, 1fr); gap: 6px; }
     .stat-card { padding: 10px; }
@@ -620,6 +638,15 @@ body {
     .notification { bottom: calc(24px + env(safe-area-inset-bottom, 0px)); left: 16px; right: 16px; transform: none; max-width: none; margin: 0 auto; }
     @keyframes notifIn { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
     @keyframes notifOut { to { transform: translateY(16px); opacity: 0; } }
+
+    /* Mobile-Fix (Issue #27): größere Touch-Fläche für den "Wichtige-Frage"-Button */
+    .q-important { width: 44px; height: 44px; font-size: 1.1rem; }
+    /* Kompaktere vertikale Abstände auf schmalen Screens, damit mehr Frage sichtbar bleibt */
+    .test-intro { font-size: 0.92rem; margin-bottom: 10px; }
+    .q-text { line-height: 1.35; }
+    /* Willkommens-Screen & Transparenz-Box enger, damit nichts herausragt */
+    .welcome-screen { padding: 22px 8px; }
+    .transparency-box { padding: 12px 14px; }
 }
 
 @media (max-width: 480px) {
@@ -643,11 +670,20 @@ body {
     .cmp-table { font-size: 13px; }
     .cmp-table th, .cmp-table td { padding: 6px 6px; }
     .q-text { font-size: 1.05rem; }
-    .welcome-screen { padding: 32px 12px; }
+    .welcome-screen { padding: 20px 6px; }
     .welcome-icon { font-size: 2.4rem; }
     .tr-card { padding: 12px; }
     .q-answers { gap: 8px; }
     .filter-options { padding: 12px; }
+    /* Mobile-Fix (Issue #27): Fragen-Kopf (Themen-Badge + Zähler + Stern) darf umbrechen,
+       statt auf schmalen Screens abgeschnitten zu werden */
+    .q-top-row { flex-wrap: wrap; }
+    /* Header-Buttons auf sehr schmalen Screens etwas kompakter */
+    .theme-toggle, .github-link, .simple-lang-toggle { width: 38px; height: 38px; }
+    /* Election-Box kompakter, damit auf kleinen Screens nichts herausragt */
+    .election-bar { padding: 8px 12px; }
+    .header-row h1 { letter-spacing: -0.01em; }
+    .app-footer { padding: 12px 12px calc(12px + env(safe-area-inset-bottom, 0px)); }
 }
 
 /* Extra small phones */
@@ -658,6 +694,10 @@ body {
     .tr-topic-label { min-width: 48px; }
     .q-btn { font-size: 0.95rem; min-height: 48px; padding: 12px 14px; }
     .tab-button { font-size: 0.75rem; padding: 8px 6px; }
+    /* Extra-small: Titel + Header-Buttons minimal halten, damit nichts abschneidet */
+    .header-row h1 { font-size: 1.1rem; }
+    .theme-toggle, .github-link, .simple-lang-toggle { width: 36px; height: 36px; }
+    .election-toggle { padding: 8px 10px; }
 }
 
 /* ===== Party Detail Page ===== */
