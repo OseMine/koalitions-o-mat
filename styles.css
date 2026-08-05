@@ -237,6 +237,14 @@ body {
 }
 .transparency-box h4 { margin: 0 0 6px; font-size: 0.95rem; color: var(--on-surface); }
 .transparency-box p { margin: 0; }
+.ai-badge {
+    margin-top: 10px; padding: 8px 12px; border-radius: var(--radius-sm);
+    background: color-mix(in srgb, var(--primary) 10%, transparent);
+    border: 1px solid color-mix(in srgb, var(--primary) 35%, transparent);
+    color: var(--on-surface-variant); font-size: 0.8rem; line-height: 1.5;
+    display: flex; gap: 8px; align-items: flex-start;
+}
+.ai-badge-icon { font-size: 1rem; line-height: 1.5; }
 
 .app-footer {
     margin-top: 24px; padding: 14px 16px calc(14px + env(safe-area-inset-bottom, 0px));
