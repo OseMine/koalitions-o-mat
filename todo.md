@@ -2,6 +2,29 @@
 
 Erledigte Aufgaben wurden nach `archived-todo.md` verschoben (Stand 2026-08-05).
 
+## Review vom 2026-08-05 (gesamtes Projekt)
+
+Vollständiger Bericht: `reports/review-2026-08-05.md`. Alle Befunde per Node gegen die echten Datendateien (`elections/*/werte.json`) und die Funktionen in `script.js` verifiziert.
+
+
+
+### P1 – Algorithmus
+
+
+- [ ] **`meta.verfahren` (Sitzverteilungsverfahren) wird nie angewendet** – `berechneSitze()` (script.js:1842-1864) prüft nur per `verfahren === 'sainteLague'` (script.js:1856). Alle 4 `werte.json` verwenden andere Schreibweisen: btw2029 `"sainte-lague"`, berlin-2026 `"saintelague"`, ltw-sachsen-anhalt-2026 & mv-2026 `"hare-niemeyer"` → kein Wert matchen `'sainteLague'` → alle 4 Wahlen fallen still auf d'Hondt zurück (script.js:1850, „sonst dhondt"). LSA/MV deklarieren Hare-Niemeyer/Largest-Remainder (im Code gar nicht implementiert). Verifiziert (d'Hondt vs. deklariert): LSA (83) AfD 39 statt 36, GRÜNE 4 → 6; MV (79) CDU/CSU 17 → 16, GRÜNE 4 → 5; btw/Berlin zufällig identisch (Nur Koinzidenz). Sitzsummen bleiben = `meta.sitze`, aber Methode stimmt nicht mit README-/Meta-Aussage.
+
+### P2 – Fehlende Features
+
+- [ ] **Kein Largest-Remainder / Hare-Niemeyer-Unterstützung** – LSA & MV geben `meta.verfahren = "hare-niemeyer"`, der Code (script.js:1850-1856) kennt nur Divisor-Verfahren (sainteLague bzw. d'Hondt-Fallback).
+
+### P3 – Einfache Sprache
+
+- [ ] **`party.newsRetry` fehlt in `einfache-sprache.json`** – `loadPartyNews()` (script.js:369/741) nutzt `t('party.newsRetry', 'Erneut versuchen')`; Key ist in der `ui` nicht vorhanden → im Einfache-Sprache-Modus nicht übersetzt (Normaltext-Fallback).
+
+### Korrektur bestehender Annahme
+
+- [ ] **Bestehende todo „MV GRÜNE exakt 5 % wird ausgeschlossen" trifft nicht zu** – `berechneKoalitionen()` (script.js:847) & `berechneSitze()` (script.js:1846) nutzen `p.prozent >= config.thresholds.sperrklausel` (=5); MV GRÜNE (5,0) wird also eingeschlossen, nicht ausgeschlossen. Kein Code-Fehler, nur Hinweis dokumentieren.
+
 ## Implementierung vom 2026-08-05 (P2 + P3 aus Review 2026-08-04 & Folgebefunde)
 
 Verifiziert per `node --check`, JSON-Validierung und DOM-Harness gegen die echten Datendateien.
