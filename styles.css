@@ -341,6 +341,13 @@ body {
     border: 1px solid var(--outline); border-radius: var(--radius-sm);
 }
 
+/* Hinweis auf Tastatursteuerung im Test-Tab */
+.keyboard-hint {
+    text-align: center; margin: 0 0 14px; padding: 8px 16px; font-size: 0.8rem;
+    color: var(--on-surface-muted); background: var(--surface-variant);
+    border: 1px dashed var(--outline); border-radius: var(--radius-sm);
+}
+
 /* Hinweis, dass neutrale Antworten nicht in die Übereinstimmung einfließen */
 .neutral-hint {
     text-align: center; margin: 0 0 14px; padding: 8px 16px; font-size: 0.85rem;
@@ -511,6 +518,11 @@ body {
 .cmp-j { background: var(--answer-yes-bg); color: var(--answer-yes-color); }
 .cmp-n { background: var(--answer-no-bg); color: var(--answer-no-color); }
 .cmp-m { background: var(--answer-m-bg); color: var(--answer-m-color); }
+.cmp-srcs { text-align: left; min-width: 220px; font-size: 0.8rem; line-height: 1.45; }
+.cmp-srcs:empty { background: none; }
+.cmp-src { padding: 4px 0; border-bottom: 1px dashed var(--outline); }
+.cmp-src:last-child { border-bottom: none; }
+.cmp-src-party { font-weight: 700; margin-right: 4px; }
 .legend { display: flex; gap: 16px; margin-top: 10px; font-size: 0.85rem; }
 .legend-j { color: var(--answer-yes-color); }
 .legend-n { color: var(--answer-no-color); }
@@ -719,6 +731,7 @@ body {
 .party-prog-item.pr-ja .party-prog-tag { background: color-mix(in srgb, var(--answer-yes-color, #4caf50) 16%, transparent); color: var(--answer-yes-color, #4caf50); }
 .party-prog-item.pr-ne .party-prog-tag { background: color-mix(in srgb, var(--answer-no-color, #ef5350) 16%, transparent); color: var(--answer-no-color, #ef5350); }
 .party-prog-zitat { margin-top: 5px; font-style: italic; color: var(--on-surface-variant); font-size: 0.87rem; }
+.party-prog-more { margin: 8px 0 4px; padding: 6px 10px; font-size: 0.8rem; color: var(--on-surface-muted); background: var(--surface-variant); border-radius: var(--radius-sm); }
 
 .party-meta-note { margin-top: 10px; color: var(--on-surface-muted); font-size: 0.8rem; line-height: 1.5; }
 

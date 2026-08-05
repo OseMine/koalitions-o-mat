@@ -430,12 +430,20 @@ function populatePartyDropdowns() {
     const cbContainer = document.getElementById('comparePartiesCheckboxes');
     if (cbContainer) {
         const compareParties = relevant.length >= 2 ? relevant : window.werteData.umfragewerte;
-        cbContainer.innerHTML = compareParties.map((p, i) => `
-            <label class="party-cb ${i < 2 ? 'checked' : ''}">
-                <input type="checkbox" value="${p.partei}" ${i < 2 ? 'checked' : ''}>
-                <span>${p.partei}</span>
-            </label>
-        `).join('');
+        // Bereits ausgewählte Parteien beim Neuaufbau erhalten (Einfache-Sprache-Toggle,
+        // Wahlwechsel) – sonst springt die Auswahl immer auf die ersten zwei Parteien zurück.
+        const currentChecked = Array.from(cbContainer.querySelectorAll('input:checked')).map(cb => cb.value);
+        const defaultChecked = currentChecked.length >= 2
+            ? compareParties.filter(p => currentChecked.includes(p.partei))
+            : compareParties.slice(0, 2);
+        cbContainer.innerHTML = compareParties.map((p) => {
+            const checked = defaultChecked.some(sel => sel && sel.partei === p.partei);
+            return `
+            <label class="party-cb ${checked ? 'checked' : ''}">
+                <input type="checkbox" value="${escapeHtmlAttr(p.partei)}" ${checked ? 'checked' : ''}>
+                <span>${escapeHtml(p.partei)}</span>
+            </label>`;
+        }).join('');
         updatePartyComparison();
     }
 }
@@ -452,13 +460,13 @@ function initializeParteienPage() {
     container.innerHTML = parties.map(p => {
         const color = getPartyColor(p.partei);
         const desc = p.beschreibung
-            ? `<p class="party-info-desc">${p.beschreibung}</p>`
+            ? `<p class="party-info-desc">${escapeHtml(p.beschreibung)}</p>`
             : `<p class="party-info-desc party-info-empty">${t('partyInfoPending', 'Weitere Informationen zu dieser Partei folgen.')}</p>`;
         const candidates = p.kandidaten && p.kandidaten.length
-            ? `<div class="party-candidates"><h4>${t('partyCandidates', 'Kandidatinnen und Kandidaten')}</h4><ul>${p.kandidaten.map(k => `<li><strong>${k.name}</strong>${k.rolle ? ` – ${k.rolle}` : ''}</li>`).join('')}</ul></div>`
+            ? `<div class="party-candidates"><h4>${t('partyCandidates', 'Kandidatinnen und Kandidaten')}</h4><ul>${p.kandidaten.map(k => `<li><strong>${escapeHtml(k.name)}</strong>${k.rolle ? ` – ${escapeHtml(k.rolle)}` : ''}</li>`).join('')}</ul></div>`
             : '';
-const website = p.website
-            ? `<a class="party-info-website" href="${p.website}" target="_blank" rel="noopener noreferrer">${t('partyWebsite', 'Zur Partei-Website')} ↗</a>`
+        const website = p.website
+            ? `<a class="party-info-website" href="${escapeHtmlAttr(p.website)}" target="_blank" rel="noopener noreferrer">${t('partyWebsite', 'Zur Partei-Website')} ↗</a>`
             : '';
         return `
             <div class="party-info-card">
@@ -526,7 +534,7 @@ function openPartyPage(partyName) {
                 <span class="party-page-name" id="partyPageTitle" style="color:${color}">${party.partei}</span>
                 <span class="party-page-pct" style="color:${color}">${party.prozent.toFixed(1)}%</span>
             </div>
-            ${party.beschreibung ? `<p class="party-page-desc">${party.beschreibung}</p>` : ''}
+            ${party.beschreibung ? `<p class="party-page-desc">${escapeHtml(party.beschreibung)}</p>` : ''}
         </header>
 
         ${top ? `
@@ -537,11 +545,11 @@ function openPartyPage(partyName) {
                 <div class="party-cand-meta">
                     <strong>${escapeHtml(top.name)}</strong>
                     ${top.rolle ? `<span class="party-cand-role">${escapeHtml(top.rolle)}</span>` : ''}
-                    ${party.website ? `<a class="party-info-website" href="${escapeHtml(party.website)}" target="_blank" rel="noopener noreferrer">${t('partyWebsite', 'Zur Partei-Website')} ↗</a>` : ''}
+                    ${party.website ? `<a class="party-info-website" href="${escapeHtmlAttr(party.website)}" target="_blank" rel="noopener noreferrer">${t('partyWebsite', 'Zur Partei-Website')} ↗</a>` : ''}
                 </div>
             </div>
         </section>`
-        : (party.website ? `<section class="party-sec"><a class="party-info-website" href="${party.website}" target="_blank" rel="noopener noreferrer">${t('partyWebsite', 'Zur Partei-Website')} ↗</a></section>` : '')}
+        : (party.website ? `<section class="party-sec"><a class="party-info-website" href="${escapeHtmlAttr(party.website)}" target="_blank" rel="noopener noreferrer">${t('partyWebsite', 'Zur Partei-Website')} ↗</a></section>` : '')}
 
         <section class="party-sec">
             <h3>${t('party.timeline', 'Veränderung über die Zeit')}</h3>
@@ -658,14 +666,18 @@ function renderPartyProgramm(party) {
         const topicColor = (config.topics[topic] && config.topics[topic].color) || '#999';
         const ja = tdata.j.slice(0, 3);
         const nein = tdata.n.slice(0, 3);
+        const jaMore = tdata.j.length - ja.length;
+        const neinMore = tdata.n.length - nein.length;
         return `
             <div class="party-prog-topic">
                 <div class="party-prog-topic-head" style="--tcolor:${topicColor}">${escapeHtml(topic)}</div>
                 ${ja.length ? `<div class="party-prog-list">
                     ${ja.map(q => `<div class="party-prog-item pr-ja"><span class="party-prog-tag">${t('legendYes','Ja')}</span><div>${q.text}${q.zitat ? `<div class="party-prog-zitat">„${escapeHtml(q.zitat)}”</div>` : ''}</div></div>`).join('')}
+                    ${jaMore > 0 ? `<p class="party-prog-more">${t('programmMore', '… und {n} weitere Punkte').replace('{n}', jaMore)}</p>` : ''}
                 </div>` : ''}
                 ${nein.length ? `<div class="party-prog-list">
                     ${nein.map(q => `<div class="party-prog-item pr-ne"><span class="party-prog-tag">${t('legendNo','Nein')}</span><div>${q.text}${q.zitat ? `<div class="party-prog-zitat">„${escapeHtml(q.zitat)}”</div>` : ''}</div></div>`).join('')}
+                    ${neinMore > 0 ? `<p class="party-prog-more">${t('programmMore', '… und {n} weitere Punkte').replace('{n}', neinMore)}</p>` : ''}
                 </div>` : ''}
             </div>`;
     }).join('');
@@ -939,7 +951,7 @@ function updateKoalitionen() {
                         <div class="coalition-bar-fill" style="width:${k.uebereinstimmung}%"></div>
                     </div>
                     <div class="coalition-bar user-match-bar">
-                        <div class="coalition-bar-fill user-match-fill" style="width:${k.benutzerMatch}%"></div>
+                        <div class="coalition-bar-fill user-match-fill" style="width:${k.benutzerMatch != null ? k.benutzerMatch + '%' : '0'}"></div>
                     </div>
                 </div>
             `;
@@ -1031,10 +1043,10 @@ function initializeTest() {
                     const label = getAnswerValue(f.antworten, p);
                     const labelText = label === 'j' ? t('legendYes', 'Ja') : label === 'n' ? t('legendNo', 'Nein') : t('legendNeutral', 'Neutral');
                     return `<div class="qs-row">
-                        <div class="qs-party" style="color:${getPartyColor(p)}">${p} <span class="qs-label cmp-${label}">${labelText}</span></div>
-                        ${s.zitat ? `<div class="qs-zitat">„${s.zitat}”</div>` : ''}
-                        ${s.begruendung ? `<div class="qs-begruendung">${s.begruendung}</div>` : ''}
-                        ${s.quelle ? `<div class="qs-quelle">${t('sourceLabel', 'Quelle:')} ${s.quelle}</div>` : ''}
+                        <div class="qs-party" style="color:${getPartyColor(p)}">${escapeHtml(p)} <span class="qs-label cmp-${label}">${labelText}</span></div>
+                        ${s.zitat ? `<div class="qs-zitat">„${escapeHtml(s.zitat)}”</div>` : ''}
+                        ${s.begruendung ? `<div class="qs-begruendung">${escapeHtml(s.begruendung)}</div>` : ''}
+                        ${s.quelle ? `<div class="qs-quelle">${t('sourceLabel', 'Quelle:')} ${escapeHtml(s.quelle)}</div>` : ''}
                     </div>`;
                 }).join('')}
             </div>` : '';
@@ -1389,7 +1401,7 @@ function showTestResults() {
                 <div class="tr-card-agreed">${r.total > 0 ? `${r.agreed} ${t('agreedOf', 'von')} ${r.total} ${t('agreedQuestions', 'Fragen zugestimmt')}` : t('noComparableAnswers', 'Keine vergleichbaren Antworten (nur neutral beantwortet)')}</div>
                 ${fewAnswers}
                 ${topicsHtml}
-                <button class="tr-detail-btn" onclick="togglePartyDetail('${r.partei}')">${t('detailToggle', 'Fragen-Vergleich ▾')}</button>
+                <button class="tr-detail-btn" onclick="togglePartyDetail('${escapeHtmlAttr(r.partei)}')">${t('detailToggle', 'Fragen-Vergleich ▾')}</button>
                 <div class="tr-detail" id="trDetail-${r.partei}" style="display:none"></div>
             </div>`;
     });
@@ -1747,20 +1759,27 @@ function updatePartyComparison() {
         return;
     }
     let html = '<div class="cmp-wrap"><table class="cmp-table"><tr><th>' + t('questionCol', 'Frage') + '</th>';
-    parties.forEach(p => html += `<th style="color:${getPartyColor(p)}">${p}</th>`);
+    parties.forEach(p => html += `<th style="color:${getPartyColor(p)}">${escapeHtml(p)}</th>`);
+    html += `<th>${t('sourcesColumn', 'Quelle / Begründung')}</th>`;
     html += '</tr>';
     window.parteienData.fragen.forEach((f, i) => {
-        html += `<tr><td class="cmp-q">${simpleQuestionText(f, 'frage')}</td>`;
+        html += `<tr><td class="cmp-q">${escapeHtml(simpleQuestionText(f, 'frage'))}</td>`;
         parties.forEach(p => {
             const a = getAnswerValue(f.antworten, p);
-            const src = getAnswerSources(f.antworten, p);
             const label = a === 'j' ? t('legendYes', 'Ja') : a === 'n' ? t('legendNo', 'Nein') : t('legendNeutral', 'Neutral');
-            if (src && (src.quelle || src.begruendung)) {
-                html += `<td class="cmp-a cmp-${a || 'm'}"><span class="cmp-hint" title="${(src.quelle||'')} ${(src.begruendung||'')}">${label}</span></td>`;
-            } else {
-                html += `<td class="cmp-a cmp-${a || 'm'}">${label}</td>`;
-            }
+            html += `<td class="cmp-a cmp-${a || 'm'}">${label}</td>`;
         });
+        // Sichtbare Quellen/Begründungen statt title-Tooltip (mobil erreichbar, README:13)
+        const srcs = parties.map(p => {
+            const s = getAnswerSources(f.antworten, p);
+            if (!s || (!s.quelle && !s.begruendung && !s.zitat)) return null;
+            const parts = [];
+            if (s.begruendung) parts.push(escapeHtml(s.begruendung));
+            if (s.zitat) parts.push(`„${escapeHtml(s.zitat)}”`);
+            if (s.quelle) parts.push(escapeHtml(s.quelle));
+            return `<div class="cmp-src"><span class="cmp-src-party" style="color:${getPartyColor(p)}">${escapeHtml(p)}:</span> ${parts.join(' – ')}</div>`;
+        }).filter(Boolean);
+        html += `<td class="cmp-srcs">${srcs.length ? srcs.join('') : ''}</td>`;
         html += '</tr>';
     });
     html += '</table></div>';
@@ -1964,12 +1983,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         }, { passive: true });
         tabsEl.addEventListener('touchmove', e => {
             if (swipeDisabled) return;
-            // Sobald die vertikale Bewegung überwiegt, ist es ein (vertikaler) Scroll –
-            // die Geste wird verworfen, damit diagonale Flicks keinen Tab wechseln.
             const t = e.changedTouches[0];
-            if (Math.abs(t.screenY - touchStartY) > Math.abs(t.screenX - touchStartX)) {
-                swipeDisabled = true;
-            }
+            const dx = Math.abs(t.screenX - touchStartX);
+            const dy = Math.abs(t.screenY - touchStartY);
+            // Dead-Zone: erst ab ~10 px entscheiden, ob es ein (vertikaler) Scroll ist –
+            // ein einzelnes winziges touchmove (2 px) darf die Geste nicht dauerhaft verwerfen.
+            if (dx + dy < 10) return;
+            if (dy > dx) swipeDisabled = true;
         }, { passive: true });
         const finishSwipe = e => {
             const stillActive = !swipeDisabled;

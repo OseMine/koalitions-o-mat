@@ -138,7 +138,11 @@
     "party.loading": "Nachrichten werden geladen…",
     "party.newsEmpty": "Für diese Partei sind noch keine Nachrichten-Quellen eingerichtet.",
     "party.newsError": "Nachrichten konnten nicht geladen werden. Versuche es später nochmal.",
-    "party.newsSource": "Nachrichten kommen automatisch aus einem Feed (RSS). Die Auswahl kann nicht kontrolliert werden."
+    "party.newsSource": "Nachrichten kommen automatisch aus einem Feed (RSS). Die Auswahl kann nicht kontrolliert werden.",
+    "party.notFound": "Partei nicht gefunden.",
+    "keyboardHint": "Tastatur: 1 = Stimme zu · 2 = Neutral · 3 = Stimme nicht zu · Pfeiltasten = Frage wechseln",
+    "sourcesColumn": "Quelle / Begründung",
+    "programmMore": "… und {n} weitere Punkte"
   },
   "fragen": {
     "ltw-sachsen-anhalt-2026": {
