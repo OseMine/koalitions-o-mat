@@ -1,82 +1,146 @@
 {
+  "meta": {
+    "name": "Landtagswahl Mecklenburg-Vorpommern 2026",
+    "sperrklausel": 5,
+    "sitze": 79,
+    "verfahren": "hare-niemeyer"
+  },
   "umfragewerte": [
     {
       "partei": "AfD",
-      "prozent": 36,
-      "beschreibung": "Die AfD Mecklenburg-Vorpommern fordert eine strikte Migrationspolitik, den Erhalt ländlicher Strukturen und eine Politik gegen die etablierten Parteien.",
-      "website": "https://www.afd.de",
+      "prozent": 29,
+      "beschreibung": "Die AfD Mecklenburg-Vorpommern fordert eine Verschärfung der Asyl- und Migrationspolitik sowie die Rückabwicklung von Maßnahmen der Energiewende zugunsten konventioneller Energieträger. Schwerpunkte bilden die Stärkung des ländlichen Raums, Bürokratieabbau für den Mittelstand und die Unterstützung traditioneller Familienstrukturen. Zudem tritt die Partei für eine Begrenzung von EU-Vorgaben auf Landesebene ein.",
+      "website": "https://www.afd-mv.de",
       "kandidaten": [
-        {
-          "name": "Leif-Erik Holm",
-          "rolle": "Landesvorsitzender"
-        }
+        { "name": "Nikolaus Kramer", "rolle": "Fraktionsvorsitzender im Landtag" },
+        { "name": "Leif-Erik Holm", "rolle": "Landessprecher" }
+      ],
+      "spitzenkandidat": "Nikolaus Kramer",
+      "verlauf": [
+        { "label": "Sep 2021", "prozent": 17 },
+        { "label": "Okt 2023", "prozent": 32 },
+        { "label": "Okt 2024", "prozent": 28 },
+        { "label": "Jul 2026", "prozent": 29 }
+      ],
+      "rss": [
+        "https://www.tagesschau.de/inland/regional/mecklenburgvorpommern/index.rss"
       ]
     },
     {
       "partei": "SPD",
-      "prozent": 29,
-      "beschreibung": "Die SPD Mecklenburg-Vorpommern stellt die Ministerpräsidentin und setzt auf soziale Sicherheit, Kinderbetreuung und ländliche Infrastruktur.",
-      "website": "https://www.spd.de",
+      "prozent": 22,
+      "beschreibung": "Die SPD Mecklenburg-Vorpommern stellt mit Manuela Schwesig die Ministerpräsidentin und betont in ihrem Programm soziale Gerechtigkeit, beitragsfreie Bildung sowie den Ausbau der Infrastruktur im ländlichen Raum. Ein weiterer Schwerpunkt liegt auf dem wirtschaftlichen Strukturwandel und der Stärkung der erneuerbaren Energien. Zudem setzt sich die Partei für die Sicherung von Arbeitsplätzen und den Erhalt einer flächendeckenden Gesundheitsversorgung ein.",
+      "website": "https://www.spd-mv.de",
       "kandidaten": [
-        {
-          "name": "Manuela Schwesig",
-          "rolle": "Ministerpräsidentin"
-        }
+        { "name": "Manuela Schwesig", "rolle": "Ministerpräsidentin und Landesvorsitzende" }
+      ],
+      "spitzenkandidat": "Manuela Schwesig",
+      "verlauf": [
+        { "label": "Sep 2021", "prozent": 39 },
+        { "label": "Okt 2023", "prozent": 27 },
+        { "label": "Okt 2024", "prozent": 22 },
+        { "label": "Jul 2026", "prozent": 22 }
+      ],
+      "rss": [
+        "https://www.tagesschau.de/inland/regional/mecklenburgvorpommern/index.rss"
+      ]
+    },
+    {
+      "partei": "CDU/CSU",
+      "prozent": 20,
+      "beschreibung": "Die CDU Mecklenburg-Vorpommern fokussiert sich auf die Stärkung der regionalen Wirtschaft, die Förderung des Mittelstands und eine solide Haushaltspolitik. Sie setzt sich für eine Erhöhung der Polizeipräsenz zur Verbesserung der inneren Sicherheit und eine Modernisierung des Schulwesens ein. Zudem fordert sie eine gezielte Unterstützung der Landwirtschaft und den konsequenten Abbau bürokratischer Hürden.",
+      "website": "https://www.cdu-mecklenburg-vorpommern.de",
+      "kandidaten": [
+        { "name": "Daniel Peters", "rolle": "Landes- und Fraktionsvorsitzender" }
+      ],
+      "spitzenkandidat": "Daniel Peters",
+      "verlauf": [
+        { "label": "Sep 2021", "prozent": 13 },
+        { "label": "Okt 2023", "prozent": 18 },
+        { "label": "Okt 2024", "prozent": 19 },
+        { "label": "Jul 2026", "prozent": 20 }
+      ],
+      "rss": [
+        "https://www.tagesschau.de/inland/regional/mecklenburgvorpommern/index.rss"
+      ]
+    },
+    {
+      "partei": "BSW",
+      "prozent": 13,
+      "beschreibung": "Das Bündnis Sahra Wagenknecht (BSW) vereint wirtschaftskritische Ansätze mit einer restriktiveren Haltung in der Asylpolitik. Im Fokus stehen die Entlastung niedriger Einkommen, höhere Löhne und Renten sowie eine diplomatieorientierte Außenpolitik. Auf Landesebene fordert das BSW gezielte Investitionen in die öffentliche Infrastruktur und den Erhalt von Krankenhausstandorten.",
+      "website": "https://bsw-vg.de",
+      "kandidaten": [
+        { "name": "Sabine Zimmermann", "rolle": "Landesvorsitzende" }
+      ],
+      "spitzenkandidat": "Sabine Zimmermann",
+      "verlauf": [
+        { "label": "Jan 2024", "prozent": 8 },
+        { "label": "Mai 2024", "prozent": 10 },
+        { "label": "Okt 2024", "prozent": 14 },
+        { "label": "Jul 2026", "prozent": 13 }
+      ],
+      "rss": [
+        "https://www.tagesschau.de/inland/regional/mecklenburgvorpommern/index.rss"
       ]
     },
     {
       "partei": "LINKE",
-      "prozent": 12,
-      "beschreibung": "DIE LINKE in Mecklenburg-Vorpommern fordert soziale Gerechtigkeit, bezahlbares Wohnen und eine Abkehr von militärischer Aufrüstung.",
-      "website": "https://www.die-linke.de"
-    },
-    {
-      "partei": "CDU/CSU",
-      "prozent": 9,
-      "beschreibung": "Die CDU Mecklenburg-Vorpommern setzt auf wirtschaftliche Entwicklung, Landwirtschaft und den Erhalt ländlicher Regionen.",
-      "website": "https://www.cdu.de"
+      "prozent": 6,
+      "beschreibung": "Die Linke Mecklenburg-Vorpommern setzt Schwerpunkte auf den Ausbau des öffentlichen Sektors, bezahlbaren Wohnraum und die Bekämpfung von Armut. Als Koalitionspartner in der Landesregierung betont sie präventiven Kinderschutz, gut ausgestattete Kitas und Schulen sowie die Mitbestimmung von Beschäftigten. Zudem fordert sie verstärkte Investitionen in den öffentlichen Personennahverkehr im ländlichen Raum.",
+      "website": "https://www.die-linke-mv.de",
+      "kandidaten": [
+        { "name": "Simone Oldenburg", "rolle": "Stellvertretende Ministerpräsidentin und Bildungsministerin" },
+        { "name": "Jeannine Rösler", "rolle": "Fraktionsvorsitzende im Landtag" }
+      ],
+      "spitzenkandidat": "Simone Oldenburg",
+      "verlauf": [
+        { "label": "Sep 2021", "prozent": 10 },
+        { "label": "Okt 2023", "prozent": 8 },
+        { "label": "Okt 2024", "prozent": 5 },
+        { "label": "Jul 2026", "prozent": 6 }
+      ],
+      "rss": [
+        "https://www.tagesschau.de/inland/regional/mecklenburgvorpommern/index.rss"
+      ]
     },
     {
       "partei": "GRÜNE",
       "prozent": 5,
-      "beschreibung": "Die Grünen in Mecklenburg-Vorpommern setzen auf Klimaschutz, den Schutz der Ostsee und eine ökologische Landwirtschaft.",
-      "website": "https://www.gruene.de"
-    },
-    {
-      "partei": "BSW",
-      "prozent": 4,
-      "beschreibung": "Das BSW Mecklenburg-Vorpommern fordert bezahlbare Energie, soziale Entlastung und lehnt Waffenlieferungen ab.",
-      "website": "https://bsw-partei.de"
+      "beschreibung": "Bündnis 90/Die Grünen Mecklenburg-Vorpommern stellen konsequenten Klimaschutz, den Schutz der Ostsee und die ökologische Transformation der Landwirtschaft in den Mittelpunkt. Sie fordern den beschleunigten Ausbau erneuerbarer Energien, Moorschutz und eine klimafreundliche Verkehrswende. Darüber hinaus setzen sie sich für Chancengleichheit in der Bildung und die Förderung gesellschaftlicher Vielfalt ein.",
+      "website": "https://gruene-mv.de",
+      "kandidaten": [
+        { "name": "Katharina Horn", "rolle": "Landesvorsitzende" },
+        { "name": "Harald Terpe", "rolle": "Fraktionsvorsitzender im Landtag" }
+      ],
+      "spitzenkandidat": "Katharina Horn",
+      "verlauf": [
+        { "label": "Sep 2021", "prozent": 6 },
+        { "label": "Okt 2023", "prozent": 6 },
+        { "label": "Okt 2024", "prozent": 4 },
+        { "label": "Jul 2026", "prozent": 5 }
+      ],
+      "rss": [
+        "https://www.tagesschau.de/inland/regional/mecklenburgvorpommern/index.rss"
+      ]
     },
     {
       "partei": "FDP",
-      "prozent": 2,
-      "beschreibung": "Die FDP Mecklenburg-Vorpommern steht für wirtschaftliche Freiheit, weniger Bürokratie und Tourismusförderung.",
-      "website": "https://www.fdp.de"
-    },
-    {
-      "partei": "FREIE WÄHLER",
-      "prozent": 1.5,
-      "beschreibung": "Die Freien Wähler Mecklenburg-Vorpommern vertreten kommunale Interessen und direkte Demokratie.",
-      "website": "https://www.freiewaehler.eu"
-    },
-    {
-      "partei": "Tierschutz",
-      "prozent": 1,
-      "beschreibung": "Die Tierschutzpartei in Mecklenburg-Vorpommern fordert Tierrechte und nachhaltige Landwirtschaft.",
-      "website": "https://www.tierschutzpartei.de"
-    },
-    {
-      "partei": "PARTEI",
-      "prozent": 0.5,
-      "beschreibung": "Die PARTEI in Mecklenburg-Vorpommern verbindet Satire mit Forderungen nach Transparenz und Bürgerrechten.",
-      "website": "https://www.die-partei.de"
+      "prozent": 3,
+      "beschreibung": "Die FDP Mecklenburg-Vorpommern fordert eine beschleunigte Digitalisierung der Verwaltung, Bürokratieabbau und die Entlastung von Mittelstand und Handwerk. Sie spricht sich für mehr eigenverantwortliche Entscheidungsmöglichkeiten an Schulen sowie eine technologieoffene Wirtschaftspolitik aus. Ein weiterer Fokus liegt auf dem flächendeckenden Ausbau der digitalen Infrastruktur und der Konsolidierung der Landesfinanzen.",
+      "website": "https://www.fdp-mv.de",
+      "kandidaten": [
+        { "name": "René Domke", "rolle": "Landes- und Fraktionsvorsitzender" }
+      ],
+      "spitzenkandidat": "René Domke",
+      "verlauf": [
+        { "label": "Sep 2021", "prozent": 6 },
+        { "label": "Okt 2023", "prozent": 4 },
+        { "label": "Okt 2024", "prozent": 3 },
+        { "label": "Jul 2026", "prozent": 3 }
+      ],
+      "rss": [
+        "https://www.tagesschau.de/inland/regional/mecklenburgvorpommern/index.rss"
+      ]
     }
-  ],
-  "meta": {
-    "name": "Landtagswahl Mecklenburg-Vorpommern 2026",
-    "sperrklausel": 5,
-    "sitze": 71,
-    "verfahren": "dhondt"
-  }
+  ]
 }
