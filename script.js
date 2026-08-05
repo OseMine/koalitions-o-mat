@@ -15,7 +15,12 @@ let lastTestResults = null;
 // ===== Simple Language =====
 function isSimpleLang() { return localStorage.getItem('simpleLang') === '1'; }
 function simplePartyText(partei) {
-    if (!isSimpleLang() || !simpleLangData || !simpleLangData.parteien) return '';
+    if (!isSimpleLang()) return '';
+    if (window.werteData && window.werteData.umfragewerte) {
+        const p = window.werteData.umfragewerte.find(x => x.partei === partei);
+        if (p && p.beschreibung_einfach) return p.beschreibung_einfach;
+    }
+    if (!simpleLangData || !simpleLangData.parteien) return '';
     const byElection = simpleLangData.parteien[activeElectionId];
     return (byElection && byElection[partei]) || '';
 }

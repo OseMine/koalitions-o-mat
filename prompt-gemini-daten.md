@@ -3,6 +3,7 @@
 You are generating the **supplementary party data** for the **Koalitions-O-Mat** — a web app that compares users' political positions with German parties for a specific election. The app loads `elections/<id>/werte.json` at runtime. This file already contains `umfragewerte` (party name + current poll value `prozent`) and `meta`. Your task is to generate the **optional per-party fields** that enrich the party detail pages:
 
 - `beschreibung` (party description)
+- `beschreibung_einfach` (simple-language version of `beschreibung`)
 - `website` (official party website)
 - `kandidaten` (list of top candidates) + `spitzenkandidat` (lead candidate)
 - `verlauf` (historical poll values over time)
@@ -29,6 +30,7 @@ Take the existing `werte.json` and **add the optional fields to each party entry
       "partei": "CDU/CSU",
       "prozent": 32,
       "beschreibung": "2–4 Sätze: politische Grundlinien der Partei, aktuelles Wahlprogramm, Schwerpunkte.",
+      "beschreibung_einfach": "2–3 kurze Sätze in einfacher Sprache (Alltagswörter, kurze Sätze, kein Jargon).",
       "website": "https://www.cdu.de",
       "kandidaten": [
         { "name": "Vollständiger Name", "rolle": "Landesvorsitzender" },
@@ -54,6 +56,7 @@ Take the existing `werte.json` and **add the optional fields to each party entry
 | `partei` | **Ja** | Exakt der Parteiename aus der vorhandenen `werte.json` – niemals ändern/umbenennen |
 | `prozent` | **Ja** | Vorhandener aktueller Umfragewert – unverändert lassen |
 | `beschreibung` | **Ja** | 2–4 neutrale Sätze zu Grundlinien, Wahlprogramm und Schwerpunkten |
+| `beschreibung_einfach` | Nein | Einfache-Sprache-Version der Beschreibung: 2–3 kurze Sätze, Alltagswörter, keine Fachbegriffe. Die App zeigt sie bei aktivierter „Einfacher Sprache" |
 | `website` | **Ja** | Offizielle Partei-Website (https) |
 | `kandidaten` | Je nach Wahl | Top-Kandidatinnen und -Kandidaten: `name` + `rolle` (Landesvorsitz, Spitzenkandidat:in, Ministerpräsident:in …) |
 | `spitzenkandidat` | Nein | Exakter `name` aus `kandidaten` |

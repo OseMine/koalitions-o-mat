@@ -1,259 +1,206 @@
 {
+  "meta": {
+    "name": "Bundestagswahl 2029",
+    "sperrklausel": 5,
+    "sitze": 630,
+    "verfahren": "sainte-lague"
+  },
   "umfragewerte": [
     {
       "partei": "AfD",
-      "prozent": 27,
-      "beschreibung": "Die AfD (Alternative für Deutschland) setzt auf restriktive Migrationspolitik, den Erhalt des Verbrennungsmotors, die Ablehnung der CO2-Bepreisung und eine strikte Schuldenbremse. In der Wirtschaftspolitik fordert sie Steuersenkungen und weniger EU-Integration.",
+      "prozent": 28,
+      "beschreibung": "Die Alternative für Deutschland (AfD) ist eine rechtspopulistische und nationalkonservative Partei. Schwerpunkte ihres Programms bilden eine strikte Begrenzung der Zuwanderung, eine kritische Haltung gegenüber der Europäischen Union sowie die Ablehnung staatlicher Vorgaben im Klimaschutz. Gesellschaftspolitisch vertritt die Partei ein traditionelles Familienbild und betont nationale Souveränität.",
+      "beschreibung_einfach": "Die AfD ist eine konservative Partei. Sie möchte deutlich weniger Zuwanderung nach Deutschland. Sie steht der Europäischen Union kritisch gegenüber und lehnt staatliche Gesetze zum Klimaschutz ab.",
       "website": "https://www.afd.de",
-      "verlauf": [
+      "kandidaten": [
         {
-          "label": "Okt 2021",
-          "prozent": 21
+          "name": "Alice Weidel",
+          "rolle": "Bundessprecherin und Fraktionsvorsitzende"
         },
         {
-          "label": "Jun 2023",
-          "prozent": 20
-        },
-        {
-          "label": "Jun 2024",
-          "prozent": 22
-        },
-        {
-          "label": "Jan 2025",
-          "prozent": 24
-        },
-        {
-          "label": "Jul 2026",
-          "prozent": 27
+          "name": "Tino Chrupalla",
+          "rolle": "Bundessprecher und Fraktionsvorsitzender"
         }
       ],
+      "spitzenkandidat": "Alice Weidel",
+      "verlauf": [
+        { "label": "Feb 2025", "prozent": 21 },
+        { "label": "Okt 2025", "prozent": 26 },
+        { "label": "Mär 2026", "prozent": 25 },
+        { "label": "Aug 2026", "prozent": 28 }
+      ],
       "rss": [
-        "https://www.afd.de/feed/"
+        "https://www.tagesschau.de/xml/rss2",
+        "https://www.deutschlandfunk.de/nachrichten-100.rss"
       ]
     },
     {
       "partei": "CDU/CSU",
-      "prozent": 21,
-      "beschreibung": "Die Unionsparteien CDU und CSU stehen für marktwirtschaftliche Politik mit solider Haushaltsführung, eine gedeckelte Migration, den Erhalt der Schuldenbremse und Technologieoffenheit (u.a. Kernkraft und E-Fuels). In der Sozialpolitik setzen sie auf Leistungsgerechtigkeit.",
+      "prozent": 23,
+      "beschreibung": "Die CDU/CSU (Union) ist ein christdemokratisches und bürgerlich-konservatives Parteienbündnis. In der Wirtschaftspolitik setzt sie auf die Soziale Marktwirtschaft, Steuersenkungen und Entbürokratisierung. In der Innen- und Sicherheitspolitik fordert die Union eine Stärkung der Polizeibehörden sowie eine geordnete Steuerung und Begrenzung von Migration.",
+      "beschreibung_einfach": "Die Union besteht aus den Parteien CDU und CSU. Sie setzt sich für Unternehmen und Wirtschaft ein. Sie möchte weniger Regeln für Firmen und mehr Sicherheit durch die Polizei.",
       "website": "https://www.cdu.de",
-      "verlauf": [
+      "kandidaten": [
         {
-          "label": "Okt 2021",
-          "prozent": 32
+          "name": "Friedrich Merz",
+          "rolle": "Bundeskanzler / Parteivorsitzender der CDU"
         },
         {
-          "label": "Jun 2023",
-          "prozent": 30
-        },
-        {
-          "label": "Jun 2024",
-          "prozent": 34
-        },
-        {
-          "label": "Jan 2025",
-          "prozent": 31
-        },
-        {
-          "label": "Jul 2026",
-          "prozent": 21
+          "name": "Markus Söder",
+          "rolle": "Parteivorsitzender der CSU"
         }
       ],
+      "spitzenkandidat": "Friedrich Merz",
+      "verlauf": [
+        { "label": "Feb 2025", "prozent": 29 },
+        { "label": "Okt 2025", "prozent": 26 },
+        { "label": "Mär 2026", "prozent": 26 },
+        { "label": "Aug 2026", "prozent": 23 }
+      ],
       "rss": [
-        "https://www.cdu.de/feed"
+        "https://www.tagesschau.de/xml/rss2",
+        "https://www.zdf.de/rss/zdf/nachrichten"
       ]
     },
     {
       "partei": "GRÜNE",
-      "prozent": 16,
-      "beschreibung": "Bündnis 90/Die Grünen verfolgen eine ambitionierte Klimapolitik mit Ausbau der Erneuerbaren, Tempolimit und CO2-Bepreisung. Gesellschaftspolitisch setzen sie auf Teilhabe, Chancengleichheit und eine liberale Migrations- und Drogenpolitik.",
+      "prozent": 14,
+      "beschreibung": "Bündnis 90/Die Grünen vertreten ökologische, sozial-liberale und pro-europäische Positionen. Im Zentrum ihres Wahlprogramms stehen der beschleunigte Ausbau erneuerbarer Energien, der Schutz der Biodiversität und die Transformation der Industrie zur Klimaneutralität. Zudem setzen sie sich für Bürgerrechte, Chancengleichheit und Vielfalt ein.",
+      "beschreibung_einfach": "Die Grünen möchten Natur und Umwelt schützen. Sie fordern mehr Strom aus Sonne und Wind. Außerdem setzen sie sich für Gleichberechtigung aller Menschen ein.",
       "website": "https://www.gruene.de",
-      "verlauf": [
+      "kandidaten": [
         {
-          "label": "Okt 2021",
-          "prozent": 27
+          "name": "Franziska Brantner",
+          "rolle": "Bundesvorsitzende"
         },
         {
-          "label": "Jun 2023",
-          "prozent": 19
-        },
-        {
-          "label": "Jun 2024",
-          "prozent": 14
-        },
-        {
-          "label": "Jan 2025",
-          "prozent": 14
-        },
-        {
-          "label": "Jul 2026",
-          "prozent": 16
+          "name": "Felix Banaszak",
+          "rolle": "Bundesvorsitzender"
         }
       ],
-      "rss": [
-        "https://www.gruene.de/rss-feed"
-      ]
-    },
-    {
-      "partei": "LINKE",
-      "prozent": 13,
-      "beschreibung": "DIE LINKE fordert Umverteilung von Vermögen, höhere Steuern für Reiche, die Abschaffung der Schuldenbremse und einen Ausbau des Sozialstaats. In der Außen- und Sicherheitspolitik lehnt sie Waffenlieferungen und Rüstungsexporte ab.",
-      "website": "https://www.die-linke.de",
+      "spitzenkandidat": "Franziska Brantner",
       "verlauf": [
-        {
-          "label": "Okt 2021",
-          "prozent": 11
-        },
-        {
-          "label": "Jun 2023",
-          "prozent": 12
-        },
-        {
-          "label": "Jun 2024",
-          "prozent": 13
-        },
-        {
-          "label": "Jan 2025",
-          "prozent": 12
-        },
-        {
-          "label": "Jul 2026",
-          "prozent": 13
-        }
+        { "label": "Feb 2025", "prozent": 12 },
+        { "label": "Okt 2025", "prozent": 12 },
+        { "label": "Mär 2026", "prozent": 15 },
+        { "label": "Aug 2026", "prozent": 14 }
       ],
       "rss": [
-        "https://www.die-linke.de/feed"
+        "https://www.tagesschau.de/xml/rss2",
+        "https://www.deutschlandfunk.de/nachrichten-100.rss"
       ]
     },
     {
       "partei": "SPD",
       "prozent": 12,
-      "beschreibung": "Die SPD verbindet soziale Gerechtigkeit mit wirtschaftlicher Stabilität: höherer Mindestlohn, eine Reform der Schuldenbremse für Investitionen und der Erhalt des Sozialstaats. In der Außenpolitik setzt sie auf Zurückhaltung bei Waffenlieferungen.",
+      "beschreibung": "Die Sozialdemokratische Partei Deutschlands (SPD) ist eine sozialdemokratische Partei der Mitte-Links-Orientierung. Zu ihren Kernanliegen gehören die Festigung des Sozialstaates, faire Löhne, bezahlbares Wohnen und die Sicherung der Renten. In der Transformation zur Klimaneutralität betont sie den Schutz von Arbeitsplätzen und sozialen Ausgleich.",
+      "beschreibung_einfach": "Die SPD kämpft für soziale Gerechtigkeit. Sie möchte gute Löhne und bezahlbare Wohnungen für alle. Beim Klimaschutz will sie Arbeitsplätze sichern.",
       "website": "https://www.spd.de",
-      "verlauf": [
+      "kandidaten": [
         {
-          "label": "Okt 2021",
-          "prozent": 30
+          "name": "Lars Klingbeil",
+          "rolle": "Parteivorsitzender"
         },
         {
-          "label": "Jun 2023",
-          "prozent": 18
-        },
-        {
-          "label": "Jun 2024",
-          "prozent": 15
-        },
-        {
-          "label": "Jan 2025",
-          "prozent": 14
-        },
-        {
-          "label": "Jul 2026",
-          "prozent": 12
+          "name": "Saskia Esken",
+          "rolle": "Parteivorsitzende"
         }
       ],
+      "spitzenkandidat": "Lars Klingbeil",
+      "verlauf": [
+        { "label": "Feb 2025", "prozent": 16 },
+        { "label": "Okt 2025", "prozent": 14 },
+        { "label": "Mär 2026", "prozent": 12 },
+        { "label": "Aug 2026", "prozent": 12 }
+      ],
       "rss": [
-        "https://www.spd.de/rss/feed/aktuell"
+        "https://www.tagesschau.de/xml/rss2",
+        "https://www.zdf.de/rss/zdf/nachrichten"
+      ]
+    },
+    {
+      "partei": "LINKE",
+      "prozent": 10,
+      "beschreibung": "Die Linke vertritt sozialistische und antiglobalistische Positionen. Sie fordert eine konsequente Umverteilung durch eine Vermögensteuer, höhere Besteuerung von Spitzeneinkommen und den Ausbau öffentlicher Dienstleistungen. Außenpolitisch setzt die Partei auf Abrüstung, die Einstellung von Waffenexporten und friedensdiplomatische Lösungen.",
+      "beschreibung_einfach": "Die Linke will Reiche stärker besteuern und Arme unterstützen. Sie möchte mehr Geld für Krankenhäuser, Schulen und Pflege ausgeben. Außerdem ist sie gegen Waffenlieferungen.",
+      "website": "https://www.die-linke.de",
+      "kandidaten": [
+        {
+          "name": "Ines Schwerdtner",
+          "rolle": "Bundesvorsitzende"
+        },
+        {
+          "name": "Jan van Aken",
+          "rolle": "Bundesvorsitzender"
+        }
+      ],
+      "spitzenkandidat": "Jan van Aken",
+      "verlauf": [
+        { "label": "Feb 2025", "prozent": 9 },
+        { "label": "Okt 2025", "prozent": 10 },
+        { "label": "Mär 2026", "prozent": 10 },
+        { "label": "Aug 2026", "prozent": 10 }
+      ],
+      "rss": [
+        "https://www.tagesschau.de/xml/rss2",
+        "https://www.deutschlandfunk.de/nachrichten-100.rss"
       ]
     },
     {
       "partei": "FDP",
-      "prozent": 4,
-      "beschreibung": "Die FDP steht für wirtschaftliche Freiheit, Steuersenkungen, Bürokratieabbau und Technologieoffenheit. Sie lehnt Subventionen, Tempolimit und Schuldenmacherei ab und setzt auf marktwirtschaftliche Lösungen und liberale Bürgerrechte.",
+      "prozent": 5,
+      "beschreibung": "Die Freie Demokratische Partei (FDP) ist eine liberale Partei, die Eigenverantwortung und wirtschaftliche Freiheit betont. Schwerpunkte bilden der Erhalt der Schuldenbremse, der Verzicht auf Steuererhöhungen und der Abbau von Regulierung. Zudem fordert sie die Beschleunigung der Digitalisierung in Wirtschaft und Verwaltung.",
+      "beschreibung_einfach": "Die FDP möchte möglichst wenig Staat und Gesetze. Bürger und Firmen sollen frei entscheiden können. Der Staat soll keine neuen Schulden machen.",
       "website": "https://www.fdp.de",
-      "verlauf": [
+      "kandidaten": [
         {
-          "label": "Okt 2021",
-          "prozent": 16
+          "name": "Christian Lindner",
+          "rolle": "Bundesvorsitzender"
         },
         {
-          "label": "Jun 2023",
-          "prozent": 7
-        },
-        {
-          "label": "Jun 2024",
-          "prozent": 5
-        },
-        {
-          "label": "Jan 2025",
-          "prozent": 4
-        },
-        {
-          "label": "Jul 2026",
-          "prozent": 4
+          "name": "Bijan Djir-Sarai",
+          "rolle": "Generalsekretär"
         }
       ],
+      "spitzenkandidat": "Christian Lindner",
+      "verlauf": [
+        { "label": "Feb 2025", "prozent": 4 },
+        { "label": "Okt 2025", "prozent": 3 },
+        { "label": "Mär 2026", "prozent": 4 },
+        { "label": "Aug 2026", "prozent": 5 }
+      ],
       "rss": [
-        "https://www.fdp.de/rss.xml"
+        "https://www.tagesschau.de/xml/rss2",
+        "https://www.zdf.de/rss/zdf/nachrichten"
       ]
     },
     {
       "partei": "BSW",
-      "prozent": 3,
-      "beschreibung": "Das Bündnis Sahra Wagenknecht verbindet sozialpolitische Forderungen mit einer kritischen Haltung zu Migration, Waffenlieferungen und grüner Klimapolitik. Es fordert bezahlbare Energie und die Entlastung kleiner Einkommen.",
-      "website": "https://bsw-partei.de",
-      "verlauf": [
+      "prozent": 4,
+      "beschreibung": "Das Bündnis Sahra Wagenknecht (BSW) verknüpft links-sozialpolitische Forderungen mit gesellschaftspolitisch konservativen und migrationskritischen Haltungen. Schwerpunkte sind höhere Mindestlöhne, die Stärkung heimischer Unternehmen und der Erhalt der Industrie. Außenpolitisch plädiert die Partei für Diplomatie und die Aufhebung wirtschaftlicher Sanktionen.",
+      "beschreibung_einfach": "Das Bündnis Sahra Wagenknecht fordert höhere Renten und Löhne. Gleichzeitig fordert die Partei Grenzen bei der Zuwanderung und friedliche Verhandlungen statt Sanktionen.",
+      "website": "https://bsw-vg.de",
+      "kandidaten": [
         {
-          "label": "Jan 2024",
-          "prozent": 7
+          "name": "Sahra Wagenknecht",
+          "rolle": "Parteivorsitzende"
         },
         {
-          "label": "Jun 2024",
-          "prozent": 6
-        },
-        {
-          "label": "Jan 2025",
-          "prozent": 5
-        },
-        {
-          "label": "Jul 2026",
-          "prozent": 3
+          "name": "Amira Mohamed Ali",
+          "rolle": "Parteivorsitzende"
         }
       ],
+      "spitzenkandidat": "Sahra Wagenknecht",
+      "verlauf": [
+        { "label": "Feb 2025", "prozent": 5 },
+        { "label": "Okt 2025", "prozent": 3 },
+        { "label": "Mär 2026", "prozent": 4 },
+        { "label": "Aug 2026", "prozent": 4 }
+      ],
       "rss": [
-        "https://bsw-partei.de/feed"
+        "https://www.tagesschau.de/xml/rss2",
+        "https://www.deutschlandfunk.de/nachrichten-100.rss"
       ]
-    },
-    {
-      "partei": "FREIE WÄHLER",
-      "prozent": 1.5,
-      "beschreibung": "Die Freien Wähler setzen sich für kommunale Selbstbestimmung, direkte Demokratie und regionale Wirtschaft ein. Sie lehnen zentralistische Vorgaben ab und fordern eine pragmatische Politik ohne ideologische Festlegungen.",
-      "website": "https://www.freiewaehler.eu"
-    },
-    {
-      "partei": "Volt",
-      "prozent": 1,
-      "beschreibung": "Volt ist eine paneuropäische Partei, die für mehr europäische Integration, Klimaschutz mit Technologieoffenheit, Digitalisierung und soziale Chancengleichheit eintritt.",
-      "website": "https://www.voltdeutschland.org"
-    },
-    {
-      "partei": "Tierschutz",
-      "prozent": 0.5,
-      "beschreibung": "Die Tierschutzpartei setzt sich konsequent für Tierrechte, einen Ausstieg aus der Massentierhaltung und eine ökologisch-nachhaltige Landwirtschaft ein.",
-      "website": "https://www.tierschutzpartei.de"
-    },
-    {
-      "partei": "PARTEI",
-      "prozent": 0.5,
-      "beschreibung": "Die Partei für Arbeit, Recht, Tierschutz, Elitenförderung und basisdemokratische Initiative (Die PARTEI) verbindet satirische Aktionen mit ernsthaften Forderungen zu Transparenz, Tierschutz und Bürgerrechten.",
-      "website": "https://www.die-partei.de"
-    },
-    {
-      "partei": "SSW",
-      "prozent": 0.2,
-      "beschreibung": "Der Südschleswigsche Wählerverband vertritt die dänische und friesische Minderheit und tritt für Minderheitenrechte sowie eine liberale, soziale Politik ein.",
-      "website": "https://www.ssw.de"
-    },
-    {
-      "partei": "BÜNDNIS DEUTSCHLAND",
-      "prozent": 0.2,
-      "beschreibung": "Das Bündnis Deutschland fordert eine konservative Wende in Migrations-, Finanz- und Energiepolitik, weniger Bürokratie und eine Stärkung nationaler Souveränität.",
-      "website": "https://buendnis-deutschland.de"
     }
-  ],
-  "meta": {
-    "name": "Bundestagswahl 2029 (Umfrage Juli 2026)",
-    "sperrklausel": 5,
-    "sitze": 630,
-    "verfahren": "sainteLague"
-  }
+  ]
 }
