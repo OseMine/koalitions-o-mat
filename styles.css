@@ -756,6 +756,7 @@ body {
 .party-news-item a:hover { color: var(--primary); text-decoration: underline; }
 .party-news-date { display: block; margin-top: 4px; color: var(--on-surface-muted); font-size: 0.78rem; }
 .party-news-source { margin-top: 10px; font-size: 0.75rem; }
+.party-news-retry { margin-top: 12px; min-height: 44px; }
 
 .party-page-footer { margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--outline); }
 

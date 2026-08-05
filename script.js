@@ -735,6 +735,11 @@ function loadPartyNews(party) {
         container.innerHTML = `<p class="party-muted">${t('party.newsEmpty', 'Für diese Seite sind noch keine Nachrichten-Quellen eingerichtet.')}</p>`;
         return;
     }
+    container.innerHTML = `<p class="party-muted">${t('party.loading', 'Nachrichten werden geladen…')}</p>`;
+    const renderNewsError = () => {
+        container.innerHTML = `<p class="party-muted">${t('party.newsError', 'Nachrichten konnten nicht geladen werden. Bitte später erneut versuchen.')}</p>
+            <button type="button" class="btn-ghost party-news-retry" onclick="requirePartyNews()">${t('party.newsRetry', 'Erneut versuchen')}</button>`;
+    };
     Promise.all(feeds.map(url => fetchNewsFeedProxy(url)
         .then(res => parseRss(res))
         .catch(() => null)
@@ -745,7 +750,7 @@ function loadPartyNews(party) {
         items.flat().forEach(it => { if (!seen.has(it.link)) { seen.add(it.link); flat.push(it); } });
         flat.sort((a, b) => Date.parse(b.date || '') - Date.parse(a.date || ''));
         if (!flat.length) {
-            container.innerHTML = `<p class="party-muted">${t('party.newsError', 'Nachrichten konnten nicht geladen werden. Bitte später erneut versuchen.')}</p>`;
+            renderNewsError();
             return;
         }
         container.innerHTML = `<ul class="party-news-list">${flat.slice(0, 8).map(it => `
@@ -755,13 +760,47 @@ function loadPartyNews(party) {
             </li>`).join('')}</ul>
             <p class="party-muted party-news-source">${t('party.newsSource', 'Nachrichtenfeed automatisch geladen (RSS). Auswahl & Zusammensetzung können nicht kontrolliert werden.')}</p>`;
     }).catch(() => {
-        container.innerHTML = `<p class="party-muted">${t('party.newsError', 'Nachrichten konnten nicht geladen werden. Bitte später erneut versuchen.')}</p>`;
+        renderNewsError();
     });
 }
 
+function requirePartyNews() {
+    if (currentPartyData) loadPartyNews(currentPartyData);
+}
+
+const NEWS_PROXIES = [
+    'https://api.allorigins.win/raw?url=',
+    'https://api.codetabs.com/v1/proxy?quest=',
+    'https://corsproxy.io/?url='
+];
+const NEWS_FETCH_TIMEOUT_MS = 12000;
+
 function fetchNewsFeedProxy(url) {
-    const proxy = (config && config.newsProxy) || 'https://api.allorigins.win/raw?url=';
-    return fetch(proxy + encodeURIComponent(url)).then(r => { if (!r.ok) throw new Error('feed'); return r.text(); });
+    const configured = (config && config.newsProxy) || '';
+    const proxies = (configured ? [configured] : []).concat(NEWS_PROXIES)
+        .filter((p, i, arr) => p && arr.indexOf(p) === i);
+    let lastErr = null;
+    let idx = 0;
+    const tryNext = () => {
+        if (idx >= proxies.length) return Promise.reject(lastErr || new Error('feed'));
+        const proxy = proxies[idx++];
+        const ctrl = new AbortController();
+        const timer = setTimeout(() => ctrl.abort(), NEWS_FETCH_TIMEOUT_MS);
+        return fetch(proxy + encodeURIComponent(url), { signal: ctrl.signal })
+            .then(r => { if (!r.ok) throw new Error('feed'); return r.text(); })
+            .then(text => {
+                const t = String(text || '').trim();
+                if (t && t.charAt(0) === '<' && /<item[ >]|<entry[ >]|<rss|<feed/i.test(t)) return t;
+                throw new Error('feed');
+            })
+            .catch(err => {
+                clearTimeout(timer);
+                lastErr = err;
+                return tryNext();
+            })
+            .finally(() => clearTimeout(timer));
+    };
+    return tryNext();
 }
 
 function parseRss(text) {
