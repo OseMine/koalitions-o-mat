@@ -4,6 +4,28 @@ Code-Review vom 01.08.2026. Prioritäten: P1 = Bug / P2 = Feature / P3 = Verbess
 
 ---
 
+## Implementierung vom 2026-08-05 (P2 + P3 aus Review 2026-08-04 & Folgebefunde)
+
+Verifiziert per `node --check`, JSON-Validierung und DOM-Harness gegen die echten Datendateien.
+
+### Umgesetzt
+- [x] **P2: Partei-Vergleich zeigt Quellen/Begründungen sichtbar** – `updatePartyComparison()` (script.js): neuer `title`-Tooltip, stattdessen sichtbare Spalte „Quelle / Begründung" (`cmp-srcs`); mobil erreichbar (README:13). `cmp-hint`-Hover entfernt.
+- [x] **P2: `prompt-gemini-daten.md` angelegt** – generiert `beschreibung`/`website`/`kandidaten`/`spitzenkandidat`/`verlauf`/`rss` (neutrale Feeds); README „Daten generieren" verlinkt beide Prompts.
+- [x] **P3: `thema` als Pflichtfeld im Fragen-Prompt** – `prompt-gemini-fragen.md` mit gültigen Topic-Keys (Wirtschaft, Soziales, Umwelt, Außenpolitik, Inneres, Digitales, Sonstiges) + Feld-Tabelle + Beispiel.
+- [x] **P3: HTML-Escaping vereinheitlicht** – `p.beschreibung` (:455, :529), `p.website`-href (:461, :540, :544), Kandidaten-Namen, `s.zitat`/`s.begruendung`/`s.quelle` (Quellen-Panel) und Partei-Namen im Vergleich jetzt via `escapeHtml`/`escapeHtmlAttr`.
+- [x] **P3: `renderPartyProgramm()` „… und {n} weitere Punkte"** – statt stillem `slice(0,3)`, neuer `programmMore`-Hinweis (i18n).
+- [x] **P3: UI-Hinweis Tastatursteuerung** – `.keyboard-hint` im Test-Tab (1/2/3/Pfeile), i18n `keyboardHint`.
+- [x] **P3: `party.notFound`-Key in `einfache-sprache.json`** ergänzt (war mehrfach offen).
+- [x] **P3: `user-match-bar` rendert kein ungültiges CSS bei `null`** – Guard `width:0` statt `width:null%`.
+- [x] **P3: Einfache-Sprache-Toggle erhält Partei-Vergleichsauswahl** – `populatePartyDropdowns()` liest vor dem Neuaufbau die angehakten Parteien und stellt sie wieder her.
+- [x] **P3: `togglePartyDetail`-Parteiname escaped** – `onclick` via `escapeHtmlAttr`.
+- [x] **P3: Swipe-Dead-Zone (~10 px)** – winziges `touchmove` deaktiviert die Geste nicht mehr dauerhaft.
+
+### Weiter offen (Daten/Design, nicht im Code lösbar ohne Diskussion)
+- MV GRÜNE exakt 5 %-Grenzwert; Ranking-Normalisierung bei wenigen Antworten; `berechneUebereinstimmung()` ohne Umfragewert-Gewichtung; hartkodierte `aria-label`s (index.html:22-24); README:10 „neutral" vs. Partei-RSS; News-Fetch ohne Timeout; `partyFilter` leere Liste ohne Erklärung; `verlauf`/`rss`-Datenlücke in 3 von 4 Wahlen.
+
+---
+
 ## Review vom 2026-08-04 (gesamtes Projekt, Node-Simulation + DOM-Harness)
 
 Vollständiger Bericht: `reports/review-2026-08-04.md`. Koalitions-/Sitzwerte und i18n-Abdeckung per Node gegen die echten Datendateien re-verifiziert (siehe „Verifiziert").
@@ -14,20 +36,20 @@ Vollständiger Bericht: `reports/review-2026-08-04.md`. Koalitions-/Sitzwerte un
 
 ### P2 – Fehlende Features
 
-- [ ] **Partei-Vergleich: Quellen & Begründungen nur per Hover** – `updatePartyComparison()` (script.js:1752–1763) versteckt `quelle`/`begruendung` im `title`-Tooltip; auf Mobilgeräten unerreichbar, obwohl README:13 „mit Quellen und Begründungen" zusagt.
-- [ ] **Kein Prompt/Asset für fehlende `werte.json`-Zusatzdaten** – README:51 verlinkt nur `prompt-gemini-fragen.md`; es fehlt ein `prompt-gemini-daten.md` für `verlauf`, `rss`, `kandidaten`, `spitzenkandidat` (Datenlücke in 3 von 4 Wahlen). Build-on für Issue „Another Md file for Gemini".
+- [x] **Partei-Vergleich: Quellen & Begründungen nur per Hover** – `updatePartyComparison()` (script.js:1752–1763) versteckt `quelle`/`begruendung` im `title`-Tooltip; auf Mobilgeräten unerreichbar, obwohl README:13 „mit Quellen und Begründungen" zusagt.
+- [x] **Kein Prompt/Asset für fehlende `werte.json`-Zusatzdaten** – README:51 verlinkt nur `prompt-gemini-fragen.md`; es fehlt ein `prompt-gemini-daten.md` für `verlauf`, `rss`, `kandidaten`, `spitzenkandidat` (Datenlücke in 3 von 4 Wahlen). Build-on für Issue „Another Md file for Gemini".
 
 ### P3 – Verbesserungen
 
-- [ ] **`prompt-gemini-fragen.md` ohne Pflichtfeld `thema`** – neue Gemini-Fragen ohne `thema` treffen den Keyword-Fallback von `determineTopic()` (script.js:1713) daneben (z. B. btw2029 #34 „Rundfunk"→„Inneres", LSA #33 „Verwaltungsdigitalisierung"→„Außenpolitik"). `thema` als Pflichtfeld im Prompt ergänzen.
-- [ ] **Inkonsistentes HTML-Escaping** – unescaped: `p.beschreibung` (script.js:455, 529), `p.website`-href (:461), `s.zitat`/`s.begruendung`/`s.quelle` (:1035–1037), `title`-Attribut Vergleich (:1759); Rest nutzt `escapeHtml`/`escapeHtmlAttr`.
-- [ ] **`renderPartyProgramm()` kürzt still auf 3 Punkte pro Thema/Richtung** (script.js:659–660 `slice(0,3)`) ohne „weitere X Punkte"-Hinweis.
-- [ ] **Kein UI-Hinweis auf Tastatursteuerung (1/2/3/Pfeile)** – README:7 dokumentiert sie, der Test-Tab zeigt sie nicht an.
+- [x] **`prompt-gemini-fragen.md` ohne Pflichtfeld `thema`** – ergänzt (gültige Topic-Keys + Feld-Tabelle + Beispiel). Neue Gemini-Fragen ohne `thema` treffen den Keyword-Fallback von `determineTopic()` (script.js:1713) daneben (z. B. btw2029 #34 „Rundfunk"→„Inneres", LSA #33 „Verwaltungsdigitalisierung"→„Außenpolitik").
+- [x] **Inkonsistentes HTML-Escaping** – behoben: `p.beschreibung` (script.js:455, 529), `p.website`-href (:461, :540, :544), Kandidaten-Namen, `s.zitat`/`s.begruendung`/`s.quelle` (:1035–1037) und Vergleich jetzt einheitlich via `escapeHtml`/`escapeHtmlAttr`; `title`-Attribut im Vergleich entfällt (sichtbare Quellen-Spalte).
+- [x] **`renderPartyProgramm()` kürzt still auf 3 Punkte pro Thema/Richtung** (script.js:659–660 `slice(0,3)`) – neuer „… und {n} weitere Punkte"-Hinweis (`programmMore`).
+- [x] **Kein UI-Hinweis auf Tastatursteuerung (1/2/3/Pfeile)** – `.keyboard-hint` im Test-Tab ergänzt (`keyboardHint`-Key).
 
 ### Verifiziert
 
 - [x] Koalitionswerte unverändert: btw2029 max 50,9 %, LSA 52,0 %, Berlin 48,0 %, MV 58,7 %; Sitzsummen 630/87/130/71, Verfahren `sainteLague`/`dhondt`.
-- [x] i18n vollständig bis auf `party.notFound`; einfache Sprache deckt 170 Fragen.
+- [x] i18n vollständig (inkl. `party.notFound` seit 2026-08-05); einfache Sprache deckt 170 Fragen.
 - [x] Keine fehlenden Parteien/Farben, keine ungültigen `wert`-Werte, keine doppelten `nr`, alle `thema`-Werte gültig.
 
 ---
@@ -43,7 +65,7 @@ Fokus der Nutzer-Meldung: „Auf der Partei-Seite sind Inhalte nur über den get
 ### P1 – Bugs
 
 - [ ] **Kein Code-Unterschied zwischen direktem Öffnen und Teilen-Link reproduzierbar** – `openPartyPage()` (script.js:506) ist in beiden Pfaden identisch (Harness: Programm rendert in allen 4 Wahlen). Die Wahrnehmung „Inhalte nur über Teilen-Link" stammt vermutlich aus den Tap-/Daten-Lücken unten.
-- [ ] **`party.notFound` fehlt weiterhin in `einfache-sprache.json`** – re-verifiziert: `es.ui['party.notFound']` → `undefined` (Fallback greift); offen seit 2026-08-03-b.
+- [x] **`party.notFound` fehlt weiterhin in `einfache-sprache.json`** – behoben am 2026-08-05: Key ergänzt. Re-verifiziert: `es.ui['party.notFound']` → vorhanden.
 
 ### P2 – Fehlende Features
 
@@ -93,10 +115,10 @@ Vollständiger Bericht: `reports/review-2026-08-03-b.md`. Keine neuen harten P1-
 
 ### P3 – Verbesserungen
 
-- [ ] **`party.notFound`-Key fehlt in einfache-sprache.json** – `openPartyPage()` (script.js:509) nutzt `t('party.notFound', …)`; verifiziert: `es.ui['party.notFound']` → `undefined` → Einfach-Sprache-Fallback. Key ergänzen.
-- [ ] **`user-match-bar` rendert ungültiges CSS bei `null`** – `updateKoalitionen()` (script.js:939) schreibt `width:null%` ohne Guard; leerwert abfangen.
-- [ ] **Einfache-Sprache-Toggle setzt Partei-Vergleichsauswahl zurück** – `toggleSimpleLanguage()` → `populatePartyDropdowns()` (script.js:1853) baut `comparePartiesCheckboxes` neu auf (erste 2 Parteien); Auswahl stehen lassen.
-- [ ] **Parteiname in `togglePartyDetail` unescaped** – `onclick="togglePartyDetail('${r.partei}')"` (script.js:1370) ohne `escapeHtmlAttr` (vgl. script.js:473); Parteiename mit `'` würde den Aufruf brechen.
+- [x] **`party.notFound`-Key fehlt in einfache-sprache.json** – behoben am 2026-08-05: Key ergänzt.
+- [x] **`user-match-bar` rendert ungültiges CSS bei `null`** – `updateKoalitionen()` (script.js:939) schreibt `width:null%` ohne Guard; behoben via `width:0`-Guard.
+- [x] **Einfache-Sprache-Toggle setzt Partei-Vergleichsauswahl zurück** – `toggleSimpleLanguage()` → `populatePartyDropdowns()` (script.js:1853) baut `comparePartiesCheckboxes` neu auf (erste 2 Parteien); behoben am 2026-08-05: angehakte Parteien werden vor dem Neuaufbau gesichert und wiederhergestellt.
+- [x] **Parteiname in `togglePartyDetail` unescaped** – `onclick="togglePartyDetail('${r.partei}')"` (script.js:1370) ohne `escapeHtmlAttr` (vgl. script.js:473); Parteiename mit `'` würde den Aufruf brechen. Behoben.
 - [ ] **MV: GRÜNE exakt 5 %** – `>= 5`-Prüfung schließt GRÜNE (5 %) in `berechneKoalitionen()`/`berechneSitze()`. Grenzwert-Entscheidung als Datenhinweis dokumentieren.
 
 ### Verifiziert (Re-Verifizierung dieses Laufes)
@@ -109,7 +131,7 @@ Vollständiger Bericht: `reports/review-2026-08-03-b.md`. Keine neuen harten P1-
 
 ### Weiterhin offen (aus früheren Läufen, Zeilennummern aktualisiert)
 
-- [ ] **Swipe-Abbruch innerhalb einer Geste permanent** – erster vertikal-dominanter `touchmove` (script.js:1793-1950) deaktiviert die Geste bis `touchend`; Dead-Zone ~10 px oder Re-Arming.
+- [x] **Swipe-Abbruch innerhalb einer Geste permanent** – behoben am 2026-08-05: Dead-Zone ~10 px vor der Richtungsprüfung; ein winziges `touchmove` deaktiviert die Geste nicht mehr dauerhaft.
 - [ ] **`partyFilter` mit Partei < Sperrklausel ergibt leere Liste ohne Erklärung** – `populatePartyDropdowns()` (script.js:400-409) listet < 5 %-Parteien, `updateKoalitionen()` (script.js:896-898) filtert nur auf Koalitionen.
 - [ ] **Koalitions-Share-Link ohne Antworten zeigt im Test-Tab lauter „–"** – `applyPendingShare()` (script.js:164) ruft `showTestResults()` auch bei leerem `answers`.
 - [ ] **`berechneUebereinstimmung` ohne Umfragewert-Gewichtung** (script.js:812-835).
@@ -125,7 +147,7 @@ Merge-Review des PR „Issue #17 behoben: Swipe fix + Review umgesetzt" (`report
 
 ### P3 – Verbesserungen (neu)
 
-- [ ] **Swipe-Abbruch permanent nach EINEM vertikal-dominierten `touchmove`-Event** – script.js:1641-1644: das erste Touchmove mit nur 2 px Y / 1 px X deaktiviert die Geste dauerhaft; simulierte horizontale Swipe (2,4)→(150,8) wird verworfen. Vorschlag: Richtungsprüfung erst ab ~10 px Dead-Zone oder Flag bei später horizontal-dominanter Bewegung wieder aufheben.
+- [x] **Swipe-Abbruch permanent nach EINEM vertikal-dominierten `touchmove`-Event** – behoben am 2026-08-05: Dead-Zone ~10 px (Richtungsprüfung erst ab 10 px Gesamtbewegung); simulierte horizontale Swipe (2,4)→(150,8) wird nicht mehr verworfen.
 - [ ] **`partyFilter` im Koalitionen-Tab listet Parteien < Sperrklausel, Filter-Ergebnis ist dann leer** – `populatePartyDropdowns()` (script.js:400-402) nutzt `relevant`, `updateKoalitionen()` (script.js:593-595) filtert nur Koalitionen → „FDP" (btw2029) ergibt „Keine passenden Koalitionen gefunden" ohne Erklärung. Begründung aus Report-e („Filter auf Ergebnisliste") trifft nicht zu.
 - [ ] **Koalitions-Share-Link ohne Antworten hinterlässt Ergebnissicht mit lauter „–" im Test-Tab** – `applyPendingShare()` (script.js:146-183) ruft `showTestResults()` auch bei leerem `answers` auf; Vorschlag: bei leerem `answers` + nur `coalitionState` überspringen.
 - [ ] **Zeilenreferenzen in todo.md/Report-e verschoben** – `script.js:1620-1657` vs. tatsächlich 1628-1664, `403-413` vs. 405-419, `1425` vs. 1424, `82-113` vs. 82-116 (kosmetisch).

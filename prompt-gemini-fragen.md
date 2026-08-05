@@ -21,6 +21,7 @@ Research the **current election-specific programs and official party positions**
   "fragen": [
     {
       "nr": 1,
+      "thema": "Umwelt",
       "frage": "Short headline (max 60 chars)",
       "beschreibung": "Precise yes/no question (20–60 words) describing the policy proposal.",
       "antworten": {
@@ -35,6 +36,21 @@ Research the **current election-specific programs and official party positions**
   ]
 }
 ```
+
+### Fields for Each Question
+| Feld | Pflicht? | Beschreibung |
+|------|----------|--------------|
+| `"nr"` | **Ja** | Eindeutige Nummer, beginnend bei 1 |
+| `"thema"` | **Ja** | Einer der validen Themen-Keys aus der Liste unten – wird von der App zur Themen-Zuordnung genutzt. OHNE dieses Feld fällt die Frage auf eine ungenaue Keyword-Erkennung zurück. |
+| `"frage"` | **Ja** | Kurze Überschrift, max. 60 Zeichen |
+| `"beschreibung"` | **Ja** | Präzise Ja/Nein-Frage (20–60 Wörter) |
+| `"antworten"` | **Ja** | Positionen aller relevanten Parteien |
+
+### Valid Topics (`"thema"`) – use EXACTLY one of these keys
+```
+Wirtschaft, Soziales, Umwelt, Außenpolitik, Inneres, Digitales, Sonstiges
+```
+Choose the topic that best fits the policy area of the question. If none fits, use `"Sonstiges"` – never invent a new key.
 
 ### Answer Code (`"wert"`)
 | Wert | Meaning |
@@ -155,6 +171,7 @@ For each question you must:
 ```json
 {
   "nr": 1,
+  "thema": "Umwelt",
   "frage": "Kohleausstieg bis 2030",
   "beschreibung": "Soll der Kohleausstieg in Deutschland bereits bis 2030 statt bis 2038 umgesetzt werden?",
   "antworten": {

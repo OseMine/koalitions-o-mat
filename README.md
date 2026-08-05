@@ -48,6 +48,8 @@ Die GitHub Action [`.github/workflows/opencode-review.yml`](.github/workflows/op
 
 Einrichtung: Secret `OPENCODE_API_KEY` in GitHub → Settings → Secrets and variables → Actions anlegen (Key unter https://opencode.ai/auth).
 
-## Fragen generieren
+## Daten generieren
 
-Neue Fragenkataloge können mit dem Prompt in [prompt-gemini-fragen.md](prompt-gemini-fragen.md) per Gemini erstellt werden.
+Neue Fragenkataloge können mit dem Prompt in [prompt-gemini-fragen.md](prompt-gemini-fragen.md) per Gemini erstellt werden (inkl. Pflichtfeld `thema` für die Themen-Zuordnung).
+
+Die ergänzenden Partei-Daten für `werte.json` (`beschreibung`, `website`, `kandidaten`, `spitzenkandidat`, `verlauf`, `rss`) lassen sich mit [prompt-gemini-daten.md](prompt-gemini-daten.md) generieren – inklusive neutraler, unabhängiger Nachrichten-Feeds statt Partei-Eigenkanälen.
