@@ -59,6 +59,7 @@ jobs:
             4. Hänge neue Befunde als datierten Abschnitt oben in todo.md an,
                bestehende Einträge unangetastet lassen.
             5. Prüfe welche Punkte aus todo.md erledigt wurden und markiere sie als erledigt (z. B. „[x]“), bzw prüfe ob sie korrekt mit [x] markiert wurden und verschiebe danach alle abgehakten todos nach archived-todo.md.
+            6. räume das repository auf ubd lösche/reviewe und merge pull requests und issues. füge offene issues zu den todos hinzu und schließe erledigte issues. lösche unnütze/duplizierte branches
 
             WICHTIG: Committe NICHT, pushe NICHT und öffne KEINEN Pull Request
             selbst. Die GitHub-Action erkennt die geänderten Dateien automatisch,
