@@ -1,94 +1,204 @@
 {
+  "meta": {
+    "name": "Landtagswahl Sachsen-Anhalt 2026",
+    "sperrklausel": 5,
+    "sitze": 83,
+    "verfahren": "hare-niemeyer"
+  },
   "umfragewerte": [
     {
       "partei": "AfD",
       "prozent": 41,
-      "beschreibung": "Die AfD Sachsen-Anhalt ist laut Umfragen stärkste Kraft. Sie fordert eine restriktive Migrationspolitik, weniger Windkraftausbau und eine Politik gegen den Einfluss der etablierten Parteien.",
-      "website": "https://www.afd.de",
+      "beschreibung": "Die Alternative für Deutschland vertritt in Sachsen-Anhalt eine ausgeprägt konservative, migrationskritische und EU-skeptische Politik. Zu ihren Schwerpunkten gehören die Begrenzung von Zuwanderung, eine Stärkung der regionalen Wirtschaft sowie der Erhalt fossiler Energieträger. Der Landesverband wird vom Verfassungsschutz Sachsen-Anhalt als gesichert rechtsextremistisch eingestuft.",
+      "website": "https://www.afd-lsa.de",
       "kandidaten": [
+        {
+          "name": "Ulrich Siegmund",
+          "rolle": "Spitzenkandidat und Co-Fraktionsvorsitzender"
+        },
+        {
+          "name": "Oliver Kirchner",
+          "rolle": "Co-Fraktionsvorsitzender im Landtag"
+        },
         {
           "name": "Martin Reichardt",
           "rolle": "Landesvorsitzender"
         }
+      ],
+      "spitzenkandidat": "Ulrich Siegmund",
+      "verlauf": [
+        { "label": "Jun 2021", "prozent": 21 },
+        { "label": "Jun 2023", "prozent": 29 },
+        { "label": "Sep 2025", "prozent": 39 },
+        { "label": "Jul 2026", "prozent": 41 }
+      ],
+      "rss": [
+        "https://www.tagesschau.de/inland/regional/sachsenanhalt/index.rss"
       ]
     },
     {
       "partei": "CDU/CSU",
       "prozent": 24,
-      "beschreibung": "Die CDU Sachsen-Anhalt stellt seit Jahren den Ministerpräsidenten. Sie setzt auf wirtschaftliche Stabilität, Investitionen in die Infrastruktur und eine geordnete Migrationspolitik.",
-      "website": "https://www.cdu.de",
+      "beschreibung": "Die Christlich Demokratische Union vertritt eine bürgerlich-konservative Politik mit Schwerpunkten auf Wirtschaftsförderung, innerer Sicherheit und solider Finanzpolitik. In Sachsen-Anhalt setzt sie sich für den Ausbau der Infrastruktur, Bürokratieabbau sowie die Stärkung des ländlichen Raums ein. Nach dem Rückzug von Reiner Haseloff übernimmt Sven Schulze die Spitzenkandidatur.",
+      "website": "https://www.cdu-lsa.de",
       "kandidaten": [
         {
-          "name": "Reiner Haseloff",
-          "rolle": "Ministerpräsident"
+          "name": "Sven Schulze",
+          "rolle": "Ministerpräsident, Landesvorsitzender und Spitzenkandidat"
+        },
+        {
+          "name": "Guido Heuer",
+          "rolle": "Fraktionsvorsitzender im Landtag"
         }
+      ],
+      "spitzenkandidat": "Sven Schulze",
+      "verlauf": [
+        { "label": "Jun 2021", "prozent": 37 },
+        { "label": "Jun 2023", "prozent": 31 },
+        { "label": "Sep 2025", "prozent": 27 },
+        { "label": "Jul 2026", "prozent": 24 }
+      ],
+      "rss": [
+        "https://www.tagesschau.de/inland/regional/sachsenanhalt/index.rss"
       ]
     },
     {
       "partei": "LINKE",
-      "prozent": 14,
-      "beschreibung": "DIE LINKE in Sachsen-Anhalt fordert soziale Gerechtigkeit, kostenlose Bildung, bezahlbaren Wohnraum und eine klare Absage an Rechtsradikalismus.",
-      "website": "https://www.die-linke.de"
+      "prozent": 13,
+      "beschreibung": "Die Linke legt ihren Schwerpunkt auf soziale Gerechtigkeit, bezahlbaren Wohnraum und die Stärkung der öffentlichen Daseinsvorsorge. Sie fordert eine gerechte Lohnentwicklung, bessere Bedingungen in Pflege und Bildung sowie die finanzielle Unterstützung einkommensschwacher Haushalte. In Sachsen-Anhalt tritt sie als opponierende Kraft für soziale Grundrechte ein.",
+      "website": "https://www.dielinke-sachsen-anhalt.de",
+      "kandidaten": [
+        {
+          "name": "Eva von Angern",
+          "rolle": "Spitzenkandidatin und Fraktionsvorsitzende"
+        },
+        {
+          "name": "Janina Böttger",
+          "rolle": "Co-Landesvorsitzende"
+        },
+        {
+          "name": "Hendrik Lange",
+          "rolle": "Co-Landesvorsitzender"
+        }
+      ],
+      "spitzenkandidat": "Eva von Angern",
+      "verlauf": [
+        { "label": "Jun 2021", "prozent": 11 },
+        { "label": "Jun 2023", "prozent": 9 },
+        { "label": "Sep 2025", "prozent": 13 },
+        { "label": "Jul 2026", "prozent": 13 }
+      ],
+      "rss": [
+        "https://www.tagesschau.de/inland/regional/sachsenanhalt/index.rss"
+      ]
     },
     {
       "partei": "SPD",
-      "prozent": 5,
-      "beschreibung": "Die SPD Sachsen-Anhalt setzt auf soziale Sicherheit, gute Arbeit, Bildung und eine tolerante Gesellschaft.",
-      "website": "https://www.spd.de",
+      "prozent": 7,
+      "beschreibung": "Die Sozialdemokratische Partei Deutschlands setzt Schwerpunkte in der Bildungs- und Arbeitspolitik sowie beim Klimaschutz mit sozialer Abfederung. Sie tritt für eine verlässliche Daseinsvorsorge, faire Löhne und Investitionen in Wissenschaft und erneuerbare Energien ein. In der Landesregierung wirkt sie für Transformation und soziale Sicherheit.",
+      "website": "https://www.spd-sachsen-anhalt.de",
       "kandidaten": [
         {
-          "name": "Katja Pähle",
-          "rolle": "Landesvorsitzende"
+          "name": "Armin Willingmann",
+          "rolle": "Spitzenkandidat, Stellvertretender Ministerpräsident und Minister"
+        },
+        {
+          "name": "Juliane Kleemann",
+          "rolle": "Co-Landesvorsitzende"
+        },
+        {
+          "name": "Andreas Schmidt",
+          "rolle": "Co-Landesvorsitzender"
         }
+      ],
+      "spitzenkandidat": "Armin Willingmann",
+      "verlauf": [
+        { "label": "Jun 2021", "prozent": 8 },
+        { "label": "Jun 2023", "prozent": 9 },
+        { "label": "Sep 2025", "prozent": 7 },
+        { "label": "Jul 2026", "prozent": 7 }
+      ],
+      "rss": [
+        "https://www.tagesschau.de/inland/regional/sachsenanhalt/index.rss"
+      ]
+    },
+    {
+      "partei": "GRÜNE",
+      "prozent": 5,
+      "beschreibung": "Bündnis 90/Die Grünen fokussieren sich auf konsequenten Klimaschutz, die Erhaltung der Biodiversität und den Ausbau erneuerbarer Energien in Sachsen-Anhalt. Ergänzend fordern sie die Stärkung des öffentlichen Nahverkehrs, gesellschaftliche Vielfalt und nachhaltige Landwirtschaft. In Sachsen-Anhalt setzen sie auf einen ökologischen und sozialen Wandel.",
+      "website": "https://www.gruene-lsa.de",
+      "kandidaten": [
+        {
+          "name": "Susan Sziborra-Seidlitz",
+          "rolle": "Spitzenkandidatin und Landesvorsitzende"
+        },
+        {
+          "name": "Olaf Meister",
+          "rolle": "Parlamentarischer Geschäftsführer"
+        }
+      ],
+      "spitzenkandidat": "Susan Sziborra-Seidlitz",
+      "verlauf": [
+        { "label": "Jun 2021", "prozent": 6 },
+        { "label": "Jun 2023", "prozent": 6 },
+        { "label": "Sep 2025", "prozent": 3 },
+        { "label": "Jul 2026", "prozent": 5 }
+      ],
+      "rss": [
+        "https://www.tagesschau.de/inland/regional/sachsenanhalt/index.rss"
       ]
     },
     {
       "partei": "BSW",
       "prozent": 4,
-      "beschreibung": "Das Bündnis Sahra Wagenknecht in Sachsen-Anhalt fordert die Entlastung kleiner Einkommen, bezahlbare Energie und eine strikte Ablehnung von Waffenlieferungen.",
-      "website": "https://bsw-partei.de"
+      "beschreibung": "Das Bündnis Sahra Wagenknecht verbindet wirtschaftskritische und sozialpolitische Positionen mit einer begrenzenden Migrationspolitik und diplomatischen Ansätzen in der Außenpolitik. In Sachsen-Anhalt fordert die Partei höhere Löhne, die Stärkung des Gesundheitswesens und den Erhalt lokaler Wirtschaftskreisläufe. Es tritt 2026 erstmals bei der Landtagswahl in Sachsen-Anhalt an.",
+      "website": "https://bsw-vg.de",
+      "kandidaten": [
+        {
+          "name": "Claudia Wittig",
+          "rolle": "Spitzenkandidatin"
+        },
+        {
+          "name": "Thomas Schulze",
+          "rolle": "Spitzenkandidat"
+        }
+      ],
+      "spitzenkandidat": "Claudia Wittig",
+      "verlauf": [
+        { "label": "Jul 2024", "prozent": 16 },
+        { "label": "Jan 2025", "prozent": 14 },
+        { "label": "Sep 2025", "prozent": 6 },
+        { "label": "Jul 2026", "prozent": 4 }
+      ],
+      "rss": [
+        "https://www.tagesschau.de/inland/regional/sachsenanhalt/index.rss"
+      ]
     },
     {
       "partei": "FDP",
       "prozent": 4,
-      "beschreibung": "Die FDP Sachsen-Anhalt steht für wirtschaftliche Freiheit, weniger Bürokratie und eine moderne digitale Verwaltung.",
-      "website": "https://www.fdp.de"
-    },
-    {
-      "partei": "GRÜNE",
-      "prozent": 4,
-      "beschreibung": "Die Grünen in Sachsen-Anhalt setzen auf Klimaschutz, den Ausbau der Erneuerbaren und eine weltoffene, tolerante Gesellschaft.",
-      "website": "https://www.gruene.de"
-    },
-    {
-      "partei": "FREIE WÄHLER",
-      "prozent": 2,
-      "beschreibung": "Die Freien Wähler Sachsen-Anhalt vertreten kommunale Interessen, direkte Demokratie und regionale Wirtschaft.",
-      "website": "https://www.freiewaehler.eu"
-    },
-    {
-      "partei": "Tierschutz",
-      "prozent": 1,
-      "beschreibung": "Die Tierschutzpartei in Sachsen-Anhalt fordert Tierrechte und eine nachhaltige Landwirtschaft.",
-      "website": "https://www.tierschutzpartei.de"
-    },
-    {
-      "partei": "PARTEI",
-      "prozent": 0.5,
-      "beschreibung": "Die PARTEI in Sachsen-Anhalt verbindet Satire mit politischen Forderungen für mehr Transparenz und Bürgerrechte.",
-      "website": "https://www.die-partei.de"
-    },
-    {
-      "partei": "Volt",
-      "prozent": 0.5,
-      "beschreibung": "Volt in Sachsen-Anhalt tritt für europäische Zusammenarbeit, Klimaschutz und digitale Modernisierung ein.",
-      "website": "https://www.voltdeutschland.org"
+      "beschreibung": "Die Freie Demokratische Partei steht für wirtschaftliche Freiheit, Digitalisierung und den Abbau bürokratischer Hürden. Sie fordert eine moderne Verkehrsinfrastruktur, unternehmerische Freiheiten und stärkere Eigenverantwortung der Bürger. Als Regierungspartnerin in Sachsen-Anhalt betont sie den Ausbau digitaler Netze und eine effiziente Verwaltung.",
+      "website": "https://www.fdp-lsa.de",
+      "kandidaten": [
+        {
+          "name": "Lydia Hüskens",
+          "rolle": "Spitzenkandidatin, Landesvorsitzende und Ministerin"
+        },
+        {
+          "name": "Guido Kosmehl",
+          "rolle": "Parlamentarischer Geschäftsführer"
+        }
+      ],
+      "spitzenkandidat": "Lydia Hüskens",
+      "verlauf": [
+        { "label": "Jun 2021", "prozent": 6 },
+        { "label": "Jun 2023", "prozent": 6 },
+        { "label": "Sep 2025", "prozent": 3 },
+        { "label": "Jul 2026", "prozent": 4 }
+      ],
+      "rss": [
+        "https://www.tagesschau.de/inland/regional/sachsenanhalt/index.rss"
+      ]
     }
-  ],
-  "meta": {
-    "name": "Landtagswahl Sachsen-Anhalt 2026",
-    "sperrklausel": 5,
-    "sitze": 87,
-    "verfahren": "dhondt"
-  }
+  ]
 }

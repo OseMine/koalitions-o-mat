@@ -14,6 +14,10 @@ let lastTestResults = null;
 
 // ===== Simple Language =====
 function isSimpleLang() { return localStorage.getItem('simpleLang') === '1'; }
+function simplePartyText(partei) {
+    if (!isSimpleLang() || !simpleLangData || !simpleLangData.parteien) return '';
+    return simpleLangData.parteien[partei] || '';
+}
 function t(key, fallback) {
     if (!isSimpleLang() || !simpleLangData || !simpleLangData.ui) return fallback !== undefined ? fallback : key;
     return simpleLangData.ui[key] || (fallback !== undefined ? fallback : key);
@@ -459,9 +463,12 @@ function initializeParteienPage() {
     }
     container.innerHTML = parties.map(p => {
         const color = getPartyColor(p.partei);
-        const desc = p.beschreibung
-            ? `<p class="party-info-desc">${escapeHtml(p.beschreibung)}</p>`
-            : `<p class="party-info-desc party-info-empty">${t('partyInfoPending', 'Weitere Informationen zu dieser Partei folgen.')}</p>`;
+        const simpleDesc = simplePartyText(p.partei);
+        const desc = simpleDesc
+            ? `<p class="party-info-desc">${escapeHtml(simpleDesc)}</p>`
+            : p.beschreibung
+                ? `<p class="party-info-desc">${escapeHtml(p.beschreibung)}</p>`
+                : `<p class="party-info-desc party-info-empty">${t('partyInfoPending', 'Weitere Informationen zu dieser Partei folgen.')}</p>`;
         const candidates = p.kandidaten && p.kandidaten.length
             ? `<div class="party-candidates"><h4>${t('partyCandidates', 'Kandidatinnen und Kandidaten')}</h4><ul>${p.kandidaten.map(k => `<li><strong>${escapeHtml(k.name)}</strong>${k.rolle ? ` – ${escapeHtml(k.rolle)}` : ''}</li>`).join('')}</ul></div>`
             : '';
@@ -534,7 +541,7 @@ function openPartyPage(partyName) {
                 <span class="party-page-name" id="partyPageTitle" style="color:${color}">${party.partei}</span>
                 <span class="party-page-pct" style="color:${color}">${party.prozent.toFixed(1)}%</span>
             </div>
-            ${party.beschreibung ? `<p class="party-page-desc">${escapeHtml(party.beschreibung)}</p>` : ''}
+            ${simplePartyText(party.partei) || party.beschreibung ? `<p class="party-page-desc">${escapeHtml(simplePartyText(party.partei) || party.beschreibung)}</p>` : ''}
         </header>
 
         ${top ? `
