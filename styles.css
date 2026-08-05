@@ -104,24 +104,6 @@ body {
 .simple-lang-toggle:hover { border-color: var(--primary); color: var(--primary); background: var(--primary-container); }
 .simple-lang-toggle.active { background: var(--primary); border-color: var(--primary); color: var(--on-primary); }
 
-/* ===== Election Bar ===== */
-.election-bar {
-    display: flex; align-items: center; gap: 10px; padding: 10px 16px;
-    background: var(--surface); border-radius: var(--radius-sm); border: 1px solid var(--outline); margin: 8px 0 12px;
-}
-.election-label { font-size: 0.85rem; font-weight: 600; color: var(--on-surface-variant); white-space: nowrap; }
-.election-toggles { display: flex; flex-wrap: wrap; gap: 4px; }
-.election-toggle {
-    display: inline-flex; align-items: center; gap: 4px; padding: 6px 14px;
-    border: 1.5px solid var(--outline); border-radius: 999px; background: transparent;
-    color: var(--on-surface-variant); font-family: var(--font); font-size: 0.8rem; font-weight: 500;
-    cursor: pointer; transition: all 0.2s; white-space: nowrap; touch-action: manipulation;
-}
-.election-toggle:hover { border-color: var(--primary); color: var(--primary); background: var(--primary-container); }
-.election-toggle.active { background: var(--primary); border-color: var(--primary); color: var(--on-primary); }
-.toggle-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; opacity: 0.35; }
-.election-toggle.active .toggle-dot { opacity: 1; }
-
 /* ===== Tabs ===== */
 .tabs {
     display: flex; gap: 4px; margin: 8px 0 16px; padding: 4px;
@@ -564,17 +546,16 @@ body {
         transform: none; box-shadow: var(--shadow-sm); filter: none;
     }
     .theme-toggle:hover, .github-link:hover, .simple-lang-toggle:hover,
-    .election-toggle:hover, .tab-button:hover, .party-cb:hover,
+    .tab-button:hover, .party-cb:hover,
     .q-sources-toggle:hover, .tr-detail-btn:hover {
-        background: inherit; color: inherit; border-color: var(--outline);
-    }
-    .election-toggle:hover { border-color: var(--outline); color: var(--on-surface-variant); background: transparent; }
+    background: inherit; color: inherit; border-color: var(--outline);
+}
     /* Mobile-Fix (Issue #27): Tastatursteuerung ist nur mit physischer Tastatur sinnvoll –
        Hinweis auf Touch-Geräten ausblenden. (1/2/3/Pfeiltasten) */
     .keyboard-hint { display: none; }
     /* Taktiles Feedback für Touch – ein optisches "gedrückt"-Gefühl statt Hover */
     .q-btn:active { transform: scale(0.97); filter: brightness(0.97); box-shadow: none; }
-    .tab-button:active, .election-toggle:active { transform: scale(0.98); }
+    .tab-button:active { transform: scale(0.98); }
     .welcome-card:active { transform: translateY(-1px) scale(0.99); }
 }
 
@@ -583,23 +564,6 @@ body {
     .header-row { gap: 8px; }
     .header-right { gap: 4px; }
 
-    /* ===== Election Box ===== */
-    .election-bar { flex-direction: column; align-items: stretch; }
-    /* Mobile-Fit: statt horizontal scrollbarer Leiste (nowrap +
-       overflow-x: auto) die Wahlen umbrechen lassen – kein versehentlicher
-       horizontaler Scroll auf der Willkommens-Seite. */
-    .election-toggles {
-        justify-content: flex-start;
-        flex-wrap: wrap;
-        gap: 6px;
-    }
-    /* Größere Touch-Ziele: min-height 44px, Label darf umbrechen */
-    .election-label { white-space: normal; line-height: 1.3; margin-bottom: 4px; }
-    .election-toggle {
-        flex: 1 1 auto; flex-shrink: 1; white-space: normal; text-align: left;
-        max-width: 100%; min-height: 44px; padding: 8px 14px; font-size: 0.85rem;
-    }
-    .election-toggle .toggle-dot { flex-shrink: 0; }
     .stats-summary { grid-template-columns: repeat(3, 1fr); gap: 6px; }
     .stat-card { padding: 10px; }
     .stat-val { font-size: 1.2rem; }
@@ -680,8 +644,6 @@ body {
     .q-top-row { flex-wrap: wrap; }
     /* Header-Buttons auf sehr schmalen Screens etwas kompakter */
     .theme-toggle, .github-link, .simple-lang-toggle { width: 38px; height: 38px; }
-    /* Election-Box kompakter, damit auf kleinen Screens nichts herausragt */
-    .election-bar { padding: 8px 12px; }
     .header-row h1 { letter-spacing: -0.01em; }
     .app-footer { padding: 12px 12px calc(12px + env(safe-area-inset-bottom, 0px)); }
 }
@@ -697,7 +659,6 @@ body {
     /* Extra-small: Titel + Header-Buttons minimal halten, damit nichts abschneidet */
     .header-row h1 { font-size: 1.1rem; }
     .theme-toggle, .github-link, .simple-lang-toggle { width: 36px; height: 36px; }
-    .election-toggle { padding: 8px 10px; }
 }
 
 /* ===== Party Detail Page ===== */

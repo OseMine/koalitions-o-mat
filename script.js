@@ -196,13 +196,11 @@ function applyPendingShare() {
 function showApp() {
     document.getElementById('welcomeScreen').style.display = 'none';
     document.getElementById('appContent').style.display = 'block';
-    document.getElementById('electionBar').style.display = 'flex';
 }
 
 function showElectionSelector() {
     document.getElementById('welcomeScreen').style.display = 'block';
     document.getElementById('appContent').style.display = 'none';
-    document.getElementById('electionBar').style.display = 'none';
 }
 
 // ===== Tab Switching =====
@@ -243,10 +241,6 @@ function setActiveElection(electionId) {
     localStorage.setItem('activeElectionId', electionId);
     koalitionenCache = null;
     koalitionenCacheKey = '';
-
-    document.querySelectorAll('.election-toggle').forEach(b => {
-        b.classList.toggle('active', b.dataset.eid === electionId);
-    });
 
     const data = electionDataCache[electionId];
     if (!data) return;
@@ -303,17 +297,6 @@ function setActiveElection(electionId) {
             applyPendingShare();
         }
     }
-}
-
-function populateElectionSelector(selectedId) {
-    const container = document.getElementById('globalElectionToggles');
-    container.innerHTML = electionsList.map(e => `
-        <button class="election-toggle ${e.id === selectedId ? 'active' : ''}"
-                data-eid="${e.id}" onclick="setActiveElection('${e.id}')"
-                role="radio" aria-checked="${e.id === selectedId}">
-            <span class="toggle-dot"></span>${e.name}
-        </button>
-    `).join('');
 }
 
 function renderWelcomeCards() {
@@ -378,7 +361,6 @@ async function loadElections() {
             }
         }));
 
-        populateElectionSelector(defaultId);
         renderWelcomeCards();
         // Einfache Sprache auch auf die statischen [data-i18n]-Elemente anwenden –
         // applySavedSimpleLang() lief vor dem asynchronen Fetch von einfache-sprache.json.
