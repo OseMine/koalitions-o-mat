@@ -2,6 +2,29 @@
 
 Erledigte Aufgaben wurden nach `archived-todo.md` verschoben (Stand 2026-08-05).
 
+## Review vom 2026-08-05 (gesamtes Projekt, Node-Verifikation)
+
+Vollständiger Bericht: `reports/review-2026-08-05.md`. Alle Befunde per Node gegen die echten Datendateien verifiziert. Hinweis: Der offene PR #32 (`opencode/dispatch-c0b481-20260805222205`) aus einem vorherigen Lauf enthält bereits die Sitzverteilungs-Analyse; hier erneut bestätigt und aufgenommen.
+
+### P1 – Bugs
+
+- [ ] **Sitzverteilung: konfiguriertes Verfahren wird nie angewendet** – `berechneSitze()` (script.js:1824-1846) prüft exakt `'sainteLague'` (script.js:1832/1838), die `werte.json`-Werte sind aber `'sainte-lague'` (btw2029), `'saintelague'` (berlin-2026) und `'hare-niemeyer'` (LSA, MV) → kein Match, alle Wahlen fallen still auf d'Hondt. Verifiziert: LSA (83) App d'Hondt `AfD:39 … GRÜNE:4` vs. deklariert Hare-Niemeyer `AfD:38 … GRÜNE:5`; btw/Berlin aktuell nur zufällig identisch (latent). Verfahrensnamen normalisieren oder Strings in den 4 `werte.json` vereinheitlichen.
+
+### P2 – Fehlende Features
+
+- [ ] **Hare-Niemeyer/Largest-Remainder nicht implementiert** – `ltw-sachsen-anhalt-2026/werte.json` und `mv-2026/werte.json` deklarieren `meta.verfahren: "hare-niemeyer"`, `berechneSitze()` hat aber keinen Largest-Remainder-Zweig (nur d'Hondt/Sainte-Laguë).
+
+### P3 – Verbesserungen
+
+- [ ] **`meta.verfahren`-Werte inkonsistent** – `'sainte-lague'` vs. `'saintelague'` vs. `'hare-niemeyer'` (Trennzeichen/Kleinschreibung); einheitliche Nomenklatur dokumentieren oder im Code normalisieren.
+- [ ] **Parteifarben: SPD und BSW teilen sich `#E3000F`** – config.json:9 (BSW) == config.json:4 (SPD) → farblich nicht unterscheidbar in Charts/Partei-Seiten; eigene BSW-Farbe vergeben.
+- [ ] **`party.newsRetry` fehlt in `einfache-sprache.json`** – `loadPartyNews()` (script.js:723) nutzt `t('party.newsRetry', …)`; Key nicht in `ui` → „Erneut versuchen"-Button nicht einfach-sprache-übersetzt.
+
+### Tracking offene GitHub-Issues
+
+- [ ] **Issue #27 „More Mobile friendly"** – Tastatur-Hinweis inzwischen Desktop-only (`keyboard-hint`), touch mobile friendly weiter verbessert (PR #28 gemerged); Issue bleibt offen. Rest-Touch-/Tap-Flächen prüfen (z. B. `.party-detail-link`-Tap-Ziel, todo oben).
+- [ ] **Issue #7 „GitHub repo is very messy"** – saubere automatische Branches-Alten/unused Branches regelmäßig aufräumen (siehe Schritt-6-Cleanup).
+
 ## Implementierung vom 2026-08-05 (P2 + P3 aus Review 2026-08-04 & Folgebefunde)
 
 Verifiziert per `node --check`, JSON-Validierung und DOM-Harness gegen die echten Datendateien.
