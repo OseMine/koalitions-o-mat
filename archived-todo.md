@@ -509,3 +509,42 @@ Vollständiger Bericht: `reports/review-2026-08-02-b.md`. Alle Befunde per Node 
 - [x] **Historie unbegrenzt** – `testHistory` wächst ohne Limit in localStorage; Prune (z. B. 50 Einträge) sinnvoll.
 - [x] **Teilen-URL-Länge** – Bei 45+ Antworten lang (URLs im Hash); Komprimierung (z. B. Base36-Codierung der Indizes) für Messenger-taugliche Links.
 - [x] **`berechneKoalitionen('beide')` in showTestResults** – berechnet alle Koalitionen ohne den neuen `maxSize`-Cache-Schlüssel-Impact; läuft aber gecacht und ist bei 7 Parteien unkritisch.
+
+
+## Review vom 2026-08-06 (verifiziert behoben – aus todo.md verschoben)
+
+Per Node gegen die echten Datendateien re-verifiziert (Sitzsummen 630/130/83/79 korrekt, Verfahren normalisiert, Hare-Niemeyer aktiv). Siehe `reports/review-2026-08-06.md`.
+
+
+- [x] **Sitzverteilung: konfiguriertes Verfahren wird nie angewendet** – `berechneSitze()` (script.js:1824-1846) prüft exakt `'sainteLague'` (script.js:1832/1838), die `werte.json`-Werte sind aber `'sainte-lague'` (btw2029), `'saintelague'` (berlin-2026) und `'hare-niemeyer'` (LSA, MV) → kein Match, alle Wahlen fallen still auf d'Hondt. Verifiziert: LSA (83) App d'Hondt `AfD:39 … GRÜNE:4` vs. deklariert Hare-Niemeyer `AfD:38 … GRÜNE:5`; btw/Berlin aktuell nur zufällig identisch (latent). Verfahrensnamen normalisieren oder Strings in den 4 `werte.json` vereinheitlichen.
+
+- [x] **Hare-Niemeyer/Largest-Remainder nicht implementiert** – `ltw-sachsen-anhalt-2026/werte.json` und `mv-2026/werte.json` deklarieren `meta.verfahren: "hare-niemeyer"`, `berechneSitze()` hat aber keinen Largest-Remainder-Zweig (nur d'Hondt/Sainte-Laguë).
+
+- [x] **`meta.verfahren`-Werte inkonsistent** – `'sainte-lague'` vs. `'saintelague'` vs. `'hare-niemeyer'` (Trennzeichen/Kleinschreibung); einheitliche Nomenklatur dokumentieren oder im Code normalisieren.
+- [x] **Parteifarben: SPD und BSW teilen sich `#E3000F`** – config.json:9 (BSW) == config.json:4 (SPD) → farblich nicht unterscheidbar in Charts/Partei-Seiten; eigene BSW-Farbe vergeben.
+- [x] **`party.newsRetry` fehlt in `einfache-sprache.json`** – `loadPartyNews()` (script.js:723) nutzt `t('party.newsRetry', …)`; Key nicht in `ui` → „Erneut versuchen"-Button nicht einfach-sprache-übersetzt.
+- [x] **Issue #7 „GitHub repo is very messy"** – erledigt am 2026-08-06: verwaiste Branches (`opencode/dispatch-077e39-20260805222758`, `opencode/issue34-20260806072619`) gelöscht; Issue #7 auf GitHub geschlossen. Saubere automatische Branch-Pflege bleibt laufende Aufgabe.
+
+
+- [x] **„Fortsetzen" zeigt nach Reload Frage 1 statt der gespeicherten Position** – `initializeTest()` (script.js:1045) setzt die `active`-Klasse immer auf Frage 0 (`i === 0`), obwohl `currentQuestion` wiederhergestellt wird (script.js:1003–1005). Per DOM-Harness verifiziert: gespeichertes `currentQuestion=12` → sichtbar `data-q=0`, Nav-Status 12 → „Weiter" springt auf Frage 14 statt 13. Die frühere `[x]`-Markierung betraf nur die Variable, nicht die Anzeige. Fix analog `backToTest()` (script.js:1436–1438).
+
+
+- [x] **„Details, Programm & News"-Button ist kleines Tap-Ziel** – `.party-detail-link` (styles.css:749) ohne `min-height`/44-px-Tap-Fläche; plausible Ursache für „Inhalte nur über Teilen-Link erreichbar" (Issue #21 fixte nur Antwort-Buttons).
+- [x] **Leere Historien-Sektion wirkt wie ein Bug** – bei fehlendem `verlauf` zusätzlich zum Empty-Text einen deaktivierten Platzhalter statt komplett leerer Sektion anbieten.
+
+
+- [x] **Wahlwechsel springt immer auf den Test-Tab** – `setActiveElection()` endet mit `switchTab('test')` (script.js:283); Wechsel über den `election-bar`-Toggle aus einem anderen Tab (z. B. Daten-/Charts) landet überraschend bei Frage 1. Vorschlag: zuvor aktiver Tab beibehalten.
+- [x] **Kein Feedback bei Ladefehler einer Nicht-Default-Wahl** – bei `fetch`-Fehler (script.js:352-356) bleibt die Wahl in `electionsList`, aber `electionDataCache[id]` leer; Klick auf die Karte bricht still bei `if (!data) return;` ab. Vorschlag: deaktivierte Karte mit Laden-Fehler-Hinweis.
+
+
+- [x] **MV: GRÜNE exakt 5 %** – `>= 5`-Prüfung schließt GRÜNE (5 %) in `berechneKoalitionen()`/`berechneSitze()`. Grenzwert-Entscheidung als Datenhinweis dokumentieren.
+
+
+- [x] **`partyFilter` mit Partei < Sperrklausel ergibt leere Liste ohne Erklärung** – `populatePartyDropdowns()` (script.js:400-409) listet < 5 %-Parteien, `updateKoalitionen()` (script.js:896-898) filtert nur auf Koalitionen.
+- [x] **Koalitions-Share-Link ohne Antworten zeigt im Test-Tab lauter „–"** – `applyPendingShare()` (script.js:164) ruft `showTestResults()` auch bei leerem `answers`.
+- [x] **Harte `aria-label`s in index.html:22-24** (Einfache Sprache/Theme/GitHub).
+
+
+- [x] **`partyFilter` im Koalitionen-Tab listet Parteien < Sperrklausel, Filter-Ergebnis ist dann leer** – `populatePartyDropdowns()` (script.js:400-402) nutzt `relevant`, `updateKoalitionen()` (script.js:593-595) filtert nur Koalitionen → „FDP" (btw2029) ergibt „Keine passenden Koalitionen gefunden" ohne Erklärung. Begründung aus Report-e („Filter auf Ergebnisliste") trifft nicht zu.
+- [x] **Koalitions-Share-Link ohne Antworten hinterlässt Ergebnissicht mit lauter „–" im Test-Tab** – `applyPendingShare()` (script.js:146-183) ruft `showTestResults()` auch bei leerem `answers` auf; Vorschlag: bei leerem `answers` + nur `coalitionState` überspringen.
+- [x] **Hartkodierte `aria-label`s in index.html** – Z. 22-24 (Einfache Sprache/Theme/GitHub) nicht i18n-fähig.
