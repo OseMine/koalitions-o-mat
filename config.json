@@ -37,8 +37,12 @@
       "color": "#AB47BC"
     },
     "Inneres": {
-      "keywords": ["Polizei", "Sicherheit", "Migration", "Asyl", "Integration", "Einwanderung", "Justiz", "Grenzkontrolle", "Staatsbürgerschaft", "Cannabis", "Wahlalter", "Videoüberwachung", "Bodycam", "Taser", "Böller", "Abschiebung", "Verfassungsschutz", "Demokratie", "Bürgerrat", "Volksentscheid", "Gendern", "Gendersprache", "Rundfunk"],
+      "keywords": ["Polizei", "Sicherheit", "Migration", "Asyl", "Integration", "Einwanderung", "Justiz", "Grenzkontrolle", "Staatsbürgerschaft", "Cannabis", "Wahlalter", "Videoüberwachung", "Bodycam", "Taser", "Böller", "Abschiebung", "Verfassungsschutz", "Demokratie", "Bürgerrat", "Volksentscheid", "Gendern", "Gendersprache"],
       "color": "#EF5350"
+    },
+    "Kultur": {
+      "keywords": ["Kultur", "Kunst", "Rundfunk", "Kirche", "Ehrenamt", "Schwimmbad", "Gartenschau", "Tanzverbot", "Club", "Theater", "Museum", "Gedenken", "Denkmal", "Musik"],
+      "color": "#8D6E63"
     },
     "Digitales": {
       "keywords": ["Digital", "Internet", "Netz", "Daten", "KI", "Technologie", "Digitalisierung", "WLAN", "Social-Media", "Vorratsdatenspeicherung"],
