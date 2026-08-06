@@ -177,6 +177,7 @@ body {
 
 .empty-state { text-align: center; padding: 48px 20px; color: var(--on-surface-muted); }
 .empty-icon { font-size: 2rem; display: block; margin-bottom: 8px; }
+.empty-state-detail { margin-top: 8px; font-size: 0.88rem; line-height: 1.5; }
 
 /* ===== Welcome Screen ===== */
 .welcome-screen { text-align: center; padding: 40px 20px; }
@@ -210,6 +211,12 @@ body {
 .welcome-card-stats { font-size: 0.85rem; color: var(--on-surface-variant); display: flex; align-items: center; gap: 6px; }
 .welcome-card-sep { opacity: 0.5; }
 .welcome-card-start { font-size: 0.88rem; font-weight: 600; color: var(--primary); margin-top: 4px; }
+.welcome-card-error {
+    cursor: not-allowed; opacity: 0.75; filter: grayscale(0.4);
+    border-style: dashed;
+}
+.welcome-card-error:hover { border-color: var(--outline); transform: none; box-shadow: var(--shadow-sm); }
+.welcome-card-error-hint { font-size: 0.82rem; color: var(--warning, #b26a00); margin-top: 4px; }
 .welcome-hint { font-size: 0.82rem; color: var(--on-surface-muted) !important; margin-top: 20px !important; }
 
 .transparency-box {
@@ -718,6 +725,15 @@ body {
 
 .party-timeline-note, .party-muted { color: var(--on-surface-muted); font-size: 0.9rem; line-height: 1.5; }
 
+.party-timeline-empty {
+    align-items: center; justify-content: center; gap: 10px;
+    min-height: 120px; padding: 16px; text-align: center;
+    background: var(--surface-variant); border: 1px dashed var(--outline);
+    border-radius: var(--radius-sm); color: var(--on-surface-muted);
+    font-size: 0.9rem; line-height: 1.5; opacity: 0.85;
+}
+.party-timeline-empty-icon { font-size: 1.4rem; }
+
 .party-prog-topic {
     background: var(--surface); border: 1px solid var(--outline);
     border-radius: var(--radius-sm); box-shadow: var(--shadow-sm); margin-bottom: 12px; overflow: hidden;
@@ -770,7 +786,9 @@ body {
 .party-page-footer { margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--outline); }
 
 .party-detail-link {
-    display: inline-block; margin-top: 12px; padding: 8px 14px; background: var(--surface);
+    display: inline-flex; align-items: center; justify-content: center;
+    margin-top: 12px; padding: 10px 14px; min-height: 44px;
+    background: var(--surface);
     border: 1px solid var(--primary); color: var(--primary); border-radius: var(--radius-sm);
     font-weight: 600; font-size: 0.9rem; cursor: pointer; font-family: var(--font); transition: all 0.2s;
 }
