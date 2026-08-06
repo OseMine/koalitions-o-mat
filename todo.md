@@ -9,6 +9,8 @@ Vollständiger Bericht: `reports/review-2026-08-06.md`. Alle Algorithmus-Befunde
 ### Verifiziert behoben (vorherige Befunde, unten als [x] markiert)
 
 - Sitzverteilungs-Verfahren (P1 2026-08-05), Hare-Niemeyer (P2 2026-08-05), `meta.verfahren`-Normalisierung, SPD/BSW-Farbe, `party.newsRetry`, „Fortsetzen"-P1 (2026-08-04), `partyFilter`-Erklärung, Koalitions-Share ohne Antworten, `aria-label`s, Tab-Wechsel, Ladefehler-Karte, Historien-Platzhalter, `.party-detail-link`-Tap-Ziel (44 px), SSW aus Berlin-Daten – alle per Code/Daten/Node re-verifiziert. i18n vollständig (112 `t()`-Keys, 170 Fragen, alle `data-i18n`/`aria`), Parteimengen `fragen.json` ↔ `werte.json` identisch, alle `thema` gültig.
+- **Issue #43 (P3): `berechneUebereinstimmung()` ohne Umfragewert-Gewichtung** – per Code/Node re-verifiziert: `berechneUebereinstimmung()` (script.js:1009-1032) vergleicht paarweise ohne `prozent`-Gewichtung, kleine Parteien zählen wie große; Umfragewert-Gewichtung existiert nur in `berechneUserMatchFuerKoalition()` (script.js:1059-1079). Bereits erfüllt, kein Code-Change nötig.
+- **Issue #43 (P3): Kategorie „Kultur" ergänzt** – `config.json`-`topics.Kultur` (Keyword `Rundfunk` aus „Inneres" herausgenommen), 10 Fragen von „Sonstiges" → „Kultur" umkategorisiert (btw2029 #34, LSA #8/#18/#29/#35/#36/#40, Berlin #20/#34/#52), `prompt-gemini-fragen.md`-Topic-Liste aktualisiert. Verifiziert: `determineTopic()` liefert für alle 180 Fragen das explizite `thema`.
 
 ### P2 – Fehlende Features
 
@@ -51,7 +53,7 @@ Verifiziert per `node --check`, JSON-Validierung und DOM-Harness gegen die echte
 
 ### Weiter offen (Daten/Design, nicht im Code lösbar ohne Diskussion)
 
-- [ ] MV GRÜNE exakt 5 %-Grenzwert; Ranking-Normalisierung bei wenigen Antworten; `berechneUebereinstimmung()` ohne Umfragewert-Gewichtung; hartkodierte `aria-label`s (index.html:22-24); `partyFilter` leere Liste ohne Erklärung.
+- [ ] MV GRÜNE exakt 5 %-Grenzwert; Ranking-Normalisierung bei wenigen Antworten; hartkodierte `aria-label`s (index.html:22-24); `partyFilter` leere Liste ohne Erklärung.
 
 ## Review vom 2026-08-04 (gesamtes Projekt, Node-Simulation + DOM-Harness)
 
@@ -86,8 +88,6 @@ Vollständiger Bericht: `reports/review-2026-08-03-b.md`. Keine neuen harten P1-
 ### P3 – Verbesserungen
 
 ### Weiterhin offen (aus früheren Läufen, Zeilennummern aktualisiert)
-- [ ] **`berechneUebereinstimmung` ohne Umfragewert-Gewichtung** (script.js:812-835).
-- [ ] **10 „Sonstiges"-Fragen, Kategorie „Kultur" fehlt** (btw2029 1, LSA 6, Berlin 3); Keyword „Rundfunk" unter „Inneres" würde btw2029 #34 bei fehlendem `thema` falsch zuordnen.
 - [ ] **Datenqualität: „CDU/CSU" vs. „CDU"; „SSW" (0,5 %) in Berlin unplausibel.**
 
 ## Review vom 2026-08-02 (5. Lauf, PR #18: Issue #17-Fixes im Merge-Review)
@@ -107,8 +107,6 @@ Fokus: Issue #17 – Swipe-Geste wechselt beim vertikalen Scrollen weiterhin Tab
 
 ### Verifiziert weiter offen (aus früheren Läufen)
 
-- [ ] `berechneUebereinstimmung()` ohne Umfragewert-Gewichtung (script.js:501-524)
-- [ ] 10 „Sonstiges"-Fragen (btw2029 1, LSA 6, Berlin 3) – Kategorie „Kultur" fehlt
 - [ ] Datenqualität „CDU/CSU" vs. „CDU"; „SSW" (0,5 %) in Berlin-Umfrage unplausibel
 
 ## Automatisiertes Review vom 2026-08-02 (2. Lauf, HEAD `918d05f`)
@@ -125,5 +123,4 @@ Vollständiger Bericht: `reports/review-2026-08-02-b.md`. Alle Befunde per Node 
 
 ### P3 – Verbesserungen
 
-- [ ] **`berechneUebereinstimmung()` ohne Umfragewert-Gewichtung** – kleine Parteien zählen wie große; Gewichtung nur in `berechneUserMatchFuerKoalition()` (script.js:482).
-- [ ] **10 Fragen in „Sonstiges" (Kultur/Ehrenamt/Kirchen/Rundfunk/Schwimmbäder/Gartenschau/Tanzverbot)** – ltw 6, Berlin 3, btw2029 1; Kategorie „Kultur" oder Zuordnung „Soziales".
+- [x] **`berechneUebereinstimmung()` ohne Umfragewert-Gewichtung** – kleine Parteien zählen wie große; Gewichtung nur in `berechneUserMatchFuerKoalition()` (script.js:482). → bereits erfüllt (siehe oben, Issue #43).

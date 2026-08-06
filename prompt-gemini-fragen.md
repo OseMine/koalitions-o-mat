@@ -48,7 +48,7 @@ Research the **current election-specific programs and official party positions**
 
 ### Valid Topics (`"thema"`) – use EXACTLY one of these keys
 ```
-Wirtschaft, Soziales, Umwelt, Außenpolitik, Inneres, Digitales, Sonstiges
+Wirtschaft, Soziales, Umwelt, Außenpolitik, Inneres, Kultur, Digitales, Sonstiges
 ```
 Choose the topic that best fits the policy area of the question. If none fits, use `"Sonstiges"` – never invent a new key.
 
