@@ -144,6 +144,7 @@
     "party.news": "Aktuelle Nachrichten",
     "party.loading": "Nachrichten werden geladen…",
     "party.newsEmpty": "Für diese Partei sind noch keine Nachrichten-Quellen eingerichtet.",
+    "party.newsNone": "Aktuell gibt es in den Feeds keine Meldungen, die diese Partei direkt betreffen.",
     "party.newsError": "Nachrichten konnten nicht geladen werden. Versuche es später nochmal.",
     "party.newsRetry": "Erneut versuchen",
     "party.newsSource": "Nachrichten kommen automatisch aus einem Feed (RSS). Die Auswahl kann nicht kontrolliert werden.",

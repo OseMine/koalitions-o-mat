@@ -746,6 +746,51 @@ function sharePartyPage(party) {
     }
 }
 
+const PARTY_NEWS_TERMS = {
+    'AFD': ['afd', 'alternative für deutschland'],
+    'CDU/CSU': ['cdu', 'csu', 'christdemokrat'],
+    'GRÜNE': ['grüne', 'grünen', 'bündnis 90'],
+    'SPD': ['spd', 'sozialdemokrat'],
+    'FDP': ['fdp', 'freie demokrat'],
+    'LINKE': ['linke', 'linken'],
+    'BSW': ['bsw', 'wagenknecht'],
+    'SSW': ['ssw', 'südschleswig'],
+    'FREIE WÄHLER': ['freie wähler', 'freien wähler'],
+    'Tierschutz': ['tierschutzpartei', 'tierschutz'],
+    'PIRATEN': ['piraten'],
+    'Volt': ['volt'],
+    'PARTEI': ['die partei'],
+    'ÖDP': ['ödp', 'ökologisch-demokratische partei'],
+    'DieBasis': ['diebasis', 'basisdemokratische partei'],
+    'BÜNDNIS DEUTSCHLAND': ['bündnis deutschland'],
+    'Todenhöfer': ['todenhöfer']
+};
+
+function partyNewsKeywords(party) {
+    const name = (party.partei || '').trim().toUpperCase();
+    const terms = (PARTY_NEWS_TERMS[name] || [name.toLowerCase()]).slice();
+    (party.kandidaten || []).forEach(k => {
+        if (!k.name) return;
+        const full = k.name.toLowerCase();
+        if (full.length >= 4) terms.push(full);
+        const last = full.trim().split(/\s+/).pop();
+        if (last && last.length >= 4 && last !== full) terms.push(last);
+    });
+    return terms;
+}
+
+function newsItemMatchesParty(item, terms) {
+    const text = ((item.title || '') + ' ' + (item.description || '')).toLowerCase();
+    return terms.some(term => {
+        try {
+            const escaped = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            return new RegExp('\\b' + escaped + '\\b', 'i').test(text);
+        } catch (_) {
+            return text.includes(term);
+        }
+    });
+}
+
 function loadPartyNews(party) {
     const container = document.getElementById('partyNews');
     if (!container) return;
@@ -759,6 +804,7 @@ function loadPartyNews(party) {
         container.innerHTML = `<p class="party-muted">${t('party.newsError', 'Nachrichten konnten nicht geladen werden. Bitte später erneut versuchen.')}</p>
             <button type="button" class="btn-ghost party-news-retry" onclick="requirePartyNews()">${t('party.newsRetry', 'Erneut versuchen')}</button>`;
     };
+    const keywords = partyNewsKeywords(party);
     Promise.all(feeds.map(url => fetchNewsFeedProxy(url)
         .then(res => parseRss(res))
         .catch(() => null)
@@ -772,7 +818,16 @@ function loadPartyNews(party) {
             renderNewsError();
             return;
         }
-        container.innerHTML = `<ul class="party-news-list">${flat.slice(0, 8).map(it => `
+        // Nur Meldungen zeigen, die etwas mit dieser Partei zu tun haben
+        // (die neutralen Feeds liefern allgemeine Nachrichten; gefiltert wird
+        // anhand von Parteiname und Kandidat:innen auf dieser Partei-Seite).
+        const relevant = flat.filter(it => newsItemMatchesParty(it, keywords));
+        if (!relevant.length) {
+            container.innerHTML = `<p class="party-muted">${t('party.newsNone', 'Aktuell gibt es in den Feeds keine Meldungen, die diese Partei direkt betreffen.')}</p>
+                <p class="party-muted party-news-source">${t('party.newsSource', 'Nachrichtenfeed automatisch geladen (RSS). Auswahl & Zusammensetzung können nicht kontrolliert werden.')}</p>`;
+            return;
+        }
+        container.innerHTML = `<ul class="party-news-list">${relevant.slice(0, 8).map(it => `
             <li class="party-news-item">
                 <a href="${escapeHtmlAttr(it.link)}" target="_blank" rel="noopener noreferrer">${escapeHtml(it.title)}</a>
                 ${it.date ? `<span class="party-news-date">${formatNewsDate(it.date)}</span>` : ''}
@@ -830,7 +885,8 @@ function parseRss(text) {
     return Array.from(items).slice(0, 20).map(it => ({
         title: (it.querySelector('title') || {}).textContent || '',
         link: (it.querySelector('link') || {}).textContent || (it.querySelector('link[href]') || {}).getAttribute('href') || '',
-        date: (it.querySelector('pubDate') || it.querySelector('published') || it.querySelector('updated') || {}).textContent || ''
+        date: (it.querySelector('pubDate') || it.querySelector('published') || it.querySelector('updated') || {}).textContent || '',
+        description: (it.querySelector('description') || it.querySelector('summary') || {}).textContent || ''
     })).filter(it => it.title && it.link);
 }
 
