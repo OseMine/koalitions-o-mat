@@ -1,6 +1,14 @@
 # Koalitions-O-Mat – Archiv erledigter Aufgaben
 
-Erledigte (abgehakte) Aufgaben aus todo.md, Stand 2026-08-05. Offene Punkte: siehe `todo.md`.
+Erledigte (abgehakte) Aufgaben aus todo.md, Stand 2026-08-06. Offene Punkte: siehe `todo.md`.
+
+## Nachträge vom 2026-08-06 (Lauf B: PR #37/Issue #36-Status korrigiert)
+
+PR #37 (RSS-Parteifilter) ist inzwischen gemergt (87366b5), Issue #36 geschlossen; PWA (PR #41) auf `origin/main` gemergt (107e7f9), Issue #40 geschlossen. Die im Lauf-A-Bericht als „nicht gemergt/offen" geführten Einträge waren veraltet und wurden hiermit abgehakt.
+
+- [x] **PR #37 (`opencode/issue36-20260806075757`) widerspricht Issue #36** – obsolet: PR #37 ist gemergt (Merge 87366b5), der Eintrag behauptete „nicht gemergt". Der Code enthält den Parteifilter `newsItemMatchesParty()` (script.js:782-792). Einzig das False-Positive-Risiko der Wortsuche bleibt als P3 in `todo.md`.
+- [x] **Issue #36 „[Bug]: RSS Feeds don’t load"** – obsolet: Issue #36 ist geschlossen (2026-08-06, zusammen mit PR #39 „Fixed RSS: bad URLs, flaky proxies, restyled."). Der todo-Eintrag behauptete „bleibt offen".
+- [x] **Issue #40 „No PWA"** – geschlossen über PR #41 (manifest.webmanifest + sw.js + Registration) auf `origin/main`.
 
 ## Nachträge vom 2026-08-05 (News-Feed: neutrale Quellen, Timeout/Retry, Datenlücken)
 
