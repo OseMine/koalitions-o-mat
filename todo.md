@@ -2,6 +2,24 @@
 
 Erledigte Aufgaben wurden nach `archived-todo.md` verschoben (Stand 2026-08-06).
 
+## Review vom 2026-08-06 (Lauf B, gesamtes Projekt + GitHub-Cleanup)
+
+Vollständiger Bericht: `reports/review-2026-08-06-b.md`. Sitzsummen (630/130/83/79), Koalitionswerte, Ranking-Verhalten und i18n-Abdeckung erneut per Node-Harness gegen die echten Datendateien verifiziert. **Keine neuen P1-Bugs.**
+
+Status-Korrekturen: PR #37 (RSS-Parteifilter) ist inzwischen gemergt, Issue #36 geschlossen; PWA (PR #41) auf `origin/main` gemergt, Issue #40 geschlossen. Die veralteten Einträge dazu wurden abgehakt und nach `archived-todo.md` verschoben.
+
+### P2 – Fehlende Features
+
+- [ ] **MV-2026: keine Einfache-Sprache-Parteibeschreibungen** – weiterhin offen (re-verifiziert). `einfache-sprache.json.parteien` nur LSA/Berlin; MV ohne `beschreibung_einfach` → `simplePartyText()` (script.js:17-26) fällt auf komplexe `beschreibung` zurück.
+
+### P3 – Verbesserungen
+
+- [ ] **`newsItemMatchesParty()`-False-Positives** (script.js:782-792, nun gemergt) – `\b`-Boundary trifft „SPDler" nicht; „linke"/„grüne" treffen als Adjektive, „Volt" als Einheit.
+- [ ] **Ranking bei wenigen Antworten weiterhin irreführend** – re-verifiziert btw2029 (1 Antwort „j" → SPD/GRÜNE/LINKE/BSW 100 %); `fewAnswersHint` (script.js:1584) zeigt Partei- statt Nutzer-Abdeckung.
+- [ ] **Sainte-Laguë erster Divisor 1 statt 1,4** (script.js:2023) – bei aktuellen btw2029-Daten identische Sitze, bei knappen Verteilungen abweichbar (per Harness belegt).
+- [ ] **Kosmetik: `}function berechneUserMatchNachThema` auf einer Zeile** (script.js:1362).
+- [ ] **10 „Sonstiges"-Fragen** (btw2029 1, Berlin 3, LSA 6: Rundfunk/Clubs/Kultur/Tanzverbot/Kirchen/Ehrenamt/Schwimmbäder/Gartenschau) – Kategorie „Kultur" fehlt in `config.topics`.
+
 ## Review vom 2026-08-06 (gesamtes Projekt, Node-Verifikation + GitHub-Cleanup)
 
 Vollständiger Bericht: `reports/review-2026-08-06.md`. Alle Algorithmus-Befunde per Node-Harness gegen die echten Datendateien verifiziert (Sitzverteilung, Koalitionen, Übereinstimmung, Ranking). Keine neuen P1-Bugs.
@@ -18,12 +36,10 @@ Vollständiger Bericht: `reports/review-2026-08-06.md`. Alle Algorithmus-Befunde
 
 - [ ] **Sainte-Laguë: Standard- statt modifiziertes Verfahren (erster Divisor 1 statt 1,4)** – `berechneSitze()` (script.js:1911-1915); bei aktuellen btw2029-Daten identische Sitze (verifiziert), bei anderen Umfragewerten abweichbar. Dokumentieren oder 1,4 implementieren.
 - [ ] **Ranking bei wenigen Nutzer-Antworten weiterhin irreführend** – verifiziert btw2029 (1 Antwort „j" → SPD/GRÜNE/LINKE/BSW à 100 %); `fewAnswersHint` (script.js:1475-1477) zeigt die Partei-Abdeckung statt der dünnen Nutzer-Antwortbasis. Mindestzahl vergleichbarer Fragen für die Sortierung.
-- [ ] **PR #37 (`opencode/issue36-20260806075757`) widerspricht Issue #36** – Anforderer fordert „alle News" laden, PR implementiert Parteifilter (`newsItemMatchesParty()`). Nicht gemergt; Anforderung klären. False-Positive-Risiko der Wortsuche („linke"/„grüne" als Adjektive, „Volt" als Einheit, `\bSPD\b` schlägt bei „SPDler" nicht an).
 - [ ] **Kosmetik: `}function berechneUserMatchNachThema` auf einer Zeile** (script.js:1253-1254).
 
 ### Tracking offene GitHub-Issues
 
-- [ ] **Issue #36 „[Bug]: RSS Feeds don’t load"** – bleibt offen; PR #37 wegen widersprüchlicher Anforderung nicht gemergt (siehe P3).
 - [ ] **Issue #27 „More Mobile friendly"** – Rest-Touch-/Tap-Flächen prüfen.
 
 ### GitHub-Cleanup (2026-08-06)
