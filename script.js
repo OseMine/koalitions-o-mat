@@ -751,22 +751,27 @@ function loadPartyNews(party) {
     if (!container) return;
     const feeds = Array.isArray(party.rss) ? party.rss : [];
     if (!feeds.length) {
-        container.innerHTML = `<p class="party-muted">${t('party.newsEmpty', 'Für diese Seite sind noch keine Nachrichten-Quellen eingerichtet.')}</p>`;
+        container.innerHTML = `<div class="party-news-state"><p class="party-muted">${t('party.newsEmpty', 'Für diese Seite sind noch keine Nachrichten-Quellen eingerichtet.')}</p></div>`;
         return;
     }
-    container.innerHTML = `<p class="party-muted">${t('party.loading', 'Nachrichten werden geladen…')}</p>`;
     const renderNewsError = () => {
-        container.innerHTML = `<p class="party-muted">${t('party.newsError', 'Nachrichten konnten nicht geladen werden. Bitte später erneut versuchen.')}</p>
-            <button type="button" class="btn-ghost party-news-retry" onclick="requirePartyNews()">${t('party.newsRetry', 'Erneut versuchen')}</button>`;
+        container.innerHTML = `<div class="party-news-state">
+            <p class="party-muted">${t('party.newsError', 'Nachrichten konnten nicht geladen werden. Bitte später erneut versuchen.')}</p>
+            <button type="button" class="btn-ghost party-news-retry" onclick="requirePartyNews()">${t('party.newsRetry', 'Erneut versuchen')}</button>
+        </div>`;
     };
+    container.innerHTML = `<div class="party-news-state party-news-loading" role="status" aria-live="polite">
+        <span class="party-news-spinner" aria-hidden="true"></span>
+        <p class="party-muted">${t('party.loading', 'Nachrichten werden geladen…')}</p>
+    </div>`;
     Promise.all(feeds.map(url => fetchNewsFeedProxy(url)
-        .then(res => parseRss(res))
+        .then(res => parseRss(res, url))
         .catch(() => null)
     )).then(results => {
         const items = results.filter(Boolean);
         // dedup
         const seen = new Set(); const flat = [];
-        items.flat().forEach(it => { if (!seen.has(it.link)) { seen.add(it.link); flat.push(it); } });
+        items.flat().forEach(it => { if (it.link && !seen.has(it.link)) { seen.add(it.link); flat.push(it); } });
         flat.sort((a, b) => Date.parse(b.date || '') - Date.parse(a.date || ''));
         if (!flat.length) {
             renderNewsError();
@@ -774,8 +779,11 @@ function loadPartyNews(party) {
         }
         container.innerHTML = `<ul class="party-news-list">${flat.slice(0, 8).map(it => `
             <li class="party-news-item">
-                <a href="${escapeHtmlAttr(it.link)}" target="_blank" rel="noopener noreferrer">${escapeHtml(it.title)}</a>
-                ${it.date ? `<span class="party-news-date">${formatNewsDate(it.date)}</span>` : ''}
+                <a class="party-news-link" href="${escapeHtmlAttr(it.link)}" target="_blank" rel="noopener noreferrer">${escapeHtml(it.title)}</a>
+                <span class="party-news-meta">
+                    ${it.source ? `<span class="party-news-source-badge">${escapeHtml(it.source)}</span>` : ''}
+                    ${it.date ? `<span class="party-news-date">${formatNewsDate(it.date)}</span>` : ''}
+                </span>
             </li>`).join('')}</ul>
             <p class="party-muted party-news-source">${t('party.newsSource', 'Nachrichtenfeed automatisch geladen (RSS). Auswahl & Zusammensetzung können nicht kontrolliert werden.')}</p>`;
     }).catch(() => {
@@ -792,24 +800,45 @@ const NEWS_PROXIES = [
     'https://api.codetabs.com/v1/proxy?quest=',
     'https://corsproxy.io/?url='
 ];
-const NEWS_FETCH_TIMEOUT_MS = 12000;
+const NEWS_FETCH_TIMEOUT_MS = 10000;
+const NEWS_RETRY_PASSES = 2;
+const NEWS_CACHE_TTL_MS = 15 * 60 * 1000;
+const newsFeedCache = {};
+
+function newsProxyList() {
+    const configured = (config && config.newsProxy) || '';
+    return (configured ? [configured] : []).concat(NEWS_PROXIES)
+        .filter((p, i, arr) => p && arr.indexOf(p) === i);
+}
+
+function looksLikeRssXml(text) {
+    const t = String(text || '').replace(/^\uFEFF/, '').trim();
+    return t.charAt(0) === '<' && /<item[ >]|<entry[ >]|<rss|<feed/i.test(t);
+}
 
 function fetchNewsFeedProxy(url) {
-    const configured = (config && config.newsProxy) || '';
-    const proxies = (configured ? [configured] : []).concat(NEWS_PROXIES)
-        .filter((p, i, arr) => p && arr.indexOf(p) === i);
+    const cached = newsFeedCache[url];
+    if (cached && Date.now() - cached.ts < NEWS_CACHE_TTL_MS) return Promise.resolve(cached.text);
+    const proxies = newsProxyList();
     let lastErr = null;
     let idx = 0;
+    let pass = 0;
     const tryNext = () => {
-        if (idx >= proxies.length) return Promise.reject(lastErr || new Error('feed'));
+        if (idx >= proxies.length) {
+            pass++;
+            if (pass < NEWS_RETRY_PASSES) { idx = 0; }
+            else return Promise.reject(lastErr || new Error('feed'));
+        }
         const proxy = proxies[idx++];
         const ctrl = new AbortController();
         const timer = setTimeout(() => ctrl.abort(), NEWS_FETCH_TIMEOUT_MS);
         return fetch(proxy + encodeURIComponent(url), { signal: ctrl.signal })
             .then(r => { if (!r.ok) throw new Error('feed'); return r.text(); })
             .then(text => {
-                const t = String(text || '').trim();
-                if (t && t.charAt(0) === '<' && /<item[ >]|<entry[ >]|<rss|<feed/i.test(t)) return t;
+                if (looksLikeRssXml(text)) {
+                    newsFeedCache[url] = { ts: Date.now(), text };
+                    return text;
+                }
                 throw new Error('feed');
             })
             .catch(err => {
@@ -822,22 +851,45 @@ function fetchNewsFeedProxy(url) {
     return tryNext();
 }
 
-function parseRss(text) {
+const NEWS_SOURCE_NAMES = {
+    'tagesschau.de': 'Tagesschau',
+    'deutschlandfunk.de': 'Deutschlandfunk',
+    'zdf.de': 'ZDF',
+    'ndr.de': 'NDR',
+    'mdr.de': 'MDR',
+    'rbb24.de': 'rbb'
+};
+
+function feedSourceLabel(url) {
+    try {
+        const host = new URL(url).hostname.replace(/^www\./, '');
+        return NEWS_SOURCE_NAMES[host] || host;
+    } catch (_) { return ''; }
+}
+
+function parseRss(text, feedUrl) {
     const parser = new DOMParser();
     const doc = parser.parseFromString(text, 'text/xml');
     if (!doc || doc.getElementsByTagName('parsererror').length) return [];
+    const source = feedUrl ? feedSourceLabel(feedUrl) : '';
     const items = doc.querySelectorAll('item, entry');
-    return Array.from(items).slice(0, 20).map(it => ({
-        title: (it.querySelector('title') || {}).textContent || '',
-        link: (it.querySelector('link') || {}).textContent || (it.querySelector('link[href]') || {}).getAttribute('href') || '',
-        date: (it.querySelector('pubDate') || it.querySelector('published') || it.querySelector('updated') || {}).textContent || ''
-    })).filter(it => it.title && it.link);
+    return Array.from(items).slice(0, 20).map(it => {
+        const linkEl = it.querySelector('link');
+        const link = (linkEl && linkEl.textContent)
+            || (it.querySelector('link[href]') || {}).getAttribute('href') || '';
+        return {
+            title: (it.querySelector('title') || {}).textContent || '',
+            link,
+            date: (it.querySelector('pubDate') || it.querySelector('published') || it.querySelector('updated') || {}).textContent || '',
+            source
+        };
+    }).filter(it => it.title && it.link);
 }
 
 function formatNewsDate(d) {
     const ts = Date.parse(d);
     if (isNaN(ts)) return '';
-    try { return new Date(ts).toLocaleDateString(); } catch (_) { return ''; }
+    try { return new Date(ts).toLocaleDateString([], { day: '2-digit', month: '2-digit', year: 'numeric' }); } catch (_) { return ''; }
 }
 
 // Ensure party detail reopens on simple-lang toggle or resize

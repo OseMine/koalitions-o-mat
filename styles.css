@@ -772,16 +772,31 @@ body {
 .party-feas-card p { margin: 6px 0 0; line-height: 1.55; color: var(--on-surface-variant); }
 .party-feas-note { color: var(--warning, #b26a00); font-size: 0.88rem; }
 
-.party-news-list { list-style: none; margin: 0; padding: 0; }
+.party-news-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
 .party-news-item {
     background: var(--surface); border: 1px solid var(--outline); border-radius: var(--radius-sm);
-    box-shadow: var(--shadow-sm); padding: 12px 14px; margin-bottom: 8px;
+    box-shadow: var(--shadow-sm); padding: 13px 15px; transition: border-color 0.15s ease, transform 0.15s ease;
 }
-.party-news-item a { color: var(--on-surface); text-decoration: none; font-weight: 500; font-size: 0.95rem; line-height: 1.4; }
-.party-news-item a:hover { color: var(--primary); text-decoration: underline; }
-.party-news-date { display: block; margin-top: 4px; color: var(--on-surface-muted); font-size: 0.78rem; }
-.party-news-source { margin-top: 10px; font-size: 0.75rem; }
-.party-news-retry { margin-top: 12px; min-height: 44px; }
+.party-news-item:hover { border-color: var(--primary); }
+.party-news-link { color: var(--on-surface); text-decoration: none; font-weight: 500; font-size: 0.95rem; line-height: 1.45; display: block; }
+.party-news-link:hover { color: var(--primary); text-decoration: underline; }
+.party-news-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.party-news-source-badge {
+    font-size: 0.68rem; font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase;
+    color: var(--primary); background: color-mix(in srgb, var(--primary) 12%, transparent);
+    padding: 2px 8px; border-radius: 999px;
+}
+.party-news-date { color: var(--on-surface-muted); font-size: 0.76rem; }
+.party-news-source { margin-top: 12px; font-size: 0.75rem; line-height: 1.5; }
+.party-news-state { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 18px 12px; text-align: center; }
+.party-news-loading { flex-direction: row; justify-content: center; gap: 10px; }
+.party-news-spinner {
+    width: 18px; height: 18px; flex: 0 0 auto; border-radius: 50%;
+    border: 2px solid color-mix(in srgb, var(--primary) 25%, transparent);
+    border-top-color: var(--primary); animation: partyNewsSpin 0.8s linear infinite;
+}
+@keyframes partyNewsSpin { to { transform: rotate(360deg); } }
+.party-news-retry { margin-top: 2px; min-height: 44px; }
 
 .party-page-footer { margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--outline); }
 
