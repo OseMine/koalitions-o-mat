@@ -2167,6 +2167,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     applySavedSimpleLang();
     pendingShare = parseShareHash();
 
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('./sw.js').catch(err => {
+            console.error('Service-Worker-Registrierung fehlgeschlagen:', err);
+        });
+    }
+
     document.querySelectorAll('.tab-button').forEach(b => {
         b.addEventListener('click', () => switchTab(b.dataset.tab));
     });
