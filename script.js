@@ -170,9 +170,15 @@ function applyPendingShare() {
         btn.classList.toggle('active', importantQuestions.has(Number(btn.dataset.q)));
     });
     saveTestState();
-    suppressHistorySave = true;
-    showTestResults();
-    suppressHistorySave = false;
+    // Ergebnis-Ansicht nur bei tatsächlich geteilten Antworten aufrufen – ein reiner
+    // Koalitions-Share-Link (ohne Antworten) soll nicht die Test-Ergebnissicht mit
+    // lauter "–" hinterlassen (P3 aus Review 2026-08-02/03-b).
+    const hasAnswers = Object.keys(pendingShare.answers).length > 0;
+    if (hasAnswers) {
+        suppressHistorySave = true;
+        showTestResults();
+        suppressHistorySave = false;
+    }
     // Koalitions-Sicht wiederherstellen, falls der Link im Koalitionen-Tab geteilt wurde
     if (pendingShare.coalitionState) {
         const parts = pendingShare.coalitionState.split('|');
@@ -236,6 +242,11 @@ function switchTab(tabName) {
 
 // ===== Election Selection =====
 function setActiveElection(electionId) {
+    // Vor dem Wechsel den aktiven Tab merken, damit der Wahlwechsel nicht immer auf den
+    // Test-Tab zurückspringt (Issue aus Review 2026-08-03-b, P2). Ohne vorherigen Tab
+    // (z.B. beim ersten Laden) wird 'test' genutzt.
+    const previousTab = activeTabName();
+
     activeElectionId = electionId;
     if (partyPageOpen) closePartyPage();
     localStorage.setItem('activeElectionId', electionId);
@@ -243,7 +254,11 @@ function setActiveElection(electionId) {
     koalitionenCacheKey = '';
 
     const data = electionDataCache[electionId];
-    if (!data) return;
+    if (!data || !data.werte) {
+        console.error(`Daten für ${electionId} nicht geladen`);
+        showNotification(t('loadErrorHint', 'Daten konnten nicht geladen werden. Bitte später erneut versuchen.'), 'error');
+        return;
+    }
 
     window.werteData = data.werte;
     // Bei fehlendem fragen.json bewusst auf null zurücksetzen statt die Fragen
@@ -285,7 +300,7 @@ function setActiveElection(electionId) {
     resetTest();
     populatePartyDropdowns();
     updateKoalitionen();
-    switchTab('test');
+    switchTab(previousTab);
 
     if (pendingShare && pendingShare.electionId === electionId) {
         if (pendingShare.party) {
@@ -304,6 +319,17 @@ function renderWelcomeCards() {
     if (!container) return;
     container.innerHTML = electionsList.map(e => {
         const data = electionDataCache[e.id];
+        // Ladefehler einer Nicht-Default-Wahl sichtbar machen: statt still abzubrechen
+        // (Klick → `if (!data) return;`) eine deaktivierte Karte mit Hinweis zeigen.
+        if (!data || !data.werte) {
+            return `
+                <div class="welcome-card welcome-card-error" role="note" aria-disabled="true">
+                    <span class="welcome-card-type">${e.type ? t('type' + e.type.replace(/\s+/g, ''), e.type) : ''}</span>
+                    <span class="welcome-card-name">${e.name}</span>
+                    <span class="welcome-card-error-hint">${t('loadErrorHint', 'Daten konnten nicht geladen werden. Bitte später erneut versuchen.')}</span>
+                </div>
+            `;
+        }
         const partyCount = data && data.werte && data.werte.umfragewerte ? data.werte.umfragewerte.length : 0;
         const questionCount = data && data.fragen && data.fragen.fragen ? data.fragen.fragen.length : 0;
         return `
@@ -614,9 +640,20 @@ function renderPartyTimeline(party) {
     const chartEl = document.getElementById(chartId);
     const verlauf = Array.isArray(party.verlauf) && party.verlauf.length ? party.verlauf : null;
     if (!verlauf) {
-        if (chartEl) chartEl.style.display = 'none';
-        if (noteEl) noteEl.textContent = t('party.timelineEmpty', 'Noch keine historische Umfragewerte für diese Partei vorhanden. Dieser Bereich zeigt die Entwicklung der Umfragewerte über die Zeit, sobald Daten vorliegen.');
+        // Leere Historien-Sektion nicht komplett ausblenden (wirkt sonst wie ein Bug),
+        // sondern als deaktivierten Platzhalter darstellen.
+        if (chartEl) {
+            chartEl.style.display = 'flex';
+            chartEl.className = 'party-timeline-empty';
+            chartEl.setAttribute('aria-disabled', 'true');
+            chartEl.innerHTML = `<span class="party-timeline-empty-icon" aria-hidden="true">📊</span>${t('party.timelineEmpty', 'Noch keine historische Umfragewerte für diese Partei vorhanden. Dieser Bereich zeigt die Entwicklung der Umfragewerte über die Zeit, sobald Daten vorliegen.')}`;
+        }
+        if (noteEl) noteEl.textContent = '';
         return;
+    }
+    if (chartEl) {
+        chartEl.removeAttribute('aria-disabled');
+        if (chartEl.className === 'party-timeline-empty') chartEl.className = '';
     }
     const chart = initChart(chartId);
     if (!chart) return;
@@ -825,6 +862,9 @@ function berechneKoalitionen(type = 'mehrheit', excludeParties = []) {
     const maxSize = (config.thresholds && config.thresholds.maxCoalitionSize) || 4;
     const key = type + '|' + excludeParties.join(',') + '|' + maxSize;
     if (koalitionenCache && koalitionenCacheKey === key) return koalitionenCache;
+    // Hinweis Grenzwert-Entscheidung: `>=` (statt `>`) nimmt Parteien mit exakt
+    // Sperrklausel-Prozent in die Berechnung auf (z. B. GRÜNE exakt 5 % in MV-2026).
+    // Das ist bewusst: Parteien an der Sperrklausel erreichen regulär Sitze.
     const parties = window.werteData.umfragewerte.filter(
         p => p.partei !== 'Andere' && p.prozent >= config.thresholds.sperrklausel && !excludeParties.includes(p.partei)
     );
@@ -955,7 +995,19 @@ function updateKoalitionen() {
 
     const container = document.getElementById('coalitionResults');
     if (!koalitionen.length) {
-        container.innerHTML = `<div class="empty-state"><span class="empty-icon">🔍</span><p>${t('noCoalitions', 'Keine passenden Koalitionen gefunden.')}</p></div>`;
+        // Leere Ergebnisliste erklären: Wenn ein Partei-Filter gesetzt ist, kann die
+        // Partei unter der Sperrklausel liegen (dann in keiner Koalition enthalten)
+        // oder mit dem gewählten Typ/Mindestmatch keine Koalition bilden.
+        let emptyHtml = `<div class="empty-state"><span class="empty-icon">🔍</span><p>${t('noCoalitions', 'Keine passenden Koalitionen gefunden.')}</p>`;
+        if (partyFilter) {
+            const p = (window.werteData.umfragewerte || []).find(x => x.partei === partyFilter);
+            const below = p && p.prozent < config.thresholds.sperrklausel;
+            emptyHtml += `<p class="empty-state-detail">${below
+                ? t('noCoalitionsBelow', 'Die Partei „{partei}" liegt mit {prozent}% unter der Sperrklausel von {klausel}% und ist deshalb in keiner Koalition enthalten.').replace('{partei}', partyFilter).replace('{prozent}', p.prozent.toFixed(1)).replace('{klausel}', config.thresholds.sperrklausel)
+                : t('noCoalitionsFilter', 'Für „{partei}" gibt es mit der aktuellen Auswahl (Typ, Mindestübereinstimmung) keine Koalition.').replace('{partei}', partyFilter)}</p>`;
+        }
+        emptyHtml += `</div>`;
+        container.innerHTML = emptyHtml;
         return;
     }
 
@@ -1088,7 +1140,7 @@ function initializeTest() {
         const topicColor = (config.topics[topic] && config.topics[topic].color) || '#999';
         const answerSel = userAnswers[i] ? userAnswers[i] : '';
         return `
-        <div class="question ${i === 0 ? 'active' : ''}" data-q="${i}">
+        <div class="question ${i === currentQuestion ? 'active' : ''}" data-q="${i}">
             <div class="q-top-row">
                 <span class="q-topic" style="--topic-color:${topicColor}">${topic}</span>
                 <span class="q-actions">
@@ -1827,19 +1879,45 @@ function berechneSitze(parteien) {
         || 736;
     const above = parteien.filter(p => p.prozent >= config.thresholds.sperrklausel);
     if (!above.length) return [];
-    // Verfahren pro Wahl konfigurierbar (werte.json meta.verfahren):
-    // Bundestag = Sainte-Laguë, Landtagswahlen meist d'Hondt.
-    const verfahren = (config.meta && config.meta.verfahren) || 'dhondt';
+    // Verfahren pro Wahl konfigurierbar (werte.json meta.verfahren). Die Strings in
+    // den Datendateien sind uneinheitlich ('sainte-lague' vs. 'saintelague',
+    // 'hare-niemeyer'), daher wird der Name normalisiert (Kleinschreibung, alle
+    // Nicht-Buchstaben entfernt), statt auf exakte Strings zu prüfen.
+    const raw = String((config.meta && config.meta.verfahren) || 'dhondt');
+    const verfahren = raw.toLowerCase().replace(/[^a-z]/g, '');
     const seats = {};
     above.forEach(p => { seats[p.partei] = 0; });
-    for (let i = 0; i < gesamt; i++) {
-        let best = null, bestQ = -1;
-        above.forEach(p => {
-            const divisor = verfahren === 'sainteLague' ? 2 * seats[p.partei] + 1 : seats[p.partei] + 1;
-            const q = p.prozent / divisor;
-            if (q > bestQ) { bestQ = q; best = p.partei; }
+
+    if (verfahren === 'hareniemeyer' || verfahren === 'hare') {
+        // Hare-Niemeyer (größte Reste): Grundmandate über Hare-Quote,
+        // Restmandate nach größtem Nachkommarest vergeben (LSA, MV).
+        const totalProzent = above.reduce((s, p) => s + p.prozent, 0);
+        const rests = above.map(p => {
+            const exact = (p.prozent / totalProzent) * gesamt;
+            const floor = Math.floor(exact);
+            seats[p.partei] = floor;
+            return { partei: p.partei, rest: exact - floor };
         });
-        seats[best]++;
+        let remaining = gesamt - rests.reduce((s, r) => s + seats[r.partei], 0);
+        rests.sort((a, b) => b.rest - a.rest);
+        for (const r of rests) {
+            if (remaining <= 0) break;
+            seats[r.partei]++;
+            remaining--;
+        }
+    } else {
+        // d'Hondt (Standard) bzw. Sainte-Laguë (Bundestag): Divisorverfahren,
+        // Sitz für Sitz die Partei mit dem größten Quotienten.
+        const saintelague = verfahren === 'saintelague';
+        for (let i = 0; i < gesamt; i++) {
+            let best = null, bestQ = -1;
+            above.forEach(p => {
+                const divisor = saintelague ? 2 * seats[p.partei] + 1 : seats[p.partei] + 1;
+                const q = p.prozent / divisor;
+                if (q > bestQ) { bestQ = q; best = p.partei; }
+            });
+            seats[best]++;
+        }
     }
     return above.map(p => ({ partei: p.partei, prozent: p.prozent, sitze: seats[p.partei] }))
         .sort((a, b) => b.sitze - a.sitze);
@@ -1896,20 +1974,35 @@ function redrawCharts() {
 const staticI18nOriginals = new Map();
 
 function snapshotStaticI18n() {
-    document.querySelectorAll('[data-i18n]').forEach(el => {
-        if (!staticI18nOriginals.has(el)) staticI18nOriginals.set(el, el.textContent);
+    document.querySelectorAll('[data-i18n], [data-i18n-aria]').forEach(el => {
+        if (!staticI18nOriginals.has(el)) {
+            staticI18nOriginals.set(el, {
+                text: el.textContent,
+                aria: el.getAttribute('aria-label')
+            });
+        }
     });
 }
 
 function applyStaticI18n() {
     snapshotStaticI18n();
-    document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.dataset.i18n;
-        const val = t(key, null);
-        if (val !== null) {
-            el.textContent = val;
-        } else if (staticI18nOriginals.has(el)) {
-            el.textContent = staticI18nOriginals.get(el);
+    document.querySelectorAll('[data-i18n], [data-i18n-aria]').forEach(el => {
+        const orig = staticI18nOriginals.get(el);
+        if (el.dataset.i18n) {
+            const val = t(el.dataset.i18n, null);
+            if (val !== null) {
+                el.textContent = val;
+            } else if (orig && orig.text !== undefined) {
+                el.textContent = orig.text;
+            }
+        }
+        if (el.dataset.i18nAria) {
+            const val = t(el.dataset.i18nAria, null);
+            if (val !== null) {
+                el.setAttribute('aria-label', val);
+            } else if (orig && orig.aria !== undefined) {
+                el.setAttribute('aria-label', orig.aria);
+            }
         }
     });
 }
