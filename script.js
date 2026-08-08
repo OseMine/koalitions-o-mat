@@ -12,6 +12,16 @@ let suppressHistorySave = false;
 let pendingAdvanceTimer = null;
 let lastTestResults = null;
 
+// ===== Taktisches Wählen (Szenario-Simulator) =====
+// Mock-"Sonntagsfrage": statische (fiktive) Umfragewerte als Fallback-Basis,
+// sobald keine echten Werte der aktiven Wahl vorliegen.
+const TACTICAL_MOCK_POLLS = {
+    'CDU': 30, 'CDU/CSU': 30, 'SPD': 15, 'GRÜNE': 13, 'FDP': 4.5, 'LINKE': 3, 'AfD': 18
+};
+let tacticalPolls = {};
+let tacticalPollsKey = null;
+let tacticalEnabled = false;
+
 // ===== Simple Language =====
 function isSimpleLang() { return localStorage.getItem('simpleLang') === '1'; }
 function simplePartyText(partei) {
@@ -1745,13 +1755,172 @@ function showTestResults() {
         <button class="tr-restart-btn" onclick="resetTestAndRestart()">${t('restartTest', 'Test wiederholen')}</button>
     </div>`;
 
+    // Taktik-Modus (Szenario-Simulator) unterhalb der Ergebnisse
+    html += tacticalSectionHTML();
+
     container.innerHTML = html;
+    bindTacticalEvents();
     if (usableAnswered > 0) {
         initTestResultPieChart(results);
         // Historie nur bei mindestens einer verwertbaren (j/n-)Antwort speichern,
         // sonst landet ein übersprungener Test als "0,0 %"-Eintrag in der Historie.
         saveTestResult(results);
     }
+}
+
+// ===== Taktisches Wählen (Szenario-Simulator) =====
+function tacticalThreshold() {
+    return (config && config.thresholds && config.thresholds.sperrklausel) || 5;
+}
+
+function calculateTacticalPolls() {
+    if (tacticalPollsKey === activeElectionId && Object.keys(tacticalPolls).length) return tacticalPolls;
+    const map = {};
+    (window.werteData && window.werteData.umfragewerte || []).forEach(p => {
+        if (p.partei !== 'Andere') map[p.partei] = p.prozent;
+    });
+    Object.keys(TACTICAL_MOCK_POLLS).forEach(p => {
+        if (map[p] === undefined) map[p] = TACTICAL_MOCK_POLLS[p];
+    });
+    tacticalPolls = map;
+    tacticalPollsKey = activeElectionId;
+    return tacticalPolls;
+}
+
+function tacticalSlidersHTML() {
+    const polls = calculateTacticalPolls();
+    const parties = Object.keys(polls)
+        .filter(p => p !== 'Andere')
+        .filter(p => (polls[p] || 0) < 8)
+        .sort((a, b) => polls[a] - polls[b]);
+    if (!parties.length) return '';
+    return `
+        <div class="tactical-sliders">
+            <h4>Taktische Simulation: Umfragewerte anpassen</h4>
+            ${parties.map(p => `
+            <div class="tactical-slider-row">
+                <span class="tactical-slider-name" style="color:${getPartyColor(p)}">${escapeHtml(p)}</span>
+                <input type="range" min="0" max="12" step="0.1" value="${polls[p]}" data-party="${escapeHtmlAttr(p)}" aria-label="Umfragewert ${escapeHtmlAttr(p)} adjustieren">
+                <span class="tactical-slider-val">${(polls[p] || 0).toFixed(1)}%</span>
+            </div>`).join('')}
+            <p class="tactical-slider-note">Verschiebe die Regler, um zu sehen, wie sich Taktik-Warnungen und Koalitionsmehrheiten verändern.</p>
+        </div>`;
+}
+
+function tacticalSectionHTML() {
+    return `
+        <div class="tactical-section">
+            <div class="tactical-section-head">
+                <h3>Taktisches Wählen</h3>
+                <p class="tactical-intro">Simuliere deine Stimme: Welche Auswirkungen hätte ein taktisches Wahlverhalten auf dein Ergebnis?</p>
+                <label class="tactical-toggle">
+                    <input type="checkbox" id="tacticalToggle" ${tacticalEnabled ? 'checked' : ''}>
+                    <span class="tactical-switch" aria-hidden="true"></span>
+                    <span class="tactical-toggle-label">Taktik-Modus aktivieren</span>
+                </label>
+            </div>
+            <div class="tactical-content" id="tacticalContent" ${tacticalEnabled ? '' : 'hidden'}>
+                <div class="tactical-warnings" id="tacticalWarnings"></div>
+                ${tacticalSlidersHTML()}
+            </div>
+        </div>`;
+}
+
+function calculateTacticalVoting(results) {
+    const threshold = tacticalThreshold();
+    const polls = calculateTacticalPolls();
+    const pollOf = p => (polls[p] || 0);
+    const sorted = results.slice().sort((a, b) => (b.match ?? -1) - (a.match ?? -1));
+    const warnings = [];
+    const info = { coalition: null, share: 0, eligibleSum: 0 };
+
+    if (sorted.length === 0) return { warnings, info };
+
+    // 1) Verschenkte Stimme (Wasted Vote Warning)
+    const top1 = sorted[0].partei;
+    if (pollOf(top1) < threshold) {
+        const alt = sorted.find(r => r.partei !== top1 && (pollOf(r.partei) || 0) >= threshold);
+        if (alt) {
+            warnings.push({
+                type: 'wasted',
+                text: `Deine Top-Partei «${top1}» scheitert aktuell an der ${threshold}%-Hürde (${pollOf(top1).toFixed(1)}%). Strategische Alternative: ${alt.partei} (${pollOf(alt.partei).toFixed(1)}%).`
+            });
+        }
+    }
+
+    // 2) Leihstimme zur Koalitionsabsicherung
+    if (sorted.length >= 2) {
+        const a = sorted[0].partei;
+        const b = sorted[1].partei;
+        const pa = pollOf(a), pb = pollOf(b);
+        const eligible = sorted.filter(r => pollOf(r.partei) >= threshold);
+        const eligibleSum = eligible.reduce((s, p) => s + pollOf(p.partei), 0);
+        const share = eligibleSum > 0 ? (((pa + pb) / eligibleSum) * 100) : 0;
+        info.coalition = `${a} + ${b}`;
+        info.share = share;
+        info.eligibleSum = eligibleSum;
+        const schwankt = [a, b].some(p => { const v = pollOf(p); return v >= 4 && v <= 6; });
+        if (share > 50 && schwankt) {
+            const smaller = pa <= pb ? a : b;
+            warnings.push({
+                type: 'loan',
+                text: `Achtung, deine Wunschkoalition aus ${a} und ${b} ist in Gefahr. Überlege, ${smaller} zu wählen, um sie über die ${threshold}%-Hürde zu retten.`
+            });
+        }
+    }
+    return { warnings, info };
+}
+
+function updateTacticalWarnings() {
+    const box = document.getElementById('tacticalWarnings');
+    if (!box || !lastTestResults) return;
+    const { warnings, info } = calculateTacticalVoting(lastTestResults);
+    let html = '';
+    if (info.coalition) {
+        const okMaj = info.share > 50;
+        html += `<div class="tactical-majority ${okMaj ? 'ok' : 'no'}">
+            <strong>Koalitionsmehrheit:</strong> ${escapeHtml(info.coalition)} erreicht ${info.share.toFixed(0)}% der Stimmen der Parteien über ${tacticalThreshold()}% — ${okMaj ? 'Mehrheit!' : 'keine Mehrheit'}
+        </div>`;
+    }
+    if (!warnings.length) {
+        html += `<div class="tactical-ok-hint"><span class="tactical-warning-tag">Alles klar</span><span>Keine strategische Warnung aktuell – Deine Top-Partei liegt über ${tacticalThreshold()}% und Deine Wunschkoalition steht im simulierten Szenario stabil.</span></div>`;
+    }
+    warnings.forEach(w => {
+        html += `<div class="tactical-warning ${w.type === 'loan' ? 'loan' : ''}">
+            <span class="tactical-warning-tag">${w.type === 'loan' ? 'Achtung' : 'Hinweis'}</span>
+            <span>${escapeHtml(w.text)}</span>
+        </div>`;
+    });
+    box.innerHTML = html;
+}
+
+function tacticalSliderRowClass(input) {
+    const val = parseFloat(input.value);
+    const party = input.dataset.party;
+    tacticalPolls[party] = val;
+    const row = input.closest('.tactical-slider-row');
+    if (row) {
+        const lbl = row.querySelector('.tactical-slider-val');
+        if (lbl) lbl.textContent = val.toFixed(1) + '%';
+    }
+    updateTacticalWarnings();
+}
+
+function bindTacticalEvents() {
+    const toggle = document.getElementById('tacticalToggle');
+    const content = document.getElementById('tacticalContent');
+    if (!toggle || !content) return;
+    toggle.addEventListener('change', () => {
+        tacticalEnabled = toggle.checked;
+        content.hidden = !toggle.checked;
+        if (toggle.checked) updateTacticalWarnings();
+    });
+    document.querySelectorAll('#testResults input[type="range"][data-party]').forEach(slider => {
+        slider.addEventListener('input', () => tacticalSliderRowClass(slider));
+    });
+    // Nach Re-Render (z.B. Einfache-Sprache-Toggle) Zustand erneut anwenden,
+    // sonst blieben Warnungen trotz aktivem Taktik-Modus leer.
+    if (tacticalEnabled) updateTacticalWarnings();
 }
 
 function resetTestAndRestart() {

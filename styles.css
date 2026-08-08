@@ -826,3 +826,83 @@ body {
     font-weight: 600; font-size: 0.9rem; cursor: pointer; font-family: var(--font); transition: all 0.2s;
 }
 .party-detail-link:hover { background: var(--primary); color: #fff; }
+
+/* ===== Taktisches Wählen (Szenario-Simulator) ===== */
+.tactical-section {
+    margin: 18px 0 4px; padding: 18px 20px;
+    background: var(--surface); border: 2px dotted var(--primary);
+    border-radius: var(--radius-sm); box-shadow: var(--shadow-sm);
+}
+.tactical-section-head h3 { margin: 0 0 4px; font-size: 1.05rem; color: var(--primary); }
+.tactical-intro { margin: 0 0 12px; font-size: 0.85rem; color: var(--on-surface-muted); line-height: 1.5; }
+
+/* Toggle-Switch */
+.tactical-toggle {
+    display: inline-flex; align-items: center; gap: 10px;
+    cursor: pointer; user-select: none;
+}
+.tactical-toggle input { position: absolute; opacity: 0; width: 0; height: 0; }
+.tactical-switch {
+    position: relative; display: inline-block; width: 48px; height: 26px; flex-shrink: 0;
+    background: var(--surface-variant); border: 1.5px solid var(--outline);
+    border-radius: 999px; transition: background 0.2s, border-color 0.2s;
+}
+.tactical-switch::before {
+    content: ''; position: absolute; top: 2px; left: 3px; width: 18px; height: 18px;
+    background: var(--on-surface-muted); border-radius: 50%; transition: transform 0.2s, background 0.2s;
+}
+.tactical-toggle input:checked + .tactical-switch { background: var(--primary); border-color: var(--primary); }
+.tactical-toggle input:checked + .tactical-switch::before { transform: translateX(22px); background: #fff; }
+.tactical-toggle input:focus-visible + .tactical-switch { outline: 2px solid var(--primary); outline-offset: 2px; }
+.tactical-toggle-label { font-size: 0.9rem; font-weight: 600; color: var(--on-surface); }
+@media (hover: none), (pointer: coarse) {
+    .tactical-toggle { min-height: 44px; }
+}
+
+/* Warnungen & Koalitionsmehrheit */
+.tactical-content { margin-top: 14px; }
+.tactical-warnings { display: flex; flex-direction: column; gap: 8px; }
+.tactical-warning, .tactical-ok-hint {
+    display: flex; align-items: flex-start; gap: 10px;
+    padding: 12px 14px; font-size: 0.88rem; line-height: 1.5;
+    border-radius: var(--radius-xs); color: var(--on-surface);
+}
+.tactical-warning-tag {
+    flex: 0 0 auto; font-weight: 700; font-size: 0.75rem;
+    text-transform: uppercase; letter-spacing: 0.4px;
+}
+.tactical-warning.wasted, .tactical-warning.wasted .tactical-warning-tag {
+    background: var(--answer-m-bg); color: var(--answer-m-color);
+    border: 1px solid color-mix(in srgb, var(--answer-m-color) 50%, transparent);
+}
+/* Loan = rote "Achtung"-Box */
+.tactical-warning.loan, .tactical-warning.loan .tactical-warning-tag {
+    background: var(--answer-no-bg); color: var(--answer-no-color);
+    border: 1px solid color-mix(in srgb, var(--answer-no-color) 55%, transparent); font-weight: 500;
+}
+.tactical-warning.loan { box-shadow: 0 0 0 2px color-mix(in srgb, var(--answer-no-color) 12%, transparent); }
+.tactical-ok-hint { background: var(--answer-yes-bg); color: var(--answer-yes-color); border: 1px solid color-mix(in srgb, var(--answer-yes-color) 50%, transparent); }
+.tactical-majority {
+    padding: 10px 14px; font-size: 0.88rem; border-radius: var(--radius-xs);
+    background: var(--surface-variant); border: 1px solid var(--outline); line-height: 1.5;
+}
+.tactical-majority strong { color: var(--on-surface); }
+.tactical-majority.ok { border-left: 4px solid var(--answer-yes-color); }
+.tactical-majority.no { border-left: 4px solid var(--answer-no-color); }
+
+/* Schieberegler für Umfragewerte */
+.tactical-sliders { margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--outline); }
+.tactical-sliders h4 { margin: 0 0 10px; font-size: 0.9rem; color: var(--on-surface); }
+.tactical-slider-row {
+    display: grid; grid-template-columns: 90px 1fr 64px; gap: 10px; align-items: center;
+    padding: 6px 0;
+}
+.tactical-slider-name {
+    font-size: 0.85rem; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.tactical-slider-row input[type="range"] { width: 100%; accent-color: var(--primary); min-height: 32px; }
+.tactical-slider-val { text-align: right; font-size: 0.82rem; font-weight: 600; color: var(--on-surface-variant); font-variant-numeric: tabular-nums; }
+.tactical-slider-note { margin: 10px 0 0; font-size: 0.78rem; color: var(--on-surface-muted); }
+@media (max-width: 480px) {
+    .tactical-slider-row { grid-template-columns: 70px 1fr 56px; gap: 8px; }
+}
