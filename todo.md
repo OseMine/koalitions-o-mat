@@ -8,7 +8,7 @@ Vollständiger Bericht: `reports/review-2026-08-08.md`. Sitzsummen (630/130/83/7
 
 ### P3 – Verbesserungen
 
-- [ ] **Berlin-2026: BSW hat bei 6 Fragen keine Position** (nr 9, 20, 32, 36, 37, 45) – einzige Partei über alle 4 Wahlen mit Lücken; `getAnswerValue()` liefert dort `'m'` (neutral). Entweder Positionen ergänzen oder Auslassung dokumentieren.
+- [x] **Berlin-2026: BSW hat bei 6 Fragen keine Position** (nr 9, 20, 32, 36, 37, 45) – einzige Partei über alle 4 Wahlen mit Lücken; `getAnswerValue()` liefert dort `'m'` (neutral). **Erledigt**: echte belegte BSW-Positionen (`n`) für nr 9 & 32 ergänzt, übrige vier als dokumentierte Neutralität markiert – BSW hat nun in allen 52 Fragen einen Eintrag.
 
 ### Tracking offene GitHub-Issues
 

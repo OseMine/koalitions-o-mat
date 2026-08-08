@@ -436,6 +436,12 @@
           "zitat": "Intelligente Verkehrsführung statt Straßenverengung und Staudogma.",
           "quelle": "FDP Berlin Wahlprogramm 2026, S. 26; https://www.fdp-berlin.de/programm",
           "begruendung": "Die FDP lehnt eine Verknappung des Verkehrsraums für Autos ab und setzt stattdessen auf digitale Verkehrssteuerung und separate Trassenführungen."
+        },
+        "BSW": {
+          "wert": "n",
+          "zitat": "Berlin braucht keinen ideologischen Gegensatz zwischen Auto, Fahrrad und öffentlichem Nahverkehr, sondern ein vernünftiges Miteinander.",
+          "quelle": "BSW Landesverband Berlin Wahlprogramm 2026, S. 49; https://bsw-vg.de/berlin",
+          "begruendung": "Das BSW unterstützt zwar ein durchgängiges Radwegenetz, lehnt aber den einseitigen Rückbau von Kfz- und Parkflächen ab und bewertet die Sicherung des Autoverkehrs für Pendler und Handwerk als ebenso wichtig."
         }
       },
       "thema": "Umwelt"
@@ -979,6 +985,11 @@
           "zitat": "Das Agent-of-Change-Prinzip in der Bauordnung schützt bestehende Clubs, ohne den notwendigen Wohnungsbau in Berlin zu verhindern.",
           "quelle": "FDP Berlin Wahlprogramm 2026, S. 23; https://www.fdp-berlin.de/programm",
           "begruendung": "Die FDP unterstützt den Schutz historisch gewachsener Clubs durch intelligente Schallisolierungskredite, lehnt jedoch dauerhafte Betriebssubventionen ab."
+        },
+        "BSW": {
+          "wert": "m",
+          "quelle": "BSW Landesverband Berlin Wahlprogramm 2026, S. 18 ff.; https://bsw-vg.de/berlin",
+          "begruendung": "Das BSW hat keine explizite Position zu einem Lärmschutz- oder Rettungsfonds für Berliner Clubs; angesichts fehlender Angaben im Wahlprogramm wird die Frage neutral gewichtet."
         }
       },
       "thema": "Kultur"
@@ -1570,6 +1581,12 @@
           "zitat": "Keine Wegelagerei an der Ringbahn: Eine City-Maut schadet dem Berliner Einzelhandel und der Berliner Wirtschaft monumental.",
           "quelle": "FDP Berlin Wahlprogramm 2026, S. 27; https://www.fdp-berlin.de/programm",
           "begruendung": "Die FDP warnt vor wirtschaftlichen Schäden durch eine Maut und setzt auf smarte Verkehrslenkung und Schienenanbindung aus dem Umland."
+        },
+        "BSW": {
+          "wert": "n",
+          "zitat": "Neue finanzielle Belastungen wie City-Tax-Modelle für Verbrenner lehnen wir daher ab.",
+          "quelle": "BSW Landesverband Berlin Wahlprogramm 2026, S. 49; https://bsw-vg.de/berlin",
+          "begruendung": "Das BSW lehnt eine City-Maut bzw. City-Tax-Modelle als zusätzliche finanzielle Belastung für Autofahrer und Pendler ab und plädiert stattdessen für bezahlbare Mobilität und den ÖPNV-Ausbau."
         }
       },
       "thema": "Umwelt"
@@ -1764,6 +1781,11 @@
           "zitat": "Bagatellsteuern ohne Lenkungszweck gehören abgeschafft – das gilt auch für die bürokratische Hundesteuer in Berlin.",
           "quelle": "FDP Berlin Wahlprogramm 2026, S. 32; https://www.fdp-berlin.de/programm",
           "begruendung": "Die FDP lehnt Bagatellsteuern wegen ihres hohen Verwaltungsaufwands ab und fordert Steuervereinfachung im Land Berlin."
+        },
+        "BSW": {
+          "wert": "m",
+          "quelle": "BSW Landesverband Berlin Wahlprogramm 2026; https://bsw-vg.de/berlin",
+          "begruendung": "Eine Position zur Abschaffung der Berliner Hundesteuer liegt im BSW-Wahlprogramm 2026 nicht vor; das BSW befasst sich nicht mit kommunalen Bagatellsteuern."
         }
       },
       "thema": "Wirtschaft"
@@ -1807,6 +1829,11 @@
           "zitat": "Freiheit statt Kollektivstrafen: Wer sich an Silvester friedlich verhält, soll feiern dürfen – Täter sind hart zu bestrafen.",
           "quelle": "FDP Berlin Wahlprogramm 2026, S. 15; https://www.fdp-berlin.de/programm",
           "begruendung": "Die FDP argumentiert für das Freiheitsrecht der Bürger und plädiert gegen ein stadtweites Verbot privater Pyrotechnik in Berlin."
+        },
+        "BSW": {
+          "wert": "m",
+          "quelle": "BSW Landesverband Berlin Wahlprogramm 2026; https://bsw-vg.de/berlin",
+          "begruendung": "Ein übergeordnetes Böllerverbot oder Feuerwerksfragen werden im BSW-Wahlprogramm 2026 nicht adressiert; die Frage bleibt daher dokumentiert neutral."
         }
       },
       "thema": "Inneres"
@@ -2199,6 +2226,11 @@
           "zitat": "Strenge veterinärmedizinische Kontrollen und Hitzefrei-Regeln reichen aus, ein pauschales Kutschenverbot lehnen wir ab.",
           "quelle": "FDP Berlin Wahlprogramm 2026, S. 32; https://www.fdp-berlin.de/programm",
           "begruendung": "Die FDP befürwortet den Schutz der Tiere durch temperaturgerechte Auflagen anstelle eines vollständigen Gewerbeverbots in Berlin."
+        },
+        "BSW": {
+          "wert": "m",
+          "quelle": "BSW Landesverband Berlin Wahlprogramm 2026; https://bsw-vg.de/berlin",
+          "begruendung": "Pferdekutschen im Straßenverkehr werden im BSW-Wahlprogramm 2026 nicht erwähnt; mangels programmatischer Aussage bleibt die Frage dokumentiert neutral."
         }
       },
       "thema": "Umwelt"
