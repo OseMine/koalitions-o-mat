@@ -2486,7 +2486,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     pendingShare = parseShareHash();
 
     if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('./sw.js').catch(err => {
+        navigator.serviceWorker.register('./sw.js', { updateViaCache: 'none' }).catch(err => {
             console.error('Service-Worker-Registrierung fehlgeschlagen:', err);
         });
     }
