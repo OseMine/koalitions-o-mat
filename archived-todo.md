@@ -1,6 +1,20 @@
 # Koalitions-O-Mat – Archiv erledigter Aufgaben
 
-Erledigte (abgehakte) Aufgaben aus todo.md, Stand 2026-08-06. Offene Punkte: siehe `todo.md`.
+Erledigte (abgehakte) Aufgaben aus todo.md, Stand 2026-08-08. Offene Punkte: siehe `todo.md`.
+
+## Nachträge vom 2026-08-08 (Lauf B-Lauf: Review, Datenqualität & GitHub-Cleanup)
+
+Per Node-Harness gegen alle `elections/*/werte.json`/`fragen.json` verifiziert: Sitzsummen (btw2029 630, Berlin 130, LSA 83, MV 79), Ranking-Normalisierung, i18n-Abdeckung, MV-Einfach-Sprache (7 Parteien). `node --check script.js` OK. Vollständiger Bericht: `reports/review-2026-08-08.md`. **Keine neuen P1-Bugs.**
+
+- [x] **MV-2026: keine Einfache-Sprache-Parteibeschreibungen** – behoben: `einfache-sprache.json.parteien.mv-2026` deckt alle 7 MV-Parteien ab, `simplePartyText()` liefert Einfache Sprache.
+- [x] **Ranking bei wenigen Antworten irreführend** – `normalisiereUebereinstimmung()` dämpft Werte unter `minAnswersForRanking` (5) zur 50-%-Baseline; `fewUserHint`/`fewUserCardHint` zeigen die dünne Nutzer-Basis. btw2029 (1×„j"): SPD/GRÜNE/LINKE/BSW 60 %, CDU/FDP/AfD 40 %.
+- [x] **Sainte-Laguë erster Divisor 1 statt 1,4** – Standard-Verfahren (Divisorfolge 1, 3, 5, …) ist das deutsche gesetzliche Verfahren (Sainte-Laguë/Schepers, § 5 Abs. 3 BWahlG); Code-Kommentar ergänzt, btw2029-Seats 192/158/96/82/68/34 (Summe 630) korrekt.
+- [x] **Kosmetik: `}function …` auf einer Zeile** – `grep -c '}function'` → 0 Treffer (PR #56 „Separated braces").
+- [x] **Kategorie „Kultur" fehlt in `config.topics`** – `config.json` enthält `topics.Kultur`; keine „Sonstiges"-Frage mehr, `determineTopic()` liefert für alle Fragen das explizite `thema`.
+- [x] **Issue #27 „More Mobile friendly"** – geschlossen (2026-08-08): Keyboard-Hint nur noch Desktop (`keyboard-hint`, styles.css:578), Touch-Ziele 44 px, `.party-detail-link`-Tap-Ziel korrekt.
+- [x] **Issue #52 (MV GRÜNE 5 %-Grenzwert; hartkodierte `aria-label`s; leere `parteienFilter`)** – geschlossen: `aria-label`s via `data-i18n-aria` + `t()` (index.html:24-26, script.js:2107-2113); leere Ergebnisse erklärt via `noCoalitionsBelow`/`noCoalitionsFilter` (script.js:1105-1116); MV-GRÜNE-5-%-Entscheidung per `>=`-Check dokumentiert (script.js:974-975).
+- [x] **Issue #53 (Teilen-Link-Unterschied Partei-Seite)** – nicht reproduzierbar; Ursache waren inzwischen behobene Daten-/Tap-Lücken (verlauf/rss ergänzt, Touch-Ziele). Geschlossen.
+- [x] **Issue #55 (Zeilenreferenzen in Reports verschoben, kosmetisch)** – aktuelle Referenzen aktualisiert; historische Reports bleiben Momentaufnahmen. Geschlossen.
 
 ## Nachträge vom 2026-08-08 (Issue #54: Datenqualität „CDU/CSU" vs. „CDU"; „SSW" in Berlin)
 
