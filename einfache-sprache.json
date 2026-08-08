@@ -117,6 +117,8 @@
     "neutralHint": "Neutrale Antworten ({n}) fließen nicht in die Übereinstimmung ein.",
     "noComparableAnswers": "Keine vergleichbaren Antworten (nur neutral beantwortet)",
     "fewAnswersHint": "Nur {n} von {total} Fragen beantwortet",
+    "fewUserHint": "Sie haben nur {n} von {total} Fragen beantwortet. Die Reihenfolge unten ist nur eine grobe Einschätzung. Beantworten Sie mindestens {min} Fragen, damit das Ergebnis verlässlich ist.",
+    "fewUserCardHint": "Nur {n} Ihrer Antworten sind mit dieser Partei vergleichbar. Der Wert ist nur eine grobe Einschätzung.",
     "minPair": "Min. Paar",
     "chartLoadError": "Diagramme konnten nicht geladen werden (ECharts nicht erreichbar).",
     "partyInfoPending": "Weitere Informationen zu dieser Partei folgen.",
