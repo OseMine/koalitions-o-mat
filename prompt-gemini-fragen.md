@@ -89,7 +89,7 @@ AfD
 LINKE
 BSW
 FREIE WÄHLER   (only in some state elections)
-SSW            (only in Schleswig-Holstein / Berlin)
+SSW            (only in Schleswig-Holstein – never in Berlin)
 Volt
 Tierschutz     (not "Tierschutzpartei" – the app uses the short name)
 PARTEI

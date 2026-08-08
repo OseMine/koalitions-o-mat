@@ -10,12 +10,12 @@ Status-Korrekturen: PR #37 (RSS-Parteifilter) ist inzwischen gemergt, Issue #36 
 
 ### P2 – Fehlende Features
 
-- [ ] **MV-2026: keine Einfache-Sprache-Parteibeschreibungen** – weiterhin offen (re-verifiziert). `einfache-sprache.json.parteien` nur LSA/Berlin; MV ohne `beschreibung_einfach` → `simplePartyText()` (script.js:17-26) fällt auf komplexe `beschreibung` zurück.
+- [x] **MV-2026: keine Einfache-Sprache-Parteibeschreibungen** – behoben: `einfache-sprache.json.parteien.mv-2026` ergänzt (alle 7 MV-Parteien), `simplePartyText()` liefert Einfache Sprache; LSA/Berlin unverändert.
 
 ### P3 – Verbesserungen
 
 - [ ] **`newsItemMatchesParty()`-False-Positives** (script.js:782-792, nun gemergt) – `\b`-Boundary trifft „SPDler" nicht; „linke"/„grüne" treffen als Adjektive, „Volt" als Einheit.
-- [ ] **Ranking bei wenigen Antworten weiterhin irreführend** – re-verifiziert btw2029 (1 Antwort „j" → SPD/GRÜNE/LINKE/BSW 100 %); `fewAnswersHint` (script.js:1584) zeigt Partei- statt Nutzer-Abdeckung.
+- [x] **Ranking bei wenigen Antworten weiterhin irreführend** – gefixt am 2026-08-08: `normalisiereUebereinstimmung()` dämpft Werte unterhalb `minAnswersForRanking` (5) zur 50-%-Baseline; `fewAnswersHint` ersetzt durch Nutzer-Basis-Hinweis (`fewUserHint`/`fewUserCardHint`). Verifiziert btw2029 (1 Antwort „j" → kein 100 %, Mismatch-Parteien unter 50 %).
 - [x] **Sainte-Laguë erster Divisor 1 statt 1,4** (script.js:2023) – **Entscheidung: Standard-Verfahren (Divisor 1) ist korrekt.** Das „modifizierte" Verfahren mit Divisor 1,4 wird nur in Schweden/Norwegen angewandt; das deutsche Bundeswahlgesetz legt „Sainte-Laguë/Schepers" (§5 Abs. 3 BWahlG, Divisorfolge 0,5–1,5–2,5–… = äquiv. 1, 3, 5, …) fest. Code-Kommentar ergänzt; btw2029-Seats 192/158/96/82/68/34 (Summe 630) sind das korrekte Ergebnis.
 - [ ] **Kosmetik: `}function berechneUserMatchNachThema` auf einer Zeile** (script.js:1362).
 - [ ] **10 „Sonstiges"-Fragen** (btw2029 1, Berlin 3, LSA 6: Rundfunk/Clubs/Kultur/Tanzverbot/Kirchen/Ehrenamt/Schwimmbäder/Gartenschau) – Kategorie „Kultur" fehlt in `config.topics`.
@@ -32,12 +32,12 @@ Vollständiger Bericht: `reports/review-2026-08-06.md`. Alle Algorithmus-Befunde
 
 ### P2 – Fehlende Features
 
-- [ ] **MV-2026: keine Einfache-Sprache-Parteibeschreibungen** – `einfache-sprache.json.parteien` nur für LSA/Berlin, MV-Parteien ohne `beschreibung_einfach` in `werte.json` → `simplePartyText()` (script.js:17-26) fällt auf komplexe `beschreibung` zurück (Partei-Liste script.js:480-485, Partei-Seite script.js:558).
+- [x] **MV-2026: keine Einfache-Sprache-Parteibeschreibungen** – behoben: `einfache-sprache.json.parteien.mv-2026` ergänzt (alle 7 MV-Parteien), `simplePartyText()` liefert Einfache Sprache (Partei-Liste script.js:480-485, Partei-Seite script.js:558); LSA/Berlin unverändert.
 
 ### P3 – Verbesserungen
 
 - [x] **Sainte-Laguë: Standard- statt modifiziertes Verfahren (erster Divisor 1 statt 1,4)** – `berechneSitze()` (script.js:1911-1915); **Entscheidung: Standard deklariert/dokumentiert.** Das Standard-Verfahren (Divisorfolge 1, 3, 5, …) ist das deutsche gesetzliche Verfahren (Sainte-Laguë/Schepers, § 5 Abs. 3 BWahlG); die Variante mit erstem Divisor 1,4 ist nur skandinavisch. Code-Kommentar ergänzt, btw2029 identisch verifiziert (192/158/96/82/68/34).
-- [ ] **Ranking bei wenigen Nutzer-Antworten weiterhin irreführend** – verifiziert btw2029 (1 Antwort „j" → SPD/GRÜNE/LINKE/BSW à 100 %); `fewAnswersHint` (script.js:1475-1477) zeigt die Partei-Abdeckung statt der dünnen Nutzer-Antwortbasis. Mindestzahl vergleichbarer Fragen für die Sortierung.
+- [x] **Ranking bei wenigen Nutzer-Antworten weiterhin irreführend** – gefixt am 2026-08-08: Mindestzahl (`minAnswersForRanking`: 5) + Normalisierung via `normalisiereUebereinstimmung()`; `fewUserHint`/`fewUserCardHint` zeigen die dünne Nutzer-Antwortbasis statt Partei-Abdeckung. Verifiziert btw2029 (1 Antwort „j" → SPD/GRÜNE/LINKE/BSW 60 % statt 100 %, CDU/FDP/AfD 40 %).
 - [ ] **Kosmetik: `}function berechneUserMatchNachThema` auf einer Zeile** (script.js:1253-1254).
 
 ### Tracking offene GitHub-Issues
@@ -104,7 +104,7 @@ Vollständiger Bericht: `reports/review-2026-08-03-b.md`. Keine neuen harten P1-
 ### P3 – Verbesserungen
 
 ### Weiterhin offen (aus früheren Läufen, Zeilennummern aktualisiert)
-- [ ] **Datenqualität: „CDU/CSU" vs. „CDU"; „SSW" (0,5 %) in Berlin unplausibel.**
+- [x] **Datenqualität: „CDU/CSU" vs. „CDU"; „SSW" (0,5 %) in Berlin unplausibel.** – verifiziert behoben (siehe archiviert, 2026-08-08): alle 4 Wahlen nutzen einheitlich „CDU/CSU", `partyColors` kennt die Bezeichnung, keine SSW-Werte mehr in Berlin.
 
 ## Review vom 2026-08-02 (5. Lauf, PR #18: Issue #17-Fixes im Merge-Review)
 
@@ -119,11 +119,11 @@ Fokus: Issue #17 – Swipe-Geste wechselt beim vertikalen Scrollen weiterhin Tab
 
 ### P3 – Verbesserungen
 
-- [ ] **Ranking bei wenigen beantworteten Fragen irreführend** – Berlin: Volt/Tierschutz (3/52, alle „j") erreichen 100 % und verdrängen große Parteien (script.js:918-942); `fewAnswersHint` normalisiert nicht. Mindestzahl vergleichbarer Fragen für die Sortierung.
+- [x] **Ranking bei wenigen beantworteten Fragen irreführend** – gefixt am 2026-08-08: Mindestzahl vergleichbarer Fragen (`minAnswersForRanking`: 5) + Normalisierung zur 50-%-Baseline; keine Partei erreicht mehr allein durch wenige „j"-Antworten 100 %. (Berlin-Daten enthalten inzwischen kein Volt/Tierschutz mehr, Verifikation gegen btw2029.)
 
 ### Verifiziert weiter offen (aus früheren Läufen)
 
-- [ ] Datenqualität „CDU/CSU" vs. „CDU"; „SSW" (0,5 %) in Berlin-Umfrage unplausibel
+- [x] Datenqualität „CDU/CSU" vs. „CDU"; „SSW" (0,5 %) in Berlin-Umfrage unplausibel – verifiziert behoben (2026-08-08): einheitlich „CDU/CSU", kein SSW in Berlin.
 
 ## Automatisiertes Review vom 2026-08-02 (2. Lauf, HEAD `918d05f`)
 
@@ -131,7 +131,7 @@ Fokus: Issue #17 – Swipe-Geste wechselt beim vertikalen Scrollen weiterhin Tab
 
 Hinweis (erledigt seit 1. Lauf): `noData`-Key ist inzwischen vorhanden (`einfache-sprache.json` Zeile 98) – der P3-Eintrag „`noData`-Key fehlt" weiter unten ist abgehakt.
 
-- [ ] **Datenqualität: „CDU/CSU" statt „CDU" in Berlin/MV/LSA** – `werte.json`/`fragen.json`; `partyColors` (config.json:3) kennt kein „CDU"; „SSW" (0,5 %) in der Berlin-Umfrage unplausibel (nur Schleswig-Holstein).
+- [x] **Datenqualität: „CDU/CSU" statt „CDU" in Berlin/MV/LSA** – verifiziert behoben (2026-08-08): alle 4 Wahlen nutzen einheitlich „CDU/CSU" (bewusste Zusammenfassung der Union), `partyColors` (config.json) kennt „CDU/CSU", kein „SSW"-Wert in Berlin.
 
 ## Automatisiertes Review vom 2026-08-02 (2. Lauf, Nachtrag)
 

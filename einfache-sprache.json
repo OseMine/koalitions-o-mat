@@ -117,6 +117,8 @@
     "neutralHint": "Neutrale Antworten ({n}) fließen nicht in die Übereinstimmung ein.",
     "noComparableAnswers": "Keine vergleichbaren Antworten (nur neutral beantwortet)",
     "fewAnswersHint": "Nur {n} von {total} Fragen beantwortet",
+    "fewUserHint": "Sie haben nur {n} von {total} Fragen beantwortet. Die Reihenfolge unten ist nur eine grobe Einschätzung. Beantworten Sie mindestens {min} Fragen, damit das Ergebnis verlässlich ist.",
+    "fewUserCardHint": "Nur {n} Ihrer Antworten sind mit dieser Partei vergleichbar. Der Wert ist nur eine grobe Einschätzung.",
     "minPair": "Min. Paar",
     "chartLoadError": "Diagramme konnten nicht geladen werden (ECharts nicht erreichbar).",
     "partyInfoPending": "Weitere Informationen zu dieser Partei folgen.",
@@ -861,6 +863,15 @@
       "SPD": "Die SPD möchte kostenlose Bildung von der Kita bis zur Uni. Sie setzt sich für bezahlbare Wohnungen und gute Arbeit ein.",
       "BSW": "Das Bündnis Sahra Wagenknecht möchte kleinere Preise für Strom und Heizung. Es fordert mehr Hilfe für Menschen mit wenig Geld.",
       "FDP": "Die FDP möchte weniger Bürokratie und mehr Computer-Nutzung in den Ämtern. Sie möchte die Wirtschaft und private Bauherren unterstützen."
+    },
+    "mv-2026": {
+      "AfD": "Die AfD in Mecklenburg-Vorpommern will weniger Zuwanderung und eine Verschärfung der Asyl-Politik. Sie will die Energiewende zurückdrehen. Sie will den ländlichen Raum stärken und den Mittelstand von Bürokratie entlasten.",
+      "CDU/CSU": "Die CDU in Mecklenburg-Vorpommern will die Wirtschaft und den Mittelstand stärken. Sie will eine solide Haushalts-Politik und mehr Polizei. Und sie will die Landwirtschaft unterstützen.",
+      "LINKE": "Die Linke setzt sich für bezahlbarer Wohnraum und mehr Geld für Kitas und Schulen ein. Sie will den öffentlichen Nahverkehr auf dem Land ausbauen. Und sie will die Armut verringern.",
+      "SPD": "Die SPD stellt mit Manuela Schwesig die Ministerpräsidentin. Sie will soziale Gerechtigkeit und beitragsfreie Bildung. Sie will den ländlichen Raum mit guter Infrastruktur und Gesundheits-Versorgung stärken.",
+      "GRÜNE": "Die Grünen wollen das Klima und die Ostsee schützen. Sie wollen mehr Strom aus Sonne und Wind. Und sie wollen die Landwirtschaft umweltfreundlicher machen.",
+      "BSW": "Das Bündnis Sahra Wagenknecht will Löhne und Renten erhöhen. Es will Investitionen in öffentliche Infrastruktur. Und es will den Erhalt von Krankenhäusern sichern.",
+      "FDP": "Die FDP in Mecklenburg-Vorpommern will weniger Bürokratie und digitale Ämter. Sie will die Wirtschaft und die Technologie fördern."
     }
   }
 }

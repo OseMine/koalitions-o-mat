@@ -338,11 +338,17 @@ body {
     border: 1px solid var(--outline); border-radius: var(--radius-sm);
 }
 
-/* Hinweis auf Tastatursteuerung im Test-Tab */
+/* Hinweis auf Tastatursteuerung im Test-Tab – nur mit physischer Tastatur/Maus
+   (Desktop) sinnvoll, deshalb standardmäßig ausgeblendet und ausschließlich
+   für `hover: hover`- und `pointer: fine`-Geräte eingeblendet (Issue #27). */
 .keyboard-hint {
+    display: none;
     text-align: center; margin: 0 0 14px; padding: 8px 16px; font-size: 0.8rem;
     color: var(--on-surface-muted); background: var(--surface-variant);
     border: 1px dashed var(--outline); border-radius: var(--radius-sm);
+}
+@media (hover: hover) and (pointer: fine) {
+    .keyboard-hint { display: block; }
 }
 
 /* Hinweis, dass neutrale Antworten nicht in die Übereinstimmung einfließen */
@@ -566,12 +572,22 @@ body {
     background: inherit; color: inherit; border-color: var(--outline);
 }
     /* Mobile-Fix (Issue #27): Tastatursteuerung ist nur mit physischer Tastatur sinnvoll –
-       Hinweis auf Touch-Geräten ausblenden. (1/2/3/Pfeiltasten) */
+       Hinweis wird jetzt zentral über `@media (hover: hover) and (pointer: fine)` (s. o.)
+       ausschließlich auf Desktop-artigen Geräten eingeblendet (1/2/3/Pfeiltasten).
+       Diese Regel hält ihn auf Touch-Geräten zusätzlich sicher versteckt. */
     .keyboard-hint { display: none; }
     /* Taktiles Feedback für Touch – ein optisches "gedrückt"-Gefühl statt Hover */
     .q-btn:active { transform: scale(0.97); filter: brightness(0.97); box-shadow: none; }
     .tab-button:active { transform: scale(0.98); }
     .welcome-card:active { transform: translateY(-1px) scale(0.99); }
+    /* Mobile-Fix (Issue #27): kleine Tap-Ziele auf ≥44px vergrößern – die meisten
+       berührten Elemente sind hier bereits größer, aber Quellen-Toggle, Detail-Toggle,
+       Historie-Buttons usw. fallen mit ~30 px klar unter die Apple-/WCAG-Empfehlung. */
+    .q-sources-toggle, .tr-detail-btn, .history-clear-btn, .history-item-delete,
+    .party-info-website, .party-page-back, .btn-ghost, .party-cb {
+        min-height: 44px;
+    }
+    .history-item-delete { width: 44px; height: 44px; }
 }
 
 @media (max-width: 600px) {
@@ -657,8 +673,9 @@ body {
     /* Mobile-Fix (Issue #27): Fragen-Kopf (Themen-Badge + Zähler + Stern) darf umbrechen,
        statt auf schmalen Screens abgeschnitten zu werden */
     .q-top-row { flex-wrap: wrap; }
-    /* Header-Buttons auf sehr schmalen Screens etwas kompakter */
-    .theme-toggle, .github-link, .simple-lang-toggle { width: 38px; height: 38px; }
+    /* Mobile-Fix (Issue #27): Header-Buttons NICHT unter Docker auf 38px schrumpfen –
+       sie sind mit dem Finger zu tippen, 40px bleiben die Mindest-Tippfläche. */
+    .theme-toggle, .github-link { width: 40px; height: 40px; }
     .header-row h1 { letter-spacing: -0.01em; }
     .app-footer { padding: 12px 12px calc(12px + env(safe-area-inset-bottom, 0px)); }
 }
@@ -671,9 +688,10 @@ body {
     .tr-topic-label { min-width: 48px; }
     .q-btn { font-size: 0.95rem; min-height: 48px; padding: 12px 14px; }
     .tab-button { font-size: 0.75rem; padding: 8px 6px; }
-    /* Extra-small: Titel + Header-Buttons minimal halten, damit nichts abschneidet */
+    /* Extra-small: Titel + Header-Buttons minimal halten, damit nichts abschneidet –
+       Tippfläche bleibt trotzdem ≥38px (Issue #27) */
     .header-row h1 { font-size: 1.1rem; }
-    .theme-toggle, .github-link, .simple-lang-toggle { width: 36px; height: 36px; }
+    .theme-toggle, .github-link, .simple-lang-toggle { width: 38px; height: 38px; }
 }
 
 /* ===== Party Detail Page ===== */
