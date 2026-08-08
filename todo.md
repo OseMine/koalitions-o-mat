@@ -10,7 +10,7 @@ Status-Korrekturen: PR #37 (RSS-Parteifilter) ist inzwischen gemergt, Issue #36 
 
 ### P2 – Fehlende Features
 
-- [ ] **MV-2026: keine Einfache-Sprache-Parteibeschreibungen** – weiterhin offen (re-verifiziert). `einfache-sprache.json.parteien` nur LSA/Berlin; MV ohne `beschreibung_einfach` → `simplePartyText()` (script.js:17-26) fällt auf komplexe `beschreibung` zurück.
+- [x] **MV-2026: keine Einfache-Sprache-Parteibeschreibungen** – behoben: `einfache-sprache.json.parteien.mv-2026` ergänzt (alle 7 MV-Parteien), `simplePartyText()` liefert Einfache Sprache; LSA/Berlin unverändert.
 
 ### P3 – Verbesserungen
 
@@ -32,7 +32,7 @@ Vollständiger Bericht: `reports/review-2026-08-06.md`. Alle Algorithmus-Befunde
 
 ### P2 – Fehlende Features
 
-- [ ] **MV-2026: keine Einfache-Sprache-Parteibeschreibungen** – `einfache-sprache.json.parteien` nur für LSA/Berlin, MV-Parteien ohne `beschreibung_einfach` in `werte.json` → `simplePartyText()` (script.js:17-26) fällt auf komplexe `beschreibung` zurück (Partei-Liste script.js:480-485, Partei-Seite script.js:558).
+- [x] **MV-2026: keine Einfache-Sprache-Parteibeschreibungen** – behoben: `einfache-sprache.json.parteien.mv-2026` ergänzt (alle 7 MV-Parteien), `simplePartyText()` liefert Einfache Sprache (Partei-Liste script.js:480-485, Partei-Seite script.js:558); LSA/Berlin unverändert.
 
 ### P3 – Verbesserungen
 
