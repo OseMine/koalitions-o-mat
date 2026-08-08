@@ -58,13 +58,15 @@ jobs:
                Schreibe das Review nicht erst ganz am Ende.
             4. Hänge neue Befunde als datierten Abschnitt oben in todo.md an,
                bestehende Einträge unangetastet lassen.
+            ZUSÄTZLICHE NICHT IM REVIEWER Agent ENTHALTENE AUFGABEN:
             5. Prüfe welche Punkte aus todo.md erledigt wurden und markiere sie als erledigt (z. B. „[x]“), bzw prüfe ob sie korrekt mit [x] markiert wurden und verschiebe danach alle abgehakten todos nach archived-todo.md.
             6. räume das repository auf ubd lösche/reviewe und merge pull requests und issues. füge offene issues zu den todos hinzu und schließe erledigte issues. lösche unnütze/duplizierte branches
+            7. reviewe offene pull requests, fixe merge errors und merge diese 
 
             WICHTIG: Committe NICHT, pushe NICHT und öffne KEINEN Pull Request
             selbst. Die GitHub-Action erkennt die geänderten Dateien automatisch,
             committed und pusht sie auf einen Branch und erstellt den Pull Request.
-            Beende deine Antwort direkt nach Schritt 4.
+            Beende deine Antwort direkt nach Schritt 7.
 
             Regeln: Keinen Anwendungscode verändern, nur Berichte und todo.md.
             Keine Findings ohne konkrete Datei-/Funktionsnamen. Wenn keine neuen
