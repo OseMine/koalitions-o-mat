@@ -1359,7 +1359,9 @@ function updateNavButtons() {
     document.getElementById('prevQuestion').disabled = currentQuestion === 0;
     document.getElementById('nextQuestion').style.display = currentQuestion === len - 1 ? 'none' : 'block';
     document.getElementById('showResults').style.display = currentQuestion === len - 1 ? 'block' : 'none';
-}function berechneUserMatchNachThema(partei) {
+}
+
+function berechneUserMatchNachThema(partei) {
     const topics = {};
     if (!window.parteienData || !window.parteienData.fragen) return topics;
     window.parteienData.fragen.forEach((f, i) => {
