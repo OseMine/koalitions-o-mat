@@ -13,7 +13,7 @@ Vollständiger Bericht: `reports/review-2026-08-08.md`. Sitzsummen (630/130/83/7
 ### Tracking offene GitHub-Issues
 
 - [x] **Issue #51 `newsItemMatchesParty()`-False-Positives** – umgesetzt: eigene Wortgrenzen (statt `\b`), Komposita wie „SPDler“ werden erkannt, mehrdeutige Begriffe (grüne/linke/Volt) nur mit Parteikontext. Keine Regression.
-- [ ] **Issue #62 „Improve OpenCode prompts in gh Actions (Review Action)"** – Meta-/Workflow-Thema, kein App-Code-Fehler.
+- [x] **Issue #62 „Improve OpenCode prompts in gh Actions (Review Action)"** – erledigt: verbesserter Review-Prompt liegt in `opencode-review-prompt.md` (separate Md-Datei außerhalb von `.github/workflows/`), Reviewer-Agent `.opencode/agent/reviewer.md` überarbeitet. Workflow-Datei bewusst unverändert, da die GitHub-App keine `workflows`-Berechtigung hat; Anbindung siehe Abschnitt „Einbindung" in der Prompt-Datei.
 - [ ] **Issue #55 „Zeilenreferenzen verschoben (kosmetisch)"** – geschlossen (aktuelle Referenzen aktualisiert; historische Reports bleiben Momentaufnahmen). Falls gewünscht als won't-fix dokumentieren.
 
 ## Review vom 2026-08-06 (Lauf B, gesamtes Projekt + GitHub-Cleanup)
