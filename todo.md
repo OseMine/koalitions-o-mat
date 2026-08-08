@@ -12,7 +12,7 @@ Vollständiger Bericht: `reports/review-2026-08-08.md`. Sitzsummen (630/130/83/7
 
 ### Tracking offene GitHub-Issues
 
-- [ ] **Issue #51 `newsItemMatchesParty()`-False-Positives** – `\b`-Boundary trifft „SPDler" nicht; „linke"/„grüne" treffen als Adjektive, „Volt" als Einheit. P3-Codeverbesserung, keine Regression.
+- [x] **Issue #51 `newsItemMatchesParty()`-False-Positives** – umgesetzt: eigene Wortgrenzen (statt `\b`), Komposita wie „SPDler“ werden erkannt, mehrdeutige Begriffe (grüne/linke/Volt) nur mit Parteikontext. Keine Regression.
 - [ ] **Issue #62 „Improve OpenCode prompts in gh Actions (Review Action)"** – Meta-/Workflow-Thema, kein App-Code-Fehler.
 - [ ] **Issue #55 „Zeilenreferenzen verschoben (kosmetisch)"** – geschlossen (aktuelle Referenzen aktualisiert; historische Reports bleiben Momentaufnahmen). Falls gewünscht als won't-fix dokumentieren.
 
@@ -24,7 +24,7 @@ Status-Korrekturen: PR #37 (RSS-Parteifilter) ist inzwischen gemergt, Issue #36 
 
 ### P3 – Verbesserungen
 
-- [ ] **`newsItemMatchesParty()`-False-Positives** (script.js:782-792, nun gemergt) – `\b`-Boundary trifft „SPDler" nicht; „linke"/„grüne" treffen als Adjektive, „Volt" als Einheit. → übernommen in Issue #51 (Tracking oben).
+- [x] **`newsItemMatchesParty()`-False-Positives** (script.js:782-792, nun gemergt) – umgesetzt über Issue #51; aktuelle Funktion in script.js (`PARTY_NEWS_AMBIGUOUS` usw.). → in `archived-todo.md` verschoben.
 
 ## Review vom 2026-08-06 (gesamtes Projekt, Node-Verifikation + GitHub-Cleanup)
 

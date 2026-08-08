@@ -779,16 +779,123 @@ function partyNewsKeywords(party) {
     return terms;
 }
 
+// Mehrdeutige Begriffe, die im Deutschen auch als Adjektive/Substantive
+// vorkommen („grüne“, „linke“) bzw. als Maßeinheit („Volt“). Sie werden nur
+// gezählt, wenn sie wie ein Parteiname verwendet werden.
+const PARTY_NEWS_AMBIGUOUS = new Set(['grüne', 'grünen', 'linke', 'linken', 'volt']);
+
+// Unverwechselbare Partei-Kürzel/Wortstämme, die auch in Komposita
+// („SPDler“, „sozialdemokraten“, „freie demokraten“) erkannt werden sollen.
+const PARTY_NEWS_COMPOUND = new Set([
+    'spd', 'cdu', 'csu', 'fdp', 'afd', 'bsw', 'ssw', 'ödp', 'diebasis',
+    'sozialdemokrat', 'christdemokrat', 'freie demokrat', 'tierschutzpartei',
+    'basisdemokratische partei'
+]);
+
+// Verben (, Präpositionen) etc., die einen Parteinamen als Satz-Subjekt
+// nahelegen („Grüne fordern", „Volt tritt an“, „Linke will“).
+const PARTY_NEWS_VERB_FOLLOW = new Set([
+    'will', 'wollen', 'wollte', 'hat', 'haben', 'habe', 'hätte', 'hatte',
+    'ist', 'sind', 'war', 'waren', 'sei', 'wird', 'werden', 'würde', 'würden',
+    'kann', 'können', 'könnte', 'könnten', 'muss', 'müssen', 'müsste', 'darf',
+    'dürfen', 'soll', 'sollen',
+    'fordert', 'fordern', 'forderte', 'gefordert', 'kritisiert', 'kritisieren',
+    'kritisierte', 'gewinnt', 'gewinnen', 'gewann', 'gewonnen', 'verliert',
+    'verlieren', 'verlor', 'tritt', 'treten', 'trat',
+    'kommt', 'kommen', 'kam', 'gekommen', 'nimmt', 'nehmen', 'nahm',
+    'steht', 'stehen', 'zieht', 'ziehen', 'zog', 'fällt', 'fallen', 'fiel',
+    'steigt', 'steigen', 'stieg', 'setzt', 'setzen', 'setzte',
+    'scheitert', 'scheitern', 'scheiterte', 'kündigt', 'kündigen', 'ankündigt',
+    'ankündigen', 'erklärt', 'erklären', 'erklärte', 'betont', 'betonen',
+    'sagt', 'sagen', 'sagte', 'spricht', 'sprechen', 'sucht', 'suchen', 'suchte',
+    'erreicht', 'erreichen', 'erreichte', 'erzielt', 'erzielen', 'bekommt',
+    'bekommen', 'bekam', 'erhält', 'erhalten', 'erhielt', 'erwartet', 'erwarten',
+    'erwartete', 'reagiert', 'reagieren', 'reagierte', 'warnt', 'warnen',
+    'hofft', 'hoffen', 'meint', 'meinen', 'behauptet', 'behaupten', 'versucht',
+    'versuchen', 'versuchte', 'unterstützt', 'unterstützen', 'lehnt', 'lehnen',
+    'ablehnt', 'verhandelt', 'verhandeln', 'beschließt', 'beschließen',
+    'beschlossen', 'entscheidet', 'entscheiden', 'entschieden', 'wählt',
+    'wählen', 'wählte', 'stimmt', 'stimmen', 'zustimmt', 'antwortet', 'antworten',
+    'antwortete', 'schickt', 'schicken', 'meldete', 'meldet', 'fordern', 'melden',
+    'europawahl', 'bundestagswahl', 'landtagswahl', 'koalition', 'parteitag',
+    'europa', 'bundestag', 'landtag'
+]);
+
+// Kontext-Wörter, die auf politischen/parteibezogenen Zusammenhang hindeuten
+// und bei mehrdeutigen Begriffen als Indikator dienen.
+const PARTY_NEWS_CONTEXT = [
+    'partei', 'parteitag', 'politik', 'politiker', 'politikerin', 'fraktion',
+    'abgeordnet', 'minister', 'ministerin', 'kanzler', 'vorsitz',
+    'spitzenkandidat', 'wahl', 'wähler', 'bundestag', 'landtag', 'europa',
+    'koalition', 'regierung', 'ministerpräsident', 'antrag', 'gesetz', 'entwurf',
+    'beschluss', 'abstimmung', 'mehrheit', 'sitz', 'sitzung', 'programm',
+    'führung', 'kandidat', 'umfrage', 'ergebnis', 'haushalt', 'finanz',
+    'migration', 'klima', 'verfassung', 'parlament', 'grundgesetz',
+    'christdemokrat', 'sozialdemokrat', 'freie demokrat'
+];
+
 function newsItemMatchesParty(item, terms) {
     const text = ((item.title || '') + ' ' + (item.description || '')).toLowerCase();
-    return terms.some(term => {
+    let strong = 0;
+    const weak = new Map();
+
+    for (const term of terms) {
+        const esc = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const ambiguous = PARTY_NEWS_AMBIGUOUS.has(term);
+        const compound = PARTY_NEWS_COMPOUND.has(term);
+        // Eigene Wortgrenzen statt \b: funktioniert damit auch am Wortanfang
+        // mit Umlauten („ÖDP“), erfasst aber auch Komposita wie „SPDler“.
+        const tail = (ambiguous || compound)
+            ? '(?:(?=[a-zäöüß])|(?![a-z0-9äöüß]))'
+            : '(?![a-z0-9äöüß])';
+        let re;
         try {
-            const escaped = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-            return new RegExp('\\b' + escaped + '\\b', 'i').test(text);
+            re = new RegExp('(?:^|[^a-z0-9äöüß])(' + esc + ')' + tail, 'gi');
         } catch (_) {
-            return text.includes(term);
+            if (!ambiguous && text.includes(term)) return true;
+            continue;
         }
-    });
+        let m;
+        while ((m = re.exec(text)) !== null) {
+            if (!m[1]) { re.lastIndex = m.index + m[0].length; continue; }
+            const start = m.index + m[0].length - m[1].length;
+            if (!ambiguous) { strong++; re.lastIndex = m.index + m[0].length; continue; }
+            if (m[1].toLowerCase() === 'volt' && isVoltUnitHit(text, start)) {
+                re.lastIndex = m.index + m[0].length;
+                continue;
+            }
+            if (weakPartyNote(text, start, m[1].length)) {
+                weak.set(term, true);
+            }
+            re.lastIndex = m.index + m[0].length;
+        }
+    }
+
+    return weak.size > 0 || strong > 0;
+}
+
+function weakPartyNote(text, start, len) {
+    const after = text.slice(start + len);
+    const tok = after.match(/^\s*(-)?\s*([a-z0-9äöüß]*)/);
+    if (tok[1]) return 'compound';
+    const nextWord = tok[2];
+    if (!nextWord) return 'bare';
+    if (PARTY_NEWS_VERB_FOLLOW.has(nextWord)) return 'verb';
+    const lo = Math.max(0, start - 120);
+    const hi = Math.min(text.length, start + len + 120);
+    const chunk = text.slice(lo, hi);
+    if (PARTY_NEWS_CONTEXT.some(c => chunk.includes(c))) return 'context';
+    return null;
+}
+
+function isVoltUnitHit(text, idx) {
+    const prevPart = text.slice(0, idx);
+    const match = prevPart.match(/([^\s]+)\s*$/);
+    if (!match) return false;
+    const tok = match[1].toLowerCase();
+    if (/\d/.test(tok)) return true;
+    if (/^(?:kilo|mega|giga|milli|mikro|mili)?(?:volt|watt|amp(?:ere)?|va)$/.test(tok)) return true;
+    return false;
 }
 
 function loadPartyNews(party) {
