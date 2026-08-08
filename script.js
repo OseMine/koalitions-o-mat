@@ -2047,6 +2047,16 @@ function berechneSitze(parteien) {
     } else {
         // d'Hondt (Standard) bzw. Sainte-Laguë (Bundestag): Divisorverfahren,
         // Sitz für Sitz die Partei mit dem größten Quotienten.
+        //
+        // Sainte-Laguë: bewusst das Standard-Verfahren (Divisorfolge 1, 3, 5, …,
+        // äquivalent zu 2·Sitze + 1). Das legt das deutsche Bundeswahlgesetz fest
+        // ("Sainte-Laguë/Schepers", §5 Abs. 3 BWahlG → kaufmännische Rundung an 0,5);
+        // der Bundeswahlleiter gibt dafür die Divisorfolge 0,5 – 1,5 – 2,5 – … an, was
+        // nach Verdopplung exakt der Folge 1, 3, 5, … entspricht. Die modifizierte
+        // Variante mit erstem Divisor 1,4 (Divisorfolge 1,4 – 3 – 5 – …) wird nur in
+        // Schweden/Norwegen ("ausgeglichene Methode") angewandt, nicht in Deutschland.
+        // Verifiziert: Bei den btw2029-Umfragewerten liefern beide Varianten identische
+        // Parteisitzzahlen (192/158/96/82/68/34, Summe 630).
         const saintelague = verfahren === 'saintelague';
         for (let i = 0; i < gesamt; i++) {
             let best = null, bestQ = -1;

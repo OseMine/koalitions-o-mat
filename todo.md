@@ -16,7 +16,7 @@ Status-Korrekturen: PR #37 (RSS-Parteifilter) ist inzwischen gemergt, Issue #36 
 
 - [ ] **`newsItemMatchesParty()`-False-Positives** (script.js:782-792, nun gemergt) – `\b`-Boundary trifft „SPDler" nicht; „linke"/„grüne" treffen als Adjektive, „Volt" als Einheit.
 - [x] **Ranking bei wenigen Antworten weiterhin irreführend** – gefixt am 2026-08-08: `normalisiereUebereinstimmung()` dämpft Werte unterhalb `minAnswersForRanking` (5) zur 50-%-Baseline; `fewAnswersHint` ersetzt durch Nutzer-Basis-Hinweis (`fewUserHint`/`fewUserCardHint`). Verifiziert btw2029 (1 Antwort „j" → kein 100 %, Mismatch-Parteien unter 50 %).
-- [ ] **Sainte-Laguë erster Divisor 1 statt 1,4** (script.js:2023) – bei aktuellen btw2029-Daten identische Sitze, bei knappen Verteilungen abweichbar (per Harness belegt).
+- [x] **Sainte-Laguë erster Divisor 1 statt 1,4** (script.js:2023) – **Entscheidung: Standard-Verfahren (Divisor 1) ist korrekt.** Das „modifizierte" Verfahren mit Divisor 1,4 wird nur in Schweden/Norwegen angewandt; das deutsche Bundeswahlgesetz legt „Sainte-Laguë/Schepers" (§5 Abs. 3 BWahlG, Divisorfolge 0,5–1,5–2,5–… = äquiv. 1, 3, 5, …) fest. Code-Kommentar ergänzt; btw2029-Seats 192/158/96/82/68/34 (Summe 630) sind das korrekte Ergebnis.
 - [ ] **Kosmetik: `}function berechneUserMatchNachThema` auf einer Zeile** (script.js:1362).
 - [ ] **10 „Sonstiges"-Fragen** (btw2029 1, Berlin 3, LSA 6: Rundfunk/Clubs/Kultur/Tanzverbot/Kirchen/Ehrenamt/Schwimmbäder/Gartenschau) – Kategorie „Kultur" fehlt in `config.topics`.
 
@@ -36,7 +36,7 @@ Vollständiger Bericht: `reports/review-2026-08-06.md`. Alle Algorithmus-Befunde
 
 ### P3 – Verbesserungen
 
-- [ ] **Sainte-Laguë: Standard- statt modifiziertes Verfahren (erster Divisor 1 statt 1,4)** – `berechneSitze()` (script.js:1911-1915); bei aktuellen btw2029-Daten identische Sitze (verifiziert), bei anderen Umfragewerten abweichbar. Dokumentieren oder 1,4 implementieren.
+- [x] **Sainte-Laguë: Standard- statt modifiziertes Verfahren (erster Divisor 1 statt 1,4)** – `berechneSitze()` (script.js:1911-1915); **Entscheidung: Standard deklariert/dokumentiert.** Das Standard-Verfahren (Divisorfolge 1, 3, 5, …) ist das deutsche gesetzliche Verfahren (Sainte-Laguë/Schepers, § 5 Abs. 3 BWahlG); die Variante mit erstem Divisor 1,4 ist nur skandinavisch. Code-Kommentar ergänzt, btw2029 identisch verifiziert (192/158/96/82/68/34).
 - [x] **Ranking bei wenigen Nutzer-Antworten weiterhin irreführend** – gefixt am 2026-08-08: Mindestzahl (`minAnswersForRanking`: 5) + Normalisierung via `normalisiereUebereinstimmung()`; `fewUserHint`/`fewUserCardHint` zeigen die dünne Nutzer-Antwortbasis statt Partei-Abdeckung. Verifiziert btw2029 (1 Antwort „j" → SPD/GRÜNE/LINKE/BSW 60 % statt 100 %, CDU/FDP/AfD 40 %).
 - [ ] **Kosmetik: `}function berechneUserMatchNachThema` auf einer Zeile** (script.js:1253-1254).
 
