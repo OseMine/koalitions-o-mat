@@ -371,13 +371,6 @@ async function loadElections() {
             if (simpleRes.ok) simpleLangData = await simpleRes.json();
         } catch (_) { /* ignore */ }
 
-        const saved = localStorage.getItem('activeElectionId');
-        const defaultElection = electionsList.find(e => e.default === true);
-        let defaultId = pendingShare && pendingShare.electionId && electionsList.find(e => e.id === pendingShare.electionId)
-            ? pendingShare.electionId
-            : (saved && electionsList.find(e => e.id === saved) ? saved
-                : (defaultElection ? defaultElection.id : null));
-
         await Promise.all(electionsList.map(async (election) => {
             try {
                 const [werteRes, configRes, fragenRes] = await Promise.all([
@@ -402,13 +395,21 @@ async function loadElections() {
         // applySavedSimpleLang() lief vor dem asynchronen Fetch von einfache-sprache.json.
         applyStaticI18n();
 
-        // If no default, show welcome screen
-        if (!defaultId || !electionDataCache[defaultId]) {
+        // Die Startseite (Willkommens-Screen) immer anzeigen – nur ein geteilter
+        // Teilen-Link (pendingShare) wählt die Wahl direkt aus. Ohne aktive Auswahl
+        // wird NICHT automatisch in eine Wahl (z. B. den btw2029-Test) gesprungen
+        // (Issue: beim Laden ging es direkt in den Parteien-Test statt auf die Startseite).
+        let targetId = pendingShare && pendingShare.electionId
+            && electionsList.find(e => e.id === pendingShare.electionId)
+            ? pendingShare.electionId
+            : null;
+
+        // If no share target, keep showing the welcome/start screen
+        if (!targetId || !electionDataCache[targetId]) {
             return;
         }
 
-        // Auto-select default election
-        setActiveElection(defaultId);
+        setActiveElection(targetId);
     } catch (err) {
         console.error('Fehler:', err);
         showNotification(t('errorLoading', 'Fehler beim Laden der Daten. Seite neu laden.'), 'error');
