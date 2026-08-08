@@ -1075,7 +1075,12 @@ function berechneUserMatchFuerKoalition(parteiNames) {
         if (denom > 0) { sum += (agreeW / denom) * frageGewicht(i); count += frageGewicht(i); }
     });
     // null statt 0: Ohne verwertbare (j/n-)Antworten gibt es keinen "Mit Ihnen"-Wert.
-    return count > 0 ? (sum / count) * 100 : null;
+    // Normalisiert wie das Partei-Ranking: Bei wenigen vergleichbaren Antworten wird der
+    // Wert zur neutralen Baseline gedämpft, damit keine Koalition nur durch wenige
+    // "j"-Antworten irreführend 100 % erreicht.
+    if (count <= 0) return null;
+    const minRankingAnswers = (config.thresholds && config.thresholds.minAnswersForRanking) || 5;
+    return normalisiereUebereinstimmung(sum, count, minRankingAnswers);
 }
 
 function updateKoalitionen() {
@@ -1380,6 +1385,18 @@ function updateNavButtons() {
     return result;
 }
 
+// Normalisiert die Übereinstimmung bei wenigen vergleichbaren Antworten: Solange die
+// Zahl der vergleichbaren (j/n-)Antworten unter der Mindestzahl für ein belastbares
+// Ranking liegt, wird der Wert zur neutralen Baseline (50 %) hin gedämpft. So erreicht
+// keine Partei nur durch eine Handvoll „j"-Antworten irreführende 100 %. Ab der
+// Mindestzahl entspricht das Ergebnis wieder exakt der errechneten Quote.
+function normalisiereUebereinstimmung(agreed, total, minAnswers) {
+    if (total <= 0) return null;
+    const min = Math.max(1, minAnswers || 1);
+    const deficit = Math.max(0, min - total);
+    return ((agreed + 0.5 * deficit) / (total + deficit)) * 100;
+}
+
 function togglePartyDetail(partei) {
     const el = document.getElementById('trDetail-' + partei);
     if (!el) return;
@@ -1447,6 +1464,8 @@ function showTestResults() {
 
     // Include all parties that answer questions (not just those above the threshold)
     const hasFragen = window.parteienData && window.parteienData.fragen && window.parteienData.fragen.length;
+    // Mindestzahl vergleichbarer (j/n-)Antworten, ab der ein Ranking belastbar ist
+    const minRankingAnswers = (config.thresholds && config.thresholds.minAnswersForRanking) || 5;
     const parties = window.werteData.umfragewerte.filter(p => {
         if (p.partei === 'Andere') return false;
         if (hasFragen) {
@@ -1472,7 +1491,7 @@ function showTestResults() {
         // dann als "–" anzeigen statt irreführender 0 %.
         return {
             partei: p.partei,
-            match: total > 0 ? (agreed / total) * 100 : null,
+            match: total > 0 ? normalisiereUebereinstimmung(agreed, total, minRankingAnswers) : null,
             topicMatches: berechneUserMatchNachThema(p.partei),
             agreed,
             total,
@@ -1516,6 +1535,14 @@ function showTestResults() {
     // Hinweis: Neutrale Antworten fließen nicht in die Übereinstimmung ein
     if (neutralCount > 0) {
         html += `<p class="neutral-hint">${t('neutralHint', 'Neutrale Antworten ({n}) fließen nicht in die Übereinstimmung ein.').replace('{n}', neutralCount)}</p>`;
+    }
+
+    // Hinweis: dünne Nutzer-Antwortbasis. Unterhalb der Mindestzahl vergleichbarer
+    // (j/n-)Antworten ist das Ranking nur eine grobe Einschätzung.
+    if (usableAnswered < minRankingAnswers) {
+        html += `<p class="neutral-hint tr-user-few-hint">${t('fewUserHint',
+            'Sie haben nur {n} von {total} Fragen mit Ja/Nein beantwortet. Die Reihenfolge unten ist nur eine grobe Einschätzung – erst ab mindestens {min} beantworteten Fragen wird das Ranking belastbar.')
+            .replace('{n}', usableAnswered).replace('{total}', totalQuestions).replace('{min}', minRankingAnswers)}</p>`;
     }
 
     // Pie chart – nur anzeigen, wenn es überhaupt verwertbare Antworten gibt
@@ -1580,9 +1607,11 @@ function showTestResults() {
         });
         if (topTopics.length) topicsHtml += `</div>`;
 
-        const fewAnswers = r.partyAnswered < totalQuestions
-            ? `<div class="tr-few-answers">${t('fewAnswersHint', 'Nur {n} von {total} Fragen beantwortet').replace('{n}', r.partyAnswered).replace('{total}', totalQuestions)}</div>`
-            : '';
+        const fewAnswers = r.total > 0 && r.total < minRankingAnswers
+            ? `<div class="tr-few-answers">${t('fewUserCardHint', 'Nur {n} Ihrer Antworten sind mit dieser Partei vergleichbar – der Wert ist daher nur eine grobe Einschätzung').replace('{n}', r.total)}</div>`
+            : r.partyAnswered < totalQuestions
+                ? `<div class="tr-few-answers">${t('fewAnswersHint', 'Nur {n} von {total} Fragen beantwortet').replace('{n}', r.partyAnswered).replace('{total}', totalQuestions)}</div>`
+                : '';
         html += `
             <div class="tr-card">
                 <div class="tr-card-top">

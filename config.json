@@ -65,7 +65,8 @@
   "thresholds": {
     "sperrklausel": 5,
     "minMatchForCoalition": 20,
-    "maxCoalitionSize": 4
+    "maxCoalitionSize": 4,
+    "minAnswersForRanking": 5
   },
   "newsProxy": "https://api.allorigins.win/raw?url="
 } 

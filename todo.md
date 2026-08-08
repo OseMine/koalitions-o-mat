@@ -15,7 +15,7 @@ Status-Korrekturen: PR #37 (RSS-Parteifilter) ist inzwischen gemergt, Issue #36 
 ### P3 – Verbesserungen
 
 - [ ] **`newsItemMatchesParty()`-False-Positives** (script.js:782-792, nun gemergt) – `\b`-Boundary trifft „SPDler" nicht; „linke"/„grüne" treffen als Adjektive, „Volt" als Einheit.
-- [ ] **Ranking bei wenigen Antworten weiterhin irreführend** – re-verifiziert btw2029 (1 Antwort „j" → SPD/GRÜNE/LINKE/BSW 100 %); `fewAnswersHint` (script.js:1584) zeigt Partei- statt Nutzer-Abdeckung.
+- [x] **Ranking bei wenigen Antworten weiterhin irreführend** – gefixt am 2026-08-08: `normalisiereUebereinstimmung()` dämpft Werte unterhalb `minAnswersForRanking` (5) zur 50-%-Baseline; `fewAnswersHint` ersetzt durch Nutzer-Basis-Hinweis (`fewUserHint`/`fewUserCardHint`). Verifiziert btw2029 (1 Antwort „j" → kein 100 %, Mismatch-Parteien unter 50 %).
 - [ ] **Sainte-Laguë erster Divisor 1 statt 1,4** (script.js:2023) – bei aktuellen btw2029-Daten identische Sitze, bei knappen Verteilungen abweichbar (per Harness belegt).
 - [ ] **Kosmetik: `}function berechneUserMatchNachThema` auf einer Zeile** (script.js:1362).
 - [ ] **10 „Sonstiges"-Fragen** (btw2029 1, Berlin 3, LSA 6: Rundfunk/Clubs/Kultur/Tanzverbot/Kirchen/Ehrenamt/Schwimmbäder/Gartenschau) – Kategorie „Kultur" fehlt in `config.topics`.
@@ -37,7 +37,7 @@ Vollständiger Bericht: `reports/review-2026-08-06.md`. Alle Algorithmus-Befunde
 ### P3 – Verbesserungen
 
 - [ ] **Sainte-Laguë: Standard- statt modifiziertes Verfahren (erster Divisor 1 statt 1,4)** – `berechneSitze()` (script.js:1911-1915); bei aktuellen btw2029-Daten identische Sitze (verifiziert), bei anderen Umfragewerten abweichbar. Dokumentieren oder 1,4 implementieren.
-- [ ] **Ranking bei wenigen Nutzer-Antworten weiterhin irreführend** – verifiziert btw2029 (1 Antwort „j" → SPD/GRÜNE/LINKE/BSW à 100 %); `fewAnswersHint` (script.js:1475-1477) zeigt die Partei-Abdeckung statt der dünnen Nutzer-Antwortbasis. Mindestzahl vergleichbarer Fragen für die Sortierung.
+- [x] **Ranking bei wenigen Nutzer-Antworten weiterhin irreführend** – gefixt am 2026-08-08: Mindestzahl (`minAnswersForRanking`: 5) + Normalisierung via `normalisiereUebereinstimmung()`; `fewUserHint`/`fewUserCardHint` zeigen die dünne Nutzer-Antwortbasis statt Partei-Abdeckung. Verifiziert btw2029 (1 Antwort „j" → SPD/GRÜNE/LINKE/BSW 60 % statt 100 %, CDU/FDP/AfD 40 %).
 - [ ] **Kosmetik: `}function berechneUserMatchNachThema` auf einer Zeile** (script.js:1253-1254).
 
 ### Tracking offene GitHub-Issues
@@ -119,7 +119,7 @@ Fokus: Issue #17 – Swipe-Geste wechselt beim vertikalen Scrollen weiterhin Tab
 
 ### P3 – Verbesserungen
 
-- [ ] **Ranking bei wenigen beantworteten Fragen irreführend** – Berlin: Volt/Tierschutz (3/52, alle „j") erreichen 100 % und verdrängen große Parteien (script.js:918-942); `fewAnswersHint` normalisiert nicht. Mindestzahl vergleichbarer Fragen für die Sortierung.
+- [x] **Ranking bei wenigen beantworteten Fragen irreführend** – gefixt am 2026-08-08: Mindestzahl vergleichbarer Fragen (`minAnswersForRanking`: 5) + Normalisierung zur 50-%-Baseline; keine Partei erreicht mehr allein durch wenige „j"-Antworten 100 %. (Berlin-Daten enthalten inzwischen kein Volt/Tierschutz mehr, Verifikation gegen btw2029.)
 
 ### Verifiziert weiter offen (aus früheren Läufen)
 
