@@ -1,5 +1,5 @@
-const VERSION = 'v1';
-const STATIC_CACHE = `koalitions-o-mat-${VERSION}`;
+const VERSION = 'v2';
+const STATIC_CACHE = `koalitions-o-mat-static-${VERSION}`;
 const DATA_CACHE = `koalitions-o-mat-data-${VERSION}`;
 
 const PRECACHE = [
@@ -11,6 +11,10 @@ const PRECACHE = [
     './config.json',
     './elections.json'
 ];
+
+// Diese Dateien gehören zur App-Shell: Wenn sich die Seite geändert hat, müssen
+// sie neu vom Netz geholt werden, damit keine veralteten Dateien zurückbleiben.
+const APP_SHELL_ASSETS = ['./styles.css', './script.js', './manifest.webmanifest', './index.html'];
 
 self.addEventListener('install', event => {
     event.waitUntil(
@@ -30,6 +34,41 @@ self.addEventListener('activate', event => {
             .then(() => self.clients.claim())
     );
 });
+
+// Vergleicht zwei Responses byte-genau.
+async function responsesEqual(a, b) {
+    const [at, bt] = await Promise.all([a.text(), b.text()]);
+    return at === bt;
+}
+
+// Network-first für Navigations-/HTML-Requests: Liefert immer die frische Seite
+// vom Server, wenn online. Hat sich der Inhalt geändert, wird die alte
+// App-Shell verworfen, sodass CSS/JS beim nächsten Abruf neu geladen werden.
+async function navigationRequest(request) {
+    const cache = await caches.open(STATIC_CACHE);
+    const cached = await cache.match(request);
+    try {
+        const response = await fetch(request);
+        if (!response || !response.ok) {
+            return cached || (await cache.match('./index.html'));
+        }
+        const copy = response.clone();
+        const fresh = response.clone();
+        let changed = !cached;
+        if (cached) {
+            changed = !(await responsesEqual(cached, fresh));
+        }
+        if (changed) {
+            // Inhalt hat sich geändert → veraltete Shell-Dateien entfernen.
+            await Promise.all(APP_SHELL_ASSETS.map(p => cache.delete(p)));
+        }
+        await cache.put(request, copy);
+        return response;
+    } catch (err) {
+        // Offline: auf gecachte Version zurückfallen.
+        return cached || (await cache.match('./index.html'));
+    }
+}
 
 self.addEventListener('fetch', event => {
     const { request } = event;
@@ -56,7 +95,13 @@ self.addEventListener('fetch', event => {
         return;
     }
 
-    // Alle anderen Requests (HTML, CSS, JS, Manifest, CDN): cache-first mit Auffüllen.
+    // Navigations-/HTML-Requests: network-first mit automatischer Invalidierung.
+    if (request.mode === 'navigate') {
+        event.respondWith(navigationRequest(request));
+        return;
+    }
+
+    // Alle anderen Requests (CSS, JS, Manifest, CDN): cache-first mit Auffüllen.
     event.respondWith(
         caches.match(request)
             .then(cached => cached || fetch(request).then(response => {
