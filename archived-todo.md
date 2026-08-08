@@ -2,6 +2,14 @@
 
 Erledigte (abgehakte) Aufgaben aus todo.md, Stand 2026-08-06. Offene Punkte: siehe `todo.md`.
 
+## Nachträge vom 2026-08-08 (Issue #54: Datenqualität „CDU/CSU" vs. „CDU"; „SSW" in Berlin)
+
+Die Überprüfung per Node-Harness gegen alle `elections/*/werte.json`/`fragen.json` bestätigt: Die Akzeptanzkriterien sind vollständig erfüllt, keine Datenänderung nötig.
+
+- [x] **Datenqualität: „CDU/CSU" vs. „CDU"** – alle 4 Wahlen nutzen einheitlich die Parteibezeichnung „CDU/CSU" (bewusste Design-Entscheidung, Union als eine Einheit; dokumentiert in `prompt-gemini-fragen.md:84`). Verifiziert: Parteimengen in `werte.json` ↔ `fragen.json` je Wahl identisch, kein Parteieintrag exakt „CDU".
+- [x] **`partyColors` kennt alle Namen** – `config.json` enthält `CDU/CSU` (#000000) und alle in den Datendateien verwendeten Parteinamen (kein Fallback auf `default` nötig).
+- [x] **„SSW" (0,5 %) aus der Berlin-Umfrage entfernt** – keine Datendatei enthält einen SSW-Wert in Berlin (SSW existiert nur für Schleswig-Holstein). Zusätzlich wurde `prompt-gemini-fragen.md:92` korrigiert („never in Berlin"), damit der Generator die unplausiblen Werte nicht wieder einspielt.
+
 ## Nachträge vom 2026-08-06 (Lauf B: PR #37/Issue #36-Status korrigiert)
 
 PR #37 (RSS-Parteifilter) ist inzwischen gemergt (87366b5), Issue #36 geschlossen; PWA (PR #41) auf `origin/main` gemergt (107e7f9), Issue #40 geschlossen. Die im Lauf-A-Bericht als „nicht gemergt/offen" geführten Einträge waren veraltet und wurden hiermit abgehakt.

@@ -104,7 +104,7 @@ Vollständiger Bericht: `reports/review-2026-08-03-b.md`. Keine neuen harten P1-
 ### P3 – Verbesserungen
 
 ### Weiterhin offen (aus früheren Läufen, Zeilennummern aktualisiert)
-- [ ] **Datenqualität: „CDU/CSU" vs. „CDU"; „SSW" (0,5 %) in Berlin unplausibel.**
+- [x] **Datenqualität: „CDU/CSU" vs. „CDU"; „SSW" (0,5 %) in Berlin unplausibel.** – verifiziert behoben (siehe archiviert, 2026-08-08): alle 4 Wahlen nutzen einheitlich „CDU/CSU", `partyColors` kennt die Bezeichnung, keine SSW-Werte mehr in Berlin.
 
 ## Review vom 2026-08-02 (5. Lauf, PR #18: Issue #17-Fixes im Merge-Review)
 
@@ -123,7 +123,7 @@ Fokus: Issue #17 – Swipe-Geste wechselt beim vertikalen Scrollen weiterhin Tab
 
 ### Verifiziert weiter offen (aus früheren Läufen)
 
-- [ ] Datenqualität „CDU/CSU" vs. „CDU"; „SSW" (0,5 %) in Berlin-Umfrage unplausibel
+- [x] Datenqualität „CDU/CSU" vs. „CDU"; „SSW" (0,5 %) in Berlin-Umfrage unplausibel – verifiziert behoben (2026-08-08): einheitlich „CDU/CSU", kein SSW in Berlin.
 
 ## Automatisiertes Review vom 2026-08-02 (2. Lauf, HEAD `918d05f`)
 
@@ -131,7 +131,7 @@ Fokus: Issue #17 – Swipe-Geste wechselt beim vertikalen Scrollen weiterhin Tab
 
 Hinweis (erledigt seit 1. Lauf): `noData`-Key ist inzwischen vorhanden (`einfache-sprache.json` Zeile 98) – der P3-Eintrag „`noData`-Key fehlt" weiter unten ist abgehakt.
 
-- [ ] **Datenqualität: „CDU/CSU" statt „CDU" in Berlin/MV/LSA** – `werte.json`/`fragen.json`; `partyColors` (config.json:3) kennt kein „CDU"; „SSW" (0,5 %) in der Berlin-Umfrage unplausibel (nur Schleswig-Holstein).
+- [x] **Datenqualität: „CDU/CSU" statt „CDU" in Berlin/MV/LSA** – verifiziert behoben (2026-08-08): alle 4 Wahlen nutzen einheitlich „CDU/CSU" (bewusste Zusammenfassung der Union), `partyColors` (config.json) kennt „CDU/CSU", kein „SSW"-Wert in Berlin.
 
 ## Automatisiertes Review vom 2026-08-02 (2. Lauf, Nachtrag)
 
