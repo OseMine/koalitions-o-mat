@@ -1902,14 +1902,15 @@ function calculateTacticalPolls() {
             realParties.add(p.partei);
         }
     });
+    // Reale Parteien zusätzlich aus den Fragebogen-Antworten ermitteln, damit
+    // Umfrage-Mock-Werte nur als Fallback für in der Wahl antretende Parteien
+    // dienen – nicht-antretende Parteien (z. B. `CDU` bei Wahlen mit `CDU/CSU`)
+    // dürfen nie als Geisterpartei in Slider und Analyse einsickern.
     if (window.parteienData && window.parteienData.fragen) {
         window.parteienData.fragen.forEach(f => {
             if (f.antworten) Object.keys(f.antworten).forEach(p => realParties.add(p));
         });
     }
-    // Mock-Umfragewerte nur als Fallback, wenn die Partei in der Wahl real antritt –
-    // sonst würden nicht-antretende Parteien (z. B. `CDU` bei Wahlen mit `CDU/CSU`)
-    // als Geisterpartei in Slider und Analyse einsickern.
     Object.keys(TACTICAL_MOCK_POLLS).forEach(p => {
         if (realParties.has(p) && map[p] === undefined) map[p] = TACTICAL_MOCK_POLLS[p];
     });
@@ -1964,7 +1965,7 @@ function calculateTacticalVoting(results) {
     const pollOf = p => (polls[p] || 0);
     const sorted = results.slice().sort((a, b) => (b.match ?? -1) - (a.match ?? -1));
     const warnings = [];
-    const info = { coalition: null, share: 0, eligibleSum: 0, clearTop: false };
+    const info = { coalition: null, share: 0, eligibleSum: 0, majorityPossible: false, clearTop: false };
 
     if (sorted.length === 0) return { warnings, info };
 
@@ -1993,7 +1994,12 @@ function calculateTacticalVoting(results) {
         }
     }
 
-    // 2) Leihstimme zur Koalitionsabsicherung
+    // 2) Leihstimme zur Koalitionsabsicherung (Doku Szenario B)
+    //    Kriterium ist die Nähe des kleineren Partners zur Wahl-Sperrklausel
+    //    (statt `share > 50` als einziges Kriterium): Der kleinere Partner liegt
+    //    im aus der Sperrklausel abgeleiteten „schwankt"-Band nahe der Hürde und
+    //    die Wunschkoalition hätte (gegebenenfalls mit einem weiteren Partner)
+    //    eine parlamentarische Mehrheit.
     if (sorted.length >= 2 && clearTop) {
         const a = sorted[0].partei;
         const b = sorted[1].partei;
@@ -2019,9 +2025,21 @@ function calculateTacticalVoting(results) {
         info.coalition = `${a} + ${b}`;
         info.share = share;
         info.eligibleSum = eligibleSum;
-        const schwankt = [a, b].some(p => { const v = pollOf(p); return v >= 4 && v <= 6; });
-        if (share > 50 && schwankt) {
-            const smaller = pa <= pb ? a : b;
+
+        const smaller = pa <= pb ? a : b;
+        const smallerPoll = Math.min(pa, pb);
+        const biggerPoll = Math.max(pa, pb);
+        // „schwankt"-Band relativ zur Wahl-Sperrklausel: [threshold-1, threshold+1)
+        // (bei Sperrklausel 5 % ↔ 4–6 %, bei z. B. 3 % ↔ 2–4 %) statt hartkodiert 4–6.
+        const naheHuerde = smallerPoll >= threshold - 1 && smallerPoll < threshold + 1;
+        const partnerSicher = biggerPoll >= threshold;
+        // Mehrheitsfähig: Paar hält selbst > 50 % der über der Sperrklausel
+        // liegenden Stimmen ODER ist Teil einer politisch zulässigen Mehrheits-
+        // koalition. Für die Warnung zählt der ausschluss-bewusste Check, damit
+        // nie eine ausgeschlossene Koalition (z. B. AfD+GRÜNE) empfohlen wird.
+        const mehrheitSicher = istKoalitionsMehrheitSicher(a, b, polls, threshold);
+        info.majorityPossible = share > 50 || mehrheitSicher;
+        if (naheHuerde && partnerSicher && mehrheitSicher) {
             warnings.push({
                 type: 'loan',
                 text: t('tactical.loan', 'Achtung, deine Wunschkoalition aus {a} und {b} ist in Gefahr. Überlege, {smaller} zu wählen, um sie über die {threshold}%-Hürde zu retten.')
@@ -2035,13 +2053,33 @@ function calculateTacticalVoting(results) {
     return { warnings, info };
 }
 
+// Hätte die Wunschkoalition {a, b} eine parlamentarische Mehrheit? Ja, wenn sie
+// > 50 % der simulierten Umfragewerte erreicht – direkt oder zusammen mit weiteren
+// Parteien über der Sperrklausel (max. maxCoalitionSize), ohne politisch
+// ausgeschlossene Koalitionen zu bilden.
+function istKoalitionsMehrheitSicher(a, b, polls, threshold) {
+    const maxSize = (config.thresholds && config.thresholds.maxCoalitionSize) || 4;
+    if (!istKoalitionAusgeschlossen([a, b]) && (polls[a] || 0) + (polls[b] || 0) > 50) return true;
+    const rest = Object.keys(polls).filter(p =>
+        p !== 'Andere' && p !== a && p !== b && (polls[p] || 0) >= threshold);
+    const n = rest.length;
+    for (let mask = 1; mask < (1 << n); mask++) {
+        const add = rest.filter((_, i) => mask & (1 << i));
+        if (add.length + 2 > maxSize) continue;
+        const combo = [a, b, ...add];
+        const sum = combo.reduce((s, p) => s + (polls[p] || 0), 0);
+        if (sum > 50 && !istKoalitionAusgeschlossen(combo)) return true;
+    }
+    return false;
+}
+
 function updateTacticalWarnings() {
     const box = document.getElementById('tacticalWarnings');
     if (!box || !lastTestResults) return;
     const { warnings, info } = calculateTacticalVoting(lastTestResults);
     let html = '';
     if (info.coalition) {
-        const okMaj = info.share > 50;
+        const okMaj = !!info.majorityPossible;
         html += `<div class="tactical-majority ${okMaj ? 'ok' : 'no'}">
             <strong>${t('tactical.coalitionLabel', 'Koalitionsmehrheit:')}</strong> ${escapeHtml(t('tactical.coalitionText', '{koalition} erreicht {share}% der Stimmen der Parteien über {threshold}% — {status}')
                 .replace('{koalition}', info.coalition)
