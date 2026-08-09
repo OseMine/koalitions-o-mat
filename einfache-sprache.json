@@ -175,7 +175,19 @@
     "tactical.warningLoan": "Achtung",
     "tactical.warningInfo": "Hinweis",
     "tactical.excluded": "Ihre Wunschkoalition aus {a} und {b} ist keine erlaubte Koalition (diese Parteien wollen nicht zusammengehen). Eine taktische Überlegung wäre daher nicht sinnvoll – wählen Sie die Partei, die zu Ihren Überzeugungen passt.",
-    "tactical.closeTopHint": "Ihre Top-Parteien liegen zu dicht beieinander (Abstand {gap} Prozentpunkt(e) nicht erreicht). Eine klare Top-Partei oder Wunschkoalition lässt sich nicht ableiten."
+    "tactical.closeTopHint": "Ihre Top-Parteien liegen zu dicht beieinander (Abstand {gap} Prozentpunkt(e) nicht erreicht). Eine klare Top-Partei oder Wunschkoalition lässt sich nicht ableiten.",
+    "tactical.dmSliderTitle": "Erststimmen-Simulation (Szenario C): Direktmandate ändern. Verschieben Sie die Regler, um Erststimmen-Bündelung zu testen.",
+    "tactical.dmSliderAria": "Erststimmen-Direktmandate von {partei} ändern",
+    "tactical.dmSliderNote": "Schieben Sie die Regler. Dann sehen Sie: Zieht die Partei über die Grundmandatsklausel ins Parlament ein? Ab {n} Direktmandaten schafft eine Partei das auch mit weniger als {threshold} % (Grundmandatsklausel).",
+    "tactical.dmValue": "{n} Direktmandate",
+    "tactical.grundmandat": "Ihre Top-Partei «{partei}» schafft es mit {wert} % nicht über die {threshold} %-Hürde. Sie zieht trotzdem ins Parlament ein: über {mandate} Erststimmen-Direktmandate (Grundmandatsklausel). Sicher Sie ihr mit Ihrer Erststimme das {need}. Direktmandat. Wählen Sie sie, statt auf eine andere Partei auszuweichen.",
+    "tactical.scTitle": "Erststimmen-Szenarien (Grundmandatsklausel und strategische Erststimme)",
+    "tactical.scNoData": "Szenario C (Erststimmen-Bündelung für {n} Direktmandate) und Szenario D (strategische Erststimme gegen einen starken Gegenkandidaten) werden hier NICHT gezeigt: Für diese Wahl gibt es keine Wahlkreis-Daten. Alle Werte oben sind nur Zweitstimmen-Umfragewerte – die Erststimme bitte separat in Ihrem Wahlkreis prüfen.",
+    "tactical.scCEinzug": "{p} liegt mit {v} % unter der {t} %-Hürde, zieht aber über {m} Erststimmen-Direktmandate ins Parlament ein (Grundmandatsklausel).",
+    "tactical.scCNear": "{p} liegt mit {v} % unter der Hürde und hat aktuell {m} Direktmandate – mit Erststimmen-Bündelung auf {need} wäre der Einzug über die Grundmandatsklausel möglich.",
+    "tactical.scCWeit": "{p} liegt mit {v} % unter der Hürde und hat aktuell nur {m} Direktmandate – der Einzug über die Grundmandatsklausel ist in diesem Szenario nicht in Sicht.",
+    "tactical.scCMatrix": "Direktmandats-Schätzungen für diese Wahl liegen vor (siehe Regler „Direktmandate“). Aktuell liegt keine Partei mit weniger als {t} % auf dem Weg über die Grundmandatsklausel.",
+    "tactical.scDHint": "Szenario D (strategische Erststimme): Wenn in Ihrem Wahlkreis ein von Ihnen stark abgelehnter Direktkandidat vorn liegt, hilft die Erststimme für den aussichtsreichsten Gegenkandidaten – auch über Parteigrenzen hinweg. Der Simulator kennt keine einzelnen Wahlkreise. Dieses Szenario wird hier nur erklärt und nicht berechnet."
   },
   "fragen": {
     "ltw-sachsen-anhalt-2026": {

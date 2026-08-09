@@ -6,5 +6,14 @@
   },
   "koalitionsausschluss": {
     "AfD": ["SPD", "GRÜNE", "LINKE"]
+  },
+  "direktmandate": {
+    "grundmandate": 3,
+    "hinweis": "Hypothetische Schätzung für die simulierte Bundestagswahl 2029 – reine Annahme auf Basis vergangener Wahlkreisergebnisse, keine echte Wahlkreis-Prognose.",
+    "parteien": {
+      "LINKE": { "sicher": 3, "chancen": 4 },
+      "BSW": { "sicher": 0, "chancen": 1 },
+      "FDP": { "sicher": 0, "chancen": 1 }
+    }
   }
 }

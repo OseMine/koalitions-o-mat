@@ -942,3 +942,38 @@ body {
 @media (max-width: 480px) {
     .tactical-slider-row { grid-template-columns: 70px 1fr 56px; gap: 8px; }
 }
+
+/* Erststimmen-Szenarien (Grundmandatsklausel, strategische Erststimme) */
+.tactical-warning.grundmandat, .tactical-warning.grundmandat .tactical-warning-tag {
+    background: var(--answer-yes-bg); color: var(--answer-yes-color);
+    border: 1px solid color-mix(in srgb, var(--answer-yes-color) 55%, transparent); font-weight: 500;
+}
+.tactical-scenarios {
+    margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--outline);
+}
+.tactical-scenarios h4 { margin: 0 0 8px; font-size: 0.9rem; color: var(--on-surface); }
+.tactical-sc-list { display: flex; flex-direction: column; gap: 6px; margin-bottom: 8px; }
+.tactical-sc-party {
+    padding: 8px 12px; font-size: 0.85rem; line-height: 1.5;
+    border-radius: var(--radius-xs); background: var(--surface-variant);
+    border: 1px solid var(--outline); color: var(--on-surface);
+}
+.tactical-sc-party.enter { border-left: 4px solid var(--answer-yes-color); }
+.tactical-sc-party.near { border-left: 4px solid var(--answer-m-color); }
+.tactical-sc-hint {
+    padding: 10px 14px; font-size: 0.88rem; line-height: 1.5;
+    border-radius: var(--radius-xs); margin-bottom: 8px;
+}
+.tactical-sc-hint.nodata {
+    background: var(--answer-m-bg); color: var(--answer-m-color);
+    border: 1px solid color-mix(in srgb, var(--answer-m-color) 50%, transparent);
+    font-weight: 500;
+}
+.tactical-sc-hint.ok {
+    background: var(--answer-yes-bg); color: var(--answer-yes-color);
+    border: 1px solid color-mix(in srgb, var(--answer-yes-color) 45%, transparent);
+}
+.tactical-sc-hint.d {
+    background: var(--surface-variant); color: var(--on-surface-muted);
+    border: 1px solid var(--outline);
+}
