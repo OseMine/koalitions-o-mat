@@ -307,10 +307,13 @@ function setActiveElection(electionId) {
     // der vorherigen Wahl weiterzuverwenden (Cross-Election-Leak).
     window.parteienData = data.fragen || null;
 
-    config = { ...baseConfig };
+    config = { ...baseConfig, ausgeschlosseneKoalitionen: [] };
     if (data.config) {
         if (data.config.thresholds) config.thresholds = { ...config.thresholds, ...data.config.thresholds };
         if (data.config.meta) config.meta = { ...config.meta, ...data.config.meta };
+        if (Array.isArray(data.config.ausgeschlosseneKoalitionen)) {
+            config.ausgeschlosseneKoalitionen = data.config.ausgeschlosseneKoalitionen;
+        }
     }
     if (window.werteData.meta && window.werteData.meta.sperrklausel != null)
         config.thresholds.sperrklausel = window.werteData.meta.sperrklausel;
@@ -1107,6 +1110,17 @@ function redrawPartyTimelineIfOpen() {
 let koalitionenCache = null;
 let koalitionenCacheKey = '';
 
+// Eine Koalition ist ausgeschlossen, wenn sie alle Parteien einer in der
+// Wahlkonfiguration definierten Gruppe ("ausgeschlosseneKoalitionen") enthält.
+// Paar-Listen wie ["AfD", "SPD"] drücken aus, dass diese Parteien niemals
+// zusammen regieren würden – Koalitionen mit beiden werden ausgeblendet.
+function istKoalitionAusgeschlossen(parteienNamen) {
+    const gruppen = (config && Array.isArray(config.ausgeschlosseneKoalitionen) && config.ausgeschlosseneKoalitionen) || [];
+    return gruppen.some(gruppe =>
+        Array.isArray(gruppe) && gruppe.length > 0 && gruppe.every(name => parteienNamen.includes(name))
+    );
+}
+
 function berechneKoalitionen(type = 'mehrheit', excludeParties = []) {
     if (!config || !window.werteData || !window.parteienData) return [];
     const maxSize = (config.thresholds && config.thresholds.maxCoalitionSize) || 4;
@@ -1123,6 +1137,8 @@ function berechneKoalitionen(type = 'mehrheit', excludeParties = []) {
     for (let i = 1; i < (1 << n); i++) {
         const kParties = parties.filter((_, j) => i & (1 << j));
         if (kParties.length < 2 || kParties.length > maxSize) continue;
+        // Politisch ausgeschlossene Koalitionen (z. B. AfD+SPD) nicht anzeigen
+        if (istKoalitionAusgeschlossen(kParties.map(p => p.partei))) continue;
         const sum = kParties.reduce((s, p) => s + p.prozent, 0);
         let ok = false;
         if (type === 'mehrheit') ok = sum > 50;
@@ -1250,11 +1266,15 @@ function updateKoalitionen() {
 
     const container = document.getElementById('coalitionResults');
     const statusEl = document.getElementById('coalitionStatus');
+    const exclNames = ((config && config.ausgeschlosseneKoalitionen) || []).map(g => g.join(' + ')).join(', ');
     if (!koalitionen.length) {
         // Leere Ergebnisliste erklären: Wenn ein Partei-Filter gesetzt ist, kann die
         // Partei unter der Sperrklausel liegen (dann in keiner Koalition enthalten)
         // oder mit dem gewählten Typ/Mindestmatch keine Koalition bilden.
-        let emptyHtml = `<div class="empty-state"><span class="empty-icon">🔍</span><p>${t('noCoalitions', 'Keine passenden Koalitionen gefunden.')}</p>`;
+        let emptyHtml = exclNames
+            ? `<p class="exclusion-hint">${t('excludedCoalitionsHint', 'Politisch ausgeschlossene Koalitionen ({gruppen}) werden nicht angezeigt.').replace('{gruppen}', exclNames)}</p>`
+            : '';
+        emptyHtml += `<div class="empty-state"><span class="empty-icon">🔍</span><p>${t('noCoalitions', 'Keine passenden Koalitionen gefunden.')}</p>`;
         if (partyFilter) {
             const p = (window.werteData.umfragewerte || []).find(x => x.partei === partyFilter);
             const below = p && p.prozent < config.thresholds.sperrklausel;
@@ -1272,6 +1292,9 @@ function updateKoalitionen() {
     if (statusEl) statusEl.textContent = koalitionen.length + ' ' + t('coalitionsFound', 'Koalitionen gefunden');
 
     let html = `<p class="result-count">${koalitionen.length} ${t('coalitionsFound', 'Koalitionen gefunden')}</p>`;
+    if (exclNames) {
+        html += `<p class="exclusion-hint">${t('excludedCoalitionsHint', 'Politisch ausgeschlossene Koalitionen ({gruppen}) werden nicht angezeigt.').replace('{gruppen}', exclNames)}</p>`;
+    }
     const grouped = {};
     koalitionen.forEach(k => {
         if (!grouped[k.anzahl]) grouped[k.anzahl] = [];
