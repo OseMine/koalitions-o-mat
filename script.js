@@ -1856,8 +1856,13 @@ function showTestResults() {
         <button class="tr-restart-btn" onclick="resetTestAndRestart()">${t('restartTest', 'Test wiederholen')}</button>
     </div>`;
 
-    // Taktik-Modus (Szenario-Simulator) unterhalb der Ergebnisse
-    html += tacticalSectionHTML();
+    // Taktik-Modus (Szenario-Simulator) unterhalb der Ergebnisse.
+    // Ohne eine einzige verwertbare (j/n-)Antwort wäre "Deine Top-Partei" /
+    // "Deine Wunschkoalition" nur die stabile `werte.json`-Reihenfolge
+    // (irreführend, btw2029: AfD) – den Abschnitt daher weglassen.
+    if (usableAnswered > 0) {
+        html += tacticalSectionHTML();
+    }
 
     container.innerHTML = html;
     bindTacticalEvents();
@@ -1888,11 +1893,25 @@ function tacticalTopGap(sorted) {
 function calculateTacticalPolls() {
     if (tacticalPollsKey === activeElectionId && Object.keys(tacticalPolls).length) return tacticalPolls;
     const map = {};
+    // Reale Parteien der aktiven Wahl: Parteien aus den Umfragewerten plus Parteien,
+    // die in den Fragebogen-Antworten auftauchen.
+    const realParties = new Set();
     (window.werteData && window.werteData.umfragewerte || []).forEach(p => {
-        if (p.partei !== 'Andere') map[p.partei] = p.prozent;
+        if (p.partei !== 'Andere') {
+            map[p.partei] = p.prozent;
+            realParties.add(p.partei);
+        }
     });
+    if (window.parteienData && window.parteienData.fragen) {
+        window.parteienData.fragen.forEach(f => {
+            if (f.antworten) Object.keys(f.antworten).forEach(p => realParties.add(p));
+        });
+    }
+    // Mock-Umfragewerte nur als Fallback, wenn die Partei in der Wahl real antritt –
+    // sonst würden nicht-antretende Parteien (z. B. `CDU` bei Wahlen mit `CDU/CSU`)
+    // als Geisterpartei in Slider und Analyse einsickern.
     Object.keys(TACTICAL_MOCK_POLLS).forEach(p => {
-        if (map[p] === undefined) map[p] = TACTICAL_MOCK_POLLS[p];
+        if (realParties.has(p) && map[p] === undefined) map[p] = TACTICAL_MOCK_POLLS[p];
     });
     tacticalPolls = map;
     tacticalPollsKey = activeElectionId;
@@ -1973,6 +1992,19 @@ function calculateTacticalVoting(results) {
     if (sorted.length >= 2 && clearTop) {
         const a = sorted[0].partei;
         const b = sorted[1].partei;
+
+        // Politisch ausgeschlossene Wunschkoalitionen (z. B. AfD+GRÜNE) werden hier
+        // nicht als konkrete Koalitionsempfehlung ausgegeben – konsistent mit
+        // `istKoalitionAusgeschlossen()` in `berechneKoalitionen()` –, sondern nur
+        // als textlicher Tipp statt einer Leihstimmen-Empfehlung.
+        if (istKoalitionAusgeschlossen([a, b])) {
+            warnings.push({
+                type: 'excluded',
+                text: `Deine Wunschkoalition aus ${a} und ${b} ist laut politischer Einschätzung keine zulässige Koalition (diese Parteien schließen sich gegenseitig als Regierungspartner aus). Eine taktische Überlegung wäre daher nicht sinnvoll – wähle die Partei, die deinen Überzeugungen entspricht.`
+            });
+            return { warnings, info };
+        }
+
         const pa = pollOf(a), pb = pollOf(b);
         const eligible = sorted.filter(r => pollOf(r.partei) >= threshold);
         const eligibleSum = eligible.reduce((s, p) => s + pollOf(p.partei), 0);
