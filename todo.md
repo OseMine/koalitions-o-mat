@@ -9,7 +9,7 @@ Vollständiger Bericht: `reports/review-2026-08-08.md`. Sitzsummen (630/130/83/7
 ### P3 – Verbesserungen
 
 - [x] **Berlin-2026: BSW hat bei 6 Fragen keine Position** (nr 9, 20, 32, 36, 37, 45) – einzige Partei über alle 4 Wahlen mit Lücken; `getAnswerValue()` liefert dort `'m'` (neutral). **Erledigt**: echte belegte BSW-Positionen (`n`) für nr 9 & 32 ergänzt, übrige vier als dokumentierte Neutralität markiert – BSW hat nun in allen 52 Fragen einen Eintrag.
-- [ ] **Improve UX and UI** make it easier to understand
+- [x] **Improve UX and UI** make it easier to understand. **Umsetzung (Issue „Verbesserung der UX & UI", 2026-08-09)**: ARIA-Tabs mit `role="tablist"/"tab"/"tabpanel"`, `aria-selected` + Roving-Tabindex und Pfeiltasten-/Home-/End-Navigation; sichtbarer Tastatur-Fokus (`:focus-visible`) global, Koalitions-Checkboxen wieder per Tastatur fokussierbar (statt `display:none`, jetzt `:has(input:focus-visible)`-Ring); `aria-pressed` für „Wichtige Frage"- und Antwort-Buttons; Screenreader-Status für Koalitionslisten (`#coalitionStatus`, `role="status"`) und Benachrichtigungen (`role="status"`/`role="alert"`); erklärender Filter-Hinweis + „Alle Filter zurücksetzen"-Button (`resetCoalitionFilters()`) im Koalitionen-Tab; neue i18n-Keys `filterHint`/`resetFilters`/`filtersReset` in `einfache-sprache.json`; Doku in README („Bedienung & Barrierefreiheit"). Verifiziert mit `node --check script.js`.
 ### Tracking offene GitHub-Issues
 
 - [x] **Issue #51 `newsItemMatchesParty()`-False-Positives** – umgesetzt: eigene Wortgrenzen (statt `\b`), Komposita wie „SPDler“ werden erkannt, mehrdeutige Begriffe (grüne/linke/Volt) nur mit Parteikontext. Keine Regression.

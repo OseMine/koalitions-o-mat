@@ -18,6 +18,7 @@ Interaktiver Koalitionsrechner und Parteien-Test für die Bundestagswahl 2029 un
 - **Ergebnis teilen** – Testergebnis als kompakte URL teilen (Wahl, Antworten, wichtige Fragen, neutrale Antworten); beim Öffnen wird das Ergebnis ohne History-Eintrag wiederhergestellt. Im Koalitionen-Tab werden zusätzlich die Filter (Typ, Mindestmatch, Partei-Filter, Ausschlüsse) mitgeteilt
 - **Fortsetzen & Zurücksetzen** – frühere Testsitzungen werden angezeigt („Fortgesetzt: X von Y Fragen beantwortet") und fortgesetzt; Antworten lassen sich jederzeit per Button zurücksetzen
 - **Transparenz** – Hinweis auf Willkommensseite und Footer: privates Projekt, keine Verbindung zu Parteien, Organisationen oder staatlichen Stellen, keine finanzielle Förderung
+- **Bedienung & Barrierefreiheit** – Tabs sind als ARIA-Tabs ausgezeichnet (Rollen, `aria-selected`, Roving-Tabindex; Wechsel per Pfeiltasten/Home/End), alle interaktiven Elemente haben einen sichtbaren Tastatur-Fokus (`:focus-visible`), „Wichtige Frage"- und Antwort-Buttons sind per `aria-pressed` als aktiv markiert, Koalitionslisten und Benachrichtigungen werden Screenreadern gemeldet (`role="status"`/`role="alert"`); im Koalitionen-Tab erklärt ein Hinweis die Filter, und im Leerzustand lassen sich diese mit „Alle Filter zurücksetzen" wieder auf den Ausgangszustand bringen. Die Oberfläche ist damit ohne README verständlich bedienbar.
 
 ## Wahlen & Datenquellen
 

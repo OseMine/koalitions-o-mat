@@ -94,7 +94,10 @@ function toggleImportant(idx) {
     if (importantQuestions.has(idx)) importantQuestions.delete(idx);
     else importantQuestions.add(idx);
     const btn = document.querySelector(`.question[data-q="${idx}"] .q-important`);
-    if (btn) btn.classList.toggle('active', importantQuestions.has(idx));
+    if (btn) {
+        btn.classList.toggle('active', importantQuestions.has(idx));
+        btn.setAttribute('aria-pressed', importantQuestions.has(idx) ? 'true' : 'false');
+    }
     saveTestState();
 }
 
@@ -172,12 +175,15 @@ function applyPendingShare() {
     questions.forEach((f, i) => {
         if (userAnswers[i]) {
             document.querySelectorAll(`.question[data-q="${i}"] .q-btn`).forEach(b => {
-                b.classList.toggle('selected', b.dataset.a === userAnswers[i]);
+                const selected = b.dataset.a === userAnswers[i];
+                b.classList.toggle('selected', selected);
+                b.setAttribute('aria-pressed', selected ? 'true' : 'false');
             });
         }
     });
     document.querySelectorAll('.q-important').forEach(btn => {
         btn.classList.toggle('active', importantQuestions.has(Number(btn.dataset.q)));
+        btn.setAttribute('aria-pressed', importantQuestions.has(Number(btn.dataset.q)) ? 'true' : 'false');
     });
     saveTestState();
     // Ergebnis-Ansicht nur bei tatsächlich geteilten Antworten aufrufen – ein reiner
@@ -223,9 +229,14 @@ function showElectionSelector() {
 function switchTab(tabName) {
     if (partyPageOpen) closePartyPage();
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
-    const btn = document.querySelector(`.tab-button[data-tab="${tabName}"]`);
-    if (btn) btn.classList.add('active');
+    // ARIA-Tabs: aria-selected + Roving-Tabindex am aktiven Tab pflegen
+    // (nur der aktive Tab ist per Tab-Taste erreichbar; Wechsel per Pfeiltasten).
+    document.querySelectorAll('.tab-button').forEach(b => {
+        const on = b.dataset.tab === tabName;
+        b.classList.toggle('active', on);
+        b.setAttribute('aria-selected', on ? 'true' : 'false');
+        b.tabIndex = on ? 0 : -1;
+    });
     document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
     const el = document.getElementById(tabName + '-content');
     if (el) el.classList.add('active');
@@ -1225,6 +1236,7 @@ function updateKoalitionen() {
     else koalitionen.sort((a, b) => b.uebereinstimmung - a.uebereinstimmung);
 
     const container = document.getElementById('coalitionResults');
+    const statusEl = document.getElementById('coalitionStatus');
     if (!koalitionen.length) {
         // Leere Ergebnisliste erklären: Wenn ein Partei-Filter gesetzt ist, kann die
         // Partei unter der Sperrklausel liegen (dann in keiner Koalition enthalten)
@@ -1237,10 +1249,14 @@ function updateKoalitionen() {
                 ? t('noCoalitionsBelow', 'Die Partei „{partei}" liegt mit {prozent}% unter der Sperrklausel von {klausel}% und ist deshalb in keiner Koalition enthalten.').replace('{partei}', partyFilter).replace('{prozent}', p.prozent.toFixed(1)).replace('{klausel}', config.thresholds.sperrklausel)
                 : t('noCoalitionsFilter', 'Für „{partei}" gibt es mit der aktuellen Auswahl (Typ, Mindestübereinstimmung) keine Koalition.').replace('{partei}', partyFilter)}</p>`;
         }
+        emptyHtml += `<button type="button" class="btn-ghost empty-reset-btn" onclick="resetCoalitionFilters()">${t('resetFilters', 'Alle Filter zurücksetzen')}</button>`;
         emptyHtml += `</div>`;
         container.innerHTML = emptyHtml;
+        if (statusEl) statusEl.textContent = t('noCoalitions', 'Keine passenden Koalitionen gefunden.');
         return;
     }
+
+    if (statusEl) statusEl.textContent = koalitionen.length + ' ' + t('coalitionsFound', 'Koalitionen gefunden');
 
     let html = `<p class="result-count">${koalitionen.length} ${t('coalitionsFound', 'Koalitionen gefunden')}</p>`;
     const grouped = {};
@@ -1277,6 +1293,29 @@ function updateKoalitionen() {
     container.innerHTML = html;
 }
 
+// Setzt alle Filter des Koalitionen-Tabs zurück (aus dem Leerzustand bedienbar) –
+// macht die Ausgangslage verständlich, ohne dass man die README lesen muss.
+function resetCoalitionFilters() {
+    const typeEl = document.getElementById('coalitionType');
+    if (typeEl) typeEl.value = 'mehrheit';
+    const minEl = document.getElementById('minMatch');
+    if (minEl) {
+        minEl.value = 0;
+        minEl.dataset.touched = '1';
+        const label = document.getElementById('minMatchLabel');
+        if (label) label.textContent = minEl.value + '%';
+    }
+    const filterEl = document.getElementById('partyFilter');
+    if (filterEl) filterEl.value = '';
+    document.querySelectorAll('#excludePartiesCheckboxes input').forEach(cb => {
+        cb.checked = false;
+        const pill = cb.closest('.party-cb');
+        if (pill) pill.classList.remove('checked');
+    });
+    updateKoalitionen();
+    showNotification(t('filtersReset', 'Filter zurückgesetzt'), 'success');
+}
+
 // ===== Test =====
 function resetTest() {
     cancelPendingAdvance();
@@ -1301,8 +1340,14 @@ function resetAnswers() {
     if (qc) {
         qc.querySelectorAll('.question').forEach(q => {
             q.classList.remove('active');
-            q.querySelectorAll('.q-btn').forEach(b => b.classList.remove('selected'));
-            q.querySelectorAll('.q-important').forEach(b => b.classList.remove('active'));
+            q.querySelectorAll('.q-btn').forEach(b => {
+                b.classList.remove('selected');
+                b.setAttribute('aria-pressed', 'false');
+            });
+            q.querySelectorAll('.q-important').forEach(b => {
+                b.classList.remove('active');
+                b.setAttribute('aria-pressed', 'false');
+            });
         });
         const first = qc.querySelector('.question[data-q="0"]');
         if (first) first.classList.add('active');
@@ -1370,12 +1415,13 @@ function initializeTest() {
         const topic = determineTopic(f);
         const topicColor = (config.topics[topic] && config.topics[topic].color) || '#999';
         const answerSel = userAnswers[i] ? userAnswers[i] : '';
+        const importantLabel = t('importantHint', 'Wichtige Frage (zählt doppelt)');
         return `
         <div class="question ${i === currentQuestion ? 'active' : ''}" data-q="${i}">
             <div class="q-top-row">
                 <span class="q-topic" style="--topic-color:${topicColor}">${topic}</span>
                 <span class="q-actions">
-                    <button type="button" class="q-important ${importantQuestions.has(i) ? 'active' : ''}" data-q="${i}" onclick="toggleImportant(${i})" title="${t('importantHint', 'Wichtige Frage (zählt doppelt)')}" aria-label="${t('importantHint', 'Wichtige Frage (zählt doppelt)')}">★</button>
+                    <button type="button" class="q-important ${importantQuestions.has(i) ? 'active' : ''}" data-q="${i}" onclick="toggleImportant(${i})" title="${importantLabel}" aria-label="${importantLabel}" aria-pressed="${importantQuestions.has(i) ? 'true' : 'false'}">★</button>
                     <span class="q-counter">${i + 1} / ${questions.length}</span>
                 </span>
             </div>
@@ -1383,9 +1429,9 @@ function initializeTest() {
             <h3 class="q-text">${simpleQuestionText(f, 'frage')}</h3>
             <p class="q-desc">${simpleQuestionText(f, 'beschreibung')}</p>
             <div class="q-answers">
-                <button class="q-btn q-btn-yes ${answerSel === 'j' ? 'selected' : ''}" data-a="j" onclick="selectAnswer(${i},'j')"><span class="q-btn-icon">✓</span>${t('answerYes', 'Stimme zu')}</button>
-                <button class="q-btn q-btn-mid ${answerSel === 'm' ? 'selected' : ''}" data-a="m" onclick="selectAnswer(${i},'m')"><span class="q-btn-icon">◌</span>${t('answerNeutral', 'Neutral')}</button>
-                <button class="q-btn q-btn-no ${answerSel === 'n' ? 'selected' : ''}" data-a="n" onclick="selectAnswer(${i},'n')"><span class="q-btn-icon">✗</span>${t('answerNo', 'Stimme nicht zu')}</button>
+                <button class="q-btn q-btn-yes ${answerSel === 'j' ? 'selected' : ''}" data-a="j" onclick="selectAnswer(${i},'j')" aria-pressed="${answerSel === 'j' ? 'true' : 'false'}"><span class="q-btn-icon">✓</span>${t('answerYes', 'Stimme zu')}</button>
+                <button class="q-btn q-btn-mid ${answerSel === 'm' ? 'selected' : ''}" data-a="m" onclick="selectAnswer(${i},'m')" aria-pressed="${answerSel === 'm' ? 'true' : 'false'}"><span class="q-btn-icon">◌</span>${t('answerNeutral', 'Neutral')}</button>
+                <button class="q-btn q-btn-no ${answerSel === 'n' ? 'selected' : ''}" data-a="n" onclick="selectAnswer(${i},'n')" aria-pressed="${answerSel === 'n' ? 'true' : 'false'}"><span class="q-btn-icon">✗</span>${t('answerNo', 'Stimme nicht zu')}</button>
             </div>
             ${sourcesHtml}
         </div>`;
@@ -1406,7 +1452,9 @@ function selectAnswer(idx, answer) {
     if (userAnswers[idx] === answer) return;
     userAnswers[idx] = answer;
     document.querySelectorAll(`.question[data-q="${idx}"] .q-btn`).forEach(b => {
-        b.classList.toggle('selected', b.dataset.a === answer);
+        const selected = b.dataset.a === answer;
+        b.classList.toggle('selected', selected);
+        b.setAttribute('aria-pressed', selected ? 'true' : 'false');
     });
     saveTestState();
     cancelPendingAdvance();
@@ -2355,6 +2403,8 @@ function showNotification(msg, type = 'info') {
     const n = document.createElement('div');
     n.className = `notification ${type}`;
     n.textContent = msg;
+    // Screenreader-Ansage: Fehler sofort (alert), Erfolg/Hinweis teilweise (status)
+    n.setAttribute('role', type === 'error' ? 'alert' : 'status');
     document.body.appendChild(n);
     setTimeout(() => n.remove(), 3500);
 }
@@ -2437,7 +2487,10 @@ function toggleSimpleLanguage() {
     const on = !isSimpleLang();
     localStorage.setItem('simpleLang', on ? '1' : '0');
     const btn = document.getElementById('simpleLangToggle');
-    if (btn) btn.classList.toggle('active', on);
+    if (btn) {
+        btn.classList.toggle('active', on);
+        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    }
     applyStaticI18n();
     // Willkommens-Karten immer neu rendern – auch wenn die App gerade sichtbar ist
     // (sonst zeigt "Wechseln" die alte Sprache).
@@ -2475,7 +2528,10 @@ function toggleSimpleLanguage() {
 
 function applySavedSimpleLang() {
     const btn = document.getElementById('simpleLangToggle');
-    if (btn) btn.classList.toggle('active', isSimpleLang());
+    if (btn) {
+        btn.classList.toggle('active', isSimpleLang());
+        btn.setAttribute('aria-pressed', isSimpleLang() ? 'true' : 'false');
+    }
     applyStaticI18n();
 }
 
@@ -2494,6 +2550,30 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.querySelectorAll('.tab-button').forEach(b => {
         b.addEventListener('click', () => switchTab(b.dataset.tab));
     });
+
+    // Tastaturbedienung der Tabs (ARIA-Tabs-Pattern): Pfeiltasten/Home/End wechseln
+    // den aktiven Tab. Der Handler ist auf die Tab-Leiste beschränkt, damit die
+    // Pfeiltasten im Test (Fragen wechseln) unberührt bleiben.
+    const tabsListEl = document.querySelector('.tabs');
+    if (tabsListEl) {
+        tabsListEl.addEventListener('keydown', e => {
+            const active = tabsListEl.querySelector('.tab-button[aria-selected="true"]');
+            if (!active) return;
+            const buttons = [...tabsListEl.querySelectorAll('.tab-button')];
+            const i = buttons.indexOf(active);
+            if (i === -1) return;
+            let next = null;
+            if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next = buttons[(i + 1) % buttons.length];
+            else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') next = buttons[(i - 1 + buttons.length) % buttons.length];
+            else if (e.key === 'Home') next = buttons[0];
+            else if (e.key === 'End') next = buttons[buttons.length - 1];
+            if (!next) return;
+            e.preventDefault();
+            e.stopPropagation();
+            switchTab(next.dataset.tab);
+            next.focus();
+        });
+    }
 
     const minMatchSlider = document.getElementById('minMatch');
     if (minMatchSlider) {
