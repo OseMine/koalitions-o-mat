@@ -1856,8 +1856,13 @@ function showTestResults() {
         <button class="tr-restart-btn" onclick="resetTestAndRestart()">${t('restartTest', 'Test wiederholen')}</button>
     </div>`;
 
-    // Taktik-Modus (Szenario-Simulator) unterhalb der Ergebnisse
-    html += tacticalSectionHTML();
+    // Taktik-Modus (Szenario-Simulator) unterhalb der Ergebnisse.
+    // Ohne eine einzige verwertbare (j/n-)Antwort wäre "Deine Top-Partei" /
+    // "Deine Wunschkoalition" nur die stabile `werte.json`-Reihenfolge
+    // (irreführend, btw2029: AfD) – den Abschnitt daher weglassen.
+    if (usableAnswered > 0) {
+        html += tacticalSectionHTML();
+    }
 
     container.innerHTML = html;
     bindTacticalEvents();

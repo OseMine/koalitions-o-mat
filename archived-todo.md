@@ -2,6 +2,12 @@
 
 Erledigte (abgehakte) Aufgaben aus todo.md, Stand 2026-08-09. Offene Punkte: siehe `todo.md`.
 
+## Implementierung vom 2026-08-09 (Taktik-Warnungen ohne Antworten irreführend)
+
+Verifiziert per `node --check script.js` gegen das echte btw2029-`werte.json` (Partei-Reihenfolge: AfD, CDU/CSU, GRÜNE, …).
+
+- [x] **Taktik-Warnungen ohne eine einzige Ja/Nein-Antwort irreführend** – `showTestResults()` hängt den Taktik-Abschnitt nun nur noch an, wenn `usableAnswered > 0` (script.js:1859-1865). Vorher wurde `tacticalSectionHTML()` immer angehängt; ohne verwertbare Antworten ist die `lastTestResults`-Sortierung stabil (`(b.match ?? -1)`), sodass „Deine Top-Partei" schlicht die erste Partei der `werte.json`-Reihenfolge war (btw2029: AfD). `bindTacticalEvents()` bleibt unverändert und no-op, wenn der Abschnitt fehlt (frühe Rückkehr ohne `#tacticalToggle`). Mit vorhandenen Ja/Nein-Antworten ist das Verhalten unverändert (Pie-Chart-/Historie-Gating auf `usableAnswered > 0` war bereits vorhanden).
+
 ## Nachträge vom 2026-08-09 (Übernahme aus todo.md, Review vom 2026-08-08)
 
 Alle abgehakten Punkte des Abschnitts „Review vom 2026-08-08" aus `todo.md` wurden am 2026-08-09 nach hier verschoben; Status gegen Code/GitHub nachgeprüft (PRs #51–#79 gemergt, Issues #51/#62/#55 geschlossen).

@@ -19,7 +19,7 @@ Vollständiger Bericht: `reports/review-2026-08-09.md`. Alle Befunde per Node-Ha
 ### P3 – Verbesserungen
 
 - [ ] **Mock-Polls injizieren „Geisterpartei" CDU in alle 4 Wahlen** – `TACTICAL_MOCK_POLLS` (script.js:18-20) in `calculateTacticalPolls()` (script.js:1883-1885): jedes `werte.json` erhält ein Phantom `CDU` (30 %). Aktuell unsichtbar (kein Slider, nicht in `results`), aber latent fehlerhaft für künftige Wahlen ohne FDP/LINKE. Mock nur als Fallback für reale Parteien der Wahl.
-- [ ] **Taktik-Warnungen ohne eine einzige Ja/Nein-Antwort irreführend** – `showTestResults()` hängt den Taktik-Abschnitt immer an (script.js:1860); ohne verwertbare Antworten ist „Deine Top-Partei" nur die erste Partei der `werte.json`-Reihenfolge (btw2029: AfD). Oder als reine Umfrage-Information kennzeichnen.
+- [x] **Taktik-Warnungen ohne eine einzige Ja/Nein-Antwort irreführend** – `showTestResults()` hängt den Taktik-Abschnitt immer an (script.js:1860); ohne verwertbare Antworten ist „Deine Top-Partei" nur die erste Partei der `werte.json`-Reihenfolge (btw2029: AfD). **Erledigt am 2026-08-09**: Taktik-Abschnitt wird nur noch bei `usableAnswered > 0` angehängt (script.js:1859-1865) – bei 0 verwertbaren Antworten erscheint kein irreführendes „Deine Top-Partei/Wunschkoalition"-Ranking; mit Antworten unverändert. → in `archived-todo.md`.
 - [ ] **`schwankt`-Band hartkodiert 4–6** (script.js:1963) – sollte relativ zur Wahl-Sperrklausel (`threshold`, `tacticalThreshold()`, script.js:1873) sein.
 - [ ] **Expected-Utility-Modell (tactical-voting.md §5) nur als Rangfolge abgebildet** – `calculateTacticalVoting()` sortiert nur nach `match` (script.js:1934), ignoriert Abstände; nahe Gleichstände (60,1 % vs. 60,0 %) erzeugen identische Warnungen wie klare Präferenzen.
 
