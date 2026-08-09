@@ -1877,11 +1877,25 @@ function tacticalThreshold() {
 function calculateTacticalPolls() {
     if (tacticalPollsKey === activeElectionId && Object.keys(tacticalPolls).length) return tacticalPolls;
     const map = {};
+    // Reale Parteien der aktiven Wahl: Parteien aus den Umfragewerten plus Parteien,
+    // die in den Fragebogen-Antworten auftauchen.
+    const realParties = new Set();
     (window.werteData && window.werteData.umfragewerte || []).forEach(p => {
-        if (p.partei !== 'Andere') map[p.partei] = p.prozent;
+        if (p.partei !== 'Andere') {
+            map[p.partei] = p.prozent;
+            realParties.add(p.partei);
+        }
     });
+    if (window.parteienData && window.parteienData.fragen) {
+        window.parteienData.fragen.forEach(f => {
+            if (f.antworten) Object.keys(f.antworten).forEach(p => realParties.add(p));
+        });
+    }
+    // Mock-Umfragewerte nur als Fallback, wenn die Partei in der Wahl real antritt –
+    // sonst würden nicht-antretende Parteien (z. B. `CDU` bei Wahlen mit `CDU/CSU`)
+    // als Geisterpartei in Slider und Analyse einsickern.
     Object.keys(TACTICAL_MOCK_POLLS).forEach(p => {
-        if (map[p] === undefined) map[p] = TACTICAL_MOCK_POLLS[p];
+        if (realParties.has(p) && map[p] === undefined) map[p] = TACTICAL_MOCK_POLLS[p];
     });
     tacticalPolls = map;
     tacticalPollsKey = activeElectionId;
