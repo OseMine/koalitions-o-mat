@@ -8,7 +8,7 @@ Vollständiger Bericht: `reports/review-2026-08-09.md`. Alle Befunde per Node-Ha
 
 ### P1 – Einfache Sprache
 
-- [ ] **Taktik-Sektion komplett ohne `t()`** – `tacticalSectionHTML()` (script.js:1911-1928), `tacticalSlidersHTML()` (1891-1909), `calculateTacticalVoting()` (1930-1973), `updateTacticalWarnings()` (1975-1996) nutzen nur hartkodiertes Deutsch; im Einfache-Sprache-Modus (`isSimpleLang()`) bleibt Normal-Deutsch – bricht das README-Versprechen „Umschalter für alle UI-Texte". Verifiziert: 0 Taktik-Keys in `einfache-sprache.json`.
+- [x] **Taktik-Sektion komplett ohne `t()`** – `tacticalSectionHTML()` (script.js:1911-1928), `tacticalSlidersHTML()` (1891-1909), `calculateTacticalVoting()` (1930-1973), `updateTacticalWarnings()` (1975-1996) nutzen nur hartkodiertes Deutsch; im Einfache-Sprache-Modus (`isSimpleLang()`) bleibt Normal-Deutsch – bricht das README-Versprechen „Umschalter für alle UI-Texte". Verifiziert: 0 Taktik-Keys in `einfache-sprache.json`. **Erledigt (Issue #81, 2026-08-09)**: alle 4 Funktionen nutzen jetzt `t()`; 18 neue Keys `tactical.*` in `einfache-sprache.json.ui` (176 Keys, eindeutig, valides JSON). Verifiziert per Node-Harness (Normal- und Einfache-Sprache-Modus) + `node --check script.js`. → in `archived-todo.md`.
 
 ### P2 – Algorithmus
 
