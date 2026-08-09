@@ -157,7 +157,23 @@
     "party.notFound": "Partei nicht gefunden.",
     "keyboardHint": "Tastatur: 1 = Stimme zu · 2 = Neutral · 3 = Stimme nicht zu · Pfeiltasten = Frage wechseln",
     "sourcesColumn": "Quelle / Begründung",
-    "programmMore": "… und {n} weitere Punkte"
+    "programmMore": "… und {n} weitere Punkte",
+    "tactical.sectionTitle": "Taktisch wählen",
+    "tactical.intro": "Simulieren Sie Ihre Stimme. Was würde passieren, wenn Sie anders wählen? Würde das Ergebnis anders sein?",
+    "tactical.toggleLabel": "Taktik-Modus einschalten",
+    "tactical.sliderTitle": "Taktik-Simulation: Umfragewerte ändern",
+    "tactical.sliderAria": "Umfragewert {partei} ändern",
+    "tactical.sliderNote": "Schieben Sie die Regler. Dann sehen Sie: Ändern sich die Taktik-Warnungen? Ändern sich die Koalitions-Mehrheiten?",
+    "tactical.wasted": "Ihre Top-Partei «{partei}» schafft es gerade nicht über die {threshold}%-Hürde ({wert}%). Strategische Alternative: {alt} ({altWert}%).",
+    "tactical.loan": "Ihre Wunschkoalition aus {a} und {b} ist in Gefahr. Überlegen Sie, {smaller} zu wählen. Dann bleibt sie über der {threshold}%-Hürde.",
+    "tactical.coalitionLabel": "Koalitionsmehrheit:",
+    "tactical.coalitionText": "{koalition} erreicht {share}% der Stimmen der Parteien über {threshold}% — {status}",
+    "tactical.coalitionMajority": "Mehrheit!",
+    "tactical.coalitionNoMajority": "keine Mehrheit",
+    "tactical.okTag": "Alles klar",
+    "tactical.okHint": "Keine strategische Warnung aktuell – Ihre Top-Partei liegt über {threshold}% und Ihre Wunschkoalition steht im simulierten Szenario stabil.",
+    "tactical.warningLoan": "Achtung",
+    "tactical.warningInfo": "Hinweis"
   },
   "fragen": {
     "ltw-sachsen-anhalt-2026": {

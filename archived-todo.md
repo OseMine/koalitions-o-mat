@@ -2,6 +2,10 @@
 
 Erledigte (abgehakte) Aufgaben aus todo.md, Stand 2026-08-09. Offene Punkte: siehe `todo.md`.
 
+## Nachträge vom 2026-08-09 (Issue #81: Einfache Sprache in der Taktik-Sektion)
+
+- [x] **Taktik-Sektion komplett ohne `t()`** – `tacticalSectionHTML()` (script.js:1911-1928), `tacticalSlidersHTML()` (1891-1909), `calculateTacticalVoting()` (1930-1973), `updateTacticalWarnings()` (1975-1996) nutzen ausschließlich hartkodierte deutsche Strings; im Einfache-Sprache-Modus (`isSimpleLang()`) blieb der Abschnitt Normal-Deutsch – das brach das README-Versprechen „Umschalter für alle UI-Texte … in einfacher Sprache". **Erledigt**: alle UI-Texte der 4 Funktionen laufen jetzt über `t()` mit exakt übernommenen Fallback-Texten (Normalmodus unverändert); 16 neue Keys `tactical.*` (`sectionTitle`, `intro`, `toggleLabel`, `sliderTitle`, `sliderAria` (mit `{partei}`-Platzhalter), `sliderNote`, `wasted`, `loan`, `coalitionLabel`, `coalitionText`, `coalitionMajority`, `coalitionNoMajority`, `okTag`, `okHint`, `warningLoan`, `warningInfo`) in `einfache-sprache.json.ui` (nun 174 Keys, eindeutig, valides JSON). Verifiziert per Node-Harness: Normal- und Einfache-Sprache-Modus liefern die jeweiligen Texte (Wasted- & Loan-Warnung, Koalitionsmehrheit, Slider-, Toggle- und OK-Hinweise); `node --check script.js` OK; Harness-Grep: 0 hartkodierte UI-Strings in den 4 Funktionen.
+
 ## Nachträge vom 2026-08-09 (Übernahme aus todo.md, Review vom 2026-08-08)
 
 Alle abgehakten Punkte des Abschnitts „Review vom 2026-08-08" aus `todo.md` wurden am 2026-08-09 nach hier verschoben; Status gegen Code/GitHub nachgeprüft (PRs #51–#79 gemergt, Issues #51/#62/#55 geschlossen).
