@@ -405,8 +405,12 @@ body {
 .test-results-header h3 { font-size: 1.05rem; margin: 0 0 4px; }
 .election-label { color: var(--on-surface-muted); font-size: 0.85rem; margin-bottom: 12px; }
 
-/* Summary stats */
-.tr-summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 16px; }
+/* Summary stats
+   minmax(0,1fr) statt 1fr: eine lange, nicht umbrechbare Label-Zeile (z. B.
+   "Beste Übereinstimmung") würde sonst als auto-min-content die erste Spalte
+   aufblähen und die dritte Karte über den schmalen Mobile-Viewport hinausschieben
+   (horizontaler Mini-Scroll auf der Ergebnis-Seite). */
+.tr-summary { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-bottom: 16px; }
 .tr-stat {
     background: var(--surface); border-radius: var(--radius-sm); border: 1px solid var(--outline);
     padding: 14px; text-align: center; box-shadow: var(--shadow-sm);
@@ -523,7 +527,7 @@ body {
 .match-pct { min-width: 50px; text-align: right; font-weight: 600; font-size: 0.85rem; color: var(--on-surface); }
 
 /* ===== Charts / Daten ===== */
-.stats-summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 16px; }
+.stats-summary { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-bottom: 16px; }
 .stat-card {
     background: var(--surface); border-radius: var(--radius-sm); border: 1px solid var(--outline);
     padding: 16px; text-align: center; box-shadow: var(--shadow-sm);
@@ -631,10 +635,10 @@ body {
     .header-row { gap: 8px; }
     .header-right { gap: 4px; }
 
-    .stats-summary { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+    .stats-summary { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
     .stat-card { padding: 10px; }
     .stat-val { font-size: 1.2rem; }
-    .tr-summary { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+    .tr-summary { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
     .tr-stat { padding: 10px; }
     .tr-stat-val { font-size: 1.2rem; }
     .tr-match-big { font-size: 1.3rem; }
