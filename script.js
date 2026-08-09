@@ -21,6 +21,9 @@ const TACTICAL_MOCK_POLLS = {
 let tacticalPolls = {};
 let tacticalPollsKey = null;
 let tacticalEnabled = false;
+// Erststimmen-Simulation (Szenario C): partei -> simulierte Direktmandate
+// (vom Nutzer per Regler gesetzt, überschreibt die Prognose aus der Config).
+let tacticalDirectMandates = {};
 
 // ===== Simple Language =====
 function isSimpleLang() { return localStorage.getItem('simpleLang') === '1'; }
@@ -294,6 +297,10 @@ function setActiveElection(electionId) {
     localStorage.setItem('activeElectionId', electionId);
     koalitionenCache = null;
     koalitionenCacheKey = '';
+    // Taktik-Simulation pro Wahl frisch aufbauen (keine Slider-/Wert-Leaks).
+    tacticalPolls = {};
+    tacticalPollsKey = null;
+    tacticalDirectMandates = {};
 
     const data = electionDataCache[electionId];
     if (!data || !data.werte) {
@@ -313,6 +320,14 @@ function setActiveElection(electionId) {
         if (data.config.meta) config.meta = { ...config.meta, ...data.config.meta };
         if (data.config.koalitionsausschluss && typeof data.config.koalitionsausschluss === 'object' && !Array.isArray(data.config.koalitionsausschluss)) {
             config.koalitionsausschluss = data.config.koalitionsausschluss;
+        }
+        // Wahlkreis-/Direktmandats-Daten für die Grundmandatsklausel-Szenarien (C/D).
+        // Optional: fehlt die Struktur, zeigt der Taktik-Simulator einen klaren
+        // Hinweis statt irreführender Zweitstimmen-Interpretation.
+        if (data.config.direktmandate && typeof data.config.direktmandate === 'object' && !Array.isArray(data.config.direktmandate)) {
+            config.direktmandate = data.config.direktmandate;
+        } else {
+            config.direktmandate = null;
         }
     }
     if (window.werteData.meta && window.werteData.meta.sperrklausel != null)
@@ -1874,6 +1889,35 @@ function tacticalThreshold() {
     return (config && config.thresholds && config.thresholds.sperrklausel) || 5;
 }
 
+// Wahlkreis-/Direktmandats-Daten (optional pro Wahl in config.json). Existieren
+// keine, sind die Szenarien C/D nicht abgebildet und es muss ein klarer Hinweis
+// erscheinen statt irreführender Zweitstimmen-Interpretation.
+function direktmandateParteien() {
+    return (config && config.direktmandate && config.direktmandate.parteien) || null;
+}
+
+// Anzahl Erststimmen-Direktmandate, die die Grundmandatsklausel auslöst (i.d.R. 3).
+function grundmandateHuerde() {
+    const dm = config && config.direktmandate;
+    return (dm && dm.grundmandate) || 3;
+}
+
+// Schätzung einer Partei aus der Config: { sicher, chancen } Direktmandate.
+function direktmandateVon(partei) {
+    const daten = direktmandateParteien();
+    if (!daten || !daten[partei]) return null;
+    return daten[partei];
+}
+
+// Simulierte Direktmandate: Nutzer-Regler (Erststimmen-Bündelung, Szenario C)
+// überschreibt die sichere Prognose aus der Config.
+function simulierteDirektmandate(partei) {
+    const basis = direktmandateVon(partei);
+    if (!basis) return 0;
+    if (tacticalDirectMandates && tacticalDirectMandates[partei] != null) return tacticalDirectMandates[partei];
+    return basis.sicher || 0;
+}
+
 function calculateTacticalPolls() {
     if (tacticalPollsKey === activeElectionId && Object.keys(tacticalPolls).length) return tacticalPolls;
     const map = {};
@@ -1894,30 +1938,54 @@ function tacticalSlidersHTML() {
         .filter(p => p !== 'Andere')
         .filter(p => (polls[p] || 0) < 8)
         .sort((a, b) => polls[a] - polls[b]);
-    if (!parties.length) return '';
-    return `
+    let html = '';
+    if (parties.length) {
+        html += `
         <div class="tactical-sliders">
-            <h4>Taktische Simulation: Umfragewerte anpassen</h4>
+            <h4>${t('tacticalPollSliderTitle', 'Taktische Simulation: Umfragewerte anpassen')}</h4>
             ${parties.map(p => `
             <div class="tactical-slider-row">
                 <span class="tactical-slider-name" style="color:${getPartyColor(p)}">${escapeHtml(p)}</span>
-                <input type="range" min="0" max="12" step="0.1" value="${polls[p]}" data-party="${escapeHtmlAttr(p)}" aria-label="Umfragewert ${escapeHtmlAttr(p)} adjustieren">
+                <input type="range" min="0" max="12" step="0.1" value="${polls[p]}" data-party="${escapeHtmlAttr(p)}" aria-label="${t('tacticalPollSliderAria', 'Umfragewert {p} anpassen').replace('{p}', escapeHtmlAttr(p))}">
                 <span class="tactical-slider-val">${(polls[p] || 0).toFixed(1)}%</span>
             </div>`).join('')}
-            <p class="tactical-slider-note">Verschiebe die Regler, um zu sehen, wie sich Taktik-Warnungen und Koalitionsmehrheiten verändern.</p>
+            <p class="tactical-slider-note">${t('tacticalPollSliderNote', 'Verschiebe die Regler, um zu sehen, wie sich Taktik-Warnungen und Koalitionsmehrheiten verändern.')}</p>
         </div>`;
+    }
+    // Szenario C: Erststimmen-Bündelung simulieren (nur wenn Direktmandats-Daten vorliegen).
+    const dmParteien = direktmandateParteien();
+    if (dmParteien) {
+        const huerde = grundmandateHuerde();
+        const dmRows = Object.keys(dmParteien)
+            .filter(p => polls[p] !== undefined)
+            .sort((a, b) => (direktmandateVon(a).sicher || 0) - (direktmandateVon(b).sicher || 0));
+        if (dmRows.length) {
+            html += `
+            <div class="tactical-sliders">
+                <h4>${t('tacticalDmSliderTitle', 'Erststimmen-Simulation (Szenario C): Direktmandate anpassen')}</h4>
+                ${dmRows.map(p => `
+                <div class="tactical-slider-row">
+                    <span class="tactical-slider-name" style="color:${getPartyColor(p)}">${escapeHtml(p)}</span>
+                    <input type="range" min="0" max="6" step="1" value="${simulierteDirektmandate(p)}" data-party="${escapeHtmlAttr(p)}" data-directmandates="1" aria-label="${t('tacticalDmSliderAria', 'Erststimmen-Direktmandate von {p} anpassen').replace('{p}', escapeHtmlAttr(p))}">
+                    <span class="tactical-slider-val">${t('tacticalDmValue', '{n} Direktmandate').replace('{n}', simulierteDirektmandate(p))}</span>
+                </div>`).join('')}
+                <p class="tactical-slider-note">${t('tacticalDmSliderNote', 'Verschiebe die Regler, um Erststimmen-Bündelung zu simulieren – ab {n} Direktmandaten zieht eine Partei auch unter der {t}%-Hürde ins Parlament ein (Grundmandatsklausel).').replace('{n}', huerde).replace('{t}', tacticalThreshold())}</p>
+            </div>`;
+        }
+    }
+    return html;
 }
 
 function tacticalSectionHTML() {
     return `
         <div class="tactical-section">
             <div class="tactical-section-head">
-                <h3>Taktisches Wählen</h3>
-                <p class="tactical-intro">Simuliere deine Stimme: Welche Auswirkungen hätte ein taktisches Wahlverhalten auf dein Ergebnis?</p>
+                <h3>${t('tacticalTitle', 'Taktisches Wählen')}</h3>
+                <p class="tactical-intro">${t('tacticalIntro', 'Simuliere deine Stimme: Welche Auswirkungen hätte ein taktisches Wahlverhalten auf dein Ergebnis?')}</p>
                 <label class="tactical-toggle">
                     <input type="checkbox" id="tacticalToggle" ${tacticalEnabled ? 'checked' : ''}>
                     <span class="tactical-switch" aria-hidden="true"></span>
-                    <span class="tactical-toggle-label">Taktik-Modus aktivieren</span>
+                    <span class="tactical-toggle-label">${t('tacticalEnable', 'Taktik-Modus aktivieren')}</span>
                 </label>
             </div>
             <div class="tactical-content" id="tacticalContent" ${tacticalEnabled ? '' : 'hidden'}>
@@ -1929,43 +1997,91 @@ function tacticalSectionHTML() {
 
 function calculateTacticalVoting(results) {
     const threshold = tacticalThreshold();
+    const huerde = grundmandateHuerde();
     const polls = calculateTacticalPolls();
     const pollOf = p => (polls[p] || 0);
     const sorted = results.slice().sort((a, b) => (b.match ?? -1) - (a.match ?? -1));
     const warnings = [];
-    const info = { coalition: null, share: 0, eligibleSum: 0 };
+    const info = {
+        coalition: null, share: 0, eligibleSum: 0,
+        hasDirektmandatDaten: !!direktmandateParteien(),
+        erststimmen: [] // Szenario C: Parteien unter der Hürde mit Direktmandats-Daten
+    };
 
     if (sorted.length === 0) return { warnings, info };
 
-    // 1) Verschenkte Stimme (Wasted Vote Warning)
+    // Szenario C – Grundmandatsklausel: Parteien unter der Sperrklausel, die über
+    // Erststimmen-Direktmandate (>= huerde) trotzdem ins Parlament einziehen würden.
+    const viaGrundmandat = new Set();
+    sorted.forEach(r => {
+        if (pollOf(r.partei) >= threshold) return;
+        const sim = simulierteDirektmandate(r.partei);
+        if (sim >= huerde) viaGrundmandat.add(r.partei);
+        const basis = direktmandateVon(r.partei);
+        if (basis) {
+            info.erststimmen.push({
+                partei: r.partei,
+                prozent: pollOf(r.partei),
+                mandate: sim,
+                huerde,
+                einzug: sim >= huerde,      // zieht über die Grundmandatsklausel ein
+                nah: sim === huerde - 1     // kämpft um das letzte benötigte Mandat
+            });
+        }
+    });
+
+    // 1) Verschenkte Stimme (Wasted Vote Warning) – außer top1 zieht über die
+    //    Grundmandatsklausel ein (dann wäre die Aufforderung zum Wechsel irreführend).
     const top1 = sorted[0].partei;
     if (pollOf(top1) < threshold) {
-        const alt = sorted.find(r => r.partei !== top1 && (pollOf(r.partei) || 0) >= threshold);
-        if (alt) {
+        if (viaGrundmandat.has(top1)) {
             warnings.push({
-                type: 'wasted',
-                text: `Deine Top-Partei «${top1}» scheitert aktuell an der ${threshold}%-Hürde (${pollOf(top1).toFixed(1)}%). Strategische Alternative: ${alt.partei} (${pollOf(alt.partei).toFixed(1)}%).`
+                type: 'grundmandat',
+                text: t('tacticalGrundmandat', 'Deine Top-Partei «{p}» liegt mit {v}% unter der {t}%-Hürde, zieht aber über die Grundmandatsklausel ins Parlament ein ({m} Erststimmen-Direktmandate). Sicher ihr per Erststimme das {need}. Direktmandat, statt auf eine andere Partei auszuweichen.')
+                    .replace('{p}', top1)
+                    .replace('{v}', pollOf(top1).toFixed(1))
+                    .replace('{t}', threshold)
+                    .replace('{m}', simulierteDirektmandate(top1))
+                    .replace('{need}', huerde)
             });
+        } else {
+            const alt = sorted.find(r => r.partei !== top1 && (pollOf(r.partei) || 0) >= threshold);
+            if (alt) {
+                warnings.push({
+                    type: 'wasted',
+                    text: t('tacticalWasted', 'Deine Top-Partei «{p}» scheitert aktuell an der {t}%-Hürde ({v}%). Strategische Alternative: {alt} ({altV}%).')
+                        .replace('{p}', top1)
+                        .replace('{t}', threshold)
+                        .replace('{v}', pollOf(top1).toFixed(1))
+                        .replace('{alt}', alt.partei)
+                        .replace('{altV}', pollOf(alt.partei).toFixed(1))
+                });
+            }
         }
     }
 
-    // 2) Leihstimme zur Koalitionsabsicherung
+    // 2) Leihstimme zur Koalitionsabsicherung. Parteien, die über die Grundmandatsklausel
+    //    einziehen, zählen zur Koalitionsbasis mit – sonst wäre die Mehrheitsrechnung falsch.
     if (sorted.length >= 2) {
         const a = sorted[0].partei;
         const b = sorted[1].partei;
         const pa = pollOf(a), pb = pollOf(b);
-        const eligible = sorted.filter(r => pollOf(r.partei) >= threshold);
+        const eligible = sorted.filter(r => pollOf(r.partei) >= threshold || viaGrundmandat.has(r.partei));
         const eligibleSum = eligible.reduce((s, p) => s + pollOf(p.partei), 0);
         const share = eligibleSum > 0 ? (((pa + pb) / eligibleSum) * 100) : 0;
         info.coalition = `${a} + ${b}`;
         info.share = share;
         info.eligibleSum = eligibleSum;
-        const schwankt = [a, b].some(p => { const v = pollOf(p); return v >= 4 && v <= 6; });
-        if (share > 50 && schwankt) {
+        // Loan-Vote-Bedingung: der kleinere Partner muss nahe bzw. unter der
+        // Sperrklausel liegen (Doku-Szenario B: Band um die Hürde) und nicht
+        // schon über die Grundmandatsklausel abgesichert sein.
+        const schwankt = [a, b].some(p => { const v = pollOf(p); return v > 0 && v < threshold + 1; });
+        if (share > 50 && schwankt && !viaGrundmandat.has(pa <= pb ? a : b)) {
             const smaller = pa <= pb ? a : b;
             warnings.push({
                 type: 'loan',
-                text: `Achtung, deine Wunschkoalition aus ${a} und ${b} ist in Gefahr. Überlege, ${smaller} zu wählen, um sie über die ${threshold}%-Hürde zu retten.`
+                text: t('tacticalLoan', 'Achtung, deine Wunschkoalition aus {a} und {b} ist in Gefahr. Überlege, {s} zu wählen, um sie über die {t}%-Hürde zu retten.')
+                    .replace('{a}', a).replace('{b}', b).replace('{s}', smaller).replace('{t}', threshold)
             });
         }
     }
@@ -1980,18 +2096,49 @@ function updateTacticalWarnings() {
     if (info.coalition) {
         const okMaj = info.share > 50;
         html += `<div class="tactical-majority ${okMaj ? 'ok' : 'no'}">
-            <strong>Koalitionsmehrheit:</strong> ${escapeHtml(info.coalition)} erreicht ${info.share.toFixed(0)}% der Stimmen der Parteien über ${tacticalThreshold()}% — ${okMaj ? 'Mehrheit!' : 'keine Mehrheit'}
+            <strong>${t('tacticalMajorityLabel', 'Koalitionsmehrheit:')}</strong> ${escapeHtml(info.coalition)} ${t('tacticalMajorityReaches', 'erreicht')} ${info.share.toFixed(0)}% ${t('tacticalMajorityOf', 'der Stimmen der Parteien über')} ${tacticalThreshold()}% — ${okMaj ? t('tacticalMajorityYes', 'Mehrheit!') : t('tacticalMajorityNo', 'keine Mehrheit')}
         </div>`;
     }
     if (!warnings.length) {
-        html += `<div class="tactical-ok-hint"><span class="tactical-warning-tag">Alles klar</span><span>Keine strategische Warnung aktuell – Deine Top-Partei liegt über ${tacticalThreshold()}% und Deine Wunschkoalition steht im simulierten Szenario stabil.</span></div>`;
+        html += `<div class="tactical-ok-hint"><span class="tactical-warning-tag">${t('tacticalOkTag', 'Alles klar')}</span><span>${t('tacticalOkHint', 'Keine strategische Warnung aktuell – Deine Top-Partei liegt über {t}% und Deine Wunschkoalition steht im simulierten Szenario stabil.').replace('{t}', tacticalThreshold())}</span></div>`;
     }
     warnings.forEach(w => {
-        html += `<div class="tactical-warning ${w.type === 'loan' ? 'loan' : ''}">
-            <span class="tactical-warning-tag">${w.type === 'loan' ? 'Achtung' : 'Hinweis'}</span>
+        html += `<div class="tactical-warning ${w.type === 'loan' ? 'loan' : ''} ${w.type === 'grundmandat' ? 'grundmandat' : ''}">
+            <span class="tactical-warning-tag">${w.type === 'loan' ? t('tacticalTagAttention', 'Achtung') : t('tacticalTagHint', 'Hinweis')}</span>
             <span>${escapeHtml(w.text)}</span>
         </div>`;
     });
+
+    // ===== Erststimmen-Szenarien (Grundmandatsklausel & strategische Erststimme) =====
+    html += `<div class="tactical-scenarios">
+        <h4>${t('tacticalScTitle', 'Erststimmen-Szenarien (Grundmandatsklausel & strategische Erststimme)')}</h4>`;
+    if (!info.hasDirektmandatDaten) {
+        // Keine Wahlkreis-/Direktmandats-Daten: klarer Hinweis statt irreführender Wertung.
+        html += `<div class="tactical-sc-hint nodata">${t('tacticalScNoData', 'Szenarien C (Erststimmen-Bündelung für {n} Direktmandate) und D (strategische Erststimme gegen einen starken Gegenkandidaten) werden hier NICHT abgebildet: Für diese Wahl liegen keine Wahlkreis-/Direktmandats-Daten vor. Alle Werte oben basieren ausschließlich auf Partei-Zweitstimmen-Umfragewerten – die Erststimme bitte separat in Deinem Wahlkreis prüfen.').replace('{n}', grundmandateHuerde())}</div>`;
+    } else {
+        if (info.erststimmen.length) {
+            html += `<div class="tactical-sc-list">`;
+            info.erststimmen.forEach(x => {
+                let cls = 'tactical-sc-party';
+                if (x.einzug) cls += ' enter';
+                else if (x.nah) cls += ' near';
+                if (x.einzug) {
+                    html += `<div class="${cls}"><strong style="color:${getPartyColor(x.partei)}">${escapeHtml(x.partei)}</strong> – ${t('tacticalScCEinzug', '{p} liegt mit {v}% unter der {t}%-Hürde, zieht aber über {m} Erststimmen-Direktmandate ins Parlament ein (Grundmandatsklausel).').replace('{p}', escapeHtml(x.partei)).replace('{v}', x.prozent.toFixed(1)).replace('{t}', tacticalThreshold()).replace('{m}', x.mandate)}</div>`;
+                } else if (x.nah) {
+                    html += `<div class="${cls}"><strong style="color:${getPartyColor(x.partei)}">${escapeHtml(x.partei)}</strong> – ${t('tacticalScCNear', '{p} liegt mit {v}% unter der Hürde und hat aktuell {m} Direktmandate – mit Erststimmen-Bündelung auf {need} wäre der Einzug über die Grundmandatsklausel möglich.').replace('{p}', escapeHtml(x.partei)).replace('{v}', x.prozent.toFixed(1)).replace('{m}', x.mandate).replace('{need}', x.huerde)}</div>`;
+                } else {
+                    html += `<div class="${cls}"><strong style="color:${getPartyColor(x.partei)}">${escapeHtml(x.partei)}</strong> – ${t('tacticalScCWeit', '{p} liegt mit {v}% unter der Hürde und hat aktuell nur {m} Direktmandate – der Einzug über die Grundmandatsklausel ist in diesem Szenario nicht in Sicht.').replace('{p}', escapeHtml(x.partei)).replace('{v}', x.prozent.toFixed(1)).replace('{m}', x.mandate)}</div>`;
+                }
+            });
+            html += `</div>`;
+        } else {
+            html += `<div class="tactical-sc-hint ok">${t('tacticalScCMatrix', 'Direktmandats-Schätzungen für diese Wahl liegen vor (siehe Regler „Direktmandate“). Aktuell liegt keine Partei mit weniger als {t}% auf dem Weg über die Grundmandatsklausel.').replace('{t}', tacticalThreshold())}</div>`;
+        }
+        // Szenario D: reine Information – ohne Wahlkreise keine konkrete Empfehlung möglich.
+        html += `<div class="tactical-sc-hint d">${t('tacticalScDHint', 'Szenario D (strategische Erststimme): Wenn in Deinem Wahlkreis ein von Dir stark abgelehnter Direktkandidat vorn liegt, hilft die Erststimme für den aussichtsreichsten Gegenkandidaten – auch über Parteigrenzen hinweg. Der Simulator kennt keine einzelnen Wahlkreise, daher wird dieses Szenario hier nur erklärt und nicht berechnet.')}</div>`;
+    }
+    html += `</div>`;
+
     box.innerHTML = html;
 }
 
@@ -2007,6 +2154,20 @@ function tacticalSliderRowClass(input) {
     updateTacticalWarnings();
 }
 
+// Szenario C-Regler: simuliert Erststimmen-Bündelung (Anzahl Direktmandate der
+// Partei bei der nächsten Wahl) und überschreibt die Basis-Prognose der Config.
+function tacticalDirectMandateSliderRowClass(input) {
+    const val = parseInt(input.value, 10);
+    const party = input.dataset.party;
+    tacticalDirectMandates[party] = val;
+    const row = input.closest('.tactical-slider-row');
+    if (row) {
+        const lbl = row.querySelector('.tactical-slider-val');
+        if (lbl) lbl.textContent = t('tacticalDmValue', '{n} Direktmandate').replace('{n}', val);
+    }
+    updateTacticalWarnings();
+}
+
 function bindTacticalEvents() {
     const toggle = document.getElementById('tacticalToggle');
     const content = document.getElementById('tacticalContent');
@@ -2017,7 +2178,11 @@ function bindTacticalEvents() {
         if (toggle.checked) updateTacticalWarnings();
     });
     document.querySelectorAll('#testResults input[type="range"][data-party]').forEach(slider => {
-        slider.addEventListener('input', () => tacticalSliderRowClass(slider));
+        if (slider.dataset.directmandates) {
+            slider.addEventListener('input', () => tacticalDirectMandateSliderRowClass(slider));
+        } else {
+            slider.addEventListener('input', () => tacticalSliderRowClass(slider));
+        }
     });
     // Nach Re-Render (z.B. Einfache-Sprache-Toggle) Zustand erneut anwenden,
     // sonst blieben Warnungen trotz aktivem Taktik-Modus leer.

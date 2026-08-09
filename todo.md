@@ -6,21 +6,17 @@ Erledigte Aufgaben wurden nach `archived-todo.md` verschoben (Stand 2026-08-09).
 
 Vollständiger Bericht: `reports/review-2026-08-09.md`. Alle Befunde per Node-Harness gegen die echten Datendateien verifiziert (`node --check script.js` OK, alle 4 Wahlen). Erste eingehende Bewertung des Taktik-Moduls (PR #68 / Issue #67); zuvor gab es keine Taktik-Befunde in Reports/Archiv. Keine neuen P1-Code-Bugs; 1× P1 Einfache Sprache, 3× P2, 4× P3.
 
-### P1 – Einfache Sprache
-
-- [ ] **Taktik-Sektion komplett ohne `t()`** – `tacticalSectionHTML()` (script.js:1911-1928), `tacticalSlidersHTML()` (1891-1909), `calculateTacticalVoting()` (1930-1973), `updateTacticalWarnings()` (1975-1996) nutzen nur hartkodiertes Deutsch; im Einfache-Sprache-Modus (`isSimpleLang()`) bleibt Normal-Deutsch – bricht das README-Versprechen „Umschalter für alle UI-Texte". Verifiziert: 0 Taktik-Keys in `einfache-sprache.json`.
+Erledigt (2026-08-09): P1 „Taktik-Sektion komplett ohne `t()`" und P2 „Erststimme-/Grundmandatsklausel-Szenarien fehlen" sowie P3 „`schwankt`-Band hartkodiert 4–6" → in `archived-todo.md` verschoben. Verbleibende Punkte:
 
 ### P2 – Algorithmus
 
 - [ ] **Taktik-Simulator ignoriert `koalitionsausschluss`** – `calculateTacticalVoting()` (script.js:1952-1971) bildet die „Wunschkoalition" aus den Top-2 des Nutzers ohne `istKoalitionAusgeschlossen()`-Check (script.js:1117). Verifiziert: LSA Paar **AfD+GRÜNE** (41 % + 5 %) löst die Leihstimmen-Warnung aus – genau diese Koalition wird von `berechneKoalitionen()` (script.js:1157) und der Ausschluss-Config ausgeblendet. Empfehlung: textlich als Tipp umformulieren und nur Parteien aus zulässigen Koalitionen zulassen.
 - [ ] **Leihstimmen-Warnung (Doku Szenario B) faktisch unerreichbar** – Bedingung `share > 50` (script.js:1959,1964) + hartkodiertes Band 4–6 % (script.js:1963): Node-Harness über alle 4 Wahlen × alle Top-2-Paare → **nur 2 von 168 Treffer (AfD|GRÜNE in LSA)**, nie in btw2029/Berlin/MV. Kriterium auf Sperrklausen-Nähe des kleineren Partners umstellen.
-- [ ] **Erststimme-/Grundmandatsklausel-Szenarien fehlen** – `tactical-voting.md` Szenarien C/D (Grundmandatsklausel, strategische Erststimme/Blockadewahl, S. 79-85) werden im Simulator nicht abgebildet; es fließen nur Partei-Zweitstimmen-Prozente ein, keine Wahlkreise/Direktmandate.
 
 ### P3 – Verbesserungen
 
 - [ ] **Mock-Polls injizieren „Geisterpartei" CDU in alle 4 Wahlen** – `TACTICAL_MOCK_POLLS` (script.js:18-20) in `calculateTacticalPolls()` (script.js:1883-1885): jedes `werte.json` erhält ein Phantom `CDU` (30 %). Aktuell unsichtbar (kein Slider, nicht in `results`), aber latent fehlerhaft für künftige Wahlen ohne FDP/LINKE. Mock nur als Fallback für reale Parteien der Wahl.
 - [ ] **Taktik-Warnungen ohne eine einzige Ja/Nein-Antwort irreführend** – `showTestResults()` hängt den Taktik-Abschnitt immer an (script.js:1860); ohne verwertbare Antworten ist „Deine Top-Partei" nur die erste Partei der `werte.json`-Reihenfolge (btw2029: AfD). Oder als reine Umfrage-Information kennzeichnen.
-- [ ] **`schwankt`-Band hartkodiert 4–6** (script.js:1963) – sollte relativ zur Wahl-Sperrklausel (`threshold`, `tacticalThreshold()`, script.js:1873) sein.
 - [ ] **Expected-Utility-Modell (tactical-voting.md §5) nur als Rangfolge abgebildet** – `calculateTacticalVoting()` sortiert nur nach `match` (script.js:1934), ignoriert Abstände; nahe Gleichstände (60,1 % vs. 60,0 %) erzeugen identische Warnungen wie klare Präferenzen.
 
 ## Review vom 2026-08-08 (gesamtes Projekt, Node-Verifikation + GitHub-Cleanup)

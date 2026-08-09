@@ -2,6 +2,18 @@
 
 Erledigte (abgehakte) Aufgaben aus todo.md, Stand 2026-08-09. Offene Punkte: siehe `todo.md`.
 
+## Nachträge vom 2026-08-09 (Review Tactical Voting: i18n, Szenario C/D, `schwankt`-Band)
+
+Verifiziert per `node --check script.js` + Node-Harness gegen die echten Datendateien (alle 4 Wahlen).
+
+- [x] **Taktik-Sektion komplett ohne `t()` (P1)** – umgesetzt: sämtliche Strings im Taktik-Modul (`tacticalSectionHTML()`, `tacticalSlidersHTML()`, `calculateTacticalVoting()`, `updateTacticalWarnings()`) laufen jetzt über `t(key, fallback)`; alle Keys in `einfache-sprache.json.ui` ergänzt (`tacticalTitle`, `tacticalIntro`, `tacticalEnable`, `tacticalPollSlider*`, `tacticalDmSlider*`, `tacticalWasted`, `tacticalGrundmandat`, `tacticalLoan`, `tacticalMajority*`, `tacticalOk*`, `tacticalTag*`, `tacticalSc*`). Einfache-Sprache-Modus deckt damit den Taktik-Abschnitt vollständig ab.
+- [x] **Erststimme-/Grundmandatsklausel-Szenarien fehlen (P2, iss und Ziel des Issues)** – umgesetzt:
+  - **Datenstruktur**: optionales `direktmandate`-Objekt in `elections/*/config.json` (`{ grundmandate: 3, parteien: { "LINKE": { sicher, chancen } } }`); fließt in `setActiveElection()` in `config.direktmandate`. Für `btw2029` mit hypothetischen Schätzungen befüllt (Hinweis `hinweis` dokumentiert die Annahme), für LSA/Berlin/MV bewusst ohne Daten → dort erscheint der Nicht-Abbildungs-Hinweis.
+  - **Szenario C (Grundmandatsklausel)**: neue Regler „Direktmandate" simulieren Erststimmen-Bündelung (`tacticalDirectMandates`); Parteien unter der Sperrklausel mit `>= grundmandate` Direktmandaten „ziehen ein" – die Wasted-Vote-Warnung wird dann durch eine `grundmandat`-Warnung ersetzt und die Partei zählt zur Koalitionsbasis (sonst falsche Mehrheitsrechnung). Die Szenario-C-Sektion listet unter-Hürden-Parteien mit `einzug`/`nah`/`weit`-Status.
+  - **Szenario D (strategische Erststimme)**: ohne Wahlkreise nicht berechenbar → klarer Erklärungshinweis statt irreführender Wertung; bei fehlenden `direktmandate`-Daten erscheint zusätzlich der explizite Hinweis „Szenarien C/D werden hier NICHT abgebildet … nur Zweitstimmen-Umfragewerte".
+  - Harness: 23 Checks gegen echte Datendateien grün (btw2029 LINKE 4 % → `grundmandat`-Warnung; Erststimmen-Bündelung auf 3 Direktmandate schaltet den Einzug um; LSA/Berlin/MV ohne Daten → `hasDirektmandatDaten=false`, leere Erststimmen-Liste, kein Datenlücken-Fehlalarm; Render-Pfad inkl. Diskretion).
+- [x] **`schwankt`-Band hartkodiert 4–6 (P3)** – `schwankt` in `calculateTacticalVoting()` ist jetzt relativ zur Sperrklausel (`0 < v < threshold + 1`, Doku-Szenario-B-Band 4,5–5,2 %) statt hartkodiert; zusätzlich ausgenommen, wenn der kleine Partner schon über die Grundmandatsklausel abgesichert ist.
+
 ## Nachträge vom 2026-08-09 (Übernahme aus todo.md, Review vom 2026-08-08)
 
 Alle abgehakten Punkte des Abschnitts „Review vom 2026-08-08" aus `todo.md` wurden am 2026-08-09 nach hier verschoben; Status gegen Code/GitHub nachgeprüft (PRs #51–#79 gemergt, Issues #51/#62/#55 geschlossen).
