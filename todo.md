@@ -1,6 +1,27 @@
 # Koalitions-O-Mat – Offene Aufgaben
 
-Erledigte Aufgaben wurden nach `archived-todo.md` verschoben (Stand 2026-08-08).
+Erledigte Aufgaben wurden nach `archived-todo.md` verschoben (Stand 2026-08-09).
+
+## Review vom 2026-08-09 (Fokus: Tactical Voting – Funktion und Algorithmus)
+
+Vollständiger Bericht: `reports/review-2026-08-09.md`. Alle Befunde per Node-Harness gegen die echten Datendateien verifiziert (`node --check script.js` OK, alle 4 Wahlen). Erste eingehende Bewertung des Taktik-Moduls (PR #68 / Issue #67); zuvor gab es keine Taktik-Befunde in Reports/Archiv. Keine neuen P1-Code-Bugs; 1× P1 Einfache Sprache, 3× P2, 4× P3.
+
+### P1 – Einfache Sprache
+
+- [ ] **Taktik-Sektion komplett ohne `t()`** – `tacticalSectionHTML()` (script.js:1911-1928), `tacticalSlidersHTML()` (1891-1909), `calculateTacticalVoting()` (1930-1973), `updateTacticalWarnings()` (1975-1996) nutzen nur hartkodiertes Deutsch; im Einfache-Sprache-Modus (`isSimpleLang()`) bleibt Normal-Deutsch – bricht das README-Versprechen „Umschalter für alle UI-Texte". Verifiziert: 0 Taktik-Keys in `einfache-sprache.json`.
+
+### P2 – Algorithmus
+
+- [ ] **Taktik-Simulator ignoriert `koalitionsausschluss`** – `calculateTacticalVoting()` (script.js:1952-1971) bildet die „Wunschkoalition" aus den Top-2 des Nutzers ohne `istKoalitionAusgeschlossen()`-Check (script.js:1117). Verifiziert: LSA Paar **AfD+GRÜNE** (41 % + 5 %) löst die Leihstimmen-Warnung aus – genau diese Koalition wird von `berechneKoalitionen()` (script.js:1157) und der Ausschluss-Config ausgeblendet. Empfehlung: textlich als Tipp umformulieren und nur Parteien aus zulässigen Koalitionen zulassen.
+- [ ] **Leihstimmen-Warnung (Doku Szenario B) faktisch unerreichbar** – Bedingung `share > 50` (script.js:1959,1964) + hartkodiertes Band 4–6 % (script.js:1963): Node-Harness über alle 4 Wahlen × alle Top-2-Paare → **nur 2 von 168 Treffer (AfD|GRÜNE in LSA)**, nie in btw2029/Berlin/MV. Kriterium auf Sperrklausen-Nähe des kleineren Partners umstellen.
+- [ ] **Erststimme-/Grundmandatsklausel-Szenarien fehlen** – `tactical-voting.md` Szenarien C/D (Grundmandatsklausel, strategische Erststimme/Blockadewahl, S. 79-85) werden im Simulator nicht abgebildet; es fließen nur Partei-Zweitstimmen-Prozente ein, keine Wahlkreise/Direktmandate.
+
+### P3 – Verbesserungen
+
+- [ ] **Mock-Polls injizieren „Geisterpartei" CDU in alle 4 Wahlen** – `TACTICAL_MOCK_POLLS` (script.js:18-20) in `calculateTacticalPolls()` (script.js:1883-1885): jedes `werte.json` erhält ein Phantom `CDU` (30 %). Aktuell unsichtbar (kein Slider, nicht in `results`), aber latent fehlerhaft für künftige Wahlen ohne FDP/LINKE. Mock nur als Fallback für reale Parteien der Wahl.
+- [ ] **Taktik-Warnungen ohne eine einzige Ja/Nein-Antwort irreführend** – `showTestResults()` hängt den Taktik-Abschnitt immer an (script.js:1860); ohne verwertbare Antworten ist „Deine Top-Partei" nur die erste Partei der `werte.json`-Reihenfolge (btw2029: AfD). Oder als reine Umfrage-Information kennzeichnen.
+- [ ] **`schwankt`-Band hartkodiert 4–6** (script.js:1963) – sollte relativ zur Wahl-Sperrklausel (`threshold`, `tacticalThreshold()`, script.js:1873) sein.
+- [ ] **Expected-Utility-Modell (tactical-voting.md §5) nur als Rangfolge abgebildet** – `calculateTacticalVoting()` sortiert nur nach `match` (script.js:1934), ignoriert Abstände; nahe Gleichstände (60,1 % vs. 60,0 %) erzeugen identische Warnungen wie klare Präferenzen.
 
 ## Review vom 2026-08-08 (gesamtes Projekt, Node-Verifikation + GitHub-Cleanup)
 
@@ -8,14 +29,8 @@ Vollständiger Bericht: `reports/review-2026-08-08.md`. Sitzsummen (630/130/83/7
 
 ### P3 – Verbesserungen
 
-- [x] **Berlin-2026: BSW hat bei 6 Fragen keine Position** (nr 9, 20, 32, 36, 37, 45) – einzige Partei über alle 4 Wahlen mit Lücken; `getAnswerValue()` liefert dort `'m'` (neutral). **Erledigt**: echte belegte BSW-Positionen (`n`) für nr 9 & 32 ergänzt, übrige vier als dokumentierte Neutralität markiert – BSW hat nun in allen 52 Fragen einen Eintrag.
-- [x] **Improve UX and UI** make it easier to understand. **Umsetzung (Issue „Verbesserung der UX & UI", 2026-08-09)**: ARIA-Tabs mit `role="tablist"/"tab"/"tabpanel"`, `aria-selected` + Roving-Tabindex und Pfeiltasten-/Home-/End-Navigation; sichtbarer Tastatur-Fokus (`:focus-visible`) global, Koalitions-Checkboxen wieder per Tastatur fokussierbar (statt `display:none`, jetzt `:has(input:focus-visible)`-Ring); `aria-pressed` für „Wichtige Frage"- und Antwort-Buttons; Screenreader-Status für Koalitionslisten (`#coalitionStatus`, `role="status"`) und Benachrichtigungen (`role="status"`/`role="alert"`); erklärender Filter-Hinweis + „Alle Filter zurücksetzen"-Button (`resetCoalitionFilters()`) im Koalitionen-Tab; neue i18n-Keys `filterHint`/`resetFilters`/`filtersReset` in `einfache-sprache.json`; Doku in README („Bedienung & Barrierefreiheit"). Verifiziert mit `node --check script.js`.
-- [x] **Issue „Unvereinbarkeits-Koalitionen können entstehen" (2026-08-09)** – umgesetzt: neue Wahlkonfigurations-Key `koalitionsausschluss` (Objekt, das pro Partei festlegt, mit welchen Parteien sie nicht regieren will, z. B. `"AfD": ["SPD", "GRÜNE", "LINKE"]`); `istKoalitionAusgeschlossen()` (script.js) blendet jede Koalition aus, die ein solches Ausschluss-Paar enthält. Für alle 4 Wahlen AfD → SPD/GRÜNE/LINKE definiert. UX: Hinweis `.exclusion-hint` im Koalitionen-Tab (Ergebnis- und Leerzustand), `methodologyMathHint` aktualisiert, i18n-Keys `excludedCoalitionsHint`/`methodologyMathHint` in `einfache-sprache.json`; README dokumentiert die Datenstruktur. Verifiziert per Node-Harness: btw2029 22, LSA 13, Berlin 13, MV 22 Koalitionen mit AfD-SPD/GRÜNE/LINKE ausgeblendet.
-### Tracking offene GitHub-Issues
-
-- [x] **Issue #51 `newsItemMatchesParty()`-False-Positives** – umgesetzt: eigene Wortgrenzen (statt `\b`), Komposita wie „SPDler“ werden erkannt, mehrdeutige Begriffe (grüne/linke/Volt) nur mit Parteikontext. Keine Regression.
-- [x] **Issue #62 „Improve OpenCode prompts in gh Actions (Review Action)"** – erledigt: verbesserter Review-Prompt liegt in `opencode-review-prompt.md` (separate Md-Datei außerhalb von `.github/workflows/`), Reviewer-Agent `.opencode/agent/reviewer.md` überarbeitet. Workflow-Datei bewusst unverändert, da die GitHub-App keine `workflows`-Berechtigung hat; Anbindung siehe Abschnitt „Einbindung" in der Prompt-Datei.
-- [ ] **Issue #55 „Zeilenreferenzen verschoben (kosmetisch)"** – geschlossen (aktuelle Referenzen aktualisiert; historische Reports bleiben Momentaufnahmen). Falls gewünscht als won't-fix dokumentieren.
+Alle in diesem Abschnitt abgehakten Punkte (BSW-Positionen Berlin, UX/UI, `koalitionsausschluss`, #51, #62, #55) sind erledigt und nach `archived-todo.md` verschoben (Stand 2026-08-09).
+- [x] **Issue #55 „Zeilenreferenzen verschoben (kosmetisch)"** – geschlossen (aktuelle Referenzen aktualisiert; historische Reports bleiben Momentaufnahmen). → in `archived-todo.md`.
 
 ## Review vom 2026-08-06 (Lauf B, gesamtes Projekt + GitHub-Cleanup)
 
