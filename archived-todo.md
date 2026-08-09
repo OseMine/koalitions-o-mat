@@ -2,17 +2,21 @@
 
 Erledigte (abgehakte) Aufgaben aus todo.md, Stand 2026-08-09. Offene Punkte: siehe `todo.md`.
 
-## Nachträge vom 2026-08-09 (Review Tactical Voting: i18n, Szenario C/D, `schwankt`-Band)
+## Nachträge vom 2026-08-09 (Issue #84: Erststimmen-/Grundmandatsklausel-Szenarien C/D)
 
-Verifiziert per `node --check script.js` + Node-Harness gegen die echten Datendateien (alle 4 Wahlen).
-
-- [x] **Taktik-Sektion komplett ohne `t()` (P1)** – umgesetzt: sämtliche Strings im Taktik-Modul (`tacticalSectionHTML()`, `tacticalSlidersHTML()`, `calculateTacticalVoting()`, `updateTacticalWarnings()`) laufen jetzt über `t(key, fallback)`; alle Keys in `einfache-sprache.json.ui` ergänzt (`tacticalTitle`, `tacticalIntro`, `tacticalEnable`, `tacticalPollSlider*`, `tacticalDmSlider*`, `tacticalWasted`, `tacticalGrundmandat`, `tacticalLoan`, `tacticalMajority*`, `tacticalOk*`, `tacticalTag*`, `tacticalSc*`). Einfache-Sprache-Modus deckt damit den Taktik-Abschnitt vollständig ab.
-- [x] **Erststimme-/Grundmandatsklausel-Szenarien fehlen (P2, iss und Ziel des Issues)** – umgesetzt:
+- [x] **Erststimme-/Grundmandatsklausel-Szenarien fehlen (P2, Ziel des Issues)** – umgesetzt:
   - **Datenstruktur**: optionales `direktmandate`-Objekt in `elections/*/config.json` (`{ grundmandate: 3, parteien: { "LINKE": { sicher, chancen } } }`); fließt in `setActiveElection()` in `config.direktmandate`. Für `btw2029` mit hypothetischen Schätzungen befüllt (Hinweis `hinweis` dokumentiert die Annahme), für LSA/Berlin/MV bewusst ohne Daten → dort erscheint der Nicht-Abbildungs-Hinweis.
   - **Szenario C (Grundmandatsklausel)**: neue Regler „Direktmandate" simulieren Erststimmen-Bündelung (`tacticalDirectMandates`); Parteien unter der Sperrklausel mit `>= grundmandate` Direktmandaten „ziehen ein" – die Wasted-Vote-Warnung wird dann durch eine `grundmandat`-Warnung ersetzt und die Partei zählt zur Koalitionsbasis (sonst falsche Mehrheitsrechnung). Die Szenario-C-Sektion listet unter-Hürden-Parteien mit `einzug`/`nah`/`weit`-Status.
   - **Szenario D (strategische Erststimme)**: ohne Wahlkreise nicht berechenbar → klarer Erklärungshinweis statt irreführender Wertung; bei fehlenden `direktmandate`-Daten erscheint zusätzlich der explizite Hinweis „Szenarien C/D werden hier NICHT abgebildet … nur Zweitstimmen-Umfragewerte".
   - Harness: 23 Checks gegen echte Datendateien grün (btw2029 LINKE 4 % → `grundmandat`-Warnung; Erststimmen-Bündelung auf 3 Direktmandate schaltet den Einzug um; LSA/Berlin/MV ohne Daten → `hasDirektmandatDaten=false`, leere Erststimmen-Liste, kein Datenlücken-Fehlalarm; Render-Pfad inkl. Diskretion).
-- [x] **`schwankt`-Band hartkodiert 4–6 (P3)** – `schwankt` in `calculateTacticalVoting()` ist jetzt relativ zur Sperrklausel (`0 < v < threshold + 1`, Doku-Szenario-B-Band 4,5–5,2 %) statt hartkodiert; zusätzlich ausgenommen, wenn der kleine Partner schon über die Grundmandatsklausel abgesichert ist.
+
+## Nachträge vom 2026-08-09 (Issue #81: Einfache Sprache in der Taktik-Sektion)
+
+- [x] **Taktik-Sektion komplett ohne `t()`** – `tacticalSectionHTML()` (script.js:1911-1928), `tacticalSlidersHTML()` (1891-1909), `calculateTacticalVoting()` (1930-1973), `updateTacticalWarnings()` (1975-1996) nutzen ausschließlich hartkodierte deutsche Strings; im Einfache-Sprache-Modus (`isSimpleLang()`) blieb der Abschnitt Normal-Deutsch – das brach das README-Versprechen „Umschalter für alle UI-Texte … in einfacher Sprache". **Erledigt**: alle UI-Texte der 4 Funktionen laufen jetzt über `t()` mit exakt übernommenen Fallback-Texten (Normalmodus unverändert); 18 neue Keys `tactical.*` (`sectionTitle`, `intro`, `toggleLabel`, `sliderTitle`, `sliderAria` (mit `{partei}`-Platzhalter), `sliderNote`, `wasted`, `loan`, `coalitionLabel`, `coalitionText`, `coalitionMajority`, `coalitionNoMajority`, `okTag`, `okHint`, `warningLoan`, `warningInfo`, `excluded`, `closeTopHint`) in `einfache-sprache.json.ui` (nun 176 Keys, eindeutig, valides JSON). Verifiziert per Node-Harness: Normal- und Einfache-Sprache-Modus liefern die jeweiligen Texte (Wasted- & Loan-Warnung, Koalitionsmehrheit, Slider-, Toggle- und OK-Hinweise); `node --check script.js` OK; Harness-Grep: 0 hartkodierte UI-Strings in den 4 Funktionen.
+
+## Nachträge vom 2026-08-09 (Taktik-Simulator: Übereinstimmungs-Abstände)
+
+- [x] **Expected-Utility-Modell (tactical-voting.md §5) nur als Rangfolge abgebildet** – umgesetzt: `calculateTacticalVoting()` (script.js) wertet jetzt die Übereinstimmungs-Abstände statt nur der Rangfolge aus. Neue Schwelle `minMatchGapForTop` (config.json → `thresholds`, Standard 1 Prozentpunkt, pro Wahl überschreibbar); Helfer `tacticalMatchGapThreshold()`/`tacticalTopGap()`. „Deine Top-Partei" (Wasted-Vote-Warnung) und „Deine Wunschkoalition" (Leihstimmen-Warnung + Koalitionsmehrheit-Anzeige) werden nur bei `match[0] − match[1] ≥ minMatchGapForTop` abgeleitet; nahe Gleichstände (60,1 % vs. 60,0 %) erzeugen keine irreführenden Warnungen, stattdessen zeigt `updateTacticalWarnings()` einen neutralen „Mindestabstand nicht erreicht"-Hinweis statt „Alles klar". Verhalten in `tactical-voting.md` §5 dokumentiert (neuer Abschnitt „Berücksichtigung von Übereinstimmungs-Abständen im Taktik-Simulator"). Verifiziert per neuem Node-Harness `harness/tactical-match-gap.js` (15/15 Assertions: klare Präferenz feuert Warnungen, Gleichstand nicht, konfigurierbare Schwelle, Null-Matches, Einzelpartei, DOM-Hinweis), `node --check script.js` OK.
 
 ## Implementierung vom 2026-08-09 (Taktik-Warnungen ohne Antworten irreführend)
 
