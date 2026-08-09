@@ -1,0 +1,65 @@
+<<<<<<< opencode/issue84-20260809185639
+## Nachträge vom 2026-08-09 (Issue #84: Erststimmen-/Grundmandatsklausel-Szenarien C/D)
+
+- [x] **Erststimme-/Grundmandatsklausel-Szenarien fehlen (P2, Ziel des Issues)** – umgesetzt:
+  - **Datenstruktur**: optionales `direktmandate`-Objekt in `elections/*/config.json` (`{ grundmandate: 3, parteien: { "LINKE": { sicher, chancen } } }`); fließt in `setActiveElection()` in `config.direktmandate`. Für `btw2029` mit hypothetischen Schätzungen befüllt (Hinweis `hinweis` dokumentiert die Annahme), für LSA/Berlin/MV bewusst ohne Daten → dort erscheint der Nicht-Abbildungs-Hinweis.
+  - **Szenario C (Grundmandatsklausel)**: neue Regler „Direktmandate" simulieren Erststimmen-Bündelung (`tacticalDirectMandates`); Parteien unter der Sperrklausel mit `>= grundmandate` Direktmandaten „ziehen ein" – die Wasted-Vote-Warnung wird dann durch eine `grundmandat`-Warnung ersetzt und die Partei zählt zur Koalitionsbasis (sonst falsche Mehrheitsrechnung). Die Szenario-C-Sektion listet unter-Hürden-Parteien mit `einzug`/`nah`/`weit`-Status.
+  - **Szenario D (strategische Erststimme)**: ohne Wahlkreise nicht berechenbar → klarer Erklärungshinweis statt irreführender Wertung; bei fehlenden `direktmandate`-Daten erscheint zusätzlich der explizite Hinweis „Szenarien C/D werden hier NICHT abgebildet … nur Zweitstimmen-Umfragewerte".
+  - Harness: 23 Checks gegen echte Datendateien grün (btw2029 LINKE 4 % → `grundmandat`-Warnung; Erststimmen-Bündelung auf 3 Direktmandate schaltet den Einzug um; LSA/Berlin/MV ohne Daten → `hasDirektmandatDaten=false`, leere Erststimmen-Liste, kein Datenlücken-Fehlalarm; Render-Pfad inkl. Diskretion).
+
+=======
+>>>>>>> main
+## Nachträge vom 2026-08-09 (Issue #81: Einfache Sprache in der Taktik-Sektion)
+<<<<<<< opencode/issue84-20260809185639
+    "tactical.closeTopHint": "Ihre Top-Parteien liegen zu dicht beieinander (Abstand {gap} Prozentpunkt(e) nicht erreicht). Eine klare Top-Partei oder Wunschkoalition lässt sich nicht ableiten.",
+    "tactical.dmSliderTitle": "Erststimmen-Simulation (Szenario C): Direktmandate ändern. Verschieben Sie die Regler, um Erststimmen-Bündelung zu testen.",
+    "tactical.dmSliderAria": "Erststimmen-Direktmandate von {partei} ändern",
+    "tactical.dmSliderNote": "Schieben Sie die Regler. Dann sehen Sie: Zieht die Partei über die Grundmandatsklausel ins Parlament ein? Ab {n} Direktmandaten schafft eine Partei das auch mit weniger als {threshold} % (Grundmandatsklausel).",
+    "tactical.dmValue": "{n} Direktmandate",
+    "tactical.grundmandat": "Ihre Top-Partei «{partei}» schafft es mit {wert} % nicht über die {threshold} %-Hürde. Sie zieht trotzdem ins Parlament ein: über {mandate} Erststimmen-Direktmandate (Grundmandatsklausel). Sicher Sie ihr mit Ihrer Erststimme das {need}. Direktmandat. Wählen Sie sie, statt auf eine andere Partei auszuweichen.",
+    "tactical.scTitle": "Erststimmen-Szenarien (Grundmandatsklausel und strategische Erststimme)",
+    "tactical.scNoData": "Szenario C (Erststimmen-Bündelung für {n} Direktmandate) und Szenario D (strategische Erststimme gegen einen starken Gegenkandidaten) werden hier NICHT gezeigt: Für diese Wahl gibt es keine Wahlkreis-Daten. Alle Werte oben sind nur Zweitstimmen-Umfragewerte – die Erststimme bitte separat in Ihrem Wahlkreis prüfen.",
+    "tactical.scCEinzug": "{p} liegt mit {v} % unter der {t} %-Hürde, zieht aber über {m} Erststimmen-Direktmandate ins Parlament ein (Grundmandatsklausel).",
+    "tactical.scCNear": "{p} liegt mit {v} % unter der Hürde und hat aktuell {m} Direktmandate – mit Erststimmen-Bündelung auf {need} wäre der Einzug über die Grundmandatsklausel möglich.",
+    "tactical.scCWeit": "{p} liegt mit {v} % unter der Hürde und hat aktuell nur {m} Direktmandate – der Einzug über die Grundmandatsklausel ist in diesem Szenario nicht in Sicht.",
+    "tactical.scCMatrix": "Direktmandats-Schätzungen für diese Wahl liegen vor (siehe Regler „Direktmandate“). Aktuell liegt keine Partei mit weniger als {t} % auf dem Weg über die Grundmandatsklausel.",
+    "tactical.scDHint": "Szenario D (strategische Erststimme): Wenn in Ihrem Wahlkreis ein von Ihnen stark abgelehnter Direktkandidat vorn liegt, hilft die Erststimme für den aussichtsreichsten Gegenkandidaten – auch über Parteigrenzen hinweg. Der Simulator kennt keine einzelnen Wahlkreise. Dieses Szenario wird hier nur erklärt und nicht berechnet."
+=======
+
+<<<<<<< opencode/issue84-20260809185639
+// Wahlkreis-/Direktmandats-Daten (optional pro Wahl in config.json). Existieren
+// keine, sind die Szenarien C/D nicht abgebildet und es muss ein klarer Hinweis
+// erscheinen statt irreführender Zweitstimmen-Interpretation.
+function direktmandateParteien() {
+    return (config && config.direktmandate && config.direktmandate.parteien) || null;
+}
+
+// Anzahl Erststimmen-Direktmandate, die die Grundmandatsklausel auslöst (i.d.R. 3).
+function grundmandateHuerde() {
+    const dm = config && config.direktmandate;
+    return (dm && dm.grundmandate) || 3;
+}
+
+// Schätzung einer Partei aus der Config: { sicher, chancen } Direktmandate.
+function direktmandateVon(partei) {
+    const daten = direktmandateParteien();
+    if (!daten || !daten[partei]) return null;
+    return daten[partei];
+}
+
+// Simulierte Direktmandate: Nutzer-Regler (Erststimmen-Bündelung, Szenario C)
+// überschreibt die sichere Prognose aus der Config.
+function simulierteDirektmandate(partei) {
+    const basis = direktmandateVon(partei);
+    if (!basis) return 0;
+    if (tacticalDirectMandates && tacticalDirectMandates[partei] != null) return tacticalDirectMandates[partei];
+    return basis.sicher || 0;
+}
+
+=======
+>>>>>>> main 
+<<<<<<< opencode/issue84-20260809185639
+- [x] **Erststimme-/Grundmandatsklausel-Szenarien fehlen** – `tactical-voting.md` Szenarien C/D (Grundmandatsklausel, strategische Erststimme/Blockadewahl, S. 79-85) werden im Simulator nicht abgebildet; es fließen nur Partei-Zweitstimmen-Prozente ein, keine Wahlkreise/Direktmandate. **Umgesetzt (Issue #84, 2026-08-09)**: optionale `direktmandate`-Struktur in `elections/*/config.json` (`{ grundmandate: 3, parteien: { "LINKE": { sicher, chancen } } }`, geladen in `setActiveElection()`; befüllt nur für `btw2029` als hypothetische Schätzung, LSA/Berlin/MV bewusst ohne Daten). **Szenario C**: neue Regler „Direktmandate" simulieren Erststimmen-Bündelung (`tacticalDirectMandates`); Parteien unter der Sperrklausel mit `>= grundmandate` Direktmandaten ziehen ein – die Wasted-Vote-Warnung wird durch eine `grundmandat`-Warnung ersetzt und die Partei zählt zur Koalitionsbasis (sonst falsche Mehrheitsrechnung). C-Sektion listet unter-Hürden-Parteien mit `einzug`/`nah`/`weit`-Status. **Szenario D**: ohne Wahlkreis-Daten nur erklärt, nicht berechnet. Ohne `direktmandate`-Daten erscheint der explizite Hinweis „Szenarien C/D werden hier NICHT abgebildet – nur Zweitstimmen-Umfragewerte". Verifiziert per Node-Harness (23 Checks). → in `archived-todo.md`.
+=======
+- [ ] **Erststimme-/Grundmandatsklausel-Szenarien fehlen** – `tactical-voting.md` Szenarien C/D (Grundmandatsklausel, strategische Erststimme/Blockadewahl, S. 79-85) werden im Simulator nicht abgebildet; es fließen nur Partei-Zweitstimmen-Prozente ein, keine Wahlkreise/Direktmandate.
+/oc
