@@ -3,5 +3,8 @@
     "sperrklausel": 5,
     "minMatchForCoalition": 20,
     "maxCoalitionSize": 4
+  },
+  "koalitionsausschluss": {
+    "AfD": ["SPD", "GRÜNE", "LINKE"]
   }
 }

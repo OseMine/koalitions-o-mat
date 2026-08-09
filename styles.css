@@ -180,6 +180,16 @@ body {
 /* ===== Results ===== */
 .results-area { margin-top: 12px; }
 .result-count { color: var(--on-surface-muted); font-size: 0.85rem; margin-bottom: 8px; }
+.exclusion-hint {
+    background: var(--surface);
+    border: 1px dashed var(--outline);
+    border-radius: var(--radius-sm);
+    color: var(--on-surface-muted);
+    font-size: 0.82rem;
+    line-height: 1.5;
+    padding: 10px 12px;
+    margin-bottom: 12px;
+}
 .group-title { font-size: 1rem; font-weight: 600; margin: 16px 0 8px; color: var(--on-surface); }
 .coalition-card {
     padding: 16px; margin: 8px 0; background: var(--surface); border-radius: var(--radius-sm);

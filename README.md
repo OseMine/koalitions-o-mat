@@ -8,7 +8,7 @@ Interaktiver Koalitionsrechner und Parteien-Test für die Bundestagswahl 2029 un
 - **Willkommensseite** – Hero mit Schritt-Erklärung und klickbaren Wahl-Karten (Parteien- und Fragenzahl pro Wahl) zum direkten Start
 - **Parteien & Kandidaten** – Eigene Seite pro Wahl mit allen Parteien: Umfragewerte, Programmbeschreibungen, Kandidatinnen und Kandidaten, Partei-Websites (optional in `werte.json`)
 - **Partei-Seiten** – Jede Partei hat eine eigene Detailseite (über „Details, Programm & News"): Spitzenkandidat:in, Veränderung der Umfragewerte über die Zeit (Diagramm, optional `verlauf`), die wichtigsten Punkte des Wahlprogramms mit „Was bedeutet das?"-Einordnung, eine Einschätzung zu Machbarkeit/Möglich-Umgesetzt werden (basierend auf Umfragewerten) sowie einen Nachrichten-Feed (RSS, optional `rss` pro Partei) aus neutralen, unabhängigen Quellen (Tagesschau, Deutschlandfunk, ZDF) – die Meldungen werden automatisch nach Partei gefiltert (Parteiname und Kandidat:innen), so dass nur für die Partei relevante Nachrichten erscheinen. Die Seite ist neutral, mobil optimiert und über einen eigenen Share-Button (Link mit `&p=<Partei>`) teilbar.
-- **Alle Koalitionen** – Alle möglichen Mehrheits-/Minderheitskoalitionen mit Übereinstimmungswert (paarweiser Vergleich der Parteipositionen)
+- **Alle Koalitionen** – Alle möglichen Mehrheits-/Minderheitskoalitionen mit Übereinstimmungswert (paarweiser Vergleich der Parteipositionen); Koalitionen, die laut `koalitionsausschluss` in der Wahlkonfiguration ausgeschlossen sind (z. B. AfD + SPD), werden ausgeblendet
 - **Filter** – Mindestübereinstimmung, Koalitionsart (Mehrheit/Minderheit/Alle), nach Partei filtern, Parteien ausschließen
 - **Parteien vergleichen** – Positionen mehrerer Parteien nebeneinander mit Quellen und Begründungen
 - **Daten & Charts** – Umfragewerte, Sitzverteilung, Koalitionspotential, Parteipositionen nach Themen, Themenverteilung
@@ -33,7 +33,7 @@ Interaktiver Koalitionsrechner und Parteien-Test für die Bundestagswahl 2029 un
 
 - `elections/<id>/fragen.json` – Fragen mit Parteipositionen (`wert`, `zitat`, `quelle`, `begruendung`)
 - `elections/<id>/werte.json` – Umfragewerte und Wahl-Metadaten (Sperrklausel, Sitzzahl); optional pro Partei: `beschreibung`, `kandidaten` (`name`, `rolle`), `spitzenkandidat` (Name eines Eintrags aus `kandidaten`), `verlauf` (`label`, `prozent` für die Zeit-Entwicklung), `rss` (Array von RSS-/Atom-Feed-URLs für den Nachrichten-Feed), `website`
-- `elections/<id>/config.json` – optionale Schwellenwerte pro Wahl
+- `elections/<id>/config.json` – optionale Schwellenwerte pro Wahl sowie `koalitionsausschluss`: Objekt, das pro Partei festlegt, mit welchen anderen Parteien sie nicht zusammen regieren will (z. B. `"AfD": ["SPD", "GRÜNE", "LINKE"]`). Koalitionen, die ein solches Paar enthalten, werden ausgeblendet
 - `einfache-sprache.json` – Übersetzungen für UI-Texte und Fragen in einfacher Sprache
 - `config.json` – globale Farben und Themen-Kategorien
 

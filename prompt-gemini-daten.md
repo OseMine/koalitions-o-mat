@@ -11,6 +11,18 @@ You are generating the **supplementary party data** for the **Koalitions-O-Mat**
 
 You will be told which election and which parties (with their current poll values) are relevant.
 
+Each election directory additionally contains `elections/<id>/config.json` with per-election settings. It is read by the app at runtime and is **not** part of your output — but you must keep its party names in mind (see Rules):
+
+```json
+{
+  "thresholds": { "sperrklausel": 5, "minMatchForCoalition": 20, "maxCoalitionSize": 4 },
+  "koalitionsausschluss": { "AfD": ["SPD", "GRÜNE", "LINKE"] }
+}
+```
+
+- `koalitionsausschluss` maps a party to the other parties it refuses to govern with. Any coalition containing such a pair (e. g. AfD + SPD) is never shown by the app.
+- Party keys **must be spelled exactly like the `partei` entries** in `werte.json`.
+
 ---
 
 ## JSON Format (EXACT)
@@ -53,7 +65,7 @@ Take the existing `werte.json` and **add the optional fields to each party entry
 ### Fields for Each Party
 | Feld | Pflicht? | Beschreibung |
 |------|----------|--------------|
-| `partei` | **Ja** | Exakt der Parteiename aus der vorhandenen `werte.json` – niemals ändern/umbenennen |
+| `partei` | **Ja** | Exakt der Parteiename aus der vorhandenen `werte.json` – niemals ändern/umbenennen; muss zudem exakt den Partei-Keys in `config.json` (`koalitionsausschluss`) entsprechen |
 | `prozent` | **Ja** | Vorhandener aktueller Umfragewert – unverändert lassen |
 | `beschreibung` | **Ja** | 2–4 neutrale Sätze zu Grundlinien, Wahlprogramm und Schwerpunkten |
 | `beschreibung_einfach` | Nein | Einfache-Sprache-Version der Beschreibung: 2–3 kurze Sätze, Alltagswörter, keine Fachbegriffe. Die App zeigt sie bei aktivierter „Einfacher Sprache" |
@@ -74,6 +86,11 @@ Take the existing `werte.json` and **add the optional fields to each party entry
 
 ### `website`
 - Offizielle Partei-Website. Für Landesparteien die Landes-URL bevorzugen (z. B. `https://www.cdu-lsa.de`), sonst Bundes-URL.
+
+### `koalitionsausschluss` (in `config.json`)
+- Nicht Teil deiner Ausgabe, aber zu beachten: Jede Partei kann in `config.json` festlegen, mit welchen anderen Parteien sie nicht koalieren will (z. B. `"AfD": ["SPD", "GRÜNE", "LINKE"]`).
+- Parteien aus einem Ausschluss-Paar dürfen niemals in derselben Koalition erscheinen. In `werte.json` musst du nur sicherstellen, dass die Parteinamen exakt den Keys in `koalitionsausschluss` entsprechen (identische Schreibweise).
+- Koalitionen nicht selbst in `werte.json` pflegen — die App berechnet sie aus den Umfragewerten und blendet ausgeschlossene Paare automatisch aus.
 
 ### `kandidaten` / `spitzenkandidat`
 - Nur **reale, öffentlich bekannte** Personen nennen (Landesvorsitzende, Spitzenkandidat:innen, Ministerpräsident:innen).
