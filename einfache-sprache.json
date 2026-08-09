@@ -173,7 +173,9 @@
     "tactical.okTag": "Alles klar",
     "tactical.okHint": "Keine strategische Warnung aktuell – Ihre Top-Partei liegt über {threshold}% und Ihre Wunschkoalition steht im simulierten Szenario stabil.",
     "tactical.warningLoan": "Achtung",
-    "tactical.warningInfo": "Hinweis"
+    "tactical.warningInfo": "Hinweis",
+    "tactical.excluded": "Ihre Wunschkoalition aus {a} und {b} ist keine erlaubte Koalition (diese Parteien wollen nicht zusammengehen). Eine taktische Überlegung wäre daher nicht sinnvoll – wählen Sie die Partei, die zu Ihren Überzeugungen passt.",
+    "tactical.closeTopHint": "Ihre Top-Parteien liegen zu dicht beieinander (Abstand {gap} Prozentpunkt(e) nicht erreicht). Eine klare Top-Partei oder Wunschkoalition lässt sich nicht ableiten."
   },
   "fragen": {
     "ltw-sachsen-anhalt-2026": {
