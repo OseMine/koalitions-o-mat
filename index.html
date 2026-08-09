@@ -21,7 +21,7 @@
         <div class="header-row">
             <h1>Koalitions-O-Mat</h1>
             <div class="header-right">
-                <button type="button" id="simpleLangToggle" class="simple-lang-toggle" onclick="toggleSimpleLanguage()" aria-label="Einfache Sprache umschalten" data-i18n-aria="aria.simpleLangToggle"><span class="simple-lang-icon">✏️</span><span class="simple-lang-label" data-i18n="simpleLangLabel">Einfache Sprache</span></button>
+                <button type="button" id="simpleLangToggle" class="simple-lang-toggle" onclick="toggleSimpleLanguage()" aria-label="Einfache Sprache umschalten" aria-pressed="false" data-i18n-aria="aria.simpleLangToggle"><span class="simple-lang-icon">✏️</span><span class="simple-lang-label" data-i18n="simpleLangLabel">Einfache Sprache</span></button>
                 <button type="button" id="themeToggle" class="theme-toggle" onclick="toggleTheme()" aria-label="Theme umschalten" data-i18n-aria="aria.themeToggle">💻</button>
                 <a href="https://github.com/OseMine/koalitions-o-mat" target="_blank" class="github-link" aria-label="Quellcode auf GitHub" data-i18n-aria="aria.githubLink">
                     <svg width="22" height="22" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
@@ -62,15 +62,15 @@
                 <button class="btn-ghost" id="changeElectionBtn" onclick="showElectionSelector()" data-i18n="changeElection">Wechseln</button>
             </div>
 
-            <div class="tabs">
-                <button type="button" class="tab-button active" data-tab="test" data-i18n="tabTest">Parteien-Test</button>
-                <button type="button" class="tab-button" data-tab="parteien" data-i18n="tabParteien">Parteien &amp; Kandidaten</button>
-                <button type="button" class="tab-button" data-tab="koalitionen" data-i18n="tabKoalitionen">Koalitionen</button>
-                <button type="button" class="tab-button" data-tab="daten" data-i18n="tabDaten">Daten &amp; Charts</button>
+            <div class="tabs" role="tablist" aria-label="Hauptnavigation">
+                <button type="button" role="tab" id="tab-test" class="tab-button active" data-tab="test" aria-controls="test-content" aria-selected="true" tabindex="0" data-i18n="tabTest">Parteien-Test</button>
+                <button type="button" role="tab" id="tab-parteien" class="tab-button" data-tab="parteien" aria-controls="parteien-content" aria-selected="false" tabindex="-1" data-i18n="tabParteien">Parteien &amp; Kandidaten</button>
+                <button type="button" role="tab" id="tab-koalitionen" class="tab-button" data-tab="koalitionen" aria-controls="koalitionen-content" aria-selected="false" tabindex="-1" data-i18n="tabKoalitionen">Koalitionen</button>
+                <button type="button" role="tab" id="tab-daten" class="tab-button" data-tab="daten" aria-controls="daten-content" aria-selected="false" tabindex="-1" data-i18n="tabDaten">Daten &amp; Charts</button>
             </div>
 
             <!-- ===== Test Tab ===== -->
-            <div id="test-content" class="tab-content active">
+            <div id="test-content" class="tab-content active" role="tabpanel" aria-labelledby="tab-test">
                 <div class="test-container">
                     <p class="test-intro" data-i18n="testIntro">Beantworten Sie die Fragen und finden Sie heraus, welche Partei am besten zu Ihnen passt.</p>
                     <div id="resumeHint" class="resume-hint" style="display:none"></div>
@@ -88,7 +88,7 @@
             </div>
 
             <!-- ===== Parteien & Kandidaten Tab ===== -->
-            <div id="parteien-content" class="tab-content">
+            <div id="parteien-content" class="tab-content" role="tabpanel" aria-labelledby="tab-parteien">
                 <h3 data-i18n="partiePageTitle">Parteien &amp; Kandidaten</h3>
                 <p class="test-intro" data-i18n="partiePageIntro">Hier finden Sie die zur Wahl antretenden Parteien mit Umfragewerten, Programmbeschreibungen und Kandidatinnen und Kandidaten.</p>
                 <div id="partyInfoList" class="party-info-list"></div>
@@ -100,7 +100,7 @@
             </div>
 
             <!-- ===== Koalitionen Tab ===== -->
-            <div id="koalitionen-content" class="tab-content">
+            <div id="koalitionen-content" class="tab-content" role="tabpanel" aria-labelledby="tab-koalitionen">
                 <div class="filter-options">
                     <div class="filter-row">
                         <label>
@@ -130,7 +130,9 @@
                         </label>
                     </div>
                 </div>
+                <p class="filter-hint" data-i18n="filterHint">Tipp: Über die Filter können Sie die Liste eingrenzen – Mindestübereinstimmung, Koalitionsart, eine einzelne Partei oder ausgeschlossene Parteien.</p>
                 <div id="coalitionResults" class="results-area"></div>
+                <p class="sr-only" id="coalitionStatus" role="status" aria-live="polite"></p>
                 <div class="methodology-note">
                     <h4 data-i18n="methodologyTitle">So funktioniert die Berechnung</h4>
                     <p data-i18n="methodologyNote">Die Zahlen sind die Umfragewerte der Parteien. Die interne Übereinstimmung zeigt, wie ähnlich die Parteien bei den Fragen antworten. Die Übereinstimmung mit Ihnen zeigt, wie ähnlich Ihre Antworten denen der Parteien sind. Wichtige Fragen zählen doppelt. Neutrale Antworten fließen nicht in die Übereinstimmung ein.</p>
@@ -142,7 +144,7 @@
             </div>
 
             <!-- ===== Daten & Charts Tab ===== -->
-            <div id="daten-content" class="tab-content">
+            <div id="daten-content" class="tab-content" role="tabpanel" aria-labelledby="tab-daten">
                 <div class="stats-summary" id="statsSummary"></div>
 
                 <div class="chart-grid">

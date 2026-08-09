@@ -56,6 +56,20 @@
 button, select { -webkit-tap-highlight-color: transparent; }
 button { touch-action: manipulation; }
 
+/* Sichtbarer Tastatur-Fokus (Barrierefreiheit): Der Standard-Outline wird durch
+   einen klaren Primär-Ring ersetzt, damit die Tastaturbedienung überall erkennbar ist. */
+a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible,
+[tabindex]:focus-visible, .party-cb:has(input:focus-visible) {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}
+
+/* Nur für Screenreader sichtbarer Text (Ergebnis-Statusmeldungen) */
+.sr-only {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
 html { -webkit-text-size-adjust: 100%; }
 
 body {
@@ -139,7 +153,13 @@ body {
     padding: 8px 12px; font-size: 0.9rem; background: var(--surface); color: var(--on-surface);
     border: 1.5px solid var(--outline); border-radius: var(--radius-xs); font-family: var(--font); cursor: pointer;
 }
-.filter-row select:focus { outline: none; border-color: var(--primary); }
+.filter-row select:focus {
+    outline: none; border-color: var(--primary);
+    box-shadow: 0 0 0 2px var(--primary-container);
+}
+.filter-hint {
+    font-size: 0.82rem; color: var(--on-surface-muted); margin: 10px 2px 0; line-height: 1.5;
+}
 
 .compact { padding: 10px 14px; }
 .party-checkboxes { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
@@ -149,7 +169,12 @@ body {
     font-size: 0.8rem; color: var(--on-surface-variant); transition: all 0.2s;
 }
 .party-cb:hover { border-color: var(--primary); background: var(--primary-container); }
-.party-cb input { display: none; }
+/* Checkbox visuell verstecken, aber per Tastatur fokussierbar lassen –
+   bei Keyboard-Fokus bekommt die Pill einen sichtbaren Ring (via :has). */
+.party-cb input {
+    position: absolute; opacity: 0; width: 1px; height: 1px;
+    margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
 .party-cb.checked { background: var(--primary); border-color: var(--primary); color: var(--on-primary); }
 
 /* ===== Results ===== */
@@ -178,6 +203,7 @@ body {
 .empty-state { text-align: center; padding: 48px 20px; color: var(--on-surface-muted); }
 .empty-icon { font-size: 2rem; display: block; margin-bottom: 8px; }
 .empty-state-detail { margin-top: 8px; font-size: 0.88rem; line-height: 1.5; }
+.empty-reset-btn { margin-top: 20px; }
 
 /* ===== Welcome Screen ===== */
 .welcome-screen { text-align: center; padding: 40px 20px; }
