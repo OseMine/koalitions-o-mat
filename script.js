@@ -1953,6 +1953,19 @@ function calculateTacticalVoting(results) {
     if (sorted.length >= 2) {
         const a = sorted[0].partei;
         const b = sorted[1].partei;
+
+        // Politisch ausgeschlossene Wunschkoalitionen (z. B. AfD+GRÜNE) werden hier
+        // nicht als konkrete Koalitionsempfehlung ausgegeben – konsistent mit
+        // `istKoalitionAusgeschlossen()` in `berechneKoalitionen()` –, sondern nur
+        // als textlicher Tipp statt einer Leihstimmen-Empfehlung.
+        if (istKoalitionAusgeschlossen([a, b])) {
+            warnings.push({
+                type: 'excluded',
+                text: `Deine Wunschkoalition aus ${a} und ${b} ist laut politischer Einschätzung keine zulässige Koalition (diese Parteien schließen sich gegenseitig als Regierungspartner aus). Eine taktische Überlegung wäre daher nicht sinnvoll – wähle die Partei, die deinen Überzeugungen entspricht.`
+            });
+            return { warnings, info };
+        }
+
         const pa = pollOf(a), pb = pollOf(b);
         const eligible = sorted.filter(r => pollOf(r.partei) >= threshold);
         const eligibleSum = eligible.reduce((s, p) => s + pollOf(p.partei), 0);
