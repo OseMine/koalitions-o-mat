@@ -219,6 +219,27 @@ function showElectionSelector() {
     document.getElementById('appContent').style.display = 'none';
 }
 
+// ===== Teilen-URL anwenden (frischer Ladepfad UND Hash-Wechsel) =====
+// Ohne diesen Handler blieb beim Öffnen eines Teilen-Links im bereits offenen Tab
+// (Adressleiste / nur Fragment-Änderung) der Browser auf der Startseite stehen:
+// Bei identischer Basis-URL löst der Browser KEINEN Reload aus, sondern nur ein
+// `hashchange`-Event – und ohne Listener wurde die geteilte Ansicht nie geladen.
+function handleShareHash() {
+    pendingShare = parseShareHash();
+    // Kein gültiger Teilen-Link (leerer Hash oder Fremd-Hash) → zur Startseite zurück.
+    if (!pendingShare || !pendingShare.electionId) {
+        pendingShare = null;
+        showElectionSelector();
+        return;
+    }
+    // Daten der Wahl müssen erst geladen sein – sonst übernimmt das nachgelagerte
+    // loadElections() (liest pendingShare nach dem Fetch), bzw. der nächste
+    // hashchange-Aufruf, sobald electionDataCache gefüllt ist.
+    if (electionDataCache[pendingShare.electionId]) {
+        setActiveElection(pendingShare.electionId);
+    }
+}
+
 // ===== Tab Switching =====
 function switchTab(tabName) {
     if (partyPageOpen) closePartyPage();
@@ -399,17 +420,9 @@ async function loadElections() {
         // Teilen-Link (pendingShare) wählt die Wahl direkt aus. Ohne aktive Auswahl
         // wird NICHT automatisch in eine Wahl (z. B. den btw2029-Test) gesprungen
         // (Issue: beim Laden ging es direkt in den Parteien-Test statt auf die Startseite).
-        let targetId = pendingShare && pendingShare.electionId
-            && electionsList.find(e => e.id === pendingShare.electionId)
-            ? pendingShare.electionId
-            : null;
-
-        // If no share target, keep showing the welcome/start screen
-        if (!targetId || !electionDataCache[targetId]) {
-            return;
-        }
-
-        setActiveElection(targetId);
+        // handleShareHash() übernimmt beides: ohne Teilen-Link → Startseite, mit
+        // Teilen-Link → geteilte Wahl/Ansicht laden.
+        handleShareHash();
     } catch (err) {
         console.error('Fehler:', err);
         showNotification(t('errorLoading', 'Fehler beim Laden der Daten. Seite neu laden.'), 'error');
@@ -2581,6 +2594,11 @@ document.addEventListener('DOMContentLoaded', async () => {
             updateKoalitionen();
         }
     });
+
+    // Teilen-Link im bereits offenen Tab anwenden. Bei gleicher Basis-URL lädt der
+    // Browser beim Einfügen in die Adressleiste NICHT neu, sondern wirft nur
+    // `hashchange` – ohne Handler blieb die Startseite stehen (Issue #74).
+    window.addEventListener('hashchange', handleShareHash);
 
     // ECharts bei Viewport-Änderungen neu dimensionieren
     // (Mobile-URL-Bar ein-/ausblenden, Rotation) – sonst wirken Charts abgeschnitten/verzerrt
