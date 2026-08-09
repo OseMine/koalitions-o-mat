@@ -4,9 +4,7 @@
     "minMatchForCoalition": 20,
     "maxCoalitionSize": 4
   },
-  "ausgeschlosseneKoalitionen": [
-    ["AfD", "SPD"],
-    ["AfD", "GRÜNE"],
-    ["AfD", "LINKE"]
-  ]
+  "koalitionsausschluss": {
+    "AfD": ["SPD", "GRÜNE", "LINKE"]
+  }
 }

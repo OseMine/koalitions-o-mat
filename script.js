@@ -307,12 +307,12 @@ function setActiveElection(electionId) {
     // der vorherigen Wahl weiterzuverwenden (Cross-Election-Leak).
     window.parteienData = data.fragen || null;
 
-    config = { ...baseConfig, ausgeschlosseneKoalitionen: [] };
+    config = { ...baseConfig, koalitionsausschluss: {} };
     if (data.config) {
         if (data.config.thresholds) config.thresholds = { ...config.thresholds, ...data.config.thresholds };
         if (data.config.meta) config.meta = { ...config.meta, ...data.config.meta };
-        if (Array.isArray(data.config.ausgeschlosseneKoalitionen)) {
-            config.ausgeschlosseneKoalitionen = data.config.ausgeschlosseneKoalitionen;
+        if (data.config.koalitionsausschluss && typeof data.config.koalitionsausschluss === 'object' && !Array.isArray(data.config.koalitionsausschluss)) {
+            config.koalitionsausschluss = data.config.koalitionsausschluss;
         }
     }
     if (window.werteData.meta && window.werteData.meta.sperrklausel != null)
@@ -1110,15 +1110,31 @@ function redrawPartyTimelineIfOpen() {
 let koalitionenCache = null;
 let koalitionenCacheKey = '';
 
-// Eine Koalition ist ausgeschlossen, wenn sie alle Parteien einer in der
-// Wahlkonfiguration definierten Gruppe ("ausgeschlosseneKoalitionen") enthält.
-// Paar-Listen wie ["AfD", "SPD"] drücken aus, dass diese Parteien niemals
-// zusammen regieren würden – Koalitionen mit beiden werden ausgeblendet.
+// Jede Partei kann pro Wahl in "koalitionsausschluss" festlegen, mit welchen
+// Parteien sie nicht zusammen regieren will. Eine Koalition wird ausgeblendet,
+// sobald sie ein Paar enthält, für das eine der beiden Parteien den Ausschluss
+// erklärt hat (z. B. AfD verweigert SPD, GRÜNE und LINKE).
 function istKoalitionAusgeschlossen(parteienNamen) {
-    const gruppen = (config && Array.isArray(config.ausgeschlosseneKoalitionen) && config.ausgeschlosseneKoalitionen) || [];
-    return gruppen.some(gruppe =>
-        Array.isArray(gruppe) && gruppe.length > 0 && gruppe.every(name => parteienNamen.includes(name))
-    );
+    const ausschluss = (config && config.koalitionsausschluss) || {};
+    for (const name of parteienNamen) {
+        const verweigert = ausschluss[name];
+        if (Array.isArray(verweigert) && verweigert.some(x => parteienNamen.includes(x))) return true;
+    }
+    return false;
+}
+
+// Lesbare Liste der Ausschluss-Paare (dedupliziert) für den Hinweis-Text,
+// z. B. "AfD + SPD, AfD + GRÜNE, AfD + LINKE".
+function ausschlussPaarNamen() {
+    const ausschluss = (config && config.koalitionsausschluss) || {};
+    const paare = new Set();
+    for (const [a, liste] of Object.entries(ausschluss)) {
+        if (!Array.isArray(liste)) continue;
+        for (const b of liste) {
+            paare.add([a, b].sort().join(' + '));
+        }
+    }
+    return [...paare];
 }
 
 function berechneKoalitionen(type = 'mehrheit', excludeParties = []) {
@@ -1266,7 +1282,7 @@ function updateKoalitionen() {
 
     const container = document.getElementById('coalitionResults');
     const statusEl = document.getElementById('coalitionStatus');
-    const exclNames = ((config && config.ausgeschlosseneKoalitionen) || []).map(g => g.join(' + ')).join(', ');
+    const exclNames = ausschlussPaarNamen().join(', ');
     if (!koalitionen.length) {
         // Leere Ergebnisliste erklären: Wenn ein Partei-Filter gesetzt ist, kann die
         // Partei unter der Sperrklausel liegen (dann in keiner Koalition enthalten)
