@@ -1928,14 +1928,14 @@ function tacticalSlidersHTML() {
     if (!parties.length) return '';
     return `
         <div class="tactical-sliders">
-            <h4>Taktische Simulation: Umfragewerte anpassen</h4>
+            <h4>${t('tactical.sliderTitle', 'Taktische Simulation: Umfragewerte anpassen')}</h4>
             ${parties.map(p => `
             <div class="tactical-slider-row">
                 <span class="tactical-slider-name" style="color:${getPartyColor(p)}">${escapeHtml(p)}</span>
-                <input type="range" min="0" max="12" step="0.1" value="${polls[p]}" data-party="${escapeHtmlAttr(p)}" aria-label="Umfragewert ${escapeHtmlAttr(p)} adjustieren">
+                <input type="range" min="0" max="12" step="0.1" value="${polls[p]}" data-party="${escapeHtmlAttr(p)}" aria-label="${t('tactical.sliderAria', 'Umfragewert {partei} anpassen').replace('{partei}', escapeHtmlAttr(p))}">
                 <span class="tactical-slider-val">${(polls[p] || 0).toFixed(1)}%</span>
             </div>`).join('')}
-            <p class="tactical-slider-note">Verschiebe die Regler, um zu sehen, wie sich Taktik-Warnungen und Koalitionsmehrheiten verändern.</p>
+            <p class="tactical-slider-note">${t('tactical.sliderNote', 'Verschiebe die Regler, um zu sehen, wie sich Taktik-Warnungen und Koalitionsmehrheiten verändern.')}</p>
         </div>`;
 }
 
@@ -1943,12 +1943,12 @@ function tacticalSectionHTML() {
     return `
         <div class="tactical-section">
             <div class="tactical-section-head">
-                <h3>Taktisches Wählen</h3>
-                <p class="tactical-intro">Simuliere deine Stimme: Welche Auswirkungen hätte ein taktisches Wahlverhalten auf dein Ergebnis?</p>
+                <h3>${t('tactical.sectionTitle', 'Taktisches Wählen')}</h3>
+                <p class="tactical-intro">${t('tactical.intro', 'Simuliere deine Stimme: Welche Auswirkungen hätte ein taktisches Wahlverhalten auf dein Ergebnis?')}</p>
                 <label class="tactical-toggle">
                     <input type="checkbox" id="tacticalToggle" ${tacticalEnabled ? 'checked' : ''}>
                     <span class="tactical-switch" aria-hidden="true"></span>
-                    <span class="tactical-toggle-label">Taktik-Modus aktivieren</span>
+                    <span class="tactical-toggle-label">${t('tactical.toggleLabel', 'Taktik-Modus aktivieren')}</span>
                 </label>
             </div>
             <div class="tactical-content" id="tacticalContent" ${tacticalEnabled ? '' : 'hidden'}>
@@ -1984,7 +1984,12 @@ function calculateTacticalVoting(results) {
         if (alt) {
             warnings.push({
                 type: 'wasted',
-                text: `Deine Top-Partei «${top1}» scheitert aktuell an der ${threshold}%-Hürde (${pollOf(top1).toFixed(1)}%). Strategische Alternative: ${alt.partei} (${pollOf(alt.partei).toFixed(1)}%).`
+                text: t('tactical.wasted', 'Deine Top-Partei «{partei}» scheitert aktuell an der {threshold}%-Hürde ({wert}%). Strategische Alternative: {alt} ({altWert}%).')
+                    .replace('{partei}', top1)
+                    .replace('{threshold}', threshold)
+                    .replace('{wert}', pollOf(top1).toFixed(1))
+                    .replace('{alt}', alt.partei)
+                    .replace('{altWert}', pollOf(alt.partei).toFixed(1))
             });
         }
     }
@@ -2006,7 +2011,9 @@ function calculateTacticalVoting(results) {
         if (istKoalitionAusgeschlossen([a, b])) {
             warnings.push({
                 type: 'excluded',
-                text: `Deine Wunschkoalition aus ${a} und ${b} ist laut politischer Einschätzung keine zulässige Koalition (diese Parteien schließen sich gegenseitig als Regierungspartner aus). Eine taktische Überlegung wäre daher nicht sinnvoll – wähle die Partei, die deinen Überzeugungen entspricht.`
+                text: t('tactical.excluded', 'Deine Wunschkoalition aus {a} und {b} ist laut politischer Einschätzung keine zulässige Koalition (diese Parteien schließen sich gegenseitig als Regierungspartner aus). Eine taktische Überlegung wäre daher nicht sinnvoll – wähle die Partei, die deinen Überzeugungen entspricht.')
+                    .replace('{a}', a)
+                    .replace('{b}', b)
             });
             return { warnings, info };
         }
@@ -2035,7 +2042,11 @@ function calculateTacticalVoting(results) {
         if (naheHuerde && partnerSicher && mehrheitSicher) {
             warnings.push({
                 type: 'loan',
-                text: `Achtung, deine Wunschkoalition aus ${a} und ${b} ist in Gefahr. Überlege, ${smaller} zu wählen, um sie über die ${threshold}%-Hürde zu retten.`
+                text: t('tactical.loan', 'Achtung, deine Wunschkoalition aus {a} und {b} ist in Gefahr. Überlege, {smaller} zu wählen, um sie über die {threshold}%-Hürde zu retten.')
+                    .replace('{a}', a)
+                    .replace('{b}', b)
+                    .replace('{smaller}', smaller)
+                    .replace('{threshold}', threshold)
             });
         }
     }
@@ -2070,17 +2081,21 @@ function updateTacticalWarnings() {
     if (info.coalition) {
         const okMaj = !!info.majorityPossible;
         html += `<div class="tactical-majority ${okMaj ? 'ok' : 'no'}">
-            <strong>Koalitionsmehrheit:</strong> ${escapeHtml(info.coalition)} erreicht ${info.share.toFixed(0)}% der Stimmen der Parteien über ${tacticalThreshold()}% — ${okMaj ? 'Mehrheit möglich' : 'keine Mehrheit'}
+            <strong>${t('tactical.coalitionLabel', 'Koalitionsmehrheit:')}</strong> ${escapeHtml(t('tactical.coalitionText', '{koalition} erreicht {share}% der Stimmen der Parteien über {threshold}% — {status}')
+                .replace('{koalition}', info.coalition)
+                .replace('{share}', info.share.toFixed(0))
+                .replace('{threshold}', tacticalThreshold())
+                .replace('{status}', okMaj ? t('tactical.coalitionMajority', 'Mehrheit!') : t('tactical.coalitionNoMajority', 'keine Mehrheit')))}
         </div>`;
     }
     if (!warnings.length && info.clearTop === true) {
-        html += `<div class="tactical-ok-hint"><span class="tactical-warning-tag">Alles klar</span><span>Keine strategische Warnung aktuell – Deine Top-Partei liegt über ${tacticalThreshold()}% und Deine Wunschkoalition steht im simulierten Szenario stabil.</span></div>`;
+        html += `<div class="tactical-ok-hint"><span class="tactical-warning-tag">${t('tactical.okTag', 'Alles klar')}</span><span>${t('tactical.okHint', 'Keine strategische Warnung aktuell – Deine Top-Partei liegt über {threshold}% und Deine Wunschkoalition steht im simulierten Szenario stabil.').replace('{threshold}', tacticalThreshold())}</span></div>`;
     } else if (!warnings.length && info.clearTop === false) {
-        html += `<div class="tactical-ok-hint"><span class="tactical-warning-tag">Hinweis</span><span>Deine Top-Parteien liegen zu dicht beieinander (Mindestabstand ${tacticalMatchGapThreshold().toFixed(1)} Prozentpunkt(e) nicht erreicht), um eine klare Top-Partei oder Wunschkoalition abzuleiten.</span></div>`;
+        html += `<div class="tactical-ok-hint"><span class="tactical-warning-tag">${t('tactical.warningInfo', 'Hinweis')}</span><span>${t('tactical.closeTopHint', 'Deine Top-Parteien liegen zu dicht beieinander (Mindestabstand {gap} Prozentpunkt(e) nicht erreicht), um eine klare Top-Partei oder Wunschkoalition abzuleiten.').replace('{gap}', tacticalMatchGapThreshold().toFixed(1))}</span></div>`;
     }
     warnings.forEach(w => {
         html += `<div class="tactical-warning ${w.type === 'loan' ? 'loan' : ''}">
-            <span class="tactical-warning-tag">${w.type === 'loan' ? 'Achtung' : 'Hinweis'}</span>
+            <span class="tactical-warning-tag">${w.type === 'loan' ? t('tactical.warningLoan', 'Achtung') : t('tactical.warningInfo', 'Hinweis')}</span>
             <span>${escapeHtml(w.text)}</span>
         </div>`;
     });
