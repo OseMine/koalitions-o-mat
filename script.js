@@ -1874,6 +1874,17 @@ function tacticalThreshold() {
     return (config && config.thresholds && config.thresholds.sperrklausel) || 5;
 }
 
+function tacticalMatchGapThreshold() {
+    return (config && config.thresholds && config.thresholds.minMatchGapForTop) || 1;
+}
+
+function tacticalTopGap(sorted) {
+    if (sorted.length < 2) return Infinity;
+    const a = sorted[0].match, b = sorted[1].match;
+    if (a == null || b == null) return -Infinity;
+    return a - b;
+}
+
 function calculateTacticalPolls() {
     if (tacticalPollsKey === activeElectionId && Object.keys(tacticalPolls).length) return tacticalPolls;
     const map = {};
@@ -1929,17 +1940,26 @@ function tacticalSectionHTML() {
 
 function calculateTacticalVoting(results) {
     const threshold = tacticalThreshold();
+    const minGap = tacticalMatchGapThreshold();
     const polls = calculateTacticalPolls();
     const pollOf = p => (polls[p] || 0);
     const sorted = results.slice().sort((a, b) => (b.match ?? -1) - (a.match ?? -1));
     const warnings = [];
-    const info = { coalition: null, share: 0, eligibleSum: 0 };
+    const info = { coalition: null, share: 0, eligibleSum: 0, clearTop: false };
 
     if (sorted.length === 0) return { warnings, info };
 
+    // Übereinstimmungs-Abstände statt reiner Rangordnung (tactical-voting.md §5):
+    // „Deine Top-Partei" und „Deine Wunschkoalition" werden nur bei einem klaren
+    // Präferenzabstand abgeleitet. Nahe Gleichstände (z. B. 60,1 % vs. 60,0 %)
+    // erzeugen dadurch keine irreführenden Warnungen wie klare Präferenzen
+    // (z. B. 95 % vs. 20 %).
+    const clearTop = tacticalTopGap(sorted) >= minGap;
+    info.clearTop = clearTop;
+
     // 1) Verschenkte Stimme (Wasted Vote Warning)
     const top1 = sorted[0].partei;
-    if (pollOf(top1) < threshold) {
+    if (clearTop && pollOf(top1) < threshold) {
         const alt = sorted.find(r => r.partei !== top1 && (pollOf(r.partei) || 0) >= threshold);
         if (alt) {
             warnings.push({
@@ -1950,7 +1970,7 @@ function calculateTacticalVoting(results) {
     }
 
     // 2) Leihstimme zur Koalitionsabsicherung
-    if (sorted.length >= 2) {
+    if (sorted.length >= 2 && clearTop) {
         const a = sorted[0].partei;
         const b = sorted[1].partei;
         const pa = pollOf(a), pb = pollOf(b);
@@ -1983,8 +2003,10 @@ function updateTacticalWarnings() {
             <strong>Koalitionsmehrheit:</strong> ${escapeHtml(info.coalition)} erreicht ${info.share.toFixed(0)}% der Stimmen der Parteien über ${tacticalThreshold()}% — ${okMaj ? 'Mehrheit!' : 'keine Mehrheit'}
         </div>`;
     }
-    if (!warnings.length) {
+    if (!warnings.length && info.clearTop === true) {
         html += `<div class="tactical-ok-hint"><span class="tactical-warning-tag">Alles klar</span><span>Keine strategische Warnung aktuell – Deine Top-Partei liegt über ${tacticalThreshold()}% und Deine Wunschkoalition steht im simulierten Szenario stabil.</span></div>`;
+    } else if (!warnings.length && info.clearTop === false) {
+        html += `<div class="tactical-ok-hint"><span class="tactical-warning-tag">Hinweis</span><span>Deine Top-Parteien liegen zu dicht beieinander (Mindestabstand ${tacticalMatchGapThreshold().toFixed(1)} Prozentpunkt(e) nicht erreicht), um eine klare Top-Partei oder Wunschkoalition abzuleiten.</span></div>`;
     }
     warnings.forEach(w => {
         html += `<div class="tactical-warning ${w.type === 'loan' ? 'loan' : ''}">

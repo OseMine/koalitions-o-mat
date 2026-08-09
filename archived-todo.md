@@ -2,6 +2,10 @@
 
 Erledigte (abgehakte) Aufgaben aus todo.md, Stand 2026-08-09. Offene Punkte: siehe `todo.md`.
 
+## Nachträge vom 2026-08-09 (Taktik-Simulator: Übereinstimmungs-Abstände)
+
+- [x] **Expected-Utility-Modell (tactical-voting.md §5) nur als Rangfolge abgebildet** – umgesetzt: `calculateTacticalVoting()` (script.js) wertet jetzt die Übereinstimmungs-Abstände statt nur der Rangfolge aus. Neue Schwelle `minMatchGapForTop` (config.json → `thresholds`, Standard 1 Prozentpunkt, pro Wahl überschreibbar); Helfer `tacticalMatchGapThreshold()`/`tacticalTopGap()`. „Deine Top-Partei" (Wasted-Vote-Warnung) und „Deine Wunschkoalition" (Leihstimmen-Warnung + Koalitionsmehrheit-Anzeige) werden nur bei `match[0] − match[1] ≥ minMatchGapForTop` abgeleitet; nahe Gleichstände (60,1 % vs. 60,0 %) erzeugen keine irreführenden Warnungen, stattdessen zeigt `updateTacticalWarnings()` einen neutralen „Mindestabstand nicht erreicht"-Hinweis statt „Alles klar". Verhalten in `tactical-voting.md` §5 dokumentiert (neuer Abschnitt „Berücksichtigung von Übereinstimmungs-Abständen im Taktik-Simulator"). Verifiziert per neuem Node-Harness `harness/tactical-match-gap.js` (15/15 Assertions: klare Präferenz feuert Warnungen, Gleichstand nicht, konfigurierbare Schwelle, Null-Matches, Einzelpartei, DOM-Hinweis), `node --check script.js` OK.
+
 ## Nachträge vom 2026-08-09 (Übernahme aus todo.md, Review vom 2026-08-08)
 
 Alle abgehakten Punkte des Abschnitts „Review vom 2026-08-08" aus `todo.md` wurden am 2026-08-09 nach hier verschoben; Status gegen Code/GitHub nachgeprüft (PRs #51–#79 gemergt, Issues #51/#62/#55 geschlossen).
