@@ -18,6 +18,16 @@ Verifiziert per `node --check script.js` und neuem Node-Harness `harness/determi
   - **i18n**: neue Keys `dealbreakerHint`, `dealbreakerActiveHint`, `dealbreakerConflict` in `einfache-sprache.json.ui`; `methodologyNote` (index.html + einfache Sprache) beschreibt die starke Abwertung; README dokumentiert Gewicht (Standard 4) und Verhalten.
   - **Verifikation**: neues Node-Harness `harness/dealbreaker-harness.js` → 25/25 Checks (Gewichte 1/2/4 und wichtig+Dealbreaker=4; Partei A 100 %, B 71,4 % (nur wichtig), C 42,9 % (Dealbreaker); ohne Markierung keine Änderung = keine Regression; Koalition [A,C] mit Dealbreaker-Konflikt abgewertet, ohne Markierung zurück; Share-Hash `&d=` Round-Trip inkl. altem `&c=`-Link; i18n-Keys vorhanden). Bestehende Harnesses (`tactical-match-gap.js` 15/15, `tactical-scenarios-check.js` 17/17) und `node --check script.js` bleiben grün.
 
+## Implementierung vom 2026-08-10 (Issue „2D-Politik-Kompass")
+
+- [x] **2D-Politik-Kompass** – Nutzer, Parteien und Koalitionen auf einem 2D-Gitter (Wirtschaft links/rechts × progressiv/konservativ). Umgesetzt:
+  - **Daten**: neues optionales `achsen`-Feld pro Partei in `elections/*/werte.json` (`wirtschaft`, `progressiv`, je `-1` bis `+1`); für alle 4 Wahlen (btw2029, Berlin 2026, LSA 2026, MV 2026) und alle 7 Parteien befüllt.
+  - **Chart**: Banner `kompassDaten()` lädt/filtert die Achsen-Daten, `berechneParteiMatch()` ergänzt die Partei-Übereinstimmung, `berechneUserPositionAusAntworten()` leitet die Nutzerposition aus den (gewichteten) Antworten ab, `kompassKoalitionen()` liefert Koalitions-Zentren als Gravitationsmittel der Mitglieder. `renderKompassChart()`/`createKompassChart()` rendern den Streu-Chart auf ECharts-Basis (Achsen-Linien, Partei-Punkte mit Farben aus dem Theme, Koalitions-Diamond mit Label, Nutzer-Marker); eigener Tooltip, verlinkte Achsen-Labels.
+  - **Platzierungen**: Daten & Charts-Tab (eigene Chart-Karte) UND Testergebnis-Ansicht (Abschnitt nach dem Pie-Chart), `redrawCharts()` rendert den Ergebnis-Kompass bei Theme-Wechsel neu.
+  - **Fallback**: Wahlen ohne `achsen`-Daten zeigen im Daten-Tab einen Hinweis-Platzhalter und im Testergebnis keinen Kompass-Abschnitt (kein Broken-Layout); alle Achsen-/Nutzerwerte sind auf `[-1, +1]` geklemmt.
+  - **i18n**: 10 neue Keys `kompassAchseWirtschaft`, `kompassAchseProgressiv`, `kompassAchseKonservativ`, `kompassAchseLinks`, `kompassAchseRechts`, `kompassPoll`, `kompassZentrum`, `kompassUser`, `kompassNote`, `kompassKeineDaten` in `einfache-sprache.json.ui` (199 Keys, eindeutig, valides JSON); `chartKompass`-Titel.
+  - Verifiziert per Node-Harness: alle 4 Wahlen liefern 7 Achsen-Datensätze in `[-1, +1]`, Nutzerposition aus Antworten (Kopie LINKE/AfD) in Richtung der Partei, Koalitions-Zentren vorhanden, kein `achsen`-Fallback-Treffer bei voll befüllten Wahlen, Fallback greift bei entfernter Achsen-Struktur, Ergebnis-`innerHTML` enthält Kompass-Sektion nur bei Achsen-Daten. `node --check script.js` OK, `tools/tactical-harness.js` exit 0, alle JSON-Dateien valide.
+
 ## Nachträge vom 2026-08-09 (Issue #84: Erststimmen-/Grundmandatsklausel-Szenarien C/D)
 
 - [x] **Erststimme-/Grundmandatsklausel-Szenarien fehlen (P2, Ziel des Issues)** – umgesetzt:

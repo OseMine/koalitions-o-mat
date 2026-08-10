@@ -9,6 +9,10 @@
     {
       "partei": "AfD",
       "prozent": 28,
+      "achsen": {
+        "wirtschaft": 0.7,
+        "progressiv": -0.9
+      },
       "beschreibung": "Die Alternative für Deutschland (AfD) ist eine rechtspopulistische und nationalkonservative Partei. Schwerpunkte ihres Programms bilden eine strikte Begrenzung der Zuwanderung, eine kritische Haltung gegenüber der Europäischen Union sowie die Ablehnung staatlicher Vorgaben im Klimaschutz. Gesellschaftspolitisch vertritt die Partei ein traditionelles Familienbild und betont nationale Souveränität.",
       "beschreibung_einfach": "Die AfD ist eine konservative Partei. Sie möchte deutlich weniger Zuwanderung nach Deutschland. Sie steht der Europäischen Union kritisch gegenüber und lehnt staatliche Gesetze zum Klimaschutz ab.",
       "website": "https://www.afd.de",
@@ -37,6 +41,10 @@
     {
       "partei": "CDU/CSU",
       "prozent": 23,
+      "achsen": {
+        "wirtschaft": 0.6,
+        "progressiv": -0.3
+      },
       "beschreibung": "Die CDU/CSU (Union) ist ein christdemokratisches und bürgerlich-konservatives Parteienbündnis. In der Wirtschaftspolitik setzt sie auf die Soziale Marktwirtschaft, Steuersenkungen und Entbürokratisierung. In der Innen- und Sicherheitspolitik fordert die Union eine Stärkung der Polizeibehörden sowie eine geordnete Steuerung und Begrenzung von Migration.",
       "beschreibung_einfach": "Die Union besteht aus den Parteien CDU und CSU. Sie setzt sich für Unternehmen und Wirtschaft ein. Sie möchte weniger Regeln für Firmen und mehr Sicherheit durch die Polizei.",
       "website": "https://www.cdu.de",
@@ -65,6 +73,10 @@
     {
       "partei": "GRÜNE",
       "prozent": 14,
+      "achsen": {
+        "wirtschaft": -0.3,
+        "progressiv": 0.9
+      },
       "beschreibung": "Bündnis 90/Die Grünen vertreten ökologische, sozial-liberale und pro-europäische Positionen. Im Zentrum ihres Wahlprogramms stehen der beschleunigte Ausbau erneuerbarer Energien, der Schutz der Biodiversität und die Transformation der Industrie zur Klimaneutralität. Zudem setzen sie sich für Bürgerrechte, Chancengleichheit und Vielfalt ein.",
       "beschreibung_einfach": "Die Grünen möchten Natur und Umwelt schützen. Sie fordern mehr Strom aus Sonne und Wind. Außerdem setzen sie sich für Gleichberechtigung aller Menschen ein.",
       "website": "https://www.gruene.de",
@@ -93,6 +105,10 @@
     {
       "partei": "SPD",
       "prozent": 12,
+      "achsen": {
+        "wirtschaft": -0.4,
+        "progressiv": 0.4
+      },
       "beschreibung": "Die Sozialdemokratische Partei Deutschlands (SPD) ist eine sozialdemokratische Partei der Mitte-Links-Orientierung. Zu ihren Kernanliegen gehören die Festigung des Sozialstaates, faire Löhne, bezahlbares Wohnen und die Sicherung der Renten. In der Transformation zur Klimaneutralität betont sie den Schutz von Arbeitsplätzen und sozialen Ausgleich.",
       "beschreibung_einfach": "Die SPD kämpft für soziale Gerechtigkeit. Sie möchte gute Löhne und bezahlbare Wohnungen für alle. Beim Klimaschutz will sie Arbeitsplätze sichern.",
       "website": "https://www.spd.de",
@@ -121,6 +137,10 @@
     {
       "partei": "LINKE",
       "prozent": 10,
+      "achsen": {
+        "wirtschaft": -0.9,
+        "progressiv": 0.6
+      },
       "beschreibung": "Die Linke vertritt sozialistische und antiglobalistische Positionen. Sie fordert eine konsequente Umverteilung durch eine Vermögensteuer, höhere Besteuerung von Spitzeneinkommen und den Ausbau öffentlicher Dienstleistungen. Außenpolitisch setzt die Partei auf Abrüstung, die Einstellung von Waffenexporten und friedensdiplomatische Lösungen.",
       "beschreibung_einfach": "Die Linke will Reiche stärker besteuern und Arme unterstützen. Sie möchte mehr Geld für Krankenhäuser, Schulen und Pflege ausgeben. Außerdem ist sie gegen Waffenlieferungen.",
       "website": "https://www.die-linke.de",
@@ -149,6 +169,10 @@
     {
       "partei": "FDP",
       "prozent": 5,
+      "achsen": {
+        "wirtschaft": 0.9,
+        "progressiv": 0.3
+      },
       "beschreibung": "Die Freie Demokratische Partei (FDP) ist eine liberale Partei, die Eigenverantwortung und wirtschaftliche Freiheit betont. Schwerpunkte bilden der Erhalt der Schuldenbremse, der Verzicht auf Steuererhöhungen und der Abbau von Regulierung. Zudem fordert sie die Beschleunigung der Digitalisierung in Wirtschaft und Verwaltung.",
       "beschreibung_einfach": "Die FDP möchte möglichst wenig Staat und Gesetze. Bürger und Firmen sollen frei entscheiden können. Der Staat soll keine neuen Schulden machen.",
       "website": "https://www.fdp.de",
@@ -177,6 +201,10 @@
     {
       "partei": "BSW",
       "prozent": 4,
+      "achsen": {
+        "wirtschaft": -0.3,
+        "progressiv": -0.6
+      },
       "beschreibung": "Das Bündnis Sahra Wagenknecht (BSW) verknüpft links-sozialpolitische Forderungen mit gesellschaftspolitisch konservativen und migrationskritischen Haltungen. Schwerpunkte sind höhere Mindestlöhne, die Stärkung heimischer Unternehmen und der Erhalt der Industrie. Außenpolitisch plädiert die Partei für Diplomatie und die Aufhebung wirtschaftlicher Sanktionen.",
       "beschreibung_einfach": "Das Bündnis Sahra Wagenknecht fordert höhere Renten und Löhne. Gleichzeitig fordert die Partei Grenzen bei der Zuwanderung und friedliche Verhandlungen statt Sanktionen.",
       "website": "https://bsw-vg.de",

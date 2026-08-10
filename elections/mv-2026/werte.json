@@ -9,6 +9,10 @@
     {
       "partei": "AfD",
       "prozent": 29,
+      "achsen": {
+        "wirtschaft": 0.7,
+        "progressiv": -0.9
+      },
       "beschreibung": "Die AfD Mecklenburg-Vorpommern fordert eine Verschärfung der Asyl- und Migrationspolitik sowie die Rückabwicklung von Maßnahmen der Energiewende zugunsten konventioneller Energieträger. Schwerpunkte bilden die Stärkung des ländlichen Raums, Bürokratieabbau für den Mittelstand und die Unterstützung traditioneller Familienstrukturen. Zudem tritt die Partei für eine Begrenzung von EU-Vorgaben auf Landesebene ein.",
       "website": "https://www.afd-mv.de",
       "kandidaten": [
@@ -29,6 +33,10 @@
     {
       "partei": "SPD",
       "prozent": 22,
+      "achsen": {
+        "wirtschaft": -0.4,
+        "progressiv": 0.4
+      },
       "beschreibung": "Die SPD Mecklenburg-Vorpommern stellt mit Manuela Schwesig die Ministerpräsidentin und betont in ihrem Programm soziale Gerechtigkeit, beitragsfreie Bildung sowie den Ausbau der Infrastruktur im ländlichen Raum. Ein weiterer Schwerpunkt liegt auf dem wirtschaftlichen Strukturwandel und der Stärkung der erneuerbaren Energien. Zudem setzt sich die Partei für die Sicherung von Arbeitsplätzen und den Erhalt einer flächendeckenden Gesundheitsversorgung ein.",
       "website": "https://www.spd-mv.de",
       "kandidaten": [
@@ -48,6 +56,10 @@
     {
       "partei": "CDU/CSU",
       "prozent": 20,
+      "achsen": {
+        "wirtschaft": 0.6,
+        "progressiv": -0.3
+      },
       "beschreibung": "Die CDU Mecklenburg-Vorpommern fokussiert sich auf die Stärkung der regionalen Wirtschaft, die Förderung des Mittelstands und eine solide Haushaltspolitik. Sie setzt sich für eine Erhöhung der Polizeipräsenz zur Verbesserung der inneren Sicherheit und eine Modernisierung des Schulwesens ein. Zudem fordert sie eine gezielte Unterstützung der Landwirtschaft und den konsequenten Abbau bürokratischer Hürden.",
       "website": "https://www.cdu-mecklenburg-vorpommern.de",
       "kandidaten": [
@@ -67,6 +79,10 @@
     {
       "partei": "BSW",
       "prozent": 13,
+      "achsen": {
+        "wirtschaft": -0.3,
+        "progressiv": -0.6
+      },
       "beschreibung": "Das Bündnis Sahra Wagenknecht (BSW) vereint wirtschaftskritische Ansätze mit einer restriktiveren Haltung in der Asylpolitik. Im Fokus stehen die Entlastung niedriger Einkommen, höhere Löhne und Renten sowie eine diplomatieorientierte Außenpolitik. Auf Landesebene fordert das BSW gezielte Investitionen in die öffentliche Infrastruktur und den Erhalt von Krankenhausstandorten.",
       "website": "https://bsw-vg.de",
       "kandidaten": [
@@ -86,6 +102,10 @@
     {
       "partei": "LINKE",
       "prozent": 6,
+      "achsen": {
+        "wirtschaft": -0.9,
+        "progressiv": 0.6
+      },
       "beschreibung": "Die Linke Mecklenburg-Vorpommern setzt Schwerpunkte auf den Ausbau des öffentlichen Sektors, bezahlbaren Wohnraum und die Bekämpfung von Armut. Als Koalitionspartner in der Landesregierung betont sie präventiven Kinderschutz, gut ausgestattete Kitas und Schulen sowie die Mitbestimmung von Beschäftigten. Zudem fordert sie verstärkte Investitionen in den öffentlichen Personennahverkehr im ländlichen Raum.",
       "website": "https://www.die-linke-mv.de",
       "kandidaten": [
@@ -106,6 +126,10 @@
     {
       "partei": "GRÜNE",
       "prozent": 5,
+      "achsen": {
+        "wirtschaft": -0.3,
+        "progressiv": 0.9
+      },
       "beschreibung": "Bündnis 90/Die Grünen Mecklenburg-Vorpommern stellen konsequenten Klimaschutz, den Schutz der Ostsee und die ökologische Transformation der Landwirtschaft in den Mittelpunkt. Sie fordern den beschleunigten Ausbau erneuerbarer Energien, Moorschutz und eine klimafreundliche Verkehrswende. Darüber hinaus setzen sie sich für Chancengleichheit in der Bildung und die Förderung gesellschaftlicher Vielfalt ein.",
       "website": "https://gruene-mv.de",
       "kandidaten": [
@@ -126,6 +150,10 @@
     {
       "partei": "FDP",
       "prozent": 3,
+      "achsen": {
+        "wirtschaft": 0.9,
+        "progressiv": 0.3
+      },
       "beschreibung": "Die FDP Mecklenburg-Vorpommern fordert eine beschleunigte Digitalisierung der Verwaltung, Bürokratieabbau und die Entlastung von Mittelstand und Handwerk. Sie spricht sich für mehr eigenverantwortliche Entscheidungsmöglichkeiten an Schulen sowie eine technologieoffene Wirtschaftspolitik aus. Ein weiterer Fokus liegt auf dem flächendeckenden Ausbau der digitalen Infrastruktur und der Konsolidierung der Landesfinanzen.",
       "website": "https://www.fdp-mv.de",
       "kandidaten": [

@@ -12,6 +12,7 @@ Interaktiver Koalitionsrechner und Parteien-Test für die Bundestagswahl 2029 un
 - **Filter** – Mindestübereinstimmung, Koalitionsart (Mehrheit/Minderheit/Alle), nach Partei filtern, Parteien ausschließen
 - **Parteien vergleichen** – Positionen mehrerer Parteien nebeneinander mit Quellen und Begründungen
 - **Daten & Charts** – Umfragewerte, Sitzverteilung, Koalitionspotential, Parteipositionen nach Themen, Themenverteilung
+- **2D-Politik-Kompass** – Parteien, Koalitionen und die eigene Antwort-Position auf einem 2D-Gitter (Wirtschaft links/rechts × progressiv/konservativ); erscheint im Daten & Charts-Tab und im Testergebnis, jeweils mit i18n (inkl. Einfacher Sprache) und Koalitions-Zentren; ein Fallback zeigt einen Hinweis, wenn eine Wahl keine Achsen-Daten hat
 - **Einfache Sprache** – Umschalter für alle UI-Texte und alle 170 Fragen (45 Bundestag + 40 Sachsen-Anhalt + 52 Berlin + 33 Mecklenburg-Vorpommern) in einfacher Sprache
 - **Dark/Light Mode** – mit automatischer Systemerkennung
 - **Ergebnis-Historie** – Testergebnisse werden gespeichert
@@ -32,7 +33,7 @@ Interaktiver Koalitionsrechner und Parteien-Test für die Bundestagswahl 2029 un
 ## Datenstruktur
 
 - `elections/<id>/fragen.json` – Fragen mit Parteipositionen (`wert`, `zitat`, `quelle`, `begruendung`)
-- `elections/<id>/werte.json` – Umfragewerte und Wahl-Metadaten (Sperrklausel, Sitzzahl); optional pro Partei: `beschreibung`, `kandidaten` (`name`, `rolle`), `spitzenkandidat` (Name eines Eintrags aus `kandidaten`), `verlauf` (`label`, `prozent` für die Zeit-Entwicklung), `rss` (Array von RSS-/Atom-Feed-URLs für den Nachrichten-Feed), `website`
+- `elections/<id>/werte.json` – Umfragewerte und Wahl-Metadaten (Sperrklausel, Sitzzahl); optional pro Partei: `beschreibung`, `kandidaten` (`name`, `rolle`), `spitzenkandidat` (Name eines Eintrags aus `kandidaten`), `verlauf` (`label`, `prozent` für die Zeit-Entwicklung), `rss` (Array von RSS-/Atom-Feed-URLs für den Nachrichten-Feed), `website`, `achsen` (`wirtschaft`, `progressiv` – beide `-1` bis `+1` – für den 2D-Politik-Kompass)
 - `elections/<id>/config.json` – optionale Schwellenwerte pro Wahl sowie `koalitionsausschluss`: Objekt, das pro Partei festlegt, mit welchen anderen Parteien sie nicht zusammen regieren will (z. B. `"AfD": ["SPD", "GRÜNE", "LINKE"]`). Koalitionen, die ein solches Paar enthalten, werden ausgeblendet
 - `einfache-sprache.json` – Übersetzungen für UI-Texte und Fragen in einfacher Sprache
 - `config.json` – globale Farben und Themen-Kategorien sowie Schwellenwerte unter `thresholds` (u. a. `sperrklausel`, `minAnswersForRanking`, `dealbreakerWeight` – die Gewichtung einer als „unverhandelbar“ markierten These, Standard 4, `minMatchGapForTop` – der Mindestabstand zwischen Platz 1 und 2 der Übereinstimmungswerte, ab dem der Taktik-Simulator „Top-Partei"/„Wunschkoalition" ableitet, siehe `tactical-voting.md` §5)
