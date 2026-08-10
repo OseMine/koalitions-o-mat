@@ -204,7 +204,15 @@
     "tactical.scCNear": "{p} liegt mit {v} % unter der Hürde und hat aktuell {m} Direktmandate – mit Erststimmen-Bündelung auf {need} wäre der Einzug über die Grundmandatsklausel möglich.",
     "tactical.scCWeit": "{p} liegt mit {v} % unter der Hürde und hat aktuell nur {m} Direktmandate – der Einzug über die Grundmandatsklausel ist in diesem Szenario nicht in Sicht.",
     "tactical.scCMatrix": "Direktmandats-Schätzungen für diese Wahl liegen vor (siehe Regler „Direktmandate“). Aktuell liegt keine Partei mit weniger als {t} % auf dem Weg über die Grundmandatsklausel.",
-    "tactical.scDHint": "Szenario D (strategische Erststimme): Wenn in Ihrem Wahlkreis ein von Ihnen stark abgelehnter Direktkandidat vorn liegt, hilft die Erststimme für den aussichtsreichsten Gegenkandidaten – auch über Parteigrenzen hinweg. Der Simulator kennt keine einzelnen Wahlkreise. Dieses Szenario wird hier nur erklärt und nicht berechnet."
+    "tactical.scDHint": "Szenario D (strategische Erststimme): Wenn in Ihrem Wahlkreis ein von Ihnen stark abgelehnter Direktkandidat vorn liegt, hilft die Erststimme für den aussichtsreichsten Gegenkandidaten – auch über Parteigrenzen hinweg. Der Simulator kennt keine einzelnen Wahlkreise. Dieses Szenario wird hier nur erklärt und nicht berechnet.",
+    "modeSwitchToSimple": "Einfacher Modus",
+    "modeSwitchToAdvanced": "Erweiterter Modus",
+    "aria.modeToggleSimple": "Zum einfachen Modus wechseln",
+    "aria.modeToggleAdvanced": "Zum erweiterten Modus wechseln",
+    "modeSimpleActive": "Einfacher Modus: Erweiterte Ansichten (Parteien, Koalitionen, Daten, Dealbreaker, Kompass u. a.) sind ausgeblendet.",
+    "modeAdvancedActive": "Erweiterter Modus: Alle Ansichten sind verfügbar.",
+    "shareDisabledSimple": "Das Teilen von Ergebnissen ist im einfachen Modus ausgeblendet.",
+    "parteiSeiteDisabled": "Die Partei-Detail-Seite ist im einfachen Modus ausgeblendet."
   },
   "fragen": {
     "ltw-sachsen-anhalt-2026": {

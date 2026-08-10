@@ -49,6 +49,50 @@ function simpleQuestionText(f, field) {
     return f[field];
 }
 
+// ===== Einfacher / Erweiterter Modus =====
+// Der einfache Modus zeigt nur die Kern-App und blendet erweiterte Ansichten aus.
+// Welche Features ausgeblendet werden, steuert config.json unter "ui.simple.off"
+// (z. B. tab.parteien, kompass, dealbreaker, taktik, historie, teilen).
+function storedMode() {
+    try { return localStorage.getItem('koalitions-o-mat-mode') || null; } catch (_) { return null; }
+}
+function currentMode() {
+    const s = storedMode();
+    if (s === 'simple' || s === 'advanced') return s;
+    return (config && config.ui && config.ui.defaultMode === 'advanced') ? 'advanced' : 'simple';
+}
+function isSimpleMode() { return currentMode() === 'simple'; }
+function simpleOff(key) {
+    if (!isSimpleMode()) return false;
+    const off = (config && config.ui && config.ui.simple && config.ui.simple.off) || [];
+    return off.includes(key);
+}
+function applyModeVisibility() {
+    const simple = isSimpleMode();
+    document.body.classList.toggle('mode-simple', simple);
+    const btn = document.getElementById('modeToggle');
+    if (btn) {
+        const label = simple ? t('modeSwitchToAdvanced', 'Erweiterter Modus') : t('modeSwitchToSimple', 'Einfacher Modus');
+        const aria = simple ? t('aria.modeToggleAdvanced', 'Zum erweiterten Modus wechseln') : t('aria.modeToggleSimple', 'Zum einfachen Modus wechseln');
+        btn.textContent = (simple ? '⚙ ' : '◕ ') + label;
+        btn.setAttribute('aria-pressed', simple ? 'true' : 'false');
+        btn.setAttribute('aria-label', aria);
+        btn.title = aria;
+    }
+    // Aktiver Tab im einfachen Modus ausgeblendet -> zurück zum Test-Tab
+    if (document.querySelector('.tab-button.active') && activeTabName() !== 'test' && simpleOff('tab.' + activeTabName())) {
+        switchTab('test');
+    }
+}
+function toggleMode() {
+    const next = isSimpleMode() ? 'advanced' : 'simple';
+    try { localStorage.setItem('koalitions-o-mat-mode', next); } catch (_) {}
+    applyModeVisibility();
+    showNotification(next === 'simple'
+        ? t('modeSimpleActive', 'Einfacher Modus: erweiterte Ansichten sind ausgeblendet.')
+        : t('modeAdvancedActive', 'Erweiterter Modus: alle Ansichten sind verfügbar.'), 'success');
+}
+
 // ===== Answer Helpers (support legacy string and new object formats) =====
 function getAnswerValue(answer, partei) {
     if (!answer || !answer[partei]) return 'm';
@@ -129,6 +173,10 @@ function toggleDealbreaker(idx) {
 
 // ===== Teilen per URL =====
 function shareResults() {
+    if (simpleOff('teilen')) {
+        showNotification(t('shareDisabledSimple', 'Das Teilen von Ergebnissen ist im einfachen Modus ausgeblendet.'), 'info');
+        return;
+    }
     // Neutrale Antworten (m) mitschicken – nur völlig unbeantwortete Fragen fehlen,
     // damit ein geteiltes Ergebnis exakt dem Original entspricht.
     const answered = Object.entries(userAnswers).filter(([, a]) => a === 'j' || a === 'n' || a === 'm');
@@ -281,6 +329,7 @@ function handleShareHash() {
 
 // ===== Tab Switching =====
 function switchTab(tabName) {
+    if (simpleOff('tab.' + tabName)) tabName = 'test';
     if (partyPageOpen) closePartyPage();
     window.scrollTo({ top: 0, behavior: 'smooth' });
     // ARIA-Tabs: aria-selected + Roving-Tabindex am aktiven Tab pflegen
@@ -551,6 +600,7 @@ function populatePartyDropdowns() {
 
 // ===== Parteien & Kandidaten Page =====
 function initializeParteienPage() {
+    if (simpleOff('tab.parteien')) return;
     const container = document.getElementById('partyInfoList');
     if (!container || !window.werteData) return;
     const parties = [...(window.werteData.umfragewerte || [])].sort((a, b) => b.prozent - a.prozent);
@@ -616,6 +666,10 @@ function escapeHtml(s) {
 }
 
 function openPartyPage(partyName) {
+    if (simpleOff('parteiSeite')) {
+        showNotification(t('parteiSeiteDisabled', 'Die Partei-Detail-Seite ist im einfachen Modus ausgeblendet.'), 'info');
+        return;
+    }
     if (!window.werteData) return;
     const party = (window.werteData.umfragewerte || []).find(p => p.partei === partyName);
     if (!party) { showNotification(t('party.notFound', 'Partei nicht gefunden.'), 'error'); return; }
@@ -1545,13 +1599,15 @@ function initializeTest() {
         const answerSel = userAnswers[i] ? userAnswers[i] : '';
         const importantLabel = t('importantHint', 'Wichtige Frage (zählt doppelt)');
         const dealbreakerLabel = t('dealbreakerHint', 'Unverhandelbar (zählt stark: Parteien, die hier gegen Sie stehen, werden deutlich abgewertet)');
+        const dealbreakerBtn = simpleOff('dealbreaker') ? '' : `
+                    <button type="button" class="q-dealbreaker ${dealbreakerQuestions.has(i) ? 'active' : ''}" data-q="${i}" onclick="toggleDealbreaker(${i})" title="${dealbreakerLabel}" aria-label="${dealbreakerLabel}" aria-pressed="${dealbreakerQuestions.has(i) ? 'true' : 'false'}">⛔</button>`;
         return `
         <div class="question ${i === currentQuestion ? 'active' : ''}" data-q="${i}">
             <div class="q-top-row">
                 <span class="q-topic" style="--topic-color:${topicColor}">${topic}</span>
                 <span class="q-actions">
                     <button type="button" class="q-important ${importantQuestions.has(i) ? 'active' : ''}" data-q="${i}" onclick="toggleImportant(${i})" title="${importantLabel}" aria-label="${importantLabel}" aria-pressed="${importantQuestions.has(i) ? 'true' : 'false'}">★</button>
-                    <button type="button" class="q-dealbreaker ${dealbreakerQuestions.has(i) ? 'active' : ''}" data-q="${i}" onclick="toggleDealbreaker(${i})" title="${dealbreakerLabel}" aria-label="${dealbreakerLabel}" aria-pressed="${dealbreakerQuestions.has(i) ? 'true' : 'false'}">⛔</button>
+                    ${dealbreakerBtn}
                     <span class="q-counter">${i + 1} / ${questions.length}</span>
                 </span>
             </div>
@@ -1824,7 +1880,7 @@ function showTestResults() {
 
     // Hinweis: Dealbreaker/Rote Linien – Parteien, die bei einer als unverhandelbar
     // markierten These gegen den Nutzer stehen, werden stark abgewertet.
-    if (dealbreakerQuestions.size > 0) {
+    if (dealbreakerQuestions.size > 0 && !simpleOff('dealbreaker')) {
         html += `<p class="neutral-hint dealbreaker-active-hint">${t('dealbreakerActiveHint', '⛔ {n} These(n) sind als unverhandelbar markiert: Parteien, die dort gegen Ihre Position stehen, werden stark abgewertet.').replace('{n}', dealbreakerQuestions.size)}</p>`;
     }
 
@@ -1846,7 +1902,7 @@ function showTestResults() {
 
     // 2D-Politik-Kompass: Nutzerposition aus den Antworten + Parteien (und Koalitions-
     // Zentren als Bezug). Nur anzeigen, wenn die Wahl Achsen-Daten hat (sonst Fallback).
-    if (usableAnswered > 0 && kompassDaten().length) {
+    if (usableAnswered > 0 && !simpleOff('kompass') && kompassDaten().length) {
         html += `<div class="tr-kompass-section">
             <h3>${t('chartKompass', '2D-Politik-Kompass')}</h3>
             <div id="testResultKompassChart" style="height:340px;width:100%"></div>
@@ -1923,7 +1979,7 @@ function showTestResults() {
                     <div class="match-bar-fill" style="width:${r.match != null ? r.match : 0}%;background:${color}"></div>
                 </div>
                 <div class="tr-card-agreed">${r.total > 0 ? `${r.agreed} ${t('agreedOf', 'von')} ${r.total} ${t('agreedQuestions', 'Fragen zugestimmt')}` : t('noComparableAnswers', 'Keine vergleichbaren Antworten (nur neutral beantwortet)')}</div>
-                ${r.dealbreakerConflicts > 0 ? `<div class="tr-dealbreaker-conflict">${t('dealbreakerConflict', '⛔ Antwortet bei {n} als unverhandelbar markierten Frage(n) anders als Sie – stark abgewertet').replace('{n}', r.dealbreakerConflicts)}</div>` : ''}
+                ${r.dealbreakerConflicts > 0 && !simpleOff('dealbreaker') ? `<div class="tr-dealbreaker-conflict">${t('dealbreakerConflict', '⛔ Antwortet bei {n} als unverhandelbar markierten Frage(n) anders als Sie – stark abgewertet').replace('{n}', r.dealbreakerConflicts)}</div>` : ''}
                 ${fewAnswers}
                 ${topicsHtml}
                 <button class="tr-detail-btn" onclick="togglePartyDetail('${escapeHtmlAttr(r.partei)}')">${t('detailToggle', 'Fragen-Vergleich ▾')}</button>
@@ -1942,7 +1998,7 @@ function showTestResults() {
     // Ohne eine einzige verwertbare (j/n-)Antwort wäre "Deine Top-Partei" /
     // "Deine Wunschkoalition" nur die stabile `werte.json`-Reihenfolge
     // (irreführend, btw2029: AfD) – den Abschnitt daher weglassen.
-    if (usableAnswered > 0) {
+    if (usableAnswered > 0 && !simpleOff('taktik')) {
         html += tacticalSectionHTML();
     }
 
@@ -2395,7 +2451,7 @@ function backToTest() {
 }
 
 function saveTestResult(results) {
-    if (suppressHistorySave) return;
+    if (suppressHistorySave || simpleOff('historie')) return;
     const history = JSON.parse(localStorage.getItem('testHistory') || '[]');
     history.push({
         date: new Date().toISOString(),
@@ -2492,6 +2548,7 @@ function showChartPlaceholder(id, text) {
 }
 
 function initializeDaten() {
+    if (simpleOff('tab.daten')) return;
     createStatsSummary();
     createPartyOverviewChart();
     createSeatChart();
@@ -3213,6 +3270,7 @@ function applySavedSimpleLang() {
 document.addEventListener('DOMContentLoaded', async () => {
     applySavedTheme();
     applySavedSimpleLang();
+    applyModeVisibility();
     pendingShare = parseShareHash();
 
     if ('serviceWorker' in navigator) {
@@ -3262,6 +3320,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (!configRes.ok) throw new Error('Fehler beim Laden von config.json');
         config = await configRes.json();
         baseConfig = JSON.parse(JSON.stringify(config));
+        // Modus erst nach dem Config-Load final anwenden (defaultMode kann abweichen)
+        applyModeVisibility();
 
         await loadElections();
 

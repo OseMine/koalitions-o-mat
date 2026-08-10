@@ -1024,3 +1024,8 @@ body {
     background: var(--surface-variant); color: var(--on-surface-muted);
     border: 1px solid var(--outline);
 }
+
+
+/* ===== Modus: Einfach/Erweitert ===== */
+body.mode-simple [data-simple-off] { display: none !important; }
+body:not(.mode-simple) [data-simple-off] { display: revert; }

@@ -70,5 +70,22 @@
     "minMatchGapForTop": 1,
     "dealbreakerWeight": 4
   },
-  "newsProxy": "https://api.allorigins.win/raw?url="
+  "newsProxy": "https://api.allorigins.win/raw?url=",
+  "ui": {
+    "defaultMode": "simple",
+    "simple": {
+      "off": [
+        "tab.parteien",
+        "tab.koalitionen",
+        "tab.daten",
+        "parteiSeite",
+        "thesenMatrix",
+        "kompass",
+        "dealbreaker",
+        "taktik",
+        "historie",
+        "teilen"
+      ]
+    }
+  }
 } 
