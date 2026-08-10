@@ -19,6 +19,8 @@
     --answer-no-color: #C62828;
     --answer-m-bg: #FFF8E1;
     --answer-m-color: #B8860B;
+    --heat-neutral-bg: #ECECEC;
+    --heat-neutral-color: #5F6368;
 }
 
 [data-theme="dark"] {
@@ -41,6 +43,8 @@
     --answer-no-color: #F28B82;
     --answer-m-bg: #3A3510;
     --answer-m-color: #EED68A;
+    --heat-neutral-bg: #33333A;
+    --heat-neutral-color: #BDBDC2;
 }
 
 :root {
@@ -570,6 +574,26 @@ body {
 .legend-j { color: var(--answer-yes-color); }
 .legend-n { color: var(--answer-no-color); }
 .legend-m { color: var(--answer-m-color); }
+
+/* ===== Thesis-Matrix (Heatmap) ===== */
+.heatmap-section { margin-top: 8px; }
+.heatmap-section h3 { font-size: 1rem; margin: 16px 0 8px; }
+.heat-table th, .heat-table td { padding: 4px 6px; }
+.heat-table thead th { font-size: 0.75rem; white-space: nowrap; }
+.heat-party { font-size: 0.8rem; letter-spacing: -0.2px; }
+.heat-q { min-width: 160px; max-width: 260px; font-size: 0.78rem; font-weight: 500; line-height: 1.35; }
+.heat-topic { background: var(--surface-variant); }
+.heat-topic th {
+    text-align: left; padding: 6px 10px; font-weight: 700; font-size: 0.85rem;
+    border-left: 4px solid var(--tcolor, #9E9E9E); color: var(--on-surface);
+}
+.heat-topic-count { color: var(--on-surface-muted); font-weight: 400; margin-left: 8px; font-size: 0.72rem; }
+.heat-cell { min-width: 34px; width: 34px; height: 30px; padding: 0; font-size: 0.75rem; cursor: default; }
+.heat-mark { font-size: 0.92rem; line-height: 1.1; display: block; }
+.heat-agree { background: var(--answer-yes-bg); color: var(--answer-yes-color); }
+.heat-disagree { background: var(--answer-no-bg); color: var(--answer-no-color); }
+.heat-neutral { background: var(--heat-neutral-bg); color: var(--heat-neutral-color); }
+.heat-legend.legend-m { color: var(--heat-neutral-color); }
 
 /* ===== Notification ===== */
 .notification {
