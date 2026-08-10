@@ -24,6 +24,16 @@ Bewertet wurden die 14 Vorschläge aus Issue #102 (Koalitionsanalyse, Scoring-Cu
 - Leichte-Sprache-Toggle ↔ vorhanden (`einfache-sprache.json` deckt UI + Fragen ab)
 - Dark/Light-Mode-Toggle & Kontrast ↔ vorhanden (inkl. Systemerkennung)
 
+## Feature-Evaluation vom 2026-08-10 (Issue „How to hash": URL-Hash-Kodierung von Antworten)
+
+Bewertet wurde der Vorschlag, Quiz-Antworten als kompakten Positions-String (z. B. `210x2*1`) per URL-sicherem Base64 in einen `#q=`-Hash zu kodieren, inkl. `weighted`-Flag und `history.replaceState`-Live-Sync (Vergleich mit `shareResults()`/`parseShareHash()`, script.js:108-170).
+
+**Fazit: weitgehend redundant – nicht als eigenständiges Feature aufgenommen.** Das Projekt teilt Ergebnisse bereits sehr kompakt (`#w=<wahl>&a=<index+antwort>&i=<wichtig>&c=<koalition>&p=<partei>`): die bestehende Kodierung `0j1n3j` (Index+Antwort ohne Trennzeichen) ist kürzer als der Vorschlag, da Base64 URLs um ~33 % aufbläht und der Vorschlag zusätzlich `-`-Trenner plus `w`-Suffix pro Antwort braucht. Das `weighted`-Flag entspricht der vorhandenen „Wichtige Frage (zählt doppelt)" (`importantQuestions`, `#i=`, `frageGewicht()` script.js:92-94); „übersprungen" wird bereits durch Weglassen unbeantworteter Fragen abgebildet. Zudem passt die 2/1/0-Skala (Zustimmen/Neutral/Dagegen) nicht zum bestehenden Datenmodell (`j`/`n`/`m`).
+
+### P3 – Verbesserung (der einzige neue Mehrwert)
+
+- [ ] **Share-State live in die URL schreiben** – statt den Hash nur beim expliziten „Teilen"-Klick zu setzen, den Zustand (Wahl, Antworten, wichtige Fragen) laufend per `history.replaceState` synchron halten, sodass Fortsetzen/Teilen auch über Bookmark/URL kopieren funktioniert, ohne dass die Seiten-Historie zersplittert. Kleiner, risikoarmer Mehrwert über dem heutigen localStorage-`saveTestState()` + explizitem `shareResults()`; Kodierung bleibt das bestehende kompakte Format (kein Base64).
+
 ## Review vom 2026-08-10 (Fokus: Neue Features)
 
 Vollständiger Bericht: `reports/review-2026-08-10-b.md`. Zweiter Lauf am 2026-08-10 (nach dem Leerlauf-`review-2026-08-10.md` aus dem Schedule-Lauf 07:34); Fokus laut Auftrag: **Neue Features** (Partei-Seiten, Nachrichten-Feed, Taktik-Simulator Szenarien B/C/D, Teilen-Links) plus Algorithmen (Übereinstimmungsrechnung, Koalitionsberechnung, Themenzuordnung, Sitzverteilung). Verifiziert per Node-Harness gegen die echten Datendateien: Sitzsummen alle 4 Wahlen = `meta.sitze` (630/130/83/79), keine ausgeschlossene Koalition in `berechneKoalitionen()`, Taktik-Warnungen plausibel (46/168 Top-2-Paare über alle 4 Wahlen), Share-Hashs korrekt geparst (inkl. leerem `&a=`). `node --check script.js` + `tools/tactical-harness.js` + `harness/*` fehlerfrei. **Keine neuen P1-Bugs.** GitHub-Cleanup offen: verwaister Branch `opencode/issue99-20260810091339` (PR #100 ohne Merge geschlossen, Issue #99 geschlossen).
