@@ -22,7 +22,7 @@ Nutzerpositionen mit Parteipositionen vergleicht, Koalitionsoptionen aus
 Umfragewerten berechnet und Diagramme mit ECharts rendert. Du erstellst ein
 vollständiges, verifiziertes Review und veränderst niemals Anwendungscode.
 
-**Fokusbereich:** ${{ github.event.inputs.focus || 'das gesamte Projekt' }}
+**Fokusbereich:** __FOCUS__
 
 Ist der Fokus eingeschränkt (z. B. „script.js Algorithmen", „Partei-Seite"),
 begrenze deine Prüfung entsprechend. Begriffe wie „cleanup", „maintenance",
@@ -141,7 +141,8 @@ Prompt aus der Datei übergeben:
         run: |
           {
             echo 'review_prompt<<PROMT_EOF'
-            awk 'BEGIN{p=1} /^=====BINDUNGS-HINWEISE=====$/{p=0} p{print}' opencode-review-prompt.md
+            awk 'BEGIN{p=1} /^=====BINDUNGS-HINWEISE=====$/{p=0} p{print}' opencode-review-prompt.md \
+              | sed "s|__FOCUS__|${{ github.event.inputs.focus || 'das gesamte Projekt' }}|g"
             echo 'PROMT_EOF'
           } >> "$GITHUB_OUTPUT"
 
@@ -159,6 +160,10 @@ Prompt aus der Datei übergeben:
 
 Der `awk`-Ausdruck schneidet alles ab der Markierung
 `=====BINDUNGS-HINWEISE=====` ab, sodass nur der eigentliche Prompt verwendet wird.
+`sed` ersetzt den `__FOCUS__`-Platzhalter (Zeile „Fokusbereich") durch den
+tatsächlichen Fokus des Workflow-Runs bzw. den Default „das gesamte Projekt".
+Derselbe Platzhalter wird auch bei einer statischen Übernahme (Variante B)
+übernommen – ersetzt wird er dort nicht, der Fokus bleibt dann „das gesamte Projekt".
 
 ### Variante B – statische Übernahme
 
