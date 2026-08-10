@@ -2,6 +2,12 @@
 
 Erledigte (abgehakte) Aufgaben aus todo.md, Stand 2026-08-09. Offene Punkte: siehe `todo.md`.
 
+## Implementierung vom 2026-08-10 (determineTopic()-Keyword-Fallback entfernen)
+
+Verifiziert per `node --check script.js` und neuem Node-Harness `harness/determine-topic-check.js` gegen die echten Datendateien.
+
+- [x] **`determineTopic()`-Keyword-Fallback klassifiziert anders als das explizite `thema`** – Entscheidung: **Fallback entfernt**. `determineTopic()` (script.js:2596 ff.) klassifiziert jetzt ausschließlich über das redaktionelle `thema` (Pflichtfeld, alle 4 Wahlen befüllt: btw2029 45, LSA 40, Berlin 52, MV 33 Fragen). Der Keyword-Fallback (vorher script.js:2597-2600) hätte viele Fragen anders klassifiziert als das `thema` (btw2029 14, LSA 19, Berlin 21, MV 15 Mismatches; z. B. btw2029 #11 Soziales→Wirtschaft, #19 Umwelt→Außenpolitik, Berlin #21/#28/#46 Umwelt→Digitales) – kein Live-Effekt bei den aktuellen Daten, aber latente Fehlerquelle für künftige Wahlen ohne Pflicht-`thema`. Fragen ohne/ungültiges `thema` werden nun ehrlich als „Sonstiges" einsortiert und lösen einen einmaligen `console.error`-Fehlerhinweis pro Frage aus (Dedupe über `determineTopicMissingThemaWarned`), statt still per Keywords fehlklassifiziert zu werden. Thema-Ansichten (Fragenlisten, Programm-, Radar-, Top-Themen, Partei-Vergleich) bleiben für alle 4 Wahlen unverändert, da alle Fragen ein valides `thema` liefern. Verifiziert per Node-Harness: `determineTopic(f) === f.thema` für alle 170 Fragen; leeres/fehlendes `thema` → „Sonstiges" mit 2 (nicht doppelt) Fehlerhinweisen; String-Input (früherer fallback-Pfad) → „Sonstiges". Bestehende Harnesses (`tactical-scenarios-check.js`, `tactical-match-gap.js`, `tools/tactical-harness.js`) weiterhin grün.
+
 ## Nachträge vom 2026-08-09 (Issue #84: Erststimmen-/Grundmandatsklausel-Szenarien C/D)
 
 - [x] **Erststimme-/Grundmandatsklausel-Szenarien fehlen (P2, Ziel des Issues)** – umgesetzt:

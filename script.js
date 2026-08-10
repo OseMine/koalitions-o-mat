@@ -2589,14 +2589,22 @@ function analyzePartyTopics(partei) {
     return result;
 }
 
+// Hinweis: Topic-Zuordnung erfolgt ausschließlich über das redaktionelle
+// `thema` (Pflichtfeld je Frage, alle 4 Wahlen befüllt). Der frühere
+// Keyword-Fallback wurde entfernt (Review 2026-08-10, P3): Er lieferte für
+// viele Fragen ein anderes Topic als das redaktionelle `thema` (z. B. btw2029
+// #11 Soziales→Wirtschaft, #19 Umwelt→Außenpolitik, Berlin #21 Umwelt→Digitales).
+// Fragen ohne/ungültiges `thema` landen ehrlich in 'Sonstiges' und lösen einen
+// Fehlerhinweis aus, statt still per Keywords fehlklassifiziert zu werden.
+const determineTopicMissingThemaWarned = new Set();
 function determineTopic(f) {
     if (f && typeof f === 'object') {
         if (f.thema && config.topics[f.thema]) return f.thema;
-        f = f.frage || '';
-    }
-    for (const [topic, data] of Object.entries(config.topics)) {
-        if (data.keywords.some(w => f.toLowerCase().includes(w.toLowerCase())))
-            return topic;
+        const frageId = (f.nr != null ? '#' + f.nr + ' ' : '') + (f.frage || '');
+        if (!determineTopicMissingThemaWarned.has(frageId)) {
+            determineTopicMissingThemaWarned.add(frageId);
+            console.error('determineTopic(): Frage ohne/ungültiges `thema` -> einsortiert als "Sonstiges": ' + (frageId || JSON.stringify(f)));
+        }
     }
     return 'Sonstiges';
 }
