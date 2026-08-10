@@ -13,7 +13,7 @@ Bewertet wurden die 14 Vorschläge aus Issue #102 (Koalitionsanalyse, Scoring-Cu
 - [ ] **Dealbreaker / Rote Linien** – Erweiterung der bestehenden „Wichtige Frage (zählt doppelt)": Thesen als unverhandelbar markieren → Parteien/Koalitionen, die dort gegen den Nutzer stehen, werden stark abgewertet oder ausgeschlossen (P2).
 - [ ] **Thesis-Matrix-Heatmap** – Partei × These-Tabelle in Grün/Rot/Grau (zustimmen/dagegen/neutral) für schnelle Block-Erkennung; Daten (`wert` je Partei je Frage) sind vorhanden, nur Rendering neu (P3).
 - [ ] **Ergebnis-Karte als PNG/SVG exportieren** – aus den vorhandenen Share-Daten eine Social-Media-taugliche Karte (Top-Koalition, Top-Partei, Schwerpunkt-Themen) als Bild erzeugen (P3).
-- [ ] **2D-Politik-Kompass** – Nutzer, Parteien und Koalitionen auf einem 2D-Gitter (Wirtschaft links/rechts × progressiv/konservativ); benötigt neue Achsen-Daten pro Partei (P3).
+- [x] **2D-Politik-Kompass** – Nutzer, Parteien und Koalitionen auf einem 2D-Gitter (Wirtschaft links/rechts × progressiv/konservativ); benötigt neue Achsen-Daten pro Partei (P3).  → in `archived-todo.md`.
 
 ### Bewusst nicht aufgenommen (bereits vorhanden)
 

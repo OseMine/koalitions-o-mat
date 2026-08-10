@@ -1788,6 +1788,16 @@ function showTestResults() {
         </div>`;
     }
 
+    // 2D-Politik-Kompass: Nutzerposition aus den Antworten + Parteien (und Koalitions-
+    // Zentren als Bezug). Nur anzeigen, wenn die Wahl Achsen-Daten hat (sonst Fallback).
+    if (usableAnswered > 0 && kompassDaten().length) {
+        html += `<div class="tr-kompass-section">
+            <h3>${t('chartKompass', '2D-Politik-Kompass')}</h3>
+            <div id="testResultKompassChart" style="height:340px;width:100%"></div>
+            <p class="chart-note">${t('kompassNote', 'Der 2D-Politik-Kompass ordnet Parteien auf zwei Achsen ein: Wirtschaft (links/rechts) und progressiv/konservativ. Ihre Position ergibt sich gewichtet aus Ihren Antworten, Koalitionen erscheinen als Gravitationszentrum ihrer Mitgliedsparteien.')}</p>
+        </div>`;
+    }
+
     // Best coalition: majority > 50%, max size, min internal agreement, user match.
     // Nur anzeigen, wenn der Nutzer tatsächlich Fragen beantwortet hat – sonst ist der
     // "Mit Ihnen"-Wert (0 %) irreführend. Die Ausschluss-Checkboxen des Koalitionen-Tabs
@@ -1883,6 +1893,13 @@ function showTestResults() {
     bindTacticalEvents();
     if (usableAnswered > 0) {
         initTestResultPieChart(results);
+        // 2D-Politik-Kompass in der Ergebnis-Ansicht (nur bei Achsen-Daten)
+        const kompassEl = document.getElementById('testResultKompassChart');
+        if (kompassEl) renderKompassChart('testResultKompassChart', {
+            parties: kompassDaten(),
+            coalitions: kompassKoalitionen(4),
+            user: berechneUserPositionAusAntworten(userAnswers)
+        });
         // Historie nur bei mindestens einer verwertbaren (j/n-)Antwort speichern,
         // sonst landet ein übersprungener Test als "0,0 %"-Eintrag in der Historie.
         saveTestResult(results);
@@ -2423,6 +2440,7 @@ function initializeDaten() {
     createSeatChart();
     createCoalitionPotentialChart();
     createPartyPositionsChart();
+    createKompassChart();
     createTopicChart();
     renderTestHistory();
 }
@@ -2569,6 +2587,195 @@ function createTopicChart() {
         series: [{ type: 'bar', data: entries.map(([k, v]) => ({ value: v, itemStyle: { color: (config.topics[k] && config.topics[k].color) || config.chartColors.neutral, borderRadius: [0, 4, 4, 0] } })), barMaxWidth: 22, label: { show: true, position: 'right', formatter: p => p.value.toFixed(0) + '%', color: cssVar('--on-surface-muted'), fontSize: 11 }, animationDuration: 800 }],
         tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, formatter: p => `${p[0].name}<br/><strong>${p[0].value.toFixed(0)}%</strong>` }
     }), true);
+}
+
+// ===== 2D-Politik-Kompass (Achsen: Wirtschaft links/rechts x progressiv/konservativ) =====
+// Datenquelle: optionales `achsen`-Feld je Partei in `elections/*/werte.json`
+// (`achsen.wirtschaft`, `achsen.progressiv`, jeweils -1..1). Fehlen die Daten einer
+// Wahl, wird kein Chart gezeichnet, sondern ein klarer Hinweis angezeigt (Fallback).
+function kompassClamp(v) { return Math.max(-1, Math.min(1, Number(v))); }
+
+function parteiAchsen(partei) {
+    if (!window.werteData || !window.werteData.umfragewerte) return null;
+    const p = window.werteData.umfragewerte.find(x => x.partei === partei);
+    if (!p || !p.achsen) return null;
+    const w = Number(p.achsen.wirtschaft), pr = Number(p.achsen.progressiv);
+    if (!isFinite(w) || !isFinite(pr)) return null;
+    return { x: kompassClamp(w), y: kompassClamp(pr) };
+}
+
+// Parteien der aktiven Wahl mit Achsen-Daten
+function kompassDaten() {
+    if (!window.werteData || !window.werteData.umfragewerte) return [];
+    return window.werteData.umfragewerte
+        .map(p => ({ partei: p.partei, prozent: p.prozent || 0, ...parteiAchsen(p.partei) }))
+        .filter(p => p.x != null && p.y != null);
+}
+
+// Nutzerposition: gewichtetes Zentrum der Parteipositionen, Gewicht = Übereinstimmung
+function berechneParteiMatch(partei, answers) {
+    if (!window.parteienData || !window.parteienData.fragen) return null;
+    let agreed = 0, total = 0;
+    window.parteienData.fragen.forEach((f, i) => {
+        const ua = answers ? answers[i] : undefined;
+        const pa = getAnswerValue(f.antworten, partei);
+        if (!ua || ua === 'm') return;
+        if (!pa || pa === 'm') return;
+        const w = frageGewicht(i);
+        total += w;
+        if (ua === pa) agreed += w;
+    });
+    if (total <= 0) return null;
+    const min = (config.thresholds && config.thresholds.minAnswersForRanking) || 5;
+    return normalisiereUebereinstimmung(agreed, total, min);
+}
+
+function berechneUserPositionAusAntworten(answers) {
+    const axeDaten = kompassDaten();
+    if (!axeDaten.length) return null;
+    let sx = 0, sy = 0, sw = 0;
+    axeDaten.forEach(p => {
+        const m = berechneParteiMatch(p.partei, answers);
+        if (m == null) return;
+        sx += p.x * m; sy += p.y * m; sw += m;
+    });
+    if (sw <= 0) return null;
+    return { x: sx / sw, y: sy / sw };
+}
+
+// Koalitionen als Gravitationszentrum der Mitgliedsparteien (nur Mehrheits-Koalitionen)
+function kompassKoalitionen(limit = 6) {
+    const koal = (berechneKoalitionen('mehrheit') || []);
+    return koal
+        .map(k => {
+            const members = k.parteien.map(p => parteiAchsen(p)).filter(Boolean);
+            if (members.length !== k.parteien.length) return null;
+            return {
+                ...k,
+                cx: members.reduce((s, m) => s + m.x, 0) / members.length,
+                cy: members.reduce((s, m) => s + m.y, 0) / members.length,
+                members
+            };
+        })
+        .filter(Boolean)
+        .sort((a, b) => b.uebereinstimmung - a.uebereinstimmung)
+        .slice(0, limit);
+}
+
+// Gemeinsames Rendering für Daten-Tab und Ergebnis-Ansicht
+function renderKompassChart(elId, opts) {
+    const el = document.getElementById(elId);
+    if (!el) return;
+    if (typeof echarts === 'undefined') {
+        showChartPlaceholder(elId, t('chartLoadError', 'Diagramme konnten nicht geladen werden (ECharts nicht erreichbar).'));
+        return;
+    }
+    if (chartInstances[elId]) { chartInstances[elId].dispose(); delete chartInstances[elId]; }
+    const chart = echarts.init(el);
+    chartInstances[elId] = chart;
+    const partieDaten = (opts && opts.parties) || kompassDaten();
+    const coalitions = (opts && opts.coalitions) || kompassKoalitionen();
+    const user = (opts && opts.user) || null;
+
+    const series = [];
+    // Verbindungslinien Koalitionszentrum -> Mitglieder
+    const lineData = [];
+    coalitions.forEach(k => k.members.forEach(m => lineData.push({ coords: [[k.cx, k.cy], [m.x, m.y]] })));
+    if (lineData.length) {
+        series.push({
+            type: 'lines', coordinateSystem: 'cartesian2d', data: lineData, silent: true, z: 1,
+            lineStyle: { width: 1.5, color: cssVar('--primary', '#00897B') + '66', type: 'dashed' }
+        });
+    }
+    // Parteipunkte
+    series.push({
+        type: 'scatter', name: 'parteien', z: 3,
+        data: partieDaten.map(p => ({ value: [p.x, p.y], partei: p.partei, prozent: p.prozent })),
+        symbolSize: (val, params) => 12 + Math.max(0, Math.min(12, params.data.prozent / 2.5)),
+        itemStyle: { color: p => getPartyColor(p.data.partei), borderColor: cssVar('--surface', '#fff'), borderWidth: 1.5 },
+        label: {
+            show: true, position: 'right', formatter: p => p.data.partei,
+            fontSize: 10, fontWeight: 600, color: p => getPartyColor(p.data.partei)
+        },
+        emphasis: { scale: 1.3 },
+        tooltip: {
+            formatter: p => `<strong>${escapeHtml(p.data.partei)}</strong><br/>${t('kompassAchseWirtschaft', 'Wirtschaft')}: ${p.data.value[0].toFixed(2)} · ${t('kompassAchseProgressiv', 'progressiv')}: ${p.data.value[1].toFixed(2)}<br/>${t('kompassPoll', 'Umfrage')}: ${p.data.prozent.toFixed(1)}%`
+        }
+    });
+    // Koalitionszentren
+    if (coalitions.length) {
+        series.push({
+            type: 'scatter', name: 'koalitionen', z: 2,
+            data: coalitions.map(k => ({ value: [k.cx, k.cy], parteien: k.parteien, prozente: k.prozente, uebereinstimmung: k.uebereinstimmung })),
+            symbol: 'diamond', symbolSize: 14,
+            itemStyle: { color: 'transparent', borderColor: cssVar('--primary', '#00897B'), borderWidth: 2, borderType: 'dashed' },
+            label: {
+                show: true, position: 'top', fontSize: 9, formatter: p => p.data.parteien.join('+'),
+                color: cssVar('--on-surface-muted', '#9A97A0')
+            },
+            tooltip: {
+                formatter: p => `<strong>${escapeHtml(p.data.parteien.join(' + '))}</strong><br/>${t('kompassZentrum', 'Zentrum')}: ${p.data.value[0].toFixed(2)} / ${p.data.value[1].toFixed(2)}<br/>${t('total', 'Gesamt')}: ${p.data.prozente.toFixed(1)}% · ${t('internalMatch', 'Interne Übereinstimmung')}: ${p.data.uebereinstimmung.toFixed(1)}%`
+            }
+        });
+    }
+    // Nutzerpunkt
+    if (user) {
+        series.push({
+            type: 'scatter', name: 'nutzer', z: 4,
+            data: [{ value: [user.x, user.y] }],
+            symbol: 'pin', symbolSize: 34,
+            itemStyle: { color: cssVar('--primary', '#00897B') },
+            label: { show: true, position: 'top', fontSize: 11, fontWeight: 700, color: cssVar('--primary', '#00897B'), formatter: t('kompassUser', 'Sie') },
+            tooltip: { formatter: `<strong>${t('kompassUser', 'Sie')}</strong> · ${t('kompassAchseWirtschaft', 'Wirtschaft')}: ${user.x.toFixed(2)} · ${t('kompassAchseProgressiv', 'progressiv')}: ${user.y.toFixed(2)}` }
+        });
+    }
+
+    chart.setOption(Object.assign(echartsTheme(), {
+        grid: { left: 46, right: 46, top: 34, bottom: 40 },
+        legend: {
+            bottom: -2, textStyle: { color: cssVar('--on-surface'), fontSize: 10 },
+            data: [
+                { name: 'parteien', icon: 'circle', itemStyle: { color: cssVar('--primary', '#00897B') } },
+                { name: 'koalitionen', icon: 'diamond', itemStyle: { color: cssVar('--on-surface-muted') } },
+                ...(user ? [{ name: 'nutzer', icon: 'pin', itemStyle: { color: cssVar('--primary', '#00897B') } }] : [])
+            ]
+        },
+        xAxis: {
+            type: 'value', min: -1.2, max: 1.2,
+            axisLabel: { show: true, fontSize: 9, color: cssVar('--on-surface-muted') },
+            splitLine: { lineStyle: { color: cssVar('--outline') + '44', type: 'dashed' } },
+            axisLine: { show: true, lineStyle: { color: cssVar('--outline') } }
+        },
+        yAxis: {
+            type: 'value', min: -1.2, max: 1.2,
+            axisLabel: { show: true, fontSize: 9, color: cssVar('--on-surface-muted') },
+            splitLine: { lineStyle: { color: cssVar('--outline') + '44', type: 'dashed' } },
+            axisLine: { show: true, lineStyle: { color: cssVar('--outline') } }
+        },
+        graphic: [
+            { type: 'text', left: '50%', top: 4, style: { text: t('kompassAchseProgressiv', 'progressiv'), fill: cssVar('--on-surface-muted'), fontSize: 11, fontWeight: 600 } },
+            { type: 'text', left: '50%', bottom: 10, style: { text: t('kompassAchseKonservativ', 'konservativ'), fill: cssVar('--on-surface-muted'), fontSize: 11, fontWeight: 600 } },
+            { type: 'text', left: 8, top: '50%', style: { text: t('kompassAchseLinks', 'links'), fill: cssVar('--on-surface-muted'), fontSize: 11, fontWeight: 600 } },
+            { type: 'text', right: 8, top: '50%', style: { text: t('kompassAchseRechts', 'rechts'), fill: cssVar('--on-surface-muted'), fontSize: 11, fontWeight: 600 } }
+        ],
+        series
+    }), true);
+}
+
+function createKompassChart() {
+    const el = document.getElementById('kompassChart');
+    if (!el) return;
+    const partieDaten = kompassDaten();
+    if (!partieDaten.length) {
+        showChartPlaceholder('kompassChart', t('kompassKeineDaten', 'Für diese Wahl liegen keine Achsen-Daten vor – der 2D-Politik-Kompass kann nicht dargestellt werden.'));
+        return;
+    }
+    let user = null;
+    const history = JSON.parse(localStorage.getItem('testHistory') || '[]');
+    const eid = getActiveElectionId();
+    const latest = history.filter(h => !h.electionId || h.electionId === eid).pop();
+    if (latest && latest.answers) user = berechneUserPositionAusAntworten(latest.answers);
+    renderKompassChart('kompassChart', { parties: partieDaten, coalitions: kompassKoalitionen(), user });
 }
 
 function analyzePartyTopics(partei) {
@@ -2760,6 +2967,13 @@ function redrawCharts() {
     if (document.getElementById('test-content').classList.contains('active')
         && document.getElementById('testResults').innerHTML && lastTestResults) {
         initTestResultPieChart(lastTestResults);
+        if (document.getElementById('testResultKompassChart')) {
+            renderKompassChart('testResultKompassChart', {
+                parties: kompassDaten(),
+                coalitions: kompassKoalitionen(4),
+                user: berechneUserPositionAusAntworten(userAnswers)
+            });
+        }
     }
 }
 

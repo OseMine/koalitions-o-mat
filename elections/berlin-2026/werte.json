@@ -9,6 +9,10 @@
     {
       "partei": "LINKE",
       "prozent": 22,
+      "achsen": {
+        "wirtschaft": -0.9,
+        "progressiv": 0.6
+      },
       "beschreibung": "Die Linke Berlin setzt ihre politischen Schwerpunkte auf bezahlbaren Wohnraum, den Mietenstopp und den Ausbau des öffentlichen Nahverkehrs. Die Partei fordert die Rekommunalisierung wesentlicher Versorgungsstrukturen sowie gezielte Maßnahmen zur Bekämpfung von Armut und sozialer Ungleichheit in der Hauptstadt.",
       "website": "https://www.die-linke-berlin.de",
       "kandidaten": [
@@ -35,6 +39,10 @@
     {
       "partei": "CDU/CSU",
       "prozent": 20,
+      "achsen": {
+        "wirtschaft": 0.6,
+        "progressiv": -0.3
+      },
       "beschreibung": "Die CDU Berlin vertritt christdemokratische und konservativ-liberale Positionen. Zu ihren Kernfeldern gehören die Aufrechterhaltung der inneren Sicherheit, die Modernisierung der öffentlichen Verwaltung sowie eine wirtschaftsorientierte Infrastruktur- und Baupolitik zur Förderung von neuem Wohnraum.",
       "website": "https://www.cdu-berlin.de",
       "kandidaten": [
@@ -61,6 +69,10 @@
     {
       "partei": "GRÜNE",
       "prozent": 17,
+      "achsen": {
+        "wirtschaft": -0.3,
+        "progressiv": 0.9
+      },
       "beschreibung": "Bündnis 90/Die Grünen Berlin fokussieren sich auf konsequenten Klimaschutz, den Ausbau der erneuerbaren Energien und die Umsetzung der Verkehrswende. Darüber hinaus setzen sie sich für chancengerechte Bildung, soziale Teilhabe und gemeinwohlorientierten Wohnungsbau ein.",
       "website": "https://gruene-berlin.de",
       "kandidaten": [
@@ -87,6 +99,10 @@
     {
       "partei": "AfD",
       "prozent": 16,
+      "achsen": {
+        "wirtschaft": 0.7,
+        "progressiv": -0.9
+      },
       "beschreibung": "Die AfD Berlin vertritt rechtspopulistische und konservative Grundsätze mit Schwerpunkten in der Migrations- und Sicherheitspolitik. Sie fordert verstärkte Grenzkontrollen, eine Neuausrichtung der Kriminalitätsbekämpfung sowie eine kritische Überprüfung bestehender Umwelt- und Energieauflagen.",
       "website": "https://afd-berlin.de",
       "kandidaten": [
@@ -109,6 +125,10 @@
     {
       "partei": "SPD",
       "prozent": 12,
+      "achsen": {
+        "wirtschaft": -0.4,
+        "progressiv": 0.4
+      },
       "beschreibung": "Die SPD Berlin legt ihren Schwerpunkt auf soziale Infrastruktur, kostenfreie Bildung von der Kita bis zur Hochschule und faire Arbeitsbedingungen. Die Partei strebt verstärkten bezahlbaren Wohnungsbau, die Sicherung des Zusammenhalts und gezielte Investitionen in öffentliche Einrichtungen an.",
       "website": "https://www.spd.berlin",
       "kandidaten": [
@@ -135,6 +155,10 @@
     {
       "partei": "BSW",
       "prozent": 4,
+      "achsen": {
+        "wirtschaft": -0.3,
+        "progressiv": -0.6
+      },
       "beschreibung": "Das Bündnis Sahra Wagenknecht Berlin vertritt linkskonservative Ansätze mit dem Ziel, soziale Sicherheit und wirtschaftliche Handlungsfähigkeit zu stärken. Es fordert Entlastungen bei Energie- und Lebenshaltungskosten, eine Neuausrichtung der Asylpolitik und verstärkte Investitionen in die Daseinsvorsorge.",
       "website": "https://bsw-vg.de",
       "kandidaten": [
@@ -157,6 +181,10 @@
     {
       "partei": "FDP",
       "prozent": 3,
+      "achsen": {
+        "wirtschaft": 0.9,
+        "progressiv": 0.3
+      },
       "beschreibung": "Die FDP Berlin setzt auf freie Marktwirtschaft, Entbürokratisierung und die durchgehende Digitalisierung von Verwaltungsprozessen. Sie befürwortet Investitionen in Bildung und Mittelstand sowie flexiblere Bauauflagen zur Beschleunigung von privaten Wohnungsbauprojekten.",
       "website": "https://www.fdp-berlin.de",
       "kandidaten": [

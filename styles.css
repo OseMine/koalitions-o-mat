@@ -441,6 +441,9 @@ body {
 /* Pie chart & best coalition in results */
 .tr-pie-section { margin: 16px 0; background: var(--surface); border-radius: var(--radius-sm); border: 1px solid var(--outline); padding: 16px; }
 .tr-pie-section h3 { font-size: 0.95rem; margin: 0 0 8px; color: var(--on-surface); }
+.tr-kompass-section { margin: 16px 0; background: var(--surface); border-radius: var(--radius-sm); border: 1px solid var(--outline); padding: 16px; }
+.tr-kompass-section h3 { font-size: 0.95rem; margin: 0 0 8px; color: var(--on-surface); }
+.chart-note { font-size: 0.8rem; color: var(--on-surface-muted); line-height: 1.5; margin: 8px 2px 0; }
 .tr-best-section { margin: 16px 0; }
 .tr-best-section h3 { font-size: 0.95rem; margin: 0 0 8px; color: var(--on-surface); }
 .tr-restart-btn {

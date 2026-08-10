@@ -9,6 +9,10 @@
     {
       "partei": "AfD",
       "prozent": 41,
+      "achsen": {
+        "wirtschaft": 0.7,
+        "progressiv": -0.9
+      },
       "beschreibung": "Die Alternative für Deutschland vertritt in Sachsen-Anhalt eine ausgeprägt konservative, migrationskritische und EU-skeptische Politik. Zu ihren Schwerpunkten gehören die Begrenzung von Zuwanderung, eine Stärkung der regionalen Wirtschaft sowie der Erhalt fossiler Energieträger. Der Landesverband wird vom Verfassungsschutz Sachsen-Anhalt als gesichert rechtsextremistisch eingestuft.",
       "website": "https://www.afd-lsa.de",
       "kandidaten": [
@@ -39,6 +43,10 @@
     {
       "partei": "CDU/CSU",
       "prozent": 24,
+      "achsen": {
+        "wirtschaft": 0.6,
+        "progressiv": -0.3
+      },
       "beschreibung": "Die Christlich Demokratische Union vertritt eine bürgerlich-konservative Politik mit Schwerpunkten auf Wirtschaftsförderung, innerer Sicherheit und solider Finanzpolitik. In Sachsen-Anhalt setzt sie sich für den Ausbau der Infrastruktur, Bürokratieabbau sowie die Stärkung des ländlichen Raums ein. Nach dem Rückzug von Reiner Haseloff übernimmt Sven Schulze die Spitzenkandidatur.",
       "website": "https://www.cdu-lsa.de",
       "kandidaten": [
@@ -65,6 +73,10 @@
     {
       "partei": "LINKE",
       "prozent": 13,
+      "achsen": {
+        "wirtschaft": -0.9,
+        "progressiv": 0.6
+      },
       "beschreibung": "Die Linke legt ihren Schwerpunkt auf soziale Gerechtigkeit, bezahlbaren Wohnraum und die Stärkung der öffentlichen Daseinsvorsorge. Sie fordert eine gerechte Lohnentwicklung, bessere Bedingungen in Pflege und Bildung sowie die finanzielle Unterstützung einkommensschwacher Haushalte. In Sachsen-Anhalt tritt sie als opponierende Kraft für soziale Grundrechte ein.",
       "website": "https://www.dielinke-sachsen-anhalt.de",
       "kandidaten": [
@@ -95,6 +107,10 @@
     {
       "partei": "SPD",
       "prozent": 7,
+      "achsen": {
+        "wirtschaft": -0.4,
+        "progressiv": 0.4
+      },
       "beschreibung": "Die Sozialdemokratische Partei Deutschlands setzt Schwerpunkte in der Bildungs- und Arbeitspolitik sowie beim Klimaschutz mit sozialer Abfederung. Sie tritt für eine verlässliche Daseinsvorsorge, faire Löhne und Investitionen in Wissenschaft und erneuerbare Energien ein. In der Landesregierung wirkt sie für Transformation und soziale Sicherheit.",
       "website": "https://www.spd-sachsen-anhalt.de",
       "kandidaten": [
@@ -125,6 +141,10 @@
     {
       "partei": "GRÜNE",
       "prozent": 5,
+      "achsen": {
+        "wirtschaft": -0.3,
+        "progressiv": 0.9
+      },
       "beschreibung": "Bündnis 90/Die Grünen fokussieren sich auf konsequenten Klimaschutz, die Erhaltung der Biodiversität und den Ausbau erneuerbarer Energien in Sachsen-Anhalt. Ergänzend fordern sie die Stärkung des öffentlichen Nahverkehrs, gesellschaftliche Vielfalt und nachhaltige Landwirtschaft. In Sachsen-Anhalt setzen sie auf einen ökologischen und sozialen Wandel.",
       "website": "https://www.gruene-lsa.de",
       "kandidaten": [
@@ -151,6 +171,10 @@
     {
       "partei": "BSW",
       "prozent": 4,
+      "achsen": {
+        "wirtschaft": -0.3,
+        "progressiv": -0.6
+      },
       "beschreibung": "Das Bündnis Sahra Wagenknecht verbindet wirtschaftskritische und sozialpolitische Positionen mit einer begrenzenden Migrationspolitik und diplomatischen Ansätzen in der Außenpolitik. In Sachsen-Anhalt fordert die Partei höhere Löhne, die Stärkung des Gesundheitswesens und den Erhalt lokaler Wirtschaftskreisläufe. Es tritt 2026 erstmals bei der Landtagswahl in Sachsen-Anhalt an.",
       "website": "https://bsw-vg.de",
       "kandidaten": [
@@ -177,6 +201,10 @@
     {
       "partei": "FDP",
       "prozent": 4,
+      "achsen": {
+        "wirtschaft": 0.9,
+        "progressiv": 0.3
+      },
       "beschreibung": "Die Freie Demokratische Partei steht für wirtschaftliche Freiheit, Digitalisierung und den Abbau bürokratischer Hürden. Sie fordert eine moderne Verkehrsinfrastruktur, unternehmerische Freiheiten und stärkere Eigenverantwortung der Bürger. Als Regierungspartnerin in Sachsen-Anhalt betont sie den Ausbau digitaler Netze und eine effiziente Verwaltung.",
       "website": "https://www.fdp-lsa.de",
       "kandidaten": [
