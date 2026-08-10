@@ -1,4 +1,4 @@
-const VERSION = 'v4';
+const VERSION = 'v5';
 const STATIC_CACHE = `koalitions-o-mat-static-${VERSION}`;
 const DATA_CACHE = `koalitions-o-mat-data-${VERSION}`;
 
@@ -42,13 +42,15 @@ async function responsesEqual(a, b) {
 }
 
 // Network-first für Navigations-/HTML-Requests: Liefert immer die frische Seite
-// vom Server, wenn online. Hat sich der Inhalt geändert, wird die alte
-// App-Shell verworfen, sodass CSS/JS beim nächsten Abruf neu geladen werden.
+// vom Server, wenn online. `cache: 'no-store'` umgeht den HTTP-Cache, damit
+// auch CDN-Cache-Header (z. B. Vercel) keinen veralteten Stand liefern können.
+// Hat sich der Inhalt geändert, wird die alte App-Shell verworfen, sodass
+// CSS/JS beim nächsten Abruf neu geladen werden.
 async function navigationRequest(request) {
     const cache = await caches.open(STATIC_CACHE);
     const cached = await cache.match(request);
     try {
-        const response = await fetch(request);
+        const response = await fetch(request, { cache: 'no-store' });
         if (!response || !response.ok) {
             return cached || (await cache.match('./index.html'));
         }
@@ -79,11 +81,14 @@ self.addEventListener('fetch', event => {
     if (request.method !== 'GET') return;
     if (url.origin !== location.origin && !isEchartsCdn) return;
 
-    // Nach JSON-Daten (config, elections, election-data): network-first, damit
-    // sie aktualisiert werden, wenn online, aber offline trotzdem verfügbar sind.
+    // Nach JSON-Daten (config, elections, election-data): network-first mit
+    // `cache: 'no-store'`, damit Daten bei jeder Änderung garantiert frisch vom
+    // Netz kommen (kein HTTP-/CDN-Cache) und der DATA_CACHE dabei aktualisiert
+    // wird – ohne dass Nutzer:innen „Website-Daten löschen" müssen.
+    // Offline greift der Daten-Cache als Fallback.
     if (request.destination === '' && url.pathname.endsWith('.json')) {
         event.respondWith(
-            fetch(request)
+            fetch(request, { cache: 'no-store' })
                 .then(response => {
                     const copy = response.clone();
                     caches.open(DATA_CACHE).then(cache => cache.put(request, copy));

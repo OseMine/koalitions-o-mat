@@ -410,23 +410,23 @@ function renderWelcomeCards() {
 // ===== Data Loading =====
 async function loadElections() {
     try {
-        const res = await fetch('elections.json');
+        const res = await fetch('elections.json', { cache: 'no-store' });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const data = await res.json();
         electionsList = data.elections || [];
         if (!electionsList.length) throw new Error('Keine Wahlen gefunden');
 
         try {
-            const simpleRes = await fetch('einfache-sprache.json');
+            const simpleRes = await fetch('einfache-sprache.json', { cache: 'no-store' });
             if (simpleRes.ok) simpleLangData = await simpleRes.json();
         } catch (_) { /* ignore */ }
 
         await Promise.all(electionsList.map(async (election) => {
             try {
                 const [werteRes, configRes, fragenRes] = await Promise.all([
-                    fetch(`elections/${election.id}/werte.json`),
-                    fetch(`elections/${election.id}/config.json`).catch(() => null),
-                    fetch(`elections/${election.id}/fragen.json`).catch(() => null)
+                    fetch(`elections/${election.id}/werte.json`, { cache: 'no-store' }),
+                    fetch(`elections/${election.id}/config.json`, { cache: 'no-store' }).catch(() => null),
+                    fetch(`elections/${election.id}/fragen.json`, { cache: 'no-store' }).catch(() => null)
                 ]);
                 if (!werteRes.ok) throw new Error(`HTTP ${werteRes.status}`);
                 const werte = await werteRes.json();
@@ -2987,7 +2987,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (loadingOverlay) loadingOverlay.style.display = 'flex';
 
     try {
-        const configRes = await fetch('config.json');
+        const configRes = await fetch('config.json', { cache: 'no-store' });
         if (!configRes.ok) throw new Error('Fehler beim Laden von config.json');
         config = await configRes.json();
         baseConfig = JSON.parse(JSON.stringify(config));
