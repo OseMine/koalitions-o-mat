@@ -2182,6 +2182,71 @@ function istKoalitionsMehrheitSicher(a, b, polls, threshold) {
     return false;
 }
 
+// ===== Diagnose-Report: Leihstimmen-Warnung über reale Wahldaten =====
+// Eingebettet aus `tools/tactical-harness.js` (Issue 2026-08-10): Die Report-Logik
+// lebt jetzt hier in script.js und ruft direkt `istKoalitionAusgeschlossen()` und
+// `istKoalitionsMehrheitSicher()` auf. Es existiert damit kein gespiegelter
+// Algorithmus mehr im Node-Harness, der beim Ändern der Mehrheitsrechnung von der
+// Live-Logik auseinanderlaufen könnte. `tools/tactical-harness.js` ist nur noch ein
+// Starter, der script.js in einer VM lädt und diese Funktion mit den echten
+// `elections/*/werte.json`- und `config.json`-Daten füttert.
+//
+// Parameter: elections = [{ id, werte, config }] (geparste JSONs pro Wahl).
+// Rückgabe:  { altTotal, neuTotal, paare, ergaenzung: [{ eid, threshold, paare,
+//             altTreffer, treffer }] } – `treffer` sind die Top-2-Paare, bei denen
+//             die Leihstimmen-Warnung (Szenario B) unter der aktuellen Logik feuert,
+//             `altTreffer` die Paare der alten Vor-Sperrklausen-Logik.
+function tacticalHarnessReport(elections) {
+    let altTotal = 0, neuTotal = 0, paare = 0;
+    const ergaenzung = [];
+    for (const e of elections) {
+        if (!e || !e.werte || !e.config) continue;
+        const werte = e.werte, cfg = e.config;
+        const threshold = (cfg.thresholds && cfg.thresholds.sperrklausel) || 5;
+        // Die Helfer istKoalitionAusgeschlossen()/istKoalitionsMehrheitSicher()
+        // lesen das globale `config` – pro Wahl auf den echten Stand setzen.
+        const savedConfig = config;
+        config = {
+            thresholds: Object.assign({}, (config && config.thresholds) || {}, cfg.thresholds || {}),
+            koalitionsausschluss: (cfg.koalitionsausschluss && typeof cfg.koalitionsausschluss === 'object' && !Array.isArray(cfg.koalitionsausschluss)) ? cfg.koalitionsausschluss : {}
+        };
+        const polls = {};
+        (werte.umfragewerte || []).forEach(p => { if (p.partei !== 'Andere') polls[p.partei] = p.prozent; });
+        const pollOf = p => (polls[p] || 0);
+        const parties = Object.keys(polls);
+        paare += parties.length * (parties.length - 1);
+        const eligibleSum = parties.filter(p => pollOf(p) >= threshold).reduce((s, p) => s + pollOf(p), 0);
+
+        // Alte Logik (vor der Sperrklausen-Kopplung): share > 50 && (4 ≤ Paaranteil ≤ 6)
+        const alteLogik = (a, b) => {
+            const pa = pollOf(a), pb = pollOf(b);
+            const share = eligibleSum > 0 ? (((pa + pb) / eligibleSum) * 100) : 0;
+            const schwankt = [a, b].some(p => { const v = (p === a ? pa : pb); return v >= 4 && v <= 6; });
+            return share > 50 && schwankt;
+        };
+
+        const altTreffer = [], treffer = [];
+        for (let i = 0; i < parties.length; i++) {
+            for (let j = 0; j < parties.length; j++) {
+                if (i === j) continue;
+                const a = parties[i], b = parties[j];
+                const pa = pollOf(a), pb = pollOf(b);
+                if (alteLogik(a, b)) altTreffer.push(`${a}|${b}`);
+                const smallerPoll = Math.min(pa, pb);
+                const biggerPoll = Math.max(pa, pb);
+                const naheHuerde = smallerPoll >= threshold - 1 && smallerPoll < threshold + 1;
+                const partnerSicher = biggerPoll >= threshold;
+                const mehrheitSicher = istKoalitionsMehrheitSicher(a, b, polls, threshold);
+                if (naheHuerde && partnerSicher && mehrheitSicher) treffer.push(`${a}|${b} (${pa.toFixed(1)}% + ${pb.toFixed(1)}%)`);
+            }
+        }
+        altTotal += altTreffer.length; neuTotal += treffer.length;
+        ergaenzung.push({ eid: e.id, threshold, paare: parties.length * (parties.length - 1), altTreffer, treffer });
+        config = savedConfig;
+    }
+    return { altTotal, neuTotal, paare, ergaenzung };
+}
+
 function updateTacticalWarnings() {
     const box = document.getElementById('tacticalWarnings');
     if (!box || !lastTestResults) return;

@@ -1,84 +1,91 @@
-// Node-Harness: Dokumentiert, welche Top-2-Paare die Leihstimmen-Warnung
-// (Szenario B der tactical-voting.md) in den echten Wahldaten auslösen.
-// Spiegelbild von calculateTacticalVoting() + istKoalitionsMehrheitSicher()
-// aus script.js (nach der Sperrklausel-Kopplung, Issue 2026-08-09).
+// Node-Starter für den Diagnose-Report der Leihstimmen-Warnung (Szenario B der
+// tactical-voting.md): lädt script.js in einer VM und ruft die dort eingebettete
+// Funktion `tacticalHarnessReport()` mit den echten `elections/*/werte.json`- und
+// `config.json`-Daten auf. Die Report-Logik selbst (inkl. istKoalitionAusgeschlossen()
+// und istKoalitionsMehrheitSicher()) ist NICHT mehr hierher gespiegelt (Issue
+// 2026-08-10) – sie lebt ausschließlich in script.js.
 //
 // Aufruf: node tools/tactical-harness.js
+'use strict';
 const fs = require('fs');
 const path = require('path');
+const vm = require('vm');
+
+const root = path.join(__dirname, '..');
+const code = fs.readFileSync(path.join(root, 'script.js'), 'utf8');
 
 const ELECTIONS = ['btw2029', 'berlin-2026', 'ltw-sachsen-anhalt-2026', 'mv-2026'];
 
-function istKoalitionAusgeschlossen(parteienNamen, ausschluss) {
-    for (const name of parteienNamen) {
-        const verweigert = ausschluss[name];
-        if (Array.isArray(verweigert) && verweigert.some(x => parteienNamen.includes(x))) return true;
+function makeStorage() {
+    const store = {};
+    return {
+        getItem: k => (k in store ? store[k] : null),
+        setItem: (k, v) => { store[k] = String(v); },
+        removeItem: k => { delete store[k]; },
+        get length() { return Object.keys(store).length; },
+        key: i => Object.keys(store)[i],
+        clear: () => { for (const k in store) delete store[k]; }
+    };
+}
+
+function buildSandbox() {
+    const sandbox = {
+        console, process, localStorage: makeStorage(),
+        navigator: { userAgent: 'node', language: 'de' },
+        location: { hash: '', href: '', search: '', pathname: '/' },
+        document: {
+            readyState: 'complete',
+            addEventListener() {}, removeEventListener() {},
+            getElementById() { return null; },
+            querySelector() { return null; },
+            querySelectorAll() { return []; },
+            createElement() { return { style: {}, classList: { add() {}, remove() {}, contains: () => false }, setAttribute() {}, addEventListener() {}, appendChild() {}, removeChild() {}, dataset: {} }; },
+            createTextNode: t => ({ nodeValue: t }),
+            body: { appendChild() {}, classList: { add() {}, remove() {} } },
+            documentElement: { style: {}, dataset: {} },
+            head: { appendChild() {} }
+        },
+        fetch: () => Promise.resolve({ ok: false, json: () => Promise.resolve({}) }),
+        addEventListener() {}, removeEventListener() {},
+        matchMedia: () => ({ matches: false, addEventListener() {}, media: '' }),
+        setTimeout, clearTimeout, setInterval, clearInterval,
+        parseInt, parseFloat, Math, JSON, Date, RegExp, String, Number, Boolean, Array, Object,
+        escape: s => s, unescape: s => s,
+        crypto: { getRandomValues: arr => arr }
+    };
+    sandbox.window = sandbox;
+    sandbox.globalThis = sandbox;
+    sandbox.self = sandbox;
+    return sandbox;
+}
+
+const sandbox = buildSandbox();
+sandbox.__ELECTIONS__ = ELECTIONS.map(id => ({
+    id,
+    werte: JSON.parse(fs.readFileSync(path.join(root, 'elections', id, 'werte.json'), 'utf8')),
+    config: JSON.parse(fs.readFileSync(path.join(root, 'elections', id, 'config.json'), 'utf8'))
+}));
+vm.createContext(sandbox);
+
+const body = `
+;(function() {
+    const report = tacticalHarnessReport(__ELECTIONS__);
+    for (const e of report.ergaenzung) {
+        console.log(e.eid + ' (threshold ' + e.threshold + '): nicht mehr ausgelöst: ' + (e.altTreffer.length > 0 ? e.altTreffer.join(', ') : '-'));
+        console.log('  → Leihstimmen-Warnung feuert jetzt bei ' + e.treffer.length + ' Paar(en): ' + (e.treffer.length ? e.treffer.join('; ') : '-'));
     }
-    return false;
-}
 
-// Abgebildet auf istKoalitionsMehrheitSicher(a, b, polls, threshold)
-function istKoalitionsMehrheitSicher(a, b, polls, threshold, ausschluss, maxSize) {
-    if (!istKoalitionAusgeschlossen([a, b], ausschluss) && (polls[a] || 0) + (polls[b] || 0) > 50) return true;
-    const rest = Object.keys(polls).filter(p =>
-        p !== 'Andere' && p !== a && p !== b && (polls[p] || 0) >= threshold);
-    const n = rest.length;
-    for (let mask = 1; mask < (1 << n); mask++) {
-        const add = rest.filter((_, i) => mask & (1 << i));
-        if (add.length + 2 > maxSize) continue;
-        const combo = [a, b, ...add];
-        const sum = combo.reduce((s, p) => s + (polls[p] || 0), 0);
-        if (sum > 50 && !istKoalitionAusgeschlossen(combo, ausschluss)) return true;
+    console.log('\\nGesamt über ' + report.ergaenzung.length + ' Wahlen: ' + report.neuTotal + ' von ' + report.paare + ' Top-2-Paaren (vorher: ' + report.altTotal + ').');
+    if (report.ergaenzung.some(e => e.treffer.length > 0)) {
+        console.log('\\nMehrere Wahlen betroffen:');
+        for (const e of report.ergaenzung) if (e.treffer.length > 0) console.log('  - ' + e.eid + ': ' + e.treffer.join('; '));
     }
-    return false;
-}
+}).call(this);
+`;
 
-// Alte Logik (vor der Umstellung): share > 50 && (4 ≤ Paaranteil ≤ 6)
-function alteLogik(a, b, pa, pb, eligibleSum, threshold) {
-    const share = eligibleSum > 0 ? (((pa + pb) / eligibleSum) * 100) : 0;
-    const schwankt = [a, b].some(p => { const v = (p === a ? pa : pb); return v >= 4 && v <= 6; });
-    return share > 50 && schwankt;
-}
-
-let altTotal = 0, neuTotal = 0;
-const ergaenzung = [];
-for (const eid of ELECTIONS) {
-    const dir = path.join('elections', eid);
-    const werte = JSON.parse(fs.readFileSync(path.join(dir, 'werte.json'), 'utf8'));
-    const config = JSON.parse(fs.readFileSync(path.join(dir, 'config.json'), 'utf8'));
-    const threshold = (config.thresholds && config.thresholds.sperrklausel) || 5;
-    const maxSize = (config.thresholds && config.thresholds.maxCoalitionSize) || 4;
-    const ausschluss = config.koalitionsausschluss || {};
-    const polls = {};
-    werte.umfragewerte.forEach(p => { if (p.partei !== 'Andere') polls[p.partei] = p.prozent; });
-    const pollOf = p => (polls[p] || 0);
-    const parties = Object.keys(polls);
-    const eligibleSum = parties.filter(p => pollOf(p) >= threshold).reduce((s, p) => s + pollOf(p), 0);
-
-    const negative = [], treffer = [];
-    for (let i = 0; i < parties.length; i++) {
-        for (let j = 0; j < parties.length; j++) {
-            if (i === j) continue;
-            const a = parties[i], b = parties[j];
-            const pa = pollOf(a), pb = pollOf(b);
-            if (alteLogik(a, b, pa, pb, eligibleSum, threshold)) negative.push(`${a}|${b}`);
-            const smaller = pa <= pb ? a : b;
-            const smallerPoll = Math.min(pa, pb);
-            const biggerPoll = Math.max(pa, pb);
-            const naheHuerde = smallerPoll >= threshold - 1 && smallerPoll < threshold + 1;
-            const partnerSicher = biggerPoll >= threshold;
-            const mehrheitSicher = istKoalitionsMehrheitSicher(a, b, polls, threshold, ausschluss, maxSize);
-            if (naheHuerde && partnerSicher && mehrheitSicher) treffer.push(`${a}|${b} (${pa.toFixed(1)}% + ${pb.toFixed(1)}%)`);
-        }
-    }
-    altTotal += negative.length; neuTotal += treffer.length;
-    ergaenzung.push({ eid, treffer: treffer.length, hitliste: treffer });
-    console.log(`${eid} (threshold ${threshold}): nicht mehr ausgelöst: ${negative.length > 0 ? negative.join(', ') : '-'}`);
-    console.log(`  → Leihstimmen-Warnung feuert jetzt bei ${treffer.length} Paar(en): ${treffer.length ? treffer.join('; ') : '-'}`);
-}
-
-console.log(`\nGesamt über 4 Wahlen: ${neuTotal} von 168 Top-2-Paaren (vorher: ${altTotal}).`);
-if (ergaenzung.some(e => e.treffer > 0)) {
-    console.log('\nMehrere Wahlen betroffen:');
-    for (const e of ergaenzung) if (e.treffer > 0) console.log(`  - ${e.eid}: ${e.hitliste.join('; ')}`);
+try {
+    vm.runInContext(code + '\n' + body, sandbox, { filename: 'script.js' });
+} catch (e) {
+    console.error('LOAD/RUN ERROR:', e && e.stack || e);
+    process.exit(1);
 }
