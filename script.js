@@ -63,6 +63,14 @@ function getAnswerSources(answer, partei) {
 
 // ===== Wichtige Fragen & Test-Fortsetzen =====
 let importantQuestions = new Set();
+// Dealbreaker / Rote Linien: Thesen, bei denen ein Konflikt mit der eigenen
+// Position (j/n) nicht hinnehmbar ist. Parteien/Koalitionen werden dort stark
+// abgewertet (Gewicht = dealbreakerWeight statt 2/1), zusätzlich zur gewohnten
+// Doppelgewichtung (Gewichtungslogik wird erweitert, nicht ersetzt).
+let dealbreakerQuestions = new Set();
+function dealbreakerWeight() {
+    return (config && config.thresholds && config.thresholds.dealbreakerWeight) || 4;
+}
 
 function testStateKey() { return 'testState-' + activeElectionId; }
 
@@ -81,6 +89,7 @@ function saveTestState() {
         q: window.parteienData.fragen.length,
         answers: { ...userAnswers },
         important: [...importantQuestions],
+        dealbreakers: [...dealbreakerQuestions],
         currentQuestion
     }));
 }
@@ -90,6 +99,9 @@ function clearTestState() {
 }
 
 function frageGewicht(idx) {
+    // Dealbreaker zählt am stärksten (Config dealbreakerWeight, Standard 4),
+    // Wichtige Frage zählt doppelt (2), sonst einfach (1).
+    if (dealbreakerQuestions.has(idx)) return dealbreakerWeight();
     return importantQuestions.has(idx) ? 2 : 1;
 }
 
@@ -100,6 +112,17 @@ function toggleImportant(idx) {
     if (btn) {
         btn.classList.toggle('active', importantQuestions.has(idx));
         btn.setAttribute('aria-pressed', importantQuestions.has(idx) ? 'true' : 'false');
+    }
+    saveTestState();
+}
+
+function toggleDealbreaker(idx) {
+    if (dealbreakerQuestions.has(idx)) dealbreakerQuestions.delete(idx);
+    else dealbreakerQuestions.add(idx);
+    const btn = document.querySelector(`.question[data-q="${idx}"] .q-dealbreaker`);
+    if (btn) {
+        btn.classList.toggle('active', dealbreakerQuestions.has(idx));
+        btn.setAttribute('aria-pressed', dealbreakerQuestions.has(idx) ? 'true' : 'false');
     }
     saveTestState();
 }
@@ -129,8 +152,9 @@ function shareResults() {
     // als das frühere "0:j,1:n,3:j". Alte Links mit ":"/"," werden beim Parsen weiter akzeptiert.
     const answers = answered.map(([i, a]) => i + a).join('');
     const imp = [...importantQuestions].join(',');
+    const deal = [...dealbreakerQuestions].join(',');
     const url = location.origin + location.pathname + '#w=' + encodeURIComponent(activeElectionId)
-        + '&a=' + answers + (imp ? '&i=' + imp : '') + coalitionParam;
+        + '&a=' + answers + (imp ? '&i=' + imp : '') + (deal ? '&d=' + deal : '') + coalitionParam;
     if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(url).then(
             () => showNotification(t('shareCopied', 'Link in die Zwischenablage kopiert!'), 'success'),
@@ -149,7 +173,7 @@ function parseShareHash() {
         return null;
     }
     // &a= darf leer sein (Koalitions-Sicht ohne beantwortete Fragen teilen)
-    const m = h.match(/^#w=([^&]+)&a=([^&]*)(?:&i=([^&]*))?(?:&c=([^&]*))?(?:&p=([^&]*))?$/);
+    const m = h.match(/^#w=([^&]+)&a=([^&]*)(?:&i=([^&]*))?(?:&d=([^&]*))?(?:&c=([^&]*))?(?:&p=([^&]*))?$/);
     if (!m) return null;
     const raw = m[2];
     const answers = {};
@@ -166,7 +190,8 @@ function parseShareHash() {
         while ((mm = re.exec(raw))) answers[Number(mm[1])] = mm[2];
     }
     const important = new Set((m[3] || '').split(',').filter(Boolean).map(Number));
-    return { electionId: m[1], answers, important, coalitionState: m[4] || null, party: m[5] || null };
+    const dealbreakers = new Set((m[4] || '').split(',').filter(Boolean).map(Number));
+    return { electionId: m[1], answers, important, dealbreakers, coalitionState: m[5] || null, party: m[6] || null };
 }
 
 function applyPendingShare() {
@@ -174,6 +199,7 @@ function applyPendingShare() {
     const questions = window.parteienData.fragen;
     userAnswers = { ...pendingShare.answers };
     importantQuestions = new Set(pendingShare.important);
+    dealbreakerQuestions = new Set(pendingShare.dealbreakers);
     currentQuestion = Math.max(0, questions.length - 1);
     questions.forEach((f, i) => {
         if (userAnswers[i]) {
@@ -187,6 +213,10 @@ function applyPendingShare() {
     document.querySelectorAll('.q-important').forEach(btn => {
         btn.classList.toggle('active', importantQuestions.has(Number(btn.dataset.q)));
         btn.setAttribute('aria-pressed', importantQuestions.has(Number(btn.dataset.q)) ? 'true' : 'false');
+    });
+    document.querySelectorAll('.q-dealbreaker').forEach(btn => {
+        btn.classList.toggle('active', dealbreakerQuestions.has(Number(btn.dataset.q)));
+        btn.setAttribute('aria-pressed', dealbreakerQuestions.has(Number(btn.dataset.q)) ? 'true' : 'false');
     });
     saveTestState();
     // Ergebnis-Ansicht nur bei tatsächlich geteilten Antworten aufrufen – ein reiner
@@ -1245,6 +1275,31 @@ function berechnePaarAgreements(parteien) {
     return results;
 }
 
+// "Mit Ihnen"-Wert einer einzelnen Partei (identische Logik wie im Partei-Ranking
+// von showTestResults()). Dealbreaker: Parteien, die beim Dealbreaker gegen den
+// Nutzer stehen, werden stark abgewertet (Gewicht deutlich reduziert). Rückgabe:
+// { agreed, total, partyAnswered, dealbreakerConflicts } – match wird separat
+// mit normalisiereUebereinstimmung() berechnet.
+function berechneUserMatch(partei) {
+    let agreed = 0, total = 0, partyAnswered = 0, dealbreakerConflicts = 0;
+    if (window.parteienData && window.parteienData.fragen) {
+        window.parteienData.fragen.forEach((f, i) => {
+            const ua = userAnswers[i];
+            const pa = getAnswerValue(f.antworten, partei);
+            if (pa && pa !== 'm') partyAnswered++;
+            if (!ua || ua === 'm') return;
+            if (!pa || pa === 'm') return;
+            const w = frageGewicht(i);
+            total += w;
+            if (ua === pa) agreed += w;
+            else if (dealbreakerQuestions.has(i)) dealbreakerConflicts++;
+        });
+    }
+    const minRankingAnswers = (config.thresholds && config.thresholds.minAnswersForRanking) || 5;
+    const match = total > 0 ? normalisiereUebereinstimmung(agreed, total, minRankingAnswers) : null;
+    return { partei, agreed, total, partyAnswered, dealbreakerConflicts, match };
+}
+
 function berechneUserMatchFuerKoalition(parteiNames) {
     let sum = 0, count = 0;
     if (!window.parteienData || !window.parteienData.fragen) return 0;
@@ -1402,6 +1457,7 @@ function resetAnswers() {
     if (!window.parteienData || !window.parteienData.fragen) return;
     userAnswers = {};
     importantQuestions = new Set();
+    dealbreakerQuestions = new Set();
     clearTestState();
     const qc = document.getElementById('questionContainer');
     if (qc) {
@@ -1412,6 +1468,10 @@ function resetAnswers() {
                 b.setAttribute('aria-pressed', 'false');
             });
             q.querySelectorAll('.q-important').forEach(b => {
+                b.classList.remove('active');
+                b.setAttribute('aria-pressed', 'false');
+            });
+            q.querySelectorAll('.q-dealbreaker').forEach(b => {
                 b.classList.remove('active');
                 b.setAttribute('aria-pressed', 'false');
             });
@@ -1440,6 +1500,7 @@ function initializeTest() {
     const saved = loadTestState();
     userAnswers = saved ? saved.answers : {};
     importantQuestions = new Set(saved ? saved.important : []);
+    dealbreakerQuestions = new Set(saved ? saved.dealbreakers : []);
     // Fortsetzen: gespeicherte Position wiederherstellen (statt immer bei Frage 1 zu starten)
     currentQuestion = saved && typeof saved.currentQuestion === 'number'
         ? Math.min(Math.max(0, saved.currentQuestion), questions.length - 1)
@@ -1483,12 +1544,14 @@ function initializeTest() {
         const topicColor = (config.topics[topic] && config.topics[topic].color) || '#999';
         const answerSel = userAnswers[i] ? userAnswers[i] : '';
         const importantLabel = t('importantHint', 'Wichtige Frage (zählt doppelt)');
+        const dealbreakerLabel = t('dealbreakerHint', 'Unverhandelbar (zählt stark: Parteien, die hier gegen Sie stehen, werden deutlich abgewertet)');
         return `
         <div class="question ${i === currentQuestion ? 'active' : ''}" data-q="${i}">
             <div class="q-top-row">
                 <span class="q-topic" style="--topic-color:${topicColor}">${topic}</span>
                 <span class="q-actions">
                     <button type="button" class="q-important ${importantQuestions.has(i) ? 'active' : ''}" data-q="${i}" onclick="toggleImportant(${i})" title="${importantLabel}" aria-label="${importantLabel}" aria-pressed="${importantQuestions.has(i) ? 'true' : 'false'}">★</button>
+                    <button type="button" class="q-dealbreaker ${dealbreakerQuestions.has(i) ? 'active' : ''}" data-q="${i}" onclick="toggleDealbreaker(${i})" title="${dealbreakerLabel}" aria-label="${dealbreakerLabel}" aria-pressed="${dealbreakerQuestions.has(i) ? 'true' : 'false'}">⛔</button>
                     <span class="q-counter">${i + 1} / ${questions.length}</span>
                 </span>
             </div>
@@ -1709,28 +1772,15 @@ function showTestResults() {
         return p.prozent >= config.thresholds.sperrklausel;
     });
     const results = parties.map(p => {
-        let agreed = 0, total = 0, partyAnswered = 0;
-        if (window.parteienData && window.parteienData.fragen) {
-            window.parteienData.fragen.forEach((f, i) => {
-                const ua = userAnswers[i];
-                const pa = getAnswerValue(f.antworten, p.partei);
-                if (pa && pa !== 'm') partyAnswered++;
-                if (!ua || ua === 'm') return;
-                if (!pa || pa === 'm') return;
-                const w = frageGewicht(i);
-                total += w;
-                if (ua === pa) agreed += w;
-            });
-        }
-        // match = null, wenn es keine vergleichbaren (j/n-)Antworten gibt –
-        // dann als "–" anzeigen statt irreführender 0 %.
+        const m = berechneUserMatch(p.partei);
         return {
             partei: p.partei,
-            match: total > 0 ? normalisiereUebereinstimmung(agreed, total, minRankingAnswers) : null,
+            match: m.match,
             topicMatches: berechneUserMatchNachThema(p.partei),
-            agreed,
-            total,
-            partyAnswered
+            agreed: m.agreed,
+            total: m.total,
+            partyAnswered: m.partyAnswered,
+            dealbreakerConflicts: m.dealbreakerConflicts
         };
     }).sort((a, b) => (b.match ?? -1) - (a.match ?? -1));
 
@@ -1770,6 +1820,12 @@ function showTestResults() {
     // Hinweis: Neutrale Antworten fließen nicht in die Übereinstimmung ein
     if (neutralCount > 0) {
         html += `<p class="neutral-hint">${t('neutralHint', 'Neutrale Antworten ({n}) fließen nicht in die Übereinstimmung ein.').replace('{n}', neutralCount)}</p>`;
+    }
+
+    // Hinweis: Dealbreaker/Rote Linien – Parteien, die bei einer als unverhandelbar
+    // markierten These gegen den Nutzer stehen, werden stark abgewertet.
+    if (dealbreakerQuestions.size > 0) {
+        html += `<p class="neutral-hint dealbreaker-active-hint">${t('dealbreakerActiveHint', '⛔ {n} These(n) sind als unverhandelbar markiert: Parteien, die dort gegen Ihre Position stehen, werden stark abgewertet.').replace('{n}', dealbreakerQuestions.size)}</p>`;
     }
 
     // Hinweis: dünne Nutzer-Antwortbasis. Unterhalb der Mindestzahl vergleichbarer
@@ -1857,6 +1913,7 @@ function showTestResults() {
                     <div class="match-bar-fill" style="width:${r.match != null ? r.match : 0}%;background:${color}"></div>
                 </div>
                 <div class="tr-card-agreed">${r.total > 0 ? `${r.agreed} ${t('agreedOf', 'von')} ${r.total} ${t('agreedQuestions', 'Fragen zugestimmt')}` : t('noComparableAnswers', 'Keine vergleichbaren Antworten (nur neutral beantwortet)')}</div>
+                ${r.dealbreakerConflicts > 0 ? `<div class="tr-dealbreaker-conflict">${t('dealbreakerConflict', '⛔ Antwortet bei {n} als unverhandelbar markierten Frage(n) anders als Sie – stark abgewertet').replace('{n}', r.dealbreakerConflicts)}</div>` : ''}
                 ${fewAnswers}
                 ${topicsHtml}
                 <button class="tr-detail-btn" onclick="togglePartyDetail('${escapeHtmlAttr(r.partei)}')">${t('detailToggle', 'Fragen-Vergleich ▾')}</button>

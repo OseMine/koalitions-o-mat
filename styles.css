@@ -319,6 +319,13 @@ body {
 }
 .q-important:hover { transform: scale(1.1); color: var(--answer-yes-color); }
 .q-important.active { background: var(--answer-yes-color); border-color: var(--answer-yes-color); color: #fff; }
+.q-dealbreaker {
+    border: 1px solid var(--outline); background: var(--surface); color: var(--on-surface-muted);
+    width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: 1rem; line-height: 1;
+    transition: all 0.2s; -webkit-tap-highlight-color: transparent;
+}
+.q-dealbreaker:hover { transform: scale(1.1); color: var(--answer-no-color); }
+.q-dealbreaker.active { background: var(--answer-no-color); border-color: var(--answer-no-color); color: #fff; }
 .progress-bar { width: 100%; height: 6px; background: var(--surface-variant); border-radius: 3px; margin: 8px 0 16px; overflow: hidden; }
 .progress-fill { height: 100%; background: var(--primary); transition: width 0.4s ease; border-radius: 3px; }
 .q-text { font-size: 1.1rem; font-weight: 600; margin: 0 0 8px; color: var(--on-surface); line-height: 1.4; }
@@ -400,6 +407,15 @@ body {
     color: var(--warning, #B26A00); background: var(--surface-variant);
     border-left: 3px solid var(--warning, #FFA726); border-radius: 4px;
 }
+
+/* Dealbreaker/Rote Linien: Partei steht bei einer unverhandelbaren These gegen den Nutzer */
+.tr-dealbreaker-conflict {
+    margin: 6px 0 8px; padding: 6px 10px; font-size: 0.78rem;
+    background: color-mix(in srgb, var(--answer-no-color) 12%, transparent);
+    border: 1px solid color-mix(in srgb, var(--answer-no-color) 50%, transparent);
+    border-radius: var(--radius-sm); color: var(--answer-no-color); font-weight: 600;
+}
+.dealbreaker-active-hint { border-color: color-mix(in srgb, var(--answer-no-color) 55%, transparent); color: var(--answer-no-color); }
 
 .test-results-header { margin-bottom: 12px; }
 .test-results-header h3 { font-size: 1.05rem; margin: 0 0 4px; }
@@ -675,7 +691,7 @@ body {
     @keyframes notifOut { to { transform: translateY(16px); opacity: 0; } }
 
     /* Mobile-Fix (Issue #27): größere Touch-Fläche für den "Wichtige-Frage"-Button */
-    .q-important { width: 44px; height: 44px; font-size: 1.1rem; }
+    .q-important, .q-dealbreaker { width: 44px; height: 44px; font-size: 1.1rem; }
     /* Kompaktere vertikale Abstände auf schmalen Screens, damit mehr Frage sichtbar bleibt */
     .test-intro { font-size: 0.92rem; margin-bottom: 10px; }
     .q-text { line-height: 1.35; }

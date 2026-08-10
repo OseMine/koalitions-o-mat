@@ -2,6 +2,16 @@
 
 Erledigte (abgehakte) Aufgaben aus todo.md, Stand 2026-08-09. Offene Punkte: siehe `todo.md`.
 
+## Implementierung vom 2026-08-10 (Issue #107: Dealbreaker / Rote Linien)
+
+- [x] **Dealbreaker / Rote Linien** – Erweiterung der bestehenden „Wichtige Frage (zählt doppelt)" (P2 aus Feature-Evaluation, todo.md:13). Thesen lassen sich zusätzlich als **unverhandelbar** (⛔) markieren; Parteien/Koalitionen, die dort gegen den Nutzer stehen, werden stark abgewertet:
+  - **Gewichtungslogik** (`script.js`): neues `dealbreakerQuestions`-Set; `frageGewicht()` liefert für Dealbreaker das aus `config.thresholds.dealbreakerWeight` gelesene Gewicht (Standard 4) anstelle von 2 (wichtig) oder 1 (normal). Kombination „wichtig + Dealbreaker" → Dealbreaker-Gewicht (Logik erweitert, nicht ersetzt). `config.json` → `thresholds.dealbreakerWeight: 4` neu aufgenommen.
+  - **Berechnung**: neue zentrale Hilfsfunktion `berechneUserMatch(partei)` (identische Logik wie das bisherige Inline-Ranking in `showTestResults()`, jetzt single source of truth und Node-testbar) zählt `dealbreakerConflicts`; `berechneUserMatchFuerKoalition()` und `berechneUserMatchNachThema()` erben die Dealbreaker-Gewichtung automatisch über `frageGewicht()`.
+  - **UI**: ⛔-Toggle-Button je Frage neben ★ (`toggleDealbreaker`, `.q-dealbreaker` mit `aria-pressed`, rotes Active-Styling, gleiche Touch-Größe 44 px mobil); Konflikt-Badge `.tr-dealbreaker-conflict` im Partei-Card + Hinweis `.dealbreaker-active-hint` in den Ergebnissen, sobald Dealbreaker gesetzt sind.
+  - **Persistenz/Teilen**: `saveTestState()`/`loadTestState()` speichern `dealbreakers`; `resetAnswers()`/`applyPendingShare()` setzen/befüllen das Set; Share-URL um `&d=` erweitert (Kodierung wie `&i=`), `parseShareHash()` rückwärtskompatibel (alte Links ohne `&d=` weiterhin gültig, Reihenfolge bleibt stabil).
+  - **i18n**: neue Keys `dealbreakerHint`, `dealbreakerActiveHint`, `dealbreakerConflict` in `einfache-sprache.json.ui`; `methodologyNote` (index.html + einfache Sprache) beschreibt die starke Abwertung; README dokumentiert Gewicht (Standard 4) und Verhalten.
+  - **Verifikation**: neues Node-Harness `harness/dealbreaker-harness.js` → 25/25 Checks (Gewichte 1/2/4 und wichtig+Dealbreaker=4; Partei A 100 %, B 71,4 % (nur wichtig), C 42,9 % (Dealbreaker); ohne Markierung keine Änderung = keine Regression; Koalition [A,C] mit Dealbreaker-Konflikt abgewertet, ohne Markierung zurück; Share-Hash `&d=` Round-Trip inkl. altem `&c=`-Link; i18n-Keys vorhanden). Bestehende Harnesses (`tactical-match-gap.js` 15/15, `tactical-scenarios-check.js` 17/17) und `node --check script.js` bleiben grün.
+
 ## Nachträge vom 2026-08-09 (Issue #84: Erststimmen-/Grundmandatsklausel-Szenarien C/D)
 
 - [x] **Erststimme-/Grundmandatsklausel-Szenarien fehlen (P2, Ziel des Issues)** – umgesetzt:
