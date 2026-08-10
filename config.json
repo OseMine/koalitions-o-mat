@@ -75,16 +75,9 @@
     "defaultMode": "simple",
     "simple": {
       "off": [
-        "tab.parteien",
-        "tab.koalitionen",
-        "tab.daten",
-        "parteiSeite",
-        "thesenMatrix",
         "kompass",
         "dealbreaker",
-        "taktik",
-        "historie",
-        "teilen"
+        "taktik"
       ]
     }
   }
