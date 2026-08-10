@@ -2,6 +2,29 @@
 
 Erledigte Aufgaben wurden nach `archived-todo.md` verschoben (Stand 2026-08-10).
 
+## Feature-Evaluation vom 2026-08-10 (Issue #102 „Features might to add")
+
+Bewertet wurden die 14 Vorschläge aus Issue #102 (Koalitionsanalyse, Scoring-Customizations, Visualisierung, Teilen/Export, Barrierefreiheit) gegen den Ist-Stand. Bereits vorhandene Features (Sitz-Schwelle/5-%-Hürde, Stance-Begründungen & Quellen, Ergebnis-Teilen-URL, Tastatursteuerung, Einfache Sprache, Dark/Light) werden nicht erneut aufgenommen – nur die nützlichen neuen Features wurden als offene Aufgaben ergänzt.
+
+### Neue Features (utile, offen)
+
+- [ ] **Koalitions-Reibungs-Index (Friction Score)** – je Koalition zusätzlich zur Übereinstimmung einen Kompromiss-Schwierigkeits-Score (P2): welche Thesen trennen die Partner am stärksten (größte Positionsdifferenz im Paar); pro Koalition die Top-Konfliktthesen anzeigen. Hoher Nutzen, da genau das Alleinstellungsmerkmal von Koalitions-Bildung.
+- [ ] **Regierungs-Simulator (Custom Coalition Builder)** – eigene Koalition manuell zusammenstellen (Checkboxen/Partei-Picker statt Drag&Drop, da ohne Framework), Mehrheit anhand der Sitze prüfen, eigene Übereinstimmung mit der Kombination sowie welcher Partner bei welcher These am meisten abweichen müsste (P2).
+- [ ] **Dealbreaker / Rote Linien** – Erweiterung der bestehenden „Wichtige Frage (zählt doppelt)": Thesen als unverhandelbar markieren → Parteien/Koalitionen, die dort gegen den Nutzer stehen, werden stark abgewertet oder ausgeschlossen (P2).
+- [ ] **Thesis-Matrix-Heatmap** – Partei × These-Tabelle in Grün/Rot/Grau (zustimmen/dagegen/neutral) für schnelle Block-Erkennung; Daten (`wert` je Partei je Frage) sind vorhanden, nur Rendering neu (P3).
+- [ ] **Ergebnis-Karte als PNG/SVG exportieren** – aus den vorhandenen Share-Daten eine Social-Media-taugliche Karte (Top-Koalition, Top-Partei, Schwerpunkt-Themen) als Bild erzeugen (P3).
+- [ ] **2D-Politik-Kompass** – Nutzer, Parteien und Koalitionen auf einem 2D-Gitter (Wirtschaft links/rechts × progressiv/konservativ); benötigt neue Achsen-Daten pro Partei (P3).
+- [ ] **JSON-Dataset-Import/Export** – eigene Fragebogen-Datensätze im Stil des `elections/`-Schemas als JSON laden/testen, nützt Entwicklern und Testwahlen (P3).
+
+### Bewusst nicht aufgenommen (bereits vorhanden)
+
+- Sitz-Schwelle/5-%-Hürde & 50-%-Mehrheit ↔ vorhanden (`sperrklausel`-Filter und Sitzrechnung in `berechneKoalitionen()`, Koalitionsart Mehrheit/Minderheit)
+- Stance-Erklärungen & Quellen ↔ vorhanden (`zitat`/`quelle`/`begruendung` je Partei je Frage, „Parteien vergleichen"-Ansicht)
+- Teilbare URL / URL-State ↔ vorhanden (`shareResults()`, `#w/#a/#i/#p`)
+- Tastatur-Navigation ↔ vorhanden (1/2/3, Pfeiltasten, Home/End)
+- Leichte-Sprache-Toggle ↔ vorhanden (`einfache-sprache.json` deckt UI + Fragen ab)
+- Dark/Light-Mode-Toggle & Kontrast ↔ vorhanden (inkl. Systemerkennung)
+
 ## Review vom 2026-08-10 (Fokus: Neue Features)
 
 Vollständiger Bericht: `reports/review-2026-08-10-b.md`. Zweiter Lauf am 2026-08-10 (nach dem Leerlauf-`review-2026-08-10.md` aus dem Schedule-Lauf 07:34); Fokus laut Auftrag: **Neue Features** (Partei-Seiten, Nachrichten-Feed, Taktik-Simulator Szenarien B/C/D, Teilen-Links) plus Algorithmen (Übereinstimmungsrechnung, Koalitionsberechnung, Themenzuordnung, Sitzverteilung). Verifiziert per Node-Harness gegen die echten Datendateien: Sitzsummen alle 4 Wahlen = `meta.sitze` (630/130/83/79), keine ausgeschlossene Koalition in `berechneKoalitionen()`, Taktik-Warnungen plausibel (46/168 Top-2-Paare über alle 4 Wahlen), Share-Hashs korrekt geparst (inkl. leerem `&a=`). `node --check script.js` + `tools/tactical-harness.js` + `harness/*` fehlerfrei. **Keine neuen P1-Bugs.** GitHub-Cleanup offen: verwaister Branch `opencode/issue99-20260810091339` (PR #100 ohne Merge geschlossen, Issue #99 geschlossen).
