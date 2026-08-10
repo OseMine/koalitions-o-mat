@@ -122,6 +122,22 @@ body {
 .simple-lang-toggle:hover { border-color: var(--primary); color: var(--primary); background: var(--primary-container); }
 .simple-lang-toggle.active { background: var(--primary); border-color: var(--primary); color: var(--on-primary); }
 
+.mode-toggle {
+    display: inline-flex; align-items: center; gap: 2px; padding: 3px;
+    background: var(--surface-variant); border: 1.5px solid var(--outline);
+    border-radius: 999px; flex-shrink: 0;
+}
+.mode-seg {
+    display: inline-flex; align-items: center; gap: 4px;
+    height: 30px; padding: 0 10px; border: none; border-radius: 999px;
+    background: transparent; color: var(--on-surface-variant);
+    font-family: var(--font); font-size: 0.8rem; font-weight: 500;
+    white-space: nowrap; cursor: pointer; transition: all 0.2s;
+}
+.mode-seg:hover { color: var(--primary); }
+.mode-seg.active { background: var(--primary); color: var(--on-primary); }
+.mode-seg-icon { font-size: 0.9rem; line-height: 1; }
+
 /* ===== Tabs ===== */
 .tabs {
     display: flex; gap: 4px; margin: 8px 0 16px; padding: 4px;
@@ -650,6 +666,7 @@ body {
         transform: none; box-shadow: var(--shadow-sm); filter: none;
     }
     .theme-toggle:hover, .github-link:hover, .simple-lang-toggle:hover,
+    .mode-seg:hover,
     .tab-button:hover, .party-cb:hover,
     .q-sources-toggle:hover, .tr-detail-btn:hover {
     background: inherit; color: inherit; border-color: var(--outline);
@@ -733,6 +750,9 @@ body {
     .header-row h1 { font-size: clamp(1.2rem, 5vw, 1.4rem); }
     .simple-lang-toggle { width: 40px; padding: 0; justify-content: center; }
     .simple-lang-toggle .simple-lang-label { display: none; }
+    .mode-toggle { padding: 2px; }
+    .mode-seg { padding: 0 6px; }
+    .mode-seg-label { display: none; }
     .tabs { border-radius: 0; margin: 8px -10px 12px; padding: 4px 10px; }
     /* Mobile-Fix (Issue #21): "Parteien & Kandidaten" etc. sind auf schmalen
        Screens breiter als ihr Slice – statt Abschneiden (overflow:hidden) darf
@@ -775,6 +795,7 @@ body {
        Tippfläche bleibt trotzdem ≥38px (Issue #27) */
     .header-row h1 { font-size: 1.1rem; }
     .theme-toggle, .github-link, .simple-lang-toggle { width: 38px; height: 38px; }
+    .mode-seg { height: 28px; }
 }
 
 /* ===== Party Detail Page ===== */

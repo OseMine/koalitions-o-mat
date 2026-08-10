@@ -21,7 +21,10 @@
         <div class="header-row">
             <h1>Koalitions-O-Mat</h1>
             <div class="header-right">
-                <button type="button" id="modeToggle" class="mode-toggle" onclick="toggleMode()" aria-label="Zum erweiterten Modus wechseln" aria-pressed="true" title="Einfacher Modus / Erweiterter Modus"></button>
+                <div id="modeToggle" class="mode-toggle" role="group" aria-label="Ansichtsmodus">
+                    <button type="button" class="mode-seg active" data-mode="simple" onclick="setMode('simple')" aria-pressed="true" title="Einfacher Modus" data-i18n-aria="aria.modeToggleSimple"><span class="mode-seg-icon">◕</span><span class="mode-seg-label">Einfach</span></button>
+                    <button type="button" class="mode-seg" data-mode="advanced" onclick="setMode('advanced')" aria-pressed="false" title="Erweiterter Modus" data-i18n-aria="aria.modeToggleAdvanced"><span class="mode-seg-icon">⚙</span><span class="mode-seg-label">Erweitert</span></button>
+                </div>
                 <button type="button" id="simpleLangToggle" class="simple-lang-toggle" onclick="toggleSimpleLanguage()" aria-label="Einfache Sprache umschalten" aria-pressed="false" data-i18n-aria="aria.simpleLangToggle"><span class="simple-lang-icon">✏️</span><span class="simple-lang-label" data-i18n="simpleLangLabel">Einfache Sprache</span></button>
                 <button type="button" id="themeToggle" class="theme-toggle" onclick="toggleTheme()" aria-label="Theme umschalten" data-i18n-aria="aria.themeToggle">💻</button>
                 <a href="https://github.com/OseMine/koalitions-o-mat" target="_blank" class="github-link" aria-label="Quellcode auf GitHub" data-i18n-aria="aria.githubLink">

@@ -70,22 +70,18 @@ function simpleOff(key) {
 function applyModeVisibility() {
     const simple = isSimpleMode();
     document.body.classList.toggle('mode-simple', simple);
-    const btn = document.getElementById('modeToggle');
-    if (btn) {
-        const label = simple ? t('modeSwitchToAdvanced', 'Erweiterter Modus') : t('modeSwitchToSimple', 'Einfacher Modus');
-        const aria = simple ? t('aria.modeToggleAdvanced', 'Zum erweiterten Modus wechseln') : t('aria.modeToggleSimple', 'Zum einfachen Modus wechseln');
-        btn.textContent = (simple ? '⚙ ' : '◕ ') + label;
-        btn.setAttribute('aria-pressed', simple ? 'true' : 'false');
-        btn.setAttribute('aria-label', aria);
-        btn.title = aria;
-    }
+    document.querySelectorAll('#modeToggle .mode-seg').forEach(seg => {
+        const on = simple ? seg.dataset.mode === 'simple' : seg.dataset.mode === 'advanced';
+        seg.classList.toggle('active', on);
+        seg.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
     // Aktiver Tab im einfachen Modus ausgeblendet -> zurück zum Test-Tab
     if (document.querySelector('.tab-button.active') && activeTabName() !== 'test' && simpleOff('tab.' + activeTabName())) {
         switchTab('test');
     }
 }
-function toggleMode() {
-    const next = isSimpleMode() ? 'advanced' : 'simple';
+function setMode(mode) {
+    const next = mode === 'advanced' ? 'advanced' : 'simple';
     try { localStorage.setItem('koalitions-o-mat-mode', next); } catch (_) {}
     applyModeVisibility();
     showNotification(next === 'simple'
