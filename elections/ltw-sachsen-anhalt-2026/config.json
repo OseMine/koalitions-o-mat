@@ -5,6 +5,7 @@
     "maxCoalitionSize": 4
   },
   "koalitionsausschluss": {
-    "AfD": ["SPD", "GRÜNE", "LINKE"]
+    "AfD": ["SPD", "GRÜNE", "LINKE"],
+    "CDU": ["LINKE"]
   }
 }
