@@ -41,7 +41,7 @@ Research the **current election-specific programs and official party positions**
 | Feld | Pflicht? | Beschreibung |
 |------|----------|--------------|
 | `"nr"` | **Ja** | Eindeutige Nummer, beginnend bei 1 |
-| `"thema"` | **Ja** | Einer der validen Themen-Keys aus der Liste unten – wird von der App zur Themen-Zuordnung genutzt. OHNE dieses Feld fällt die Frage auf eine ungenaue Keyword-Erkennung zurück. |
+| `"thema"` | **Ja** – Pflicht | Einer der validen Themen-Keys aus der Liste unten – wird von der App zur Themen-Zuordnung genutzt. **Ohne gültiges `thema` einsortiert die App die Frage als „Sonstiges" und meldet einen Fehler** (die frühere Keyword-Schätzung wurde entfernt – es gibt keinen Fallback mehr). |
 | `"frage"` | **Ja** | Kurze Überschrift, max. 60 Zeichen |
 | `"beschreibung"` | **Ja** | Präzise Ja/Nein-Frage (20–60 Wörter) |
 | `"antworten"` | **Ja** | Positionen aller relevanten Parteien |
@@ -111,7 +111,7 @@ MERA25
 WerteUnion
 ```
 
-**You must be told which parties are relevant for this election.** Use only those party names, exactly as listed above.
+**You must be told which parties are relevant for this election.** Use only those party names, exactly as listed above. For the elections currently shipped, the core set is `CDU/CSU, SPD, GRÜNE, FDP, AfD, LINKE, BSW` – the extended list above only applies when explicitly requested for future elections.
 
 ---
 
@@ -234,9 +234,9 @@ Output ONLY the valid JSON, wrapped in a code block.
 
 ---
 
-## Optional: Simple-Language Versions
+## Recommended: Simple-Language Versions
 
-The app also ships `einfache-sprache.json`, which holds simplified versions of every question for accessibility. When you generate questions, optionally also provide for each question a `frage` (headline) and `beschreibung` (description) in **einfache Sprache**: short sentences, common everyday words, no jargon, no subordinate clauses. Example:
+The app ships `einfache-sprache.json`, which holds simplified versions of **every** question – this is a core accessibility feature, not an afterthought. When you generate questions, **also provide for each question** a `frage` (headline) and `beschreibung` (description) in **einfache Sprache**: short sentences, common everyday words, no jargon, no subordinate clauses, no numbers where a word works better. Example:
 
 ```json
 {

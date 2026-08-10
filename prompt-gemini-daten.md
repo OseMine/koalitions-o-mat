@@ -8,6 +8,7 @@ You are generating the **supplementary party data** for the **Koalitions-O-Mat**
 - `kandidaten` (list of top candidates) + `spitzenkandidat` (lead candidate)
 - `verlauf` (historical poll values over time)
 - `rss` (news feed URLs — **neutral, independent sources only**)
+- `achsen` (2D politics compass coordinates — **economy and socio-cultural axes**)
 
 You will be told which election and which parties (with their current poll values) are relevant.
 
@@ -49,6 +50,10 @@ Take the existing `werte.json` and **add the optional fields to each party entry
         { "name": "Vollständiger Name", "rolle": "Spitzenkandidatin für die Landtagswahl" }
       ],
       "spitzenkandidat": "Vollständiger Name (muss exakt einem Namen aus `kandidaten` entsprechen)",
+      "achsen": {
+        "wirtschaft": -0.6,
+        "progressiv": -0.4
+      },
       "verlauf": [
         { "label": "Okt 2021", "prozent": 30 },
         { "label": "Jun 2023", "prozent": 28 },
@@ -74,6 +79,7 @@ Take the existing `werte.json` and **add the optional fields to each party entry
 | `spitzenkandidat` | Nein | Exakter `name` aus `kandidaten` |
 | `verlauf` | **Ja** | Mindestens 4 Zeitpunkte (Label + `prozent`), letzter Eintrag ≈ aktueller `prozent` |
 | `rss` | **Ja** | **Neutrale, unabhängige Nachrichten-Feeds** (RSS/Atom), keine Partei-Eigenkanäle |
+| `achsen` | Nein | 2D-Politik-Kompass-Koordinaten: `wirtschaft` und `progressiv`, je `-1` bis `+1` (siehe Regeln unten) |
 
 ---
 
@@ -111,6 +117,14 @@ Take the existing `werte.json` and **add the optional fields to each party entry
 - 1–2 stabile RSS-/Atom-URLs pro Partei; nur URLs, die ein gültiges RSS/Atom-XML liefern.
 - Existiert kein passender neutraler Feed, das Feld weglassen (die App zeigt dann einen Empty-Text).
 
+### `achsen` – 2D-Politik-Kompass (WICHTIG)
+Die App zeichnet einen **2D-Politik-Kompass**: x-Achse Wirtschaft (links/rechts), y-Achse Gesellschaft (progressiv/konservativ). Jede Partei erhält eine Position aus ihrem Programm:
+- `wirtschaft`: `-1` = links (starke staatliche Eingriffe, Umverteilung, Regulierung) → `+1` = rechts (Marktwirtschaft, niedrige Steuern, Deregulierung).
+- `progressiv`: `-1` = konservativ (traditionelle Familien-/Sozialpolitik, Ordnungspolitik) → `+1` = progressiv (gesellschaftliche Öffnung, Diversität, liberale Individualrechte).
+- Skala streng auf `[-1, +1]` begrenzt (z. B. `-0.6`, `0.3`); Werte **relativ zu den übrigen Parteien der Wahl** setzen – die Unterschiede zwischen den Parteien sollen sichtbar bleiben (z. B. LINKE deutlich links von CDU/CSU; GRÜNE progressiver als AfD).
+- Ableitung aus dem Wahlprogramm und öffentlich bekannten Positionen, **nicht** aus Umfragewerten oder Bauchgefühl.
+- Ist die Position einer Partei nicht belastbar einzuordnen, das komplette `achsen`-Feld für diese Partei **weglassen** – die App zeigt dann nur die Parteien mit Daten (ein Hinweis erscheint), statt einer erfundenen Koordinate.
+
 ---
 
 ## Research Methodology
@@ -123,6 +137,7 @@ Take the existing `werte.json` and **add the optional fields to each party entry
 ### What NOT to do
 - Do NOT change `partei` or `prozent` of existing entries
 - Do NOT invent candidates, quotes, or poll values
+- Do NOT invent `achsen` coordinates — derive them from the programs and relative positioning; omit the field if unsure
 - Do NOT use party-owned or party-affiliated RSS feeds
 - Do NOT write evaluative descriptions (no "gut"/"schlecht", no campaign language)
 
@@ -136,4 +151,6 @@ Output ONLY the complete valid JSON (`werte.json`), wrapped in a code block. Kee
 
 ## Optional: Simple-Language Descriptions
 
-The app also ships `einfache-sprache.json` (UI + question translations). Party descriptions are currently only shown in normal German. If you generate `beschreibung` texts, optionally provide a simplified version per party (short sentences, everyday words, no jargon) for future accessibility work.
+The app shows party descriptions in **einfache Sprache** when the user activates that mode. It reads `beschreibung_einfach` from `werte.json` first; if missing, it falls back to the `parteien` section of `einfache-sprache.json` (`parteien.<electionId>.<partei>`). Currently `btw2029` ships `beschreibung_einfach` inside `werte.json`; the three state elections ship theirs via `einfache-sprache.json`.
+
+When you generate a `beschreibung` text, **also provide `beschreibung_einfach` per party** (short sentences, everyday words, no jargon) so the accessibility mode stays complete for every election.

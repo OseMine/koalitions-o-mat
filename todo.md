@@ -2,6 +2,16 @@
 
 Erledigte Aufgaben wurden nach `archived-todo.md` verschoben (Stand 2026-08-10).
 
+## Implementierung vom 2026-08-10 (Feature: Einfacher/Erweiterter Modus)
+
+Nutzerwunsch: Die App soll standardmäßig nur die Kern-Funktion zeigen (Fragen beantworten → Ergebnis), erweiterte Ansichten sind optional zuschaltbar. **Umgesetzt (Commits `95b89cc`, `7a54402`)**:
+
+- [x] **Einfacher/Erweiterter Modus** – Umschalter in der Kopfzeile als Segmented Control („◕ Einfach | ⚙ Erweitert", Design wie Tab-Leiste, mobil nur Icons). Default ist `simple` (`config.json` → `ui.defaultMode`), die Wahl wird in `localStorage` (`koalitions-o-mat-mode`) gespeichert.
+  - Welche Ansichten der einfache Modus ausblendet, definiert `config.json` → `ui.simple.off` (Standard: `tab.parteien`, `tab.koalitionen`, `tab.daten`, `parteiSeite`, `thesenMatrix`, `kompass`, `dealbreaker`, `taktik`, `historie`, `teilen`).
+  - Umsetzung: `data-simple-off`-Attribute in `index.html` + `body.mode-simple`-CSS; JS-Guards über `simpleOff()` (`setMode()`/`applyModeVisibility()`, `switchTab()`-Guard springt von ausgeblendeten Tabs aufs Test-Tab, Render-Guards in `showTestResults()`/`initializeDaten()`/`initializeParteienPage()`/`openPartyPage()`/`shareResults()`/`saveTestResult()`).
+  - i18n: 8 neue Keys (`modeSwitchToSimple`/`modeSwitchToAdvanced`, `aria.modeToggleSimple`/`aria.modeToggleAdvanced`, `modeSimpleActive`/`modeAdvancedActive`, `shareDisabledSimple`, `parteiSeiteDisabled`) inkl. Einfache Sprache.
+  - Verifiziert per Node-Harness (18 Checks: Default/Override, Persistenz, Segment-Markierung, Tab-Guard), `node --check`, Konsistenz-Check (Config-Liste ↔ HTML-Attribute ↔ JS-Guards) und alle bestehenden Harnesses (grün). → in `archived-todo.md`.
+
 ## Feature-Evaluation vom 2026-08-10 (Issue #102 „Features might to add")
 
 Bewertet wurden die 14 Vorschläge aus Issue #102 (Koalitionsanalyse, Scoring-Customizations, Visualisierung, Teilen/Export, Barrierefreiheit) gegen den Ist-Stand. Bereits vorhandene Features (Sitz-Schwelle/5-%-Hürde, Stance-Begründungen & Quellen, Ergebnis-Teilen-URL, Tastatursteuerung, Einfache Sprache, Dark/Light) werden nicht erneut aufgenommen – nur die nützlichen neuen Features wurden als offene Aufgaben ergänzt.

@@ -1,6 +1,17 @@
 # Koalitions-O-Mat – Archiv erledigter Aufgaben
 
-Erledigte (abgehakte) Aufgaben aus todo.md, Stand 2026-08-09. Offene Punkte: siehe `todo.md`.
+Erledigte (abgehakte) Aufgaben aus todo.md, Stand 2026-08-10. Offene Punkte: siehe `todo.md`.
+
+## Implementierung vom 2026-08-10 (Feature: Einfacher/Erweiterter Modus)
+
+Commits `95b89cc`, `7a54402`. Verifiziert per Node-Harness (18 Checks), `node --check script.js`, Konsistenz-Check (Config-Liste ↔ HTML-Attribute ↔ JS-Guards) und allen bestehenden Harnesses (dealbreaker 25/25, tactical-match-gap 15/15, tactical-scenarios 17/17, determine-topic).
+
+- [x] **Einfacher/Erweiterter Modus** - Nutzerwunsch: Standardmässig nur die Kern-App zeigen. Umgesetzt:
+  - **UI**: Segmented Control in der Kopfzeile (`#modeToggle`, Segmente „◕ Einfach" / „⚙ Erweitert") im Stil der Tab-Leiste (`--surface-variant`/`--outline`, aktives Segment `--primary`); mobil (≤600 px) nur Icons, ≤360 px kompakter. Default `simple`, Persistenz in `localStorage` (`koalitions-o-mat-mode`), `aria-pressed` + `data-i18n-aria` pro Segment, `role="group"`.
+  - **Config**: `config.json` -> neuer `ui`-Block: `defaultMode` (`simple` Standard / `advanced`) und `simple.off` (Liste der im einfachen Modus ausgeblendeten Ansichten: `tab.parteien`, `tab.koalitionen`, `tab.daten`, `parteiSeite`, `thesenMatrix`, `kompass`, `dealbreaker`, `taktik`, `historie`, `teilen`).
+  - **Ausblenden**: `data-simple-off`-Attribute in `index.html` (Tab-Buttons, Tab-Contents, Kompass-Karte, Thesen-Matrix, Historie, Teilen) + CSS `body.mode-simple [data-simple-off] { display: none }`; die Vue-äquivalente (JS-)Seite: `simpleOff(key)`-Guards in `showTestResults()` (Kompass-Abschnitt, Dealbreaker-Hinweis/-Badge, Taktik-Sektion), `renderQuestion()` (kein ?-Button), `saveTestResult()` (keine Historie), `shareResults()` (Teilen gesperrt mit Hinweis), `initializeParteienPage()`/`initializeDaten()` (Tab-Guards), `openPartyPage()` (Detailseite gesperrt mit Hinweis), `switchTab()` (ausgeblendete Tabs springen aufs Test-Tab), `applyModeVisibility()` nach Config-Load und in `toggleMode`-Ersatz `setMode(mode)`.
+  - **i18n**: 8 neue Keys in `einfache-sprache.json.ui` (213 Keys total, valide): `modeSwitchToSimple`/`modeSwitchToAdvanced`, `aria.modeToggleSimple`/`aria.modeToggleAdvanced`, `modeSimpleActive`/`modeAdvancedActive`, `shareDisabledSimple`, `parteiSeiteDisabled`.
+  - README dokumentiert Feature (Funktionen-Bullet) und `ui`-Konfiguration (Datenstruktur).
 
 ## Implementierung vom 2026-08-10 (determineTopic()-Keyword-Fallback entfernen)
 

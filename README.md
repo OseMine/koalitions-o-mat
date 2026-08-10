@@ -38,6 +38,8 @@ Interaktiver Koalitionsrechner und Parteien-Test für die Bundestagswahl 2029 un
 - `elections/<id>/config.json` – optionale Schwellenwerte pro Wahl sowie `koalitionsausschluss`: Objekt, das pro Partei festlegt, mit welchen anderen Parteien sie nicht zusammen regieren will (z. B. `"AfD": ["SPD", "GRÜNE", "LINKE"]`). Koalitionen, die ein solches Paar enthalten, werden ausgeblendet
 - `einfache-sprache.json` – Übersetzungen für UI-Texte und Fragen in einfacher Sprache
 - `config.json` – globale Farben und Themen-Kategorien sowie Schwellenwerte unter `thresholds` (u. a. `sperrklausel`, `minAnswersForRanking`, `dealbreakerWeight` – die Gewichtung einer als „unverhandelbar“ markierten These, Standard 4, `minMatchGapForTop` – der Mindestabstand zwischen Platz 1 und 2 der Übereinstimmungswerte, ab dem der Taktik-Simulator „Top-Partei"/„Wunschkoalition" ableitet, siehe `tactical-voting.md` §5)
+- `ui` - steuert den Einfachen/Erweiterten Modus (Umschalter in der Kopfzeile): `defaultMode` (`simple` Standard oder `advanced`) und `simple.off` (Liste der Ansichten, die im einfachen Modus ausgeblendet werden: `tab.parteien`, `tab.koalitionen`, `tab.daten`, `parteiSeite`, `thesenMatrix`, `kompass`, `dealbreaker`, `taktik`, `historie`, `teilen`)
+
 
 ## Technik
 
