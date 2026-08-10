@@ -1,6 +1,14 @@
 # Koalitions-O-Mat – Offene Aufgaben
 
-Erledigte Aufgaben wurden nach `archived-todo.md` verschoben (Stand 2026-08-09).
+Erledigte Aufgaben wurden nach `archived-todo.md` verschoben (Stand 2026-08-10).
+
+## Review vom 2026-08-10 (Fokus: Neue Features)
+
+Vollständiger Bericht: `reports/review-2026-08-10-b.md`. Zweiter Lauf am 2026-08-10 (nach dem Leerlauf-`review-2026-08-10.md` aus dem Schedule-Lauf 07:34); Fokus laut Auftrag: **Neue Features** (Partei-Seiten, Nachrichten-Feed, Taktik-Simulator Szenarien B/C/D, Teilen-Links) plus Algorithmen (Übereinstimmungsrechnung, Koalitionsberechnung, Themenzuordnung, Sitzverteilung). Verifiziert per Node-Harness gegen die echten Datendateien: Sitzsummen alle 4 Wahlen = `meta.sitze` (630/130/83/79), keine ausgeschlossene Koalition in `berechneKoalitionen()`, Taktik-Warnungen plausibel (46/168 Top-2-Paare über alle 4 Wahlen), Share-Hashs korrekt geparst (inkl. leerem `&a=`). `node --check script.js` + `tools/tactical-harness.js` + `harness/*` fehlerfrei. **Keine neuen P1-Bugs.** GitHub-Cleanup offen: verwaister Branch `opencode/issue99-20260810091339` (PR #100 ohne Merge geschlossen, Issue #99 geschlossen).
+
+### P3 – Verbesserungen
+
+- [ ] **`determineTopic()`-Keyword-Fallback klassifiziert anders als das explizite `thema`** – alle Fragen aller 4 Wahlen haben ein valides `thema` (Fallback wird aktuell nie erreicht); der Keyword-Fallback (script.js:2592-2602) würde aber für viele Fragen ein anderes Topic liefern als das redaktionelle `thema` (btw2029 14, LSA 19, Berlin 21, MV 15 Mismatches; z. B. btw2029 #11 Soziales→Wirtschaft, #19 Umwelt→Außenpolitik, #20 Außenpolitik→Wirtschaft, Berlin #21/#28/#46 Umwelt→Digitales). Kein Live-Effekt bei den aktuellen Daten, aber latente Fehlerquelle für künftige Wahlen ohne Pflicht-`thema`. Empfehlung: Fallback entfernen oder an die redaktionellen Topics angleichen.
 
 ## Review vom 2026-08-09 (Fokus: Tactical Voting – Funktion und Algorithmus)
 
