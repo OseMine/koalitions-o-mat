@@ -1,4 +1,4 @@
-const VERSION = 'v5';
+const VERSION = 'v6';
 const STATIC_CACHE = `koalitions-o-mat-static-${VERSION}`;
 const DATA_CACHE = `koalitions-o-mat-data-${VERSION}`;
 
@@ -106,16 +106,34 @@ self.addEventListener('fetch', event => {
         return;
     }
 
-    // Alle anderen Requests (CSS, JS, Manifest, CDN): cache-first mit Auffüllen.
+    // ECharts-CDN: cache-first mit Auffüllen – die Datei ist groß (≈ 1 MB)
+    // und wird beim Deploy nie geändert; network-first wäre hier Verschwendung.
+    if (isEchartsCdn) {
+        event.respondWith(
+            caches.match(request)
+                .then(cached => cached || fetch(request).then(response => {
+                    if (response && response.ok && request.method === 'GET') {
+                        const copy = response.clone();
+                        caches.open(DATA_CACHE).then(cache => cache.put(request, copy));
+                    }
+                    return response;
+                }))
+        );
+        return;
+    }
+
+    // Alle anderen Requests (CSS, JS, Manifest): network-first mit Cache-Fallback.
+    // So bekommen auch Bestands-Nutzer:innen mit einer älteren SW-Version jede
+    // Code-Änderung ohne „Website-Daten löschen" – auch wenn nur script.js
+    // geändert wurde und index.html unverändert blieb. Offline greift der Cache.
     event.respondWith(
-        caches.match(request)
-            .then(cached => cached || fetch(request).then(response => {
-                if (response && response.ok && request.method === 'GET') {
-                    const copy = response.clone();
-                    const cacheName = url.origin === location.origin ? STATIC_CACHE : DATA_CACHE;
-                    caches.open(cacheName).then(cache => cache.put(request, copy));
-                }
+        fetch(request, { cache: 'no-store' })
+            .then(response => {
+                if (!response || !response.ok) throw new Error('asset');
+                const copy = response.clone();
+                caches.open(STATIC_CACHE).then(cache => cache.put(request, copy));
                 return response;
-            }))
+            })
+            .catch(() => caches.match(request))
     );
 });
