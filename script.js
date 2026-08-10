@@ -2424,6 +2424,7 @@ function initializeDaten() {
     createCoalitionPotentialChart();
     createPartyPositionsChart();
     createTopicChart();
+    renderThesisHeatmap();
     renderTestHistory();
 }
 
@@ -2651,6 +2652,83 @@ function updatePartyComparison() {
     });
     html += '</table></div>';
     html += '<div class="legend"><span class="legend-j">■ ' + t('legendYes', 'Ja') + '</span><span class="legend-n">■ ' + t('legendNo', 'Nein') + '</span><span class="legend-m">■ ' + t('legendNeutral', 'Neutral') + '</span></div>';
+    container.innerHTML = html;
+}
+
+// ===== Thesis-Matrix (Heatmap) =====
+// Kompakte Partei × These-Tabelle (Grün/Rot/Grau) für schnelle Block-Erkennung.
+// Farben sind nie alleiniges Unterscheidungsmerkmal: Jede Zelle trägt zusätzlich
+// eine Markierung (✓/✗/·) sowie einen title-/aria-Tooltip mit Frage und Antwort.
+function renderThesisHeatmap() {
+    const container = document.getElementById('thesisHeatmap');
+    if (!container) return;
+    if (!window.parteienData || !window.parteienData.fragen || !window.parteienData.fragen.length) {
+        container.innerHTML = `<p style="color:var(--on-surface-muted)">${t('noQuestions', 'Keine Fragen für diese Wahl verfügbar.')}</p>`;
+        return;
+    }
+    const answered = window.parteienData.fragen
+        .filter(f => f.antworten && typeof f.antworten === 'object' && !Array.isArray(f.antworten))
+        .map(f => f.antworten);
+    const parties = (window.werteData && window.werteData.umfragewerte || [])
+        .filter(p => p.partei !== 'Andere' && answered.some(a => a[p.partei] != null))
+        .map(p => p.partei);
+    if (!parties.length) {
+        container.innerHTML = `<p style="color:var(--on-surface-muted)">${t('noQuestions', 'Keine Fragen für diese Wahl verfügbar.')}</p>`;
+        return;
+    }
+
+    // Fragen nach Thema gruppieren; Reihenfolge: config.topics, dann Sonstiges, dann Fragen-Nr.
+    const topicOrder = Object.keys(config.topics);
+    const groups = new Map();
+    window.parteienData.fragen.forEach(f => {
+        const topic = determineTopic(f) || 'Sonstiges';
+        if (!groups.has(topic)) groups.set(topic, []);
+        groups.get(topic).push(f);
+    });
+    const orderedGroups = [...groups.entries()].sort((a, b) => {
+        const ia = topicOrder.indexOf(a[0]);
+        const ib = topicOrder.indexOf(b[0]);
+        if (ia === -1 && ib === -1) return a[0] < b[0] ? -1 : 1;
+        if (ia === -1) return 1;
+        if (ib === -1) return -1;
+        return ia - ib;
+    });
+
+    const cell = (p, f) => {
+        const a = getAnswerValue(f.antworten, p);
+        const cls = a === 'j' ? 'heat-agree' : a === 'n' ? 'heat-disagree' : 'heat-neutral';
+        const mark = a === 'j' ? '✓' : a === 'n' ? '✗' : '·';
+        const label = a === 'j' ? t('legendYes', 'Ja') : a === 'n' ? t('legendNo', 'Nein') : t('legendNeutral', 'Neutral');
+        const full = simpleQuestionText(f, 'frage');
+        const tip = p + ': ' + full + ' – ' + label;
+        return `<td class="heat-cell ${cls}" title="${escapeHtmlAttr(tip)}" aria-label="${escapeHtmlAttr(tip)}"><span class="heat-mark" aria-hidden="true">${mark}</span></td>`;
+    };
+
+    let html = '<div class="cmp-wrap"><table class="cmp-table heat-table">';
+    html += `<thead><tr><th scope="col">${t('heatmapTheseCol', 'These')}</th>`;
+    parties.forEach(p => {
+        html += `<th scope="col" class="heat-party" style="color:${getPartyColor(p)}">${escapeHtml(p)}</th>`;
+    });
+    html += '</tr></thead><tbody>';
+
+    orderedGroups.forEach(([topic, fs]) => {
+        const tcolor = (config.topics[topic] && config.topics[topic].color) || '#9E9E9E';
+        html += `<tr class="heat-topic"><th scope="rowgroup" colspan="${parties.length + 1}" style="--tcolor:${tcolor}">`
+            + `<span class="heat-topic-label">${escapeHtml(topic)}</span>`
+            + `<span class="heat-topic-count">${fs.length}</span></th></tr>`;
+        fs.forEach(f => {
+            html += `<tr><td class="cmp-q heat-q">${escapeHtml(simpleQuestionText(f, 'frage'))}</td>`;
+            parties.forEach(p => { html += cell(p, f); });
+            html += '</tr>';
+        });
+    });
+
+    html += '</tbody></table></div>';
+    html += '<div class="legend">'
+        + '<span class="heat-legend legend-j">■ ' + t('legendYes', 'Ja') + '</span>'
+        + '<span class="heat-legend legend-n">■ ' + t('legendNo', 'Nein') + '</span>'
+        + '<span class="heat-legend legend-m">■ ' + t('legendNeutral', 'Neutral') + '</span>'
+        + '</div>';
     container.innerHTML = html;
 }
 
