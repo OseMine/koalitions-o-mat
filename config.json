@@ -67,7 +67,8 @@
     "minMatchForCoalition": 20,
     "maxCoalitionSize": 4,
     "minAnswersForRanking": 5,
-    "minMatchGapForTop": 1
+    "minMatchGapForTop": 1,
+    "dealbreakerWeight": 4
   },
   "newsProxy": "https://api.allorigins.win/raw?url="
 } 
