@@ -1,35 +1,38 @@
 # Koalitions-O-Mat – Offene Aufgaben
 
-Erledigte Aufgaben wurden nach `archived-todo.md` verschoben (Stand 2026-08-11). Dokumentierte Läufe und Umsetzungen (Bugfixes vom 2026-08-11, Einfacher/Erweiterter Modus, Dealbreaker, 2D-Politik-Kompass, Taktik-Simulator, Feature-Evaluationen, Reviews) siehe dort.
+Erledigte Aufgaben wurden nach `archived-todo.md` verschoben (Stand 2026-08-11). Dokumentierte Läufe und Umsetzungen (Friction-Score, Regierungs-Simulator, Thesen-Matrix, Ergebnis-Karte, Live-URL-Sync, Bugfixes, Einfacher/Erweiterter Modus, Dealbreaker, 2D-Politik-Kompass, Taktik-Simulator, Feature-Evaluationen, Reviews) siehe dort.
 
-## Review vom 2026-08-11 (Fokus: Einfach/Erweitert-Switch mobil) – siehe `reports/review-2026-08-11.md`
+## Review vom 2026-08-11-b (PR #120: Friction-Score, Regierungs-Simulator, Ergebnis-Karte, Live-URL-Sync) + Review vom 2026-08-11 (Modus mobil, PR #119, gemergt)
 
-### P1 – Bugs
+Vollständiger Bericht: `reports/review-2026-08-11-b.md`. Empirisch verifiziert (alle Harnesses grün, Friction-Score gegen unabhängige Neuberechnung auf 4 Wahlen, CDP-Browsertest). Die bekannten Modus-Befunde aus PR #118 (offen) bzw. `reports/review-2026-08-11.md` (gemergt) wurden re-verifiziert und sind unten als Referenz mitgeführt.
 
-- [ ] **`aria-label="null"` (String) auf beiden Modus-Segmenten im Normalmodus** – `applyStaticI18n()` (script.js:3204-3210) setzt `setAttribute('aria-label', null)` wenn kein Einfache-Sprache-Modus aktiv ist → Screenreader sagen „null" statt „Einfacher/Erweiterter Modus".
-- [ ] **Header-Zeile kollabiert bei 481–≈590 px** – ab >480 px werden Modus-/Sprach-Labels wieder eingeblendet, `.header-right` wächst auf 453 px und schiebt das `h1` aus dem Viewport (x bis −61 px, scrollWidth > innerWidth). Betrifft Phone-Landscape & schmale Tablets.
+### P1 – Bugs (bekannt, weiter offen – aus #118/#119, re-verifiziert)
 
-### P2 – Fehlende Features
+- [ ] **Erweitert-Modus: alle 4 Tab-Panels gleichzeitig sichtbar** – `styles.css:1140` `body:not(.mode-simple) [data-simple-off] { display: revert }` gewinnt gegen `.tab-content.active`. PR #118, P1#1.
+- [ ] **Zurück auf „Einfach" bei aktivem Nicht-Test-Tab → Dead-Zustand (kein sichtbares Panel)** – `applyModeVisibility()` (script.js:79-81), `config.ui.simple.off` enthält keine `tab.*`-Keys, die CSS-Regel blendet das aktive Panel aber aus. PR #118, P1#2.
+- [ ] **`aria-label="null"` auf beiden `.mode-seg`-Buttons** – `applyStaticI18n()` (script.js:3724-3743). PR #119/#118.
 
-- [ ] **Modus-Switch im laufenden Test nicht erreichbar** – nur die Tabs sind sticky (styles.css:725), der `.header-row` mit `#modeToggle` scrollt aus dem Blick; Wechsel nur nach Scrollen ganz nach oben möglich.
-- [ ] **Tap-Ziele der Modus-Segmente unter 44 px, nur Icons ohne Text <480 px** – Segmente 24,5–24,9 px breit / 28–30 px hoch (styles.css:753-755), Labels ausgeblendet, `title`-Tooltip auf Touch nicht sichtbar.
+### P2 – Bugs
+
+- [ ] **Dead Guards `simpleOff('teilen'/'historie')` – Live-URL-Sync und Historie laufen im einfachen Modus** – `simple.off` kennt die Keys nicht mehr; verletzt den Privatsphäre-Kommentar in `syncShareUrl()` (script.js:209) und schreibt die Historie weiter (`saveTestResult()`, script.js:2983). PR #118, P2#1.
+- [ ] **Live-URL-Sync hinterlässt nach `resetTest()` einen veralteten Share-Hash** – `resetTest()` (script.js:2006) ruft `syncShareUrl()`; bei leerem Zustand liefert `buildShareUrl()` `null` und der Hash bleibt stehen → Reload/Bookmark stellt alte Antworten wieder her. Fix: Hash beim Reset leeren (siehe Report).
+
+### P2/P3 – Verbesserungen / Mobile (bekannt aus #119)
+
+- [ ] **Mobile-Switch-Erreichbarkeit (sticky, Tap-Ziele, Header 481–599 px)** – Befunde aus `reports/review-2026-08-11.md` (gemergt), weiter offen.
 
 ### P3 – Verbesserungen
 
-- [ ] **Modus-Wechsel ohne sichtbaren Kontext** – nach dem Umschalten fehlt eine Erklärung, welche Ansichten im einfachen Modus ausgeblendet sind (siehe `parteiSeiteDisabled`/`shareDisabledSimple`-Muster).
+- [ ] **Ergebnis-Karte zeigt rohe Wahl-ID statt Wahl-Name** – `exportCardData()` (script.js:284) `electionName = activeElectionId`; `getActiveElectionName()` (script.js:3470) stattdessen verwenden.
+- [ ] **i18n „es fehlen {n} Sitze"/„mind. {n} Sitze" bei {n}=1 ungrammatisch** – `einfache-sprache.json:87-88`; tritt in mv-2026 (39/79 Sitze) auf. Singular-Variante.
+- [ ] **`<label class="simulator-select-label">` umschließt `<div>`** (index.html:111) – semantisch ungültig, Klick aufs Label kippt unbestimmte Checkbox. Als `<span>` ausführen.
+- [ ] **`svgBar()` leerer Wrapper** (script.js:302) – entfernen oder real nutzen.
+- [ ] **Modus-Wechsel ohne sichtbaren Kontext** (aus PR #119, gemergt) – nach dem Umschalten fehlt eine Erklärung, welche Ansichten im einfachen Modus ausgeblendet sind (siehe `parteiSeiteDisabled`/`shareDisabledSimple`-Muster).
 
-## Feature-Evaluation vom 2026-08-10 (Issue #102 „Features might to add") – offene Features
+### Tracking offene GitHub-Issues
 
-### P2 – Neue Features
+- **#105 (Friction Score), #106 (Regierungs-Simulator), #110 (Ergebnis-Karte PNG/SVG)**: in PR #120 umgesetzt und verifiziert – **nach Merge von #120 schließen**.
+- **#113 (Cleanup Branch issue99)**: geschlossen (Branch existiert nicht mehr, 2026-08-11).
+- **PR #118 (Modus-Befunde)**: offen, Inhalte hier mitgeführt.
 
-- [ ] **Koalitions-Reibungs-Index (Friction Score)** – je Koalition zusätzlich zur Übereinstimmung einen Kompromiss-Schwierigkeits-Score (P2): welche Thesen trennen die Partner am stärksten (größte Positionsdifferenz im Paar); pro Koalition die Top-Konfliktthesen anzeigen. Hoher Nutzen, da genau das Alleinstellungsmerkmal von Koalitions-Bildung.
-- [ ] **Regierungs-Simulator (Custom Coalition Builder)** – eigene Koalition manuell zusammenstellen (Checkboxen/Partei-Picker statt Drag&Drop, da ohne Framework), Mehrheit anhand der Sitze prüfen, eigene Übereinstimmung mit der Kombination sowie welcher Partner bei welcher These am meisten abweichen müsste (P2).
-
-### P3 – Neue Features
-
-- [x] **Thesis-Matrix-Heatmap** – Partei × These-Tabelle in Grün/Rot/Grau (zustimmen/dagegen/neutral) für schnelle Block-Erkennung; Daten (`wert` je Partei je Frage) sind vorhanden, nur Rendering neu (P3). → in `archived-todo.md` (im Code umgesetzt: `renderThesisHeatmap()` script.js:2989, `#thesisHeatmap` index.html:182).
-- [ ] **Ergebnis-Karte als PNG/SVG exportieren** – aus den vorhandenen Share-Daten eine Social-Media-taugliche Karte (Top-Koalition, Top-Partei, Schwerpunkt-Themen) als Bild erzeugen (P3).
-
-## Feature-Evaluation vom 2026-08-10 (Issue „How to hash") – P3
-
-- [ ] **Share-State live in die URL schreiben** – statt den Hash nur beim expliziten „Teilen"-Klick zu setzen, den Zustand (Wahl, Antworten, wichtige Fragen) laufend per `history.replaceState` synchron halten, sodass Fortsetzen/Teilen auch über Bookmark/URL kopieren funktioniert, ohne dass die Seiten-Historie zersplittert. Kleiner, risikoarmer Mehrwert über dem heutigen localStorage-`saveTestState()` + explizitem `shareResults()`; Kodierung bleibt das bestehende kompakte Format (kein Base64).
+Derzeit sind keine weiteren offenen Aufgaben erfasst.

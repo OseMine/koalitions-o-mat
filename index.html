@@ -105,6 +105,15 @@
 
             <!-- ===== Koalitionen Tab ===== -->
             <div id="koalitionen-content" class="tab-content" role="tabpanel" aria-labelledby="tab-koalitionen" data-simple-off="tab.koalitionen">
+                <div class="simulator-section" data-simple-off="tab.koalitionen">
+                    <h3 data-i18n="simulatorTitle">Regierungs-Simulator</h3>
+                    <p class="test-intro" data-i18n="simulatorIntro">Stellen Sie Ihre eigene Koalition zusammen: Wählen Sie Parteien aus, und der Simulator prüft die Sitzmehrheit, die interne Übereinstimmung, Ihre Übereinstimmung mit der Kombination sowie, welcher Partner bei welcher These am meisten nachgeben müsste.</p>
+                    <label class="simulator-select-label">
+                        <span data-i18n="simulatorSelectParties">Parteien wählen:</span>
+                        <div class="party-checkboxes" id="simulatorPartiesCheckboxes"></div>
+                    </label>
+                    <div id="simulatorResults" class="simulator-results" aria-live="polite"></div>
+                </div>
                 <div class="filter-options">
                     <div class="filter-row">
                         <label>

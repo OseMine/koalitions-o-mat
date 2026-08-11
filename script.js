@@ -154,6 +154,7 @@ function toggleImportant(idx) {
         btn.setAttribute('aria-pressed', importantQuestions.has(idx) ? 'true' : 'false');
     }
     saveTestState();
+    syncShareUrl();
 }
 
 function toggleDealbreaker(idx) {
@@ -165,14 +166,13 @@ function toggleDealbreaker(idx) {
         btn.setAttribute('aria-pressed', dealbreakerQuestions.has(idx) ? 'true' : 'false');
     }
     saveTestState();
+    syncShareUrl();
 }
 
 // ===== Teilen per URL =====
-function shareResults() {
-    if (simpleOff('teilen')) {
-        showNotification(t('shareDisabledSimple', 'Das Teilen von Ergebnissen ist im einfachen Modus ausgeblendet.'), 'info');
-        return;
-    }
+// Baut den Teilen-Link aus dem aktuellen App-Zustand. Genutzt von
+// shareResults() (Zwischenablage) und syncShareUrl() (Live-URL-Sync).
+function buildShareUrl() {
     // Neutrale Antworten (m) mitschicken – nur völlig unbeantwortete Fragen fehlen,
     // damit ein geteiltes Ergebnis exakt dem Original entspricht.
     const answered = Object.entries(userAnswers).filter(([, a]) => a === 'j' || a === 'n' || a === 'm');
@@ -188,17 +188,53 @@ function shareResults() {
         coalitionParam = '&c=' + encodeURIComponent([type, minMatch, partyFilter, excludes.join(',')].join('|'));
     }
     // Ohne beantwortete Fragen UND ohne Koalitions-Sicht gibt es nichts zu teilen.
-    if (!answered.length && !coalitionParam) {
-        showNotification(t('shareEmpty', 'Beantworten Sie zuerst Fragen.'), 'error');
-        return;
-    }
+    if (!answered.length && !coalitionParam) return null;
     // Kompakte Kodierung: "index+antwort" ohne Trennzeichen (z. B. 0j1n3j) – deutlich kürzer
     // als das frühere "0:j,1:n,3:j". Alte Links mit ":"/"," werden beim Parsen weiter akzeptiert.
     const answers = answered.map(([i, a]) => i + a).join('');
     const imp = [...importantQuestions].join(',');
     const deal = [...dealbreakerQuestions].join(',');
-    const url = location.origin + location.pathname + '#w=' + encodeURIComponent(activeElectionId)
+    return location.origin + location.pathname + '#w=' + encodeURIComponent(activeElectionId)
         + '&a=' + answers + (imp ? '&i=' + imp : '') + (deal ? '&d=' + deal : '') + coalitionParam;
+}
+
+// Letzter von syncShareUrl() geschriebener Hash – verhindert Overwrites fremder
+// Hash-Wechsel (Browser-Zurück, manuell eingefügter Teilen-Link).
+let lastSyncedHash = '';
+
+// Live-URL-Sync: Nach jeder Antwort/Änderung zeigt die Adressleiste sofort einen
+// teilbaren Link, ohne die Historie zu verschmutzen. Im einfachen Modus ist das
+// Teilen ausgeblendet → auch die URL bleibt dann ohne Zustand (Privatsphäre).
+function syncShareUrl() {
+    if (simpleOff('teilen')) return;
+    const url = buildShareUrl();
+    if (!url) return;
+    const hash = url.slice(url.indexOf('#'));
+    if (hash === lastSyncedHash) return;
+    lastSyncedHash = hash;
+    try {
+        history.replaceState(null, '', hash);
+    } catch (_) {
+        // file:// oder Sandbox ohne history-Unterstützung – ignorieren.
+    }
+}
+
+// Nach externem Hash-Wechsel (hashchange) den neuen Hash als "bekannt" merken,
+// damit der nächste syncShareUrl()-Aufruf nicht die geteilte URL überschreibt.
+function markHashHandled() {
+    try { lastSyncedHash = decodeURIComponent(location.hash || ''); } catch (_) { lastSyncedHash = ''; }
+}
+
+function shareResults() {
+    if (simpleOff('teilen')) {
+        showNotification(t('shareDisabledSimple', 'Das Teilen von Ergebnissen ist im einfachen Modus ausgeblendet.'), 'info');
+        return;
+    }
+    const url = buildShareUrl();
+    if (!url) {
+        showNotification(t('shareEmpty', 'Beantworten Sie zuerst Fragen.'), 'error');
+        return;
+    }
     if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(url).then(
             () => showNotification(t('shareCopied', 'Link in die Zwischenablage kopiert!'), 'success'),
@@ -207,6 +243,198 @@ function shareResults() {
     } else {
         showNotification(url, 'info');
     }
+}
+
+// ===== Ergebnis-Karte (PNG/SVG-Export) =====
+// Rendert eine Social-Media-taugliche Karte aus dem aktuellen Testergebnis als
+// eigenständiges SVG. Kein echarts nötig – reine SVG-2D-Elemente, damit die Karte
+// ohne Client-Dependencies exportierbar ist und in jedem SVG-Viewer sauber aussieht.
+
+// Vollständiges Ranking (alle Parteien, die Fragen beantworten) – identisch zur
+// Ergebnis-Ansicht, damit die exportierte Karte exakt das zeigt, was der Nutzer sieht.
+function berechneUserMatchRanking() {
+    if (!window.werteData || !window.werteData.umfragewerte || !config) return [];
+    const hasFragen = window.parteienData && window.parteienData.fragen && window.parteienData.fragen.length;
+    const parties = window.werteData.umfragewerte.filter(p => {
+        if (p.partei === 'Andere') return false;
+        if (hasFragen) {
+            return window.parteienData.fragen.some(f => f.antworten && f.antworten[p.partei] != null);
+        }
+        return p.prozent >= config.thresholds.sperrklausel;
+    });
+    return parties.map(p => {
+        const m = berechneUserMatch(p.partei);
+        return {
+            partei: p.partei,
+            match: m.match,
+            topicMatches: berechneUserMatchNachThema(p.partei),
+            agreed: m.agreed,
+            total: m.total,
+            partyAnswered: m.partyAnswered,
+            dealbreakerConflicts: m.dealbreakerConflicts
+        };
+    }).sort((a, b) => (b.match ?? -1) - (a.match ?? -1));
+}
+
+function exportCardData() {
+    if (!window.werteData || !window.parteienData || !config) return null;
+    const results = lastTestResults || berechneUserMatchRanking();
+    if (!results || !results.length) return null;
+    const top = results[0];
+    const electionName = activeElectionId;
+    const appName = config.appName || 'Koalitions-O-Mat';
+    const topTopics = top && top.topicMatches
+        ? Object.entries(top.topicMatches).sort((a, b) => b[1] - a[1]).slice(0, 3)
+        : [];
+    // Beste Koalition (gleiche Logik wie in showTestResults)
+    const excludeCbs = document.querySelectorAll('#excludePartiesCheckboxes input:checked');
+    const excludeParties = Array.from(excludeCbs).map(cb => cb.value);
+    const allKoal = berechneKoalitionen('beide', excludeParties);
+    allKoal.forEach(k => { k.benutzerMatch = berechneUserMatchFuerKoalition(k.parteien); });
+    const maxSize = (config.thresholds && config.thresholds.maxCoalitionSize) || 4;
+    const minCoalMatch = (config.thresholds && config.thresholds.minMatchForCoalition) || 0;
+    const best = allKoal
+        .filter(k => k.anzahl <= maxSize && k.prozente > 50 && k.uebereinstimmung >= minCoalMatch)
+        .sort((a, b) => (b.benutzerMatch ?? -1) - (a.benutzerMatch ?? -1))[0] || null;
+    return { results, top, topTopics, best, electionName, appName };
+}
+
+function svgBar(parts) {
+    return parts.join('');
+}
+
+function buildResultCardSVG() {
+    const d = exportCardData();
+    if (!d) return null;
+    const W = 1200, H = 1560;
+    const top = d.top;
+    const results = d.results.slice(0, 5);
+    const topColor = getPartyColor(top.partei);
+    const title = `${d.appName} – ${t('exportCardHeader', 'Mein Ergebnis')}`;
+    const subTitle = t('exportCardFor', 'Wahl: {wahl}').replace('{wahl}', d.electionName);
+    const date = new Date().toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' });
+
+    // Ranglisten-Balken
+    let bars = '';
+    const barY0 = 470, barW = 700, barX = 300, barH = 26, barGap = 62;
+    const maxMatch = Math.max(...results.map(r => r.match != null ? r.match : 0), 1);
+    results.forEach((r, i) => {
+        const y = barY0 + i * barGap;
+        const w = Math.max(30, ((r.match != null ? r.match : 0) / maxMatch) * barW);
+        const color = getPartyColor(r.partei);
+        const matchText = r.match != null ? r.match.toFixed(1) + '%' : '–';
+        bars += `<text x="300" y="${y + 18}" font-size="26" font-weight="600" fill="#1F2430">${i + 1}. ${escapeHtml(r.partei)}</text>
+            <text x="300" y="${y + 44}" font-size="20" fill="#8A93A6">${escapeHtml(matchText)}</text>
+            <rect x="300" y="${y + 52}" width="${w}" height="${barH}" rx="13" fill="${color}"/>
+            <rect x="300" y="${y + 52}" width="${barW}" height="${barH}" rx="13" fill="none" stroke="#E2E6EF" stroke-width="2"/>`;
+    });
+
+    // Beste Koalition
+    let coalHtml = '';
+    if (d.best) {
+        const b = d.best;
+        const chips = b.parteien.map((p, i) => {
+            const c = getPartyColor(p);
+            return `<rect x="${100 + i * 160}" y="952" width="140" height="52" rx="26" fill="${c}"/>
+                <text x="${170 + i * 160}" y="985" font-size="22" font-weight="700" fill="#fff" text-anchor="middle">${escapeHtml(p)}</text>`;
+        }).join('');
+        const coalTitle = `<text x="600" y="910" font-size="30" font-weight="800" fill="#1F2430" text-anchor="middle">${escapeHtml(t('exportCardBestCoalition', 'Beste Koalition für Sie'))}</text>`;
+        const meta = `<text x="600" y="1040" font-size="24" fill="#5B6472" text-anchor="middle">${escapeHtml(t('exportCardCoalMeta', '{match}% mit Ihnen · {internal}% interne Übereinstimmung'))
+            .replace('{match}', (b.benutzerMatch != null ? b.benutzerMatch : 0).toFixed(1))
+            .replace('{internal}', b.uebereinstimmung.toFixed(1))}</text>`;
+        coalHtml = coalTitle + chips + meta;
+    }
+
+    // Schwerpunktthemen
+    let topics = '';
+    const topicY0 = 1120, topicX = 300;
+    d.topTopics.forEach(([topic, pct], i) => {
+        const y = topicY0 + i * 56;
+        topics += `<text x="${topicX}" y="${y + 14}" font-size="24" fill="#1F2430" font-weight="600">${escapeHtml(topic)}</text>
+            <rect x="${topicX}" y="${y + 28}" width="${(pct / 100) * 500}" height="14" rx="7" fill="${topColor}"/>
+            <text x="${topicX + 540}" y="${y + 40}" font-size="20" fill="#8A93A6">${escapeHtml(pct.toFixed(0) + '%')}</text>`;
+    });
+
+    const footer = escapeHtml(t('exportCardFooter', 'Erstellt mit {app} – einfach selbst testen unter {url}')
+        .replace('{app}', d.appName).replace('{url}', 'koalitions-o-mat'));
+
+    return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">
+    <defs>
+        <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#FBFBFE"/>
+            <stop offset="1" stop-color="#F1F3F9"/>
+        </linearGradient>
+        <style>
+            text { font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; }
+        </style>
+    </defs>
+    <rect width="${W}" height="${H}" fill="url(#bg)"/>
+    <rect x="60" y="60" width="1080" height="1440" rx="32" fill="#FFFFFF" stroke="#E2E6EF" stroke-width="2"/>
+    <rect x="60" y="60" width="1080" height="180" rx="32" fill="${topColor}"/>
+    <text x="600" y="130" font-size="40" font-weight="800" fill="#FFFFFF" text-anchor="middle">${escapeHtml(title)}</text>
+    <text x="600" y="178" font-size="24" fill="rgba(255,255,255,0.85)" text-anchor="middle">${escapeHtml(subTitle)}</text>
+    <text x="600" y="240" font-size="80" font-weight="900" fill="${topColor}" text-anchor="middle">${escapeHtml(top.partei)}</text>
+    <text x="600" y="320" font-size="44" font-weight="700" fill="#1F2430" text-anchor="middle">${top.match != null ? escapeHtml(top.match.toFixed(1) + '%') : '–'}</text>
+    <text x="600" y="360" font-size="24" fill="#8A93A6" text-anchor="middle">${escapeHtml(t('exportCardTopMatch', 'beste Übereinstimmung'))}</text>
+    ${bars}
+    <rect x="60" y="880" width="1080" height="2" fill="#E2E6EF"/>
+    ${coalHtml}
+    <rect x="60" y="1080" width="1080" height="2" fill="#E2E6EF"/>
+    <text x="600" y="1105" font-size="28" font-weight="800" fill="#1F2430" text-anchor="middle">${escapeHtml(t('exportCardTopics', 'Ihre Schwerpunktthemen mit {partei}').replace('{partei}', top.partei))}</text>
+    ${topics}
+    <text x="600" y="1480" font-size="22" fill="#B0B7C5" text-anchor="middle">${footer} · ${escapeHtml(date)}</text>
+</svg>`;
+}
+
+function downloadBlob(blob, filename) {
+    const a = document.createElement('a');
+    const url = URL.createObjectURL(blob);
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+function exportResultCard(format) {
+    if (simpleOff('teilen')) {
+        showNotification(t('shareDisabledSimple', 'Das Teilen von Ergebnissen ist im einfachen Modus ausgeblendet.'), 'info');
+        return;
+    }
+    const svg = buildResultCardSVG();
+    if (!svg) {
+        showNotification(t('exportCardEmpty', 'Keine Ergebnisse zum Exportieren vorhanden.'), 'error');
+        return;
+    }
+    const slug = (d => d ? d.top.partei.replace(/\W+/g, '').toLowerCase() : 'ergebnis')(exportCardData());
+    const filename = `koalitions-o-mat-${slug}.${format}`;
+    if (format === 'svg') {
+        const blob = new Blob([svg], { type: 'image/svg+xml;charset=utf-8' });
+        downloadBlob(blob, filename);
+        showNotification(t('exportCardSaved', 'Ergebnis-Karte als SVG gespeichert.'), 'success');
+        return;
+    }
+    // PNG: SVG in eine Image-URL wandeln und auf einem Canvas rendern (2x für Schärfe).
+    const img = new Image();
+    const url = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+    img.onload = () => {
+        const scale = 2;
+        const canvas = document.createElement('canvas');
+        canvas.width = 1200 * scale;
+        canvas.height = 1560 * scale;
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle = '#FFFFFF';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        canvas.toBlob(blob => {
+            if (!blob) { showNotification(t('exportCardError', 'PNG-Export fehlgeschlagen – bitte erneut versuchen.'), 'error'); return; }
+            downloadBlob(blob, filename);
+            showNotification(t('exportCardSaved', 'Ergebnis-Karte als PNG gespeichert.'), 'success');
+        }, 'image/png');
+    };
+    img.onerror = () => showNotification(t('exportCardError', 'PNG-Export fehlgeschlagen – bitte erneut versuchen.'), 'error');
+    img.src = url;
 }
 
 function parseShareHash() {
@@ -309,6 +537,9 @@ function showElectionSelector() {
 // `hashchange`-Event – und ohne Listener wurde die geteilte Ansicht nie geladen.
 function handleShareHash() {
     pendingShare = parseShareHash();
+    // Externer Hash-Wechsel (geteilter Link, Browser-Zurück): den Hash als bekannt
+    // markieren, damit der nächste syncShareUrl()-Aufruf ihn nicht überschreibt.
+    markHashHandled();
     // Kein gültiger Teilen-Link (leerer Hash oder Fremd-Hash) → zur Startseite zurück.
     if (!pendingShare || !pendingShare.electionId) {
         pendingShare = null;
@@ -592,6 +823,9 @@ function populatePartyDropdowns() {
         }).join('');
         updatePartyComparison();
     }
+
+    populateSimulatorParties();
+    renderSimulator();
 }
 
 // ===== Parteien & Kandidaten Page =====
@@ -1267,7 +1501,8 @@ function berechneKoalitionen(type = 'mehrheit', excludeParties = []) {
                 prozente: sum,
                 uebereinstimmung: ueber,
                 minPaar,
-                anzahl: kParties.length
+                anzahl: kParties.length,
+                reibung: berechneReibung(kParties)
             });
         }
     }
@@ -1324,6 +1559,88 @@ function berechnePaarAgreements(parteien) {
         }
     }
     return results;
+}
+
+// ===== Koalitions-Reibungs-Index (Friction Score) =====
+// Kompromiss-Schwierigkeits-Score je Koalition: Eine These gilt als Konfliktthese,
+// sobald mindestens ein Parteienpaar direkt gegeneinander steht (j vs. n). Der Score
+// ist der Anteil der vergleichbaren (j/n-)Fragen, die mindestens ein solches Paar
+// enthalten (0 % = keine direkten Widersprüche, 100 % = maximale Reibung). Zusätzlich
+// liefert die Funktion die Top-Konfliktthesen (größte Positionsdifferenz = meiste
+// streitende Paare zuerst) mit den konkreten Gegenpositionen pro Paar.
+function berechneReibung(parteien) {
+    const konflikte = [];
+    let konfliktFragen = 0, comparableFragen = 0;
+    if (!window.parteienData || !window.parteienData.fragen || !parteien.length) {
+        return { score: 0, konflikte: [] };
+    }
+    window.parteienData.fragen.forEach((f, idx) => {
+        const antworten = parteien.map(p => getAnswerValue(f.antworten, p.partei));
+        const paare = [];
+        let comparableInFrage = false;
+        for (let i = 0; i < antworten.length; i++) {
+            const a = antworten[i];
+            if (a !== 'j' && a !== 'n') continue;
+            for (let j = i + 1; j < antworten.length; j++) {
+                const b = antworten[j];
+                if (b !== 'j' && b !== 'n') continue;
+                comparableInFrage = true;
+                if (a !== b) paare.push({ a: parteien[i].partei, aw: a, b: parteien[j].partei, bw: b });
+            }
+        }
+        if (!comparableInFrage) return;
+        comparableFragen++;
+        if (paare.length) {
+            konfliktFragen++;
+            konflikte.push({ idx, frage: f, paare });
+        }
+    });
+    // Größter Konflikt (meiste streitende Paare) zuerst, dann stabil nach Fragen-Nr.
+    konflikte.sort((x, y) => y.paare.length - x.paare.length || x.idx - y.idx);
+    return {
+        score: comparableFragen > 0 ? (konfliktFragen / comparableFragen) * 100 : 0,
+        konflikte
+    };
+}
+
+// HTML der Top-Konfliktthesen einer Koalition (unterhalb des Reibungs-Scores).
+function reibungDetailHTML(reibung) {
+    if (!reibung || !reibung.konflikte || !reibung.konflikte.length) {
+        return `<p class="friction-none">${t('frictionNone', 'Keine direkt widersprüchlichen Positionen zwischen den Partnern.')}</p>`;
+    }
+    const top = reibung.konflikte.slice(0, 3);
+    const list = top.map(konf => {
+        const f = konf.frage;
+        const paareText = konf.paare.map(p =>
+            `<span class="friction-pair">
+                <span class="party-chip" style="--pcolor:${getPartyColor(p.a)}">${escapeHtml(p.a)}</span>
+                <span class="friction-pos ${p.aw}">${p.aw === 'j' ? t('legendYes', 'Ja') : t('legendNo', 'Nein')}</span>
+                <span class="friction-vs">${t('frictionVs', 'vs.')}</span>
+                <span class="friction-pos ${p.bw}">${p.bw === 'j' ? t('legendYes', 'Ja') : t('legendNo', 'Nein')}</span>
+                <span class="party-chip" style="--pcolor:${getPartyColor(p.b)}">${escapeHtml(p.b)}</span>
+            </span>`
+        ).join('');
+        return `<div class="friction-thesis">
+            <div class="friction-q">${escapeHtml(simpleQuestionText(f, 'frage'))}</div>
+            <div class="friction-pairs">${paareText}</div>
+        </div>`;
+    }).join('');
+    const more = reibung.konflikte.length > top.length
+        ? `<p class="friction-more">${t('frictionMore', '… und {n} weitere Konfliktthesen').replace('{n}', reibung.konflikte.length - top.length)}</p>`
+        : '';
+    return `<div class="friction-list">${list}${more}</div>`;
+}
+
+// Toggle für die Konfliktthesen-Liste einer Koalitions-Karte.
+function toggleKoalitionFriction(btn) {
+    const detail = btn.nextElementSibling;
+    if (!detail) return;
+    const open = detail.style.display !== 'none';
+    detail.style.display = open ? 'none' : 'block';
+    btn.setAttribute('aria-expanded', open ? 'false' : 'true');
+    btn.textContent = open
+        ? t('frictionToggle', 'Konfliktthesen anzeigen')
+        : t('frictionToggleHide', 'Konfliktthesen ausblenden');
 }
 
 // "Mit Ihnen"-Wert einer einzelnen Partei (identische Logik wie im Partei-Ranking
@@ -1442,6 +1759,7 @@ function updateKoalitionen() {
         html += `<h3 class="group-title">${size}-${t('partyCoalitions', 'Parteien-Koalitionen')}</h3>`;
         list.forEach(k => {
             const colors = k.parteien.map(p => getPartyColor(p));
+            const reibungScore = k.reibung ? k.reibung.score : 0;
             html += `
                 <div class="coalition-card">
                     <div class="coalition-parties">
@@ -1452,6 +1770,7 @@ function updateKoalitionen() {
                         <span class="meta-item"><strong>${k.uebereinstimmung.toFixed(1)}%</strong> ${t('internalMatch', 'Interne Übereinstimmung')}</span>
                         ${k.minPaar != null ? `<span class="meta-item"><strong>${k.minPaar.toFixed(1)}%</strong> ${t('minPair', 'Min. Paar')}</span>` : ''}
                         <span class="meta-item"><strong>${k.benutzerMatch != null ? k.benutzerMatch.toFixed(1) + '%' : '–'}</strong> ${t('withYou', 'Mit Ihnen')}</span>
+                        <span class="meta-item friction-score" title="${t('frictionTitle', 'Kompromiss-Schwierigkeit: Anteil der Thesen, bei denen mindestens ein Partner-Paar direkt gegeneinander steht (j vs. n)')}"><strong>${reibungScore.toFixed(1)}%</strong> ${t('frictionScore', 'Reibung')}</span>
                     </div>
                     <div class="coalition-bar">
                         <div class="coalition-bar-fill" style="width:${k.uebereinstimmung}%"></div>
@@ -1459,11 +1778,14 @@ function updateKoalitionen() {
                     <div class="coalition-bar user-match-bar">
                         <div class="coalition-bar-fill user-match-fill" style="width:${k.benutzerMatch != null ? k.benutzerMatch + '%' : '0'}"></div>
                     </div>
+                    <button type="button" class="friction-toggle" onclick="toggleKoalitionFriction(this)" aria-expanded="false">⚡ ${t('frictionToggle', 'Konfliktthesen anzeigen')}</button>
+                    <div class="friction-detail" style="display:none">${reibungDetailHTML(k.reibung)}</div>
                 </div>
             `;
         });
     });
     container.innerHTML = html;
+    syncShareUrl();
 }
 
 // Setzt alle Filter des Koalitionen-Tabs zurück (aus dem Leerzustand bedienbar) –
@@ -1489,11 +1811,204 @@ function resetCoalitionFilters() {
     showNotification(t('filtersReset', 'Filter zurückgesetzt'), 'success');
 }
 
+// ===== Regierungs-Simulator (Custom Coalition Builder) =====
+// Eigene Koalition per Checkboxen zusammenstellen: Sitzmehrheit, interne
+// Übereinstimmung, "Mit Ihnen"-Wert, Reibungs-Index sowie wer bei welcher
+// These am meisten von der Koalitions-Mehrheitsposition abweichen müsste.
+function simulatorParties() {
+    if (!window.werteData || !window.werteData.umfragewerte) return [];
+    const answered = (window.parteienData && window.parteienData.fragen)
+        ? window.parteienData.fragen.filter(f => f.antworten && typeof f.antworten === 'object')
+        : [];
+    return window.werteData.umfragewerte.filter(p => {
+        if (p.partei === 'Andere') return false;
+        // Parteien unter der Sperrklausel aufnehmen, wenn sie Fragen beantworten
+        if (answered.length) return answered.some(f => f.antworten[p.partei] != null);
+        return p.prozent >= config.thresholds.sperrklausel;
+    });
+}
+
+function populateSimulatorParties() {
+    const container = document.getElementById('simulatorPartiesCheckboxes');
+    if (!container) return;
+    const parties = simulatorParties();
+    if (!parties.length) {
+        container.innerHTML = '';
+        return;
+    }
+    // Bereits ausgewählte Parteien beim Neuaufbau erhalten (Wahlwechsel,
+    // Einfache-Sprache-Toggle) – sonst springt die Auswahl auf die ersten zwei.
+    const currentChecked = Array.from(container.querySelectorAll('input:checked')).map(cb => cb.value);
+    container.innerHTML = parties.map(p => {
+        const checked = currentChecked.includes(p.partei);
+        return `
+        <label class="party-cb ${checked ? 'checked' : ''}">
+            <input type="checkbox" value="${escapeHtmlAttr(p.partei)}" ${checked ? 'checked' : ''}>
+            <span>${escapeHtml(p.partei)}</span>
+        </label>`;
+    }).join('');
+}
+
+function simulatorSelectedParties() {
+    const container = document.getElementById('simulatorPartiesCheckboxes');
+    if (!container) return [];
+    return Array.from(container.querySelectorAll('input:checked')).map(cb => cb.value);
+}
+
+// Welcher Partner müsste bei welcher These am meisten abweichen? Für jede Frage,
+// bei der die Koalition nicht einstimmig antwortet, zählt die Mehrheitsposition
+// (j/n unter den Antwortenden). Jede Abweichung von dieser Mehrheit ist ein
+// Zugeständnis des Partners. Rückgabe: pro Partei die Zahl der Abweichungen
+// sowie für den "Reibungspunkt" (Partner mit den meisten Abweichungen) die
+// Top-Thesen mit den Positionen der anderen Partner.
+function berechneKoalitionsAbweichung(parteiNames) {
+    const zaehler = {};
+    const details = {}; // partei -> [{ idx, frage, gegen: [{partei, position}] }]
+    parteiNames.forEach(n => { zaehler[n] = 0; details[n] = []; });
+    if (!window.parteienData || !window.parteienData.fragen || parteiNames.length < 2) {
+        return { zaehler, details };
+    }
+    window.parteienData.fragen.forEach((f, idx) => {
+        const pos = {};
+        let j = 0, n = 0;
+        parteiNames.forEach(name => {
+            const a = getAnswerValue(f.antworten, name);
+            pos[name] = a;
+            if (a === 'j') j++;
+            else if (a === 'n') n++;
+        });
+        // Keine Mehrheitsposition bei Patt oder ohne j/n-Antworten
+        if (j === n) return;
+        const mehrheit = j > n ? 'j' : 'n';
+        parteiNames.forEach(name => {
+            if (pos[name] !== 'j' && pos[name] !== 'n') return;
+            if (pos[name] !== mehrheit) {
+                zaehler[name]++;
+                details[name].push({
+                    idx,
+                    frage: f,
+                    gegen: parteiNames
+                        .filter(x => x !== name && pos[x] === mehrheit)
+                        .map(x => ({ partei: x, position: mehrheit }))
+                });
+            }
+        });
+    });
+    // Für die Anzeige: pro Partei die Thesen mit den meisten Gegenpartnern zuerst
+    Object.keys(details).forEach(n => {
+        details[n].sort((a, b) => b.gegen.length - a.gegen.length || a.idx - b.idx);
+    });
+    return { zaehler, details };
+}
+
+function renderSimulator() {
+    const container = document.getElementById('simulatorResults');
+    if (!container) return;
+    const selected = simulatorSelectedParties();
+    if (selected.length < 2) {
+        container.innerHTML = `<p class="simulator-empty">${t('simulatorEmpty', 'Wählen Sie mindestens zwei Parteien aus, um eine Koalition zu simulieren.')}</p>`;
+        return;
+    }
+    const parteiObjs = selected.map(name =>
+        (window.werteData.umfragewerte || []).find(p => p.partei === name)
+    ).filter(Boolean);
+
+    // Sitzmehrheit
+    const alleSitze = berechneSitze(window.werteData.umfragewerte);
+    const totalSeats = alleSitze.reduce((s, p) => s + p.sitze, 0);
+    const seatByParty = {};
+    alleSitze.forEach(p => { seatByParty[p.partei] = p.sitze; });
+    const koalSitze = selected.reduce((s, n) => s + (seatByParty[n] || 0), 0);
+    const mehrheitBenoetigt = Math.floor(totalSeats / 2) + 1;
+    const hatMehrheit = koalSitze >= mehrheitBenoetigt;
+    const prozente = parteiObjs.reduce((s, p) => s + (p.prozent || 0), 0);
+
+    // Ausgeschlossene Paare (z. B. AfD + SPD) warnen, aber nicht blockieren
+    const ausgeschlossen = istKoalitionAusgeschlossen(selected);
+    const ausschlussHtml = ausgeschlossen
+        ? `<p class="simulator-warning" role="note">⚠️ ${t('simulatorExcluded', 'Diese Kombination enthält Parteien, die laut Wahlkonfiguration nicht zusammen regieren wollen (ausgeschlossene Paare) – sie wird in den normalen Koalitions-Ergebnissen nicht angezeigt.')}</p>`
+        : '';
+
+    const ueber = berechneUebereinstimmung(parteiObjs);
+    const paare = berechnePaarAgreements(parteiObjs);
+    const minPaar = paare.length
+        ? Math.min(...paare.map(p => p.wert != null ? p.wert : 50))
+        : null;
+    const reibung = berechneReibung(parteiObjs);
+    const benutzerMatch = berechneUserMatchFuerKoalition(selected);
+    const abweichung = berechneKoalitionsAbweichung(selected);
+    const hasUserAnswers = Object.values(userAnswers).some(a => a === 'j' || a === 'n');
+
+    // Der "Reibungspunkt": Partner mit den meisten Abweichungen von der Mehrheit
+    let reibungspunkt = null;
+    Object.entries(abweichung.zaehler)
+        .sort((a, b) => b[1] - a[1])
+        .forEach(([name, count]) => { if (count > 0 && !reibungspunkt) reibungspunkt = { name, count, top: abweichung.details[name].slice(0, 3) }; });
+
+    const colors = selected.map(n => getPartyColor(n));
+    let html = `
+        <div class="simulator-card coalition-card">
+            <div class="simulator-head">
+                <div class="coalition-parties">
+                    ${selected.map((p, i) => `<span class="party-chip" style="--pcolor:${colors[i]}">${escapeHtml(p)}</span>`).join(' <span class="plus">+</span> ')}
+                </div>
+                <div class="simulator-seats">
+                    <span class="simulator-seats-val ${hatMehrheit ? 'ok' : 'no'}">${koalSitze}/${totalSeats} ${t('seats', 'Sitze')}</span>
+                    <span class="simulator-majority ${hatMehrheit ? 'ok' : 'no'}">${hatMehrheit
+                        ? t('simulatorMajorityYes', 'Mehrheit ✓ (mind. {n} Sitze)').replace('{n}', mehrheitBenoetigt)
+                        : t('simulatorMajorityNo', 'Keine Mehrheit – es fehlen {n} Sitze').replace('{n}', mehrheitBenoetigt - koalSitze)}</span>
+                </div>
+            </div>
+            <div class="coalition-meta">
+                <span class="meta-item"><strong>${prozente.toFixed(1)}%</strong> ${t('total', 'Gesamt')}</span>
+                <span class="meta-item"><strong>${ueber.toFixed(1)}%</strong> ${t('internalMatch', 'Interne Übereinstimmung')}</span>
+                ${minPaar != null ? `<span class="meta-item"><strong>${minPaar.toFixed(1)}%</strong> ${t('minPair', 'Min. Paar')}</span>` : ''}
+                <span class="meta-item"><strong>${benutzerMatch != null ? benutzerMatch.toFixed(1) + '%' : '–'}</strong> ${t('withYou', 'Mit Ihnen')}</span>
+                <span class="meta-item friction-score" title="${t('frictionTitle', 'Kompromiss-Schwierigkeit: Anteil der Thesen, bei denen mindestens ein Partner-Paar direkt gegeneinander steht (j vs. n)')}"><strong>${reibung.score.toFixed(1)}%</strong> ${t('frictionScore', 'Reibung')}</span>
+            </div>
+            ${ausschlussHtml}
+    `;
+
+    // Wer müsste am meisten nachgeben?
+    if (reibungspunkt) {
+        const p = reibungspunkt;
+        const topHtml = p.top.map(dev => {
+            const gegenText = dev.gegen.map(g => `<span class="party-chip" style="--pcolor:${getPartyColor(g.partei)}">${escapeHtml(g.partei)}</span>`).join(' ');
+            const posLabel = dev.gegen.length && dev.gegen[0].position === 'j'
+                ? t('legendYes', 'Ja') : t('legendNo', 'Nein');
+            return `<li class="simulator-deviation-thesis">
+                <span class="simulator-deviation-q">${escapeHtml(simpleQuestionText(dev.frage, 'frage'))}</span>
+                <span class="simulator-deviation-vs">${t('simulatorDeviatesVs', 'Abweichend von')} ${gegenText} (${posLabel})</span>
+            </li>`;
+        }).join('');
+        html += `<div class="simulator-deviation">
+            <h4>${t('simulatorDeviationTitle', 'Wer müsste am meisten nachgeben?')}</h4>
+            <p class="simulator-deviation-lead">${t('simulatorDeviationLeader', '{partei} weicht bei {n} These(n) von der Mehrheitsposition der Koalition ab.').replace('{partei}', `<strong style="color:${getPartyColor(p.name)}">${escapeHtml(p.name)}</strong>`).replace('{n}', p.count)}</p>
+            <ul class="simulator-deviation-list">${topHtml}</ul>
+        </div>`;
+    } else {
+        html += `<p class="simulator-deviation-none">${t('simulatorDeviationNone', 'Bei allen vergleichbaren Thesen antworten die Partner einheitlich – kein Partner müsste nachgeben.')}</p>`;
+    }
+
+    // Reibungs-Index: Top-Konfliktthesen (wiederverwendet)
+    if (reibung.konflikte.length) {
+        html += `<div class="simulator-friction">
+            <h4>${t('frictionToggle', 'Konfliktthesen')}</h4>
+            ${reibungDetailHTML(reibung)}
+        </div>`;
+    }
+
+    html += `</div>`;
+    container.innerHTML = html;
+}
+
 // ===== Test =====
 function resetTest() {
     cancelPendingAdvance();
     currentQuestion = 0;
     userAnswers = {};
+    importantQuestions = new Set();
+    dealbreakerQuestions = new Set();
     const qc = document.getElementById('questionContainer');
     if (qc) { qc.style.display = 'block'; qc.innerHTML = ''; }
     const tc = document.querySelector('.test-controls');
@@ -1501,6 +2016,7 @@ function resetTest() {
     document.getElementById('testResults').innerHTML = '';
     const rh = document.getElementById('resumeHint');
     if (rh) rh.style.display = 'none';
+    syncShareUrl();
 }
 
 function resetAnswers() {
@@ -1640,6 +2156,7 @@ function selectAnswer(idx, answer) {
         b.setAttribute('aria-pressed', selected ? 'true' : 'false');
     });
     saveTestState();
+    syncShareUrl();
     cancelPendingAdvance();
     pendingAdvanceTimer = setTimeout(() => {
         pendingAdvanceTimer = null;
@@ -1889,6 +2406,19 @@ function showTestResults() {
             .replace('{n}', usableAnswered).replace('{total}', totalQuestions).replace('{min}', minRankingAnswers)}</p>`;
     }
 
+    // Ergebnis-Karte als Bild exportieren (PNG/SVG) – nur wenn verwertbare
+    // Antworten und keine geteilte Sicht ohne eigene Antworten vorliegen.
+    if (usableAnswered > 0 && !simpleOff('teilen')) {
+        html += `<div class="tr-export-section">
+            <h3>${t('exportCardTitle', 'Ergebnis als Bild teilen')}</h3>
+            <p class="chart-note">${t('exportCardHint', 'Laden Sie eine Social-Media-taugliche Karte mit Ihrer Top-Partei, der besten Koalition und Ihren Schwerpunktthemen als PNG oder SVG herunter.')}</p>
+            <div class="tr-export-actions">
+                <button type="button" class="tr-back-btn" onclick="exportResultCard('png')">🖼️ ${t('exportPng', 'Als PNG speichern')}</button>
+                <button type="button" class="tr-back-btn" onclick="exportResultCard('svg')">📐 ${t('exportSvg', 'Als SVG speichern')}</button>
+            </div>
+        </div>`;
+    }
+
     // Pie chart – nur anzeigen, wenn es überhaupt verwertbare Antworten gibt
     if (usableAnswered > 0) {
         html += `<div class="tr-pie-section">
@@ -2014,6 +2544,8 @@ function showTestResults() {
         // sonst landet ein übersprungener Test als "0,0 %"-Eintrag in der Historie.
         saveTestResult(results);
     }
+    // Live-URL-Sync: nach dem Rendern zeigt die Adressleiste den fertigen Teilen-Link.
+    syncShareUrl();
 }
 
 // ===== Taktisches Wählen (Szenario-Simulator) =====
@@ -3391,6 +3923,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (e.target.closest('#excludePartiesCheckboxes')) {
             e.target.closest('.party-cb').classList.toggle('checked', e.target.checked);
             updateKoalitionen();
+        }
+        if (e.target.closest('#simulatorPartiesCheckboxes')) {
+            e.target.closest('.party-cb').classList.toggle('checked', e.target.checked);
+            renderSimulator();
         }
     });
 
