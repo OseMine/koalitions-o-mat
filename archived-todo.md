@@ -2,6 +2,12 @@
 
 Erledigte (abgehakte) Aufgaben aus todo.md, Stand 2026-08-11. Offene Punkte: siehe `todo.md`.
 
+## Abgleich vom 2026-08-11 (Review „Modus & config.json")
+
+Beim Code-Abgleich im Review-Lauf vom 2026-08-11 als erledigt erkannt (Umsetzung steht im Code, `renderThesisHeatmap()` in `initializeDaten()`, script.js:2557/2989).
+
+- [x] **Thesis-Matrix-Heatmap** – Partei × These-Tabelle in Grün/Rot/Grau (zustimmen/dagegen/neutral) für schnelle Block-Erkennung; Daten (`wert` je Partei je Frage) sind vorhanden, nur Rendering neu (P3). Umgesetzt: `renderThesisHeatmap()` (script.js:2989 ff.) rendert die Heatmap inkl. Themen-Gruppierung (Reihenfolge `config.topics`), Markierung ✓/✗/· (Farben nie alleiniges Unterscheidungsmerkmal), title-/aria-Tooltip je Zelle, Legende und i18n (`heatmap*`, `legend*`); aufgerufen aus `initializeDaten()` (script.js:2557), Section in `index.html` (`#thesisHeatmap`, `data-simple-off="thesenMatrix"`).
+
 ## Review vom 2026-08-11 (Bug-Suche)
 
 Vier Befunde aus einer manuellen Code-Durchsicht (Fokus: `index.html`, `script.js`). Zwei davon sind user-sichtbare Regressionen, beide in Commit `95b89cc` („Einfacher/Erweiterter Modus") durch eine fehlerhafte Text-Ersetzung eingeschleppt. Alle vier am selben Tag behoben und verifiziert (`node --check script.js`, HTML-Balance-Check 70/70 `<div>` ohne doppelte IDs, alle bestehenden Harnesses grün).
