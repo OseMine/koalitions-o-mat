@@ -75,10 +75,38 @@ function applyModeVisibility() {
         seg.classList.toggle('active', on);
         seg.setAttribute('aria-pressed', on ? 'true' : 'false');
     });
-    // Aktiver Tab im einfachen Modus ausgeblendet -> zurück zum Test-Tab
-    if (document.querySelector('.tab-button.active') && activeTabName() !== 'test' && simpleOff('tab.' + activeTabName())) {
-        switchTab('test');
+    // config.ui.simple.off ist die eine Quelle der Wahrheit: Die data-simple-off-
+    // Attribute (Grundlage der CSS-Ausblendung) werden aus dieser Liste abgeleitet.
+    if (config) applySimpleOffFromConfig();
+    // Aktiver Tab im einfachen Modus ausgeblendet -> zurück zum Test-Tab. Geprüft
+    // wird das data-simple-off-Attribut des aktiven Tab-Buttons (dasselbe Attribut,
+    // das auch die CSS-Regel ausblendet) – unabhängig davon, ob die Config-Liste
+    // einen tab.*-Key enthält. Nur im einfachen Modus relevant.
+    if (simple) {
+        const activeTabBtn = document.querySelector('.tab-button.active');
+        if (activeTabBtn && activeTabBtn.dataset.tab !== 'test' && activeTabBtn.hasAttribute('data-simple-off')) {
+            switchTab('test');
+        }
     }
+}
+
+// data-simple-off-Attribute aus config.ui.simple.off ableiten: Für Keys in der
+// Liste bleibt das Attribut gesetzt (CSS blendet die Ansicht im einfachen Modus
+// aus), für alle anderen Keys wird es entfernt. So steuert die Config-Liste die
+// ausblendbaren Ansichten (eine Quelle der Wahrheit) statt hart index.html.
+// Grundlage ist eine einmalige Momentaufnahme der data-simple-off-Elemente aus
+// index.html (der "Kandidaten"-Menge); so lässt sich ein entferntes Attribut
+// auch wieder setzen, wenn der Key zurück in die Config-Liste kommt.
+let simpleOffElements = [];
+function applySimpleOffFromConfig() {
+    if (!simpleOffElements.length) {
+        simpleOffElements = Array.from(document.querySelectorAll('[data-simple-off]')).map(el => ({ el, key: el.dataset.simpleOff }));
+    }
+    const off = (config && config.ui && config.ui.simple && config.ui.simple.off) || [];
+    simpleOffElements.forEach(({ el, key }) => {
+        if (off.includes(key)) el.setAttribute('data-simple-off', key);
+        else el.removeAttribute('data-simple-off');
+    });
 }
 function setMode(mode) {
     const next = mode === 'advanced' ? 'advanced' : 'simple';
