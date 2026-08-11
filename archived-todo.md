@@ -1,6 +1,34 @@
 # Koalitions-O-Mat – Archiv erledigter Aufgaben
 
-Erledigte (abgehakte) Aufgaben aus todo.md, Stand 2026-08-10. Offene Punkte: siehe `todo.md`.
+Erledigte (abgehakte) Aufgaben aus todo.md, Stand 2026-08-11. Offene Punkte: siehe `todo.md`.
+
+## Review vom 2026-08-11 (Bug-Suche)
+
+Vier Befunde aus einer manuellen Code-Durchsicht (Fokus: `index.html`, `script.js`). Zwei davon sind user-sichtbare Regressionen, beide in Commit `95b89cc` („Einfacher/Erweiterter Modus") durch eine fehlerhafte Text-Ersetzung eingeschleppt. Alle vier am selben Tag behoben und verifiziert (`node --check script.js`, HTML-Balance-Check 70/70 `<div>` ohne doppelte IDs, alle bestehenden Harnesses grün).
+
+### P1 – Regression: HTML-Struktur in `index.html` korrupt (3 Tabs leer)
+
+- [x] **Tab-Content-Sections doppelt verschachtelt, `data-simple-off`-Attribut zerstört** – die drei Sections `parteien-content`, `koalitionen-content`, `daten-content` enthielten je zwei verschachtelte `<div>`s mit derselben `id` (73 `<div>` gegen 70 `</div>`); `data-simple-off` wurde vom `role`-Wert verschluckt (`role="tabpanel data-simple-off="tab.parteien"`). `switchTab()` aktivierte nur den leeren Outer-Wrapper → **die Tabs „Parteien & Kandidaten", „Koalitionen" und „Daten & Charts" renderten komplett leer**, nur das Test-Tab funktionierte. Fix: je Section ein korrektes Div (`role="tabpanel"`, `aria-labelledby="tab-…"`, `data-simple-off="tab.…"`).
+
+### P2 – Regression: Teilen-Button in `index.html` korrupt
+
+- [x] **Share-Button doppelt, `onclick` defekt, `data-simple-off` wirkungslos** – ungeschlossenes `<button>` mit ungültigem `onclick`-Wert (`shareResults() data-simple-off=`) verursachte einen SyntaxError beim Klick und umschloss einen zweiten Button; das `data-simple-off="teilen"` wurde verschluckt, sodass der Button im einfachen Modus nie ausgeblendet wurde. Fix: `<button class="share-btn" onclick="shareResults()" data-simple-off="teilen" data-i18n="shareResults">Ergebnis teilen</button>`.
+
+### P3 – Verbesserungen
+
+- [x] **`parseRss()`-TypeError bei leerem `<link>`** (script.js) – `(it.querySelector('link[href]') || {}).getAttribute('href')` warf `TypeError: getAttribute is not a function`, wenn ein Item weder `<link>`-Text noch `<link href>` hatte; der Fehler wurde von `loadPartyNews()` verschluckt und der betroffene Feed still verworfen. Fix: null-safe Zugriff (`linkEl[href]` einzeln geprüft, Fallback `''`).
+- [x] **`renderTestHistory()` ohne Datums-Guard** (script.js) – `new Date(h.date).toLocaleString()` rendert „Invalid Date", falls ein gespeicherter Historie-Eintrag ein ungültiges/fehlendes `date` hat. Fix: Datum in try/catch, bei Ungültigkeit leerer String.
+
+## Feature-Evaluation vom 2026-08-10 (Issue #102 „Features might to add"): bewusst nicht aufgenommen
+
+Bewertet wurden die 14 Vorschläge aus Issue #102 (Koalitionsanalyse, Scoring-Customizations, Visualisierung, Teilen/Export, Barrierefreiheit) gegen den Ist-Stand. Die folgenden Features waren zum Zeitpunkt der Bewertung bereits vorhanden bzw. wurden bewusst nicht neu aufgenommen; die nutzbaren neuen Features wurden als offene Punkte übernommen (siehe `todo.md`):
+
+- Sitz-Schwelle/5-%-Hürde & 50-%-Mehrheit ↔ vorhanden (`sperrklausel`-Filter und Sitzrechnung in `berechneKoalitionen()`, Koalitionsart Mehrheit/Minderheit)
+- Stance-Erklärungen & Quellen ↔ vorhanden (`zitat`/`quelle`/`begruendung` je Partei je Frage, „Parteien vergleichen"-Ansicht)
+- Teilbare URL / URL-State ↔ vorhanden (`shareResults()`, `#w/#a/#i/#p`)
+- Tastatur-Navigation ↔ vorhanden (1/2/3, Pfeiltasten, Home/End)
+- Leichte-Sprache-Toggle ↔ vorhanden (`einfache-sprache.json` deckt UI + Fragen ab)
+- Dark/Light-Mode-Toggle & Kontrast ↔ vorhanden (inkl. Systemerkennung)
 
 ## Implementierung vom 2026-08-10 (Feature: Einfacher/Erweiterter Modus)
 
@@ -60,6 +88,14 @@ Verifiziert per `node --check script.js` und neuem Node-Harness `harness/determi
 Verifiziert per `node --check script.js` gegen das echte btw2029-`werte.json` (Partei-Reihenfolge: AfD, CDU/CSU, GRÜNE, …).
 
 - [x] **Taktik-Warnungen ohne eine einzige Ja/Nein-Antwort irreführend** – `showTestResults()` hängt den Taktik-Abschnitt nun nur noch an, wenn `usableAnswered > 0` (script.js:1859-1865). Vorher wurde `tacticalSectionHTML()` immer angehängt; ohne verwertbare Antworten ist die `lastTestResults`-Sortierung stabil (`(b.match ?? -1)`), sodass „Deine Top-Partei" schlicht die erste Partei der `werte.json`-Reihenfolge war (btw2029: AfD). `bindTacticalEvents()` bleibt unverändert und no-op, wenn der Abschnitt fehlt (frühe Rückkehr ohne `#tacticalToggle`). Mit vorhandenen Ja/Nein-Antworten ist das Verhalten unverändert (Pie-Chart-/Historie-Gating auf `usableAnswered > 0` war bereits vorhanden).
+
+## Nachträge vom 2026-08-09 (Taktik-Simulator: Mock-Polls-Fallback, `schwankt`-Band, Leihstimmen-Kriterium)
+
+Weitere abgehakte Punkte aus `todo.md` (Abschnitt „Review vom 2026-08-09", P2/P3), Übernahme am 2026-08-11.
+
+- [x] **Mock-Polls injizieren „Geisterpartei" CDU in alle 4 Wahlen** – `TACTICAL_MOCK_POLLS` (script.js) in `calculateTacticalPolls()`: jedes `werte.json` erhielt ein Phantom `CDU` (30 %). Aktuell unsichtbar (kein Slider, nicht in `results`), aber latent fehlerhaft für künftige Wahlen ohne FDP/LINKE. **Umgesetzt**: Mock-Werte werden nur noch als Fallback für reale Parteien der aktiven Wahl eingefügt (`realParties` aus Umfragewerten + Fragebogen-Antworten, `calculateTacticalPolls()`).
+- [x] **`schwankt`-Band hartkodiert 4–6** (script.js) – wurde relativ zur Wahl-Sperrklausel (`threshold`, `tacticalThreshold()`) umgesetzt: Band `[threshold-1, threshold+1)` (5 % ↔ 4–6 %, 3 % ↔ 2–4 %).
+- [x] **Leihstimmen-Warnung (Doku Szenario B) faktisch unerreichbar** – Bedingung `share > 50` + hartkodiertes Band 4–6 %: Node-Harness über alle 4 Wahlen × alle Top-2-Paare ergab nur 2 von 168 Treffern (AfD|GRÜNE in LSA), nie in btw2029/Berlin/MV. **Umgesetzt**: Kriterium ist der kleinere Partner im aus `tacticalThreshold()` abgeleiteten Band `[threshold-1, threshold+1)` bei mehrheitsfähiger (nicht ausgeschlossener) Wunschkoalition (`istKoalitionsMehrheitSicher()`); Harness `tools/tactical-harness.js`: 46/168 Paare, in allen 4 Wahlen (btw 22, Berlin 8, LSA 8, MV 8).
 
 ## Nachträge vom 2026-08-09 (Übernahme aus todo.md, Review vom 2026-08-08)
 
