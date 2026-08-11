@@ -2,6 +2,10 @@
 
 Erledigte (abgehakte) Aufgaben aus todo.md, Stand 2026-08-11. Offene Punkte: siehe `todo.md`.
 
+## Feature-Evaluation vom 2026-08-10 (Issue #102) – im Code umgesetzt (Archivierung 2026-08-11)
+
+- [x] **Thesis-Matrix-Heatmap** – Partei × These-Tabelle in Grün/Rot/Grau (zustimmen/dagegen/neutral) für schnelle Block-Erkennung; umgesetzt als `renderThesisHeatmap()` (script.js:2989), im Daten-Tab unter `#thesisHeatmap` (`heatmap-section`, index.html:182), Zellen mit ✓/✗/·-Markierung + `title`/`aria-label`-Tooltip (Farben nie alleiniges Unterscheidungsmerkmal), Themen-Gruppierung über `config.topics`. Aus `todo.md` übernommen (stand dort als offen; Verifizierung gegen Code ergab Umsetzung).
+
 ## Review vom 2026-08-11 (Bug-Suche)
 
 Vier Befunde aus einer manuellen Code-Durchsicht (Fokus: `index.html`, `script.js`). Zwei davon sind user-sichtbare Regressionen, beide in Commit `95b89cc` („Einfacher/Erweiterter Modus") durch eine fehlerhafte Text-Ersetzung eingeschleppt. Alle vier am selben Tag behoben und verifiziert (`node --check script.js`, HTML-Balance-Check 70/70 `<div>` ohne doppelte IDs, alle bestehenden Harnesses grün).
