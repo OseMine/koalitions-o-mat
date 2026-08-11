@@ -1170,8 +1170,9 @@ function parseRss(text, feedUrl) {
     const items = doc.querySelectorAll('item, entry');
     return Array.from(items).slice(0, 20).map(it => {
         const linkEl = it.querySelector('link');
+        const linkElHref = it.querySelector('link[href]');
         const link = (linkEl && linkEl.textContent)
-            || (it.querySelector('link[href]') || {}).getAttribute('href') || '';
+            || (linkElHref && linkElHref.getAttribute('href')) || '';
         return {
             title: (it.querySelector('title') || {}).textContent || '',
             link,
@@ -2473,7 +2474,8 @@ function renderTestHistory() {
         const top = (h.results && h.results[0]) || null;
         const election = electionsList.find(e => e.id === h.electionId);
         const name = election ? election.name : (h.electionId || '?');
-        const date = new Date(h.date).toLocaleString();
+        let date;
+        try { date = new Date(h.date).toLocaleString(); } catch (_) { date = ''; }
         return `
             <div class="history-item">
                 <div class="history-item-main">
