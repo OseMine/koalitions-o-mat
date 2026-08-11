@@ -1137,4 +1137,8 @@ body {
 
 /* ===== Modus: Einfach/Erweitert ===== */
 body.mode-simple [data-simple-off] { display: none !important; }
-body:not(.mode-simple) [data-simple-off] { display: revert; }
+/* Kein body:not(.mode-simple)-Override nötig: Ohne body.mode-simple zeigt kein
+   CSS-Element display:none (bis auf .tab-content{.active}, das die Tab-Panels
+   steuert). data-simple-off-Elemente erscheinen im erweiterten Modus so von
+   selbst; ein display:revert hätte .tab-content { display:none } (0,1,0) und
+   .chart-card { display:flex } überschrieben (alle Panels gleichzeitig sichtbar). */

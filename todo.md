@@ -4,17 +4,14 @@ Erledigte Aufgaben wurden nach `archived-todo.md` verschoben (Stand 2026-08-11).
 
 ## Review vom 2026-08-11-b (PR #120: Friction-Score, Regierungs-Simulator, Ergebnis-Karte, Live-URL-Sync) + Review vom 2026-08-11 (Modus mobil, PR #119, gemergt)
 
-Vollständiger Bericht: `reports/review-2026-08-11-b.md`. Empirisch verifiziert (alle Harnesses grün, Friction-Score gegen unabhängige Neuberechnung auf 4 Wahlen, CDP-Browsertest). Die bekannten Modus-Befunde aus PR #118 (offen) bzw. `reports/review-2026-08-11.md` (gemergt) wurden re-verifiziert und sind unten als Referenz mitgeführt.
+Vollständiger Bericht: `reports/review-2026-08-11-b.md`. Empirisch verifiziert (alle Harnesses grün, Friction-Score gegen unabhängige Neuberechnung auf 4 Wahlen, CDP-Browsertest). Die aus PR #118 bekannten Modus-Befunde (Fokus „Einfacher/Erweiterter Modus & `config.json`-Nutzung") wurden bei der Merge-Konflikt-Lösung übernommen und sind **behoben** – siehe Report `reports/review-2026-08-11-c.md` und Umsetzung in `archived-todo.md` (Implementierung vom 2026-08-11). Die übrigen Befunde aus #119/#120 bleiben unten offen.
 
-### P1 – Bugs (bekannt, weiter offen – aus #118/#119, re-verifiziert)
+### P1 – Bugs
 
-- [ ] **Erweitert-Modus: alle 4 Tab-Panels gleichzeitig sichtbar** – `styles.css:1140` `body:not(.mode-simple) [data-simple-off] { display: revert }` gewinnt gegen `.tab-content.active`. PR #118, P1#1.
-- [ ] **Zurück auf „Einfach" bei aktivem Nicht-Test-Tab → Dead-Zustand (kein sichtbares Panel)** – `applyModeVisibility()` (script.js:79-81), `config.ui.simple.off` enthält keine `tab.*`-Keys, die CSS-Regel blendet das aktive Panel aber aus. PR #118, P1#2.
 - [ ] **`aria-label="null"` auf beiden `.mode-seg`-Buttons** – `applyStaticI18n()` (script.js:3724-3743). PR #119/#118.
 
 ### P2 – Bugs
 
-- [ ] **Dead Guards `simpleOff('teilen'/'historie')` – Live-URL-Sync und Historie laufen im einfachen Modus** – `simple.off` kennt die Keys nicht mehr; verletzt den Privatsphäre-Kommentar in `syncShareUrl()` (script.js:209) und schreibt die Historie weiter (`saveTestResult()`, script.js:2983). PR #118, P2#1.
 - [ ] **Live-URL-Sync hinterlässt nach `resetTest()` einen veralteten Share-Hash** – `resetTest()` (script.js:2006) ruft `syncShareUrl()`; bei leerem Zustand liefert `buildShareUrl()` `null` und der Hash bleibt stehen → Reload/Bookmark stellt alte Antworten wieder her. Fix: Hash beim Reset leeren (siehe Report).
 
 ### P2/P3 – Verbesserungen / Mobile (bekannt aus #119)
@@ -33,6 +30,6 @@ Vollständiger Bericht: `reports/review-2026-08-11-b.md`. Empirisch verifiziert 
 
 - **#105 (Friction Score), #106 (Regierungs-Simulator), #110 (Ergebnis-Karte PNG/SVG)**: in PR #120 umgesetzt und verifiziert – **nach Merge von #120 schließen**.
 - **#113 (Cleanup Branch issue99)**: geschlossen (Branch existiert nicht mehr, 2026-08-11).
-- **PR #118 (Modus-Befunde)**: offen, Inhalte hier mitgeführt.
+- **PR #118 (Modus & config.json)**: Merge-Konflikte gelöst, alle 5 Befunde behoben und hier übernommen (Report `reports/review-2026-08-11-c.md`, Umsetzung in `archived-todo.md`); #118 nach Merge dieses PRs schließen.
 
 Derzeit sind keine weiteren offenen Aufgaben erfasst.
