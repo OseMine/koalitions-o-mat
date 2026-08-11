@@ -41,7 +41,11 @@ jobs:
             3. Gruppiere zusammengehörige Punkte sinnvoll zu einem Issue
                (ein Issue pro logischem Task, nicht ein Issue pro Zeile).
             4. Erzeuge für jede Gruppe genau EIN GitHub-Issue mit:
-               - aussagekräftigem Titel (deutsch, kurz),
+               - aussagekräftigem Titel (deutsch, kurz) samt Template-Präfix:
+                 Feature-Ideen → „[Feature]: …", Daten-/Bug-Punkte → „[Bug]: …" bzw.
+                 „[Daten]: …", Übersetzungs-/Inhalte-Punkte → „[Einfache Sprache]: …"
+                 (siehe .github/ISSUE_TEMPLATE/ für Titel-Präfix und Labels).
+               - passenden Labels („enhancement" für Features, „bug" für Fehler),
                - Body mit: Kontext, betroffene Dateien/Funktionen (mit Zeilennummern
                  aus todo.md), Akzeptanzkriterien und den daraus übernommenen
                  todo.md-Text.

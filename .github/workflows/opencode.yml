@@ -35,7 +35,26 @@ jobs:
         env:
           OPENCODE_API_KEY: ${{ secrets.OPENCODE_API_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          DEBUG: "*"
         with:
           model: opencode/deepseek-v4-flash-free
           use_github_token: true
+          prompt: |
+            Du arbeitest am Koalitions-O-Mat, einer Vanilla-JavaScript-Wahlapp
+            (kein Framework, kein Build-Schritt; Node + static server reicht).
+
+            Kontext-Sammlung:
+            1. Lies README.md, opencode.json und ggf. die Issue-/PR-Beschreibung und
+               den auslösenden Kommentar. Folge `t()`/`einfache-sprache.json`-Konventionen.
+            2. Prüfe bestehende Befunde in todo.md / archived-todo.md, um nichts doppelt
+               zu implementieren oder bekannte Konventionen zu verletzen.
+
+            Regeln:
+            - Committe NICHT, pushe NICHT selbst und öffne KEINEN Pull Request – die
+              GitHub-Action erkennt die geänderten Dateien automatisch, committed/pusht
+              auf einen Branch und erstellt den PR.
+            - Ändere niemals Secrets und keine Dateien unter `.github/workflows/`
+              (die GitHub-App hat dafür keine Berechtigung).
+            - Bei Issue-basierten Aufträgen: halte dich an Titel-Präfix und Struktur der
+              Vorlagen in `.github/ISSUE_TEMPLATE/` (Bug, Feature, Datenfehler, Einfache
+              Sprache), sofern im Kontext anwendbar.
+            - Erkläre am Ende knapp, was du geändert hast (max. 10 Stichpunkte).

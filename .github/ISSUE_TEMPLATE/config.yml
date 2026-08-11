@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 📖 README – Funktionen & Datenstruktur
+    url: https://github.com/OseMine/koalitions-o-mat/blob/main/README.md
+    about: Lies zuerst das README – viele Antworten stehen dort (Funktionen, Datenstruktur, Einrichtung des Code-Reviews).
+  - name: ➕ Allgemeines Issue ohne Template
+    url: https://github.com/OseMine/koalitions-o-mat/issues/new
+    about: Für alles, was in keines der Templates passt (offen lassen – ohne Template).

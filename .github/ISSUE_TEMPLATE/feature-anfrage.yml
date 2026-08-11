@@ -1,0 +1,68 @@
+name: ✨ Feature-Anfrage – ggf. per /opencode umsetzen lassen
+description: Schlage ein neues Feature oder eine Verbesserung für den Koalitions-O-Mat vor.
+title: "[Feature]: "
+labels: ["enhancement", "opencode"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## So funktioniert's
+        1. **Dieses Formular ausfüllen** – beschreibe, was die App können soll und warum.
+        2. **Issue erstellen.**
+        3. Optional: **Als Kommentar `/opencode` posten**, damit opencode das Feature
+           implementiert und einen Pull-Request eröffnet. *(Tipp: Statt `/opencode` genügt
+           auch `/oc`.)*
+  - type: textarea
+    id: beschreibung
+    attributes:
+      label: Feature / Verbesserung
+      description: Was soll die App können, das sie heute nicht kann?
+      placeholder: |
+        Beispiel: Die App soll ein eigenes Ergebnis-Archiv zeigen, auf das man nach dem
+        Test von einer Übersichtsseite aus zugreifen kann.
+    validations:
+      required: true
+  - type: textarea
+    id: nutzen
+    attributes:
+      label: Anwendungsfall & Nutzen
+      description: Wer hätte was davon, und in welcher Situation? Je konkreter, desto besser.
+      placeholder: |
+        Beispiel: Nach der Beantwortung will ich meine alten Ergebnisse vergleichen, ohne
+        sie vorher als Link gespeichert zu haben.
+    validations:
+      required: true
+  - type: textarea
+    id: umsetzung
+    attributes:
+      label: Umsetzungsvorschlag (optional)
+      description: Betroffene Dateien/Funktionen, UI-Platzierung, erwünschte Priorität (P1/P2/P3) – beschleunigt die Umsetzung.
+      placeholder: "Beispiel: script.js `renderTestResults()`, neuer Abschnitt im Test-Tab, Priorität P2."
+    validations:
+      required: false
+  - type: dropdown
+    id: umfang
+    attributes:
+      label: Umfang
+      description: Wie groß schätzt du die Änderung ein?
+      options:
+        - Klein (UI-Anpassung, neuer Text, kleine Verbesserung)
+        - Mittel (neue Ansicht/Chart, Umbauteil einer Funktion)
+        - Groß (neues Feature über mehrere Dateien / neue Datenstruktur)
+    validations:
+      required: false
+  - type: markdown
+    attributes:
+      value: |
+        ## Nach dem Posten von `/opencode`
+        - Die Action arbeitet mit dem Modell `opencode/deepseek-v4-flash-free`.
+        - Die Umsetzung wird **ohne direkte Änderung am Haupt-Branch** als Pull-Request
+          vorgeschlagen – ein Mensch reviewt und merged ihn.
+  - type: checkboxes
+    id: zustimmung
+    attributes:
+      label: Zustimmung
+      description: Bitte bestätigen, damit die Automatik loslegen darf.
+      options:
+        - label: "Ich bin einverstanden, dass opencode (GitHub-Action) dieses Feature automatisch umsetzt und einen Pull-Request erstellt."
+          required: true

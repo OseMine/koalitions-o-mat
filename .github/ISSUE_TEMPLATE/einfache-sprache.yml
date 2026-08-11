@@ -1,0 +1,55 @@
+name: 🗣️ Einfache Sprache – fehlende/falsche Übersetzung
+description: Melde einen Fehler in der Einfachen-Sprache-Unterstützung (einfache-sprache.json oder fehlende t()-Verwendung).
+title: "[Einfache Sprache]: "
+labels: ["bug", "documentation"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Worum geht es
+        Die App verspricht einen Umschalter, der **alle** UI-Texte und Fragestellungen in
+        einfache Sprache übersetzt. Übersetzungen liegen in `einfache-sprache.json`;
+        UI-Texte werden über `t('…')` geholt.
+  - type: dropdown
+    id: ort
+    attributes:
+      label: Wo tritt der Fehler auf?
+      options:
+        - UI-Text bleibt Normal-Deutsch (beim Umschalten unverändert)
+        - Übersetzung in `einfache-sprache.json` ist falsch/widersprüchlich
+        - Frage fehlt in einfacher Sprache (nur im Normalmodus beantwortbar)
+        - Übersetzung wirkt fehlerhaft/grammatisch falsch
+        - Sonstiges
+    validations:
+      required: true
+  - type: textarea
+    id: beschreibung
+    attributes:
+      label: Beschreibung
+      description: Welcher Text/Frage, wo (Tab, Sektion, Datumsbereich) und was ist falsch?
+      placeholder: |
+        Beispiel: Im Taktik-Simulator steht im Einfache-Sprache-Modus trotzdem
+        „Leihstimmen-Warnung“ – im UI fehlt eine t()-Übersetzung.
+    validations:
+      required: true
+  - type: textarea
+    id: korrektur
+    attributes:
+      label: Korrekturvorschlag (optional)
+      description: Wie sollte der Text in einfacher Sprache lauten? Kurze Sätze, Alltagswörter.
+    validations:
+      required: false
+  - type: markdown
+    attributes:
+      value: |
+        Fehlende `t()`-Verwendung wird in den regelmäßigen Code-Reviews (
+        `opencode-review`) als Befund aufgenommen und kann per Kommentar `/opencode`
+        direkt behoben werden.
+  - type: checkboxes
+    id: zustimmung
+    attributes:
+      label: Zustimmung
+      description: Bitte bestätigen.
+      options:
+        - label: "Ich bin einverstanden, dass opencode (GitHub-Action) die Übersetzung prüft und ggf. per Pull-Request korrigiert."
+          required: false

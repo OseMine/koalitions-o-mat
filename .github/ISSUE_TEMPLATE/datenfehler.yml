@@ -1,0 +1,75 @@
+name: 🗳️ Datenfehler (Fragen, Umfragewerte, Koalitions-Ausschluss)
+description: Melde einen Fehler in den Wahldaten (fragen.json, werte.json, config.json, elections.json).
+title: "[Daten]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Worum geht es
+        Der Koalitions-O-Mat lädt seine Inhalte aus Datendateien unter `elections/`
+        sowie aus `config.json`, `elections.json` und `einfache-sprache.json`.
+        Bitte ordne den Fehler möglichst genau einem dieser Bereiche zu.
+  - type: dropdown
+    id: wahl
+    attributes:
+      label: Betroffene Wahl / Daten
+      description: Für welche Wahl oder Datei ist die Angabe falsch?
+      options:
+        - Bundestagswahl 2029 (btw2029)
+        - Landtagswahl Sachsen-Anhalt 2026 (ltw-sachsen-anhalt-2026)
+        - Abgeordnetenhaus Berlin 2026 (berlin-2026)
+        - Landtagswahl Mecklenburg-Vorpommern 2026 (mv-2026)
+        - elections.json / config.json / einfache-sprache.json (global)
+    validations:
+      required: true
+  - type: dropdown
+    id: art
+    attributes:
+      label: Art des Fehlers
+      description: Was genau ist falsch?
+      options:
+        - Frage/Parteiposition (fragen.json)
+        - Umfragewert (werte.json)
+        - Koalitions-Ausschluss (config.json)
+        - Partei-Metadaten (beschreibung, kandidaten, achsen, rss …)
+        - Sonstiges Datenfeld
+    validations:
+      required: true
+  - type: textarea
+    id: aktuelle
+    attributes:
+      label: Aktueller Inhalt (falsch)
+      description: Was steht aktuell in der Datei? Am besten mit Frage-/Parteinummer.
+      placeholder: "Beispiel: btw2029, Frage 12, SPD: wert=j – laut SPD-Wahlprogramm ist die Partei aber dagegen."
+    validations:
+      required: true
+  - type: textarea
+    id: korrektur
+    attributes:
+      label: Korrektur erwartet
+      description: Was wäre richtig, und warum?
+    validations:
+      required: true
+  - type: input
+    id: quelle
+    attributes:
+      label: Quelle / Beleg
+      description: URL, Wahlprogramm mit Seitenzahl oder anderer Beleg für die Korrektur.
+      placeholder: "https://partei.de/wahlprogramm (S. 12)"
+    validations:
+      required: true
+  - type: markdown
+    attributes:
+      value: |
+        Datenkorrekturen bestätigt opencode gegen die angegebene Quelle. Optional kann
+        danach mit einem Kommentar `/opencode` ein Pull-Request mit der Korrektur
+        erstellt werden.
+  - type: checkboxes
+    id: zustimmung
+    attributes:
+      label: Zustimmung
+      description: Bitte bestätigen.
+      options:
+        - label: "Ich habe den Fehler durch einen Beleg (Quelle/Link) abgesichert."
+          required: true

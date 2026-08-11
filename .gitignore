@@ -1,0 +1,16 @@
+# Node / dev dependencies (lokale opencode-Installation, wird automatisch neu erzeugt)
+node_modules/
+.opencode/node_modules/
+
+# Betriebssystem-Dateien
+.DS_Store
+Thumbs.db
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+
+# Sonstiges
+*.log
+.env

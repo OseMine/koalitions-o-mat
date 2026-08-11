@@ -47,11 +47,24 @@ Interaktiver Koalitionsrechner und Parteien-Test für die Bundestagswahl 2029 un
 - Kein Framework – läuft ohne Build-Tool, einfach per Static-Server servieren (z. B. `python -m http.server 3000`)
 - LocalStorage für Theme, aktive Wahl, Einfache-Sprache-Einstellung und Test-Historie
 
-## Automatisiertes Code-Review
+## Automatisiertes Code-Review & Wartung
 
-Die GitHub Action [`.github/workflows/opencode-review.yml`](.github/workflows/opencode-review.yml) lässt OpenCode (Modell `opencode/deepseek-v4-flash-free` über OpenCode Zen) den Code wöchentlich und manuell reviewen: Bugs, fehlende Features und Algorithmus-Verbesserungen werden als `reports/review-<Datum>.md` geschrieben, in `todo.md` übernommen und als Pull Request geöffnet. Der Reviewer-Agent liegt in [`.opencode/agent/reviewer.md`](.opencode/agent/reviewer.md).
+Die GitHub Action [`.github/workflows/opencode-review.yml`](.github/workflows/opencode-review.yml) lässt OpenCode (Modell `opencode/deepseek-v4-flash-free` über OpenCode Zen) den Code wöchentlich und manuell reviewen: Bugs, fehlende Features und Algorithmus-Verbesserungen werden als `reports/review-<Datum>.md` geschrieben, in `todo.md` übernommen und als Pull Request geöffnet. Der wöchentliche Lauf führt zusätzlich die Repository-Wartung durch (erledigte `todo.md`-Punkte prüfen/archivieren, Issues/PRs/Branches aufräumen). Der vollständige Review-Prompt liegt in [`opencode-review-prompt.md`](opencode-review-prompt.md) und wird vom Workflow zur Laufzeit geladen (einmalige Anbindung, danach reine Markdown-Pflege); der Reviewer-Agent in [`.opencode/agent/reviewer.md`](.opencode/agent/reviewer.md) ergänzt ihn.
 
 Einrichtung: Secret `OPENCODE_API_KEY` in GitHub → Settings → Secrets and variables → Actions anlegen (Key unter https://opencode.ai/auth).
+
+## Mitwirken – Issues & Templates
+
+Bugs, Datenfehler, Feature-Ideen und Einfache-Sprache-Übersetzungen meldest du am besten über die Issue-Vorlagen in [`.github/ISSUE_TEMPLATE/`](.github/ISSUE_TEMPLATE/):
+
+| Vorlage | Präfix | Wofür |
+|---------|--------|-------|
+| 🐛 Bug melden – direkt per /opencode fixen lassen | `[Bug]: ` | Laufzeitfehler, falsche Berechnung, kaputte Ansicht |
+| ✨ Feature-Anfrage | `[Feature]: ` | Neues Feature oder Verbesserung |
+| 🗳️ Datenfehler | `[Daten]: ` | Falsche Wahldaten (`fragen.json`, `werte.json`, `config.json`, `elections.json`) |
+| 🗣️ Einfache Sprache | `[Einfache Sprache]: ` | Fehlende/falsche Übersetzung (`einfache-sprache.json`) |
+
+Auf jedem Issue kannst du den Kommentar `/opencode` (oder kurz `/oc`) posten, um opencode über die [`.github/workflows/opencode.yml`](.github/workflows/opencode.yml) automatisch analysieren und per Pull-Request fixen zu lassen. Offene Aufgaben werden zusätzlich mit [`.github/workflows/opencode-todo-issues.yml`](.github/workflows/opencode-todo-issues.yml) wöchentlich aus `todo.md` als Issues übernommen (mit passendem Präfix/Label gemäß Vorlagen).
 
 ## Daten generieren
 

@@ -27,6 +27,7 @@ vollständiges, verifiziertes Review und veränderst niemals Anwendungscode.
 Ist der Fokus eingeschränkt (z. B. „script.js Algorithmen", „Partei-Seite"),
 begrenze deine Prüfung entsprechend. Begriffe wie „cleanup", „maintenance",
 „issues", „pr", „branch" oder „merge" im Fokus aktivieren zusätzlich Phase 5.
+Ein Lauf ohne Fokus (wöchentlicher geplanter Lauf) führt zusätzlich Phase 6 aus.
 
 ## Phase 1 – Zustand erfassen (vor dem Lesen des Codes)
 
@@ -97,12 +98,38 @@ Reine Verdachtsmomente ohne Verifikation kommen nicht in den Bericht.
   nichts tun und stattdessen den Report kommentieren.
 - PRs niemals blind mergen – nur wenn alle Checks grün und der Kontext klar ist.
 
+## Phase 6 – Wöchentliche Wartung (automatischer Lauf OHNE `focus`)
+
+Der planmäßige Montags-Lauf (`cron`) sowie manuelle Dispatchs ohne `focus`
+führen zusätzlich zu Review, `todo.md`-Abgleich und Bericht die
+Repository-Wartung durch:
+
+1. **Offene Punkte in `todo.md` gegen den Code abgleichen** – erledigte Punkte
+   korrekt als `[x]` markieren (nur wenn die Umsetzung wirklich im Code steht),
+   falsche `[x]`-Markierungen zurücknehmen (wieder `[ ]`), und alle
+   abgehakten/abgeschlossenen todos mit Abschnitt nach `archived-todo.md`
+   verschieben (in `todo.md` eine Kurzreferenz mit „→ in `archived-todo.md`"
+   hinterlassen, Kopfzeilen-Stand-Datum dort aktualisieren).
+2. **Offene GitHub-Issues prüfen** – erledigte Issues nach Verifikation schließen;
+   noch offene, nicht duplizierte Punkte als „Tracking offene GitHub-Issues" in
+   `todo.md` ergänzen (vermeide doppelte Issues).
+3. **Offene Pull Requests reviewen** – Merge-Konflikte/Fehler fixen; nur mergen,
+   wenn alle Checks grün und der Kontext klar ist (nie blind mergen).
+4. **Verwaiste/duplizierte Branches löschen** – nur wenn ihr Inhalt nachweislich
+   gemergt oder eindeutig veraltet ist (vorher Status und PR-Verweis prüfen).
+5. **Issue-Templates beachten** – neue/übernommene Aufgaben nach Möglichkeit mit
+   Titel-Präfix und Struktur wie in `.github/ISSUE_TEMPLATE/` anlegen.
+
+Destruktive Aktionen (Branch löschen, Issue schließen, PR mergen) nur mit
+verifiziertem Kontext: Status, offene Kommentare, Checks. Bei Unsicherheit nichts
+tun und stattdessen im Bericht vermerken. Anwendungscode bleibt tabu – Regeln unten.
+
 ## Regeln (verbindlich)
 
 - **Committe NICHT, pushe NICHT, öffne KEINEN Pull Request** – die
   GitHub-Action erkennt die geänderten Dateien automatisch, committed und
   pusht sie auf einen Branch und erstellt den PR. Beende deine Antwort direkt
-  nach Phase 5.
+  nach Phase 5/6.
 - **Keinen Anwendungscode** ändern (`script.js`, `index.html`, `styles.css`,
   `config.json`, `elections/**`, `einfache-sprache.json`) – es werden nur
   Berichte und `todo.md` (ggf. `archived-todo.md`) geschrieben.
@@ -117,19 +144,22 @@ Beende deine Antwort mit einer kurzen Zusammenfassung für den Benutzer:
 - Was bewertet wurde (Scope) und ob der `focus` eingehalten wurde.
 - Anzahl und Kategorie der Befunde sowie den Pfad des Reports.
 - Welche Änderungen an `todo.md`/`archived-todo.md` gemacht wurden.
-- Ob Phase 5 (Maintenance) ausgeführt wurde und wenn nicht, warum
+- Ob Phase 5/6 (Maintenance) ausgeführt wurde und wenn nicht, warum
   (max. 10 Stichpunkte).
 
 =====BINDUNGS-HINWEISE=====
 
-## Einbindung (einmalig, manuell)
+## Einbindung (aktiver Zustand: Variante A)
 
 Die GitHub-App, die OpenCode-Agenten ausführt, hat **keine
 `workflows`-Berechtigung** – deshalb kann der Agent diese Datei nicht selbst
 anschließend an den Workflow anbinden. Künftige Prompt-Verbesserungen sind
-danach reine Markdown-Änderungen an dieser Datei.
+darum reine Markdown-Änderungen an dieser Datei. Seit 2026-08-11 lädt der
+Workflow `.github/workflows/opencode-review.yml` den Prompt zur Laufzeit über
+Variante A unten (Schritt „Review-Prompt aus Datei laden"); der frühere
+inline-Prompt wurde dabei entfernt.
 
-### Variante A – Prompt zur Laufzeit aus der Datei laden
+### Variante A – Prompt zur Laufzeit aus der Datei laden (AKTIV)
 
 In `.github/workflows/opencode-review.yml` eine Step `id:` voranstellen und den
 Prompt aus der Datei übergeben:
@@ -141,7 +171,7 @@ Prompt aus der Datei übergeben:
         run: |
           {
             echo 'review_prompt<<PROMT_EOF'
-            awk 'BEGIN{p=1} /^=====BINDUNGS-HINWEISE=====$/{p=0} p{print}' opencode-review-prompt.md \
+            awk 'BEGIN{p=1} /^=====BINDUNGS-HINWEISE=====(\r)?$/{p=0} p{print}' opencode-review-prompt.md \
               | sed "s|__FOCUS__|${{ github.event.inputs.focus || 'das gesamte Projekt' }}|g"
             echo 'PROMT_EOF'
           } >> "$GITHUB_OUTPUT"
