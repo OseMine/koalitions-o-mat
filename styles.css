@@ -494,6 +494,16 @@ body {
     border: 1px solid var(--outline); border-radius: var(--radius-sm);
 }
 
+/* Sichtbarer Hinweis zum Einfach/Erweitert-Modus: benennt die ausgeblendeten
+   Ansichten, damit der Wechsel ohne README verstanden wird (Issue Modus-Kontext). */
+.mode-hint {
+    display: none;
+    margin: 0 0 14px; padding: 10px 14px; font-size: 0.85rem; line-height: 1.5;
+    color: var(--on-surface-muted); background: var(--surface-variant);
+    border: 1px dashed var(--outline); border-radius: var(--radius-sm);
+}
+body.mode-simple .mode-hint { display: block; }
+
 /* Hinweis auf Tastatursteuerung im Test-Tab – nur mit physischer Tastatur/Maus
    (Desktop) sinnvoll, deshalb standardmäßig ausgeblendet und ausschließlich
    für `hover: hover`- und `pointer: fine`-Geräte eingeblendet (Issue #27). */

@@ -2,6 +2,12 @@
 
 Erledigte (abgehakte) Aufgaben aus todo.md, Stand 2026-08-11. Offene Punkte: siehe `todo.md`.
 
+## Umsetzung vom 2026-08-12 (Issue „Modus-Wechsel ohne sichtbaren Kontext")
+
+Persistente, sichtbare Hinweiszeile beim Einfach/Erweitert-Umschalter: benennt die im einfachen Modus ausgeblendeten Ansichten (Quelle: `config.ui.simple.off` – eine Quelle der Wahrheit), damit der Wechsel ohne README verständlich ist (UX-Anregung aus PR #119, todo.md-P3). Verifiziert per `node --check script.js`, HTML-Balance-Check (75/75 `<div>`, 18/18 `<button>`, keine doppelten IDs), neuem Node-Harness (15/15 Checks: alle 10 `simple.off`-Ansichten benannt, Platzhalter ersetzt, Erweitert-Modus leer, Einfache-Sprache-Template/Labels greifen) und allen bestehenden Harnesses grün (dealbreaker 25/25, tactical-match-gap 15/15, tactical-scenarios 17/17, friction-simulator, determine-topic).
+
+- [x] **`#modeHint`-Hinweiszeile** – neues Element unter der `.sticky-nav` (in `index.html`), CSS `.mode-hint` (nur `body.mode-simple` sichtbar, im Stil von `parteiSeiteDisabled`/`shareDisabledSimple`). `applyModeHint()` (script.js) baut den Text aus `config.ui.simple.off` über `MODE_OFF_VIEW_LABELS` (i18n via `t()` mit deutschen Fallbacks) und ersetzt den `{views}`-Platzhalter; im erweiterten Modus leer. Aufgerufen aus `applyModeVisibility()` (Modus-Wechsel + Load) und `applyStaticI18n()` (Einfache-Sprache-Toggle). 3 neue i18n-Keys (`modeHintSimple`, `modeOffParteiSeite`, `modeOffDealbreaker`) in `einfache-sprache.json.ui` (248 Keys, valide); die übrigen Ansichts-Labels nutzen bestehende Keys (`tabParteien`, `tabKoalitionen`, `tabDaten`, `heatmapTitle`, `chartKompass`, `tactical.sectionTitle`, `historyTitle`, `shareResults`). Keine Verhaltensänderung an den ausgeblendeten Ansichten selbst.
+
 ## Implementierung vom 2026-08-12 (Issue #126 – Mobile-Switch-Erreichbarkeit)
 
 Die beiden offenen Punkte „`aria-label="null"` auf `.mode-seg`" (P1, #119/#118) und „Mobile-Switch-Erreichbarkeit (sticky, Tap-Ziele, Header 481–599 px)" (P2/P3, #119) aus `todo.md` wurden umgesetzt und **empirisch per Headless-Chromium (CDP) gegen den realen Build verifiziert** (Sweep 320–768 px, Scroll-Test 390×844 bei scrollY=600, Funktions-Klick-Test auf dem sticky Switch). `node --check script.js` OK, alle Harnesses grün.

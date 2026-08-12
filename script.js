@@ -78,6 +78,7 @@ function applyModeVisibility() {
     // config.ui.simple.off ist die eine Quelle der Wahrheit: Die data-simple-off-
     // Attribute (Grundlage der CSS-Ausblendung) werden aus dieser Liste abgeleitet.
     if (config) applySimpleOffFromConfig();
+    applyModeHint();
     // Aktiver Tab im einfachen Modus ausgeblendet -> zurück zum Test-Tab. Geprüft
     // wird das data-simple-off-Attribut des aktiven Tab-Buttons (dasselbe Attribut,
     // das auch die CSS-Regel ausblendet) – unabhängig davon, ob die Config-Liste
@@ -115,6 +116,34 @@ function setMode(mode) {
     showNotification(next === 'simple'
         ? t('modeSimpleActive', 'Einfacher Modus: erweiterte Ansichten sind ausgeblendet.')
         : t('modeAdvancedActive', 'Erweiterter Modus: alle Ansichten sind verfügbar.'), 'success');
+}
+
+// Sichtbare Hinweiszeile zum Modus: benennt die im einfachen Modus ausgeblendeten
+// Ansichten (Quelle: config.ui.simple.off), damit der Wechsel ohne README verständlich
+// ist. Im Stil von parteiSeiteDisabled/shareDisabledSimple, aber persistent statt
+// einmaliger Notification. Im erweiterten Modus wird die Zeile ausgeblendet.
+const MODE_OFF_VIEW_LABELS = {
+    'tab.parteien': ['tabParteien', 'Parteien & Kandidaten'],
+    'tab.koalitionen': ['tabKoalitionen', 'Koalitionen'],
+    'tab.daten': ['tabDaten', 'Daten & Charts'],
+    'parteiSeite': ['modeOffParteiSeite', 'Partei-Detailseiten'],
+    'thesenMatrix': ['heatmapTitle', 'Thesen-Matrix'],
+    'kompass': ['chartKompass', '2D-Politik-Kompass'],
+    'dealbreaker': ['modeOffDealbreaker', 'Dealbreaker-Markierung'],
+    'taktik': ['tactical.sectionTitle', 'Taktik-Simulator'],
+    'historie': ['historyTitle', 'Ergebnis-Historie'],
+    'teilen': ['shareResults', 'Ergebnis teilen']
+};
+function applyModeHint() {
+    const hint = document.getElementById('modeHint');
+    if (!hint || !config) return;
+    if (!isSimpleMode()) { hint.textContent = ''; return; }
+    const off = (config.ui && config.ui.simple && config.ui.simple.off) || [];
+    const names = off.map(key => {
+        const def = MODE_OFF_VIEW_LABELS[key];
+        return def ? t(def[0], def[1]) : key;
+    });
+    hint.textContent = t('modeHintSimple', 'Im einfachen Modus sind diese Ansichten ausgeblendet: {views}.').replace('{views}', names.join(', '));
 }
 
 // ===== Answer Helpers (support legacy string and new object formats) =====
@@ -3772,6 +3801,7 @@ function applyStaticI18n() {
             }
         }
     });
+    applyModeHint();
 }
 
 function toggleSimpleLanguage() {
