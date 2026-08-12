@@ -2,6 +2,12 @@
 
 Erledigte (abgehakte) Aufgaben aus todo.md, Stand 2026-08-11. Offene Punkte: siehe `todo.md`.
 
+## Implementierung vom 2026-08-12 (Issue #128 – Singular „es fehlt 1 Sitz"/„mind. 1 Sitz" im Regierungs-Simulator)
+
+Der offene Punkt „i18n „es fehlen {n} Sitze"/„mind. {n} Sitze" bei {n}=1 ungrammatisch" aus `todo.md` (vorher `einfache-sprache.json:87-88`) wurde umgesetzt. Verifiziert: `node --check script.js` OK, alle Harnesses grün (friction-simulator, dealbreaker, tactical-match-gap, tactical-scenarios, determine-topic), JSON valide.
+
+- [x] **i18n „es fehlen {n} Sitze"/„mind. {n} Sitze" bei {n}=1 ungrammatisch** – die Formeln „Mehrheit ✓ (mind. {n} Sitze)" und „Keine Mehrheit – es fehlen {n} Sitze" waren fest im Plural formuliert; bei {n}=1 (z. B. mv-2026: 39/79 Sitze, „es fehlen 1 Sitze") ergab das ungrammatische Ausgaben. Fix: in `einfache-sprache.json` die Singular-Keys `simulatorMajorityYesSingular` („Mehrheit ✓ (mind. {n} Sitz)") und `simulatorMajorityNoSingular` („Keine Mehrheit – es fehlt {n} Sitz") ergänzt; neuer Helfer `tSingularPlural(n, keySingular, keyPlural, fallbackSingular, fallbackPlural)` neben `t()` (script.js) wählt für {n}=1 die Singular-, sonst die Plural-Variante – auch für den Normalmodus-Fallback. Aufruf im Regierungs-Simulator (`renderSimulator()`, `.simulator-majority`): `simulatorMajorityYes`/`-No` wählen jetzt per `tSingularPlural()` die korrekte Form. Plural (n ≥ 2) unverändert; keine weiteren Plural-/Singular-Fälle im selben Muster betroffen.
+
 ## Implementierung vom 2026-08-12 (Issue „Semantisch ungültiges `<label>` umschließt `<div>`")
 
 Verifiziert per HTML-Struktur-Check (keine verschachtelten Interaktionselemente) und `node --check script.js`; keine JS-Änderung nötig, da `populateSimulatorParties()` nur `#simulatorPartiesCheckboxes` referenziert (script.js:1860).
