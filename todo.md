@@ -22,14 +22,17 @@ Vollständiger Bericht: `reports/review-2026-08-11-b.md`. Empirisch verifiziert 
 
 - [x] **Ergebnis-Karte zeigt rohe Wahl-ID statt Wahl-Name** – `exportCardData()` (script.js:312) `electionName = activeElectionId`; stattdessen `getActiveElectionName()` (script.js:3498) verwendet – identisch zur Ergebnis-Ansicht (`showTestResults()`). Verifiziert per `node --check script.js`.
 - [x] **`<label class="simulator-select-label">` umschließt `<div>`** (index.html:111) – semantisch ungültig, Klick aufs Label kippt unbestimmte Checkbox. Umsetzung: `<div>`-Wrapper (Issue #133, siehe archived-todo.md).
-- [ ] **`svgBar()` leerer Wrapper** (script.js:302) – entfernen oder real nutzen.
-- [ ] **Modus-Wechsel ohne sichtbaren Kontext** (aus PR #119, gemergt) – nach dem Umschalten fehlt eine Erklärung, welche Ansichten im einfachen Modus ausgeblendet sind (siehe `parteiSeiteDisabled`/`shareDisabledSimple`-Muster).
+- [x] **`svgBar()` leerer Wrapper** (script.js:330) – jetzt real genutzt: `buildResultCardSVG()` baut die Ranglisten-Balken der Ergebnis-Karte über `svgBar()` (Array → Join statt Inline-Konkatenation, gerenderte Ausgabe identisch). Verifiziert per `node --check` und Harness.
+- [x] **Modus-Wechsel ohne sichtbaren Kontext** (aus PR #119, gemergt) – nach dem Umschalten fehlt eine Erklärung, welche Ansichten im einfachen Modus ausgeblendet sind (siehe `parteiSeiteDisabled`/`shareDisabledSimple`-Muster). Umsetzung: persistente Hinweiszeile `#modeHint` (benennt die via `config.ui.simple.off` ausgeblendeten Ansichten, i18n via `t()` inkl. Einfacher Sprache), siehe `archived-todo.md`.
 
 ### Tracking offene GitHub-Issues
 
-- **#105 (Friction Score)**: in PR #120 umgesetzt und verifiziert; Best-Koalition-Anzeige („Beste Koalition für Sie") trägt zusätzlich Reibungs-Score + Konfliktthesen-Toggle (dieser PR, deckt die in #105 genannte Stelle script.js:2499 ff. ab). **nach Merge dieses PRs schließen.**
-- **#106 (Regierungs-Simulator), #110 (Ergebnis-Karte PNG/SVG)**: in PR #120 umgesetzt und verifiziert – **nach Merge von #120 schließen**.
+- **#105 (Friction Score)**: in PR #120 umgesetzt und verifiziert; Best-Koalition-Anzeige („Beste Koalition für Sie") trägt zusätzlich Reibungs-Score + Konfliktthesen-Toggle. Geschlossen.
+- **#106 (Regierungs-Simulator)**: in PR #120 umgesetzt und verifiziert; der i18n-Singular-Fix wurde zusätzlich umgesetzt (Issue #128/#136, `tSingularPlural()` + Singular-Keys, 4 Harness-Checks). Geschlossen.
+- **#110 (Ergebnis-Karte PNG/SVG)**: in PR #120 umgesetzt und verifiziert; im UI nur noch **PNG**-Export (SVG bleibt intern Basis des PNG-Renderings), Wahl-Name statt roher Wahl-ID auf der Karte. Geschlossen.
 - **#113 (Cleanup Branch issue99)**: geschlossen (Branch existiert nicht mehr, 2026-08-11).
-- **PR #118 (Modus & config.json)**: Merge-Konflikte gelöst, alle 5 Befunde behoben und hier übernommen (Report `reports/review-2026-08-11-c.md`, Umsetzung in `archived-todo.md`); #118 nach Merge dieses PRs schließen.
+- **#124 (`aria-label="null"` auf `.mode-seg`)**: bereits durch PR #132 (Issue #126) behoben und verifiziert. Geschlossen.
+- **#129 (Label→div) / #130 (`svgBar()` real nutzen) / #131 (Hinweiszeile für ausgeblendete Ansichten)**: umgesetzt und verifiziert (PRs #133/#134/#141). Geschlossen.
+- **PR #118 (Modus & config.json)**: Merge-Konflikte gelöst, alle 5 Befunde behoben und hier übernommen (Report `reports/review-2026-08-11-c.md`, Umsetzung in `archived-todo.md`); Inhalt in main, PR geschlossen.
 
-Derzeit sind keine weiteren offenen Aufgaben erfasst.
+Derzeit sind keine weiteren offenen Aufgaben erfasst (offener Bug: Issue #125 – veralteter Share-Hash nach `resetTest()`, siehe oben).

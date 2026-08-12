@@ -83,6 +83,7 @@ function applyModeVisibility() {
     // config.ui.simple.off ist die eine Quelle der Wahrheit: Die data-simple-off-
     // Attribute (Grundlage der CSS-Ausblendung) werden aus dieser Liste abgeleitet.
     if (config) applySimpleOffFromConfig();
+    applyModeHint();
     // Aktiver Tab im einfachen Modus ausgeblendet -> zurück zum Test-Tab. Geprüft
     // wird das data-simple-off-Attribut des aktiven Tab-Buttons (dasselbe Attribut,
     // das auch die CSS-Regel ausblendet) – unabhängig davon, ob die Config-Liste
@@ -120,6 +121,34 @@ function setMode(mode) {
     showNotification(next === 'simple'
         ? t('modeSimpleActive', 'Einfacher Modus: erweiterte Ansichten sind ausgeblendet.')
         : t('modeAdvancedActive', 'Erweiterter Modus: alle Ansichten sind verfügbar.'), 'success');
+}
+
+// Sichtbare Hinweiszeile zum Modus: benennt die im einfachen Modus ausgeblendeten
+// Ansichten (Quelle: config.ui.simple.off), damit der Wechsel ohne README verständlich
+// ist. Im Stil von parteiSeiteDisabled/shareDisabledSimple, aber persistent statt
+// einmaliger Notification. Im erweiterten Modus wird die Zeile ausgeblendet.
+const MODE_OFF_VIEW_LABELS = {
+    'tab.parteien': ['tabParteien', 'Parteien & Kandidaten'],
+    'tab.koalitionen': ['tabKoalitionen', 'Koalitionen'],
+    'tab.daten': ['tabDaten', 'Daten & Charts'],
+    'parteiSeite': ['modeOffParteiSeite', 'Partei-Detailseiten'],
+    'thesenMatrix': ['heatmapTitle', 'Thesen-Matrix'],
+    'kompass': ['chartKompass', '2D-Politik-Kompass'],
+    'dealbreaker': ['modeOffDealbreaker', 'Dealbreaker-Markierung'],
+    'taktik': ['tactical.sectionTitle', 'Taktik-Simulator'],
+    'historie': ['historyTitle', 'Ergebnis-Historie'],
+    'teilen': ['shareResults', 'Ergebnis teilen']
+};
+function applyModeHint() {
+    const hint = document.getElementById('modeHint');
+    if (!hint || !config) return;
+    if (!isSimpleMode()) { hint.textContent = ''; return; }
+    const off = (config.ui && config.ui.simple && config.ui.simple.off) || [];
+    const names = off.map(key => {
+        const def = MODE_OFF_VIEW_LABELS[key];
+        return def ? t(def[0], def[1]) : key;
+    });
+    hint.textContent = t('modeHintSimple', 'Im einfachen Modus sind diese Ansichten ausgeblendet: {views}.').replace('{views}', names.join(', '));
 }
 
 // ===== Answer Helpers (support legacy string and new object formats) =====
@@ -348,19 +377,18 @@ function buildResultCardSVG() {
     const date = new Date().toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' });
 
     // Ranglisten-Balken
-    let bars = '';
     const barY0 = 470, barW = 700, barX = 300, barH = 26, barGap = 62;
     const maxMatch = Math.max(...results.map(r => r.match != null ? r.match : 0), 1);
-    results.forEach((r, i) => {
+    const bars = svgBar(results.map((r, i) => {
         const y = barY0 + i * barGap;
         const w = Math.max(30, ((r.match != null ? r.match : 0) / maxMatch) * barW);
         const color = getPartyColor(r.partei);
         const matchText = r.match != null ? r.match.toFixed(1) + '%' : '–';
-        bars += `<text x="300" y="${y + 18}" font-size="26" font-weight="600" fill="#1F2430">${i + 1}. ${escapeHtml(r.partei)}</text>
+        return `<text x="300" y="${y + 18}" font-size="26" font-weight="600" fill="#1F2430">${i + 1}. ${escapeHtml(r.partei)}</text>
             <text x="300" y="${y + 44}" font-size="20" fill="#8A93A6">${escapeHtml(matchText)}</text>
             <rect x="300" y="${y + 52}" width="${w}" height="${barH}" rx="13" fill="${color}"/>
             <rect x="300" y="${y + 52}" width="${barW}" height="${barH}" rx="13" fill="none" stroke="#E2E6EF" stroke-width="2"/>`;
-    });
+    }));
 
     // Beste Koalition
     let coalHtml = '';
@@ -2439,15 +2467,15 @@ function showTestResults() {
             .replace('{n}', usableAnswered).replace('{total}', totalQuestions).replace('{min}', minRankingAnswers)}</p>`;
     }
 
-    // Ergebnis-Karte als Bild exportieren (PNG/SVG) – nur wenn verwertbare
-    // Antworten und keine geteilte Sicht ohne eigene Antworten vorliegen.
+    // Ergebnis-Karte als Bild exportieren (PNG im UI; intern wird das SVG als Basis
+    // für das PNG-Rendering genutzt) – nur wenn verwertbare Antworten und keine
+    // geteilte Sicht ohne eigene Antworten vorliegen.
     if (usableAnswered > 0 && !simpleOff('teilen')) {
         html += `<div class="tr-export-section">
             <h3>${t('exportCardTitle', 'Ergebnis als Bild teilen')}</h3>
-            <p class="chart-note">${t('exportCardHint', 'Laden Sie eine Social-Media-taugliche Karte mit Ihrer Top-Partei, der besten Koalition und Ihren Schwerpunktthemen als PNG oder SVG herunter.')}</p>
+            <p class="chart-note">${t('exportCardHint', 'Laden Sie eine Social-Media-taugliche Karte mit Ihrer Top-Partei, der besten Koalition und Ihren Schwerpunktthemen als PNG herunter.')}</p>
             <div class="tr-export-actions">
                 <button type="button" class="tr-back-btn" onclick="exportResultCard('png')">🖼️ ${t('exportPng', 'Als PNG speichern')}</button>
-                <button type="button" class="tr-back-btn" onclick="exportResultCard('svg')">📐 ${t('exportSvg', 'Als SVG speichern')}</button>
             </div>
         </div>`;
     }
@@ -3783,6 +3811,7 @@ function applyStaticI18n() {
             }
         }
     });
+    applyModeHint();
 }
 
 function toggleSimpleLanguage() {
