@@ -21,7 +21,6 @@ Vollständiger Bericht: `reports/review-2026-08-11-b.md`. Empirisch verifiziert 
 ### P3 – Verbesserungen
 
 - [ ] **Ergebnis-Karte zeigt rohe Wahl-ID statt Wahl-Name** – `exportCardData()` (script.js:284) `electionName = activeElectionId`; `getActiveElectionName()` (script.js:3470) stattdessen verwenden.
-- [ ] **i18n „es fehlen {n} Sitze"/„mind. {n} Sitze" bei {n}=1 ungrammatisch** – `einfache-sprache.json:87-88`; tritt in mv-2026 (39/79 Sitze) auf. Singular-Variante.
 - [ ] **`<label class="simulator-select-label">` umschließt `<div>`** (index.html:111) – semantisch ungültig, Klick aufs Label kippt unbestimmte Checkbox. Als `<span>` ausführen.
 - [ ] **`svgBar()` leerer Wrapper** (script.js:302) – entfernen oder real nutzen.
 - [ ] **Modus-Wechsel ohne sichtbaren Kontext** (aus PR #119, gemergt) – nach dem Umschalten fehlt eine Erklärung, welche Ansichten im einfachen Modus ausgeblendet sind (siehe `parteiSeiteDisabled`/`shareDisabledSimple`-Muster).

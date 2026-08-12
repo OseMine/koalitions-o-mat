@@ -41,6 +41,11 @@ function t(key, fallback) {
     if (!isSimpleLang() || !simpleLangData || !simpleLangData.ui) return fallback !== undefined ? fallback : key;
     return simpleLangData.ui[key] || (fallback !== undefined ? fallback : key);
 }
+function tSingularPlural(n, keySingular, keyPlural, fallbackSingular, fallbackPlural) {
+    return n === 1
+        ? t(keySingular, fallbackSingular)
+        : t(keyPlural, fallbackPlural);
+}
 function simpleQuestionText(f, field) {
     if (isSimpleLang() && simpleLangData && simpleLangData.fragen && activeElectionId) {
         const q = simpleLangData.fragen[activeElectionId] && simpleLangData.fragen[activeElectionId][String(f.nr)];
@@ -1983,8 +1988,8 @@ function renderSimulator() {
                 <div class="simulator-seats">
                     <span class="simulator-seats-val ${hatMehrheit ? 'ok' : 'no'}">${koalSitze}/${totalSeats} ${t('seats', 'Sitze')}</span>
                     <span class="simulator-majority ${hatMehrheit ? 'ok' : 'no'}">${hatMehrheit
-                        ? t('simulatorMajorityYes', 'Mehrheit ✓ (mind. {n} Sitze)').replace('{n}', mehrheitBenoetigt)
-                        : t('simulatorMajorityNo', 'Keine Mehrheit – es fehlen {n} Sitze').replace('{n}', mehrheitBenoetigt - koalSitze)}</span>
+                        ? tSingularPlural(mehrheitBenoetigt, 'simulatorMajorityYesSingular', 'simulatorMajorityYes', 'Mehrheit ✓ (mind. {n} Sitz)', 'Mehrheit ✓ (mind. {n} Sitze)').replace('{n}', mehrheitBenoetigt)
+                        : tSingularPlural(mehrheitBenoetigt - koalSitze, 'simulatorMajorityNoSingular', 'simulatorMajorityNo', 'Keine Mehrheit – es fehlt {n} Sitz', 'Keine Mehrheit – es fehlen {n} Sitze').replace('{n}', mehrheitBenoetigt - koalSitze)}</span>
                 </div>
             </div>
             <div class="coalition-meta">
