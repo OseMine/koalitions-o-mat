@@ -250,7 +250,7 @@ const body = `
     const einfache = __fsJson();
     const ui = einfache.ui || {};
     ['frictionScore','frictionToggle','frictionToggleHide','frictionNone','frictionMore','simulatorEmpty','simulatorDeviationTitle','simulatorDeviationLeader',
-     'simulatorDeviationNone','exportCardTitle','exportPng','exportSvg','exportCardSaved'].forEach(k => {
+     'simulatorDeviationNone','exportCardTitle','exportPng','exportCardSaved'].forEach(k => {
         T({ ok: !!ui[k], name: 'einfache-sprache: Key "' + k + '"', msg: String(ui[k]) });
     });
 

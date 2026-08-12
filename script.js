@@ -309,7 +309,7 @@ function exportCardData() {
     const results = lastTestResults || berechneUserMatchRanking();
     if (!results || !results.length) return null;
     const top = results[0];
-    const electionName = activeElectionId;
+    const electionName = getActiveElectionName() || activeElectionId;
     const appName = config.appName || 'Koalitions-O-Mat';
     const topTopics = top && top.topicMatches
         ? Object.entries(top.topicMatches).sort((a, b) => b[1] - a[1]).slice(0, 3)
@@ -325,10 +325,6 @@ function exportCardData() {
         .filter(k => k.anzahl <= maxSize && k.prozente > 50 && k.uebereinstimmung >= minCoalMatch)
         .sort((a, b) => (b.benutzerMatch ?? -1) - (a.benutzerMatch ?? -1))[0] || null;
     return { results, top, topTopics, best, electionName, appName };
-}
-
-function svgBar(parts) {
-    return parts.join('');
 }
 
 function buildResultCardSVG() {
@@ -2439,10 +2435,9 @@ function showTestResults() {
     if (usableAnswered > 0 && !simpleOff('teilen')) {
         html += `<div class="tr-export-section">
             <h3>${t('exportCardTitle', 'Ergebnis als Bild teilen')}</h3>
-            <p class="chart-note">${t('exportCardHint', 'Laden Sie eine Social-Media-taugliche Karte mit Ihrer Top-Partei, der besten Koalition und Ihren Schwerpunktthemen als PNG oder SVG herunter.')}</p>
+            <p class="chart-note">${t('exportCardHint', 'Laden Sie eine Social-Media-taugliche Karte mit Ihrer Top-Partei, der besten Koalition und Ihren Schwerpunktthemen als PNG herunter.')}</p>
             <div class="tr-export-actions">
                 <button type="button" class="tr-back-btn" onclick="exportResultCard('png')">🖼️ ${t('exportPng', 'Als PNG speichern')}</button>
-                <button type="button" class="tr-back-btn" onclick="exportResultCard('svg')">📐 ${t('exportSvg', 'Als SVG speichern')}</button>
             </div>
         </div>`;
     }
