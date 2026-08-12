@@ -22,8 +22,8 @@
             <h1>Koalitions-O-Mat</h1>
             <div class="header-right">
                 <div id="modeToggle" class="mode-toggle" role="group" aria-label="Ansichtsmodus">
-                    <button type="button" class="mode-seg active" data-mode="simple" onclick="setMode('simple')" aria-pressed="true" title="Einfacher Modus" data-i18n-aria="aria.modeToggleSimple"><span class="mode-seg-icon">◕</span><span class="mode-seg-label">Einfach</span></button>
-                    <button type="button" class="mode-seg" data-mode="advanced" onclick="setMode('advanced')" aria-pressed="false" title="Erweiterter Modus" data-i18n-aria="aria.modeToggleAdvanced"><span class="mode-seg-icon">⚙</span><span class="mode-seg-label">Erweitert</span></button>
+                    <button type="button" class="mode-seg active" data-mode="simple" onclick="setMode('simple')" aria-pressed="true" aria-label="Einfacher Modus" title="Einfacher Modus" data-i18n-aria="aria.modeToggleSimple"><span class="mode-seg-icon">◕</span><span class="mode-seg-label">Einfach</span></button>
+                    <button type="button" class="mode-seg" data-mode="advanced" onclick="setMode('advanced')" aria-pressed="false" aria-label="Erweiterter Modus" title="Erweiterter Modus" data-i18n-aria="aria.modeToggleAdvanced"><span class="mode-seg-icon">⚙</span><span class="mode-seg-label">Erweitert</span></button>
                 </div>
                 <button type="button" id="simpleLangToggle" class="simple-lang-toggle" onclick="toggleSimpleLanguage()" aria-label="Einfache Sprache umschalten" aria-pressed="false" data-i18n-aria="aria.simpleLangToggle"><span class="simple-lang-icon">✏️</span><span class="simple-lang-label" data-i18n="simpleLangLabel">Einfache Sprache</span></button>
                 <button type="button" id="themeToggle" class="theme-toggle" onclick="toggleTheme()" aria-label="Theme umschalten" data-i18n-aria="aria.themeToggle">💻</button>
@@ -66,11 +66,17 @@
                 <button class="btn-ghost" id="changeElectionBtn" onclick="showElectionSelector()" data-i18n="changeElection">Wechseln</button>
             </div>
 
-            <div class="tabs" role="tablist" aria-label="Hauptnavigation">
-                <button type="button" role="tab" id="tab-test" class="tab-button active" data-tab="test" aria-controls="test-content" aria-selected="true" tabindex="0" data-i18n="tabTest">Parteien-Test</button>
-                <button type="button" role="tab" id="tab-parteien" class="tab-button" data-tab="parteien" data-simple-off="tab.parteien" aria-controls="parteien-content" aria-selected="false" tabindex="-1" data-i18n="tabParteien">Parteien &amp; Kandidaten</button>
-                <button type="button" role="tab" id="tab-koalitionen" class="tab-button" data-tab="koalitionen" data-simple-off="tab.koalitionen" aria-controls="koalitionen-content" aria-selected="false" tabindex="-1" data-i18n="tabKoalitionen">Koalitionen</button>
-                <button type="button" role="tab" id="tab-daten" class="tab-button" data-tab="daten" data-simple-off="tab.daten" aria-controls="daten-content" aria-selected="false" tabindex="-1" data-i18n="tabDaten">Daten &amp; Charts</button>
+            <div class="sticky-nav">
+                <div id="modeToggleSticky" class="mode-toggle mode-toggle-sticky" role="group" aria-label="Ansichtsmodus">
+                    <button type="button" class="mode-seg active" data-mode="simple" onclick="setMode('simple')" aria-pressed="true" aria-label="Einfacher Modus" title="Einfacher Modus" data-i18n-aria="aria.modeToggleSimple"><span class="mode-seg-icon">◕</span><span class="mode-seg-label">Einfach</span></button>
+                    <button type="button" class="mode-seg" data-mode="advanced" onclick="setMode('advanced')" aria-pressed="false" aria-label="Erweiterter Modus" title="Erweiterter Modus" data-i18n-aria="aria.modeToggleAdvanced"><span class="mode-seg-icon">⚙</span><span class="mode-seg-label">Erweitert</span></button>
+                </div>
+                <div class="tabs" role="tablist" aria-label="Hauptnavigation">
+                    <button type="button" role="tab" id="tab-test" class="tab-button active" data-tab="test" aria-controls="test-content" aria-selected="true" tabindex="0" data-i18n="tabTest">Parteien-Test</button>
+                    <button type="button" role="tab" id="tab-parteien" class="tab-button" data-tab="parteien" data-simple-off="tab.parteien" aria-controls="parteien-content" aria-selected="false" tabindex="-1" data-i18n="tabParteien">Parteien &amp; Kandidaten</button>
+                    <button type="button" role="tab" id="tab-koalitionen" class="tab-button" data-tab="koalitionen" data-simple-off="tab.koalitionen" aria-controls="koalitionen-content" aria-selected="false" tabindex="-1" data-i18n="tabKoalitionen">Koalitionen</button>
+                    <button type="button" role="tab" id="tab-daten" class="tab-button" data-tab="daten" data-simple-off="tab.daten" aria-controls="daten-content" aria-selected="false" tabindex="-1" data-i18n="tabDaten">Daten &amp; Charts</button>
+                </div>
             </div>
 
             <!-- ===== Test Tab ===== -->

@@ -129,7 +129,7 @@ body {
 }
 .mode-seg {
     display: inline-flex; align-items: center; gap: 4px;
-    height: 30px; padding: 0 10px; border: none; border-radius: 999px;
+    height: 40px; padding: 0 10px; border: none; border-radius: 999px;
     background: transparent; color: var(--on-surface-variant);
     font-family: var(--font); font-size: 0.8rem; font-weight: 500;
     white-space: nowrap; cursor: pointer; transition: all 0.2s;
@@ -139,6 +139,11 @@ body {
 .mode-seg-icon { font-size: 0.9rem; line-height: 1; }
 
 /* ===== Tabs ===== */
+/* Sticky-Navigation (mobil): Hülle aus Modus-Umschalter + Tabs. Auf Desktop
+   statisch (position:static), auf ≤600 px sticky, damit der Einfach/Erweitert-
+   Umschalter beim Scrollen durch die Fragen erreichbar bleibt (Issue #126). */
+.sticky-nav { position: static; }
+.mode-toggle-sticky { display: none; }
 .tabs {
     display: flex; gap: 4px; margin: 8px 0 16px; padding: 4px;
     background: var(--surface-variant); border-radius: var(--radius-lg); overflow: hidden;
@@ -809,8 +814,24 @@ body {
     /* Question container less padding */
     .question-container { padding: 18px; }
 
-    /* Sticky tabs for quick switching */
-    .tabs { position: sticky; top: 0; z-index: 100; background: var(--surface-variant); }
+    /* Sticky mode switch + tabs for quick switching & reachability */
+    .header-row #modeToggle { display: none; }
+    .simple-lang-toggle { width: 40px; padding: 0; justify-content: center; }
+    .simple-lang-toggle .simple-lang-label { display: none; }
+    .sticky-nav {
+        position: sticky; top: 0; z-index: 100; background: var(--surface);
+        margin-left: -16px; margin-right: -16px; padding: 2px 0 0;
+    }
+    /* Mobil: Umschalter als eigene, vollbreite Zeile über den Tabs – großzügige
+       Tippfläche (≥40 px), Labels dauerhaft sichtbar statt nur Icons (Issue #126). */
+    .mode-toggle-sticky {
+        display: flex; width: 100%; padding: 2px; gap: 2px;
+        border-radius: 999px; background: var(--surface-variant); border: 1.5px solid var(--outline);
+    }
+    .mode-toggle-sticky .mode-seg {
+        flex: 1; justify-content: center; min-width: 0; padding: 0 10px;
+    }
+    .mode-toggle-sticky .mode-seg-label { display: inline; }
 
     /* Welcome: stacked steps, card grid single column */
     .welcome-steps { flex-direction: column; align-items: stretch; max-width: 340px; margin-left: auto; margin-right: auto; }
@@ -836,12 +857,11 @@ body {
     .container { padding: 8px 10px calc(24px + env(safe-area-inset-bottom, 0px)); }
     .header-row { margin-bottom: 4px; }
     .header-row h1 { font-size: clamp(1.2rem, 5vw, 1.4rem); }
-    .simple-lang-toggle { width: 40px; padding: 0; justify-content: center; }
-    .simple-lang-toggle .simple-lang-label { display: none; }
     .mode-toggle { padding: 2px; }
     .mode-seg { padding: 0 6px; }
     .mode-seg-label { display: none; }
-    .tabs { border-radius: 0; margin: 8px -10px 12px; padding: 4px 10px; }
+    .sticky-nav { margin-left: -10px; margin-right: -10px; }
+    .tabs { border-radius: 0; margin: 8px 0 12px; padding: 4px 10px; }
     /* Mobile-Fix (Issue #21): "Parteien & Kandidaten" etc. sind auf schmalen
        Screens breiter als ihr Slice – statt Abschneiden (overflow:hidden) darf
        das Label umbrechen, damit kein Inhalt verloren geht. */
@@ -883,7 +903,6 @@ body {
        Tippfläche bleibt trotzdem ≥38px (Issue #27) */
     .header-row h1 { font-size: 1.1rem; }
     .theme-toggle, .github-link, .simple-lang-toggle { width: 38px; height: 38px; }
-    .mode-seg { height: 28px; }
 }
 
 /* ===== Party Detail Page ===== */

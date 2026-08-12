@@ -2,6 +2,13 @@
 
 Erledigte (abgehakte) Aufgaben aus todo.md, Stand 2026-08-11. Offene Punkte: siehe `todo.md`.
 
+## Implementierung vom 2026-08-12 (Issue #126 – Mobile-Switch-Erreichbarkeit)
+
+Die beiden offenen Punkte „`aria-label="null"` auf `.mode-seg`" (P1, #119/#118) und „Mobile-Switch-Erreichbarkeit (sticky, Tap-Ziele, Header 481–599 px)" (P2/P3, #119) aus `todo.md` wurden umgesetzt und **empirisch per Headless-Chromium (CDP) gegen den realen Build verifiziert** (Sweep 320–768 px, Scroll-Test 390×844 bei scrollY=600, Funktions-Klick-Test auf dem sticky Switch). `node --check script.js` OK, alle Harnesses grün.
+
+- [x] **`aria-label="null"` auf beiden `.mode-seg`-Buttons** – Ursache: `applyStaticI18n()` restaurierte `orig.aria` (Snapshot ohne statisches `aria-label` → `null`); `setAttribute('aria-label', null)` erzeugte den String `"null"`. Fix: deutsche Statik-`aria-label` („Einfacher Modus"/„Erweiterter Modus") direkt in `index.html` an beiden Umschaltern (Kopfzeile + sticky) ergänzt; der Fallback in `applyStaticI18n()` prüft jetzt `orig && orig.aria` (truthy) und entfernt das Attribut sonst. Verifiziert: Normalmodus und Einfache-Sprache-Modus tragen beide Umschalter korrekte `aria-label`-Texte, nie `"null"`.
+- [x] **Switch-Sticky + Tap-Ziele + Header 481–599 px** – der Einfach/Erweitert-Umschalter wandert auf ≤600 px aus der Kopfzeile in eine sticky `sticky-nav`-Hülle: volle-breite Zeile über den Tabs (Segmente `flex:1`, 40 px hoch, Labels dauerhaft sichtbar, Roll-out bei Scroll). `applyModeVisibility()` (`.mode-toggle .mode-seg`) synchronisiert beide Umschalter-Kopien; `applyStaticI18n`/`setMode` gelten unverändert weiter. Die entlastete Kopfzeile (ohne `#modeToggle`, Einfache-Sprache-Button ab ≤600 px Icon-only) behebt den Header-Overflow 481–599 px (gemessen: `scrollWidth` ≤ `innerWidth` über den ganzen Sweep; vorher bis 527 > 481). Verifiziert per CDP: scrollY=600 → Umschalter `top=2..48` sichtbar mit Labels; Segmente ≥40 px Tippfläche; kein horizontales Overflow auf 320/360/390/414/481/520/568/600 px; Desktop ≥601 unverändert (Umschalter in der Kopfzeile, `sticky-nav` statisch).
+
 ## Umsetzung vom 2026-08-11 (Feature-Evaluation #102 + „How to hash": 5 Features)
 
 Die fünf offenen Features aus `todo.md` (Friction-Score P2, Regierungs-Simulator P2, Thesen-Matrix-Heatmap P3, Ergebnis-Karte P3, Live-URL-Sync P3) wurden komplett umgesetzt. Verifiziert per neuem Node-Harness `harness/friction-simulator-harness.js` (43 Checks), allen bestehenden Harnesses (dealbreaker 25/25, tactical-match-gap 15/15, tactical-scenarios 17/17, determine-topic), `node --check script.js`, HTML-Balance-Check (73/73 `<div>`, 16/16 `<button>`, keine doppelten IDs) und valide JSON-Dateien.
