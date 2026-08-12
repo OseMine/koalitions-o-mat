@@ -1,6 +1,12 @@
 # Koalitions-O-Mat – Archiv erledigter Aufgaben
 
-Erledigte (abgehakte) Aufgaben aus todo.md, Stand 2026-08-11. Offene Punkte: siehe `todo.md`.
+Erledigte (abgehakte) Aufgaben aus todo.md, Stand 2026-08-12. Offene Punkte: siehe `todo.md`.
+
+## Implementierung vom 2026-08-12 (Issue #106 – Regierungs-Simulator: i18n-Singular-Fix)
+
+Die Regierungs-Simulator-Funktion selbst (Checkboxen-Picker, Sitzmehrheit, „Mit Ihnen"-Wert, Abweichungs-Rechnung, Ausschluss-Warnung, i18n) wurde bereits in PR #120 umgesetzt und gegen alle 6 Akzeptanzkriterien des Issues verifiziert (Harness `harness/friction-simulator-harness.js`, `node --check script.js`, einfacher Sprachmodus via `data-i18n`/`t()`). #106 wird hierüber geschlossen. Verbliebener offener P3-Punkt aus `todo.md` ergänzt:
+
+- [x] **i18n „es fehlen {n} Sitze"/„mind. {n} Sitze" bei {n}=1 ungrammatisch** – bei 39/79 Sitzen (mv-2026) zeigte die Mehrheitsanzeige „es fehlen 1 Sitz". Fix: neuer Helfer `simulatorMehrheitText(hatMehrheit, mehrheitBenoetigt, koalSitze)` (script.js, direkt vor `renderSimulator()`) wählt zwischen Singular und Plural (`n === 1`); neue Keys `simulatorMajorityYesSingular`/`simulatorMajorityNoSingular` in `einfache-sprache.json` decken auch den Einfache-Sprache-Modus ab. Zusätzlich tote Variable `hasUserAnswers` in `renderSimulator()` entfernt. Verifiziert per `node --check script.js`, 4 neuen Harness-Checks (Singular/Plural je Mehrheit/Fehlsitze) und 4 neuen i18n-Key-Checks im friction-simulator-harness (50/50 grün), alle übrigen Harnesses grün (dealbreaker 25/25, tactical-match-gap 15/15, tactical-scenarios 17/17, determine-topic exit 0), `einfache-sprache.json` valide.
 
 ## Implementierung vom 2026-08-12 (Issue #126 – Mobile-Switch-Erreichbarkeit)
 

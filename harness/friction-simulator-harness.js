@@ -182,6 +182,16 @@ const body = `
         document.getElementById = originalGetElementById;
     }
 
+    // Mehrheitstext: Singular bei {n} = 1 ("fehlt 1 Sitz"), Plural sonst
+    T({ ok: simulatorMehrheitText(false, 5, 4).indexOf('fehlt 1 Sitz') !== -1,
+        name: 'simulatorMehrheitText: Singular bei 1 fehlendem Sitz', msg: simulatorMehrheitText(false, 5, 4) });
+    T({ ok: simulatorMehrheitText(false, 5, 2).indexOf('es fehlen 3 Sitze') !== -1,
+        name: 'simulatorMehrheitText: Plural bei 3 fehlenden Sitzen', msg: simulatorMehrheitText(false, 5, 2) });
+    T({ ok: simulatorMehrheitText(true, 1, 1).indexOf('mind. 1 Sitz') !== -1,
+        name: 'simulatorMehrheitText: Singular-Mehrheit (mind. 1 Sitz)', msg: simulatorMehrheitText(true, 1, 1) });
+    T({ ok: simulatorMehrheitText(true, 40, 45).indexOf('mind. 40 Sitze') !== -1,
+        name: 'simulatorMehrheitText: Plural-Mehrheit (mind. 40 Sitze)', msg: simulatorMehrheitText(true, 40, 45) });
+
     // ---- Live-URL-Sync ----
     location.hash = '';
     const url = buildShareUrl();
@@ -250,7 +260,8 @@ const body = `
     const einfache = __fsJson();
     const ui = einfache.ui || {};
     ['frictionScore','frictionToggle','frictionToggleHide','frictionNone','frictionMore','simulatorEmpty','simulatorDeviationTitle','simulatorDeviationLeader',
-     'simulatorDeviationNone','exportCardTitle','exportPng','exportSvg','exportCardSaved'].forEach(k => {
+     'simulatorDeviationNone','simulatorMajorityYes','simulatorMajorityYesSingular','simulatorMajorityNo','simulatorMajorityNoSingular',
+     'exportCardTitle','exportPng','exportSvg','exportCardSaved'].forEach(k => {
         T({ ok: !!ui[k], name: 'einfache-sprache: Key "' + k + '"', msg: String(ui[k]) });
     });
 

@@ -21,14 +21,14 @@ Vollständiger Bericht: `reports/review-2026-08-11-b.md`. Empirisch verifiziert 
 ### P3 – Verbesserungen
 
 - [ ] **Ergebnis-Karte zeigt rohe Wahl-ID statt Wahl-Name** – `exportCardData()` (script.js:284) `electionName = activeElectionId`; `getActiveElectionName()` (script.js:3470) stattdessen verwenden.
-- [ ] **i18n „es fehlen {n} Sitze"/„mind. {n} Sitze" bei {n}=1 ungrammatisch** – `einfache-sprache.json:87-88`; tritt in mv-2026 (39/79 Sitze) auf. Singular-Variante.
+- [x] **i18n „es fehlen {n} Sitze"/„mind. {n} Sitze" bei {n}=1 ungrammatisch** – `einfache-sprache.json:87-88`; tritt in mv-2026 (39/79 Sitze) auf. Singular-Variante. Umgesetzt: neue Keys `simulatorMajorityYesSingular`/`simulatorMajorityNoSingular` + Helfer `simulatorMehrheitText()` (script.js), Wahl Singular bei `{n}=1` ("es fehlt 1 Sitz"/"mind. 1 Sitz").
 - [ ] **`<label class="simulator-select-label">` umschließt `<div>`** (index.html:111) – semantisch ungültig, Klick aufs Label kippt unbestimmte Checkbox. Als `<span>` ausführen.
 - [ ] **`svgBar()` leerer Wrapper** (script.js:302) – entfernen oder real nutzen.
 - [ ] **Modus-Wechsel ohne sichtbaren Kontext** (aus PR #119, gemergt) – nach dem Umschalten fehlt eine Erklärung, welche Ansichten im einfachen Modus ausgeblendet sind (siehe `parteiSeiteDisabled`/`shareDisabledSimple`-Muster).
 
 ### Tracking offene GitHub-Issues
 
-- **#105 (Friction Score), #106 (Regierungs-Simulator), #110 (Ergebnis-Karte PNG/SVG)**: in PR #120 umgesetzt und verifiziert – **nach Merge von #120 schließen**.
+- **#105 (Friction Score), #106 (Regierungs-Simulator), #110 (Ergebnis-Karte PNG/SVG)**: in PR #120 umgesetzt und verifiziert; #106 wird über diesen PR geschlossen (Feature verifiziert + i18n-Singular-Fix).
 - **#113 (Cleanup Branch issue99)**: geschlossen (Branch existiert nicht mehr, 2026-08-11).
 - **PR #118 (Modus & config.json)**: Merge-Konflikte gelöst, alle 5 Befunde behoben und hier übernommen (Report `reports/review-2026-08-11-c.md`, Umsetzung in `archived-todo.md`); #118 nach Merge dieses PRs schließen.
 

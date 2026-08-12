@@ -1929,6 +1929,23 @@ function berechneKoalitionsAbweichung(parteiNames) {
     return { zaehler, details };
 }
 
+// Mehrheitstext mit korrekter Singular-/Pluralform: bei {n} = 1 heißt es
+// "mind. 1 Sitz"/"es fehlt 1 Sitz" statt "… Sitze" (tritt z. B. in mv-2026
+// bei 39/79 Sitzen auf). Nutzt die Singular-Keys aus einfache-sprache.json.
+function simulatorMehrheitText(hatMehrheit, mehrheitBenoetigt, koalSitze) {
+    if (hatMehrheit) {
+        if (mehrheitBenoetigt === 1) {
+            return t('simulatorMajorityYesSingular', 'Mehrheit ✓ (mind. {n} Sitz)').replace('{n}', mehrheitBenoetigt);
+        }
+        return t('simulatorMajorityYes', 'Mehrheit ✓ (mind. {n} Sitze)').replace('{n}', mehrheitBenoetigt);
+    }
+    const fehlen = mehrheitBenoetigt - koalSitze;
+    if (fehlen === 1) {
+        return t('simulatorMajorityNoSingular', 'Keine Mehrheit – es fehlt {n} Sitz').replace('{n}', fehlen);
+    }
+    return t('simulatorMajorityNo', 'Keine Mehrheit – es fehlen {n} Sitze').replace('{n}', fehlen);
+}
+
 function renderSimulator() {
     const container = document.getElementById('simulatorResults');
     if (!container) return;
@@ -1965,7 +1982,6 @@ function renderSimulator() {
     const reibung = berechneReibung(parteiObjs);
     const benutzerMatch = berechneUserMatchFuerKoalition(selected);
     const abweichung = berechneKoalitionsAbweichung(selected);
-    const hasUserAnswers = Object.values(userAnswers).some(a => a === 'j' || a === 'n');
 
     // Der "Reibungspunkt": Partner mit den meisten Abweichungen von der Mehrheit
     let reibungspunkt = null;
@@ -1982,9 +1998,7 @@ function renderSimulator() {
                 </div>
                 <div class="simulator-seats">
                     <span class="simulator-seats-val ${hatMehrheit ? 'ok' : 'no'}">${koalSitze}/${totalSeats} ${t('seats', 'Sitze')}</span>
-                    <span class="simulator-majority ${hatMehrheit ? 'ok' : 'no'}">${hatMehrheit
-                        ? t('simulatorMajorityYes', 'Mehrheit ✓ (mind. {n} Sitze)').replace('{n}', mehrheitBenoetigt)
-                        : t('simulatorMajorityNo', 'Keine Mehrheit – es fehlen {n} Sitze').replace('{n}', mehrheitBenoetigt - koalSitze)}</span>
+                    <span class="simulator-majority ${hatMehrheit ? 'ok' : 'no'}">${simulatorMehrheitText(hatMehrheit, mehrheitBenoetigt, koalSitze)}</span>
                 </div>
             </div>
             <div class="coalition-meta">
