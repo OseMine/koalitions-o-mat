@@ -309,7 +309,7 @@ function exportCardData() {
     const results = lastTestResults || berechneUserMatchRanking();
     if (!results || !results.length) return null;
     const top = results[0];
-    const electionName = activeElectionId;
+    const electionName = getActiveElectionName();
     const appName = config.appName || 'Koalitions-O-Mat';
     const topTopics = top && top.topicMatches
         ? Object.entries(top.topicMatches).sort((a, b) => b[1] - a[1]).slice(0, 3)
