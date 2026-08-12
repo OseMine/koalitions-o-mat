@@ -2,6 +2,12 @@
 
 Erledigte (abgehakte) Aufgaben aus todo.md, Stand 2026-08-11. Offene Punkte: siehe `todo.md`.
 
+## Implementierung vom 2026-08-12 (Issue „Semantisch ungültiges `<label>` umschließt `<div>`")
+
+Verifiziert per HTML-Struktur-Check (keine verschachtelten Interaktionselemente) und `node --check script.js`; keine JS-Änderung nötig, da `populateSimulatorParties()` nur `#simulatorPartiesCheckboxes` referenziert (script.js:1860).
+
+- [x] **`<label class="simulator-select-label">` umschließt `<div>` im Regierungs-Simulator** – `index.html` (ehemals Zeile 111, heute 117) umschloss das `<div class="party-checkboxes" id="simulatorPartiesCheckboxes">` mit einem `<label>`: semantisch ungültig, und ein Klick aufs Label kippte eine unbestimmte erste Checkbox. Die einzelnen Checkboxen tragen bereits ihre eigene Beschriftung (`<label class="party-cb">` in `populateSimulatorParties()`, script.js:1873). Fix: äußeres `<label>` durch einen `<div class="simulator-select-label">`-Wrapper ersetzt – bewusst `<div>` statt des in todo.md vorgeschlagenen `<span>`, da ein `<span>` (Phrasing Content) ein `<div>` (Flow Content) weiterhin nicht enthalten dürfte und der Validator weiterhin meckern würde. Die CSS-Regeln (`.simulator-select-label { display:block }`, `.simulator-select-label > span` für die Beschriftung, styles.css:271-272) greifen unverändert.
+
 ## Implementierung vom 2026-08-12 (Issue #126 – Mobile-Switch-Erreichbarkeit)
 
 Die beiden offenen Punkte „`aria-label="null"` auf `.mode-seg`" (P1, #119/#118) und „Mobile-Switch-Erreichbarkeit (sticky, Tap-Ziele, Header 481–599 px)" (P2/P3, #119) aus `todo.md` wurden umgesetzt und **empirisch per Headless-Chromium (CDP) gegen den realen Build verifiziert** (Sweep 320–768 px, Scroll-Test 390×844 bei scrollY=600, Funktions-Klick-Test auf dem sticky Switch). `node --check script.js` OK, alle Harnesses grün.
