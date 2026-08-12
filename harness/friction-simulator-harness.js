@@ -129,6 +129,18 @@ const body = `
     T({ ok: koalitionen.length > 0 && koalitionen.every(k => k.reibung && typeof k.reibung.score === 'number'),
         name: 'koalitionen: reibung-Feld vorhanden', msg: koalitionen.length + ' Koalitionen' });
 
+    // Best-Koalition („Beste Koalition für Sie"): gleiche reibung-Quelle wie im
+    // Koalitionen-Tab – das reibung-HTML der Best-Karte nutzt reibungDetailHTML().
+    const alle = berechneKoalitionen('beide', []);
+    const best = alle
+        .filter(k => k.anzahl <= 4 && k.prozente > 50 && k.uebereinstimmung >= 0)
+        .sort((a, b) => (b.benutzerMatch ?? -1) - (a.benutzerMatch ?? -1))[0] || null;
+    T({ ok: !best || (best.reibung && typeof best.reibung.score === 'number' && best.reibung.score >= 0 && best.reibung.score <= 100),
+        name: 'bestKoalition: reibung.score vorhanden (0-100)', msg: best ? String(best.reibung.score) : 'keine best-Koalition' });
+    const detailHtml = best ? reibungDetailHTML(best.reibung) : '';
+    T({ ok: !best || (typeof detailHtml === 'string' && detailHtml.length > 0),
+        name: 'bestKoalition: reibungDetailHTML liefert HTML', msg: detailHtml.slice(0, 100) });
+
     // ---- Regierungs-Simulator: berechneKoalitionsAbweichung ----
     // Koalition A+B+C: Mehrheit j bei 0 (A,C) und 2 (A,C), n bei 1 (B,C)
     // B weicht bei 0 und 2 ab (2×), A bei 1 (1×), C nie.

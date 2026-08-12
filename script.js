@@ -2482,6 +2482,7 @@ function showTestResults() {
             .sort((a, b) => (b.benutzerMatch ?? -1) - (a.benutzerMatch ?? -1))[0] || null;
         if (best) {
         const colors = best.parteien.map(p => getPartyColor(p));
+        const bestReibungScore = best.reibung ? best.reibung.score : 0;
         html += `<div class="tr-best-section">
             <h3>${t('bestCoalitionForYou', 'Beste Koalition für Sie')}</h3>
             <div class="coalition-card">
@@ -2493,8 +2494,13 @@ function showTestResults() {
                     <span class="meta-item"><strong>${best.uebereinstimmung.toFixed(1)}%</strong> ${t('internalMatch', 'Interne Übereinstimmung')}</span>
                     ${best.minPaar != null ? `<span class="meta-item"><strong>${best.minPaar.toFixed(1)}%</strong> ${t('minPair', 'Min. Paar')}</span>` : ''}
                     <span class="meta-item"><strong>${best.benutzerMatch != null ? best.benutzerMatch.toFixed(1) + '%' : '–'}</strong> ${t('withYou', 'Mit Ihnen')}</span>
+                    <span class="meta-item friction-score" title="${t('frictionTitle', 'Kompromiss-Schwierigkeit: Anteil der Thesen, bei denen mindestens ein Partner-Paar direkt gegeneinander steht (j vs. n)')}"><strong>${bestReibungScore.toFixed(1)}%</strong> ${t('frictionScore', 'Reibung')}</span>
                 </div>
                 <div class="coalition-bar"><div class="coalition-bar-fill" style="width:${best.uebereinstimmung}%"></div></div>
+                ${best.reibung && best.reibung.konflikte && best.reibung.konflikte.length
+                    ? `<button type="button" class="friction-toggle" onclick="toggleKoalitionFriction(this)" aria-expanded="false">⚡ ${t('frictionToggle', 'Konfliktthesen anzeigen')}</button>
+                       <div class="friction-detail" style="display:none">${reibungDetailHTML(best.reibung)}</div>`
+                    : ''}
             </div>
         </div>`;
         }
