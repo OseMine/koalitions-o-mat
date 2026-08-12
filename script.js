@@ -343,19 +343,18 @@ function buildResultCardSVG() {
     const date = new Date().toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' });
 
     // Ranglisten-Balken
-    let bars = '';
     const barY0 = 470, barW = 700, barX = 300, barH = 26, barGap = 62;
     const maxMatch = Math.max(...results.map(r => r.match != null ? r.match : 0), 1);
-    results.forEach((r, i) => {
+    const bars = svgBar(results.map((r, i) => {
         const y = barY0 + i * barGap;
         const w = Math.max(30, ((r.match != null ? r.match : 0) / maxMatch) * barW);
         const color = getPartyColor(r.partei);
         const matchText = r.match != null ? r.match.toFixed(1) + '%' : '–';
-        bars += `<text x="300" y="${y + 18}" font-size="26" font-weight="600" fill="#1F2430">${i + 1}. ${escapeHtml(r.partei)}</text>
+        return `<text x="300" y="${y + 18}" font-size="26" font-weight="600" fill="#1F2430">${i + 1}. ${escapeHtml(r.partei)}</text>
             <text x="300" y="${y + 44}" font-size="20" fill="#8A93A6">${escapeHtml(matchText)}</text>
             <rect x="300" y="${y + 52}" width="${w}" height="${barH}" rx="13" fill="${color}"/>
             <rect x="300" y="${y + 52}" width="${barW}" height="${barH}" rx="13" fill="none" stroke="#E2E6EF" stroke-width="2"/>`;
-    });
+    }));
 
     // Beste Koalition
     let coalHtml = '';
