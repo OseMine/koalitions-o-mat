@@ -8,7 +8,7 @@ Vollständiger Bericht: `reports/review-2026-08-11-b.md`. Empirisch verifiziert 
 
 ### P1 – Bugs
 
-- [ ] **`aria-label="null"` auf beiden `.mode-seg`-Buttons** – `applyStaticI18n()` (script.js:3724-3743). PR #119/#118.
+- [x] **`aria-label="null"` auf beiden `.mode-seg`-Buttons** – `applyStaticI18n()` (script.js:3752-3778). PR #119/#118. Fix: deutsche Statik-`aria-label` in index.html ergänzt und Fallback in `applyStaticI18n()` gegen `null`/`undefined` abgesichert (restauriert nur echte Originale, sonst entfernt das Attribut). Verifiziert per CDP (kein `aria-label="null"` mehr, Normal- wie Einfache-Sprache-Modus).
 
 ### P2 – Bugs
 
@@ -16,7 +16,7 @@ Vollständiger Bericht: `reports/review-2026-08-11-b.md`. Empirisch verifiziert 
 
 ### P2/P3 – Verbesserungen / Mobile (bekannt aus #119)
 
-- [ ] **Mobile-Switch-Erreichbarkeit (sticky, Tap-Ziele, Header 481–599 px)** – Befunde aus `reports/review-2026-08-11.md` (gemergt), weiter offen.
+- [x] **Mobile-Switch-Erreichbarkeit (sticky, Tap-Ziele, Header 481–599 px)** – Befunde aus `reports/review-2026-08-11.md` (gemergt). Fix: `#modeToggle` wandert auf ≤600 px aus der Kopfzeile in eine sticky `.sticky-nav`-Hülle (Modus-Umschalter als vollbreite Zeile über den Tabs, immer erreichbar); Segmente ≥40 px hoch mit dauerhaft sichtbaren Labels; Header-Kopfzeile dadurch entlastet (kein Overflow 481–599 px, Einfache-Sprache-Button auf ≤600 px Icon-only). Verifiziert per CDP über 320–768 px + Scroll-Test 390×844 (scrollY=600). Umsetzung siehe `archived-todo.md`.
 
 ### P3 – Verbesserungen
 

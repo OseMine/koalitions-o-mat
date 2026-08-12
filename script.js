@@ -70,7 +70,7 @@ function simpleOff(key) {
 function applyModeVisibility() {
     const simple = isSimpleMode();
     document.body.classList.toggle('mode-simple', simple);
-    document.querySelectorAll('#modeToggle .mode-seg').forEach(seg => {
+    document.querySelectorAll('.mode-toggle .mode-seg').forEach(seg => {
         const on = simple ? seg.dataset.mode === 'simple' : seg.dataset.mode === 'advanced';
         seg.classList.toggle('active', on);
         seg.setAttribute('aria-pressed', on ? 'true' : 'false');
@@ -3765,8 +3765,10 @@ function applyStaticI18n() {
             const val = t(el.dataset.i18nAria, null);
             if (val !== null) {
                 el.setAttribute('aria-label', val);
-            } else if (orig && orig.aria !== undefined) {
+            } else if (orig && orig.aria) {
                 el.setAttribute('aria-label', orig.aria);
+            } else {
+                el.removeAttribute('aria-label');
             }
         }
     });
