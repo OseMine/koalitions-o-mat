@@ -1,6 +1,12 @@
 # Koalitions-O-Mat – Archiv erledigter Aufgaben
 
-Erledigte (abgehakte) Aufgaben aus todo.md, Stand 2026-08-11. Offene Punkte: siehe `todo.md`.
+Erledigte (abgehakte) Aufgaben aus todo.md, Stand 2026-08-12. Offene Punkte: siehe `todo.md`.
+
+## Umsetzung vom 2026-08-12 (Issue #131 – Hinweiszeile für ausgeblendete Ansichten im Einfach-Modus)
+
+Persistente, sichtbare Hinweiszeile `#modeHint` unter der `.sticky-nav`: benennt die im einfachen Modus ausgeblendeten Ansichten (Quelle: `config.ui.simple.off` – eine Quelle der Wahrheit), damit der Wechsel ohne README verständlich ist (UX-Anregung aus PR #119, todo.md-P3). `applyModeHint()` baut den Text über `MODE_OFF_VIEW_LABELS` + `t()` (deutsche Fallbacks) und ersetzt den `{views}`-Platzhalter; im erweiterten Modus leer; gekoppelt an `applyModeVisibility()` und `applyStaticI18n()`. 3 neue i18n-Keys (`modeHintSimple`, `modeOffParteiSeite`, `modeOffDealbreaker`). Verifiziert per `node --check script.js`, JSON-Check, HTML-Balance und allen bestehenden Harnesses grün.
+
+- [x] **`#modeHint`-Hinweiszeile (Modus-Kontext)** – Umsetzung im Stil von `parteiSeiteDisabled`/`shareDisabledSimple`; keine Verhaltensänderung an den ausgeblendeten Ansichten selbst.
 
 ## Implementierung vom 2026-08-12 (Issue #128 – Singular „es fehlt 1 Sitz"/„mind. 1 Sitz" im Regierungs-Simulator)
 

@@ -194,6 +194,20 @@ const body = `
         document.getElementById = originalGetElementById;
     }
 
+    // Mehrheitstext im Regierungs-Simulator: Singular bei {n}=1, Plural sonst
+    // (nur Normalmodus - t() liefert hier den deutschen Fallback).
+    const majorityText = (hatMehrheit, braucht, hat) => hatMehrheit
+        ? tSingularPlural(braucht, 'simulatorMajorityYesSingular', 'simulatorMajorityYes', 'Mehrheit ✓ (mind. {n} Sitz)', 'Mehrheit ✓ (mind. {n} Sitze)').replace('{n}', braucht)
+        : tSingularPlural(braucht - hat, 'simulatorMajorityNoSingular', 'simulatorMajorityNo', 'Keine Mehrheit – es fehlt {n} Sitz', 'Keine Mehrheit – es fehlen {n} Sitze').replace('{n}', braucht - hat);
+    T({ ok: majorityText(false, 5, 4).indexOf('fehlt 1 Sitz') !== -1,
+        name: 'simulator: Singular bei 1 fehlendem Sitz', msg: majorityText(false, 5, 4) });
+    T({ ok: majorityText(false, 5, 2).indexOf('es fehlen 3 Sitze') !== -1,
+        name: 'simulator: Plural bei 3 fehlenden Sitzen', msg: majorityText(false, 5, 2) });
+    T({ ok: majorityText(true, 1, 1).indexOf('mind. 1 Sitz') !== -1,
+        name: 'simulator: Singular-Mehrheit (mind. 1 Sitz)', msg: majorityText(true, 1, 1) });
+    T({ ok: majorityText(true, 40, 45).indexOf('mind. 40 Sitze') !== -1,
+        name: 'simulator: Plural-Mehrheit (mind. 40 Sitze)', msg: majorityText(true, 40, 45) });
+
     // ---- Live-URL-Sync ----
     location.hash = '';
     const url = buildShareUrl();
@@ -262,7 +276,8 @@ const body = `
     const einfache = __fsJson();
     const ui = einfache.ui || {};
     ['frictionScore','frictionToggle','frictionToggleHide','frictionNone','frictionMore','simulatorEmpty','simulatorDeviationTitle','simulatorDeviationLeader',
-     'simulatorDeviationNone','exportCardTitle','exportPng','exportSvg','exportCardSaved'].forEach(k => {
+     'simulatorDeviationNone','simulatorMajorityYes','simulatorMajorityYesSingular','simulatorMajorityNo','simulatorMajorityNoSingular',
+     'exportCardTitle','exportPng','exportCardSaved'].forEach(k => {
         T({ ok: !!ui[k], name: 'einfache-sprache: Key "' + k + '"', msg: String(ui[k]) });
     });
 
