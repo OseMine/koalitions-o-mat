@@ -241,7 +241,17 @@ let lastSyncedHash = '';
 function syncShareUrl() {
     if (simpleOff('teilen')) return;
     const url = buildShareUrl();
-    if (!url) return;
+    if (!url) {
+        // Leerer Teilen-Zustand (z. B. nach resetTest()): einen zuvor gesetzten
+        // Share-Hash entfernen, damit Reload/Bookmark nicht die alten Antworten
+        // wiederherstellen („Test wiederholen“ wirkte sonst wie Undo). Fremde
+        // Hash-Fragmente (z. B. In-Page-Anker) bleiben unangetastet.
+        if (location.hash.startsWith('#w=')) {
+            try { history.replaceState(null, '', '#'); } catch (_) { /* ignorieren */ }
+            markHashHandled();
+        }
+        return;
+    }
     const hash = url.slice(url.indexOf('#'));
     if (hash === lastSyncedHash) return;
     lastSyncedHash = hash;
