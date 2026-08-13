@@ -1,6 +1,25 @@
 # Koalitions-O-Mat – Offene Aufgaben
 
-Erledigte Aufgaben wurden nach `archived-todo.md` verschoben (Stand 2026-08-11). Dokumentierte Läufe und Umsetzungen (Friction-Score, Regierungs-Simulator, Thesen-Matrix, Ergebnis-Karte, Live-URL-Sync, Bugfixes, Einfacher/Erweiterter Modus, Dealbreaker, 2D-Politik-Kompass, Taktik-Simulator, Feature-Evaluationen, Reviews) siehe dort.
+Erledigte Aufgaben wurden nach `archived-todo.md` verschoben (Stand 2026-08-13). Dokumentierte Läufe und Umsetzungen (Friction-Score, Regierungs-Simulator, Thesen-Matrix, Ergebnis-Karte, Live-URL-Sync, Bugfixes, Einfacher/Erweiterter Modus, Dealbreaker, 2D-Politik-Kompass, Taktik-Simulator, Feature-Evaluationen, Reviews) siehe dort.
+
+## Review vom 2026-08-13 (vollständiger Review + GitHub-Maintenance)
+
+Vollständiger Bericht: `reports/review-2026-08-13.md`. Empirisch verifiziert (Node-Harness gegen die echten Daten, Sitzverteilung aller 4 Wahlen, Übereinstimmungs-Berechnung, alle bestehenden Harnesses grün). Issue #125 (veralteter Share-Hash) ist mit PR #145 behoben und abgehakt (siehe unten). Die während des Reviews entstandenen Bot-PRs #148/#149 (Issues #146/#147) wurden begutachtet und gemergt; Issues #146/#147 sind geschlossen.
+
+### P1 – Bugs
+
+- [ ] **Koalitionsausschluss-Key `"CDU"` matcht keine Partei** – `elections/ltw-sachsen-anhalt-2026/config.json:9` nutzt den Key `"CDU"`, die Partei heißt in `werte.json` aber `"CDU/CSU"`. Der Ausschluss CDU–LINKE wird daher nie angewendet; die Koalition CDU/CSU–LINKE würde fälschlich als zulässig angezeigt. Fix: Key auf `"CDU/CSU"` korrigieren.
+
+### P3 – Verbesserungen
+
+- [ ] **Tote i18n-Keys in `einfache-sprache.json`** – `electionLabel`, `modeSwitchToSimple`, `modeSwitchToAdvanced` werden nirgends per `t()` abgefragt (keine Funktionsbeeinträchtigung).
+- [ ] **„Beste Koalition" im Ergebnis-Tab nutzt feste Schwelle statt des MinMatch-Reglers** – `showTestResults()` filtert über die feste `minCoalMatch`-Schwelle (config), nicht über den aktuellen Reglerwert im Koalitionen-Tab (Inkonsistenz).
+- [ ] **Reiner Koalitions-Share-Link ohne Antworten wird durch die Test-Tab-Sperre blockiert** (aus PR-#149-Review) – `applyPendingShare()` → `switchTab('koalitionen')` scheitert am `testInProgress()`-Guard; Nutzer landet im Test statt in der geteilten Koalitions-Sicht. Nicht dringend, aber UX-Verhaltensänderung.
+
+### Tracking GitHub-Issues (alle geschlossen)
+
+- **#146** (Tab-Wechsel während des initialen Partei-Tests verhindern): mit PR #149 gelöst, geschlossen.
+- **#147** (Feature-Request Erklärseite): mit PR #148 gelöst, geschlossen.
 
 ## Review vom 2026-08-11-b (PR #120: Friction-Score, Regierungs-Simulator, Ergebnis-Karte, Live-URL-Sync) + Review vom 2026-08-11 (Modus mobil, PR #119, gemergt)
 
@@ -12,7 +31,7 @@ Vollständiger Bericht: `reports/review-2026-08-11-b.md`. Empirisch verifiziert 
 
 ### P2 – Bugs
 
-- [ ] **Live-URL-Sync hinterlässt nach `resetTest()` einen veralteten Share-Hash** – `resetTest()` (script.js:2006) ruft `syncShareUrl()`; bei leerem Zustand liefert `buildShareUrl()` `null` und der Hash bleibt stehen → Reload/Bookmark stellt alte Antworten wieder her. Fix: Hash beim Reset leeren (siehe Report).
+- [x] **Live-URL-Sync hinterlässt nach `resetTest()` einen veralteten Share-Hash** (Issue #125) – mit PR #145 gemergt; Fix in `syncShareUrl()` (script.js:270-292) verifiziert (Hash wird bei leerem Zustand geleert, `lastSyncedHash` verhindert Overwrite bei unverändertem Zustand). Archiviert in `archived-todo.md` (2026-08-13).
 
 ### P2/P3 – Verbesserungen / Mobile (bekannt aus #119)
 
@@ -35,4 +54,4 @@ Vollständiger Bericht: `reports/review-2026-08-11-b.md`. Empirisch verifiziert 
 - **#129 (Label→div) / #130 (`svgBar()` real nutzen) / #131 (Hinweiszeile für ausgeblendete Ansichten)**: umgesetzt und verifiziert (PRs #133/#134/#141). Geschlossen.
 - **PR #118 (Modus & config.json)**: Merge-Konflikte gelöst, alle 5 Befunde behoben und hier übernommen (Report `reports/review-2026-08-11-c.md`, Umsetzung in `archived-todo.md`); Inhalt in main, PR geschlossen.
 
-Derzeit sind keine weiteren offenen Aufgaben erfasst (offener Bug: Issue #125 – veralteter Share-Hash nach `resetTest()`, siehe oben).
+Derzeit offene Aufgaben: P1 Koalitionsausschluss-Key `"CDU"` (LSA), P3 tote i18n-Keys, P3 Beste-Koalition-Regler-Inkonsistenz, P3 Koalitions-Share-Link-Sperre – siehe Abschnitt „Review vom 2026-08-13" oben.

@@ -1,6 +1,10 @@
 # Koalitions-O-Mat – Archiv erledigter Aufgaben
 
-Erledigte (abgehakte) Aufgaben aus todo.md, Stand 2026-08-12. Offene Punkte: siehe `todo.md`.
+Erledigte (abgehakte) Aufgaben aus todo.md, Stand 2026-08-13. Offene Punkte: siehe `todo.md`.
+
+## Verifikation vom 2026-08-13 (Issue #125 – veralteter Share-Hash nach `resetTest()`)
+
+- [x] **Live-URL-Sync hinterlässt nach `resetTest()` einen veralteten Share-Hash** (Issue #125) – mit PR #145 gemergt (Merge 377fbc9). Fix in `syncShareUrl()` (script.js:270-292) verifiziert: bei leerem Zustand liefert `buildShareUrl()` `null`, der Hash wird dann geleert; `lastSyncedHash` verhindert das Überschreiben bei unverändertem Zustand; `markHashHandled()` respektiert externe Hash-Wechsel. Damit stellen Reload/Bookmark keine alten Antworten wieder her.
 
 ## Umsetzung vom 2026-08-12 (Issue #131 – Hinweiszeile für ausgeblendete Ansichten im Einfach-Modus)
 
