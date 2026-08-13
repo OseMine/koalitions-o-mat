@@ -384,6 +384,53 @@ body {
 }
 .ai-badge-icon { font-size: 1rem; line-height: 1.5; }
 
+/* ===== Erklärseite (vor dem Test) ===== */
+.explain-screen { max-width: 680px; margin: 0 auto; padding: 32px 16px; animation: fadeIn 0.25s ease; }
+.explain-card {
+    background: var(--surface); border: 1px solid var(--outline);
+    border-radius: var(--radius-sm); box-shadow: var(--shadow-md);
+    padding: 24px 26px; text-align: left;
+}
+.explain-card h2 { margin: 0 0 6px; font-size: 1.35rem; color: var(--on-surface); text-align: center; }
+.explain-sub { text-align: center; color: var(--on-surface-variant); font-size: 0.95rem; margin: 0 0 22px; }
+.explain-list { display: flex; flex-direction: column; gap: 12px; }
+.explain-item {
+    display: flex; gap: 14px; align-items: flex-start;
+    padding: 14px 16px; background: var(--surface-variant);
+    border: 1px solid var(--outline); border-radius: var(--radius-sm);
+}
+.explain-icons { flex: 0 0 auto; display: flex; gap: 6px; align-items: center; }
+.explain-symbol { font-size: 1.5rem; line-height: 1; min-width: 34px; text-align: center; }
+.explain-pill {
+    width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 0.95rem; font-weight: 700; color: #fff; flex: 0 0 auto;
+}
+.explain-pill-yes { background: var(--answer-yes-color); }
+.explain-pill-mid { background: var(--answer-m-color); }
+.explain-pill-no { background: var(--answer-no-color); }
+.explain-copy { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.explain-copy strong { font-size: 0.98rem; color: var(--on-surface); }
+.explain-copy span { font-size: 0.9rem; line-height: 1.5; color: var(--on-surface-variant); }
+.explain-actions {
+    margin-top: 22px; display: flex; align-items: center; justify-content: space-between;
+    gap: 14px; flex-wrap: wrap;
+}
+.explain-dontshow { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: var(--on-surface-variant); cursor: pointer; }
+.explain-dontshow input { width: 18px; height: 18px; accent-color: var(--primary); cursor: pointer; }
+.explain-btns { display: flex; gap: 10px; align-items: center; }
+.explain-btns .share-btn { min-height: 44px; }
+@media (max-width: 600px) {
+    .explain-screen { padding: 20px 10px; }
+    .explain-card { padding: 18px 16px; }
+    .explain-actions { justify-content: center; }
+    .explain-dontshow { order: 2; }
+    .explain-btns { order: 1; }
+}
+@media (max-width: 480px) {
+    .explain-btns { width: 100%; }
+    .explain-btns .btn-ghost, .explain-btns .share-btn { flex: 1; text-align: center; }
+}
+
 .app-footer {
     margin-top: 24px; padding: 14px 16px calc(14px + env(safe-area-inset-bottom, 0px));
     text-align: center; color: var(--on-surface-muted); font-size: 0.78rem;

@@ -590,13 +590,57 @@ function applyPendingShare() {
     pendingShare = null;
 }
 
+// ===== Erklärseite (vor dem Test) =====
+// Kurze Einführung, die vor dem Start des Parteien-Tests angezeigt wird und die
+// Bedienelemente erklärt (Antwort-Buttons, ★, ⛔, Tastatursteuerung). Lässt sich
+// per Checkbox dauerhaft ausblenden (localStorage). Resume-/Teilen-Pfade
+// (setActiveElection direkt) umgehen die Erklärung.
+let pendingExplainElection = null;
+
+function hideExplainScreen() {
+    pendingExplainElection = null;
+    const el = document.getElementById('explainScreen');
+    if (el) el.style.display = 'none';
+}
+
+function startElection(electionId) {
+    // Dauerhaft ausgeblendet („Nicht mehr anzeigen") → direkt in den Test springen.
+    try {
+        if (localStorage.getItem('koalitions-o-mat-explain') === '0') {
+            setActiveElection(electionId);
+            return;
+        }
+    } catch (_) { /* localStorage nicht verfügbar – Erklärung weiter anzeigen */ }
+    pendingExplainElection = electionId;
+    document.getElementById('welcomeScreen').style.display = 'none';
+    const el = document.getElementById('explainScreen');
+    if (el) el.style.display = 'block';
+}
+
+function closeExplainScreen() {
+    hideExplainScreen();
+    document.getElementById('welcomeScreen').style.display = 'block';
+}
+
+function confirmExplainStart() {
+    const dontShow = document.getElementById('explainDontShow');
+    if (dontShow && dontShow.checked) {
+        try { localStorage.setItem('koalitions-o-mat-explain', '0'); } catch (_) { /* ignorieren */ }
+    }
+    const id = pendingExplainElection;
+    hideExplainScreen();
+    if (id) setActiveElection(id);
+}
+
 // ===== App State =====
 function showApp() {
+    hideExplainScreen();
     document.getElementById('welcomeScreen').style.display = 'none';
     document.getElementById('appContent').style.display = 'block';
 }
 
 function showElectionSelector() {
+    hideExplainScreen();
     document.getElementById('welcomeScreen').style.display = 'block';
     document.getElementById('appContent').style.display = 'none';
 }
@@ -770,7 +814,7 @@ function renderWelcomeCards() {
         const partyCount = data && data.werte && data.werte.umfragewerte ? data.werte.umfragewerte.length : 0;
         const questionCount = data && data.fragen && data.fragen.fragen ? data.fragen.fragen.length : 0;
         return `
-            <button type="button" class="welcome-card" onclick="setActiveElection('${e.id}')">
+            <button type="button" class="welcome-card" onclick="startElection('${e.id}')">
                 <span class="welcome-card-type">${e.type ? t('type' + e.type.replace(/\s+/g, ''), e.type) : ''}</span>
                 <span class="welcome-card-name">${e.name}</span>
                 <span class="welcome-card-stats">
