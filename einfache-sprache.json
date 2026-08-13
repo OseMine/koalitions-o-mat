@@ -248,7 +248,8 @@
     "modeSimpleActive": "Einfacher Modus: Erweiterte Ansichten (Parteien, Koalitionen, Daten, Dealbreaker, Kompass u. a.) sind ausgeblendet.",
     "modeAdvancedActive": "Erweiterter Modus: Alle Ansichten sind verfügbar.",
     "shareDisabledSimple": "Das Teilen von Ergebnissen ist im einfachen Modus ausgeblendet.",
-    "parteiSeiteDisabled": "Die Partei-Detail-Seite ist im einfachen Modus ausgeblendet."
+    "parteiSeiteDisabled": "Die Partei-Detail-Seite ist im einfachen Modus ausgeblendet.",
+    "tabsLockedDuringTest": "Schließen Sie zuerst den Parteien-Test ab. Dann können Sie die anderen Seiten öffnen."
   },
   "fragen": {
     "ltw-sachsen-anhalt-2026": {

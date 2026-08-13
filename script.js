@@ -626,8 +626,38 @@ function handleShareHash() {
 }
 
 // ===== Tab Switching =====
+// Der initiale Parteien-Test (Fragen sichtbar, noch kein Ergebnis angezeigt) läuft
+// gesperrt gegen Tab-Wechsel: erst den Test abschließen, dann zu anderen Ansichten
+// wechseln (Issue: "When doing the initial Party Test you should not be able to
+// Switch the tabs"). Klick, Swipe und Tastatur landen alle in switchTab().
+function testInProgress() {
+    const resultsEl = document.getElementById('testResults');
+    if (resultsEl && resultsEl.innerHTML) return false;
+    const qc = document.getElementById('questionContainer');
+    if (!qc || qc.style.display === 'none') return false;
+    return !!qc.querySelector('.question');
+}
+
+function updateTestTabLock() {
+    const locked = testInProgress();
+    const tabsEl = document.querySelector('.tabs');
+    if (tabsEl) tabsEl.classList.toggle('tabs-locked', locked);
+    document.querySelectorAll('.tab-button').forEach(b => {
+        if (b.dataset.tab === 'test') return;
+        if (locked) b.setAttribute('aria-disabled', 'true');
+        else b.removeAttribute('aria-disabled');
+    });
+}
+
 function switchTab(tabName) {
     if (simpleOff('tab.' + tabName)) tabName = 'test';
+    // Während des initialen Parteien-Tests keine Tab-Wechsel: der Test-Tab bleibt
+    // aktiv, die übrigen Tabs sind gesperrt (visuell + aria-disabled via
+    // updateTestTabLock()). Ein Hinweis erklärt den Grund.
+    if (tabName !== 'test' && testInProgress()) {
+        showNotification(t('tabsLockedDuringTest', 'Bitte schließen Sie zuerst den Parteien-Test ab, um zu anderen Ansichten zu wechseln.'), 'info');
+        return;
+    }
     if (partyPageOpen) closePartyPage();
     window.scrollTo({ top: 0, behavior: 'smooth' });
     // ARIA-Tabs: aria-selected + Roving-Tabindex am aktiven Tab pflegen
@@ -2088,6 +2118,7 @@ function resetTest() {
     const rh = document.getElementById('resumeHint');
     if (rh) rh.style.display = 'none';
     syncShareUrl();
+    updateTestTabLock();
 }
 
 function resetAnswers() {
@@ -2211,6 +2242,7 @@ function initializeTest() {
     // Mobile-Fix: Beim Start/Fortsetzen die Antwort-Buttons sichtbar machen
     // (block:'nearest' scrollt nur, wenn die Buttons außerhalb des Viewports sind).
     scrollQuestionButtonsIntoView();
+    updateTestTabLock();
 }
 
 function cancelPendingAdvance() {
@@ -2623,6 +2655,7 @@ function showTestResults() {
     }
     // Live-URL-Sync: nach dem Rendern zeigt die Adressleiste den fertigen Teilen-Link.
     syncShareUrl();
+    updateTestTabLock();
 }
 
 // ===== Taktisches Wählen (Szenario-Simulator) =====
@@ -3054,6 +3087,7 @@ function backToTest() {
         updateNavButtons();
         scrollQuestionButtonsIntoView();
     }
+    updateTestTabLock();
 }
 
 function saveTestResult(results) {
@@ -3899,6 +3933,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     const tabsListEl = document.querySelector('.tabs');
     if (tabsListEl) {
         tabsListEl.addEventListener('keydown', e => {
+            // Während des initialen Parteien-Tests sind die Tabs gesperrt: kein
+            // Fokus-Wechsel auf andere Tabs (die Tastatursteuerung 1/2/3/Pfeile
+            // des Tests funktioniert über den document-Handler weiter).
+            if (testInProgress()) return;
             const active = tabsListEl.querySelector('.tab-button[aria-selected="true"]');
             if (!active) return;
             const buttons = [...tabsListEl.querySelectorAll('.tab-button')];

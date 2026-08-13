@@ -2,6 +2,12 @@
 
 Erledigte (abgehakte) Aufgaben aus todo.md, Stand 2026-08-12. Offene Punkte: siehe `todo.md`.
 
+## Umsetzung vom 2026-08-13 (Issue „When doing the initial Party Test you should not be able to Switch the tabs")
+
+Während des initialen Parteien-Tests (Fragen sichtbar, noch kein Ergebnis angezeigt) sind Tab-Wechsel gesperrt: erst den Test abschließen, dann zu Parteien/Koalitionen/Daten wechseln. Verifiziert per `node --check script.js`, JSON-Check und neuem Node-Harness (11/11 Checks inkl. Guard-Pfad: blockiert beim laufenden Test, erlaubt nach Ergebnis, `aria-disabled`-/`tabs-locked`-Toggle, Hinweis-Notification); alle bestehenden Harnesses grün.
+
+- [x] **Initialen Test gegen Tab-Wechsel sperren** – neuer Helfer `testInProgress()` (Fragen im `#questionContainer`, `testResults` leer, Fragen sichtbar) ist die eine Quelle: `switchTab()` bricht ab, wenn ein anderer Tab als `test` bei laufendem Test angefordert wird (Hinweis-Notification via neuem i18n-Key `tabsLockedDuringTest`). Damit sind Klick, Swipe und Tastatur (Keydown-Handler prüft `testInProgress()` vor dem Fokus-Wechsel) abgedeckt. `updateTestTabLock()` pflegt visuelles `.tabs-locked` (CSS: Nicht-Test-Tabs `cursor: not-allowed`, gedimmt, ohne Hover-Highlight) und `aria-disabled="true"` auf den übrigen Tab-Buttons; aufgerufen in `resetTest()`, `initializeTest()`, `showTestResults()`, `backToTest()`. Nach Anzeige des Ergebnisses (bzw. nach `resetTest`/Wahlwechsel ohne Fragen) sind die Tabs wieder frei. README (Parteien-Test-Bullet) dokumentiert das Verhalten.
+
 ## Umsetzung vom 2026-08-12 (Issue #131 – Hinweiszeile für ausgeblendete Ansichten im Einfach-Modus)
 
 Persistente, sichtbare Hinweiszeile `#modeHint` unter der `.sticky-nav`: benennt die im einfachen Modus ausgeblendeten Ansichten (Quelle: `config.ui.simple.off` – eine Quelle der Wahrheit), damit der Wechsel ohne README verständlich ist (UX-Anregung aus PR #119, todo.md-P3). `applyModeHint()` baut den Text über `MODE_OFF_VIEW_LABELS` + `t()` (deutsche Fallbacks) und ersetzt den `{views}`-Platzhalter; im erweiterten Modus leer; gekoppelt an `applyModeVisibility()` und `applyStaticI18n()`. 3 neue i18n-Keys (`modeHintSimple`, `modeOffParteiSeite`, `modeOffDealbreaker`). Verifiziert per `node --check script.js`, JSON-Check, HTML-Balance und allen bestehenden Harnesses grün.
