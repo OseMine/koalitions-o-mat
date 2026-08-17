@@ -2,6 +2,19 @@
 
 Erledigte Aufgaben wurden nach `archived-todo.md` verschoben (Stand 2026-08-13). Dokumentierte Läufe und Umsetzungen (Friction-Score, Regierungs-Simulator, Thesen-Matrix, Ergebnis-Karte, Live-URL-Sync, Bugfixes, Einfacher/Erweiterter Modus, Dealbreaker, 2D-Politik-Kompass, Taktik-Simulator, Feature-Evaluationen, Reviews) siehe dort.
 
+## Review vom 2026-08-17 (wöchentlicher Lauf + GitHub-Maintenance)
+
+Vollständiger Bericht: `reports/review-2026-08-17.md`. Empirisch verifiziert (alle bestehenden Harnesses grün; eigene Harnesses für Sitzverteilung aller 4 Wahlen, Koalitionen/Ausschlüsse, UserMatch, Reibung sowie die neuen Befunde unten). Die vier offenen Punkte aus dem Review vom 2026-08-13 wurden erneut bestätigt (P1 `"CDU"`-Key LSA, P3 tote i18n-Keys, P3 Beste-Koalition-Regler-Inkonsistenz, P3 Koalitions-Share-Link-Sperre). GitHub: 0 offene PRs; Issues #151–#154 weiterhin offen und berechtigt; Stale Branch `opencode/dispatch-58192f-20260813113515` (PR #150) gelöscht.
+
+### P3 – Verbesserungen (neu)
+
+- [ ] **Tote `keywords` in `config.json`** – `determineTopic()` (script.js:3607) klassifiziert nur über `thema`; die `keywords`-Arrays (config.json:24–48) sind seit dem Fallback-Removal (Review 2026-08-10) tote Konfiguration. Entfernen oder wieder nutzen.
+- [ ] **Tote Felder `default` und `year` in `elections.json`** – script.js liest nur `id`, `name`, `type` (Z. 807/831/867/3162/3626); `default` und `year` werden nirgends ausgewertet.
+- [ ] **Stale Share-Hash im einfachen Modus** – `syncShareUrl()` (script.js:271) bricht bei `simpleOff('teilen')` ab, bevor der Clear-Zweig (Z. 273–282) greift; nach Wechsel Erweitert→Einfach + Reset bleibt `#w=…` stehen, ein Reload stellt die alten Antworten wieder her. Verifiziert (Harness). Der #125-Fix deckt nur den erweiterten Modus ab.
+- [ ] **Koalitions-„Mit Ihnen"-Wert umfragegewichtet** – `berechneUserMatchFuerKoalition()` (script.js:1828) gewichtet mit `prozentOf[name] || 1`; kleine Partner tragen kaum bei (btw2029 verifiziert: FDP 100 %, CDU/CSU 80,6 % → Koalition 85,1 % statt ~90 %). Ungewichtetes Mittel oder Methodik-Note erwägen.
+- [ ] **Uneinheitliches Escaping von Parteinamen** – `updateKoalitionen()` (script.js:1911), `createStatsSummary()` (script.js:3260), `renderTestHistory()` (script.js:3171) rendern Parteinamen ohne `escapeHtml()`; bei lokalen Daten kein XSS-Risiko, aber inkonsistent.
+- [ ] **50-%-Baseline bei null vergleichbaren Antworten** – `berechneUebereinstimmung()` (script.js:1680) und `minPaar` (Z. 1642/2080) liefern 50 bei fehlenden j/n-Antworten statt „keine Daten"; mit den aktuellen Daten nicht triggerbar, aber potenziell irreführend im Koalitionen-Ranking/Filter.
+
 ## Review vom 2026-08-13 (vollständiger Review + GitHub-Maintenance)
 
 Vollständiger Bericht: `reports/review-2026-08-13.md`. Empirisch verifiziert (Node-Harness gegen die echten Daten, Sitzverteilung aller 4 Wahlen, Übereinstimmungs-Berechnung, alle bestehenden Harnesses grün). Issue #125 (veralteter Share-Hash) ist mit PR #145 behoben und abgehakt (siehe unten). Die während des Reviews entstandenen Bot-PRs #148/#149 (Issues #146/#147) wurden begutachtet und gemergt; Issues #146/#147 sind geschlossen.
