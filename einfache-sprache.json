@@ -422,6 +422,214 @@
       "40": {
         "frage": "Landesgartenschauen weiter fördern?",
         "beschreibung": "Soll das Land Landesgartenschauen auch nach 2030 weiter fördern?"
+      },
+      "41": {
+        "frage": "Pflegende Angehörige: weniger Papierkram?",
+        "beschreibung": "Sollen pflegende Angehörige vor allem durch weniger Bürokratie und einfachere Anträge entlastet werden?"
+      },
+      "42": {
+        "frage": "Schwarzfahren nicht mehr bestrafen?",
+        "beschreibung": "Soll Fahren ohne Ticket nicht mehr als Straftat gelten, sondern nur noch wie eine kleine Ordnungswidrigkeit?"
+      },
+      "43": {
+        "frage": "Rundfunk-Verträge alleine kündigen?",
+        "beschreibung": "Soll Sachsen-Anhalt ganz alleine die Verträge für Radio und Fernsehen kündigen, um den öffentlich-rechtlichen Rundfunk abzuschaffen?"
+      },
+      "44": {
+        "frage": "Mehr Geld für Jugend auf dem Land?",
+        "beschreibung": "Sollen die Gelder für Jugend-Angebote nicht nur nach Einwohnerzahl, sondern auch nach der Größe der Fläche verteilt werden?"
+      },
+      "45": {
+        "frage": "Energiewende ohne feste Klima-Ziele?",
+        "beschreibung": "Soll Sachsen-Anhalt schneller mehr Energie aus Wind und Sonne bauen, aber keine festen Klima-Ziele festlegen?"
+      },
+      "46": {
+        "frage": "Landeszentrale durch Gesetz sichern?",
+        "beschreibung": "Soll die Stelle für politische Bildung durch ein Gesetz gesichert werden, damit sie nicht abgeschafft werden kann?"
+      },
+      "47": {
+        "frage": "Friedens-Gruppen an Schulen?",
+        "beschreibung": "Wenn die Bundeswehr in die Schule kommt, sollen dann auch Friedens-Gruppen etwas sagen dürfen?"
+      },
+      "48": {
+        "frage": "Mehr Geld für Radwege?",
+        "beschreibung": "Soll das Land das Fahrrad stärker fördern und beim Planen von Straßen mehr beachten?"
+      },
+      "49": {
+        "frage": "Waffen-Regeln prüfen statt verschärfen?",
+        "beschreibung": "Soll sich das Land dafür einsetzen, dass die Waffen-Gesetze geprüft werden? Aber nicht verschärft werden sollen?"
+      },
+      "50": {
+        "frage": "Windräder im Wald erlauben?",
+        "beschreibung": "Soll das Verbot von Windrädern im Wald aufgehoben werden, auch wenn es keine neuen Regeln zum Schutz der Natur gibt?"
+      },
+      "51": {
+        "frage": "Mehr BAföG-Geld?",
+        "beschreibung": "Soll sich das Land beim Bund dafür einsetzen, dass Studierende mehr Geld vom Staat bekommen?"
+      },
+      "52": {
+        "frage": "Reisen nach Syrien ohne Risiko?",
+        "beschreibung": "Sollen syrische Menschen mit Aufenthalts-Erlaubnis nach Syrien reisen können, ohne ihr Aufenthaltsrecht zu verlieren?"
+      },
+      "53": {
+        "frage": "Verfassungs-Richter mit einfacher Mehrheit?",
+        "beschreibung": "Sollen Verfassungs-Richter auch mit einfacher Mehrheit gewählt werden können, wenn in sechs Monaten keine Zwei-Drittel-Mehrheit zustande kommt?"
+      },
+      "54": {
+        "frage": "Simson-Reimporte: 60 km/h erlauben?",
+        "beschreibung": "Sollen auch nachgeholte Simson-Mopeds bis Baujahr 1992 60 km/h fahren dürfen, wie andere Mopeds aus DDR-Zeiten?"
+      },
+      "55": {
+        "frage": "Geschäfte sonntags öffnen lassen?",
+        "beschreibung": "Sollen alle Geschäfte in Sachsen-Anhalt auch an Sonntagen öffnen dürfen?"
+      },
+      "56": {
+        "frage": "Weniger Computer in der Grundschule?",
+        "beschreibung": "Sollen Grundschulen im Unterricht weitgehend auf Computer, Tablets und andere digitale Geräte verzichten?"
+      },
+      "57": {
+        "frage": "Mehr Windräder bauen?",
+        "beschreibung": "Soll Sachsen-Anhalt noch mehr Windräder bauen, um mehr Strom aus Wind zu gewinnen?"
+      },
+      "58": {
+        "frage": "Rüstungs-Firmen unterstützen?",
+        "beschreibung": "Soll die Landesregierung Firmen unterstützen, die Waffen und Rüstung herstellen, damit sie sich in Sachsen-Anhalt ansiedeln?"
+      },
+      "59": {
+        "frage": "Mehr Tempo 30 in den Orten?",
+        "beschreibung": "Sollen Autos in den Orten von Sachsen-Anhalt auf mehr Straßen nur noch 30 km/h fahren dürfen?"
+      },
+      "60": {
+        "frage": "Mehr Plätze für Abschiebe-Haft?",
+        "beschreibung": "Soll Sachsen-Anhalt mehr Plätze bereitstellen, um Menschen vor ihrer Abschiebung in Haft zu nehmen?"
+      },
+      "61": {
+        "frage": "Krankenhäuser in Staats-Hand?",
+        "beschreibung": "Soll das Land helfen, dass private Krankenhäuser in öffentliche Trägerschaft übernommen werden, also dem Staat gehören?"
+      },
+      "62": {
+        "frage": "Kita-Gebühren weiter zahlen?",
+        "beschreibung": "Sollen Eltern weiterhin Geld für die Betreuung ihrer Kinder in Kitas bezahlen?"
+      },
+      "63": {
+        "frage": "Extremistische Parteien verbieten?",
+        "beschreibung": "Soll sich Sachsen-Anhalt dafür einsetzen, dass Verbots-Verfahren gegen extremistische Parteien eingeleitet werden?"
+      },
+      "64": {
+        "frage": "Weniger Regeln für Tier-Haltung?",
+        "beschreibung": "Sollen Bauern in Sachsen-Anhalt weniger Regeln bei der Haltung von Nutztieren einhalten müssen?"
+      },
+      "65": {
+        "frage": "Eine gemeinsame Schulform?",
+        "beschreibung": "Sollen Sekundarschulen und Gemeinschaftsschulen zu einer gemeinsamen Schulform zusammengelegt werden?"
+      },
+      "66": {
+        "frage": "Gas aus Russland kaufen?",
+        "beschreibung": "Soll sich Sachsen-Anhalt dafür einsetzen, dass Gas aus Russland importiert wird?"
+      },
+      "67": {
+        "frage": "Landes-eigene Wohnungs-Firma?",
+        "beschreibung": "Soll Sachsen-Anhalt eine eigene Wohnungs-Gesellschaft gründen, die günstige Wohnungen baut?"
+      },
+      "68": {
+        "frage": "5-Prozent-Hürde behalten?",
+        "beschreibung": "Soll die Fünf-Prozent-Hürde bei Landtags-Wahlen in Sachsen-Anhalt beibehalten werden? Das heißt: Eine Partei braucht mindestens 5 Prozent der Stimmen, um in den Landtag zu kommen."
+      },
+      "69": {
+        "frage": "Grundschule bis Klasse 6?",
+        "beschreibung": "Soll die Grundschulzeit in Sachsen-Anhalt verlängert werden, sodass die Kinder bis zur 6. Klasse in der Grundschule bleiben?"
+      },
+      "70": {
+        "frage": "Frauen-Morde getrennt zählen?",
+        "beschreibung": "Soll die Tötung von Frauen, nur weil sie Frauen sind (Femizid), in der Kriminal-Statistik von Sachsen-Anhalt gesondert erfasst werden?"
+      },
+      "71": {
+        "frage": "Weiter Klima-Neutralität anstreben?",
+        "beschreibung": "Soll Sachsen-Anhalt weiterhin Maßnahmen ergreifen, um bis zu einem bestimmten Zeitpunkt keine Klima-Gase mehr auszustoßen?"
+      },
+      "72": {
+        "frage": "Arbeits-Pflicht für Hilfe-Empfänger?",
+        "beschreibung": "Sollen Menschen, die staatliche Grundsicherung bekommen und arbeiten können, zu gemeinnütziger Arbeit verpflichtet werden?"
+      },
+      "73": {
+        "frage": "Gendern in Behörden verbieten?",
+        "beschreibung": "Sollen Schreibweisen mit Sternchen, Unterstrich oder Doppelpunkt (wie Schüler*innen) in Landes-Behörden verboten sein?"
+      },
+      "74": {
+        "frage": "Kostenloses Ticket für alle Schüler?",
+        "beschreibung": "Soll das Land allen Schülerinnen und Schülern in Sachsen-Anhalt ein kostenloses Deutschland-Ticket für Bus und Bahn bezahlen?"
+      },
+      "75": {
+        "frage": "Programme für Daten-Analyse?",
+        "beschreibung": "Soll die Polizei in Sachsen-Anhalt bei der Straf-Verfolgung Computer-Programme einsetzen dürfen, die große Daten-Mengen automatisch auswerten?"
+      },
+      "76": {
+        "frage": "Vermögens-Steuer einführen?",
+        "beschreibung": "Soll sich das Land dafür einsetzen, dass Menschen mit großem Vermögen eine Vermögens-Steuer zahlen müssen?"
+      },
+      "77": {
+        "frage": "Drogen-Konsum-Räume erlauben?",
+        "beschreibung": "Soll das Land Räume erlauben, in denen Drogen-Abhängige unter ärztlicher Aufsicht Drogen konsumieren können?"
+      },
+      "78": {
+        "frage": "Nur noch Familie: Vater, Mutter, Kind?",
+        "beschreibung": "Soll in den Schulen Sachsen-Anhalts vor allem das traditionelle Familienbild mit Vater, Mutter und Kindern vermittelt werden?"
+      },
+      "79": {
+        "frage": "Schulden-Bremse aus der Verfassung streichen?",
+        "beschreibung": "Soll die Schulden-Bremse, die dem Land verbietet, sich zu viel Geld zu leihen, aus der Verfassung von Sachsen-Anhalt gestrichen werden?"
+      },
+      "80": {
+        "frage": "Projekte gegen Rechts-Extremismus?",
+        "beschreibung": "Soll das Land weiterhin Projekte fördern, die sich gegen Rechtsextremismus einsetzen?"
+      },
+      "81": {
+        "frage": "Neue Autobahnen planen?",
+        "beschreibung": "Sollen für Sachsen-Anhalt neue Autobahnen geplant und gebaut werden?"
+      },
+      "82": {
+        "frage": "Grundschul-Empfehlung verpflichtend?",
+        "beschreibung": "Beim Wechsel auf die weiterführende Schule: Soll die Empfehlung der Grundschule verpflichtend sein, also Eltern sich nicht dagegen entscheiden können?"
+      },
+      "83": {
+        "frage": "Bezahl-Karte statt Bargeld?",
+        "beschreibung": "Sollen Asylbewerber ihre Geld-Leistungen weiterhin auf einer Bezahl-Karte bekommen, statt Bargeld zu erhalten?"
+      },
+      "84": {
+        "frage": "Forschung für das Militär?",
+        "beschreibung": "Soll an den Hochschulen des Landes weiterhin auch für militärische Zwecke geforscht werden dürfen?"
+      },
+      "85": {
+        "frage": "Ausbildungs-Fonds für Firmen?",
+        "beschreibung": "Sollen alle Unternehmen in Sachsen-Anhalt in einen Fonds einzahlen, aus dem die Kosten für die betriebliche Ausbildung bezahlt werden?"
+      },
+      "86": {
+        "frage": "Demokratie in der Schule stärken?",
+        "beschreibung": "Sollen Schulen die Demokratie-Bildung stärker und verpflichtend in den Unterricht einbauen?"
+      },
+      "87": {
+        "frage": "Truppen-Übungs-Platz erhalten?",
+        "beschreibung": "Soll sich Sachsen-Anhalt dafür einsetzen, dass der Truppen-Übungs-Platz in der Colbitz-Letzlinger Heide langfristig erhalten bleibt?"
+      },
+      "88": {
+        "frage": "Geld für den Haus-Kauf?",
+        "beschreibung": "Soll das Land den Kauf des ersten eigenen Hauses oder der ersten eigenen Wohnung finanziell unterstützen?"
+      },
+      "89": {
+        "frage": "Masern-Impf-Pflicht behalten?",
+        "beschreibung": "Soll die Pflicht, dass Kinder gegen Masern geimpft sein müssen, um in eine Kita zu gehen, weiter gelten?"
+      },
+      "90": {
+        "frage": "Fachkräfte aus dem Ausland holen?",
+        "beschreibung": "Soll Sachsen-Anhalt Fachkräfte aus dem Ausland anwerben, damit sie im Land arbeiten?"
+      },
+      "91": {
+        "frage": "Kohle-Ausstieg rückgängig machen?",
+        "beschreibung": "Soll sich das Land dafür einsetzen, dass der beschlossene Ausstieg aus der Strom-Herstellung aus Braunkohle rückgängig gemacht wird?"
+      },
+      "92": {
+        "frage": "Wählen ab 16?",
+        "beschreibung": "Sollen bei Landtags-Wahlen in Sachsen-Anhalt auch Jugendliche ab 16 Jahren wählen dürfen?"
       }
     },
     "berlin-2026": {

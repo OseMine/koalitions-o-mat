@@ -1,4 +1,4 @@
-const VERSION = 'v6';
+const VERSION = 'v7';
 const STATIC_CACHE = `koalitions-o-mat-static-${VERSION}`;
 const DATA_CACHE = `koalitions-o-mat-data-${VERSION}`;
 
