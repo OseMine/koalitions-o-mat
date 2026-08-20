@@ -264,6 +264,11 @@ function buildShareUrl() {
 // Hash-Wechsel (Browser-Zurück, manuell eingefügter Teilen-Link).
 let lastSyncedHash = '';
 
+// Letzter Koalitionen-Filter-Stand, mit dem die Ergebnis-Ansicht gerendert wurde.
+// Bei Änderung (z. B. MinMatch-Regler im Koalitionen-Tab) wird die "Beste Koalition"
+// beim nächsten Wechsel aufs Ergebnis neu gerendert (Issue #153).
+let lastKoalitionenFilterHash = '';
+
 // Live-URL-Sync: Nach jeder Antwort/Änderung zeigt die Adressleiste sofort einen
 // teilbaren Link, ohne die Historie zu verschmutzen. Im einfachen Modus ist das
 // Teilen ausgeblendet → auch die URL bleibt dann ohne Zustand (Privatsphäre).
@@ -358,16 +363,9 @@ function exportCardData() {
     const topTopics = top && top.topicMatches
         ? Object.entries(top.topicMatches).sort((a, b) => b[1] - a[1]).slice(0, 3)
         : [];
-    // Beste Koalition (gleiche Logik wie in showTestResults)
-    const excludeCbs = document.querySelectorAll('#excludePartiesCheckboxes input:checked');
-    const excludeParties = Array.from(excludeCbs).map(cb => cb.value);
-    const allKoal = berechneKoalitionen('beide', excludeParties);
-    allKoal.forEach(k => { k.benutzerMatch = berechneUserMatchFuerKoalition(k.parteien); });
-    const maxSize = (config.thresholds && config.thresholds.maxCoalitionSize) || 4;
-    const minCoalMatch = (config.thresholds && config.thresholds.minMatchForCoalition) || 0;
-    const best = allKoal
-        .filter(k => k.anzahl <= maxSize && k.prozente > 50 && k.uebereinstimmung >= minCoalMatch)
-        .sort((a, b) => (b.benutzerMatch ?? -1) - (a.benutzerMatch ?? -1))[0] || null;
+    // Beste Koalition (gleiche Logik wie in showTestResults / Koalitionen-Tab:
+    // nutzt den aktuellen MinMatch-Reglerwert statt einer festen Config-Schwelle)
+    const best = berechneGefilterteKoalitionen()[0] || null;
     return { results, top, topTopics, best, electionName, appName };
 }
 
@@ -731,7 +729,18 @@ function switchTab(tabName, opts) {
     else if (tabName === 'test') {
         // If results are showing, keep results view
         const resultsEl = document.getElementById('testResults');
-        if (resultsEl && resultsEl.innerHTML) return;
+        if (resultsEl && resultsEl.innerHTML) {
+            // Koalitionen-Filter geändert (z. B. MinMatch-Regler)? Dann die Ergebnis-
+            // Ansicht neu rendern, damit "Beste Koalition" die aktuelle Koalitionen-
+            // Sicht widerspiegelt (Issue #153). Ohne History-Eintrag (suppress).
+            if (koalitionenFilterHash() !== lastKoalitionenFilterHash) {
+                lastKoalitionenFilterHash = koalitionenFilterHash();
+                suppressHistorySave = true;
+                showTestResults();
+                suppressHistorySave = false;
+            }
+            return;
+        }
         // Preserve test state across tab switches; only init on election change
         const container = document.getElementById('questionContainer');
         if (!container || !container.children.length) {
@@ -1854,12 +1863,36 @@ function berechneUserMatchFuerKoalition(parteiNames) {
     return normalisiereUebereinstimmung(sum, count, minRankingAnswers);
 }
 
-function updateKoalitionen() {
-    const type = document.getElementById('coalitionType').value;
-    const minMatch = parseFloat(document.getElementById('minMatch').value);
-    const partyFilter = document.getElementById('partyFilter').value;
-    document.getElementById('minMatchLabel').textContent = minMatch + '%';
+// Aktueller Filter-Zustand des Koalitionen-Tabs als kompakter String – genutzt,
+// um zu erkennen, ob sich die sichtbare Koalitions-Liste geändert hat (dann wird
+// die "Beste Koalition"-Empfehlung im Ergebnis-Tab neu gerendert, Issue #153).
+function koalitionenFilterHash() {
+    const typeEl = document.getElementById('coalitionType');
+    const minEl = document.getElementById('minMatch');
+    const partyEl = document.getElementById('partyFilter');
+    const excludes = Array.from(document.querySelectorAll('#excludePartiesCheckboxes input:checked'))
+        .map(cb => cb.value).sort().join(',');
+    return [typeEl ? typeEl.value : '', minEl ? minEl.value : '', partyEl ? partyEl.value : '', excludes].join('|');
+}
 
+// Koalitions-Liste exakt wie im Koalitionen-Tab: filtert über den aktuellen Zustand
+// der Koalitionen-Filter (Typ, MinMatch-Regler, Partei-Filter, Ausschluss-Checkboxen).
+// „Beste Koalition" (Ergebnis-Tab und Ergebnis-Karte) nutzt dieselbe Liste, damit
+// beide Ansichten unter gleichen Einstellungen dieselbe Koalition zeigen (Issue #153).
+// Fehlende DOM-Elemente (z. B. Harness-Sandbox) fallen auf sichere Defaults zurück:
+// Typ 'beide', Mindestübereinstimmung aus der Config, kein Partei-Filter.
+function berechneGefilterteKoalitionen() {
+    const typeEl = document.getElementById('coalitionType');
+    const type = (typeEl && typeEl.value) || 'beide';
+    const minEl = document.getElementById('minMatch');
+    let minMatch;
+    if (minEl && minEl.value !== '' && !isNaN(parseFloat(minEl.value))) {
+        minMatch = parseFloat(minEl.value);
+    } else {
+        minMatch = (config.thresholds && config.thresholds.minMatchForCoalition) || 0;
+    }
+    const partyEl = document.getElementById('partyFilter');
+    const partyFilter = partyEl ? partyEl.value : '';
     const excludeCbs = document.querySelectorAll('#excludePartiesCheckboxes input:checked');
     const excludeParties = Array.from(excludeCbs).map(cb => cb.value);
 
@@ -1876,6 +1909,18 @@ function updateKoalitionen() {
     const anyUserAnswer = Object.values(userAnswers).some(a => a === 'j' || a === 'n');
     if (anyUserAnswer) koalitionen.sort((a, b) => (b.benutzerMatch ?? -1) - (a.benutzerMatch ?? -1));
     else koalitionen.sort((a, b) => b.uebereinstimmung - a.uebereinstimmung);
+    return koalitionen;
+}
+
+function updateKoalitionen() {
+    const minEl = document.getElementById('minMatch');
+    const minMatch = minEl ? (parseFloat(minEl.value) || 0) : 0;
+    const label = document.getElementById('minMatchLabel');
+    if (label) label.textContent = minMatch + '%';
+    const partyFilterEl = document.getElementById('partyFilter');
+    const partyFilter = partyFilterEl ? partyFilterEl.value : '';
+
+    const koalitionen = berechneGefilterteKoalitionen();
 
     const container = document.getElementById('coalitionResults');
     const statusEl = document.getElementById('coalitionStatus');
@@ -2598,21 +2643,14 @@ function showTestResults() {
         </div>`;
     }
 
-    // Best coalition: majority > 50%, max size, min internal agreement, user match.
-    // Nur anzeigen, wenn der Nutzer tatsächlich Fragen beantwortet hat – sonst ist der
-    // "Mit Ihnen"-Wert (0 %) irreführend. Die Ausschluss-Checkboxen des Koalitionen-Tabs
-    // werden berücksichtigt, damit "Beste Koalition" und Koalitionen-Tab konsistent sind.
+    // Best coalition: die Top-Koalition der sichtbaren Koalitionen-Liste (gleiche
+    // Filter: Typ, MinMatch-Regler, Partei-Filter, Ausschluss-Checkboxen). Nur
+    // anzeigen, wenn der Nutzer tatsächlich Fragen beantwortet hat – sonst ist der
+    // "Mit Ihnen"-Wert (0 %) irreführend. "Beste Koalition" und Koalitionen-Tab
+    // bleiben so unter gleichen Einstellungen konsistent (Issue #153).
     const anyUserAnswer = Object.values(userAnswers).some(a => a === 'j' || a === 'n');
     if (anyUserAnswer) {
-        const excludeCbs = document.querySelectorAll('#excludePartiesCheckboxes input:checked');
-        const excludeParties = Array.from(excludeCbs).map(cb => cb.value);
-        const allKoal = berechneKoalitionen('beide', excludeParties);
-        allKoal.forEach(k => { k.benutzerMatch = berechneUserMatchFuerKoalition(k.parteien); });
-        const maxSize = (config.thresholds && config.thresholds.maxCoalitionSize) || 4;
-        const minCoalMatch = (config.thresholds && config.thresholds.minMatchForCoalition) || 0;
-        const best = allKoal
-            .filter(k => k.anzahl <= maxSize && k.prozente > 50 && k.uebereinstimmung >= minCoalMatch)
-            .sort((a, b) => (b.benutzerMatch ?? -1) - (a.benutzerMatch ?? -1))[0] || null;
+        const best = berechneGefilterteKoalitionen()[0] || null;
         if (best) {
         const colors = best.parteien.map(p => getPartyColor(p));
         const bestReibungScore = best.reibung ? best.reibung.score : 0;
@@ -2713,6 +2751,9 @@ function showTestResults() {
     }
     // Live-URL-Sync: nach dem Rendern zeigt die Adressleiste den fertigen Teilen-Link.
     syncShareUrl();
+    // Koalitionen-Filter-Stand dieser Ergebnis-Ansicht merken – bei späterer Änderung
+    // (z. B. MinMatch-Regler) wird die "Beste Koalition" beim Tab-Wechsel aktualisiert.
+    lastKoalitionenFilterHash = koalitionenFilterHash();
     updateTestTabLock();
 }
 
