@@ -583,7 +583,11 @@ function applyPendingShare() {
         document.querySelectorAll('#excludePartiesCheckboxes input').forEach(cb => {
             cb.checked = excludeList.includes(cb.value);
         });
-        switchTab('koalitionen');
+        // Geteilter Koalitions-Zustand direkt anzeigen – auch ohne geteilte Antworten.
+        // Die Tab-Sperre gilt nur für den manuell gestarteten Test; die Wiederherstellung
+        // geteilter Zustände wechselt per opts.force und hebt die Sperre danach auf.
+        switchTab('koalitionen', { force: true });
+        updateTestTabLock();
     }
     pendingShare = null;
 }
@@ -677,6 +681,10 @@ function testInProgress() {
     if (resultsEl && resultsEl.innerHTML) return false;
     const qc = document.getElementById('questionContainer');
     if (!qc || qc.style.display === 'none') return false;
+    // Die Sperre gilt nur, solange der Test-Tab aktiv ist: Nach dem Wiederherstellen
+    // eines geteilten Koalitions-Zustands (ohne Antworten) ist der Test nicht „im
+    // Gange", auch wenn die Fragen noch im DOM stehen (applyPendingShare).
+    if (activeTabName() !== 'test') return false;
     return !!qc.querySelector('.question');
 }
 
@@ -691,12 +699,14 @@ function updateTestTabLock() {
     });
 }
 
-function switchTab(tabName) {
+function switchTab(tabName, opts) {
     if (simpleOff('tab.' + tabName)) tabName = 'test';
     // Während des initialen Parteien-Tests keine Tab-Wechsel: der Test-Tab bleibt
     // aktiv, die übrigen Tabs sind gesperrt (visuell + aria-disabled via
-    // updateTestTabLock()). Ein Hinweis erklärt den Grund.
-    if (tabName !== 'test' && testInProgress()) {
+    // updateTestTabLock()). Ein Hinweis erklärt den Grund. opts.force erlaubt den
+    // programmatischen Wechsel beim Wiederherstellen geteilter Zustände
+    // (applyPendingShare) – das ist kein manueller Test und unterliegt keiner Sperre.
+    if (tabName !== 'test' && testInProgress() && !(opts && opts.force)) {
         showNotification(t('tabsLockedDuringTest', 'Bitte schließen Sie zuerst den Parteien-Test ab, um zu anderen Ansichten zu wechseln.'), 'info');
         return;
     }
@@ -741,6 +751,10 @@ function switchTab(tabName) {
             if (q) q.classList.add('active');
             updateNavButtons();
         }
+        // Lock-Zustand aktualisieren: Wer nach dem Wiederherstellen eines geteilten
+        // Koalitions-Zustands in den Test-Tab wechselt, startet damit den Test und
+        // unterliegt wieder der Tab-Sperre.
+        updateTestTabLock();
     }
     else if (tabName === 'daten') initializeDaten();
 }

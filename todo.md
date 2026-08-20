@@ -21,13 +21,13 @@ Vollständiger Bericht: `reports/review-2026-08-13.md`. Empirisch verifiziert (N
 
 ### P1 – Bugs
 
-- [ ] **Koalitionsausschluss-Key `"CDU"` matcht keine Partei** – `elections/ltw-sachsen-anhalt-2026/config.json:9` nutzt den Key `"CDU"`, die Partei heißt in `werte.json` aber `"CDU/CSU"`. Der Ausschluss CDU–LINKE wird daher nie angewendet; die Koalition CDU/CSU–LINKE würde fälschlich als zulässig angezeigt. Fix: Key auf `"CDU/CSU"` korrigieren.
+- [x] **Koalitionsausschluss-Key `"CDU"` matcht keine Partei** – `elections/ltw-sachsen-anhalt-2026/config.json:9` nutzte den Key `"CDU"`, die Partei heißt in `werte.json` aber `"CDU/CSU"`. Der Ausschluss CDU–LINKE wurde daher nie angewendet. Fix (Issue #151, PR #156): Key auf `"CDU/CSU"` korrigiert.
 
 ### P3 – Verbesserungen
 
-- [ ] **Tote i18n-Keys in `einfache-sprache.json`** – `electionLabel`, `modeSwitchToSimple`, `modeSwitchToAdvanced` werden nirgends per `t()` abgefragt (keine Funktionsbeeinträchtigung).
+- [x] **Tote i18n-Keys in `einfache-sprache.json`** – `electionLabel`, `modeSwitchToSimple`, `modeSwitchToAdvanced` werden nirgends per `t()` abgefragt (keine Funktionsbeeinträchtigung). Entfernt (Issue #152), siehe `archived-todo.md`.
 - [x] **„Beste Koalition" im Ergebnis-Tab nutzt feste Schwelle statt des MinMatch-Reglers** – mit Issue #153 behoben: `berechneGefilterteKoalitionen()` liefert die Koalitions-Liste exakt wie im Koalitionen-Tab (Typ, MinMatch-Regler, Partei-Filter, Ausschlüsse); „Beste Koalition" (Ergebnis-Tab und Ergebnis-Karte) und `updateKoalitionen()` nutzen dieselbe Funktion; beim Wechsel aufs Ergebnis wird die Empfehlung nach Filter-Änderung neu gerendert (ohne History-Eintrag).
-- [ ] **Reiner Koalitions-Share-Link ohne Antworten wird durch die Test-Tab-Sperre blockiert** (aus PR-#149-Review) – `applyPendingShare()` → `switchTab('koalitionen')` scheitert am `testInProgress()`-Guard; Nutzer landet im Test statt in der geteilten Koalitions-Sicht. Nicht dringend, aber UX-Verhaltensänderung.
+- [x] **Reiner Koalitions-Share-Link ohne Antworten wird durch die Test-Tab-Sperre blockiert** (aus PR-#149-Review, Issue #154) – `applyPendingShare()` → `switchTab('koalitionen')` scheiterte am `testInProgress()`-Guard; Nutzer landete im Test statt in der geteilten Koalitions-Sicht. Fix: `switchTab()` akzeptiert `opts.force` für programmatische Wechsel (nur beim Wiederherstellen geteilter Zustände); `testInProgress()` liefert auf einem anderen als dem Test-Tab `false` (Sperre gilt nur, solange der Test-Tab aktiv ist); `applyPendingShare()` hebt die Sperre nach dem Wechsel auf. Beim manuellen Testen bleibt die Sperre unverändert, wer danach in den Test-Tab wechselt, startet den Test und unterliegt wieder der Sperre. Verifiziert per neuem Harness `harness/share-lock-harness.js` (23/23 Checks).
 
 ### Tracking GitHub-Issues (alle geschlossen)
 
@@ -67,4 +67,4 @@ Vollständiger Bericht: `reports/review-2026-08-11-b.md`. Empirisch verifiziert 
 - **#129 (Label→div) / #130 (`svgBar()` real nutzen) / #131 (Hinweiszeile für ausgeblendete Ansichten)**: umgesetzt und verifiziert (PRs #133/#134/#141). Geschlossen.
 - **PR #118 (Modus & config.json)**: Merge-Konflikte gelöst, alle 5 Befunde behoben und hier übernommen (Report `reports/review-2026-08-11-c.md`, Umsetzung in `archived-todo.md`); Inhalt in main, PR geschlossen.
 
-Derzeit offene Aufgaben: P1 Koalitionsausschluss-Key `"CDU"` (LSA), P3 tote i18n-Keys, P3 Beste-Koalition-Regler-Inkonsistenz, P3 Koalitions-Share-Link-Sperre – siehe Abschnitt „Review vom 2026-08-13" oben.
+Derzeit offene Aufgaben: die P3-Punkte im Abschnitt „Review vom 2026-08-17" oben. (Erledigt: P1 Koalitionsausschluss-Key `"CDU"` – Issue #151, P3 tote i18n-Keys – Issue #152, P3 Beste-Koalition-Regler-Inkonsistenz – Issue #153, P3 Koalitions-Share-Link-Sperre – Issue #154.)
