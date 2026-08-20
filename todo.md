@@ -2,6 +2,16 @@
 
 Erledigte Aufgaben wurden nach `archived-todo.md` verschoben (Stand 2026-08-13). Dokumentierte Läufe und Umsetzungen (Friction-Score, Regierungs-Simulator, Thesen-Matrix, Ergebnis-Karte, Live-URL-Sync, Bugfixes, Einfacher/Erweiterter Modus, Dealbreaker, 2D-Politik-Kompass, Taktik-Simulator, Feature-Evaluationen, Reviews) siehe dort.
 
+## Review vom 2026-08-20 (wöchentlicher Lauf + GitHub-Maintenance)
+
+Vollständiger Bericht: `reports/review-2026-08-20.md`. Empirisch verifiziert (alle bestehenden Harnesses grün; eigene Harnesses für Sitzverteilung aller 4 Wahlen, Koalitionen/Ausschlüsse, determineTopic, i18n sowie Befund F-07). Die sechs offenen P3-Punkte aus dem Review vom 2026-08-17 wurden erneut bestätigt (tote `keywords`, tote Felder `default`/`year`, Stale Share-Hash einfacher Modus, umfragegewichteter Koalitions-Wert, uneinheitliches Escaping, 50-%-Baseline). GitHub: 0 offene PRs, alle Issues geschlossen; 5 Stale Branches aus gemergten PRs (#155–#159) gelöscht.
+
+### P3 – Neu
+
+- [ ] **`resetAnswers()` lässt den Share-Hash stehen** (F-07) – `resetAnswers()` (script.js:2227) ruft `syncShareUrl()` **nicht** auf, anders als `resetTest()` (script.js:2210). Der #125-Fix (Clear-Zweig in `syncShareUrl()`) greift nach dem Klick auf „Antworten zurücksetzen" daher nie; `#w=…&a=…` bleibt stehen, ein Reload stellt die alten Antworten wieder her. Verifiziert per Harness im erweiterten Modus: `resetTest()` → `history.replaceState('#')`, `resetAnswers()` → kein Aufruf, Hash unverändert.
+- [ ] **Modus-Wechsel rendert das aktive Testergebnis nicht neu** (F-08) – `setMode()` (script.js:117) ruft keinerlei Render-Funktion auf (nur `toggleSimpleLanguage()` rendert die Ergebnis-Ansicht neu, script.js:3979). Die in `showTestResults()` dynamisch erzeugten Sektionen (Kompass, Export-Karte, Taktik, Dealbreaker-Hinweis) tragen kein `data-simple-off`; Wechsel Erweitert→Einfach blendet sie nicht aus, Wechsel Einfach→Erweitert zeigt sie erst nach erneutem Render (z. B. Tab-Wechsel). README-Zeile 21 verspricht „blendet die Ansichten sofort ein bzw. aus".
+- [ ] **README nennt veraltete Fragenzahlen** (F-09/Doku) – `README.md:20` nennt „alle 170 Fragen (45 + 40 + 52 + 33)", tatsächlich sind es 222 (Sachsen-Anhalt: 92 statt 40). Verifiziert gegen alle `elections/*/fragen.json` und `einfache-sprache.json` (alle 222 Übersetzungen vorhanden).
+
 ## Review vom 2026-08-17 (wöchentlicher Lauf + GitHub-Maintenance)
 
 Vollständiger Bericht: `reports/review-2026-08-17.md`. Empirisch verifiziert (alle bestehenden Harnesses grün; eigene Harnesses für Sitzverteilung aller 4 Wahlen, Koalitionen/Ausschlüsse, UserMatch, Reibung sowie die neuen Befunde unten). Die vier offenen Punkte aus dem Review vom 2026-08-13 wurden erneut bestätigt (P1 `"CDU"`-Key LSA, P3 tote i18n-Keys, P3 Beste-Koalition-Regler-Inkonsistenz, P3 Koalitions-Share-Link-Sperre). GitHub: 0 offene PRs; Issues #151–#154 weiterhin offen und berechtigt; Stale Branch `opencode/dispatch-58192f-20260813113515` (PR #150) gelöscht.
@@ -67,4 +77,4 @@ Vollständiger Bericht: `reports/review-2026-08-11-b.md`. Empirisch verifiziert 
 - **#129 (Label→div) / #130 (`svgBar()` real nutzen) / #131 (Hinweiszeile für ausgeblendete Ansichten)**: umgesetzt und verifiziert (PRs #133/#134/#141). Geschlossen.
 - **PR #118 (Modus & config.json)**: Merge-Konflikte gelöst, alle 5 Befunde behoben und hier übernommen (Report `reports/review-2026-08-11-c.md`, Umsetzung in `archived-todo.md`); Inhalt in main, PR geschlossen.
 
-Derzeit offene Aufgaben: die P3-Punkte im Abschnitt „Review vom 2026-08-17" oben. (Erledigt: P1 Koalitionsausschluss-Key `"CDU"` – Issue #151, P3 tote i18n-Keys – Issue #152, P3 Beste-Koalition-Regler-Inkonsistenz – Issue #153, P3 Koalitions-Share-Link-Sperre – Issue #154.)
+Derzeit offene Aufgaben: die P3-Punkte in den Abschnitten „Review vom 2026-08-20" (F-07–F-09, neu) und „Review vom 2026-08-17" oben. (Erledigt: P1 Koalitionsausschluss-Key `"CDU"` – Issue #151, P3 tote i18n-Keys – Issue #152, P3 Beste-Koalition-Regler-Inkonsistenz – Issue #153, P3 Koalitions-Share-Link-Sperre – Issue #154.)
