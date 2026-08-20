@@ -6,6 +6,6 @@
   },
   "koalitionsausschluss": {
     "AfD": ["SPD", "GRÜNE", "LINKE"],
-    "CDU": ["LINKE"]
+    "CDU/CSU": ["LINKE"]
   }
 }
