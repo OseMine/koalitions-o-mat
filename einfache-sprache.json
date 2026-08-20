@@ -1,7 +1,6 @@
 {
   "ui": {
     "loading": "Daten werden geladen...",
-    "electionLabel": "Wahl:",
     "welcomeTitle": "Willkommen beim Koalitions-O-Mat",
     "welcomeSubtitle": "Finden Sie heraus: Welche Partei passt zu Ihnen? Welche Koalition passt zu Ihnen?",
     "step1": "Wahl auswählen",
@@ -248,8 +247,6 @@
     "tactical.scCWeit": "{p} liegt mit {v} % unter der Hürde und hat aktuell nur {m} Direktmandate – der Einzug über die Grundmandatsklausel ist in diesem Szenario nicht in Sicht.",
     "tactical.scCMatrix": "Direktmandats-Schätzungen für diese Wahl liegen vor (siehe Regler „Direktmandate“). Aktuell liegt keine Partei mit weniger als {t} % auf dem Weg über die Grundmandatsklausel.",
     "tactical.scDHint": "Szenario D (strategische Erststimme): Wenn in Ihrem Wahlkreis ein von Ihnen stark abgelehnter Direktkandidat vorn liegt, hilft die Erststimme für den aussichtsreichsten Gegenkandidaten – auch über Parteigrenzen hinweg. Der Simulator kennt keine einzelnen Wahlkreise. Dieses Szenario wird hier nur erklärt und nicht berechnet.",
-    "modeSwitchToSimple": "Einfacher Modus",
-    "modeSwitchToAdvanced": "Erweiterter Modus",
     "aria.modeToggleSimple": "Zum einfachen Modus wechseln",
     "aria.modeToggleAdvanced": "Zum erweiterten Modus wechseln",
     "modeHintSimple": "Im einfachen Modus sind diese Seiten ausgeblendet: {views}.",
