@@ -25,7 +25,7 @@ Vollständiger Bericht: `reports/review-2026-08-13.md`. Empirisch verifiziert (N
 
 ### P3 – Verbesserungen
 
-- [ ] **Tote i18n-Keys in `einfache-sprache.json`** – `electionLabel`, `modeSwitchToSimple`, `modeSwitchToAdvanced` werden nirgends per `t()` abgefragt (keine Funktionsbeeinträchtigung).
+- [x] **Tote i18n-Keys in `einfache-sprache.json`** – `electionLabel`, `modeSwitchToSimple`, `modeSwitchToAdvanced` werden nirgends per `t()` abgefragt (keine Funktionsbeeinträchtigung). Entfernt (Issue #152), siehe `archived-todo.md`.
 - [ ] **„Beste Koalition" im Ergebnis-Tab nutzt feste Schwelle statt des MinMatch-Reglers** – `showTestResults()` filtert über die feste `minCoalMatch`-Schwelle (config), nicht über den aktuellen Reglerwert im Koalitionen-Tab (Inkonsistenz).
 - [ ] **Reiner Koalitions-Share-Link ohne Antworten wird durch die Test-Tab-Sperre blockiert** (aus PR-#149-Review) – `applyPendingShare()` → `switchTab('koalitionen')` scheitert am `testInProgress()`-Guard; Nutzer landet im Test statt in der geteilten Koalitions-Sicht. Nicht dringend, aber UX-Verhaltensänderung.
 
@@ -67,4 +67,4 @@ Vollständiger Bericht: `reports/review-2026-08-11-b.md`. Empirisch verifiziert 
 - **#129 (Label→div) / #130 (`svgBar()` real nutzen) / #131 (Hinweiszeile für ausgeblendete Ansichten)**: umgesetzt und verifiziert (PRs #133/#134/#141). Geschlossen.
 - **PR #118 (Modus & config.json)**: Merge-Konflikte gelöst, alle 5 Befunde behoben und hier übernommen (Report `reports/review-2026-08-11-c.md`, Umsetzung in `archived-todo.md`); Inhalt in main, PR geschlossen.
 
-Derzeit offene Aufgaben: P1 Koalitionsausschluss-Key `"CDU"` (LSA), P3 tote i18n-Keys, P3 Beste-Koalition-Regler-Inkonsistenz, P3 Koalitions-Share-Link-Sperre – siehe Abschnitt „Review vom 2026-08-13" oben.
+Derzeit offene Aufgaben: P1 Koalitionsausschluss-Key `"CDU"` (LSA), P3 Beste-Koalition-Regler-Inkonsistenz, P3 Koalitions-Share-Link-Sperre – siehe Abschnitt „Review vom 2026-08-13" oben. (P3 tote i18n-Keys erledigt, Issue #152.)
