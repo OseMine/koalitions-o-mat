@@ -2,6 +2,10 @@
 
 Erledigte (abgehakte) Aufgaben aus todo.md, Stand 2026-08-13. Offene Punkte: siehe `todo.md`.
 
+## Umsetzung vom 2026-08-20 (Issue #152 – Tote i18n-Keys in `einfache-sprache.json`)
+
+- [x] **Tote i18n-Keys aufräumen** – `ui.electionLabel`, `ui.modeSwitchToSimple`, `ui.modeSwitchToAdvanced` wurden in `script.js`/`index.html` nirgends per `t()` oder `data-i18n` abgefragt (Grep über Code + Harness leer). Entfernt aus `einfache-sprache.json` (reine Bereinigung, keine Verhaltensänderung): `electionLabel` war durch das genutzte `t('election', 'Wahl:')` (script.js:2518) redundant; `modeSwitchToSimple`/`modeSwitchToAdvanced` durch die genutzten `aria.modeToggleSimple`/`aria.modeToggleAdvanced` (`data-i18n-aria` in index.html:25-26/123-124) ersetzt. Verifiziert per JSON-Check, `node --check script.js` und Konsistenz-Check (alle realen `t()`- und `data-i18n`-Keys haben eine Übersetzung; 260 → 257 `ui`-Keys).
+
 ## Verifikation vom 2026-08-13 (Issue #125 – veralteter Share-Hash nach `resetTest()`)
 
 - [x] **Live-URL-Sync hinterlässt nach `resetTest()` einen veralteten Share-Hash** (Issue #125) – mit PR #145 gemergt (Merge 377fbc9). Fix in `syncShareUrl()` (script.js:270-292) verifiziert: bei leerem Zustand liefert `buildShareUrl()` `null`, der Hash wird dann geleert; `lastSyncedHash` verhindert das Überschreiben bei unverändertem Zustand; `markHashHandled()` respektiert externe Hash-Wechsel. Damit stellen Reload/Bookmark keine alten Antworten wieder her.
