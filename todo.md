@@ -26,7 +26,7 @@ Vollständiger Bericht: `reports/review-2026-08-13.md`. Empirisch verifiziert (N
 ### P3 – Verbesserungen
 
 - [ ] **Tote i18n-Keys in `einfache-sprache.json`** – `electionLabel`, `modeSwitchToSimple`, `modeSwitchToAdvanced` werden nirgends per `t()` abgefragt (keine Funktionsbeeinträchtigung).
-- [ ] **„Beste Koalition" im Ergebnis-Tab nutzt feste Schwelle statt des MinMatch-Reglers** – `showTestResults()` filtert über die feste `minCoalMatch`-Schwelle (config), nicht über den aktuellen Reglerwert im Koalitionen-Tab (Inkonsistenz).
+- [x] **„Beste Koalition" im Ergebnis-Tab nutzt feste Schwelle statt des MinMatch-Reglers** – mit Issue #153 behoben: `berechneGefilterteKoalitionen()` liefert die Koalitions-Liste exakt wie im Koalitionen-Tab (Typ, MinMatch-Regler, Partei-Filter, Ausschlüsse); „Beste Koalition" (Ergebnis-Tab und Ergebnis-Karte) und `updateKoalitionen()` nutzen dieselbe Funktion; beim Wechsel aufs Ergebnis wird die Empfehlung nach Filter-Änderung neu gerendert (ohne History-Eintrag).
 - [ ] **Reiner Koalitions-Share-Link ohne Antworten wird durch die Test-Tab-Sperre blockiert** (aus PR-#149-Review) – `applyPendingShare()` → `switchTab('koalitionen')` scheitert am `testInProgress()`-Guard; Nutzer landet im Test statt in der geteilten Koalitions-Sicht. Nicht dringend, aber UX-Verhaltensänderung.
 
 ### Tracking GitHub-Issues (alle geschlossen)
