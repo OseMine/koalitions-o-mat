@@ -2,6 +2,22 @@
 
 Erledigte Aufgaben wurden nach `archived-todo.md` verschoben (Stand 2026-08-13). Dokumentierte Läufe und Umsetzungen (Friction-Score, Regierungs-Simulator, Thesen-Matrix, Ergebnis-Karte, Live-URL-Sync, Bugfixes, Einfacher/Erweiterter Modus, Dealbreaker, 2D-Politik-Kompass, Taktik-Simulator, Feature-Evaluationen, Reviews) siehe dort.
 
+## Review vom 2026-09-08 (wöchentlicher Lauf + GitHub-Maintenance)
+
+Vollständiger Bericht: `reports/review-2026-09-08.md`. Empirisch verifiziert (alle bestehenden P3-Befunde bestätigt; Sachsen-Anhalt-Daten auf Wahlergebnis Sept. 2026 geprüft: 92 Fragen, 7 Parteien, alle Metadaten vollständig, `koalitionsausschluss`-Key `CDU/CSU` korrekt). GitHub: 0 offene PRs, 0 offene Issues; 2 Stale Branches aus gemergten PRs (#160, #162) identifiziert. Keine neuen P1/P2-Befunde.
+
+### P3 – Bestätigte offene Befunde (alle aus vorherigen Reviews)
+
+- [ ] **`resetAnswers()` lässt den Share-Hash stehen** (F-07) – `resetAnswers()` (script.js:2227) ruft `syncShareUrl()` **nicht** auf, anders als `resetTest()` (script.js:2210). Der #125-Fix (Clear-Zweig in `syncShareUrl()`) greift nach dem Klick auf „Antworten zurücksetzen" daher nie; `#w=…&a=…` bleibt stehen, ein Reload stellt die alten Antworten wieder her. Verifiziert per Harness im erweiterten Modus.
+- [ ] **Modus-Wechsel rendert das aktive Testergebnis nicht neu** (F-08) – `setMode()` (script.js:117) ruft keinerlei Render-Funktion auf (nur `toggleSimpleLanguage()` rendert die Ergebnis-Ansicht neu, script.js:3979). Die in `showTestResults()` dynamisch erzeugten Sektionen (Kompass, Export-Karte, Taktik, Dealbreaker-Hinweis) tragen kein `data-simple-off`; Wechsel Erweitert→Einfach blendet sie nicht aus, Wechsel Einfach→Erweitert zeigt sie erst nach erneutem Render. README-Zeile 21 verspricht „blendet die Ansichten sofort ein bzw. aus".
+- [ ] **README nennt veraltete Fragenzahlen** (F-09/Doku) – `README.md:20` nennt „alle 170 Fragen (45 + 40 + 52 + 33)", tatsächlich sind es 222 (Sachsen-Anhalt: 92 statt 40). Verifiziert gegen alle `elections/*/fragen.json` und `einfache-sprache.json` (alle 222 Übersetzungen vorhanden).
+- [ ] **Tote `keywords` in `config.json`** – `determineTopic()` (script.js:3662) klassifiziert nur über `thema`; die `keywords`-Arrays (config.json:24–48) sind seit dem Fallback-Removal tote Konfiguration.
+- [ ] **Tote Felder `default` und `year` in `elections.json`** – script.js liest nur `id`, `name`, `type`.
+- [ ] **Stale Share-Hash im einfachen Modus** – `syncShareUrl()` (script.js:276) bricht bei `simpleOff('teilen')` ab, bevor der Clear-Zweig greift.
+- [ ] **Koalitions-„Mit Ihnen"-Wert umfragegewichtet** – `berechneUserMatchFuerKoalition()` (script.js:1828) gewichtet mit `prozentOf[name] || 1`.
+- [ ] **Uneinheitliches Escaping von Parteinamen** – `updateKoalitionen()` (script.js:1911), `createStatsSummary()` (script.js:3260) ohne `escapeHtml()`.
+- [ ] **50-%-Baseline bei null vergleichbaren Antworten** – `berechneUebereinstimmung()` (script.js:1703), `minPaar` (script.js:1642/2080).
+
 ## Review vom 2026-08-20 (wöchentlicher Lauf + GitHub-Maintenance)
 
 Vollständiger Bericht: `reports/review-2026-08-20.md`. Empirisch verifiziert (alle bestehenden Harnesses grün; eigene Harnesses für Sitzverteilung aller 4 Wahlen, Koalitionen/Ausschlüsse, determineTopic, i18n sowie Befund F-07). Die sechs offenen P3-Punkte aus dem Review vom 2026-08-17 wurden erneut bestätigt (tote `keywords`, tote Felder `default`/`year`, Stale Share-Hash einfacher Modus, umfragegewichteter Koalitions-Wert, uneinheitliches Escaping, 50-%-Baseline). GitHub: 0 offene PRs, alle Issues geschlossen; 5 Stale Branches aus gemergten PRs (#155–#159) gelöscht.
