@@ -8,7 +8,7 @@
   "umfragewerte": [
     {
       "partei": "AfD",
-      "prozent": 41,
+      "prozent": 43.8,
       "achsen": {
         "wirtschaft": 0.7,
         "progressiv": -0.9
@@ -34,7 +34,8 @@
         { "label": "Jun 2021", "prozent": 21 },
         { "label": "Jun 2023", "prozent": 29 },
         { "label": "Sep 2025", "prozent": 39 },
-        { "label": "Jul 2026", "prozent": 41 }
+        { "label": "Jul 2026", "prozent": 41 },
+        { "label": "Sep 2026", "prozent": 43.8 }
       ],
       "rss": [
         "https://www.tagesschau.de/inland/regional/sachsenanhalt/index~rss2.xml"
@@ -42,7 +43,7 @@
     },
     {
       "partei": "CDU/CSU",
-      "prozent": 24,
+      "prozent": 17.2,
       "achsen": {
         "wirtschaft": 0.6,
         "progressiv": -0.3
@@ -64,7 +65,8 @@
         { "label": "Jun 2021", "prozent": 37 },
         { "label": "Jun 2023", "prozent": 31 },
         { "label": "Sep 2025", "prozent": 27 },
-        { "label": "Jul 2026", "prozent": 24 }
+        { "label": "Jul 2026", "prozent": 24 },
+        { "label": "Sep 2026", "prozent": 17.2 }
       ],
       "rss": [
         "https://www.tagesschau.de/inland/regional/sachsenanhalt/index~rss2.xml"
@@ -72,7 +74,7 @@
     },
     {
       "partei": "LINKE",
-      "prozent": 13,
+      "prozent": 8.6,
       "achsen": {
         "wirtschaft": -0.9,
         "progressiv": 0.6
@@ -98,7 +100,8 @@
         { "label": "Jun 2021", "prozent": 11 },
         { "label": "Jun 2023", "prozent": 9 },
         { "label": "Sep 2025", "prozent": 13 },
-        { "label": "Jul 2026", "prozent": 13 }
+        { "label": "Jul 2026", "prozent": 13 },
+        { "label": "Sep 2026", "prozent": 8.6 }
       ],
       "rss": [
         "https://www.tagesschau.de/inland/regional/sachsenanhalt/index~rss2.xml"
@@ -106,7 +109,7 @@
     },
     {
       "partei": "SPD",
-      "prozent": 7,
+      "prozent": 9.3,
       "achsen": {
         "wirtschaft": -0.4,
         "progressiv": 0.4
@@ -132,7 +135,8 @@
         { "label": "Jun 2021", "prozent": 8 },
         { "label": "Jun 2023", "prozent": 9 },
         { "label": "Sep 2025", "prozent": 7 },
-        { "label": "Jul 2026", "prozent": 7 }
+        { "label": "Jul 2026", "prozent": 7 },
+        { "label": "Sep 2026", "prozent": 9.3 }
       ],
       "rss": [
         "https://www.tagesschau.de/inland/regional/sachsenanhalt/index~rss2.xml"
@@ -140,7 +144,7 @@
     },
     {
       "partei": "GRÜNE",
-      "prozent": 5,
+      "prozent": 8.9,
       "achsen": {
         "wirtschaft": -0.3,
         "progressiv": 0.9
@@ -162,7 +166,8 @@
         { "label": "Jun 2021", "prozent": 6 },
         { "label": "Jun 2023", "prozent": 6 },
         { "label": "Sep 2025", "prozent": 3 },
-        { "label": "Jul 2026", "prozent": 5 }
+        { "label": "Jul 2026", "prozent": 5 },
+        { "label": "Sep 2026", "prozent": 8.9 }
       ],
       "rss": [
         "https://www.tagesschau.de/inland/regional/sachsenanhalt/index~rss2.xml"
@@ -170,7 +175,7 @@
     },
     {
       "partei": "BSW",
-      "prozent": 4,
+      "prozent": 5.3,
       "achsen": {
         "wirtschaft": -0.3,
         "progressiv": -0.6
@@ -192,7 +197,8 @@
         { "label": "Jul 2024", "prozent": 16 },
         { "label": "Jan 2025", "prozent": 14 },
         { "label": "Sep 2025", "prozent": 6 },
-        { "label": "Jul 2026", "prozent": 4 }
+        { "label": "Jul 2026", "prozent": 4 },
+        { "label": "Sep 2026", "prozent": 5.3 }
       ],
       "rss": [
         "https://www.tagesschau.de/inland/regional/sachsenanhalt/index~rss2.xml"
@@ -200,7 +206,7 @@
     },
     {
       "partei": "FDP",
-      "prozent": 4,
+      "prozent": 2.6,
       "achsen": {
         "wirtschaft": 0.9,
         "progressiv": 0.3
@@ -222,7 +228,8 @@
         { "label": "Jun 2021", "prozent": 6 },
         { "label": "Jun 2023", "prozent": 6 },
         { "label": "Sep 2025", "prozent": 3 },
-        { "label": "Jul 2026", "prozent": 4 }
+        { "label": "Jul 2026", "prozent": 4 },
+        { "label": "Sep 2026", "prozent": 2.6 }
       ],
       "rss": [
         "https://www.tagesschau.de/inland/regional/sachsenanhalt/index~rss2.xml"
