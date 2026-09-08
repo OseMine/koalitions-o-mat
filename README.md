@@ -33,7 +33,7 @@ Interaktiver Koalitionsrechner und Parteien-Test für die Bundestagswahl 2029 un
 | Wahl | Umfrage |
 |------|---------|
 | Bundestagswahl 2029 | Umfrage Juli 2026 |
-| Landtagswahl Sachsen-Anhalt 2026 | Umfrage Juli 2026 |
+| Landtagswahl Sachsen-Anhalt 2026 | Wahlergebnis Sept. 2026 (vorläufig) |
 | Abgeordnetenhaus Berlin 2026 | Umfrage Juli 2026 |
 | Landtagswahl Mecklenburg-Vorpommern 2026 | Umfrage Juli 2026 |
 
