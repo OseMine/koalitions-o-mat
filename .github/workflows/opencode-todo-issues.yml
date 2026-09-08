@@ -28,7 +28,7 @@ jobs:
           OPENCODE_API_KEY: ${{ secrets.OPENCODE_API_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          model: opencode/deepseek-v4-flash-free
+          model: opencode/big-pickle
           use_github_token: true
           prompt: |
             Aufgabe: Erzeuge GitHub-Issues aus den offenen Aufgaben in todo.md.
