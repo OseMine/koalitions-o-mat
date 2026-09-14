@@ -1,6 +1,6 @@
 # Koalitions-O-Mat – Archiv erledigter Aufgaben
 
-Erledigte (abgehakte) Aufgaben aus todo.md, Stand 2026-08-13. Offene Punkte: siehe `todo.md`.
+Erledigte (abgehakte) Aufgaben aus todo.md, Stand 2026-08-13 (Stand 2026-09-14 geprüft: keine neu erledigten Punkte hinzugekommen). Offene Punkte: siehe `todo.md`.
 
 ## Umsetzung vom 2026-08-20 (Issue #152 – Tote i18n-Keys in `einfache-sprache.json`)
 
