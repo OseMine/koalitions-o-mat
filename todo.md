@@ -1,6 +1,19 @@
 # Koalitions-O-Mat – Offene Aufgaben
 
-Erledigte Aufgaben wurden nach `archived-todo.md` verschoben (Stand 2026-08-13). Dokumentierte Läufe und Umsetzungen (Friction-Score, Regierungs-Simulator, Thesen-Matrix, Ergebnis-Karte, Live-URL-Sync, Bugfixes, Einfacher/Erweiterter Modus, Dealbreaker, 2D-Politik-Kompass, Taktik-Simulator, Feature-Evaluationen, Reviews) siehe dort.
+Erledigte Aufgaben wurden nach `archived-todo.md` verschoben (Stand 2026-09-14). Dokumentierte Läufe und Umsetzungen (Friction-Score, Regierungs-Simulator, Thesen-Matrix, Ergebnis-Karte, Live-URL-Sync, Bugfixes, Einfacher/Erweiterter Modus, Dealbreaker, 2D-Politik-Kompass, Taktik-Simulator, Feature-Evaluationen, Reviews) siehe dort.
+
+## Review vom 2026-09-14 (wöchentlicher Lauf + GitHub-Maintenance)
+
+Vollständiger Bericht: `reports/review-2026-09-14.md`. Empirisch verifiziert (Node gegen die echten Datendateien aller 4 Wahlen): 222 Fragen konsistent mit `einfache-sprache.json` (222/222), Sitzverteilung exakt aufsummiert (btw 630, LSA 83, Berlin 130, MV 79), Koalitionen inkl. Ausschlüsse korrekt, einfache-Sprache-Parteibeschreibungen über beide Mechanismen abgedeckt. Alle 9 bekannten P3-Befunde (F-07–F-09 + 6 aus 2026-08-17) unverändert offen; **2 neue P3-Punkte** (N-01, N-02) hinzugekommen. GitHub: 0 offene PRs; 7 offene Issues (#164–#170) deckungsgleich mit todo.md; Stale Branch `opencode/dispatch-a62a81-20260908081821` (PR #163) gelöscht. Keine neuen P1/P2-Befunde.
+
+### P3 – Neu (Review 2026-09-14)
+
+- [ ] **Exakt-50-%-Koalition unter den Typ-Filtern unsichtbar** (N-01, Issue #172) – `berechneKoalitionen()` (script.js:1638): `sum > 50` ⇒ „mehrheit", `sum < 50` ⇒ „minderheit"; eine Koalition mit exakt 50 % erscheint nur unter „beide". Empirisch betroffen: btw2029 **CDU/CSU+SPD+LINKE+FDP (50,0 %)**; auch das Koalitions-Potenzial-Chart (`createCoalitionPotentialChart()`, script.js:3372, `type='mehrheit'`) blendet sie aus. Vorschlag: exakt 50 % der „minderheit" zuschlagen oder Filter-Labels präzisieren.
+- [ ] **Zwei parallele Mechanismen für Einfache-Sprache-Parteibeschreibungen** (N-02, Issue #171) – `simplePartyText()` (script.js:30): erst `werte.json.beschreibung_einfach`, dann `einfache-sprache.json.parteien[activeElectionId]`. btw2029 nutzt nur den ersten Weg (kein `parteien`-Block), LSA/Berlin/MV nur den zweiten (kein `beschreibung_einfach`). Kein Live-Fehler (alle Parteien abgedeckt), aber Drift-Gefahr bei künftigen reinen Datendateien-Updates wie Issue #161. Vorschlag: einen Mechanismus vereinheitlichen oder dokumentieren.
+
+### P3 – Bestätigte offene Befunde (alle unverändert)
+
+Die 9 Punkte aus den Abschnitten „Review vom 2026-09-08" (F-07 resetAnswers-Hash, F-08 setMode-Rerender, F-09 README-Zahlen) und „Review vom 2026-08-17" (tote `keywords`, tote Felder `default`/`year`, Stale Share-Hash einfacher Modus, umfragegewichteter Koalitions-Wert, uneinheitliches Escaping inkl. `createStatsSummary()` Z. 3315, 50-%-Baseline) gelten weiter – siehe dort.
 
 ## Review vom 2026-09-08 (wöchentlicher Lauf + GitHub-Maintenance)
 
