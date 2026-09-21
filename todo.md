@@ -1,6 +1,14 @@
 # Koalitions-O-Mat – Offene Aufgaben
 
-Erledigte Aufgaben wurden nach `archived-todo.md` verschoben (Stand 2026-09-14). Dokumentierte Läufe und Umsetzungen (Friction-Score, Regierungs-Simulator, Thesen-Matrix, Ergebnis-Karte, Live-URL-Sync, Bugfixes, Einfacher/Erweiterter Modus, Dealbreaker, 2D-Politik-Kompass, Taktik-Simulator, Feature-Evaluationen, Reviews) siehe dort.
+Erledigte Aufgaben wurden nach `archived-todo.md` verschoben (Stand 2026-09-21). Dokumentierte Läufe und Umsetzungen (Friction-Score, Regierungs-Simulator, Thesen-Matrix, Ergebnis-Karte, Live-URL-Sync, Bugfixes, Einfacher/Erweiterter Modus, Dealbreaker, 2D-Politik-Kompass, Taktik-Simulator, Feature-Evaluationen, Reviews) siehe dort.
+
+## Review vom 2026-09-21 (wöchentlicher Lauf + GitHub-Maintenance)
+
+Vollständiger Bericht: `reports/review-2026-09-21.md`. Empirisch verifiziert (Node gegen die echten Datendateien aller 4 Wahlen): Sitzsummen 630/83/130/79, alle 222 Fragen mit gültigem `thema` (0 `themaMissing`), vollständige Partei-Antwortmatrix (keine Lücken), i18n-Vollabdeckung (`data-i18n`- und `t()`-Keys 0 fehlend), Koalitions-/Ausschluss-Listen korrekt, F-07–F-09 sowie N-01/N-02 re-bestätigt. **Keine neuen Befunde** (keine P1/P2, keine P3). GitHub: PR #173 (Review vom 2026-09-14) reviewt und **gemergt** (c71edd), Branch `opencode/schedule-19f795-20260914112501` gelöscht; 0 offene PRs; 9 offene Issues (#164–#172) deckungsgleich mit den offenen P3-Punkten, bleiben offen.
+
+### P3 – Bestätigt offen (unverändert)
+
+Alle 11 bekannten P3-Punkte gelten weiter (Details in den Abschnitten 2026-09-14/2026-09-08/2026-08-20/2026-08-17): N-01 (Issue #172), N-02 (Issue #171), F-07 (Issue #164), F-08 (Issue #165), F-09 (Issue #170), tote `keywords`/`default`/`year` (Issue #169), Stale Share-Hash einfacher Modus (Issue #166), umfragegewichteter Koalitions-Wert (Issue #167), uneinheitliches Parteinamen-Escaping (Issue #170), 50-%-Baseline (Issue #168).
 
 ## Review vom 2026-09-14 (wöchentlicher Lauf + GitHub-Maintenance)
 
