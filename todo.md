@@ -1,6 +1,28 @@
 # Koalitions-O-Mat – Offene Aufgaben
 
-Erledigte Aufgaben wurden nach `archived-todo.md` verschoben (Stand 2026-09-14). Dokumentierte Läufe und Umsetzungen (Friction-Score, Regierungs-Simulator, Thesen-Matrix, Ergebnis-Karte, Live-URL-Sync, Bugfixes, Einfacher/Erweiterter Modus, Dealbreaker, 2D-Politik-Kompass, Taktik-Simulator, Feature-Evaluationen, Reviews) siehe dort.
+Erledigte Aufgaben wurden nach `archived-todo.md` verschoben (Stand 2026-09-21). Dokumentierte Läufe und Umsetzungen (Friction-Score, Regierungs-Simulator, Thesen-Matrix, Ergebnis-Karte, Live-URL-Sync, Bugfixes, Einfacher/Erweiterter Modus, Dealbreaker, 2D-Politik-Kompass, Taktik-Simulator, Feature-Evaluationen, Reviews) siehe dort.
+
+## Review vom 2026-09-28 (vollständiger Review + GitHub-Maintenance)
+
+Vollständiger Bericht: `reports/review-2026-09-28.md`. Vollständiger Projekt-Review ohne Fokus (Phase 1–6). Empirisch verifiziert (Node gegen die echten Datendateien aller 4 Wahlen): Sitzverteilung exakt aufsummiert (btw 630, LSA 83, Berlin 130, MV 79) inkl. d'Hondt und Hare-Niemeyer, Koalitionslisten inkl. `koalitionsausschluss` (btw 28, LSA 21, Berlin 12, MV 28), 222 Fragen konsistent mit `einfache-sprache.json`, i18n-Schlüssel-Abdeckung vollständig. Alle 8 Harness-/Tool-Skripte grün, `node --check script.js` OK. **1 neuer P3-Befund** (N-03), keine neuen P1/P2. GitHub: PR #174 (Review vom 2026-09-21) geprüft (CLEAN/MERGEABLE, alle Checks grün, reine Doku-/Todo-Änderung) und **gemergt** (`36d6e1a`), Head-Branch `opencode/schedule-31b9a7-20260921113915` gelöscht; 0 offene PRs; 9 offene Issues (#164–#172) unverändert berechtigt offen.
+
+### P3 – Neu (Review 2026-09-28)
+
+- [ ] **„Alle Filter zurücksetzen" stellt nicht den Ausgangszustand her und deaktiviert den Wahl-Default dauerhaft** (N-03) – `resetCoalitionFilters()` (script.js:1997-2016) setzt `minEl.value = 0` und `minEl.dataset.touched = '1'` (Z. 2002-2003). Der Ausgangswert ist aber `config.thresholds.minMatchForCoalition` = 20 (config.json:67), den `setActiveElection()` (script.js:819-822) nur setzt, solange `!slider.dataset.touched`. Zwei Folgen: (a) Der Wert 0 % weicht vom Ausgangszustand 20 % ab, obwohl README:29 ausdrücklich verspricht, die Filter ließen sich damit „wieder auf den Ausgangszustand bringen". (b) Das `touched`-Flag wird nie zurückgesetzt, sodass jeder nachfolgende Wahlwechsel den Default stillschweigend überspringt – der Regler bleibt für den Rest der Sitzung auf 0 %. Verifiziert per VM-Harness gegen die echten Daten: `setActiveElection('btw2029')` → `value=20, touched=undefined`; `resetCoalitionFilters()` → `value=0, touched=1`; `setActiveElection('mv-2026')` → `value=0, touched=1` (statt 20). Betrifft alle vier Wahlen (alle nutzen `minMatchForCoalition: 20`). Vorschlag: in `resetCoalitionFilters()` `config.thresholds.minMatchForCoalition` statt `0` setzen und `dataset.touched` entfernen.
+
+### P3 – Geprüft, bewusst nicht als neuer Befund geführt
+
+- **`zitat` fehlt bei 748 Objektantworten** (60/536/64/88 je Wahl), alle haben `quelle`. Die UI rendert `zitat`/`begruendung`/`quelle` jeweils nur bei Vorhandensein (script.js:2295-2308, 3710-3718), `getAnswerSources()` liefert für Legacy-Strings `null`. Kein Anzeigefehler, `zitat` ist laut README:42 kein Pflichtfeld. Kein Befund.
+- **i18n-Keys `type`, `typeBundestagswahl`, `typeLandtagswahl`, `typeAbgeordnetenhauswahl`, `modeOffParteiSeite`, `modeOffDealbreaker`** wirkten zunächst fehlend/tot, sind es aber nicht: `t('type' + e.type.replace(/\s+/g, ''), …)` (script.js:861, 871) baut den Schlüssel dynamisch, `modeOffParteiSeite`/`modeOffDealbreaker` werden im `simpleOff`-Array (script.js:134, 137) referenziert. Alle 253 statischen `t()`-/`data-i18n`-Schlüssel vorhanden. Kein Befund.
+- **Gewichtung „wichtig + Dealbreaker"** (`frageGewicht()`, script.js:203-208) liefert 4 statt einer Multiplikation mit 2. Das ist **kein** Befund: README:7, `reports/implementation-2026-08-10-dealbreaker.md:10` und `harness/dealbreaker-harness.js:106` beschreiben exakt dieses Verhalten (Skala um eine Stufe erweitert, nicht multipliziert); Doku und Code sind konsistent.
+
+### P3 – Inkonsistente Sonderbehandlung „Andere" (Hinweis, derzeit latent)
+
+- [ ] **`berechneSitze()`/`createStatsSummary()` schließen die synthetische Partei „Andere" nicht aus, 13 andere Pfade schon** – `berechneSitze()` (script.js:3804-3808) und `createStatsSummary()` (script.js:3311) filtern nur nach `sperrklausel`, während u. a. `berechneKoalitionen()` (script.js:1647), `berechneUserMatchRanking()` (script.js:336), `simulatorParties()` (script.js:2028) und 10 weitere Pfade `p.partei !== 'Andere'` explizit ausschließen. Mit den aktuellen Daten latent, da `Andere` in keiner `werte.json` vorkommt. Synthetisch verifiziert: mit `{partei:'Andere', prozent:6}` vergibt `berechneSitze()` **39 Sitze** an „Andere" (Summe bleibt korrekt 630), während `berechneKoalitionen()` sie konsequent ausschließt. Vorschlag: denselben Ausschluss auch in den Sitz-/Statistikpfaden ziehen, damit die Sonderbehandlung nicht auseinanderläuft.
+
+### P3 – Bestätigt offene Befunde (alle unverändert)
+
+Die 11 bekannten P3-Punkte aus den Abschnitten 2026-09-21, 2026-09-14, 2026-09-08 und 2026-08-17 gelten weiter: N-01 (Issue #172), N-02 (Issue #171), F-07 (Issue #164), F-08 (Issue #165), F-09/README-Zahlen (Issue #170), tote `keywords`/`default`/`year` (Issue #169), Stale Share-Hash einfacher Modus (Issue #166), umfragegewichteter Koalitions-Wert (Issue #167), 50-%-Baseline (Issue #168), uneinheitliches Parteinamen-Escaping (Issue #170).
 
 ## Review vom 2026-09-14 (wöchentlicher Lauf + GitHub-Maintenance)
 
@@ -56,54 +78,34 @@ Vollständiger Bericht: `reports/review-2026-08-17.md`. Empirisch verifiziert (a
 
 ## Review vom 2026-08-13 (vollständiger Review + GitHub-Maintenance)
 
-Vollständiger Bericht: `reports/review-2026-08-13.md`. Empirisch verifiziert (Node-Harness gegen die echten Daten, Sitzverteilung aller 4 Wahlen, Übereinstimmungs-Berechnung, alle bestehenden Harnesses grün). Issue #125 (veralteter Share-Hash) ist mit PR #145 behoben und abgehakt (siehe unten). Die während des Reviews entstandenen Bot-PRs #148/#149 (Issues #146/#147) wurden begutachtet und gemergt; Issues #146/#147 sind geschlossen.
+Vollständiger Bericht: `reports/review-2026-08-13.md`. Empirisch verifiziert (Node-Harness gegen die echten Daten, Sitzverteilung aller 4 Wahlen, Übereinstimmungs-Berechnung, alle bestehenden Harnesses grün). Issue #125 (veralteter Share-Hash) ist mit PR #145 behoben und abgehakt. Die während des Reviews entstandenen Bot-PRs #148/#149 (Issues #146/#147) wurden begutachtet und gemergt; Issues #146/#147 sind geschlossen.
 
-### P1 – Bugs
-
-- [x] **Koalitionsausschluss-Key `"CDU"` matcht keine Partei** – `elections/ltw-sachsen-anhalt-2026/config.json:9` nutzte den Key `"CDU"`, die Partei heißt in `werte.json` aber `"CDU/CSU"`. Der Ausschluss CDU–LINKE wurde daher nie angewendet. Fix (Issue #151, PR #156): Key auf `"CDU/CSU"` korrigiert.
-
-### P3 – Verbesserungen
-
-- [x] **Tote i18n-Keys in `einfache-sprache.json`** – `electionLabel`, `modeSwitchToSimple`, `modeSwitchToAdvanced` werden nirgends per `t()` abgefragt (keine Funktionsbeeinträchtigung). Entfernt (Issue #152), siehe `archived-todo.md`.
-- [x] **„Beste Koalition" im Ergebnis-Tab nutzt feste Schwelle statt des MinMatch-Reglers** – mit Issue #153 behoben: `berechneGefilterteKoalitionen()` liefert die Koalitions-Liste exakt wie im Koalitionen-Tab (Typ, MinMatch-Regler, Partei-Filter, Ausschlüsse); „Beste Koalition" (Ergebnis-Tab und Ergebnis-Karte) und `updateKoalitionen()` nutzen dieselbe Funktion; beim Wechsel aufs Ergebnis wird die Empfehlung nach Filter-Änderung neu gerendert (ohne History-Eintrag).
-- [x] **Reiner Koalitions-Share-Link ohne Antworten wird durch die Test-Tab-Sperre blockiert** (aus PR-#149-Review, Issue #154) – `applyPendingShare()` → `switchTab('koalitionen')` scheiterte am `testInProgress()`-Guard; Nutzer landete im Test statt in der geteilten Koalitions-Sicht. Fix: `switchTab()` akzeptiert `opts.force` für programmatische Wechsel (nur beim Wiederherstellen geteilter Zustände); `testInProgress()` liefert auf einem anderen als dem Test-Tab `false` (Sperre gilt nur, solange der Test-Tab aktiv ist); `applyPendingShare()` hebt die Sperre nach dem Wechsel auf. Beim manuellen Testen bleibt die Sperre unverändert, wer danach in den Test-Tab wechselt, startet den Test und unterliegt wieder der Sperre. Verifiziert per neuem Harness `harness/share-lock-harness.js` (23/23 Checks).
-
-### Tracking GitHub-Issues (alle geschlossen)
-
-- **#146** (Tab-Wechsel während des initialen Partei-Tests verhindern): mit PR #149 gelöst, geschlossen.
-- **#147** (Feature-Request Erklärseite): mit PR #148 gelöst, geschlossen.
+**Alle Befunde dieses Laufs sind erledigt und am 2026-09-28 nach `archived-todo.md` verschoben** (P1 Koalitionsausschluss-Key `"CDU"` – Issue #151; P3 tote i18n-Keys – Issue #152; P3 Beste-Koalition-Regler-Inkonsistenz – Issue #153; P3 Koalitions-Share-Link-Sperre – Issue #154). Beim Verschieben gegen den Code re-verifiziert: `koalitionsausschluss` nutzt in allen vier Wahlen gültige Parteinamen; die drei toten i18n-Keys sind in `einfache-sprache.json` nicht mehr vorhanden; „Beste Koalition" (script.js:368, 2653) und der Koalitionen-Tab (script.js:1923) nutzen beide `berechneGefilterteKoalitionen()`. Es bleiben keine offenen Punkte aus diesem Lauf.
 
 ## Review vom 2026-08-11-b (PR #120: Friction-Score, Regierungs-Simulator, Ergebnis-Karte, Live-URL-Sync) + Review vom 2026-08-11 (Modus mobil, PR #119, gemergt)
 
-Vollständiger Bericht: `reports/review-2026-08-11-b.md`. Empirisch verifiziert (alle Harnesses grün, Friction-Score gegen unabhängige Neuberechnung auf 4 Wahlen, CDP-Browsertest). Die aus PR #118 bekannten Modus-Befunde (Fokus „Einfacher/Erweiterter Modus & `config.json`-Nutzung") wurden bei der Merge-Konflikt-Lösung übernommen und sind **behoben** – siehe Report `reports/review-2026-08-11-c.md` und Umsetzung in `archived-todo.md` (Implementierung vom 2026-08-11). Die übrigen Befunde aus #119/#120 bleiben unten offen.
+Vollständiger Bericht: `reports/review-2026-08-11-b.md`. Empirisch verifiziert (alle Harnesses grün, Friction-Score gegen unabhängige Neuberechnung auf 4 Wahlen, CDP-Browsertest). Die aus PR #118 bekannten Modus-Befunde wurden bei der Merge-Konflikt-Lösung übernommen und sind **behoben** – siehe Report `reports/review-2026-08-11-c.md` und Umsetzung in `archived-todo.md` (Implementierung vom 2026-08-11).
 
-### P1 – Bugs
+**Alle Befunde dieses Laufs sind erledigt und am 2026-09-28 nach `archived-todo.md` verschoben** (P1 `aria-label="null"`; P2 Live-URL-Sync nach `resetTest()` – Issue #125; P2/P3 Mobile-Switch-Erreichbarkeit; P3 Ergebnis-Karte Wahl-ID; P3 Label→div – Issue #133; P3 `svgBar()` – Issue #130; P3 Modus-Wechsel-Kontext – Issue #131). Beim Verschieben gegen den Code re-verifiziert: `switchTab(tabName, opts)` akzeptiert `opts.force` (script.js:702, 709), `syncShareUrl()` löscht den Hash im Leerzustand (script.js:278-285), `exportCardData()` nutzt den Wahl-Namen, und `index.html` verwendet `<div class="simulator-select-label">`. Alle Issues (#105, #106, #110, #113, #124, #129–#131) sowie PR #118 sind geschlossen bzw. gemergt. Es bleiben keine offenen Punkte aus diesem Lauf.
 
-- [x] **`aria-label="null"` auf beiden `.mode-seg`-Buttons** – `applyStaticI18n()` (script.js:3752-3778). PR #119/#118. Fix: deutsche Statik-`aria-label` in index.html ergänzt und Fallback in `applyStaticI18n()` gegen `null`/`undefined` abgesichert (restauriert nur echte Originale, sonst entfernt das Attribut). Verifiziert per CDP (kein `aria-label="null"` mehr, Normal- wie Einfache-Sprache-Modus).
+### Tracking offene GitHub-Issues (Stand 2026-09-28)
 
-### P2 – Bugs
+9 offene Issues, alle deckungsgleich mit den oben genannten P3-Punkten und weiterhin berechtigt offen. Keines geschlossen, keines neu angelegt (N-03 ist bewusst noch nicht als Issue erfasst):
 
-- [x] **Live-URL-Sync hinterlässt nach `resetTest()` einen veralteten Share-Hash** (Issue #125) – mit PR #145 gemergt; Fix in `syncShareUrl()` (script.js:270-292) verifiziert (Hash wird bei leerem Zustand geleert, `lastSyncedHash` verhindert Overwrite bei unverändertem Zustand). Archiviert in `archived-todo.md` (2026-08-13).
+| Issue | Titel | Befund |
+| --- | --- | --- |
+| #164 | resetAnswers() lässt Share-Hash stehen | F-07 |
+| #165 | Modus-Wechsel rendert aktives Testergebnis nicht neu | F-08 |
+| #166 | Stale Share-Hash im einfachen Modus nach Reset | 2026-08-17 |
+| #167 | Koalitions-„Mit Ihnen"- Wert umfragegewichtet | 2026-08-17 |
+| #168 | 50-%-Baseline bei null vergleichbaren Antworten | 2026-08-17 |
+| #169 | Tote `config.json`-Keywords und `elections.json`-Felder | 2026-08-17 |
+| #170 | README-Fragenzahlen + Escaping Parteinamen | F-09 + 2026-08-17 |
+| #171 | Zwei parallele Mechanismen für Partei-Beschreibungen | N-02 |
+| #172 | Koalition mit exakt 50 % unter Typ-Filtern unsichtbar | N-01 |
 
-### P2/P3 – Verbesserungen / Mobile (bekannt aus #119)
+### Tracking offene GitHub-Pull-Requests (Stand 2026-09-28)
 
-- [x] **Mobile-Switch-Erreichbarkeit (sticky, Tap-Ziele, Header 481–599 px)** – Befunde aus `reports/review-2026-08-11.md` (gemergt). Fix: `#modeToggle` wandert auf ≤600 px aus der Kopfzeile in eine sticky `.sticky-nav`-Hülle (Modus-Umschalter als vollbreite Zeile über den Tabs, immer erreichbar); Segmente ≥40 px hoch mit dauerhaft sichtbaren Labels; Header-Kopfzeile dadurch entlastet (kein Overflow 481–599 px, Einfache-Sprache-Button auf ≤600 px Icon-only). Verifiziert per CDP über 320–768 px + Scroll-Test 390×844 (scrollY=600). Umsetzung siehe `archived-todo.md`.
+0 offene PRs. PR #174 („Review 2026-09-21: keine neuen Befunde, PR #173 gemergt, docs aktualisiert") geprüft (CLEAN, MERGEABLE, alle Checks grün, reine Doku-/Todo-Änderung ohne Anwendungscode) und gemergt (`36d6e1a`); Head-Branch `opencode/schedule-31b9a7-20260921113915` gelöscht. Keine weiteren verwaisten oder duplizierten Branches.
 
-### P3 – Verbesserungen
-
-- [x] **Ergebnis-Karte zeigt rohe Wahl-ID statt Wahl-Name** – `exportCardData()` (script.js:312) `electionName = activeElectionId`; stattdessen `getActiveElectionName()` (script.js:3498) verwendet – identisch zur Ergebnis-Ansicht (`showTestResults()`). Verifiziert per `node --check script.js`.
-- [x] **`<label class="simulator-select-label">` umschließt `<div>`** (index.html:111) – semantisch ungültig, Klick aufs Label kippt unbestimmte Checkbox. Umsetzung: `<div>`-Wrapper (Issue #133, siehe archived-todo.md).
-- [x] **`svgBar()` leerer Wrapper** (script.js:330) – jetzt real genutzt: `buildResultCardSVG()` baut die Ranglisten-Balken der Ergebnis-Karte über `svgBar()` (Array → Join statt Inline-Konkatenation, gerenderte Ausgabe identisch). Verifiziert per `node --check` und Harness.
-- [x] **Modus-Wechsel ohne sichtbaren Kontext** (aus PR #119, gemergt) – nach dem Umschalten fehlt eine Erklärung, welche Ansichten im einfachen Modus ausgeblendet sind (siehe `parteiSeiteDisabled`/`shareDisabledSimple`-Muster). Umsetzung: persistente Hinweiszeile `#modeHint` (benennt die via `config.ui.simple.off` ausgeblendeten Ansichten, i18n via `t()` inkl. Einfacher Sprache), siehe `archived-todo.md`.
-
-### Tracking offene GitHub-Issues
-
-- **#105 (Friction Score)**: in PR #120 umgesetzt und verifiziert; Best-Koalition-Anzeige („Beste Koalition für Sie") trägt zusätzlich Reibungs-Score + Konfliktthesen-Toggle. Geschlossen.
-- **#106 (Regierungs-Simulator)**: in PR #120 umgesetzt und verifiziert; der i18n-Singular-Fix wurde zusätzlich umgesetzt (Issue #128/#136, `tSingularPlural()` + Singular-Keys, 4 Harness-Checks). Geschlossen.
-- **#110 (Ergebnis-Karte PNG/SVG)**: in PR #120 umgesetzt und verifiziert; im UI nur noch **PNG**-Export (SVG bleibt intern Basis des PNG-Renderings), Wahl-Name statt roher Wahl-ID auf der Karte. Geschlossen.
-- **#113 (Cleanup Branch issue99)**: geschlossen (Branch existiert nicht mehr, 2026-08-11).
-- **#124 (`aria-label="null"` auf `.mode-seg`)**: bereits durch PR #132 (Issue #126) behoben und verifiziert. Geschlossen.
-- **#129 (Label→div) / #130 (`svgBar()` real nutzen) / #131 (Hinweiszeile für ausgeblendete Ansichten)**: umgesetzt und verifiziert (PRs #133/#134/#141). Geschlossen.
-- **PR #118 (Modus & config.json)**: Merge-Konflikte gelöst, alle 5 Befunde behoben und hier übernommen (Report `reports/review-2026-08-11-c.md`, Umsetzung in `archived-todo.md`); Inhalt in main, PR geschlossen.
-
-Derzeit offene Aufgaben: die P3-Punkte in den Abschnitten „Review vom 2026-08-20" (F-07–F-09, neu) und „Review vom 2026-08-17" oben. (Erledigt: P1 Koalitionsausschluss-Key `"CDU"` – Issue #151, P3 tote i18n-Keys – Issue #152, P3 Beste-Koalition-Regler-Inkonsistenz – Issue #153, P3 Koalitions-Share-Link-Sperre – Issue #154.)
+Derzeit offene Aufgaben: die P3-Punkte im Abschnitt „Review vom 2026-09-28" oben (N-03 neu, inkonsistente „Andere"-Sonderbehandlung) sowie die bestätigten P3-Punkte aus den Abschnitten 2026-09-14/2026-09-08/2026-08-20/2026-08-17.

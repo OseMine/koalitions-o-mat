@@ -1,6 +1,29 @@
 # Koalitions-O-Mat – Archiv erledigter Aufgaben
 
-Erledigte (abgehakte) Aufgaben aus todo.md, Stand 2026-08-13 (Stand 2026-09-14 geprüft: keine neu erledigten Punkte hinzugekommen). Offene Punkte: siehe `todo.md`.
+Erledigte (abgehakte) Aufgaben aus todo.md, Stand 2026-09-28 (Stand 2026-09-14 geprüft: keine neu erledigten Punkte hinzugekommen; Review vom 2026-09-28: zwei vollständig abgearbeitete Abschnitte – 2026-08-13 und 2026-08-11 – nach unten verschoben). Offene Punkte: siehe `todo.md`.
+
+## Verschobene abgeschlossene Abschnitte vom 2026-09-28 (Reviews 2026-08-13 und 2026-08-11)
+
+Beide Review-Abschnitte aus `todo.md` enthielten ausschließlich `[x]`-markierte, bereits umgesetzte und geschlossene Befunde. Beim Verschieben gegen den aktuellen Code re-verifiziert; es bleiben keine offenen Punkte aus diesen Läufen. Reports: `reports/review-2026-08-13.md`, `reports/review-2026-08-11-b.md`, `reports/review-2026-08-11-c.md`.
+
+### Aus „Review vom 2026-08-13" (vollständiger Review + GitHub-Maintenance)
+
+- [x] **Koalitionsausschluss-Key `"CDU"` matcht keine Partei** (P1) – `elections/ltw-sachsen-anhalt-2026/config.json` nutzte den Key `"CDU"`, die Partei heißt in `werte.json` aber `"CDU/CSU"`; der Ausschluss CDU–LINKE wurde daher nie angewendet. Fix (Issue #151, PR #156): Key auf `"CDU/CSU"` korrigiert. Re-verifiziert 2026-09-28: `koalitionsausschluss` der LSA lautet `{"AfD":["SPD","GRÜNE","LINKE"],"CDU/CSU":["LINKE"]}` – alle Keys sind gültige Parteinamen, ein Key `"CDU"` existiert in keiner Wahl.
+- [x] **Tote i18n-Keys in `einfache-sprache.json`** (P3) – `electionLabel`, `modeSwitchToSimple`, `modeSwitchToAdvanced` wurden nirgends per `t()` abgefragt und entfernt (Issue #152). Re-verifiziert 2026-09-28: alle drei Keys kommen in `einfache-sprache.json` nicht mehr vor.
+- [x] **„Beste Koalition" im Ergebnis-Tab nutzt feste Schwelle statt des MinMatch-Reglers** (P3) – Issue #153 behoben: `berechneGefilterteKoalitionen()` liefert die Koalitions-Liste exakt wie im Koalitionen-Tab (Typ, MinMatch-Regler, Partei-Filter, Ausschlüsse); „Beste Koalition" und der Koalitionen-Tab nutzen dieselbe Funktion; beim Wechsel aufs Ergebnis wird die Empfehlung nach Filter-Änderung neu gerendert (ohne History-Eintrag). Re-verifiziert 2026-09-28: `berechneGefilterteKoalitionen()` (script.js:1884) wird von der Ergebniskarte (script.js:368), `showTestResults()` (script.js:2653) und `updateKoalitionen()` (script.js:1923) gemeinsam genutzt; Hash-Vergleich über `lastKoalitionenFilterHash` (script.js:269) vorhanden.
+- [x] **Reiner Koalitions-Share-Link ohne Antworten wird durch die Test-Tab-Sperre blockiert** (P3) – Issue #154 behoben: `switchTab()` akzeptiert `opts.force` für programmatische Wechsel; `testInProgress()` liefert auf einem anderen als dem Test-Tab `false`; `applyPendingShare()` hebt die Sperre nach dem Wechsel auf. Re-verifiziert 2026-09-28: `switchTab(tabName, opts)` (script.js:702) prüft `!(opts && opts.force)` (script.js:709); `harness/share-lock-harness.js` grün.
+- **GitHub-Issues** #146 (Tab-Wechsel-Sperre, PR #149) und #147 (Erklärseite, PR #148) – gelöst und geschlossen.
+
+### Aus „Review vom 2026-08-11-b / 2026-08-11" (PR #120, PR #119)
+
+- [x] **`aria-label="null"` auf beiden `.mode-seg`-Buttons** (P1) – `applyStaticI18n()`; Fix: deutsche Statik-`aria-label` in `index.html` ergänzt und Fallback gegen `null`/`undefined` abgesichert (restauriert nur echte Originale, sonst entfernt das Attribut). Verifiziert per CDP in Normal- wie Einfache-Sprache-Modus. Issue #124, PR #132/#126.
+- [x] **Live-URL-Sync hinterlässt nach `resetTest()` einen veralteten Share-Hash** (P2, Issue #125) – mit PR #145 gemergt. Re-verifiziert 2026-09-28: `syncShareUrl()` (script.js:275-291) löscht bei leerem `buildShareUrl()`-Ergebnis einen Hash mit Präfix `#w=` per `history.replaceState` und ruft `markHashHandled()` auf; `lastSyncedHash` verhindert Overwrite bei unverändertem Zustand.
+- [x] **Mobile-Switch-Erreichbarkeit (sticky, Tap-Ziele, Header 481–599 px)** (P2/P3) – `#modeToggle` wandert auf ≤600 px in eine sticky `.sticky-nav`-Hülle; Segmente ≥40 px hoch mit dauerhaft sichtbaren Labels; Einfache-Sprache-Button auf ≤600 px Icon-only. Verifiziert per CDP über 320–768 px + Scroll-Test 390×844 (scrollY=600).
+- [x] **Ergebnis-Karte zeigt rohe Wahl-ID statt Wahl-Name** (P3) – `exportCardData()` nutzt `getActiveElectionName()` statt `activeElectionId`, identisch zur Ergebnis-Ansicht. Verifiziert per `node --check script.js`.
+- [x] **`<label class="simulator-select-label">` umschließt `<div>`** (P3) – semantisch ungültig, Klick aufs Label kippt unbestimmte Checkbox. Umsetzung: `<div>`-Wrapper (Issue #133). Re-verifiziert 2026-09-28: `index.html:174` enthält `<div class="simulator-select-label">`.
+- [x] **`svgBar()` leerer Wrapper** (P3) – `buildResultCardSVG()` baut die Ranglisten-Balken der Ergebnis-Karte über `svgBar()` (Array → Join statt Inline-Konkatenation). Issue #130, verifiziert per `node --check` und Harness.
+- [x] **Modus-Wechsel ohne sichtbaren Kontext** (P3, aus PR #119) – persistente Hinweiszeile `#modeHint` benennt die via `config.ui.simple.off` ausgeblendeten Ansichten (i18n via `t()` inkl. Einfacher Sprache). Issue #131.
+- **GitHub-Issues** #105 (Friction Score), #106 (Regierungs-Simulator, inkl. i18n-Singular-Fix aus #128/#136), #110 (Ergebnis-Karte PNG), #113 (Branch-Cleanup), #124, #129, #130, #131 – umgesetzt, verifiziert und geschlossen. **PR #118** (Modus & `config.json`): Merge-Konflikte gelöst, alle 5 Befunde behoben, Inhalt in `main`, PR geschlossen.
 
 ## Umsetzung vom 2026-08-20 (Issue #152 – Tote i18n-Keys in `einfache-sprache.json`)
 
